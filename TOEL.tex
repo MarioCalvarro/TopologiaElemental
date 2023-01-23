@@ -1,0 +1,563 @@
+\documentclass[10pt,a4paper,openright]{book}
+
+%% Formateo del título del documento
+\title{Topología elemental}
+\author{Mario Calvarro Marines}
+\date{}
+
+%% Formateo del estilo de escritura y de la pagina
+\pagestyle{plain}
+\setlength{\parskip}{0.35cm} %edicion de espaciado
+\setlength{\parindent}{0cm} %edicion de sangría
+\clubpenalty=10000 %líneas viudas NO
+\widowpenalty=10000 %líneas viudas NO
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry} % para establecer las medidas de los margenes
+\usepackage[spanish]{babel} %Para que el idioma por defecto sea español
+\usepackage{ulem} % para poder subrayar entornos especiales como las secciones
+
+%% Texto matematico y simbolos especiales
+\usepackage{amsmath} %Paquetes para mates
+\usepackage{mathtools}
+\usepackage{amsfonts} %Paquetes para mates
+\usepackage{amssymb} %Paquetes para mates
+\usepackage{stmaryrd} % paquete para mates
+\usepackage{latexsym} %Paquetes para mates
+\usepackage{cancel} %Paquete tachar cosas
+\usepackage{accents} %Paquete acentos
+
+%% Ruta de las fotos e inclusion de las mismas
+\usepackage{graphicx}
+\graphicspath{{./fotos/}}
+
+%% Inclusion de referencias cruzadas por defecto y específicas
+\usepackage{hyperref}
+
+%% Paquete para definir y utilizar colores por el documento
+\usepackage[dvipsnames,usenames]{xcolor} %activar e incluir colores
+    %% definicion de los colores que se van a utilizar en cada cabecera
+    \definecolor{capitulos}{RGB}{60,0,0}% gama de colores de los capitulos
+    \definecolor{secciones}{RGB}{95,8,5}% gama de colores de las secciones
+    \definecolor{subsecciones}{RGB}{140,36,31}% gama de colores de las subsections
+    \definecolor{subsubsecciones}{RGB}{188,109,79}% gama de colores de las subsubsections
+    \definecolor{teoremas}{RGB}{164,56,32}% gama de colores para los teoremas
+    \definecolor{demos}{RGB}{105,105,105} % gama de colores para el cuerpo de las demostraciones
+
+%% Paquete para la edición y el formateo de capítulos, secciones...
+\usepackage[explicit]{titlesec}
+    %% Definición del estilo de los capítulos, secciones, etc...
+    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge #1}[\titlerule]
+    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{#1}
+    \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{}{0pt}{\uline{#1}}
+    \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{}{0pt}{#1}
+
+%% Paquete para el formateo de entornos del proyecto
+\usepackage{ntheorem}[thmmarks]
+    %% Definicion del aspecto de los entornos matematicos del proyecto
+    \theoremstyle{break}
+    \theoremheaderfont{\normalfont\bfseries\color{teoremas}}
+    \theorembodyfont{\itshape}
+    \theoremseparator{\vspace{0.2cm}}
+    \theorempreskip{\topsep}
+    \theorempostskip{\topsep}
+    \theoremindent0cm
+    \theoremnumbering{arabic}
+    \theoremsymbol{}
+    \theoremprework{\vspace{0.2cm} \hrule}
+    \theorempostwork{\vspace{0.2cm}\hrule}
+        \newtheorem*{defi}{Definición}
+
+    \theoremprework{\vspace{0.25cm}}
+        \newtheorem*{theo}{Teorema}
+
+    \theoremprework{\vspace{0.25cm}}
+    	\newtheorem*{coro}{Corolario}
+
+    \theoremprework{\vspace{0.25cm}}
+    	\newtheorem*{lema}{Lema}
+
+    \theoremprework{\vspace{0.25cm}}
+    	\newtheorem*{prop}{Proposición}
+
+    \theoremheaderfont{\normalfont}
+    \theorembodyfont{\normalfont\color{demos}}
+    \theoremsymbol{\hfill\square}
+    	\newtheorem*{demo}{\underline{Demostración}:}
+
+    \theoremheaderfont{\normalfont}
+    \theorembodyfont{\normalfont}
+    	\newtheorem*{obs}{\underline{Observación}:}
+    	\newtheorem*{ej}{\underline{Ejemplo}:}
+
+%% Definicion de operadores especiales para simplificar la escritura matematica
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\divg}{div}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\adh}{Adh}
+\DeclareMathOperator{\fr}{Fr}
+\newcommand{\dif}[1]{\ d#1}
+
+%% Paquete e instrucciones para la generacion de los dibujos
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{tkz-fct}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz,tikz-3dplot}
+\tdplotsetmaincoords{80}{45}
+\tdplotsetrotatedcoords{-90}{180}{-90}
+\usetikzlibrary{arrows}
+    %% style for surfaces
+    \tikzset{surface/.style={draw=blue!70!black, fill=blue!40!white, fill opacity=.6}}
+
+    %% macros to draw back and front of cones
+    %% optional first argument is styling; others are z, radius, side offset (in degrees)
+    \newcommand{\coneback}[4][]{
+        %% start at the correct point on the circle, draw the arc, then draw to the origin of the diagram, then close the path
+        \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:225+#4:#3) -- (O) --cycle;
+    }
+    \newcommand{\conefront}[4][]{
+        \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:-135+#4:#3) -- (O) --cycle;
+    }
+    
+    \tikzset{middlearrow/.style={decoration={markings, mark= at position 0.5 with {\arrow{#1}},},postaction={decorate}}}
+    
+    \usetikzlibrary{decorations.markings}
+    
+    \newcommand{\AxisRotator}[1][rotate=0]{
+    \tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);
+    }
+    
+    \usetikzlibrary{shapes}
+
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
+\tableofcontents
+\chapter{Espacios topológicos}%
+\label{cha:espacios_topologicos}
+
+\section{Conjuntos abiertos}%
+\label{sec:conjuntos_abiertos}
+\begin{defi}
+Una \underline{topología} en un conjunto $X$ es una colección $\mathcal{C} \subset \mathcal{P}\left( x \right)$ de subconjuntos tal que:
+\begin{enumerate}
+    \item $\emptyset, X \in C$ 
+    \item Las uniones arbitrarias de elementos de $\mathcal{C}$ están en $\mathcal{C}$.
+    \item Las intersecciones \underline{finitas} de elementos de $\mathcal{C}$ están en $\mathcal{C}$.
+\end{enumerate}
+Se dice que $\left( X, \mathcal{C} \right)$ es un \underline{espacio topológico}, los elementos de $\mathcal{C}$ se llaman \underline{abiertos} y los elementos de $X$ se llaman \underline{puntos}. 
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item \label{ejemplos_topologia:first} $\mathcal{C} = \{\emptyset, X\}$ es la topología \underline{trivial}; $\mathcal{C} = P\left( X \right)$, topología \underline{discreta}: si los puntos $\{x\} \in \mathcal{C}$, entonces cualquier $A = \bigcup_{x \in A} \{x\}$ es abierto.
+    \item $\mathbb{R}^n$ con la topología usual definida mediante las bolas euclídeas.
+    \item Cualquier distancia $d$ define una topología mediante sus bolas abiertas, igual que se define la usual. \underline{Notación}: 
+    \[
+    B\left( a, \varepsilon \right) = \{d\left( a, x \right) < \varepsilon\},\ B\left[ a, \varepsilon \right] = \{d\left( a, x \right) \le \varepsilon \},\ S\left[ a, \varepsilon \right] = \{d\left( a, x \right) = \varepsilon\} 
+    \]
+    %TODO: Dibujo
+    \begin{center}
+        \includegraphics[scale=0.2]{images/topologia_metricas}  
+    \end{center}
+
+\item En un conjunto se pueden definir muchas topologías distintas (por ejemplo (\ref{ejemplos_topologia:first})) pero se? puede asumir que solo ``parezcan'' distintas. Ya se sabe que la topología usual de $\mathbb{R}^n$ se puede definir mediante muchas distancias distintas.
+    \item Una topología para ilustrar muchas propiedades. 
+
+    Fijamos $a \in X$:
+    \[
+    \mathcal{C}_a = \{U \subset X: a \in U\} \cup \{\emptyset\} 
+    \]
+    La topología ``del punto''. El punto $\{a\}$ y todos los pares de puntos $\{a, x\}$ son abiertos. Se parece a la discreta pero difiere en que en esta última todos los puntos son abiertos.
+\end{enumerate}
+\end{ej}
+
+\begin{defi}
+Dos topologías $\mathcal{C}_1 \subset \mathcal{C}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{C}_2$ más ``fina'' que $\mathcal{C}_1$.
+\end{defi}
+Siempre se da:
+\[
+\mathcal{C}_{\text{trivial}} \subset \mathcal{C} \subset \mathcal{C}_{\text{discreta}} 
+\]
+Sea $\left( X, \mathcal{C} \right)$ un espacio topológico; a menudo se omite $\mathcal{C}$ ó el calificativo ``topológico''. 
+
+\begin{defi}
+\begin{enumerate}
+    \item Un \underline{entorno abierto} de un punto $x \in X$ es un abierto $U$ que lo contiene. Se suele escribir $U^x$.
+    \item Un \underline{entorno} de un punto $x \in X$ es un conjunto $V$ que contiene un abierto $U$ que contiene al punto. Se suele escribir $V^x$.\footnote{La intersección finita de entornos es entorno. (Si son abiertos es trivial)}
+\end{enumerate}
+\end{defi}
+\begin{center}
+    \includegraphics[scale=0.2]{images/def_entornos} 
+\end{center}
+\begin{align*}
+    V_1^x \cap V_2^x &= V^x\\
+    U_1^x \cap U_2^x &= U_{ab}^x \ni x
+\end{align*}
+
+\begin{defi}
+Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ es entorno (luego $A$ lo contiene). El \underline{interior de $A$} es el conjunto de sus puntos interiores:
+\[
+\inter_X \left( A \right) = \mathring{A} = \{x \in A: \exists U_{ab}^x \subset A\} 
+\]
+\end{defi}
+\begin{center}
+    \includegraphics[scale=0.4]{images/def_interior} 
+\end{center}
+
+\begin{prop}
+$\mathring{A}$ es el mayor abierto contenido en $A$: 
+\[
+\mathring{A} = \bigcup_{U^{ab} \subset A} U
+\]
+En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ es un entorno de todos los puntos.    
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $\mathring{A}$ es abierto: 
+    \begin{gather*}
+        \begin{rcases}
+        \forall x \in \mathring{A} &\Rightarrow \exists U_{ab}^x \subset A\\
+        \forall y \in U^x &\Rightarrow A \supset U^x \text{es un abierto que contiene a } y \Rightarrow y \in \mathring{A}.\\
+        \end{rcases} \Rightarrow U_{ab}^x \subset \mathring{A}\\
+        \Rightarrow \mathring{A} = \bigcup_{x \in \mathring{A}} U^x \text{ es abierto como unión de abiertos.}
+    .\end{gather*}
+    \item $\mathring{A}$ es el mayor abierto contenido en $A$.
+    \[
+    U^{ab} \subset A \Rightarrow \forall x \in U^{ab} \subset A \Rightarrow x \in \mathring{A} \Rightarrow U \subset \mathring{A} 
+    \]
+\end{enumerate}
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\left( X, \mathcal{C}_{\text{trivial}} \right): A \neq X \Rightarrow A \not \supset X \Rightarrow \emptyset$ es el único abierto $\subset A \Rightarrow \mathring{A} = \emptyset$.
+
+    \item En $\mathbb{R}^n$ con $\mathcal{C}_{\text{trivial}}$ ya lo sabemos bien:
+    \[
+    \inter\left( B\left[ a, \varepsilon \right] \right)  = B\left( a, \varepsilon \right);\ \mathring{\mathbb{Q}}^n = \emptyset;\ \mathring{\mathbb{Z}}^n = \emptyset
+    \]
+    \item Si $a \in X,\ \mathcal{C}_a : \mathring{\{a\}} = \{a\};\ x \neq a,\ \mathring{\{x\}} = \emptyset$.
+\end{enumerate}
+\end{ej}
+
+\begin{prop}
+\begin{enumerate}
+    \item $A \subset B \Rightarrow \mathring{A} \subset \mathring{B}$.
+    \item $\mathring{A} \cap \mathring{B} = \inter \left( A \cap B \right)$.
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ y $\mathring{A}$ es abierto $\Rightarrow \mathring{A} \subset \mathring{B}$.
+    \item 
+    \begin{gather*}
+    \begin{rcases}
+    \begin{cases}
+        \mathring{A} \cap \mathring{B} \text{ abierto (intersección finita de abiertos)}\\
+        \mathring{A} \cap \mathring{B} \subset A \cap B 
+    \end{cases} &\Rightarrow \mathring{A} \cap \mathring{B} \subset \inter \left( A \cap B \right)\\
+    A \cap B \subset A, B \Rightarrow \inter \left( A \cap B \right) \subset \mathring{A}, \mathring{B} &\Rightarrow \inter\left( A \cap B \right) \subset \mathring{A} \cap \mathring{B}
+    \end{rcases} \Rightarrow\\
+    \boxed{\mathring{A} \cap \mathring{B} = \inter\left( A \cap B \right)} 
+    .\end{gather*}
+\end{enumerate}
+\end{demo}
+
+\section{Conjuntos cerrados}%
+\label{sec:conjuntos_cerrados}
+Sea $\left( X, \mathcal{C} \right)$ un espacio topológico.
+\begin{defi}
+Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \setminus F$ es abierto.
+\end{defi}
+\begin{obs}
+    Cerrado \underline{no} significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
+    \begin{center}
+        \includegraphics[scale=0.3]{images/def_cerrados} 
+    \end{center}
+\end{obs}
+\begin{obs}
+Se cumple:
+\begin{enumerate}
+    \item $X, \emptyset$ son cerrados.
+    \item La intersección arbitraria de cerrados es cerrada.
+    \item La unión finita de cerrados es cerrado.
+\end{enumerate}
+\begin{demo}
+    Porque $\bigcap_{i \in  I} \left( X \setminus U_i \right) = X \setminus \bigcup_{i \in  I} U_i$ y $\bigcup_{i \in  I} X \setminus U_i = X \setminus \bigcap_{i \in  I} U_i$.
+\end{demo}
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item En la topología trivial solo son cerrados $\emptyset$ y $X$. En la discreta, todos los subconjuntos son cerrados.
+    \item En $\mathbb{R}^n$ con la topología usual ya sabemos todos los ejemplos: $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
+    \item Si $\mathcal{C}_1 \subset \mathcal{C}_2$, todo cerrado de $\mathcal{C}_1$ es cerrado de $\mathcal{C}_2$. 
+\end{enumerate}
+\end{ej}
+
+Para saber cuándo se aleja un conjunto de ser cerrado tenemos:
+\begin{defi}
+Sea $A \subset X$. Un punto \underline{adherente} a $A$ es un punto cuyos entornos intersecan todos a $A$. La \underline{adherencia} de $A$ es el conjunto de sus puntos adherentes. 
+\[
+\adh_X\left( A \right) = \overline{A} = \{x \in X: \forall V^x \cap A \neq \emptyset\} 
+\]
+\end{defi}
+
+\begin{obs}
+Las primeras fórmulas importantes son:
+\begin{gather*}
+    \boxed{X \setminus \overline{A} = \inter\left( X \setminus A \right)} \\
+    \boxed{X \setminus \mathring{B} = \overline{X \setminus B}} 
+.\end{gather*}
+\begin{demo}
+\begin{itemize}
+    \item $x \in X \setminus \overline{A} \Leftrightarrow x \not\in \overline{A} \Leftrightarrow \exists U^x \cap A = \emptyset \Leftrightarrow \exists U^x \subset X \setminus A \Leftrightarrow x \in \inter\left( X \setminus A \right)$
+    \item $x \not\in \mathring{B} \Leftrightarrow \not\exists U^x \subset B \Leftrightarrow \forall U^x \cap \left( X \setminus B \right) \neq \emptyset \Leftrightarrow x \in \overline{X \setminus B}$.
+\end{itemize}
+\end{demo}
+\end{obs}
+
+\begin{prop}
+$\overline{A}$ es el menor cerrado que contiene a $A$: 
+\[
+    \boxed{\overline{A} = \bigcap_{F_{\text{cerrado}} \supset A} F } 
+\]
+
+En particular, $A$ cerrado $\Leftrightarrow \overline{A} = A \Leftrightarrow A$ contiene todos sus puntos de adherencia.
+\end{prop}
+\begin{demo}
+$\overline{A} = X \setminus \inter\left( X \setminus A \right) = X \setminus \underbrace{\bigcup_{U \subset X \setminus A} U = X \setminus \bigcup_{F \supset A}}_{F = X \setminus U} \left( X \setminus F \right) = \bigcap_{F \supset A} F$.
+\end{demo}
+
+\begin{obs}
+Lo anterior nos implica:
+\begin{itemize}
+    \item $B \supset A \Rightarrow \overline{B} \supset B \supset A \Rightarrow \overline{B} \supset \overline{A}$.
+    \item $\overline{A \cup B} = \overline{A} \cup \overline{B}$:
+    \[
+    \begin{cases}
+        \overline{A\cup B} \supset A \cup B \supset \begin{cases}
+            A\\B
+        \end{cases} \Rightarrow \overline{A\cup B} \supset \begin{cases}
+            \overline{A} \\ \overline{B} 
+        \end{cases} \Rightarrow \overline{A\cup B} \supset \overline{A} \cup \overline{B}\\
+
+        A \cup B \subset \overline{A} \cup \overline{B} \Rightarrow \overline{A\cup B} \subset \overline{A} \cup \overline{B} 
+    \end{cases} 
+    \]
+    La última implicación por que es cerrado al ser la unión de dos cerrados.
+\end{itemize}
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item En $\mathbb{R}^n, \mathcal{C}_{\text{usual}}: B\left[ a, \varepsilon \right] = \overline{B \left( a, \varepsilon \right)};\ \overline{\mathbb{Q}^n} = \mathbb{R}^n$.
+    \item $a \in X, \mathcal{C}_a$
+    \[
+        \begin{cases}
+        \overline{\{a\}} = X \left[ \forall x, \forall U^x \supset \{a, x\} \ni a \Rightarrow x \in \overline{\{a\}} \right]\\
+        x \neq a, \overline{\{x\}} = \{x\} \left[ y\neq x \Rightarrow U^y = \{a, y\} \cap \{x\} = \emptyset \right] 
+        \end{cases} 
+    \]
+\end{enumerate}
+\end{ej}
+
+\underline{Otros tipos de puntos especiales}:
+\begin{enumerate}
+    \item $x$ es un \underline{punto aislado} de $A$ si $\exists V^x \cap A = \{x\}$.
+    \item $x$ es un \underline{punto de acumulación} de $A$ si $\forall V^x \cap A \setminus \{x\} \neq \emptyset$. Y, evidentemente,
+    \[
+    \overline{A} = \{\underbrace{\text{puntos aislados}}_{\subset A}\} \cup \{\underbrace{\text{puntos de acumulación}}_{\supset \overline{A} \setminus A}\} 
+    \]
+    \item $x$ es un \underline{punto frontera} de $A$ si es adherente a $A$ y a $X \setminus A$, o bien: si no es interior de $X \setminus A$ ni de $A$. La \underline{frontera} de $A$ es: 
+    \[
+    \fr\left( A \right) = \{x \in X: x \text{ es punto frontera de } A\} = \overline{A} \cap \overline{X \setminus A} = \overline{A} \setminus \mathring{A}     
+    \]
+\end{enumerate}
+
+\begin{ej}
+\begin{enumerate}
+    \item En $\mathbb{R}, \mathcal{C}_n$ todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
+    \item En $\mathbb{R}^n, \mathcal{C}_n: \fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
+    \item En $\mathcal{C}_{\text{discreta}}$ todos los puntos son aislados, todas las fronteras son vacías.
+    \item $a \in X, \mathcal{C}_a: $
+    \[
+    \begin{cases}
+        \fr\left( \{a\} \right) = \overline{\{a\}} \setminus \mathring{\{a\}} = X \setminus \{a\}\\
+        x \neq a, \fr\left( \{x\} \right) = \overline{\{x\}} \setminus \mathring{\{x\}} = \{x\} 
+    \end{cases} 
+    \]
+\end{enumerate}
+\end{ej}
+
+Ahora, un concepto importante:
+\begin{defi}
+$A \subset X$ es \underline{denso} si $\overline{A} = X$, o bien, todo punto es adherente a $A$, o bien, todo abierto $\left( \neq \emptyset \right)$ corta a $A$.
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\mathbb{Q} \subset \mathbb{R}, \mathcal{C}_{\text{usual}}; \mathbb{Q} \times \overbrace{\ldots}^{n} \times \mathbb{Q} \subset \mathbb{R}^n, \mathcal{C}_{\text{usual}}$ son densos.
+    \item $\{a\}$ es denso en $\left( X, \mathcal{C}_a \right)$.
+\end{enumerate}
+\end{ej}
+
+\section{Bases}%
+\label{sec:bases}
+Sea $X, \mathcal{C}$ un espacio topológico.
+\begin{defi}
+Una \underline{base de entornos} de $a \in X$ es una colección $\mathcal{V}^a$ de entornos de $a$, tal que todo entorno de $a$ contiene uno de la $\mathcal{V}^a$.
+\end{defi}
+
+\begin{obs}
+No se supone ninguna propiedad especial, ni que sean abiertos. Veremos que la existencia de base de entornos con propiedades adicionales es una de las cosas que determinan el comportamiento de la topología.
+
+Pero: $\forall \mathcal{V}^a$ se puede \underline{refinar} a una base $\mathcal{B}^a$ de entornos de abiertos. 
+\[
+\left[ \forall V^a \in \mathcal{V}^a \exists U^a \subset V^a \Rightarrow \mathcal{B}^a = \{U^a: V^a \in \mathcal{V}^a\} \text{ es base de entornos} \right]
+\]
+\end{obs}
+
+\underline{Política general}? 
+
+Bastan las bases de entornos para comprobar propiedades de todos los entornos.
+
+Ilustración:
+\begin{align*}
+    a \in \overline{A} &\xLeftrightarrow{\text{def}} \forall W^a \text{ entorno }: W^a \cap A \neq \emptyset\\
+   &\iff \forall V^a \in \mathcal{V}^a: V^a\cap A \neq \emptyset 
+.\end{align*}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\mathbb{R}^n, \mathcal{C}_{\text{usual}}: $
+    \[
+    \begin{cases}
+    \mathcal{B}^a = \{B\left( a, \varepsilon \right): \varepsilon > 0\} \text{ base de entornos abiertos.}  \\
+    \mathcal{V}^a = \{B\left[ a, \varepsilon \right]: \varepsilon > 0\} \text{ base de entornos cerrados.} 
+    \end{cases} 
+    \]
+    \item $a \in X, \mathcal{C}_a : \mathcal{B}^a = \{\{a\}\}, \mathcal{B}^x = \{\{a, x\}\},\ x \neq a$.
+\end{enumerate}
+\end{ej}
+
+\begin{defi}
+Una \underline{base de abiertos} de $\mathcal{C}$ es una colección de abiertos $B \subset \mathcal{C}$ tal que todo abierto es unión de abiertos de $B$.
+\end{defi}
+
+\begin{prop}
+$\mathcal{B}$ base de abiertos $\Leftrightarrow \forall x \in X,\ \mathcal{B}^x = \{B \in \mathcal{B} : x \in B\}$ es base de entornos abiertos de $x \Leftrightarrow \forall x \in U,\ \exists B \in \mathcal{B} : x \in B \subset U$.
+\end{prop}
+\begin{demo}
+$\Rightarrow) \forall V^x \Rightarrow x \in U \subset V^x \Rightarrow$
+\[
+    \mathcal{B} \text{ base } U = \bigcup_{i \in  I} \overbrace{B_i}^{\in \mathcal{B}} \xRightarrow{x \in U} \exists x \in B_i \subset U \subset V^x
+\]
+$\Leftarrow) U \in \mathcal{C},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in \mathcal{B}} \subset U \Rightarrow U = \bigcup_{x \in U} B^x$ unión de abiertos de $\mathcal{B}$.
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\mathcal{C}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
+    \item $\mathcal{C}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
+    \item $\mathbb{R}^n, \mathcal{C}_{\text{usual}} \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
+    \begin{center}
+        \includegraphics[scale=0.3]{images/base_rn} 
+    \end{center}
+    Pero también,
+    \begin{center}
+        \includegraphics[scale=0.3]{images/bases_alternativas_rn} 
+    \end{center}
+    porque
+    \[
+    B\left( x, \varepsilon \right) = \bigcup_{i \in  I} cuadrados = \bigcup_{j \in J} rectangulos
+    \]
+\end{enumerate}
+\end{ej}
+
+\underline{Política general} , como antes: a menudo basta considerar los abiertos de $\mathcal{B}$ 
+
+Ilustración: $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset$.
+
+\begin{prop}
+$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{C}$ es $X$. Es equivalente a: 
+\begin{itemize}
+    \item $X = \bigcup_{B \in \mathcal{B}} B$.
+    \item $\forall x \in B_1 \cap B_2,\ \exists B^x \subset B_1 \cap B_2$.
+\end{itemize}
+\begin{center}
+    \includegraphics[scale=0.3]{images/base_unica} 
+\end{center}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item \underline{Unicidad}: $\mathcal{C} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
+    \item \underline{Existencia}: Esa $\mathcal{C}$ es efectivamente topología. Lo importante: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{C}$.
+\end{itemize}
+\end{demo}
+
+\section{Topología relativa}%
+\label{sec:topologia_relativa}
+Sea $\left( X, \mathcal{C} \right)$ espacio topológico.
+\begin{defi}
+$Y \subset X: \mathcal{C}|_Y = \{U \cap Y: U \in \mathcal{C}\}$ es una topología en $Y$ (fácil), denominada \underline{relativa} ó \underline{restricción} a $Y$; también se dice que $\left( Y, \mathcal{C}|_Y \right)$ es un \underline{subespacio} de $\left( X, \mathcal{C} \right)$ y que $\left( X, \mathcal{C} \right)$ es el espacio \underline{ambiente}. 
+\begin{center}
+    %TODO: Recortar mejor por arriba
+    \includegraphics[scale=0.3]{images/def_subespacio_top} 
+\end{center}
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item Los cerrados en $\mathcal{C}|_Y$ son $F\cap Y$ con $F$ cerrado en $\mathcal{C}$.
+    \[
+    \left[ Y \setminus U \cap Y = Y \cap \left( X \setminus U \right) = Y\cap F \right] 
+    \]
+    \item 
+    $\begin{cases}
+        y \in Y \subset X\\
+        \mathcal{V}^y \text{ base de entornos de } y \text{ en } \mathcal{C} 
+    \end{cases}\Rightarrow \begin{cases}
+        \mathcal{V}^y \cap Y = \{V^y \cap Y : V^y \in \mathcal{V}^y\} \\
+        \text{base de entornos de } y \text{ en } \mathcal{C}|_Y 
+    \end{cases}$
+
+    \item $\mathcal{B}$ base de $\mathcal{C} \Rightarrow \mathcal{B} \cap Y = \{B \cap Y : B \in \mathcal{B}\}$ base de $\mathcal{C}|_Y$
+\end{enumerate}
+\end{obs}
+
+Esta idea es general: en un subespacio se hacen las construcciones intersecando.
+
+\begin{ej}
+\begin{enumerate}
+    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{C}|_Y. \left[ \{y\} = V^y \cap Y \right]$
+    \item Todos los puntos de $Y$ son aislados $\Leftrightarrow C|_Y = $ discreta.
+
+    Se dice: $Y$ es un \underline{subespacio discreto}. 
+
+    Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
+    \begin{center}
+        \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
+    \end{center}
+
+    \item $a \in X, \mathcal{C}_a|_{X \setminus \{a\}} = $ discreta.
+\end{enumerate}
+\end{ej}
+
+\begin{obs}
+\begin{enumerate}
+    \item $Y \subset_{\text{ab}} X: W \text{ abierto de } Y \Leftrightarrow W \text{ abierto de } X$ contenido en $Y$.
+    \[
+    \left[ W = U \cap Y^{ab},\ U^{ab} \subset X \Rightarrow W^{ab} \subset X \text{ por intersección finita} \right] 
+    \]
+    \item $Y \subset_{\text{cerr}} X: F \text{ cerrado de } Y \Leftrightarrow F \text{ cerrado de } X$ contenido en $Y$.
+    \[
+    \left[ C = F \cap Y^{cerr},\ F^{cerr} \subset X \Rightarrow C^{cerr} \subset X \text{ por intersección finita} \right] 
+    \]
+\end{enumerate}
+\end{obs}
+
+\end{document}
