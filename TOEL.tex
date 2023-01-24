@@ -158,13 +158,15 @@ Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico
     \[
     B\left( a, \varepsilon \right) = \{d\left( a, x \right) < \varepsilon\},\ B\left[ a, \varepsilon \right] = \{d\left( a, x \right) \le \varepsilon \},\ S\left[ a, \varepsilon \right] = \{d\left( a, x \right) = \varepsilon\} 
     \]
+    \item En un conjunto se pueden definir muchas topologías distintas (por ejemplo (\ref{ejemplos_topologia:first})) pero se puede asumir que solo ``parezcan'' distintas. Ya se sabe que la topología usual de $\mathbb{R}^n$ se puede definir mediante muchas distancias distintas.
+
     %TODO: Dibujo
     \begin{center}
         \includegraphics[scale=0.2]{images/topologia_metricas}  
-    \end{center}
 
-\item En un conjunto se pueden definir muchas topologías distintas (por ejemplo (\ref{ejemplos_topologia:first})) pero se? puede asumir que solo ``parezcan'' distintas. Ya se sabe que la topología usual de $\mathbb{R}^n$ se puede definir mediante muchas distancias distintas.
-    \item Una topología para ilustrar muchas propiedades. 
+        \textit{El dibujo representa distintas distancias\footnote{Procedentes de \textit{normas}.} en $\mathbb{R}^n$, pero todas definen la misma topología.} 
+    \end{center}
+    \item Una topología para ilustrar muchas propiedades (y contraejemplos). 
 
     Fijamos $a \in X$:
     \[
@@ -175,7 +177,7 @@ Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico
 \end{ej}
 
 \begin{defi}
-Dos topologías $\mathcal{T}_1 \subset \mathcal{T}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{T}_2$ más ``fina'' que $\mathcal{T}_1$.
+Dos topologías $\mathcal{T}_1 \subset \mathcal{T}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{T}_2$ es más ``fina'' que $\mathcal{T}_1$.
 \end{defi}
 Siempre se da:
 \[
@@ -192,10 +194,22 @@ Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\
 \begin{center}
     \includegraphics[scale=0.2]{images/def_entornos} 
 \end{center}
-\begin{align*}
-    V_1^x \cap V_2^x &= V^x\\
-    U_1^x \cap U_2^x &= U_{ab}^x \ni x
-\end{align*}
+\begin{obs}    
+\begin{enumerate}
+    \item \begin{align*}
+        V_1^x \cap V_2^x &= V^x\\
+        U_1^x \cap U_2^x &= U_{ab}^x \ni x
+    \end{align*}
+
+    %TODO: Corregir esta observación
+    \item $U \in \mathcal{T}$ es entorno de todos \underline{sus} puntos.
+    \begin{demo}
+    \[
+    U \ni x \in \text{ abierto } \subset U
+    \]
+    \end{demo}
+\end{enumerate}
+\end{obs}
 
 \begin{defi}
 Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ es entorno (luego $A$ lo contiene). El \underline{interior de $A$} es el conjunto de sus puntos interiores:
@@ -220,9 +234,9 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
     \begin{gather*}
         \begin{rcases}
         \forall x \in \mathring{A} &\Rightarrow \exists U_{ab}^x \subset A\\
-        \forall y \in U^x &\Rightarrow A \supset U^x \text{es un abierto que contiene a } y \Rightarrow y \in \mathring{A}.\\
-        \end{rcases} \Rightarrow U_{ab}^x \subset \mathring{A}\\
-        \Rightarrow \mathring{A} = \bigcup_{x \in \mathring{A}} U^x \text{ es abierto como unión de abiertos.}
+        \forall y \in U^x &\Rightarrow A \supset U^x \text{ es un abierto que contiene a } y \Rightarrow y \in \mathring{A}.\\
+        \end{rcases} \Rightarrow U^x \subset \mathring{A}\\
+        \Rightarrow \mathring{A} = \bigcup_{x \in \mathring{A}} U^x \text{ es abierto como unión de abiertos}
     .\end{gather*}
     \item $\mathring{A}$ es el mayor abierto contenido en $A$.
     \[
@@ -559,5 +573,143 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
     \]
 \end{enumerate}
 \end{obs}
+
+\chapter{Aplicaciones continuas}%
+\label{cha:aplicaciones_continuas}
+\section{Continuidad}%
+\label{sec:continuidad}
+El famoso $\varepsilon-\delta$ en $\mathbb{R}^n \mathcal{T}_u; x_0 \in X,\ f : \overbrace{X}^{\subset \mathbb{R}^p} \rightarrow \overbrace{Y}^{\subset \mathbb{R}^q}$: 
+\begin{gather*}        
+\forall \varepsilon > 0, \exists \delta > 0: 
+\begin{cases}
+    \lVert x - x_0 \rVert < \delta \Rightarrow \lVert f\left( x \right) - f\left( x_0 \right) \rVert < \varepsilon \Leftrightarrow\\
+    x \in B\left( x_0, \delta \right) \Rightarrow f\left( x \right) \in B\left( f\left( x_0 \right), \varepsilon \right) \Leftrightarrow\\
+    f\left( B\left( x_0, \delta \right) \right) \subset B\left( f\left( x_0 \right), \varepsilon \right) 
+\end{cases} \Rightarrow\\
+\boxed{\forall B\left( f\left( x_0 \right), \varepsilon \right),\ \exists B\left( x_0, \delta \right) \subset f^{-1}\left( B\left( f\left( x_0 \right), \varepsilon \right) \right)} 
+.\end{gather*}
+
+\begin{defi}
+$f: X \rightarrow Y$ será \underline{continua en $x_0$} $\in X$ si: 
+\[
+\forall V^{f\left( x_0 \right)}: f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0} 
+\]
+\end{defi}
+
+\begin{prop}[Composición de continuidades]
+La composición de funciones continuas es continua:
+
+\[
+X \xrightarrow{f} Y \xrightarrow{g} Z: \begin{rcases}
+    f \text{ continua en } x_0\\
+    g \text{ continua en } y_0
+\end{rcases} \Rightarrow h = g \circ f \text{ continua en }  x_0
+\]
+\end{prop}
+\begin{demo}
+Sea $V^{h\left( x_0 \right)} \rightarrow h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^{y_0} = V^{x_0}$.
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\forall f: X_{\text{discreta}} \rightarrow Y$ es continua. [Todo es abierto, luego todo es entorno en $\mathcal{T}_{\text{disc}}$]
+    \item $\forall f: X \rightarrow Y_{\text{trivial}}$ continua. [$V^{f\left( x \right)} = Y$ es el único abierto, luego el único entorno, de $f^{-1}V^{f\left( x \right)} = f^{-1}Y = X$ es abierto]
+    \item $f: X \rightarrow Y_{\text{discreta}}$ es continua $\Rightarrow f$ localmente creciente.
+        [$\{f\left( x_0 \right)\} = V^{f\left( x_0 \right)}$ en $\mathcal{T}_{\text{discr}} \xRightarrow[f\text{ cont.}]{} f^{-1}f\left( x_0 \right) = V^{x_0}\; \land \;f \equiv f\left( x_0 \right)$]
+    \item $f: X \rightarrow Y$ localmente constante $\Rightarrow$ continua.
+
+    [$\forall x_0 \in X, \exists U^{x_0} : f \stackrel{U^{x_0}}{\equiv} f\left( x_0 \right) \Rightarrow \forall V^{f\left( x_0 \right)}: f^{-1}V^{f\left( x_0 \right)} \supset U^{x_0} \Rightarrow f^{-1}V^{f\left( x_0 \right)} = V^{x_0}$ es entorno de $x_0$]
+\end{enumerate}
+\end{ej}
+
+\begin{prop}
+Son equivalentes:
+\begin{enumerate}
+    \item $f$ es continua.
+    \item $f^{-1}\left( \text{abierto}  \right) = \text{abierto} ,\ \forall \text{abierto} \in Y$.
+    \item $f^{-1}\left( \text{cerrado} \right) = \text{cerrado},\ \forall $ cerrado de $Y$.
+    \item $f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}\left( A \right) \right),\ \forall A \subset Y$
+    \item $f\left( \overline{A} \right) \subset \overline{f\left( A \right)},\ \forall A \subset X$
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $1 \Rightarrow 2)$
+    \[
+        W^{ab} \subset Y \Rightarrow W \text{ ent. de } f\left( x \right),\ \forall x \in f^{-1}W \Rightarrow f^{-1} W \text{ ent. de } \forall x \in f^{-1}W \Rightarrow f^{-1} W \subset X 
+    \]
+    \item $2 \Rightarrow 3)$
+    \[
+        C_{cerr} \subset Y \Rightarrow Y \setminus C \subset Y \Rightarrow^{2)} \underbrace{f^{-1}\left( Y\setminus C \right)}_{= X \setminus f^{-1}C} \subset X \Rightarrow f^{-1}C \stackrel{cerr}{\subset} X 
+    \]
+    \item $3 \Rightarrow 5)$
+
+    \[
+        \overline{f\left( A \right)} \stackrel{cerr}{\subset} Y \Rightarrow^{3)} \underbrace{f^{-1}\overline{f\left( A \right)}}_{\subset f^{-1}f\left( A \right) \supset A} \subset X \Rightarrow \overline{A} \subset f^{-1}\overline{f\left( A \right)} \Rightarrow f\left( \overline{A} \right) \subset \overline{f\left( A \right)} 
+    \]
+    \item $5 \Rightarrow 4)$
+    \begin{gather*}
+        Y \setminus \mathring{A}\Rightarrow \overline{Y\setminus A} \supset \overline{f\left( X \setminus f^{-1}A \right)} \stackrel{5)}{\supset} f\left( \overline{X \setminus f^{-1}\left( A \right)} \right) = f\left( X \setminus \inter\left( f^{-1}A \right) \right) \Rightarrow\\
+        X \setminus \inter\left( f^{-1}A \right) \subset f^{-1}\left( Y\setminus \mathring{A} \right) = X \setminus f^{-1}\left( \mathring{A} \right)\Rightarrow f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}A \right) 
+    .\end{gather*}
+
+    \item $4 \Rightarrow 1)$
+    \begin{gather*}
+        V^{f\left( x \right)} \Rightarrow f\left( x \right) \in \inter\left( V^{f\left( x \right)} \right) \Rightarrow x \in f^{-1}\left( \inter\left( V^{f\left( x \right)} \right) \right) \subset \inter\left( f^{-1}V^{f\left( x \right)} \right) \Rightarrow \\
+        f^{-1}V^{f\left( x \right) } \text{ entorno de } x.
+    \end{gather*}
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+\begin{enumerate}
+    \item Los cuatros primeros enunciados tratan sobre ``imágenes inversas''. Por ejemplo, la segunda dice que $f^{-1}\mathcal{T}_Y \subset \mathcal{T}_X$.
+    \item Pensando que un punto adherente es un ``punto límite'', $5$ nos dice que ``la imagen del límite es el límite de la imagen''.
+    \item $Id: \left( X, \mathcal{T}_1 \right) \rightarrow \left( X, \mathcal{T}_2 \right)$ es continua $\Rightarrow \mathcal{T}_2 \subset \mathcal{T}_1$. [$Id^{-1}\mathcal{T}_1 = \mathcal{T}_2]$
+\end{enumerate}
+Y no mencionamos todos los ejemplos conocidos en espacios afines $\mathbb{R}^n$ con $\mathcal{T}_u$.
+\end{obs}
+
+\section{Continuidad y subespacios}%
+\label{sec:continuidad_y_subespacios}
+\begin{prop}
+Sea $f: X \rightarrow Y$ continua y $Z \subset X$ subespacio $\Rightarrow f|_Z : Z \rightarrow Y$ es continua.
+\end{prop}
+\begin{demo}
+Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
+\[
+\left( f|_Z \right)^{-1} \left( A \right) = Z \cap f^{-1}A,\ \forall A \subset Y
+\]
+\end{demo}
+
+\underline{Criterios de continuidad por recubrimientos.} Sea $f: X \rightarrow Y$. 
+\begin{itemize}
+    \item \textbf{Por abiertos:} $\exists X = \bigcup_{i \in  I} U_i: \forall f|_{U_i} : U_i \rightarrow Y$ es continua. 
+
+    \begin{demo}
+    $W \subset Y \Rightarrow$
+    \[
+    \begin{cases}
+        f^{-1}W = \bigcup_{i \in  I} U_i \cap f^{-1} W = \bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W\\
+        \left( f|_{U_i} \right)^{-1}W \subset U_i \subset X \Rightarrow \left( f|_{U_i} \right)^{-1} W \subset X
+    \end{cases}\Rightarrow f^{-1}W \subset X  
+    \]
+    Por unión de abiertos.
+    \end{demo}
+
+    \item \textbf{Por cerrados:} $\exists X = \underbrace{\bigcup_{i \in  I}}_{\text{finita}} F_i: \forall f|_{F_i} : F_i \rightarrow Y$ es continua. 
+
+    \begin{demo}
+    $C \subset Y \Rightarrow$
+    \[
+    \begin{cases}
+        f^{-1}C = \bigcup_{i \in  I} F_i \cap f^{-1} C = \bigcup_{i \in  I} \left( f|_{F_i} \right)^{-1} C\\
+        \left( f|_{F_i} \right)^{-1}C \subset F_i \subset X \Rightarrow \left( f|_{F_i} \right)^{-1} C \subset X
+    \end{cases}\Rightarrow f^{-1}C \subset X  
+    \]
+    Por unión finita de cerrados.
+    \end{demo}
+\end{itemize}
+
 
 \end{document}
