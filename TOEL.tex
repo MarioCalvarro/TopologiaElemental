@@ -141,18 +141,18 @@
 \section{Conjuntos abiertos}%
 \label{sec:conjuntos_abiertos}
 \begin{defi}
-Una \underline{topología} en un conjunto $X$ es una colección $\mathcal{C} \subset \mathcal{P}\left( x \right)$ de subconjuntos tal que:
+Una \underline{topología} en un conjunto $X$ es una colección $\mathcal{T} \subset \mathcal{P}\left( x \right)$ de subconjuntos tal que:
 \begin{enumerate}
-    \item $\emptyset, X \in C$ 
-    \item Las uniones arbitrarias de elementos de $\mathcal{C}$ están en $\mathcal{C}$.
-    \item Las intersecciones \underline{finitas} de elementos de $\mathcal{C}$ están en $\mathcal{C}$.
+    \item $\emptyset, X \in \mathcal{T}$ 
+    \item Las uniones arbitrarias de elementos de $\mathcal{T}$ están en $\mathcal{T}$.
+    \item Las intersecciones \underline{finitas} de elementos de $\mathcal{T}$ están en $\mathcal{T}$.
 \end{enumerate}
-Se dice que $\left( X, \mathcal{C} \right)$ es un \underline{espacio topológico}, los elementos de $\mathcal{C}$ se llaman \underline{abiertos} y los elementos de $X$ se llaman \underline{puntos}. 
+Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico}, los elementos de $\mathcal{T}$ se llaman \underline{abiertos} y los elementos de $X$ se llaman \underline{puntos}. 
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item \label{ejemplos_topologia:first} $\mathcal{C} = \{\emptyset, X\}$ es la topología \underline{trivial}; $\mathcal{C} = P\left( X \right)$, topología \underline{discreta}: si los puntos $\{x\} \in \mathcal{C}$, entonces cualquier $A = \bigcup_{x \in A} \{x\}$ es abierto.
+    \item \label{ejemplos_topologia:first} $\mathcal{T} = \{\emptyset, X\}$ es la topología \underline{trivial}; $\mathcal{T} = P\left( X \right)$, topología \underline{discreta}: si los puntos $\{x\} \in \mathcal{T}$, entonces cualquier $A = \bigcup_{x \in A} \{x\}$ es abierto.
     \item $\mathbb{R}^n$ con la topología usual definida mediante las bolas euclídeas.
     \item Cualquier distancia $d$ define una topología mediante sus bolas abiertas, igual que se define la usual. \underline{Notación}: 
     \[
@@ -168,20 +168,20 @@ Se dice que $\left( X, \mathcal{C} \right)$ es un \underline{espacio topológico
 
     Fijamos $a \in X$:
     \[
-    \mathcal{C}_a = \{U \subset X: a \in U\} \cup \{\emptyset\} 
+    \mathcal{T}_a = \{U \subset X: a \in U\} \cup \{\emptyset\} 
     \]
     La topología ``del punto''. El punto $\{a\}$ y todos los pares de puntos $\{a, x\}$ son abiertos. Se parece a la discreta pero difiere en que en esta última todos los puntos son abiertos.
 \end{enumerate}
 \end{ej}
 
 \begin{defi}
-Dos topologías $\mathcal{C}_1 \subset \mathcal{C}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{C}_2$ más ``fina'' que $\mathcal{C}_1$.
+Dos topologías $\mathcal{T}_1 \subset \mathcal{T}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{T}_2$ más ``fina'' que $\mathcal{T}_1$.
 \end{defi}
 Siempre se da:
 \[
-\mathcal{C}_{\text{trivial}} \subset \mathcal{C} \subset \mathcal{C}_{\text{discreta}} 
+\mathcal{T}_{\text{trivial}} \subset \mathcal{T} \subset \mathcal{T}_{\text{discreta}} 
 \]
-Sea $\left( X, \mathcal{C} \right)$ un espacio topológico; a menudo se omite $\mathcal{C}$ ó el calificativo ``topológico''. 
+Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\mathcal{T}$ ó el calificativo ``topológico''. 
 
 \begin{defi}
 \begin{enumerate}
@@ -233,13 +233,13 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
 
 \begin{ej}
 \begin{enumerate}
-    \item $\left( X, \mathcal{C}_{\text{trivial}} \right): A \neq X \Rightarrow A \not \supset X \Rightarrow \emptyset$ es el único abierto $\subset A \Rightarrow \mathring{A} = \emptyset$.
+    \item $\left( X, \mathcal{T}_{\text{trivial}} \right): A \neq X \Rightarrow A \not \supset X \Rightarrow \emptyset$ es el único abierto $\subset A \Rightarrow \mathring{A} = \emptyset$.
 
-    \item En $\mathbb{R}^n$ con $\mathcal{C}_{\text{trivial}}$ ya lo sabemos bien:
+    \item En $\mathbb{R}^n$ con $\mathcal{T}_{\text{trivial}}$ ya lo sabemos bien:
     \[
     \inter\left( B\left[ a, \varepsilon \right] \right)  = B\left( a, \varepsilon \right);\ \mathring{\mathbb{Q}}^n = \emptyset;\ \mathring{\mathbb{Z}}^n = \emptyset
     \]
-    \item Si $a \in X,\ \mathcal{C}_a : \mathring{\{a\}} = \{a\};\ x \neq a,\ \mathring{\{x\}} = \emptyset$.
+    \item Si $a \in X,\ \mathcal{T}_a : \mathring{\{a\}} = \{a\};\ x \neq a,\ \mathring{\{x\}} = \emptyset$.
 \end{enumerate}
 \end{ej}
 
@@ -268,7 +268,7 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
 
 \section{Conjuntos cerrados}%
 \label{sec:conjuntos_cerrados}
-Sea $\left( X, \mathcal{C} \right)$ un espacio topológico.
+Sea $\left( X, \mathcal{T} \right)$ un espacio topológico.
 \begin{defi}
 Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \setminus F$ es abierto.
 \end{defi}
@@ -294,7 +294,7 @@ Se cumple:
 \begin{enumerate}
     \item En la topología trivial solo son cerrados $\emptyset$ y $X$. En la discreta, todos los subconjuntos son cerrados.
     \item En $\mathbb{R}^n$ con la topología usual ya sabemos todos los ejemplos: $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
-    \item Si $\mathcal{C}_1 \subset \mathcal{C}_2$, todo cerrado de $\mathcal{C}_1$ es cerrado de $\mathcal{C}_2$. 
+    \item Si $\mathcal{T}_1 \subset \mathcal{T}_2$, todo cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$. 
 \end{enumerate}
 \end{ej}
 
@@ -354,8 +354,8 @@ Lo anterior nos implica:
 
 \begin{ej}
 \begin{enumerate}
-    \item En $\mathbb{R}^n, \mathcal{C}_{\text{usual}}: B\left[ a, \varepsilon \right] = \overline{B \left( a, \varepsilon \right)};\ \overline{\mathbb{Q}^n} = \mathbb{R}^n$.
-    \item $a \in X, \mathcal{C}_a$
+    \item En $\mathbb{R}^n, \mathcal{T}_{\text{usual}}: B\left[ a, \varepsilon \right] = \overline{B \left( a, \varepsilon \right)};\ \overline{\mathbb{Q}^n} = \mathbb{R}^n$.
+    \item $a \in X, \mathcal{T}_a$
     \[
         \begin{cases}
         \overline{\{a\}} = X \left[ \forall x, \forall U^x \supset \{a, x\} \ni a \Rightarrow x \in \overline{\{a\}} \right]\\
@@ -380,10 +380,10 @@ Lo anterior nos implica:
 
 \begin{ej}
 \begin{enumerate}
-    \item En $\mathbb{R}, \mathcal{C}_n$ todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
-    \item En $\mathbb{R}^n, \mathcal{C}_n: \fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
-    \item En $\mathcal{C}_{\text{discreta}}$ todos los puntos son aislados, todas las fronteras son vacías.
-    \item $a \in X, \mathcal{C}_a: $
+    \item En $\mathbb{R}, \mathcal{T}_n$ todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
+    \item En $\mathbb{R}^n, \mathcal{T}_n: \fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
+    \item En $\mathcal{T}_{\text{discreta}}$ todos los puntos son aislados, todas las fronteras son vacías.
+    \item $a \in X, \mathcal{T}_a: $
     \[
     \begin{cases}
         \fr\left( \{a\} \right) = \overline{\{a\}} \setminus \mathring{\{a\}} = X \setminus \{a\}\\
@@ -400,14 +400,14 @@ $A \subset X$ es \underline{denso} si $\overline{A} = X$, o bien, todo punto es 
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{Q} \subset \mathbb{R}, \mathcal{C}_{\text{usual}}; \mathbb{Q} \times \overbrace{\ldots}^{n} \times \mathbb{Q} \subset \mathbb{R}^n, \mathcal{C}_{\text{usual}}$ son densos.
-    \item $\{a\}$ es denso en $\left( X, \mathcal{C}_a \right)$.
+    \item $\mathbb{Q} \subset \mathbb{R}, \mathcal{T}_{\text{usual}}; \mathbb{Q} \times \overbrace{\ldots}^{n} \times \mathbb{Q} \subset \mathbb{R}^n, \mathcal{T}_{\text{usual}}$ son densos.
+    \item $\{a\}$ es denso en $\left( X, \mathcal{T}_a \right)$.
 \end{enumerate}
 \end{ej}
 
 \section{Bases}%
 \label{sec:bases}
-Sea $X, \mathcal{C}$ un espacio topológico.
+Sea $X, \mathcal{T}$ un espacio topológico.
 \begin{defi}
 Una \underline{base de entornos} de $a \in X$ es una colección $\mathcal{V}^a$ de entornos de $a$, tal que todo entorno de $a$ contiene uno de la $\mathcal{V}^a$.
 \end{defi}
@@ -433,19 +433,19 @@ Ilustración:
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{R}^n, \mathcal{C}_{\text{usual}}: $
+    \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}: $
     \[
     \begin{cases}
     \mathcal{B}^a = \{B\left( a, \varepsilon \right): \varepsilon > 0\} \text{ base de entornos abiertos.}  \\
     \mathcal{V}^a = \{B\left[ a, \varepsilon \right]: \varepsilon > 0\} \text{ base de entornos cerrados.} 
     \end{cases} 
     \]
-    \item $a \in X, \mathcal{C}_a : \mathcal{B}^a = \{\{a\}\}, \mathcal{B}^x = \{\{a, x\}\},\ x \neq a$.
+    \item $a \in X, \mathcal{T}_a : \mathcal{B}^a = \{\{a\}\}, \mathcal{B}^x = \{\{a, x\}\},\ x \neq a$.
 \end{enumerate}
 \end{ej}
 
 \begin{defi}
-Una \underline{base de abiertos} de $\mathcal{C}$ es una colección de abiertos $B \subset \mathcal{C}$ tal que todo abierto es unión de abiertos de $B$.
+Una \underline{base de abiertos} de $\mathcal{T}$ es una colección de abiertos $B \subset \mathcal{T}$ tal que todo abierto es unión de abiertos de $B$.
 \end{defi}
 
 \begin{prop}
@@ -456,14 +456,14 @@ $\Rightarrow) \forall V^x \Rightarrow x \in U \subset V^x \Rightarrow$
 \[
     \mathcal{B} \text{ base } U = \bigcup_{i \in  I} \overbrace{B_i}^{\in \mathcal{B}} \xRightarrow{x \in U} \exists x \in B_i \subset U \subset V^x
 \]
-$\Leftarrow) U \in \mathcal{C},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in \mathcal{B}} \subset U \Rightarrow U = \bigcup_{x \in U} B^x$ unión de abiertos de $\mathcal{B}$.
+$\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in \mathcal{B}} \subset U \Rightarrow U = \bigcup_{x \in U} B^x$ unión de abiertos de $\mathcal{B}$.
 \end{demo}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathcal{C}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
-    \item $\mathcal{C}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
-    \item $\mathbb{R}^n, \mathcal{C}_{\text{usual}} \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
+    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
+    \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
+    \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}} \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
     \begin{center}
         \includegraphics[scale=0.3]{images/base_rn} 
     \end{center}
@@ -483,7 +483,7 @@ $\Leftarrow) U \in \mathcal{C},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
 Ilustración: $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset$.
 
 \begin{prop}
-$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{C}$ es $X$. Es equivalente a: 
+$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{T}$ es $X$. Es equivalente a: 
 \begin{itemize}
     \item $X = \bigcup_{B \in \mathcal{B}} B$.
     \item $\forall x \in B_1 \cap B_2,\ \exists B^x \subset B_1 \cap B_2$.
@@ -494,16 +494,16 @@ $\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (ú
 \end{prop}
 \begin{demo}
 \begin{itemize}
-    \item \underline{Unicidad}: $\mathcal{C} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
-    \item \underline{Existencia}: Esa $\mathcal{C}$ es efectivamente topología. Lo importante: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{C}$.
+    \item \underline{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
+    \item \underline{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. Lo importante: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{T}$.
 \end{itemize}
 \end{demo}
 
 \section{Topología relativa}%
 \label{sec:topologia_relativa}
-Sea $\left( X, \mathcal{C} \right)$ espacio topológico.
+Sea $\left( X, \mathcal{T} \right)$ espacio topológico.
 \begin{defi}
-$Y \subset X: \mathcal{C}|_Y = \{U \cap Y: U \in \mathcal{C}\}$ es una topología en $Y$ (fácil), denominada \underline{relativa} ó \underline{restricción} a $Y$; también se dice que $\left( Y, \mathcal{C}|_Y \right)$ es un \underline{subespacio} de $\left( X, \mathcal{C} \right)$ y que $\left( X, \mathcal{C} \right)$ es el espacio \underline{ambiente}. 
+$Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topología en $Y$ (fácil), denominada \underline{relativa} ó \underline{restricción} a $Y$; también se dice que $\left( Y, \mathcal{T}|_Y \right)$ es un \underline{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \underline{ambiente}. 
 \begin{center}
     %TODO: Recortar mejor por arriba
     \includegraphics[scale=0.3]{images/def_subespacio_top} 
@@ -512,20 +512,20 @@ $Y \subset X: \mathcal{C}|_Y = \{U \cap Y: U \in \mathcal{C}\}$ es una topologí
 
 \begin{obs}
 \begin{enumerate}
-    \item Los cerrados en $\mathcal{C}|_Y$ son $F\cap Y$ con $F$ cerrado en $\mathcal{C}$.
+    \item Los cerrados en $\mathcal{T}|_Y$ son $F\cap Y$ con $F$ cerrado en $\mathcal{T}$.
     \[
     \left[ Y \setminus U \cap Y = Y \cap \left( X \setminus U \right) = Y\cap F \right] 
     \]
     \item 
     $\begin{cases}
         y \in Y \subset X\\
-        \mathcal{V}^y \text{ base de entornos de } y \text{ en } \mathcal{C} 
+        \mathcal{V}^y \text{ base de entornos de } y \text{ en } \mathcal{T} 
     \end{cases}\Rightarrow \begin{cases}
         \mathcal{V}^y \cap Y = \{V^y \cap Y : V^y \in \mathcal{V}^y\} \\
-        \text{base de entornos de } y \text{ en } \mathcal{C}|_Y 
+        \text{base de entornos de } y \text{ en } \mathcal{T}|_Y 
     \end{cases}$
 
-    \item $\mathcal{B}$ base de $\mathcal{C} \Rightarrow \mathcal{B} \cap Y = \{B \cap Y : B \in \mathcal{B}\}$ base de $\mathcal{C}|_Y$
+    \item $\mathcal{B}$ base de $\mathcal{T} \Rightarrow \mathcal{B} \cap Y = \{B \cap Y : B \in \mathcal{B}\}$ base de $\mathcal{T}|_Y$
 \end{enumerate}
 \end{obs}
 
@@ -533,7 +533,7 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
 
 \begin{ej}
 \begin{enumerate}
-    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{C}|_Y. \left[ \{y\} = V^y \cap Y \right]$
+    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{T}|_Y. \left[ \{y\} = V^y \cap Y \right]$
     \item Todos los puntos de $Y$ son aislados $\Leftrightarrow C|_Y = $ discreta.
 
     Se dice: $Y$ es un \underline{subespacio discreto}. 
@@ -543,7 +543,7 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
         \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
     \end{center}
 
-    \item $a \in X, \mathcal{C}_a|_{X \setminus \{a\}} = $ discreta.
+    \item $a \in X, \mathcal{T}_a|_{X \setminus \{a\}} = $ discreta.
 \end{enumerate}
 \end{ej}
 
