@@ -711,5 +711,193 @@ Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
     \end{demo}
 \end{itemize}
 
+\section{Homeomorfismos}%
+\label{sec:homeomorfismos}
+Recordemos las definiciones de continuidad que hemos visto:
+\[
+f \text{ continua} \Leftrightarrow f^{-1}\left( \text{abierto} \right) = \text{abierto} \Leftrightarrow f^{-1}\left( \text{cerrado} \right) = \text{cerrado} 
+\]
+Ahora veamos que ocurre al invertir la relación.
+\begin{defi}
+Sea $f: X \rightarrow Y$, será $\begin{cases}
+    \text{\underline{abierta}} \\
+    \text{\underline{cerrada}} 
+\end{cases} \Leftrightarrow \begin{cases}
+    f\left( \text{ab} \right) = \text{ab}\\
+    f\left( \text{cerr} \right) = \text{cerr} 
+\end{cases} $    
+\end{defi}
+
+\begin{obs}
+Cuidado continuidad no implica que sea abierta, cerrada ni viceversa.
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item $Id: X_{\text{trivial}} \rightarrow X_{\text{discreta}}$, -cont. +ab. +cerr.
+    \item $Id: X_{\text{discreta}} \rightarrow X_{\text{trivial}}$, +cont. -ab. -cerr.
+    \item $j: \left[ 0, 1 \right] \subset \mathbb{R}_{u}$, +cont. -ab. +cerr.
+    \item $j: \left( 0, 1 \right) \subset \mathbb{R}_u$, +cont. +ab. -cerr.
+\end{enumerate}
+\end{ej}
+
+\begin{prop}[Trivialidades esenciales]
+Sea $f$ biyectiva es equivalente:
+\begin{itemize}
+    \item $f$ es abierta
+    \item $f$ es cerrada
+    \item $f^{-1}$ es continua.
+\end{itemize}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $F_{\text{cerr}} \subset X \Rightarrow X\setminus F_{\text{ab}} \subset X \Rightarrow^{ f\text{ ab}} \underbrace{f\left( X\setminus F \right)}_{= Y\setminus f\left( F \right) \text{(biy.)}} \subset_{\text{ab}} X \Rightarrow f\left( F \right) \subset_{\text{cerr}} Y \Rightarrow f$ cerr.
+
+    \item $F_{cerr} \subset X \Rightarrow^{f \text{cerr}} \underbrace{f\left( F \right)}_{= \left( f^{-1} \right)^{-1} \left( F \right) \text{(biy)}} \subset_{\text{cerr}} Y \Rightarrow f^{-1}$ cont.
+
+    \item $U_{\text{ab}} \subset X \Rightarrow^{f^{-1} \text{cont}} \underbrace{\left( f^{-1} \right) ^{-1} \left( U \right) }_{f\left( U \right) \text{(biy.)}} \subset Y \Rightarrow f$ ab.
+\end{enumerate}
+\end{demo}
+
+\begin{defi}
+    Sea $f: X \rightarrow Y$ biyectiva, es \underline{homeomorfismo} si $f\ \&\ f^{-1}$ son continuas, o equivalentemente si:
+    \[
+    \begin{cases}
+        f \text{ biy.}\\
+        \text{cont.}\\
+        \text{ab.} 
+    \end{cases} \Leftrightarrow \begin{cases}
+        f \text{ biy.}\\
+        \text{cont.}\\
+        \text{cerr.}
+    \end{cases} 
+    \]
+\end{defi}
+
+\begin{defi}[Localización de un homeomorfismo]
+Sea $f: X \rightarrow Y$, es \underline{homeomorfismo local} en $x_0 \in X$ si $f: V^{x_0} \rightarrow V^{f\left( x_0 \right)}$ es homeomorfismo para entornos de $x_0$ y $f\left( x_0 \right)$. Se suele decir para entornos ``suficientemente pequeños''.
+\end{defi}
+
+\underline{Ejercicio:} Se pueden tomar $V^{x_0}, V^{f\left( x_0 \right)}$ abiertos.
+
+\begin{obs}
+Un homeomorfismo local es abierto.
+\end{obs}
+\begin{demo}
+    $U \subset_{\text{ab}} X \Rightarrow f\left( U \right)$ entorno $\forall y_0 = f\left(\overbrace{x_0}^{\in U}\right) \in f\left( U \right)$.
+    Como $f$ hom. local $\Rightarrow f| : V^{x_0} \rightarrow V^{y_0}$ es hom. $\Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\ni y_0 = f\left( x_0 \right)} \right) \subset_{\text{ab}} V^{y_0} \Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\subset f\left( U \right)} \right)$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
+\end{demo}
+
+\begin{ej}[¡Importantes!]
+\begin{enumerate}
+    \item Proyección estéreo? $\mathbb{S}^{m} \setminus \{\text{punto}\} \rightarrow \mathbb{R}^m$ hom.
+    \item Proyección exponencial $\mathbb{R} \rightarrow \mathbb{S}': \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$, hom. local.
+    \item Proyección antipodal: $\mathbb{S}^m \rightarrow \mathbb{R}P^{m}: x \mapsto \left[ x \right]$ hom. local.
+    \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t_4} \right)$ es biy. cont, pero \underline{no} hom. local.
+
+    %TODO: Dibujo Lemniscata
+    Engañosamente: 
+    \[
+        \forall t \in \mathbb{R} \exists \left( t - \varepsilon, t + \varepsilon \right) = I_{\varepsilon}: f| : I_{\varepsilon} \rightarrow f\left( I_{\varepsilon} \right) 
+    \]
+    es hom.
+
+    En $t = 0, f\left( I_{\varepsilon} \right)$ \underline{no} es entorno de $f\left( 0 \right) = \left( 0, 0 \right)$.
+\end{enumerate} 
+\end{ej}
+
+\begin{defi}
+Una \underline{variedad topológica} de $\dim m$ es un espacio localmente homeomorfo a $\mathbb{R}^m$, es decir, cada punto tiene un entorno abierto homeomorfo a una bola $B\left( 0, \varepsilon \right) \subset \mathbb{R}^m$ (luego a cualquier bola, luego a todo $\mathbb{R}^m$).
+\end{defi}
+
+\chapter{Construcciones}%
+\label{cha:construcciones}
+\section{Imágenes inversas}%
+\label{sec:imagenes_inversas}
+\underline{Problema:} Hacer $f: Y \rightarrow \left( X, \mathcal{T} \right)$ continua con $\begin{cases}
+    \text{top. discreta en } Y \text{ (matricialidad)}\\
+    \text{top. \underline{menos fina} en } Y 
+\end{cases}$ 
+
+\underline{Sol:} $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$ top. \underline{imagen inversa}. 
+\begin{enumerate}
+    \item Es topología (inm.)
+    \item Es mínima. [$f$ es continua $\Rightarrow \forall f^{-1}U$ es abierto]
+\end{enumerate}
+
+
+\begin{prop}[Caracterización imagen inversa]
+\[
+\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow  
+\]
+\begin{equation}
+    \forall g \left[ g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.} \right]
+\end{equation}
+%TODO: Fix composición
+\begin{center}
+    \includegraphics[scale=0.3]{images/caracterizacion_img_inv} 
+\end{center}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
+    \begin{itemize}
+        \item $g$ cont. $\Rightarrow f \circ g$ cont. (Composición de continuas)
+        \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
+    \end{itemize}
+
+    \item Por otro lado,
+    %TODO: Fix
+    \begin{center}
+        \includegraphics[scale=0.4]{images/dem_carac_img_inv_1} 
+        \includegraphics[scale=0.4]{images/dem_carac_img_inv_2} 
+    \end{center}
+\end{enumerate}
+\end{demo}
+
+\underline{Ejercicio}: Demostrar (ii) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización).
+
+La anterior caracterización se llama \underline{propiedad universal}.
+
+Como? esencial: 
+\[
+\boxed{f: Y \rightarrow X \text{ inyectiva}} 
+\]
+
+\begin{defi}
+Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \underline{inmersión} (se suelen omitir las topologías).
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item $\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow \left( Y, \mathcal{T}' \right) \xrightarrow{\text{hom.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$
+    \[
+    [V \in f^{-1}\mathcal{T} \Leftrightarrow V = f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid f\left( Y \right)} \right)] 
+    \]
+
+    \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
+        \text{ab. } \Rightarrow \text{inmersión } [\text{ab. en } X \Rightarrow \text{ab. en } f\left( Y \right)\\
+        \text{cerr.} \Rightarrow \text{inmersión } [\text{cerr. en } X \Rightarrow \text{cerr. en} f\left( Y \right)] 
+    \end{cases} $
+    \[
+    \begin{cases}
+        f\left( Y \right) \stackrel{\text{ab.}} X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = U \cap f\left( Y \right) \in \mathcal{T} \left( \text{inter. abierto} \right)\\
+        f\left( Y \right) \stackrel{\text{cerr.}} X: C \text{ c.} f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) \left( X\setminus U \right) \cap f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X \text{ i. c.} 
+    \end{cases} 
+    \]
+
+    \item Tenemos: 
+    \begin{itemize}
+        \item Inmersión $ + \not$ ab. $+ \not$ cerr.
+        \item Inmersión $+$ ab. $+ \not $ cerr.
+        \item Inmersión $+$ ab. $+$ cerr.
+    \end{itemize}
+\end{enumerate}
+\end{obs}
+
+\begin{obs}
+Las inmersiones permiten considerar unos espacios como subespacios de otros. Las frases ``el plano proyectivo real no es un subespacio de $\mathbb{R}^3$'', ``la esfera no es un subespacio de $\mathbb{R}^2$'', ``el plano proyectivo real es un subespacio de $\mathbb{R}^4$'' se refieren a esto: \underline{cuándo hay o no hay} una inmersión del primer espacio en el segundo, es decir, un subespacio del segundo homeomorfismo al primero. Es un problema fundamental de la topología
+y de la geometría.
+\end{obs}
 
 \end{document}
