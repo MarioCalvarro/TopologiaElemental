@@ -87,6 +87,8 @@
     \theorembodyfont{\normalfont}
     	\newtheorem*{obs}{\underline{Observación}:}
     	\newtheorem*{ej}{\underline{Ejemplo}:}
+    	\newtheorem*{pg}{\underline{Política general}:}
+    	\newtheorem*{il}{\underline{Ilustración}:}
 
 %% Definicion de operadores especiales para simplificar la escritura matematica
 \DeclareMathOperator{\dom}{dom}
@@ -196,7 +198,8 @@ Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\
 \end{center}
 \begin{obs}    
 \begin{enumerate}
-    \item \begin{align*}
+    \item Con $U^x \subset V^x$:
+    \begin{align*}
         V_1^x \cap V_2^x &= V^x\\
         U_1^x \cap U_2^x &= U_{\text{ab}}^x \ni x
     \end{align*}
@@ -436,15 +439,16 @@ Pero: $\forall \mathcal{V}^a$ se puede \underline{refinar} a una base $\mathcal{
 \]
 \end{obs}
 
-\underline{Política general}? 
+\begin{pg}
+    Bastan las bases de entornos para comprobar propiedades de todos los entornos.
+\end{pg}
 
-Bastan las bases de entornos para comprobar propiedades de todos los entornos.
-
-Ilustración:
+\begin{il}    
 \begin{align*}
     a \in \overline{A} &\xLeftrightarrow{\text{def}} \forall W^a \text{ entorno }: W^a \cap A \neq \emptyset\\
-   &\iff \forall V^a \in \mathcal{V}^a: V^a\cap A \neq \emptyset 
+   &\Longleftrightarrow \forall V^a \in \mathcal{V}^a: V^a\cap A \neq \emptyset 
 .\end{align*}
+\end{il}
 
 \begin{ej}
 \begin{enumerate}
@@ -493,9 +497,13 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
 \end{enumerate}
 \end{ej}
 
-\underline{Política general} , como antes: a menudo basta considerar los abiertos de $\mathcal{B}$ 
+\begin{pg}
+    Como antes, a menudo basta considerar los abiertos de $\mathcal{B}$ 
+\end{pg}
 
-Ilustración: $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset$.
+\begin{il}
+$A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset$.
+\end{il}
 
 \begin{prop}
 $\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{T}$ es $X$. Es equivalente a: 
@@ -698,7 +706,7 @@ Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
     Por unión de abiertos.
     \end{demo}
 
-    \item \textbf{Por cerrados:} $\exists X = \underbrace{\bigcup_{i \in  I}}_{\text{finita}} F_i: \forall f|_{F_i} : F_i \rightarrow Y$ es continua. 
+    \item \textbf{Por cerrados:} $\exists X = \bigcup_{i = 0}^{n} F_i: \forall f|_{F_i} : F_i \rightarrow Y$ es continua. 
 
     \begin{demo}
     $C \subset Y \Rightarrow$
@@ -729,8 +737,9 @@ Sea $f: X \rightarrow Y$, será $\begin{cases}
 \end{cases} $    
 \end{defi}
 
+%TODO: Fix observación
 \begin{obs}
-Cuidado continuidad no implica que sea abierta, cerrada ni viceversa.
+Cuidado: Continuidad no implica que sea abierta, cerrada ni viceversa.
 \end{obs}
 
 \begin{ej}
@@ -743,7 +752,7 @@ Cuidado continuidad no implica que sea abierta, cerrada ni viceversa.
 \end{ej}
 
 \begin{prop}[Trivialidades esenciales]
-Sea $f$ biyectiva es equivalente:
+Sea $f$ biyectiva, es equivalente:
 \begin{itemize}
     \item $f$ es abierta
     \item $f$ es cerrada
@@ -786,22 +795,22 @@ Un homeomorfismo local es abierto.
 \end{obs}
 \begin{demo}
     $U \subset_{\text{ab}} X \Rightarrow f\left( U \right)$ entorno $\forall y_0 = f\left(\overbrace{x_0}^{\in U}\right) \in f\left( U \right)$.
-    Como $f$ hom. local $\Rightarrow f| : V^{x_0} \rightarrow V^{y_0}$ es hom. $\Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\ni y_0 = f\left( x_0 \right)} \right) \subset_{\text{ab}} V^{y_0} \Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\subset f\left( U \right)} \right)$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
+    Como $f$ homeomorfismo local $\Rightarrow f| : V^{x_0} \rightarrow V^{y_0}$ es homeomorfismo $\Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\ni y_0 = f\left( x_0 \right)} \right) \subset_{\text{ab}} V^{y_0} \Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\subset f\left( U \right)} \right)$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
 \end{demo}
 
 \begin{ej}[¡Importantes!]
 \begin{enumerate}
-    \item Proyección estéreo? $\mathbb{S}^{m} \setminus \{\text{punto}\} \rightarrow \mathbb{R}^m$ hom.
-    \item Proyección exponencial $\mathbb{R} \rightarrow \mathbb{S}': \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$, hom. local.
-    \item Proyección antipodal: $\mathbb{S}^m \rightarrow \mathbb{R}P^{m}: x \mapsto \left[ x \right]$ hom. local.
-    \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t_4} \right)$ es biy. cont, pero \underline{no} hom. local.
+    \item Proyección estéreo? $\mathbb{S}^{m} \setminus \{\text{punto}\} \rightarrow \mathbb{R}^m$ homeomorfismo.
+    \item Proyección exponencial $\mathbb{R} \rightarrow \mathbb{S}': \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$, homeomorfismo local.
+    \item Proyección antipodal: $\mathbb{S}^m \rightarrow \mathbb{R}P^{m}: x \mapsto \left[ x \right]$ homeomorfismo local.
+    \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t_4} \right)$ es biy. cont, pero \underline{no} homeomorfismo local.
 
     %TODO: Dibujo Lemniscata
     Engañosamente: 
     \[
         \forall t \in \mathbb{R} \exists \left( t - \varepsilon, t + \varepsilon \right) = I_{\varepsilon}: f| : I_{\varepsilon} \rightarrow f\left( I_{\varepsilon} \right) 
     \]
-    es hom.
+    es homeomorfismo.
 
     En $t = 0, f\left( I_{\varepsilon} \right)$ \underline{no} es entorno de $f\left( 0 \right) = \left( 0, 0 \right)$.
 \end{enumerate} 
@@ -810,6 +819,9 @@ Un homeomorfismo local es abierto.
 \begin{defi}
 Una \underline{variedad topológica} de $\dim m$ es un espacio localmente homeomorfo a $\mathbb{R}^m$, es decir, cada punto tiene un entorno abierto homeomorfo a una bola $B\left( 0, \varepsilon \right) \subset \mathbb{R}^m$ (luego a cualquier bola, luego a todo $\mathbb{R}^m$).
 \end{defi}
+\begin{ej}
+Esferas, espacios proyectivos, toros...
+\end{ej}
 
 \chapter{Construcciones}%
 \label{cha:construcciones}
@@ -877,7 +889,7 @@ Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right
 
 \begin{obs}
 \begin{enumerate}
-    \item $\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow \left( Y, \mathcal{T}' \right) \xrightarrow{\text{hom.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$
+    \item $\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeomorfismo}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$
     \[
     [V \in f^{-1}\mathcal{T} \Leftrightarrow V = f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid f\left( Y \right)} \right)] 
     \]
@@ -1031,13 +1043,23 @@ Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \le
 \end{enumerate}
 \end{obs}
 
-\underline{Cocientes}: Caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = \underbrace{X / \sim}_{p \mathcal{T} = \text{top. cociente}}$. Cociente respecto de una relación de equivalencia en $X$. 
+\begin{defi}[Cociente]
+Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = \underbrace{X / \sim}_{p \mathcal{T} = \text{top. cociente}}$. Cociente respecto de una relación de equivalencia en $X$. 
+\end{defi}
 \begin{center}
     \includegraphics[scale=0.2]{images/def_cociente} 
 \end{center}
-Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \right) = f\left( x_2 \right)$
+Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \right) = f\left( x_2 \right)$. Homeoforma de $p\mathcal{T}$ sobre $f\mathcal{T} \Leftrightarrow f$ identificación tal que:
+\[
+\begin{cases}
+    \overline{f} \text{ es biyección}\\
+    p^{-1}V = f^{-1}\overline{f} V \text{ y } f^{-1}W = p^{-1} \overline{f}^{-1}W
+\end{cases} 
+\]
 
-\underline{Política general:} Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente.
+\begin{pg}
+    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente.
+\end{pg}
 
 %TODO: Fix imágenes
 \begin{ej}[Anteriores]
@@ -1052,5 +1074,209 @@ Para representar cocientes se utilizan dibujos que indican las identificaciones 
     \includegraphics[scale=0.3]{images/ej_cociente_3} 
 \end{center}
 \end{ej}
+
+\section{Productos (finitos)}%
+\label{sec:productos_finitos_}
+\underline{Problema:} Hacer $X_1 \times \ldots \times X_r = Y \xrightarrow{p_i} \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ continuas con 
+\[
+\begin{cases}
+    \text{top. discreta en } Y \text{ matrivialidad}\\
+    \text{top. \underline{menos fina} en} Y
+\end{cases} 
+\]
+\underline{Solución:} $p_i$ cont. $\Rightarrow p_i^{-1} \underbrace{U_i}_{\mathcal{T}_i} = \underbrace{X_1 \times \ldots \times U_i \times \ldots \times X_r}_{\text{deben ser abiertos}}  \Rightarrow \bigcap_{i} p_i^{-1}U_i = \underbrace{U_1 \times \ldots \times U_r}_{\text{abiertos}}$ pero \underline{no} son topología $\Rightarrow$
+\[
+\mathcal{B} = \{U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \} \text{ es la \underline{base} de la \underline{topología producto}: } \boxed{\prod_{i} \mathcal{T}_i} 
+\]
+\begin{ej}
+La $\mathcal{T}_u$ en $\mathbb{R}^n$ ese el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas''.
+\end{ej}
+
+%TODO: Fix teorema
+\begin{theo}[Caracterización topología producto]
+\begin{enumerate}
+    \item
+    \[
+    \mathcal{T}' = \prod_{i} \mathcal{T} \Leftrightarrow  
+    \]
+    \begin{equation}
+        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
+    \end{equation}
+
+    \item Y.
+    %TODO: Fix composición
+    \begin{center}
+        \includegraphics[scale=0.3]{images/caracterizacion_top_prod} 
+    \end{center}
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{enumerate}
+    \item $\mathcal{T}' = \prod_{i} \mathcal{T}: $ 
+    \begin{itemize}
+        \item $g$ cont. $\Rightarrow g_i$ cont. (Composición de continuas)
+        \item $g_i$ cont. $\Rightarrow g^{-1}\left( U_1 \times \ldots \times U_r \right) = \underbrace{g_1^{-1}\left( U_1 \right)}_{\mathcal{T}''} \cap \ldots \cap \underbrace{g_r^{-1}\left( U_i \right)}_{\mathcal{T}''} \in \mathcal{T}''$ (intersección finita de abiertos) 
+    \end{itemize}
+
+    \item Por otro lado,
+    %TODO: Fix
+    \begin{center}
+        \includegraphics[scale=0.4]{images/dem_carac_top_prod} 
+    \end{center}
+\end{enumerate}
+\end{demo}
+
+\begin{ej}
+Demostrar (ii) sin usar que $\prod_{i} \mathcal{T}_i$ es la menos fina (usar que cumple la caracterización)
+\end{ej}
+
+La anterior caracterización se llama \underline{propiedad universal}.
+
+\begin{prop}
+\begin{enumerate}
+    \item $p_i: Y \rightarrow X_i$ es abierta. [$p_i\left( U_1 \times \ldots \times U_r \right) = U_i$]
+    \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados).
+    \[
+    \left[\begin{cases}
+        \alpha_j\left( X_j \right) = \{a_1\} \times \ldots \times X_j \times \ldots \times \{a_r\} \\
+        \alpha_j\left( U_j \right) = \{a_1\} \times \ldots \times U_j \times \ldots \times \{a_r\} = \alpha\left( X_j \right) \cap \left( X_1 \times \ldots \times U_j \times \ldots \times X_r \right) 
+    \end{cases}\right]     
+    \]
+\end{enumerate}
+\end{prop}
+
+\begin{pg}
+En una topología producto ``todo se genera en productos''.
+\begin{ej}
+\begin{itemize}
+    \item Bases de entornos: $\mathcal{V}^a = \mathcal{V}^{a_1} \times \ldots \times \mathcal{V}^{a_r} \stackrel{mut??}{=} \{V_1 \times \ldots \times V_r: V_i \in \mathcal{V}^{a_i}\} \left( a \in Y \right)$.
+    \item Base de abiertos: $\mathcal{B} = \mathcal{B}_1 \times \ldots \times \mathcal{B}_r = \{B_1 \times \ldots \times B_r: B_i \in \mathcal{B}_i\}$ (esto repite la construcción de $\prod_{i} \mathcal{T}_i$)
+\end{itemize}
+\end{ej}
+\end{pg}
+
+\section{Sumas (finitas)}%
+\label{sec:sumas_finitas_}
+\underline{Problema:} Hacer $\left( X_i, \mathcal{T}_i \right) \xrightarrow{e_i} Y = X_1 + \ldots X_r = \left( X_1 \times \{1\} \right) \cup \ldots \cup \left( X_r \times \{r\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ continuas, ,con 
+\[
+\begin{cases}
+    \text{top. trivial en } Y \text{ matrivialidad}\\
+    \text{top. \underline{más fina} en} Y
+\end{cases} 
+\]
+\underline{Solución:} $\underbrace{U_i}_{\mathcal{T}_i} \in e_i^{-1}\left( U_i \times \{i\} \right) \Rightarrow \mathcal{B} = \{U_1 \times \{1\}, \ldots, U_r \times \{r\}: U_1 \in \mathcal{T}_1, U_r \in \mathcal{T}_r\}$ es base de una topología en $Y$, la topología \underline{suma}: $\mathcal{T}_1 + \ldots + \mathcal{T}_r$.
+
+\begin{prop}
+$\forall i, e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right)$ es inmersión abierta y cerrada.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item Inmersión abierta: $e_i\left( U_i \right) = U_i \times \{i\} \in \mathcal{T}$
+    \item Cerrada: $Y\setminus e_i\left( X_i \right) = Y \setminus X_i \times \{i\} = \bigcup_{j \neq i} X_j \times \{j\} \in \mathcal{T}$
+\end{itemize}
+\end{demo}
+
+%TODO: Fix teorema
+\begin{theo}[Caracterización topología suma]
+\begin{enumerate}
+    \item
+    \[
+    \mathcal{T}' = \mathcal{T}_1 + \ldots + \mathcal{T}_r \Leftrightarrow  
+    \]
+    \begin{equation}
+        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right] \text{(Propiedad universal)} 
+    \end{equation}
+
+    \item Y.
+    %TODO: Fix composición
+    \begin{center}
+        \includegraphics[scale=0.3]{images/caracterizacion_top_sum} 
+    \end{center}
+\end{enumerate}
+\end{theo}
+%TODO: Tal vez hacerlo bien?
+\begin{demo}
+    Análoga a las anteriores construcciones.
+\end{demo}
+
+\begin{pg}
+Localmente $Y = X_1 + \ldots + X_r$ es como sea cada $X_i$. Por ejemplo, las bases de entornos de $Y$ son las de los sumandos. Globalmente, se trata cada sumando separadamente. Por ejemplo, las bases de abiertos de los sumandos se unen para dar una base de abiertos de $Y$. Olvidando el tecnicismo $X_i \times \{i\} \equiv X_i$:
+\begin{center}
+   $Y$ es unión disjunta de los sumandos\\
+   Los sumando son subespacios abiertos y cerrados de $Y$
+\end{center}
+Es un formalismo para hacer cómodamente otras construcciones. Por ejemplo, ``pegar dos discos por sus bordes'' sería:
+\begin{gather*}
+    \text{disco} D \subset \mathbb{R}^2: x^2 + y^2 \le 1, \text{ borde } \partial D = \mathbb{S}^1: x^2 + y^2 = 1\\
+    %TODO: Fix cociente
+    D_1 + D_2 / \sim\quad \overbrace{\left( p, 1 \right)}^{\partial D} \sim \left( p, 2 \right) 
+.\end{gather*}
+\begin{center}    
+\includegraphics[scale=0.3]{images/pg_top_sum} 
+\end{center}
+y más elaborado $h: \partial D \stackrel{\text{homeo.}}{\approx} \partial D$ con $\overbrace{p}^{\in \partial D} \sim h\left( p \right)$.
+
+Finalmente, hay otros conceptos de ``suma'' más significativos que veremos en algún ejemplo.
+\end{pg}
+
+\chapter{Separación}%
+\label{cha:separacion}
+
+\chapter{Numerabilidad}%
+\label{cha:numerabilidad}
+
+\chapter{Compacidad}%
+\label{cha:compacidad}
+
+\chapter{Compacidad local}%
+\label{cha:compacidad_local}
+
+\chapter{Conexión}%
+\label{cha:conexion}
+
+\chapter{Componentes conexas y conexión local}%
+\label{cha:componentes_conexas_y_conexion_local}
+
+\chapter{Conexión por caminos}%
+\label{cha:conexion_por_caminos}
+
+\chapter{Componentes conexas por caminos y conexión local por caminos}%
+\label{cha:componentes_conexas_por_caminos_y_conexion_local_por_caminos}
+
+\chapter{Homotopía}%
+\label{cha:homotopia}
+
+\chapter{Homotopía por caminos}%
+\label{cha:homotopia_por_caminos}
+
+\chapter{El grupo fundamental}%
+\label{cha:el_grupo_fundamental}
+
+\chapter{Retractos}%
+\label{cha:retractos}
+
+\chapter{Recubridores}%
+\label{cha:recubridores}
+
+\chapter{Cálculos mediante recubridores}%
+\label{cha:calculos_mediante_recubridores}
+
+\chapter{Aplicaciones en dimensión 2}%
+\label{cha:aplicaciones_en_dimension_2_}
+
+\chapter{Más aplicaciones por el mismo precio}%
+\label{cha:mas_aplicaciones_por_el_mismo_precio}
+
+\chapter{Superficies}%
+\label{cha:superficies}
+
+\chapter{Clasificación de superficies}%
+\label{cha:clasificacion_de_superficies}
+
+\chapter{Grande finale}%
+\label{cha:grande_finale}
+
+
+
 
 \end{document}
