@@ -293,7 +293,7 @@ Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \
     \end{center}
 \end{obs}
 \begin{obs}
-Se cumple:
+Se cumple, $\mathcal{F} = \{\text{cerrados}\}$:
 \begin{enumerate}
     \item $X, \emptyset$ son cerrados.
     \item La intersección arbitraria de cerrados es cerrada.
@@ -308,7 +308,7 @@ Se cumple:
 \begin{enumerate}
     \item En la topología trivial solo son cerrados $\emptyset$ y $X$. En la discreta, todos los subconjuntos son cerrados.
     \item En $\mathbb{R}^n$ con la topología usual ya sabemos todos los ejemplos: $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
-    \item Si $\mathcal{T}_1 \subset \mathcal{T}_2$, todo cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$. 
+    \item Si $\mathcal{T}_1 \subset \mathcal{T}_2$, todo cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$. (Cuidado con el orden) 
 \end{enumerate}
 \end{ej}
 
@@ -316,7 +316,7 @@ Para saber cuándo se aleja un conjunto de ser cerrado tenemos:
 \begin{defi}
 Sea $A \subset X$. Un punto \underline{adherente} a $A$ es un punto cuyos entornos intersecan todos a $A$. La \underline{adherencia} de $A$ es el conjunto de sus puntos adherentes. 
 \[
-\adh_X\left( A \right) = \overline{A} = \{x \in X: \forall V^x \cap A \neq \emptyset\} 
+\adh_X\left( A \right) = \overline{A} = \{x \in X: \forall V^x \cap A \neq \emptyset\} \supset A
 \]
 \end{defi}
 
@@ -379,18 +379,19 @@ Lo anterior nos implica:
 \end{enumerate}
 \end{ej}
 
-\underline{Otros tipos de puntos especiales}:
+\begin{defi}[Otros puntos especiales]    
 \begin{enumerate}
     \item $x$ es un \underline{punto aislado} de $A$ si $\exists V^x \cap A = \{x\}$.
     \item $x$ es un \underline{punto de acumulación} de $A$ si $\forall V^x \cap A \setminus \{x\} \neq \emptyset$. Y, evidentemente,
     \[
-    \overline{A} = \{\underbrace{\text{puntos aislados}}_{\subset A}\} \cup \{\underbrace{\text{puntos de acumulación}}_{\supset \overline{A} \setminus A}\} 
+    \overline{A} = \{\underbrace{\text{puntos aislados}}_{\subset A}\} \sqcup \{\underbrace{\text{puntos de acumulación}}_{\supset \overline{A} \setminus A}\} 
     \]
-    \item $x$ es un \underline{punto frontera} de $A$ si es adherente a $A$ y a $X \setminus A$, o bien: si no es interior de $X \setminus A$ ni de $A$. La \underline{frontera} de $A$ es: 
+    \item $x$ es un \underline{punto frontera} de $A$ si es adherente a $A$ y a $X \setminus A$, o bien, si no es interior de $X \setminus A$ ni de $A$. La \underline{frontera} de $A$ es: 
     \[
     \fr\left( A \right) = \{x \in X: x \text{ es punto frontera de } A\} = \overline{A} \cap \overline{X \setminus A} = \overline{A} \setminus \mathring{A}     
     \]
 \end{enumerate}
+\end{defi}
 
 \begin{ej}
 \begin{enumerate}
