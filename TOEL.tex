@@ -193,6 +193,7 @@ Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\
     \item Un \underline{entorno} de un punto $x \in X$ es un conjunto $V$ que contiene un abierto $U$ que contiene al punto. Se suele escribir $V^x$.\footnote{La intersección finita de entornos es entorno. (Si son abiertos es trivial)}
 \end{enumerate}
 \end{defi}
+%TODO: Fix imagen
 \begin{center}
     \includegraphics[scale=0.2]{images/def_entornos} 
 \end{center}
@@ -220,6 +221,7 @@ Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ 
 \inter_X \left( A \right) = \mathring{A} = \{x \in A: \exists U_{\text{ab}}^x \subset A\} 
 \]
 \end{defi}
+%TODO: Fix imagen
 \begin{center}
     \includegraphics[scale=0.4]{images/def_interior} 
 \end{center}
@@ -291,6 +293,7 @@ Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \
 \end{defi}
 \begin{obs}
     Cerrado \underline{no} significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
+    %TODO: Fix imagen
     \begin{center}
         \includegraphics[scale=0.3]{images/def_cerrados} 
     \end{center}
@@ -483,6 +486,7 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
     \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
     \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
     \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}} \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
+    %TODO: Fix imágenes 
     \begin{center}
         \includegraphics[scale=0.3]{images/base_rn} 
     \end{center}
@@ -511,6 +515,7 @@ $\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (ú
     \item $X = \bigcup_{B \in \mathcal{B}} B$.
     \item $\forall x \in B_1 \cap B_2,\ \exists B^x \subset B_1 \cap B_2$.
 \end{itemize}
+%TODO: Fix imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/base_unica} 
 \end{center}
@@ -528,7 +533,7 @@ Sea $\left( X, \mathcal{T} \right)$ espacio topológico.
 \begin{defi}
 $Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topología en $Y$ (fácil), denominada \underline{relativa} ó \underline{restricción} a $Y$; también se dice que $\left( Y, \mathcal{T}|_Y \right)$ es un \underline{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \underline{ambiente}. 
 \begin{center}
-    %TODO: Recortar mejor por arriba
+    %TODO: Fix imagen
     \includegraphics[scale=0.3]{images/def_subespacio_top} 
 \end{center}
 \end{defi}
@@ -562,6 +567,7 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
     Se dice: $Y$ es un \underline{subespacio discreto}. 
 
     Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
+    %TODO: Fix imagen
     \begin{center}
         \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
     \end{center}
@@ -1046,6 +1052,7 @@ Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \le
 \begin{defi}[Cociente]
 Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = \underbrace{X / \sim}_{p \mathcal{T} = \text{top. cociente}}$. Cociente respecto de una relación de equivalencia en $X$. 
 \end{defi}
+%TODO: Fix imagen
 \begin{center}
     \includegraphics[scale=0.2]{images/def_cociente} 
 \end{center}
@@ -1070,6 +1077,7 @@ La circunferencia y el cilindro como cocientes:
 \end{center}
 
 Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
+%TODO: Fix
 \begin{center}
     \includegraphics[scale=0.3]{images/ej_cociente_3} 
 \end{center}
@@ -1211,13 +1219,134 @@ Es un formalismo para hacer cómodamente otras construcciones. Por ejemplo, ``pe
     %TODO: Fix cociente
     D_1 + D_2 / \sim\quad \overbrace{\left( p, 1 \right)}^{\partial D} \sim \left( p, 2 \right) 
 .\end{gather*}
+%TODO Fix
 \begin{center}    
-\includegraphics[scale=0.3]{images/pg_top_sum} 
+    \includegraphics[scale=0.3]{images/pg_top_sum} 
 \end{center}
 y más elaborado $h: \partial D \stackrel{\text{homeo.}}{\approx} \partial D$ con $\overbrace{p}^{\in \partial D} \sim h\left( p \right)$.
 
 Finalmente, hay otros conceptos de ``suma'' más significativos que veremos en algún ejemplo.
 \end{pg}
+
+\section{Espacios proyectivos reales}%
+\label{sec:espacios_proyectivos_reales}
+Como vimos en geometría lineal tenemos que: 
+\[
+\mathbb{R}P^n = \mathbb{P}^{n} = \mathbb{R}^{nH}\setminus \{0\} / \underbrace{\sim }_{\text{Prop.}} \Rightarrow \mathbb{P}^{n} = \{\text{rectas vectoriales de } \mathbb{R}^{n+1}\}     
+\]
+Que en coordenadas es:
+\begin{align*}
+    \pi: \mathbb{R}^{nH} \setminus \{0\} &\rightarrow \mathbb{P}^{n}\\
+    \left( x_0, \ldots, x_n \right) &\mapsto \left( x_0 : \ldots : x_n \right) 
+.\end{align*}
+Las ecuaciones serán de la forma: $h\in \mathbb{R}\left[ x_0, \ldots, x_n \right]$ homogénea $\Rightarrow \begin{cases}
+    h\left( x \right) = 0\\
+    h\left( x \right) \neq 0
+\end{cases}$ está bien definido en $\mathbb{P}^{n}$.
+\[
+\begin{rcases}
+    %TODO: Fix lista
+   \text{· Variedades proyectivas lineales}\\  
+   \text{· Variedades proyectivas}\\
+   \text{· Variedades proyectivas algebraicas}  
+\end{rcases} \text{ecuaciones homogéneas de grado:} 
+\begin{cases}
+    1\\
+    2\\
+    \text{arbitrario} 
+\end{cases} 
+\]
+\underline{Cartas afines:} 
+\begin{gather*}
+    \underbrace{H \subset \mathbb{P}^{n}}_{\text{hiperplano proyectivo}} \rightarrow \underbrace{\hat{H} \subset \mathbb{R}^{n + 1}}_{\text{hiperplano lineal} } : \underbrace{h = 0}_{\text{forma lineal}}, H = \hat{H} \setminus \{0\} / \sim  \\
+    \pi|: \underbrace{\{h = 1\} \subset \mathbb{R}^{n + 1} \setminus \{0\}}_{\text{hiperplano afín}} \rightarrow \underbrace{\mathbb{P}^{n} \setminus H}_{\{h \neq 0\}} = 0 \text{ es biyección.}    
+.\end{gather*}
+Terminología: $H$ es \underline{hiperplano del infinito} de la \underline{carta afín} $U$.
+
+Topología en $U$: La imagen directa de la usual en $\{h = 1\} \subset \mathbb{R}^{n + 1} \Rightarrow \pi|: \{h = 1\} \rightarrow U$ \underline{homeomorfismo}. 
+
+%TODO: Fix subrayado
+\underline{Topología en }$\mathbb{P}^{n}$: 
+\begin{itemize}
+    \item \underline{Cociente} de la usual vía $\mathbb{R}^{n+1}\setminus \{0\} \xrightarrow{\pi} \mathbb{P}^{n}: \left( x_0, \ldots, x_n \right) \mapsto \left( x_0 : \ldots : x_n \right)$
+    \item ``\underline{Suma}'' de las definidas en las cartas afines:
+    \[
+        W \text{ abierto si } W \cap U \text{ es abierto } \forall U \text{ carta afín. [Es top. en } \mathbb{P}^{n}] 
+    \]
+\end{itemize}
+Estas dos topologías coinciden.
+\begin{demo}
+\begin{enumerate}
+    \item $U$ es abierto en la top. cociente. [$\pi^{-1} U = \{h \neq 0\}$ abierto usual]
+    \item La topología cociente en $U$ coincide con la topología de carta afín:
+    %TODO: Fix diagrama
+    \begin{center}
+        \includegraphics[scale=0.3]{images/eq_top_proyectivo} 
+    \end{center}
+    \item[1. + 2.] $\Rightarrow $ La top. cociente está generada por las topologías de las cartas afines, que forman un recubrimiento abierto de $\mathbb{P}^{n}$.
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+De lo anterior deducimos:
+\begin{enumerate}
+    \item $U_1, U_2$ dos cartas afines $\Rightarrow U_1 \cap U_2$ abiertos.
+    \[
+    \left[ \text{Cartas afines: } U_i = \{h_1 \neq 0\} \begin{cases}
+        \pi|: \{h_1 = 1\} \rightarrow U_1 \text{homeo.}\\
+        \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \stackrel{\text{ab.}}{\subset} \{h_1 = 1\}  
+    \end{cases} \right] 
+    \]
+    \item Las topologías de $U_1$ y $U_2$ coinciden en $U_1 \cap U_2$.
+
+    [De nuevo conviene entenderlo con cartas:
+    %TODO: Fix
+    \begin{center}
+        \includegraphics[scale=0.3]{images/obs_cartas_afines} ]
+    \end{center}
+\end{enumerate}
+\end{obs}
+
+%TODO: Esto es posible que se pueda agrupar mejor (hasta Möbius)
+\underline{Atlas afín canónico}: No se suelen utilizar todas las cartas afines: $n + 1$ distintas ya cubren $\mathbb{P}^{n}$. Típicamente $\mathbb{P}^{n} = U_0 \cup \ldots \cup U_n$ con:
+\[
+U_i = \{x_i \neq 0\} \leftrightarrow \{\underbrace{x_i = 1}_{\equiv \mathbb{R}^n}\}: \left( x_0 : \ldots : x_i : \ldots : x_n \right) \mapsto \left( \frac{x_0}{x_i}, \ldots, \overbrace{1}^{\mathbb{R}^n \rightarrow}, \ldots, \frac{x_n}{x_i} \right), 0 \le i \le n
+\]
+
+\underline{Cociente antipodal}: Toda recta de $\mathbb{R}^{n + 1}$ corta a $\mathbb{S}^{n}: x_0^2 + \ldots + x_n^2 = 1$ en dos puntos \underline{antipodales}, así que denotamos un ``sub'' cociente, que es también identificación.
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/cociente_antipodal} 
+
+    [Como antes tenemos conos: $\pi^{-1}W = $ cono sobre $\underbrace{\mathbb{S}^n \cap \pi^{-1}W}_{= \left( \pi / \mathbb{S}^n \right)^{-1} W}$]
+\end{center}
+
+Las cartas afines tienen una representación muy conveniente:
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/repr_carta_afin} 
+\end{center}
+
+\underline{Cociente de un disco}:
+\[
+E = \{h = 0, x_0^2 + \cdots + x_n^2 = 1\} = \partial \begin{cases}
+    \overline{S}_+ = \mathbb{S}^n \cap \{h \ge 0\} \text{ hemisferio cerrado.} \\
+    D^n = \{h = 0, x_0^2 + \cdots + x_n^2 \le 1\} \text{ disco.} 
+\end{cases} 
+\]
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/cociente_disco} 
+\end{center}
+
+\begin{ej}
+$\mathbb{P}^{2} \setminus D^2 = $ banda de Möbius.
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/banda_moebius} 
+\end{center}
+\end{ej}
+
 
 \chapter{Separación}%
 \label{cha:separacion}
