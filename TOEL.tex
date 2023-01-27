@@ -1595,6 +1595,182 @@ Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
 
 \chapter{Compacidad}%
 \label{cha:compacidad}
+\section{Concepto y mantras}%
+\label{sec:concepto_y_mantras}
+\begin{defi}
+$X$ es \underline{compacto} si todo recubrimiento abierto tiene un subrecubrimiento finito:
+\[
+X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} = X
+\]
+\end{defi}
+
+\begin{obs}
+Complementando lo anterior tenemos la \underline{propiedad de la intersección finita}: 
+\begin{gather*}
+    \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Rightarrow\\
+    \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset
+.\end{gather*}
+\end{obs}
+
+\begin{prop}[Subespacios]
+Sea $K \subset X$ (compacto) $\Rightarrow K \subset \underbrace{\bigcup_{i \in  I} U_i}_{\subset X} \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K$
+\end{prop}
+
+\begin{ej}
+\begin{enumerate}
+    \item $K \subset \mathbb{R}_u^n$ es compacto $\Leftrightarrow K$ es cerrado y acotado (Heine-Borel). 
+    \item $\left[ a, b \right] \subset \mathbb{R}_u$ compacto.
+    \item Si es compacto y discreto $\Rightarrow$ es finito [$X = \bigcup_{x \in X} \{x\}$ es rec. abierto en $\mathcal{T}_{\text{discreta}}$]
+    \item $x_k \rightarrow x \Rightarrow K = \{x, x_k: k \ge 1\}$ es compacto.
+    \begin{demo}
+        \[
+            \exists U_{i_0} \ni x \xRightarrow{\lim} \begin{rcases}
+                x_k \in U_{i_0},\ \forall k > k_0\\
+                x_k \in U_{i_k},\ \forall k \le k_0
+            \end{rcases} \Rightarrow K \subset U_{i_0} \cup U_{i_1} \cup \ldots \cup U_{i_{k_0}} 
+        \]
+    \end{demo}
+
+    \item $K \subset \mathbb{R}_u^n$ compacto $\Leftrightarrow \forall A^{\infty} \subset K, A' \cap K \neq \emptyset$ (Bolzano-Weierstrass)
+\end{enumerate}
+\end{ej}
+
+\begin{prop}[Mantra 1]
+Cerrado en compacto es compacto. 
+\end{prop}
+\begin{demo}
+Sea $K \stackrel{\text{cerr.}}{\subset} X$,
+\begin{align*}
+    K \subset \bigcup_{i} U_i &\Rightarrow X = \left( X \setminus K \right) \cup \bigcup_{i} U_i\\
+    X \text{ comp.} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
+    &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K
+.\end{align*}
+
+(Alternativa: Usar la propiedad de las intersecciones finitas)
+\end{demo}
+
+\begin{prop}[Mantra 2]
+Infinito en compacto tiene puntos de acumulación.
+\end{prop}
+\begin{demo}
+Sea $A \subset X$ (compacto) con $A' = \emptyset \Rightarrow$
+\begin{align*}
+    \overline{A} &= \overbrace{\{\text{puntos aislados}\}}^{\subset A}  \cup \overbrace{A'}^{= \emptyset} = \{\text{puntos aislados}\} = A\\
+     &\Rightarrow A \stackrel{\text{cerr.}}{\subset} X \text{ comp.} \Rightarrow \underbrace{A}_{= \{\text{pts. aisl.}\}} \text{ es compacto y discreto} \Rightarrow \#A < +\infty   
+.\end{align*}
+\end{demo}
+
+\begin{prop}[Mantra 3]
+La imagen continua de un compacto es compacta. 
+\end{prop}
+\begin{demo}
+Sea $f: X \rightarrow Y$ con $f$ continua y $X$ compacto $\Rightarrow$
+\begin{align*}
+    f\left( X \right) \times \bigcup_{i} V_i &\Rightarrow X = \bigcup_{i} f^{-1} V_i \Rightarrow \exists f^{-1}V_{i_1} \cup \ldots \cup f^{-1}V_{i_r} = X\\
+     &\Rightarrow V_{i_1} \cup \ldots \cup V_{i_r} \supset f\left( X \right) 
+.\end{align*}
+\end{demo}
+
+\begin{ej}[¡Muy importante!]
+$\mathbb{R} \mathrm{P}^n$ es compacto: La imagen continua de $\mathbb{S}^n$ por la proyección antipodal. 
+\end{ej}
+
+\begin{prop}[Mantra 4]
+Un compacto en $T_2$ es cerrado. 
+\end{prop}
+\begin{demo}
+Sea $K \subset X$ con $K$ compacto y $X = T_2 \Rightarrow$
+\begin{equation} \label{eq:mantra_4_1}
+    \forall x \in X \setminus K,\ \exists U^x \cap U^k = \emptyset
+\end{equation}
+A su vez, $\forall y \in K,\ \exists U_y^x \cap U^y = \emptyset$ por $T_2 \Rightarrow$
+\begin{align*}
+    %TODO: Fix flecha
+    K \subset \bigcup_{y} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^k\\
+    &\Rightarrow x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x
+.\end{align*}
+Finalmente, utilizando \ref{eq:mantra_4_1} $\Rightarrow$
+\[
+    U^x \subset X \setminus K\; \land \;X\setminus K \text{ es entorno de } x \Rightarrow X \setminus K \text{ abierto.} 
+\]
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/mantra_4} 
+\end{center}
+\end{demo}
+\begin{coro}
+Dos compactos disjuntos en un $T_2$ se separan como puntos.
+\end{coro}
+\begin{demo}
+    Ejercicio usando \ref{eq:mantra_4_1}.
+\end{demo}
+
+\begin{prop}
+Si $f : X \rightarrow Y$ es continua, $X$ compacto e $Y = T_2 \Rightarrow$ cerrada.
+\end{prop}
+\begin{demo}
+\[
+    F \stackrel{\text{cerr.}}{\subset} X \xRightarrow{\mathrm{M}1} F \text{ comp.} \xRightarrow{\mathrm{M}3} f\left( F \right) \text{ comp.} \xRightarrow{\mathrm{M}4} f\left( F \right) \text{ cerr.} 
+\]
+\end{demo}
+\begin{coro}
+Sea la $f$ de la anterior proposición entonces si además es:
+\[
+\begin{cases}
+    \text{inyectiva}\\
+    \text{sobreyectiva}\\
+    \text{biyectiva}
+\end{cases} \Rightarrow
+\begin{cases}
+    \text{inmersión cerrada}\\
+    \text{identificación cerrada}\\
+    \text{homeomorfismo}
+\end{cases} 
+\]
+\end{coro}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_comp}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Compacidad & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
+    \hline\\
+               & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
+    \hline\\
+\end{tabular}
+\end{center}
+
+\begin{theo}[de Tychonoff]
+Si $X$ e $Y$ son dos compactos $\Rightarrow X \times Y$ es compacto.
+\end{theo}
+\begin{demo}
+Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal{T}_Y$.
+\begin{enumerate}
+    \item $\forall x\ \forall y,\ \exists U_y^x \times V_x^y \subset W_i$, $i$ depende de $\left( x, y \right)$.
+    \item $\forall x\ Y = \bigcup_{y} V_x^y \xRightarrow{Y \text{comp.}} Y = V_x^{y_1} \cup \ldots \cup V_x^{y_r}$, los $y_k$ y su nº dependen de $x$.
+    \item $U^x = U_{y_1}^x \cap \ldots \cap U_{y_r}^x,\ U^x \times V_x^{y_k} \subset W_{i_k}$, $i_k$ depende de $x$.
+    \item $X = \bigcup_{x} U^x \xRightarrow{X \text{comp.}} X = U^{x_1} \cup \ldots \cup U^{x_s}$.
+    \item 
+    \[
+        X \times Y = \bigcup_{\substack{l, k\\ \text{fin.}}} U^{x_l} \times V_{x_l}^{y_k} \subset \bigcup_{\substack{l, k\\ \text{fin.}}} W_{i_k} \text{, los } i_k \text{ dependen de los } x_l. 
+    \]
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+\begin{enumerate}
+    \item $X \times Y$ compacto $\Rightarrow X$ e $Y$ compactos. [Mantra $3$ para proyecciones] 
+    \item Heine-Borel: $K \subset \mathbb{R}_u^n$ cerrado y acotado $\Rightarrow$ compacto porque:
+    \[
+        \exists a_i, b_i: K \stackrel{\text{cerr.}}{\subset} \underbrace{\left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]}_{\text{Compacto por Tych.\footnotemark}}  
+    \]
+    \footnotetext{$\left[ a, b \right]$ es compacto.}
+    Y aplicamos el Mantra $1$.
+\end{enumerate}
+\end{obs}
 
 \chapter{Compacidad local}%
 \label{cha:compacidad_local}
