@@ -2165,6 +2165,119 @@ $\Leftarrow)$ Fijamos $a \in X$.
 
 \chapter{Componentes conexas y conexión local}%
 \label{cha:componentes_conexas_y_conexion_local}
+\section{Componentes}%
+\label{sec:componentes}
+\begin{defi}
+Una \underline{componente conexa} (c.c) de $X$ es un subespacio conexo maximal.
+\end{defi}
+
+\begin{prop}
+\begin{enumerate}
+    \item $\forall a \in X.\ C\left( a \right) = \bigcup_{a \in A \text{conx.}} A$ es conexo (pivote), $a \in C\left( a \right)$.
+    \item $E \subset X$ conexo: 
+    \[
+    C\left( a \right) \cap E \neq \emptyset \Rightarrow C\left( a \right) \cup E \text{ conx. (pivote)} \Rightarrow C\left( a \right) \cup E \text{ es uno de los } A \text{ de } C\left( a \right) \Rightarrow E \subset C\left( a \right) 
+    \]
+    Luego, 
+    \begin{itemize}
+        \item $C\left( a \right)$ maximal $\Rightarrow$ componente conexa.
+        \item $a \neq b: C\left( a \right) = C\left( b \right)$ ó $C\left( a \right) \cap C\left( b \right) = \emptyset$ [Usar $E = C\left( b \right)$]
+    \end{itemize}
+
+    \item $\overline{C\left( a \right)}$ conexo (mantra adh.) $\Rightarrow \overline{C\left( a \right)} = \underbrace{C\left( a \right)}_{\text{cerr.}}$ (maximalidad)
+    %TODO: Fix
+    \item[1. + 2. + 3.] $\Rightarrow X = \bigsqcup_{C \stackrel{\text{c.c}}{\subset}  X} C$ es una \underline{partición} en cerrados disjuntos.
+\end{enumerate} 
+\end{prop}
+
+\begin{ej}
+\begin{enumerate}
+    \item $X_{\text{discreto}}: C\left( x \right) = \{x\}$ (puntos abiertos y cerrados)
+    \item $\mathbb{Q}_u : C\left( p \right) = \{p\}$ (todo intervalo de $\mathbb{R}$ tiene racionales)
+    \item $\left( \mathbb{R}, \mathcal{T}_{[, )} \right): C\left( t \right) = \{t\}$ ($\mathbb{R} = \left( \leftarrow, a \right) \cup \left[ a, \rightarrow \right)$ abierto y cerrado)
+    \item $X = \{0, Y_k,\ k \ge 1\} : \begin{cases}
+        C\left( 0 \right) = \{0\} \text{ cerrado, no abierto} \left( \{\frac{1}{k}: k\ge 1 \}  \text{ no cerr.}\right)\\
+        C\left( \frac{1}{k} \right) = \{\frac{1}{k}\} \text{ cerrado y abierto.} 
+    \end{cases} $
+\end{enumerate}
+\end{ej}
+
+\begin{defi}
+Un espacio cuyas componentes son los puntos se llama \underline{totalmente disconexo}. 
+\end{defi}
+
+\begin{prop}
+Las componentes conexas de $X \times Y$ son los puntos de componentes conexas.
+\end{prop}
+\begin{demo}
+$C \subset \underbrace{X}_{\xrightarrow{p} X} \times \underbrace{Y}_{\xrightarrow{q} Y} \Rightarrow p\left( C \right)$ y $q\left( C \right)$ conexos (imagen continua) $\Rightarrow \begin{cases}
+    p\left( C \right) \subset E \stackrel{\text{c.c}}{\subset}  X\\
+    q\left( C \right) \subset F \stackrel{\text{c.c}}{\subset}  Y
+\end{cases} \Rightarrow C \subset E \times F \xRightarrow{\text{Max. de} C} C = E\times F$.
+\end{demo}
+
+\section{Conexión local}%
+\label{sec:conexion_local}
+\begin{defi}
+$X$ es \underline{localmente conexo}  si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos.
+\end{defi}
+
+\begin{prop}
+$X$ es localmente conexo $\Leftrightarrow$ la componente conexa de un abierto es abierta.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item $\Rightarrow)$ Si $x \in C \stackrel{\text{cerr.}}{\subset} U \stackrel{\text{ab.}}{\subset} X \Rightarrow \exists \underbrace{U^x}_{\text{ab. conx.}} \subset U \Rightarrow U^x \subset C \Rightarrow C \stackrel{\text{ab.}}{X}$.
+    \item $\Leftarrow)\ \mathcal{B}^x = \{C\left( x \right) \stackrel{\text{c.c}}{\subset} U \stackrel{\text{ab.}}{\subset} X : x \in U\}$. Con $C\left( x \right)$ abierto por ser c.c de abierto.
+\end{itemize}
+\end{demo}
+
+\underline{Ejercicio}: $X$ es localmente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos.
+
+\begin{ej}[Esencial]
+$\{0, \frac{1}{k} : k \ge 1\} = Y \subset \mathbb{R}_u$ \underline{no} es localmente conexo. 
+\begin{demo}
+    La $\text{c.c}\left( 0 \right) = \{0\}$ no es abierto. Directamente:
+    \begin{align*}
+        0 \in \underbrace{V}_{\text{ent. de } 0 \in \mathbb{R}} \cap Y &\Rightarrow V \supset \left( 0, \varepsilon \right),\ \exists 0 < \underbrace{\theta}_{\not\in \mathbb{Q}} < \frac{1}{k} < \varepsilon < 1\\
+        &\Rightarrow V\cap Y \subset \underbrace{\left( \leftarrow, \theta \right)}_{\ni 0} \cup \underbrace{\left( \theta, \rightarrow \right)}_{\ni \frac{1}{k}}  \Rightarrow V \cap Y \text{ no conexo.} 
+    .\end{align*}
+\end{demo}
+\end{ej}
+
+\underline{Ejercicio}:
+\begin{enumerate}
+    \item Analizar una sucesión de segmentos que convergen a otro:
+    \begin{center}
+        \includegraphics[scale=0.3]{images/suc_conv_otro} 
+    \end{center}
+    \item ¿Y el seno del topólogo?
+\end{enumerate}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_loc_conx}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Conexión local & $\times$ & \checkmark & \checkmark & $\times$\\
+    \hline\\
+               & Ejemplo esencial & No banal & Prod. ent. conx. & Suma como sum's\\
+    \hline\\
+\end{tabular}
+\end{center}
+
+
+\begin{prop}
+Sea $f : X \rightarrow Y$ identificación con $X$ localmente conexo $\Rightarrow Y$ es localmente conexo.
+\end{prop}
+\begin{demo}
+    El diagrama siguiente resume el argumento (si se lee en el orden adecuado).
+    \begin{center}
+        \includegraphics[scale=0.3]{images/dem_loc_conx_loc_conx} 
+    \end{center}
+\end{demo}
 
 \chapter{Conexión por caminos}%
 \label{cha:conexion_por_caminos}
