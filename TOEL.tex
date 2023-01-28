@@ -2424,6 +2424,83 @@ Sean $\left( x_1, y_1 \right),\ \left( x_2, y_2 \right) \in X \times Y$:
 
 \chapter{Componentes conexas por caminos y conexión local por caminos}%
 \label{cha:componentes_conexas_por_caminos_y_conexion_local_por_caminos}
+\section{Componentes conexas por caminos}%
+\label{sec:componentes_conexas_por_caminos}
+Todo análogo a las componentes conexas (casi). Sea $X$ espacio topológico.
+\begin{defi}
+Una componente conexa por caminos (c.c.c) es un subconjunto conexo por caminos maximal.
+\end{defi}
+\begin{prop}[Descripción]
+\begin{enumerate}
+    \item La c.c.c de $x \in X$ es $\bigcup_{x \in A} A$ con $A$ conexa por caminos.
+    \item Las c.c.c forman una partición de $X$, más fina que la de las c.c.
+    \begin{demo}
+        Porque conexo por caminos $\Rightarrow$ conexo pero no la inversa.
+
+        \textbf{¡OJO!} Las c.c.c no son necesariamente cerradas. 
+
+        Como contraejemplo de ambas cosas dichas tenemos la adherencia del seno topólogo. 
+    \end{demo}
+\end{enumerate} 
+\end{prop}
+
+\begin{ej}
+    $\Gamma$ seno del topólogo y $\overline{\Gamma} = J \cup \Gamma$ son conexos. Tenemos que $\overline{\Gamma}$ es una c.c, mientras que $J$ y $\Gamma$ son dos c.c.c, una cerrada ($J$) y la otra no ($\Gamma$). [Porque $\overline{\Gamma}$ \underline{no} es conexa por caminos]
+\end{ej}
+
+\section{Conexión local por caminos}%
+\label{sec:conexion_local_por_caminos}
+Imitamos sin sorpresa las demostraciones de la conexión local y tenemos:
+\begin{defi}
+$X$ es \underline{localmente conexo por caminos} si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos por caminos.
+\end{defi}
+\begin{prop}
+$X$ es localmente conexo por caminos $\Leftrightarrow$ c.c.c de un abierto es abierto.
+\end{prop}
+
+\underline{Ejercicio}:
+Locamente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos por caminos. 
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_conx_local_caminos}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Conexión local por caminos & $\times$ & \checkmark & \checkmark & \checkmark\\
+    \hline\\
+\end{tabular}
+
+También vale que las c.c.c del producto son los productos de las c.c.c de los factores.
+\end{center}
+
+\section{Relaciones entre las propiedades de conexión}%
+\label{sec:relaciones_entre_las_propiedades_de_conexion}
+Lo principal es que:
+\begin{prop}
+Conexo y localmente conexo por caminos $\Rightarrow$ Conexo por caminos.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item Conexo $\Rightarrow \forall x, y,\ \exists \text{ cadenas de } x \text{ a } y$.
+    \item Localmente conexo por caminos $\Rightarrow$ cadenas de abiertos conexos por caminos $\Rightarrow{\text{Var. pivote}}$ Estas cadenas son conexas por caminos.
+\end{itemize}
+Por tanto, $\exists$ camino de $x$ a $y$.
+\end{demo}
+\begin{obs}
+    Esta es la demostración de que un abierto conexo de $\mathbb{R}_u^n$ lo es por poligonales (se usan cadenas de bolas).
+\end{obs}
+
+\begin{obs}[Resumen]
+Por especificar todas las posibilidades:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/resumen_conx} 
+\end{center}
+\end{obs}
+
+\underline{Ejercicio}: Contraejemplos. Los menos fáciles son $*$ y $**$ 
 
 \chapter{Homotopía}%
 \label{cha:homotopia}
