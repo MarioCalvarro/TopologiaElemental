@@ -2110,8 +2110,21 @@ Adherencia de conexo es conexo: $Y \subset X$ con $Y$ conexo y denso $\Rightarro
 \begin{ej}
    %TODO: Ejemplos complicados
     \begin{enumerate}
-        \item 
+        \item $\left( 0, 1 \right) \stackrel{\text{denso}}{\subset} \left[ 0, 1 \right] \xRightarrow{\mathrm{M}1} \Rightarrow \left[ 0, 1 \right]$ conexo. Con una interpolación?: $\sigma\left( t \right) = \left( 1 - t \right) a + tb$ es homeomorfismo con $\left[ a, b \right] \subset \mathbb{R}^n \xRightarrow{\mathrm{M}2} \left[ a, b \right]$ es conexo. Aplicando ahora:
+        \begin{itemize}
+            \item Pivote: $E = \bigcup_{\substack{x \in E\\ \text{conx.}}} \left[ a, x \right]$ \underline{estrellado} (resp. de $a$): convexos, bolas abiertas y cerradas, rectángulos... 
+            \item Mantra $2$: Trazas de curvas continuas $\sigma: \left[ 0, 1 \right] \rightarrow \mathbb{R}^n$.
+        \end{itemize}
         \item \underline{Seno del topólogo} (polaco):
+
+        Conexos: $\begin{cases}
+            \Gamma = \text{imagen} : t \mapsto \left( t, \sin \frac{1}{t} \right),\ t > 0\\
+            J = \{0\} \times \left[ 0, 1 \right]\\
+            \overline{\Gamma} = \Gamma \cup J \text{ (adh.)} 
+        \end{cases}$
+        \begin{center}
+            \includegraphics[scale=0.3]{images/seno_topologo} 
+        \end{center}
     \end{enumerate}
 \end{ej}
 
@@ -2135,7 +2148,19 @@ $X \times Y$ conexo $\Leftrightarrow X$ y $Y$ conexo.
 \begin{demo}
 $\Rightarrow)$ Mantra $3$ para las proyecciones.
 
-$\Leftarrow)$ Fijamos $a \in X$.%TODO: acabar
+$\Leftarrow)$ Fijamos $a \in X$.
+\begin{gather*}    
+\forall y \in Y,
+\begin{rcases}
+    Z_y = \underbrace{\left( X \times \{y\} \right)}_{\approx X}\cup \underbrace{\left( \{a\} \times Y \right)}_{\approx Y} \text{ dos conx. se cortan en } \left( a, y \right) \xRightarrow{\text{Piv.}} Z_y \text{ conx.}\\
+    \bigcap_{y \in Y} Z_y = \{a\} \times Y \neq \emptyset
+\end{rcases} \xRightarrow{\text{Piv.}} \\
+\bigcup_{y \in Y} Z_y = X \times Y \text{ conx.} 
+\end{gather*}
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_conx2_conx} 
+\end{center}
 \end{demo}
 
 \chapter{Componentes conexas y conexión local}%
