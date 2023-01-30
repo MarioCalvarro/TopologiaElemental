@@ -3402,7 +3402,70 @@ Sea $\exists \eta$ sin ceros $\Rightarrow \exists \frac{\eta}{\lVert \eta \rVert
 
 \chapter{Más aplicaciones por el mismo precio}%
 \label{cha:mas_aplicaciones_por_el_mismo_precio}
-%TODO
+Unos cuantos teoremas profundos más en $\dim = 2$.
+\section{Borsuk-Ulam}%
+\label{sec:borsuk_ulam}
+\begin{theo}[de Borsuk]
+Sea $f: \mathbb{S}^{1} \rightarrow \mathbb{S}^{1}$ impar $\left( f\left( -x \right) = -f\left( x \right) \right): \# f\left( \cos 2 \pi t, \sin 2 \pi t \right)$ impar ($\Rightarrow \# \neq 0$) 
+\end{theo}
+\begin{demo}
+Tenemos que:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/th_borsuk} 
+\end{center}
+$\tilde{\sigma}$ elevación de $\sigma\left( t \right) = f\left( \cos 2 \pi t, \sin 2 \pi t \right)$. $\begin{cases}
+    x = \left( \cos 2 \pi t, \sin 2 \pi t \right)\\
+    0 \le t \le 1/2
+\end{cases} (*)$.
+
+$f\left( -x \right) = -f\left( x \right) \xRightarrow{(*)} \sigma\left( t + \frac{1}{2} \right) = -\sigma\left( t \right) \Rightarrow \tilde{\sigma} \left( t + \frac{1}{2} \right) = \tilde{\sigma} \left( t \right) + k_t + \frac{1}{2}$. Como $k_t \equiv cte.$ es continua:
+\[
+    \# \sigma = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) = \left( \tilde{\sigma} \left( 1 \right) - \tilde{\sigma}{\left( \frac{1}{2} \right)} + \tilde{\sigma} \left( \frac{1}{2} \right) - \tilde{\sigma} \left( 0 \right) \right) = \left( \underbrace{k_{1/2}}_{k_0} + \frac{1}{2} \right) + \left( k_0 + \frac{1}{2} \right) = 2k_0 + 1
+\]
+\end{demo}
+
+Análogamente, 
+\begin{theo}[de Hirsch]
+Sea $f: \mathbb{S}^{1} \rightarrow \mathbb{S}^{1}$ par $\left( f\left( -x \right) = f\left( x \right) \right): \# f\left( \cos 2 \pi t, \sin 2 \pi t \right)$ par. 
+\end{theo}
+\begin{coro}[Teorema de Borsuk-Ulam]
+$f: \mathbb{S}^{1} \rightarrow \mathbb{S}^{1}$ impar $\Rightarrow$ esencial.
+\end{coro}
+\begin{demo}
+$\exists H_s : f \simeq cte. \Rightarrow H_s\left( \cos 2 \pi t, \sin 2 \pi t \right) : \sigma \simeq x_0 \Rightarrow \# \sigma = 0$, con $\sigma$ rotación anterior y la homotopía de lazos.
+\end{demo}
+\begin{coro}[2]
+$\nexists g: \mathbb{S}^{2} \rightarrow \mathbb{S}^{1}$ impar. 
+\end{coro}
+\begin{demo}
+Tenemos:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/cor_2_borsuk_ulam} 
+\end{center}
+\begin{itemize}
+    \item $g$ impar $\Rightarrow f$ impar $\Rightarrow \# \sigma \neq 0$.
+
+    \item $\mathbb{S}^{2}$ simple conexo $\exists H_s : \left( \cos 2 \pi t, \sin 2\pi t, 0 \right) \stackrel{\text{base } \left( 1, 0, 0 \right) \text{ fijo}}{\simeq} \left( 1, 0, 0 \right)$. Como $f = g\_{z = 0} \Rightarrow$
+    \[
+    g \circ H_s : f\underbrace{\left( \cos 2 \pi t, \sin 2 \pi t \right)}_{\sigma} \simeq f\left( 1, 0, 0 \right) cte. \Rightarrow \# \sigma = 0
+    \]
+\end{itemize}
+\end{demo}
+\begin{coro}[3]
+$\forall h: \mathbb{S}^{2} \rightarrow \mathbb{R}^{2},\ \exists h\left( x \right) = h\left( -x \right) (\Rightarrow h$ no es 1-1).  
+\end{coro}
+\begin{demo}
+$h\left( x \right) \neq h\left( -x \right),\ \forall x \Rightarrow \exists g \left( x \right) = \frac{h\left( x \right) - h\left( -x \right)}{\lVert h\left( x \right) - h\left( -x \right) \rVert}: \mathbb{S}^{2} \rightarrow \mathbb{S}^{1}$ impar.
+\end{demo}
+
+\section{Invarianza del dominio}%
+\label{sec:invarianza_del_dominio}
+\begin{theo}
+Sea $f: U_{\text{ab.}} \rightarrow \mathbb{R}^{2}$ continua y 1-1 $\Rightarrow f\left( U \right)$ es abierto.
+\end{theo}
+
 
 \chapter{Superficies}%
 \label{cha:superficies}
