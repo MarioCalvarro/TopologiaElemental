@@ -3499,6 +3499,118 @@ Las sumas conexas se visualizan muy bien mediante identificaciones.
 
 \chapter{Clasificación de superficies}%
 \label{cha:clasificacion_de_superficies}
+\section{El teorema}%
+\label{sec:el_teorema}
+\begin{theo}
+Toda superficie compacta es homeomorfa a una y sólo una entre:
+\[
+\mathbb{S}^{2};\ \Pi^2 \# \stackrel{k}{\cdots} \Pi^2, k\ge 1;\ \mathbb{P}^{2} \# \stackrel{k}{\cdots} \# \mathbb{P}^{2}, k\ge 1 
+\]
+\end{theo}
+Las podemos dibujar:
+\begin{itemize}
+    \item En $\mathbb{R}^{3}$:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/superficies_r3} 
+    \end{center}
+    \item En $\mathbb{R}^{4}$ (modelo en $\mathbb{R}^{3}$):
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/superficies_r4} 
+    \end{center}
+\end{itemize}
+El ``solo una'' del enunciado nos dice que estas superficies son \underline{todas distintas} (no homeomorfismo): el grupo fundamental las distingue. Ya sabemos que $\pi\left( \mathbb{S}^{2} \right) = \{1\},\ \pi\left( \Pi^2 \right) = \mathbb{Z}^2,\ \pi\left( \mathbb{P}^{2} \right) = \mathbb{Z}_2$ y los demás $H_0?$ son desiguales (aunque no sepamos calcularlos).
+
+\section{La relación fundamental}%
+\label{sec:la_relacion_fundamental}
+En la lista del teorema de clasificación no hay sumas ``mixtas'': $\Pi^2 \# \mathbb{P}^{2},\ldots$, pero el mismo teorema nos dice que están en la lista. Es claro que, por las propiedades de $\#$, cualquier suma conexa de $\mathbb{S}^{2}, \Pi^2$ y $\mathbb{P}^{2}$ estará en la lista en cuanto esté $\Pi^2 \# \mathbb{P}^{2}$. En efecto:
+
+\begin{prop}
+$\mathbb{P}^{2} \# \Pi^2 = \mathbb{P}^{2} \# \mathbb{P}^{2} \# \mathbb{P}^{2}$.
+\end{prop}
+\begin{demo}
+    ``Cut \& paste'' típico de identificaciones. Como $\mathbb{P}^{2} \# \mathbb{P}^{2} = \mathbb{K}^2$ (\ref{sec:cocientes_sum_conx}) es la botella de Klein, el homeomorfismo que partiremos? es $\mathbb{P}^{2} \# \Pi^2 = \mathbb{P}^{2} \# \mathbb{K}^2$ con:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/rel_fund_1} 
+    \end{center}
+
+    \begin{enumerate}
+        \item Agujeros:
+        %TODO: Imagen
+        \begin{center}
+            \includegraphics[scale=0.3]{images/rel_fund_agujeros} 
+        \end{center}
+
+        \item Pegados:
+        %TODO: Imagen
+        \begin{center}
+            \includegraphics[scale=0.3]{images/rel_fund_pegados} 
+        \end{center}
+
+        \item \textit{Cut \& paste}:
+        %TODO: Imagen
+        \begin{center}
+            \includegraphics[scale=0.3]{images/rel_fund_c&p} 
+        \end{center}
+    \end{enumerate}
+    Obtenemos dos representaciones nuevas de $\mathbb{P}^{2} \# \Pi^2$ y $\mathbb{P}^{2} \# \mathbb{K}^2$, con apariencias desiguales, pero topologías iguales: dos hexágonos con las mismas identificaciones de lados:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/rel_fund_hex} 
+    \end{center}
+    No dejarse engañar por los colores ni los sentidos de las flechas.
+\end{demo}
+
+\section{Grupos fundamentales con un agujero}%
+\label{sec:grupos_fundamentales_con_un_agujero}
+Aunque no podamos distinguir todas las superficies unas de otras porque no conocemos todos los grupos fundamentales, si podemos hacer algunas distinciones ``haciendo agujeros''.
+
+\begin{prop}
+Distinguimos:
+\begin{enumerate}
+    \item $\pi\left( \mathbb{S}^{2} \setminus \{a\} \right) = \pi\left( \mathbb{R}^{2} \right) = \{1\}$.
+    \item $\pi\left( \Pi^2 \# \stackrel{k}{\cdots} \# \Pi^2 \setminus \{a\} \right) = \pi\left( dibujo^{2k}  \right) = \mathbb{Z}^{*^{2k}}$.
+    \item $\pi\left( \mathbb{P}^{2} \# \stackrel{k}{\cdots} \# \mathbb{P}^{2} \setminus \{a\} \right) = \pi\left( dibujo^{k} \right) = \mathbb{Z}^{*^{k}}$.
+\end{enumerate}
+\end{prop}
+\begin{demo}
+Tenemos
+%TODO: Imagen. Ni idea de como hacerlo
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_grupos_fund_agujeros} 
+\end{center}
+\end{demo}
+
+Con $k$ arbitrario es lo mismo: $4k$ lados identificados por pares, $4k$ vértices todos identificados. Por retracción radical desde un punto interior (el agujero), obtenemos la poligonal con esas mismas identificaciones. Al identificar los vértices se tiene un bouquet de $4k$ pétalos y, al identificar pétalos por pares, un bouquet de $2k$ pétalos.
+\begin{demo}
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_grupo_fund_agujeros_2} 
+\end{center}    
+$k = 3$. Por \textit{cut \& paste}, los lados, pueden? sumar un proyectivo aporta? $2$ lados identificados entre sí con tres vértices identificados todos (\ref{sec:la_relacion_fundamental}).
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_grupo_fund_agujeros_3} 
+\end{center}
+\end{demo}
+Con $k$ arbitrario es lo mismo: se empieza con un polígono de $2k$ lados, que se retrae a una poligonal de $2k$ lados, en la que se identifican los vértices para obtener un bouquet de $2k$ pétalos, que se identifican por pares para tener un bouquet de $k$.
+
+\underline{Conclusión}:
+
+Todas las superficies se distinguen por el grupo fundamental después de quitar un punto, salvo los pares:
+\[
+\Pi^2 \# \stackrel{k}{\cdots} \# \Pi^2\; \land \;\mathbb{P}^{2} \# \stackrel{2k}{\cdots} \# \mathbb{P}^{2} = \mathbb{K}^2 \# \stackrel{k}{\cdots} \# \mathbb{K}^2
+\]
+para cada $k \ge 1$. El primer caso (y el esencial) es que el toro y la botella de Klein no son homeomorfos: La razón de fondo es la orientabilidad, que no hemos estudiado aquí.
+
+En general:
+\begin{itemize}
+    \item Cualquier $\mathbb{P}^{n} \# \cdots \# \mathbb{P}^{2}$ contiene una banda de Möbius (de hecho, tantas como sumandos) y la banda es no orientable?.
+    \item Cualquier $\Pi^2 \# \cdots \# \Pi^2$ es orientable, luego cualquier abierto suyo lo es, luego no puede contener una banda de Möbius.
+\end{itemize}
+
 
 \chapter{Grande finale}%
 \label{cha:grande_finale}
