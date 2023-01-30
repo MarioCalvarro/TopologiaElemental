@@ -3402,9 +3402,100 @@ Sea $\exists \eta$ sin ceros $\Rightarrow \exists \frac{\eta}{\lVert \eta \rVert
 
 \chapter{Más aplicaciones por el mismo precio}%
 \label{cha:mas_aplicaciones_por_el_mismo_precio}
+%TODO
 
 \chapter{Superficies}%
 \label{cha:superficies}
+\section{Concepto}%
+\label{sec:concepto_sup}
+\begin{defi}
+Una \underline{superficie} es un espacio localmente homeomorfo a $\mathbb{R}^{2}$. Supondremos siempre que es $T_2$ y el II Ax., lo que implica que se puede sumergir en $\mathbb{R}^{n}$ para $n$ grande.
+\end{defi}
+Nos interesan las superficies \underline{compactas}. Las tres primeras son cocientes:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/primeras_superficies} 
+\end{center}
+\underline{Ejercicio}: $\mathbb{P}^{2} \xhookrightarrow{} \mathbb{R}^{4}: \left( x_0 : x_1 : x_2 \right) \mapsto \frac{\left( x_1^2 - x_2^2, x_0x_1, x_0x_2, x_1x_2 \right)}{x_0^2 + x_1^2 + x_2^2}$.
+
+\begin{obs}
+$P^2 \rightarrow \mathbb{R}^{3}$ tiene siempre identificaciones adicionales (como el cros-cap?)
+\end{obs}
+
+\section{Sumas conexas}%
+\label{sec:sumas_conexas}
+El método genérico para construir superficies requiere el concepto un poco más general siguiente:
+\begin{defi}
+Una superficie \underline{con borde} es un espacio local homeomorfo a $\{x \ge 0\} \subset \mathbb{R}^{2}$ y los puntos del borde se corresponden con $\{x = 0\}$ (es una definición consistente por la inversa? del borde)
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/def_con_borde} 
+\end{center}
+\end{defi}
+\begin{obs}
+Sin los puntos del borde se tiene una superficie ordinaria.
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item Un disco cerrado, que tiene por borde la circunferencia.
+    \item Una corona circular, una banda entre rectas paralelas, un tronco de cilindro. 
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/ej_con_borde} 
+    \end{center}
+\end{enumerate}
+\end{ej}
+
+Con este concepto podemos ``hacer agujeros'' en superficies y, con ellos, definir:
+\begin{defi}
+La \underline{suma conexa} $M \# M'$ de dos superficies $M$ y $M'$ se construye haciendo un agujero en cada una y pegando las superficies agujereadas por sus bordes:
+\begin{enumerate}
+    \item Agujeros: $B \subset M$ y $B \subset M'$ (discos abiertos) con bordes $S = \overline{B} \setminus B$ y $S' = \overline{B'} \setminus B'$ (circunferencias).
+    \item Superficies agujereadas: $M\setminus B$ y $M'\setminus B$ con los mismos bordes $S$ y $S'$.
+    \item Pegando por los bordes: $M \# M' = \left( \left( M \setminus B \right) + \left( M' \setminus B' \right) \right) / \left( S \equiv S' \right)$.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/def_suma_conexa} 
+    \end{center}
+\end{enumerate}
+\end{defi}
+
+\begin{prop}
+La suma conexa está bien definida y no depende de los agujeros elegidos (salvo homeomorfismos).
+\end{prop}
+\begin{demo}
+Que efectivamente es una superficie ordinaria (sin borde) es fácil si elegimos los agujeros en abiertos de las superficies homeomorfas a $\mathbb{R}^{2}$. Luego, hay que ver que si cambiamos los agujeros obtenemos el mismo resultado (salvo homeomorfismo) y esto ya requiere resultados profundos como el teorema de Jordan-Schoenflies.
+\end{demo}
+
+\begin{prop}
+La suma conexa es una operación asociativa conmutativa con elemento neutro la esfera.
+\end{prop}
+\begin{demo}
+Que $\left( M \# M' \right) \# M'' \approx M \# \left( M' \# M'' \right)$ es fácil tomando agujeros bien separados. También es obvio que $M \# M' \approx M' \# M$. Finalmente:
+\[
+M \# \mathbb{S}^{2} = \left( \left( M \setminus B \right) + \left( \mathbb{S}^{2} \setminus B' \right) \right) / \left( S \equiv S' \right) = \left( \left( M \setminus B \right) + B \right) / \left( S \equiv S' \right) = M
+\]
+pues $\mathbb{S}^{2} \setminus B'$ es un disco cerrado que restituimos a $M$.
+\end{demo}
+
+\section{Cocientes}%
+\label{sec:cocientes_sum_conx}
+Las sumas conexas se visualizan muy bien mediante identificaciones.
+\begin{enumerate}
+    \item \underline{Suma conexa de toros}: 
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/sum_conx_toros} 
+    \end{center}
+
+    \item \underline{Suma conexa de planos proyectivos}:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/sum_conx_planos_proy} 
+    \end{center}
+\end{enumerate}
+
 
 \chapter{Clasificación de superficies}%
 \label{cha:clasificacion_de_superficies}
