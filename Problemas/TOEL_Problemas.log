@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.1)  30 JAN 2023 20:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.1)  30 JAN 2023 20:41
 entering extended mode
 **./TOEL_Problemas.tex
 (TOEL_Problemas.tex
@@ -479,7 +479,7 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \thm@topsep=\skip66
 \thm@topsepadd=\skip67
 )
-\c@defi=\count290
+\c@enun=\count290
 \c@theo=\count291
 \c@coro=\count292
 \c@lema=\count293
@@ -1285,7 +1285,17 @@ File: pgflibraryshapes.multipart.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfnodepartsevenbox=\box88
 \pgfnodepartsixbox=\box89
 \pgfnodepartfivebox=\box90
-))) (TOEL_Problemas.aux
+)))
+(C:\Users\Mi Equipo\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.s
+ty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip74
+\enit@outerparindent=\dimen333
+\enit@toks=\toks63
+\enit@inbox=\box91
+\enit@count@id=\count353
+\enitdp@description=\count354
+) (TOEL_Problemas.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 LaTeX Info: Redefining \. on input line 26.
@@ -1352,17 +1362,17 @@ LaTeX Info: Redefining \% on input line 137.
 (C:\Users\Mi Equipo\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pd
 f.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count353
-\scratchdimen=\dimen333
-\scratchbox=\box91
-\nofMPsegments=\count354
-\nofMParguments=\count355
-\everyMPshowfont=\toks63
-\MPscratchCnt=\count356
-\MPscratchDim=\dimen334
-\MPnumerator=\count357
-\makeMPintoPDFobject=\count358
-\everyMPtoPDFconversion=\toks64
+\scratchcounter=\count355
+\scratchdimen=\dimen334
+\scratchbox=\box92
+\nofMPsegments=\count356
+\nofMParguments=\count357
+\everyMPshowfont=\toks64
+\MPscratchCnt=\count358
+\MPscratchDim=\dimen335
+\MPnumerator=\count359
+\makeMPintoPDFobject=\count360
+\everyMPtoPDFconversion=\toks65
 )
 (C:\Users\Mi Equipo\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstop
 df-base.sty
@@ -1384,7 +1394,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ttitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count359
+\c@section@level=\count361
 )
 LaTeX Info: Redefining \ref on input line 137.
 LaTeX Info: Redefining \pageref on input line 137.
@@ -1438,6 +1448,10 @@ LaTeX Info: Redefining \% on input line 2.
 
 ]
 Cap\'{\i }tulo 1.
+Package hyperref Info: bookmark level for unknown enun defaults to 0 on input l
+ine 146.
+Package hyperref Info: bookmark level for unknown ej defaults to 0 on input lin
+e 149.
 [5] [6
 
 ]
@@ -1488,25 +1502,32 @@ LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
 Package rerunfilecheck Info: File `TOEL_Problemas.out' has not changed.
-(rerunfilecheck)             Checksum: 06571ED68F13341FDEAE343391A671BE;1954.
+(rerunfilecheck)             Checksum: FAB719622FE8EB511B6A1B17CB9E4F81;2176.
  ) 
 Here is how much of TeX's memory you used:
- 39112 strings out of 479334
- 910360 string characters out of 2855147
- 1350766 words of memory out of 3000000
- 55745 multiletter control sequences out of 15000+200000
- 410525 words of font info for 56 fonts, out of 3000000 for 9000
+ 39473 strings out of 479334
+ 916247 string characters out of 2855147
+ 1359273 words of memory out of 3000000
+ 56086 multiletter control sequences out of 15000+200000
+ 414410 words of font info for 74 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,7n,111p,738b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Mi Equipo/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Mi Equipo/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on TOEL_Problemas.pdf (25 pages, 97225 bytes).
+onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Mi Equipo/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Mi Equipo/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Mi E
+quipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C
+:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmr7.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmss10.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Mi Equipo/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on TOEL_Problemas.pdf (25 pages, 159049 bytes).
 PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 38 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 266 PDF objects out of 1000 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

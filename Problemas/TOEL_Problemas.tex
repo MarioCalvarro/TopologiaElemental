@@ -65,7 +65,7 @@
     \theoremsymbol{}
     \theoremprework{\vspace{0.2cm} \hrule}
     \theorempostwork{\vspace{0.2cm}\hrule}
-        \newtheorem*{defi}{Definición}
+        \newtheorem*{enun}{Enunciado}
 
     \theoremprework{\vspace{0.25cm}}
         \newtheorem*{theo}{Teorema}
@@ -85,9 +85,9 @@
     	\newtheorem*{demo}{\underline{Demostración}:}
 
     \theoremheaderfont{\normalfont}
-    \theorembodyfont{\normalfont}
+    \theorembodyfont{\sffamily}
     	\newtheorem*{obs}{\underline{Observación}:}
-    	\newtheorem*{ej}{\underline{Ejemplo}:}
+    	\newtheorem*{ej}{\underline{Solución}:}
     	\newtheorem*{pg}{\underline{Política general}:}
     	\newtheorem*{il}{\underline{Ilustración}:}
 
@@ -133,7 +133,7 @@
     
     \usetikzlibrary{shapes}
 
-
+\usepackage{enumitem}
 \begin{document}
 \maketitle
 \setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
@@ -141,6 +141,24 @@
 \chapter{Lista 0: Para Empezar}%
 \label{cha:lista0}
 
+\section{Número 0.1}
+\begin{enun}
+Comprobar las leyes distributivas para la unión y la intersección de conjuntos, y las leyes de De Morgan.
+\end{enun}
+\begin{ej}
+dgerhgsre
+\end{ej}
+
+\section{Número 0.2}
+\begin{enun}
+Se considera una aplicación $f: A \rightarrow B$ y subconjutos $A_0 \subset A, B_0 \subset B$.
+\begin{enumerate}[label={(\arabic*)}]
+ \item Demostrar que $A_0 \subset f^{-1}(f(A_0))$ y que se da la igualdad si $f$  es inyectiva.
+ \item Demostrar que $f(f^{-1}(B_0)) \subset B_0$ y que se da la igualdad si $f$ es sobreyectiva.
+\end{enumerate}
+\end{enun}
+\begin{ej}
+\end{ej}
 \chapter{Lista 1: Espacios Topológicos}%
 \label{cha:lista1}
 
