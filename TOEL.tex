@@ -3195,6 +3195,120 @@ Tenemos que:
 
 \chapter{Cálculos mediante recubridores}%
 \label{cha:calculos_mediante_recubridores}
+Hemos visto ya que:
+\begin{itemize}
+    \item $\pi$(estrellado) $= \{1\},\ \pi\left( \mathbb{S}^n \right) = \{1\},\ n \ge 2 \Rightarrow \pi\left( \mathbb{R}^{n + 1} \setminus \{0\} \right) = \{1\}$.
+    \item $\pi\left( \mathbb{P}^{n} \right) = \mathbb{Z}_2,\ n \ge  2$ (no demostrado)
+    \item $\pi\left( \mathbb{S}^1 \right) = \mathbb{Z}$ (no demostrado).
+    \begin{itemize}
+        \item $\pi$(toro) $= \mathbb{Z} \times \mathbb{Z},\ \pi$(cilindro) $= \mathbb{Z}$.
+        \item $\pi$(banda de Möbius) $= \mathbb{Z},\ \pi\left( \mathbb{R}^2 \setminus \{a\} \right) = \mathbb{Z}$.
+    \end{itemize}
+    Ahora toca demostrar $\pi\left( \mathbb{P}^{n} \right)$ y $\pi\left( \mathbb{S}^1 \right)$.
+\end{itemize}
+
+\section{Espacios proyectivos reales}%
+\label{sec:espacios_proyectivos_reales_rec}
+\begin{theo}
+$\pi\left( \mathbb{P}^{n} \right) = \mathbb{Z}_2,\ n \ge 2$
+\end{theo}
+\begin{demo}
+Usamos el recubridor antipodal $p : \mathbb{S}^n \rightarrow \mathbb{P}^{n}: \tilde{x}, -\tilde{x} \mapsto x = \left[ \tilde{x} \right] = \left[ - \tilde{x} \right]$. Punto base en $\mathbb{P}^{n}: x_0 = \left( 0 : \ldots : 1 \right);\ \sigma: \left[ 0, 1 \right] \rightarrow \mathbb{P}^{n},\ \sigma\left( 0 \right) = \sigma\left( 1 \right) = x_0,\ \tilde{x}_0 = \left( 0, \ldots, 1 \right)$. Ahora, por el lema de elevación:
+\[
+    \Rightarrow \exists! \tilde{\sigma}: \left[ 0, 1 \right] \rightarrow \mathbb{S}^{n},\ p\tilde{\sigma} = \sigma,\ \tilde{\sigma} = \tilde{x}_0\; \land \;\tilde{\sigma}\left( 1 \right) \in p^{-1}\left( x_0 \right) = \{\tilde{x}_0, -\tilde{x}_0\}  
+\]
+No veces? lazo.
+\begin{enumerate}
+    \item $\tilde{\sigma}\left( 1 \right) = \tilde{x}_0 \xRightarrow{\mathbb{S}^{n} \text{ simple conx.}} \exists \tilde{H}_s: \tilde{\sigma} \stackrel{x_0}{\simeq} \tilde{x}_0 \Rightarrow \exists p \circ \tilde{H}_s: \sigma \stackrel{x_0}{\simeq} x_0 \Rightarrow \left[ \sigma \right] = 1 \in \pi\left( \mathbb{P}^{n}, x_0 \right)$. 
+
+    \item $\tilde{\sigma} \left( 1 \right) = -\tilde{x}_0 \xRightarrow{\mathbb{S}^{n} \text{ simple conx.}} \exists \tilde{H}_s: \tilde{\sigma} \stackrel{\tilde{x}_0,-\tilde{x}_0}{\simeq} \tilde{\alpha} = \left( 0, \ldots, 0, \sin \pi t, \cos \pi t \right) \Rightarrow \exists p \circ H_s: \sigma \stackrel{x_0}{\simeq} \alpha = p \circ \tilde{\alpha}$, lazo de base $x_0,\ \alpha\left( 0 \right) = \alpha\left( 1 \right) = x_0$. 
+
+    \item Tenemos:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/rec_esp_proy_r} 
+    \end{center}
+
+    \item[1. 2. 3.] $\Rightarrow \pi\left( \mathbb{P}^{n}, x_0 \right)$ tiene dos elementos distintos dependiendo del extremo de la elevación $\Rightarrow$ 
+        \[
+        \boxed{\pi\left( \mathbb{P}^{n}, x_0 \right) = \mathbb{Z}_2}.
+        \]
+\end{enumerate}
+\end{demo}
+
+\section{La circunferencia}%
+\label{sec:la_circunferencia}
+\begin{theo}
+$\pi\left( \mathbb{S}^{1} \right) = \mathbb{Z}$.
+\end{theo}
+\begin{obs}
+$\mathbb{S}^{1} = \mathbb{P}^{1}$.
+\end{obs}
+\begin{demo}
+    Usamos el recubridor exponencial $p: \mathbb{R} \rightarrow \mathbb{S}^{1}: \theta \mapsto \left( \cos 2 \pi \theta, \sin 2 \pi \theta \right)$. Punto base $x_0 \in \mathbb{S}^{1},\ \forall \sigma: \left[ 0, 1 \right] \rightarrow \mathbb{S}^{1},\ s\left( 0 \right) = \sigma\left( 1 \right) = x_0$. Por el lema de elevación:
+    \[
+    \Rightarrow \exists \tilde{\sigma} : \left[ 0, 1 \right] \rightarrow \mathbb{R}^{}, p \tilde{\sigma} = \sigma \Rightarrow p \tilde{\sigma} \left( 1 \right) = \sigma\left( 1 \right) = \sigma\left( 0 \right) = p \tilde{\sigma} \left( 0 \right) \Rightarrow \tilde{\sigma} \left( 1 \right) = \tilde{\sigma} \left( 0 \right) + k,\ k \in \mathbb{Z}
+    \]
+
+\begin{theo}
+    El \underline{nº de vueltas}:
+    \begin{align*}
+        \#: \pi\left( \mathbb{S}^{1}, x_0 \right) &\rightarrow \mathbb{Z}\\
+        \left[ \sigma \right] &\mapsto \# \sigma = \tilde{\sigma}\left( 1 \right) - \tilde{\sigma}\left( 0 \right) 
+    .\end{align*}
+    es isomorfismo de grupos bien definido.
+\end{theo}
+\begin{demo}
+    \begin{enumerate}
+        \item $k = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right)$ no depende de $\tilde{\sigma}$. 
+        \begin{align*}
+            p \tilde{\tau} = \sigma = p \tilde{\sigma} &\Rightarrow \tilde{\tau} \left( 0 \right) = \tilde{\sigma} \left( 0 \right) + l \Rightarrow \begin{cases}
+                \tilde{\tau}\\
+                \tilde{\sigma} + l
+            \end{cases} \parbox{5em}{elevan $\sigma$\\ coinciden\\ en $t = 0$} \xRightarrow{\text{uni. elev.}} \tilde{\tau} = \tilde{\sigma} + l\\
+            &\Rightarrow k = \tilde{\sigma}\left( 1 \right) - \tilde{\sigma} \left( 0 \right) = \left( \tilde{\tau} \left( 1 \right) - l \right) - \left( \tilde{\tau} \left( 0 \right) - l \right) = \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right) 
+        .\end{align*}
+
+        \item $k$ no depende de homotopía de lazos, luego $\#$ está bien definido. Sea $H_s: \sigma \simeq \tau$ y $H_s\left( 1 \right) = H_s\left( 0 \right),\ \forall s$:
+        \begin{align*}
+            &\Rightarrow \exists \tilde{H}_s: \tilde{\sigma} \simeq \tilde{\tau} \text{ entre elevaciones de } \sigma\; \land \;\tau\\
+            &\Rightarrow s \mapsto \underbrace{\tilde{H}_s\left( 1 \right)}_{\xrightarrow{p} H_s\left( 1 \right) }  \setminus \underbrace{\tilde{H}_s\left( 0 \right)}_{\xrightarrow{p} H_s\left( 0 \right)} \in \mathbb{Z} \xRightarrow{\text{cont.}} \tilde{H}_s\left( 1 \right) - \tilde{H}_s\left( 0 \right) \equiv cte.\\
+            &\Rightarrow k = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) = \tilde{H}_0\left( 1 \right) - \tilde{H}_0\left( 0 \right) \stackrel{cte.}{=} \tilde{H}_1\left( 1 \right) - \tilde{H}_1\left( 0 \right) = \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right)  
+        .\end{align*}
+
+        \item $\#$ es isomorfismo. Sea $\# \sigma = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right)$ y $\# \tau = \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right)$ y:
+        \begin{align*}
+            \tau\left( 0 \right) = \tau\left( 1 \right) = p \tilde{\sigma} \left( 1 \right) &\Rightarrow \tilde{\sigma} \left( 1 \right) \text{ cond. inicial elev.} \\
+            &\Rightarrow \exists \tilde{\tau} : \underline{\tilde{\tau} \left( 0 \right) = \tilde{\sigma} \left( 1 \right)} \Rightarrow \tilde{\sigma} * \tilde{\tau} = \tilde{\sigma * \tau} 
+        .\end{align*}
+        Entonces:
+        \begin{align*}
+            \# \left( \sigma * \tau \right) &= \tilde{\sigma * \tau} \left( 1 \right) - \tilde{\sigma * \tau} \left( 0 \right) = \tilde{\sigma} * \tilde{\tau} \left( 1 \right) - \tilde{\sigma} * \tilde{\tau} \left( 0 \right) = \tilde{\tau} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) =\\
+            &= \left( \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right) \right) + \left( \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) \right) = \# \tau + \# \sigma
+        .\end{align*}
+
+        \item $\#$ es suprayectiva: 
+        \[
+        \# \left( \cos 2 \pi k t, \sin 2 \pi k t \right) = k t|_0^1 = k 
+        \]
+        (Recorrer $\mathbb{S}^{1}\ k$ veces)
+
+        \item $\#$ es 1-1:
+        \[
+        0 = \# \sigma = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) \Rightarrow \begin{cases}
+            \tilde{\sigma\left( 1 \right)} = \tilde{\sigma} \left( 0 \right) \Rightarrow \begin{rcases}
+                H_s\left( 0 \right) = p \tilde{\sigma} \left( 0 \right) = \sigma\left( 0 \right) = \sigma\left( 0 \right) = x_0\\
+                H_s\left( 1 \right) = p \tilde{\sigma} \left( 1 \right) = \sigma\left( 1 \right) = x_0
+            \end{rcases}(*)\\\\
+
+            \underbrace{p\left( \left( 1 - s \right) \tilde{\sigma} \left( t \right) + s \tilde{\sigma} \left( 0 \right) \right)}_{H_s\left( t \right)} : \sigma \stackrel[(*)]{x_0}{\simeq} x_0 
+        \end{cases} 
+        \]
+        [$\Rightarrow \left( \sigma \right) = 1 \in \pi \left( \mathbb{S}^{1}, x_0 \right)$]
+    \end{enumerate}
+\end{demo}
+\end{demo}
+
 
 \chapter{Aplicaciones en dimensión 2}%
 \label{cha:aplicaciones_en_dimension_2_}
