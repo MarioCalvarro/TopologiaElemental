@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}
+\babel@toc {spanish}{}
+\contentsline {chapter}{\numberline {1}Lista 0: Para Empezar}{5}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Lista 1: Espacios Topológicos}{7}{chapter.2}%
+\contentsline {chapter}{\numberline {3}Lista 2: Aplicaciones continuas}{9}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Lista 3: Construcción de topologías}{11}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Lista 4: Separación}{13}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Lista 5: Numerabilidad}{15}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Lista 6: Compacidad}{17}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Lista 7: Conexión}{19}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Lista 8: Conexión por caminos}{21}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Lista 9: Homotopía}{23}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Lista 10: Borsuk y sus variantes}{25}{chapter.11}%
