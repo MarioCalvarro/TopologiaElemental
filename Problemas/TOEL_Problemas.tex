@@ -146,7 +146,19 @@
 Comprobar las leyes distributivas para la unión y la intersección de conjuntos, y las leyes de De Morgan.
 \end{enun}
 \begin{ej}
-dgerhgsre
+\begin{itemize}
+\item Ley distributiva de la unión: $(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$
+
+$x \in (A \cap B) \cup C \Leftrightarrow (x \in A \wedge x \in B) \vee x \in C \Leftrightarrow (x \in A \vee x \in C) \wedge (x \in B \vee x \in C) \Leftrightarrow$ $x \in (A \cup C) \cap (B \cup C)$
+\item Ley distributiva de la intersección: $(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$
+
+$x \in (A \cup B) \cap C \Leftrightarrow (x \in A \vee x \in B) \wedge x \in C \Leftrightarrow (x \in A \wedge x \in C) \vee (x \in B \wedge x \in C) \Leftrightarrow$ $x \in (A \cap C) \cup (B \cap C)$
+\item Leyes de De Morgan: $(A \cup B)^c = A^c \cap B^c \ \& \ (A \cap B)^c = A^c \cup B^c$
+\begin{enumerate}[label={(\arabic*)}]
+\item $x \in (A \cup B)^c \Leftrightarrow x \notin A \cup B \Leftrightarrow x \notin A \wedge x \notin B \Leftrightarrow x \in A^c \wedge x \in B^c \Leftrightarrow x \in A^c \cap B^c$
+\item $A \cap B = A^{cc} \cap B^{cc} \overset{(1)}{=} (A^c \cup B^c)^c$, y tomando complementarios en ambos lados obtenemos la segunda ley.
+\end{enumerate}
+\end{itemize}
 \end{ej}
 
 \section{Número 0.2}
@@ -158,6 +170,11 @@ Se consideran una aplicación $f: A \rightarrow B$ y subconjutos $A_0 \subset A,
 \end{enumerate}
 \end{enun}
 \begin{ej}
+\begin{enumerate}[label={(\arabic*)}]
+ \item Sea $x \in A_0$. Así, $f(x) \in f(A_0)$, y por definición de preimagen, $x \in f^{-1}(f(A_0))$. En particular, obtenemos la igualdad $A_0 
+ = f^{-1}(f(A_0))$ si $f$ es inyectiva. Supongamos que $\exists y \in f^{-1}(f(A_0)) \setminus A_0$. Así, $f(y) \in f(A_0)$, luego existe un $x \in A_0$ tal que $f(y) = f(x)$. Como $f$ es inyectiva, $x = y \in A_0$, lo que nos lleva a una contradicción. 
+ \item Sea $y \in f(f^{-1}(B_0))$. Así, existe $x \in f^{-1}(B_0)$ tal que $y = f(x)$. Por tanto, si aplicamos f, obtenemos que $f(x) = y \in B_0$. En particular, obtenemos la igualdad $f(f^{-1}(B_0)) = B_0$ si $f$ es sobreyectiva. Si $y \in B_0$, como $f$ es sobreyectiva, existe un $x \in f^{-1} (B_0)$ tal que $f(x) = y$. Aplicamos $f^{-1}$ y obtenemos que $f^{-1}(y) = x \in f^{-1}(B_0)$, y al aplicar $f$ obtenemos $f(x) = y \in f(f^{-1}(B_0))$.
+\end{enumerate}
 \end{ej}
 
 \section{Número 0.3}
