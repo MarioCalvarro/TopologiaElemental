@@ -431,16 +431,18 @@ $A \subset X$ es \underline{denso} si $\overline{A} = X$, o bien, todo punto es 
 \label{sec:bases}
 Sea $X, \mathcal{T}$ un espacio topológico.
 \begin{defi}
-Una \underline{base de entornos} de $a \in X$ es una colección $\mathcal{V}^a$ de entornos de $a$, tal que todo entorno de $a$ contiene uno de la $\mathcal{V}^a$.
+Una \underline{base de entornos} de $a \in X$ es una colección $\mathcal{V}^a$ de entornos de $a$, tal que todo entorno de $a$ contiene uno de $\mathcal{V}^a$.
 \end{defi}
 
 \begin{obs}
 No se supone ninguna propiedad especial, ni que sean abiertos. Veremos que la existencia de base de entornos con propiedades adicionales es una de las cosas que determinan el comportamiento de la topología.
 
-Pero: $\forall \mathcal{V}^a$ se puede \underline{refinar} a una base $\mathcal{B}^a$ de entornos de abiertos. 
+Pero, $\forall \mathcal{V}^a$ se puede \underline{refinar} a una base $\mathcal{B}^a$ de entornos de abiertos. 
+\begin{demo}    
 \[
-\left[ \forall V^a \in \mathcal{V}^a \exists U^a \subset V^a \Rightarrow \mathcal{B}^a = \{U^a: V^a \in \mathcal{V}^a\} \text{ es base de entornos} \right]
+\forall V^a \in \mathcal{V}^a,\ \exists U^a \subset V^a \Rightarrow \mathcal{B}^a = \{U^a: V^a \in \mathcal{V}^a\} \text{ es base de entornos}. \left[ \forall E^a \supset V^a \supset U^a \right] 
 \]
+\end{demo}
 \end{obs}
 
 \begin{pg}
@@ -448,6 +450,7 @@ Pero: $\forall \mathcal{V}^a$ se puede \underline{refinar} a una base $\mathcal{
 \end{pg}
 
 \begin{il}    
+Por ejemplo,
 \begin{align*}
     a \in \overline{A} &\xLeftrightarrow{\text{def}} \forall W^a \text{ entorno }: W^a \cap A \neq \emptyset\\
    &\Longleftrightarrow \forall V^a \in \mathcal{V}^a: V^a\cap A \neq \emptyset 
@@ -468,16 +471,16 @@ Pero: $\forall \mathcal{V}^a$ se puede \underline{refinar} a una base $\mathcal{
 \end{ej}
 
 \begin{defi}
-Una \underline{base de abiertos} de $\mathcal{T}$ es una colección de abiertos $B \subset \mathcal{T}$ tal que todo abierto es unión de abiertos de $B$.
+Una \underline{base de abiertos} de $\mathcal{T}$ es una colección de abiertos $\mathcal{B} \subset \mathcal{T}$ tal que todo abierto es unión de abiertos de $\mathcal{B}$.
 \end{defi}
 
 \begin{prop}
-$\mathcal{B}$ base de abiertos $\Leftrightarrow \forall x \in X,\ \mathcal{B}^x = \{B \in \mathcal{B} : x \in B\}$ es base de entornos abiertos de $x \Leftrightarrow \forall x \in U,\ \exists B \in \mathcal{B} : x \in B \subset U$.
+$\mathcal{B}$ base de abiertos $\Leftrightarrow \forall x \in X,\ \mathcal{B}^x = \{B \in \mathcal{B} : x \in B\}$ es base de entornos (abiertos) de $x \Leftrightarrow \forall x \in U,\ \exists B \in \mathcal{B} : x \in B \subset U$.
 \end{prop}
 \begin{demo}
 $\Rightarrow) \forall V^x \Rightarrow x \in U \subset V^x \Rightarrow$
 \[
-    \mathcal{B} \text{ base } U = \bigcup_{i \in  I} \overbrace{B_i}^{\in \mathcal{B}} \xRightarrow{x \in U} \exists x \in B_i \subset U \subset V^x
+    \mathcal{B} \text{ base: } U = \bigcup_{i \in  I} \overbrace{B_i}^{\in \mathcal{B}} \xRightarrow{x \in U} \exists x \in B_i \subset U \subset V^x
 \]
 $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in \mathcal{B}} \subset U \Rightarrow U = \bigcup_{x \in U} B^x$ unión de abiertos de $\mathcal{B}$.
 \end{demo}
@@ -486,7 +489,7 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
 \begin{enumerate}
     \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
     \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
-    \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}} \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
+    \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}\ \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
     %TODO: Fix imágenes 
     \begin{center}
         \includegraphics[scale=0.3]{images/base_rn} 
@@ -511,7 +514,7 @@ $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \e
 \end{il}
 
 \begin{prop}
-$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{T}$ es $X$. Es equivalente a: 
+``$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{T}$ en $X$'', equivalente a: 
 \begin{itemize}
     \item $X = \bigcup_{B \in \mathcal{B}} B$.
     \item $\forall x \in B_1 \cap B_2,\ \exists B^x \subset B_1 \cap B_2$.
@@ -521,10 +524,24 @@ $\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (ú
     \includegraphics[scale=0.3]{images/base_unica} 
 \end{center}
 \end{prop}
+%TODO: Mejorar
 \begin{demo}
+La implicación $\Rightarrow)$ se cumple por propiedades vistas.
+
+En el otro sentido tenemos:
 \begin{itemize}
     \item \underline{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
-    \item \underline{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. Lo importante: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{T}$.
+    \item \underline{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. 
+        \begin{itemize}
+            \item $\emptyset$ unión de vacío, $X = \bigcup_{i} U_i \Rightarrow \emptyset, X \in \mathcal{T}$.
+            \item Uniones: $\bigcup_{j} \underbrace{\bigcup_{i} B_{ij}}_{\in \mathcal{T}} = \underbrace{\bigcup_{j} B_{ij}}_{\in \mathcal{T}}$. 
+            \item Lo importante, intersecciones finitas: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{T}$.
+            \begin{gather*}
+                \forall x \in \left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) \stackrel{?}{=} \bigcup_{\lambda} B_{\lambda}\\
+                x \in B_{i_0} \cap B_{k_0} \Rightarrow \exists B^x \subset B_{i_0} \cap B_{k_0} \\
+                \bigcup_{\lambda} B_{\lambda} = \bigcup_{x} B^x
+            .\end{gather*}
+        \end{itemize}
 \end{itemize}
 \end{demo}
 
