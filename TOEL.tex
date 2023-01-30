@@ -3312,6 +3312,93 @@ $\mathbb{S}^{1} = \mathbb{P}^{1}$.
 
 \chapter{Aplicaciones en dimensión 2}%
 \label{cha:aplicaciones_en_dimension_2_}
+Veamos tres teoremas importantes que se pueden demostrar en dimensión $2$ con lo que ya hemos visto del grupo fundamental.
+
+\section{Teorema fundamental del Álgebra}%
+\label{sec:teorema_fundamental_del_algebra}
+\begin{theo}[Fundamental del Álgebra]
+Todo polinomio $P\left( z \right) \in \mathbb{C}\left[ z \right]$ tiene raíces complejas. 
+\end{theo}
+\begin{demo}
+Sea $P\left( z \right) = z^d + a_1z^{d - 1} + \ldots + \overbrace{a_d}^{\neq 0}$ (mónico después de dividir por el cof. director)
+\begin{enumerate}
+    \item Tendremos:
+    \begin{gather*}
+        P_s\left( z \right) = z^d + sa_1z^{d - 1} + \ldots + sa_d = 0 \xRightarrow{0 \le s \le 1} \lvert z \rvert < 1 + \lvert a_1 \rvert + \ldots + \lvert a_d \rvert = r\\
+        P_s \neq 0 \xRightarrow{z\neq 0} \text{entre } z^{d - 1}: -z = s\left( a_1 + \ldots + s \frac{a_d}{z^{d - 1}} \right) \Rightarrow \lvert z \rvert \le \begin{cases}
+            1,\ \lvert z \rvert \le 1\\
+            \lvert a_1 \rvert + \ldots + \lvert a_d \rvert,\ \lvert z \rvert \ge 1
+        \end{cases} 
+    .\end{gather*}
+
+    \item $z\left( t \right) = r\left( \cos 2 \pi t, \sin 2 \pi t \right) \Rightarrow \lvert z \left( t \right)\rvert  = r \Rightarrow \exists H_s\left( t \right) = \frac{P_s\left( z\left( t \right) \right)}{\underbrace{\lvert P_s\left( z\left( t \right) \right) \rvert}_{\neq 0} }$ por 1.
+    \begin{align*}
+        \Rightarrow \left( \cos 2 \pi dt, \sin 2 \pi dt \right) &= \frac{z\left( t \right)^d}{\lvert z\left( t \right)^d \rvert} = H_0\left( t \right) \stackrel{\text{lazos: } z\left( 0 \right)= z\left( 1 \right)}{\simeq} H_1\left( t \right)\\
+        &= \frac{P\left( z\left( t \right) \right)}{\lvert P\left( z \left( t \right) \right) \rvert} = \sigma\left( t \right) \Rightarrow d = \# \left( \ldots \right) = \# \sigma 
+    .\end{align*}
+
+    \item $P\left( z \right) \neq 0,\ \forall z \Rightarrow \exists G_s\left( t \right) = \frac{P\left( sz\left( t \right) \right)}{\lvert P\left( sz\left( t \right) \right) \rvert} : G_0 \equiv \frac{a_d}{\lvert a_d \rvert} \stackrel{\text{lazos}}{\simeq} G_1 = \sigma \Rightarrow 0 = \# \left( cte. \right) = \# \sigma$.
+\end{enumerate}
+\end{demo}
+
+\section{Teorema del punto fijo de Brouwer}%
+\label{sec:teorema_del_punto_fijo_de_brouwer}
+
+\begin{theo}[de no retracto]
+$\not \exists $ retracto $\rho: \mathbb{D}^2 = \{x^2 + y^2 \le 1\} \rightarrow \mathbb{S}^{1}$. 
+\end{theo}
+\begin{demo}
+    Tenemos:
+    \[
+    \exists \rho \Rightarrow \rho_*: \overbrace{\underbrace{\pi\left( \mathbb{D}^2 \right) }_{\text{convexo}}}^{= \{0\}} \rightarrow \underbrace{\pi\left( \mathbb{S}^{1} \right)}_{\stackrel{\#}{=} \mathbb{Z}} \text{sobre (\ref{sec:retractos_y_deformaciones})
+}   \]
+\end{demo}
+
+\begin{theo}[del punto fijo]
+$\forall f: \mathbb{D}^2 \rightarrow \mathbb{D}^2$ continua, $\exists p$ punto fijo $x = f\left( x\right)$.
+\end{theo}
+\begin{demo}
+Al absurdo?: $x \neq f\left( x \right), \forall x \Rightarrow \exists \rho: \mathbb{D}^2 \rightarrow \mathbb{S}^{1}$ retracto.
+
+Construcción de $\rho$:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/construccion_rho_punto_fijo} 
+\end{center}
+La recta ($x \neq f\left( x \right)$), $r\left( x, f\left( x \right) \right) \cap \mathbb{S}^{1} = \{a, b\} \Rightarrow \rho\left( x \right) = a = x + \overbrace{\lambda \left( x \right)}^{> 0} \left( x - f\left( x \right) \right)$. 
+
+\underline{Ejercicio}: Ecuación de $\lambda$ y continuidad.
+\end{demo}
+
+\section{Teorema de la esfera de Brouwer}%
+\label{sec:teorema_de_la_esfera_de_brouwer}
+\begin{theo}[de la esfera de Brouwer]
+$\nexists \eta: \mathbb{S}^{2} \rightarrow \mathbb{R}^{3}$ campo tangente continuo sin ceros. (Tangente $\equiv \eta\left( x \right) \perp x,\ \forall x \in \mathbb{S}^{2}$)
+\end{theo}
+\begin{demo}
+Con una ilustración:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_esfera_brouwer} 
+\end{center}
+Sea $\exists \eta$ sin ceros $\Rightarrow \exists \frac{\eta}{\lVert \eta \rVert}$ unitario $\Rightarrow$ podemos suponer $\lVert \eta \rVert = 1$:
+\begin{enumerate}
+    \item $h: \mathbb{S}^{1} \times \mathbb{S}^{2} \xrightarrow{\approx \text{ hom.}} SO\left( 3 \right) = $ \{matrices $3x3$ ortogonales, $\det > 0$\}
+    \[
+        \left( \alpha, \beta; x \right) \xmapsto{h} A = \left( u, v, u \times v \right) \begin{cases}
+            u = x\\
+            v = \alpha \eta\left( x \right) + \beta\left( x \times \eta\left( x \right) \right)
+        \end{cases} 
+    \]
+    Con $\alpha^2 + \beta^2 = 1,\ \lVert x \rVert = 1$. Bien definida, continua y biyectiva $\xRightarrow{\text{compacto a } T_2}$ homeo.
+
+    \item $h_*: \underbrace{\pi\left( \mathbb{S}^{1} \times \mathbb{S}^{2} \right)}_{= \mathbb{Z} \times \{1\}} \rightarrow \pi\left( SO\left( 3 \right) \right)$ isomorfismo $\Rightarrow \pi\left( SO\left( 3 \right) \right) = \mathbb{Z}$.
+
+    %TODO: xd
+    \item Abracadabra?: $SO\left( 3 \right) \stackrel{\text{homeo.}}{\approx} \mathbb{P}^{3} \Rightarrow \mathbb{Z} = \pi\left( SO\left( 3 \right) \right) = \pi \left( \mathbb{P}^{3} \right)$.
+\end{enumerate}
+\end{demo}
+
 
 \chapter{Más aplicaciones por el mismo precio}%
 \label{cha:mas_aplicaciones_por_el_mismo_precio}
