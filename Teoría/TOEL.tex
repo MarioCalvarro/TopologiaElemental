@@ -134,6 +134,7 @@
     \usetikzlibrary{shapes}
 
 
+%TODO: Los eta son en realidad xi
 \begin{document}
 \maketitle
 \setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
@@ -3735,7 +3736,121 @@ Absurdo: sea que $\exists H_t: \mathbb{S}^{2} \rightarrow \mathbb{S}^{2},\ H_0\l
     \begin{center}
         \includegraphics[scale=0.3]{images/prob_elevacion} 
     \end{center}
+
+    %TODO: Fix subrayado
+    \item \underline{Estructura de }$\tilde{\mathbb{S}}^1$: 
+
+    Como esquema tenemos,
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/esquema_estr_s2} 
+    \end{center}
+    Así,
+        $c = \left( 0, 0, 1 \right),\ U = \mathbb{S}^{2} \setminus \{c\} = \{x_3 \neq 1\},\ -U : \mathbb{S}^{2} \setminus \{-c\} = \{x_3 \neq -1\}$.
+
+    En $U: x_3 \neq 1,\ \{\eta\left( x \right) = \left( 1 - x_3 - x_1^2, -x_1x_2, x_1\left( 1- x_3 \right) \right),\ \eta\left( x \right) = x \times \eta\left( x \right)\}$ base de $T_x\mathbb{S}^{2}$ ortogonal. $\Rightarrow \forall \underbrace{u}_{\neq 0} \perp x: u = \lambda\left( u, x \right) \eta\left( x \right) + \mu\left( u, x \right) \eta\left( x \right)$.
+    \[
+    \begin{cases}
+        \lambda\left( u, x \right) = \langle u, \eta\left( x \right) \rangle / \lVert \eta\left( x \right) \rVert^2\\
+        \mu\left( u, x \right) = \langle u, \eta\left( x \right) \rangle / \lVert \eta\left( x \right) \rVert^2
+    \end{cases} \text{ cond's ?? continuas.} 
+    \]
+
+    En $-U : x_3\neq -1$ igual con $\eta\left( x \right) = \left( 1 + x_3 - x_1^2, -x_1x_2, -x_1\left( 1 + x_3 \right) \right)$.
+
+    \item \underline{Preparación local}: Igual que en $\ref{sec:unicidad_de_elevacion}$ para la elevación de recubridores:
+    \begin{align*}
+        \forall x \in \mathbb{S}^{2},\ \exists W^x \stackrel{\text{ab.}}{\subset} \mathbb{S}^{2},\ \exists 0 = t_0 < \ldots < t_r = 1 : &W^x \times \left[ t_{i - 1}, t_i \right] \subset H^{-1}\left( U \right) \text{ ó } H^{-1}\left( -U \right)\\
+        &\text{reducción } W^x \supset \overline{V^x} \supset V^x
+    .\end{align*}
+    ¡La partición depende de $x$! $\Rightarrow{\mathbb{S}^{2}\text{ comp.}} \mathbb{S}^{2} = V^{x_1} \cup \ldots \cup V^{x_v}$ y juntamos las $v$ particiones.
+    \[
+    \Rightarrow \mathbb{S}^{2} = V_1 \cup \ldots \cup V_v\; \land \;\exists 0 = t_0 < \ldots < t_r = 1: H\left( \overbrace{W_k}^{\supset \overline{V}_k \supset V_k} \times \left[ t_{i - 1}, _i \right] \right) \subset U \text{ ó } -U.
+    \]
+
+    \underline{Objetivo}: construir la elevación $\tilde{H}$ en pasos sucesivos: 
+    \begin{itemize}
+        \item dada $\tilde{H}_t$ para $0 \le t \le t_{i-1}$ extenderla a $t_{i - 1} \le t \le t_i$, es decir, 
+        \item dada $\tilde{H}_{t_{i - 1}}$ extenderla a $t_{i - 1} \le t \le t_i$.
+    \end{itemize}
+    Para empezar en $i = 1$: 
+    \[
+    \tilde{H}_{t_0} \left( x \right) = \tilde{H}_0\left( x \right) = \left( H_0\left( x \right), u_0\left( x \right) \right) = \left( x_0, u_0 \right),\ \text{cualquier } \overbrace{u_0}^{\neq 0} \perp x_0
+    \]
+    El paso inductivo da más trabajo y para simplificar un escalamiento permite suponer $\left[ t_{i - 1}, t_i \right]\\ = \left[ 0, 1 \right]$ y $H\left( W_k \times \left[ 0, 1 \right] \right) \subset U$ ó $-U\ \forall k$(*). Queremos:
+    \begin{itemize}
+        \item dada $\tilde{H}_0$ extenderla a $0 \le t \le 1$
+        \begin{demo}
+            $\tilde{H}_0 = \tilde{H}_{t_i - 1}$ \underline{no} es la elevación de $i = 1$. 
+        \end{demo}
+    \end{itemize}
+
+    \item \underline{Descomposición de la extensión en varios pasos}: Tomamos $C_k = \mathbb{S}^{2} \setminus V_k$ y,
+    \begin{enumerate}
+        \item $\varphi_k\left( x \right) = \frac{\mathrm{dist} \left( x, C_k \right)}{\sum_{l} \mathrm{dist} \left( x, C_k \right)} \Rightarrow \begin{cases}
+            0 \le \varphi_k \le 1\\
+            \{\varphi_k = 0\} = C_k\\
+            \sum_{l} \varphi_l = 1 
+        \end{cases}$ por ser los $C_k$ cerrados.
+
+        \item $\psi_k = \varphi_1 + \cdots + \varphi_k \Rightarrow \begin{cases}
+            0 \equiv \psi_0 \le \psi_1 \le \ldots \le \psi_k \equiv 1\\
+            \{\psi_{k - 1} < \psi_k\} = \{\varphi \neq 0\} = X \setminus C_k = V_k (**)\\
+            \overline{\{\psi_{k - 1} < \psi_k\}} = \overline{V_k} \subset W_k
+        \end{cases}$
+    \end{enumerate}
+    Las $\psi_k$ son los límites superiores de la siguiente cadena de cerrados:
+    \[
+    \mathbb{S}^{2} \times \{0\} = \Gamma_0 \subset \Gamma_1 \subset \ldots \subset \Gamma_k = \{t \le \psi_k\left( x \right) : x \in \mathbb{S}^{2}\} \subset  \ldots \subset \Gamma_v = \mathbb{S}^{2} \times \left[ 0, 1 \right] 
+    \]
+    y, empezando con $\tilde{H}_0$ para $k = 1$, la cosa es:
+    \begin{itemize}
+        \item dada $\tilde{H}^{k - 1} = \left( r, u^{k - 1} \right)$ elevación de $H|_{\Gamma_{k - 1}}$, extenderla a $\Gamma_k \setminus \Gamma_{k - 1}$. Como:
+        \[
+        \begin{cases}
+            \Gamma_{k - 1} \setminus \overline{V}_k \times \left[ 0, 1 \right] \stackrel{(**)}{=} \Gamma_k \setminus \overline{V}_k \times \left[ 0, 1 \right] = A \stackrel{\text{ab.}}{\subset} \Gamma_k\\
+            \Gamma_{k - 1} \cap \left( W_k \times \left[ 0, 1 \right] \right) = B \stackrel{\text{ab.}}{\subset} \Gamma_k
+        \end{cases}\land\ \Gamma_k = \underbrace{A}_{\subset \Gamma_{k - 1}} \cup B
+        \]
+        definiremos,
+        \item $\tilde{H}^k$ en $B$ tal que, $\tilde{H}^k = \tilde{H}^{k - 1}$ en $A \cap B \subset \mathbb{S}^{2} \setminus V_k \times \left[ 0, 1 \right]$.
+    \end{itemize}
+
+    \item $\left( x, t \right) \in B \xRightarrow{(*)} \begin{cases}
+        H_t\left( x \right) \in U\\
+        H_{\psi_{k - 1} \left( x \right)} \left( x \right) \in U
+    \end{cases} \Rightarrow \exists \eta$ y $S$ en $\begin{cases}
+        H_t\left( x \right).\ (ii)\\
+        H_{\psi_{k - 1} \left( x \right)} \left( x \right).\ (i)
+    \end{cases}$.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/finale_5} 
+    \end{center}
+    \begin{enumerate}
+        \item $t \le \psi_{k - 1} \left( x \right) : \left( x, t \right) \in \Gamma_{k - 1} \Rightarrow \tilde{H}_t^k \left( x \right) = \tilde{H}_t^{k - 1} \left( x \right)$.
+        \item $t \ge \psi_{k - 1} \left( x \right) : \tilde{H}^{k - 1} = \left( H, u^{k - 1} \right)$.
+        \begin{enumerate}
+            \item[(i)] $\Rightarrow$
+            %TODO: Subíndice sin pareja
+            \begin{align*}
+            \underbrace{u_{\psi_{k-1} \left( x \right)^{k - 1} \left( x \right)}}_{\neq 0} = \lambda_{\psi_{k - 1} \left( x \right)} \left( x \right) \eta\left( H_{\psi_{k - 1}\left( x \right)} \left( x \right) \right) + _{\psi_{k - 1} \left( x \right)} \left( x \right) \zeta\left( H_{\psi_{k - 1}\left( x \right)} \left( x \right) \right) 
+            .\end{align*}
+            \item[(ii)] $\Rightarrow$
+            \begin{align*}
+                \exists u_t^k\left( x \right) &= \lambda_{\psi_{k-1}\left( x \right)} \left( x \right) \eta\left( H_t\left( x \right) \right) + \mu_{\psi_{k - 1} \left( x \right)} \left( x \right) \zeta\left( H_t\left( x \right) \right) \\
+                &\Rightarrow \exists \tilde{H}_t^k\left( x \right) = \left( H_t\left( x \right), u_t^k\left( x \right) \right)
+            .\end{align*}
+            y por la construcción es continua.
+        \end{enumerate}
+
+    \item[a) y b)] coinciden en $t = \psi_{k - 1} \left( x \right)$.
+    \end{enumerate}
+
+    \item $\psi_{k - 1} \stackrel{(**)}{=} \psi_k$ fuera de $V_k \Rightarrow \tilde{H}^k$ de 5. $= \tilde{H}^{k - 1}$ en $A \cap B$.
 \end{enumerate}
+
+Esto completa la propuesta de que $\exists \tilde{H}$ elevación de $H$ y, con ello, se completa la contradicción buscada. Acaba aquí la demostración de que $\mathbb{S}^{2}$ no es contráctil.
 \end{demo}
 
 
