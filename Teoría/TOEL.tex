@@ -3465,6 +3465,52 @@ $h\left( x \right) \neq h\left( -x \right),\ \forall x \Rightarrow \exists g \le
 \begin{theo}
 Sea $f: U_{\text{ab.}} \rightarrow \mathbb{R}^{2}$ continua y 1-1 $\Rightarrow f\left( U \right)$ es abierto.
 \end{theo}
+\begin{demo}
+$\forall a \in U,\ \exists V^{\text{ab.}} \subset \mathbb{R}^{2} : f\left( a \right) \in V \subset f\left( U \right)$. Por traslaciones: $a = f\left( a \right) = 0$. Con esto, $\exists \varepsilon > 0: $
+\begin{align*}
+    B\left( 0, \varepsilon \right) \subset B\left[ 0, \varepsilon \right] \subset U;\ &0 \not\in S = S\left[ 0, \varepsilon \right] \xRightarrow{\text{1-1}} 0 = f\left( 0 \right) \in f\left( S \right) \Rightarrow \exists V = C\left( 0 \right) \stackrel{\text{c.c}}{\subset} \mathbb{R}^{2} \setminus f\left( S \right) \\
+    &S \text{ comp.} \Rightarrow f\left( S \right) \text{comp.} \Rightarrow \text{cerr. en } \mathbb{R}^{2} \\
+    &\Rightarrow \mathbb{R}^{2} \text{loc. conx.} \Rightarrow V \stackrel[\text{conx.}]{\text{ab.}}{\subset} \mathbb{R}^{2} \Rightarrow \text{c. caminos}(*) 
+.\end{align*}
+Este $V$ es la solución: $V \subset f\left( B \right) \subset f\left( U \right)$.
+
+Al absurdo: $\exists c \in V \setminus f\left( B \right) \xRightarrow{(*)} \exists \sigma: \left[ 0, 1 \right] \rightarrow V,\ \sigma\left( 0 \right) = c,\ \sigma\left( 1 \right) = 0$.
+
+Denotamos, 
+\[
+g: \mathbb{S}^{1} \rightarrow\mathbb{R}^{2}: x \mapsto f\left( \varepsilon x \right);\ h: \mathbb{S}^{1} \rightarrow \mathbb{R}^{2}: x \mapsto g\left( x \right) - g\left( -x \right)
+\]
+y tenemos las homotopías: $\mathbb{S}^{1} \times \left[ 0, 1 \right] \rightarrow \mathbb{S}^{1}$.
+\begin{itemize}
+    \item $\frac{f\left( \varepsilon s x \right) - c}{\lVert \quad \rVert}: \frac{-c}{\lVert \ \rVert} \simeq \frac{g - c}{\lVert \ \rVert}$.
+    \item $\frac{f\left( \varepsilon x \right) - \sigma\left( s \right)}{\lVert \quad \rVert}: \frac{g - c}{\lVert \ \rVert} \simeq \frac{g}{\lVert \ \rVert}$.
+    \item $\frac{f\left( \varepsilon x \right) - f\left( -\varepsilon s x \right)}{\lVert \quad \rVert}: \frac{g}{\lVert \ \rVert} \simeq \frac{h}{\lVert \ \rVert}$
+\end{itemize}
+Con esto, $\frac{h}{\lVert \ \rVert} \simeq cte.$! por Borsuk-Ulam.
+
+Que los denominadores no se anulan es una comprobación rutinaria.
+\end{demo}
+
+\section{Divarianza del borde y de la dimensión}%
+\label{sec:divarianza_del_borde_y_de_la_dimension}
+\begin{theo}
+$S, T \subset \mathbb{R}^{2},\ h: S \stackrel{\text{homeo.}}{\approx} T \Rightarrow h\left( S \setminus \mathring{S} \right) = T \setminus \mathring{T}$.
+\end{theo}
+\begin{demo}
+    $h: \mathring{S} \rightarrow \mathbb{R}^{2}$ inyectiva $\Rightarrow h\left( \mathring{S} \right) \stackrel[\ref{sec:invarianza_del_dominio}]{\text{ab.}}{\subset} \mathbb{R}^{2} \Rightarrow h\left( \mathring{S} \right) \subset \mathring{T}$. (el otro $\supset$ con $h^{-1}$)
+\end{demo}
+
+\begin{ej}
+$S = T = \{x \ge 0\} \subset \mathbb{R}^{2} \Rightarrow h\left( x = 0 \right) = \left( x = 0 \right)$.    
+\end{ej}
+
+\begin{theo}
+$U \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n},\ V \stackrel{\text{ab.}}{\subset} \mathbb{R}^{2},\ h : U \stackrel{\text{homeo.}}{\approx} V \Rightarrow n = 2$.
+\end{theo}
+\begin{demo}
+    $\exists H \subset \mathbb{R}^{n}$ [plano afín interior vacío en $\mathbb{R}^{n}$ salvo si $n = 2$](*) : $U \cap H \neq \emptyset \Rightarrow h| : \underbrace{U\cap H}_{\approx \text{ab.}} \xrightarrow{\text{1-1}} V \subset \mathbb{R}^{2} \xRightarrow{\ref{sec:invarianza_del_dominio}} h\left( U \cap H \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{2} \xRightarrow{h \text{ homeo.}} U \cap H = h^{-1}h\left( U \cap H \right) \stackrel{\text{ab.}}{\subset } U \xRightarrow{(*)}
+    n = 2$
+\end{demo}
 
 
 \chapter{Superficies}%
