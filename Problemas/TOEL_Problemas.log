@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.1)  30 JAN 2023 20:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.1)  30 JAN 2023 21:07
 entering extended mode
 **./TOEL_Problemas.tex
 (TOEL_Problemas.tex
@@ -1452,11 +1452,11 @@ Package hyperref Info: bookmark level for unknown enun defaults to 0 on input l
 ine 146.
 Package hyperref Info: bookmark level for unknown ej defaults to 0 on input lin
 e 149.
-[5] [6
-
-]
+[5] [6]
 Cap\'{\i }tulo 2.
-[7] [8
+[7
+
+] [8
 
 ]
 Cap\'{\i }tulo 3.
@@ -1501,33 +1501,43 @@ LaTeX Info: Redefining \% on input line 25.
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
 )
-Package rerunfilecheck Info: File `TOEL_Problemas.out' has not changed.
-(rerunfilecheck)             Checksum: FAB719622FE8EB511B6A1B17CB9E4F81;2176.
+
+Package rerunfilecheck Warning: File `TOEL_Problemas.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `TOEL_Problemas.out':
+(rerunfilecheck)             Before: 008CA074C8A48675F3061201854C30B1;2287
+(rerunfilecheck)             After:  884007CF4AA53A0586B3422FF990B7DE;2509.
  ) 
 Here is how much of TeX's memory you used:
- 39473 strings out of 479334
- 916247 string characters out of 2855147
- 1359273 words of memory out of 3000000
- 56086 multiletter control sequences out of 15000+200000
+ 39494 strings out of 479334
+ 916397 string characters out of 2855147
+ 1364273 words of memory out of 3000000
+ 56088 multiletter control sequences out of 15000+200000
  414410 words of font info for 74 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,7n,111p,738b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 102i,12n,111p,738b,725s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Mi Equipo/AppData/Local/Prog
-rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Mi Equipo/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Mi E
-quipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C
-:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmr7.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmss10.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Mi Equipo/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on TOEL_Problemas.pdf (25 pages, 159049 bytes).
+onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Mi Equipo/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Mi Equipo/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Mi 
+Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmr12.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmr17.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/Mi Equipo/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Mi Equipo
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Use
+rs/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti1
+0.pfb><C:/Users/Mi Equipo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/symbols/msbm10.pfb>
+Output written on TOEL_Problemas.pdf (25 pages, 190212 bytes).
 PDF statistics:
- 266 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 213 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 304 PDF objects out of 1000 (max. 8388607)
+ 65 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -3,6 +3,9 @@
 \contentsline {chapter}{\numberline {1}Lista 0: Para Empezar}{5}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Número 0.1}{5}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Número 0.2}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Número 0.3}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Número 0.4}{6}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Número 0.5}{6}{section.1.5}%
 \contentsline {chapter}{\numberline {2}Lista 1: Espacios Topológicos}{7}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Lista 2: Aplicaciones continuas}{9}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Lista 3: Construcción de topologías}{11}{chapter.4}%

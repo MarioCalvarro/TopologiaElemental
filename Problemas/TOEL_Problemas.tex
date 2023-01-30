@@ -151,13 +151,56 @@ dgerhgsre
 
 \section{Número 0.2}
 \begin{enun}
-Se considera una aplicación $f: A \rightarrow B$ y subconjutos $A_0 \subset A, B_0 \subset B$.
+Se consideran una aplicación $f: A \rightarrow B$ y subconjutos $A_0 \subset A, B_0 \subset B$.
 \begin{enumerate}[label={(\arabic*)}]
  \item Demostrar que $A_0 \subset f^{-1}(f(A_0))$ y que se da la igualdad si $f$  es inyectiva.
  \item Demostrar que $f(f^{-1}(B_0)) \subset B_0$ y que se da la igualdad si $f$ es sobreyectiva.
 \end{enumerate}
 \end{enun}
 \begin{ej}
+\end{ej}
+
+\section{Número 0.3}
+\begin{enun}
+Se consideran una aplicación $f: A \rightarrow B$ y colecciones de subconjutos $A_i \subset A, B_i \subset B$.
+\begin{enumerate}[label={(\arabic*)}]
+ \item Probar que $f^{-1}$ conserva inclusiones, uniones, intersecciones y diferencias
+ \begin{enumerate}[label={(\alph*)}]
+ \item Si $B_i \subset B_j$, entonces $f^{-1} (B_i) \subset f^{-1}(B_j)$
+ \item $f^{-1}  (\bigcup_i B_i) = \bigcup_i f^{-1} (B_i)$
+ \item $f^{-1}  (\bigcap_i B_i) = \bigcap_i f^{-1} (B_i)$
+ \item $f^{-1} (B_i \setminus B_j) = f^{-1}(B_i) \setminus f^{-1}(B_j)$
+ \end{enumerate}
+ \item Demostrar que $f$ conserva solamente las uniones y las inclusiones:
+ \begin{enumerate}[label={(\alph*)}]
+ \item Si $A_i \subset A_j$, entonces $f (A_i) \subset f(A_j)$
+ \item $f(\bigcup_i A_i) = \bigcup_i f (A_i)$
+ \item $f  (\bigcap_i A_i) \subset \bigcap_i f^(A_i)$; se da la igualdad si $f$ es inyectiva.
+ \item $f (A_i \setminus A_j) \supset f^(A_i) \setminus f(A_j)$; se da la igualdad si $f$ es inyectiva.
+ \end{enumerate}
+\end{enumerate}
+\end{enun}
+\begin{ej}
+\end{ej}
+
+\section{Número 0.4}
+\begin{enun}
+Probar que el conjunto $\mathbb{Q}$ de los números racionales es numerable. Probar que el intervalo $[0,1]$ no es numerable, y que por tanto no lo es $\mathbb{R}$.
+\end{enun}
+\begin{ej}
+dgerhgsre
+\end{ej}
+
+\section{Número 0.5}
+\begin{enun}
+(Distancias en $\mathbb{R}^n$) Comprobar que cada una de las siguientes es una distancia en $\mathbb{R}^n$ y estudiar como son las bolas en cada una de ellas.
+\begin{align*}
+d(x,y) = \sqrt{\sum_i (x_i - y_i)^2} && \rho_1(x,y) = \sum_i | x_i - y_i| && \rho_2 (x,y) = \max_i |x_i -y_i|
+\end{align*}
+Para la primera, utilizar la \textit{desigualdad triangular} o \textit{de Minkowsky} $$\sqrt{\sum_i (a_i + b_i)^2} \leq \sqrt{\sum_i a_i^2} + \sqrt{\sum_i b_i^2}$$
+\end{enun}
+\begin{ej}
+dgerhgsre
 \end{ej}
 \chapter{Lista 1: Espacios Topológicos}%
 \label{cha:lista1}
