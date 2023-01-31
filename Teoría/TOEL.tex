@@ -156,7 +156,7 @@ Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico
 
 \begin{ej}
 \begin{enumerate}
-    \item \label{ejemplos_topologia:first} $\mathcal{T} = \{\emptyset, X\}$ es la topología \underline{trivial}; $\mathcal{T} = P\left( X \right)$, topología \underline{discreta}: si los puntos $\{x\} \in \mathcal{T}$, entonces cualquier $A = \bigcup_{x \in A} \{x\}$ es abierto.
+    \item \label{ejemplos_topologia:first} $\mathcal{T} = \{\emptyset, X\}$ es la llamada topología \underline{trivial}. $\mathcal{T} = P\left( X \right)$ es la topología \underline{discreta}: como los puntos $\{x\} \in \mathcal{T}$, entonces cualquier $A = \bigcup_{x \in A} \{x\}$ es abierto.
     \item $\mathbb{R}^n$ con la topología usual definida mediante las bolas euclídeas.
     \item Cualquier distancia $d$ define una topología mediante sus bolas abiertas, igual que se define la usual. \underline{Notación}: 
     \[
@@ -180,8 +180,9 @@ Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico
 \end{enumerate}
 \end{ej}
 
+Ya que en mismo conjunto podemos equiparlo con diversas topologías, es natural compararlas.
 \begin{defi}
-Dos topologías $\mathcal{T}_1 \subset \mathcal{T}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{T}_2$ es más ``fina'' que $\mathcal{T}_1$.
+Dos topologías: $\mathcal{T}_1 \subset \mathcal{T}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{T}_2$ es más ``fina'' que $\mathcal{T}_1$.
 \end{defi}
 Siempre se da:
 \[
@@ -247,7 +248,7 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
     .\end{gather*}
     \item $\mathring{A}$ es el mayor abierto contenido en $A$.
     \[
-    U^{\text{ab}} \subset A \Rightarrow \forall x \in U^{\text{ab}} \subset A \Rightarrow x \in \mathring{A} \Rightarrow U \subset \mathring{A} 
+    U^{\text{ab}} \subset A \Rightarrow \forall x \in U \subset A \Rightarrow x \in \mathring{A} \Rightarrow U \subset \mathring{A} 
     \]
 \end{enumerate}
 \end{demo}
@@ -272,7 +273,7 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ y $\mathring{A}$ es abierto $\Rightarrow \mathring{A} \subset \mathring{B}$.
+    \item $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ y $\mathring{A}$ es abierto $\Rightarrow \mathring{A} \subset \mathring{B}$. 
     \item 
     \begin{gather*}
     \begin{rcases}
@@ -280,7 +281,7 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
         \mathring{A} \cap \mathring{B} \text{ abierto (intersección finita de abiertos)}\\
         \mathring{A} \cap \mathring{B} \subset A \cap B 
     \end{cases} &\Rightarrow \mathring{A} \cap \mathring{B} \subset \inter \left( A \cap B \right)\\
-    A \cap B \subset A, B \Rightarrow \inter \left( A \cap B \right) \subset \mathring{A}, \mathring{B} &\Rightarrow \inter\left( A \cap B \right) \subset \mathring{A} \cap \mathring{B}
+    A \cap B \subset A, B \xRightarrow{1.} \inter \left( A \cap B \right) \subset \mathring{A}, \mathring{B} &\Rightarrow \inter\left( A \cap B \right) \subset \mathring{A} \cap \mathring{B}
     \end{rcases} \Rightarrow\\
     \boxed{\mathring{A} \cap \mathring{B} = \inter\left( A \cap B \right)} 
     .\end{gather*}
@@ -300,17 +301,17 @@ Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \
         \includegraphics[scale=0.3]{images/def_cerrados} 
     \end{center}
 \end{obs}
-\begin{obs}
-Se cumple, $\mathcal{F} = \{\text{cerrados}\}$:
+\begin{prop}
+Se cumple que, $\mathcal{F} = \{\text{cerrados}\}$:
 \begin{enumerate}
     \item $X, \emptyset$ son cerrados.
     \item La intersección arbitraria de cerrados es cerrada.
     \item La unión finita de cerrados es cerrado.
 \end{enumerate}
 \begin{demo}
-    Porque $\bigcap_{i \in  I} \left( X \setminus U_i \right) = X \setminus \bigcup_{i \in  I} U_i$ y $\bigcup_{i \in  I} X \setminus U_i = X \setminus \bigcap_{i \in  I} U_i$.
+    Porque $\bigcap_{i \in  I} \left( X \setminus U_i \right) = X \setminus \bigcup_{i \in I}^n U_i$ y $\bigcup_{i = 1}^n X \setminus U_i = X \setminus \bigcap_{i = 1}^n U_i$. Que son abiertos por ser unión arbitraria e intersección finita.
 \end{demo}
-\end{obs}
+\end{prop}
 
 \begin{ej}
 \begin{enumerate}
@@ -345,7 +346,7 @@ Las primeras fórmulas importantes son:
 \begin{prop}
 $\overline{A}$ es el menor cerrado que contiene a $A$: 
 \[
-    \boxed{\overline{A} = \bigcap_{F_{\text{cerrado}} \supset A} F } 
+    \boxed{\overline{A} = \bigcap_{F_{\text{cerr.}} \supset A} F } 
 \]
 
 En particular, $A$ cerrado $\Leftrightarrow \overline{A} = A \Leftrightarrow A$ contiene todos sus puntos de adherencia.
@@ -403,8 +404,8 @@ Lo anterior nos implica:
 
 \begin{ej}
 \begin{enumerate}
-    \item En $\mathbb{R}, \mathcal{T}_n$ todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
-    \item En $\mathbb{R}^n, \mathcal{T}_n: \fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
+    \item En $\mathbb{R}, \mathcal{T}_u$ todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
+    \item En $\mathbb{R}^n, \mathcal{T}_u: \fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
     \item En $\mathcal{T}_{\text{discreta}}$ todos los puntos son aislados, todas las fronteras son vacías.
     \item $a \in X, \mathcal{T}_a: $
     \[
@@ -467,7 +468,7 @@ Por ejemplo,
     \mathcal{V}^a = \{B\left[ a, \varepsilon \right]: \varepsilon > 0\} \text{ base de entornos cerrados.} 
     \end{cases} 
     \]
-    \item $a \in X, \mathcal{T}_a : \mathcal{B}^a = \{\{a\}\}, \mathcal{B}^x = \{\{a, x\}\},\ x \neq a$.
+    \item $a \in X, \mathcal{T}_a : \mathcal{B}^a = \{\{a\}\},\ \mathcal{B}^x = \{\{a, x\}\},\ x \neq a$.
 \end{enumerate}
 \end{ej}
 
@@ -488,7 +489,7 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
+    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si } B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
     \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
     \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}\ \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
     %TODO: Fix imágenes 
