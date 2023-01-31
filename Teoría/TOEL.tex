@@ -560,9 +560,11 @@ $Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topologí
 \begin{obs}
 \begin{enumerate}
     \item Los cerrados en $\mathcal{T}|_Y$ son $F\cap Y$ con $F$ cerrado en $\mathcal{T}$.
+    \begin{demo}
     \[
-    \left[ Y \setminus U \cap Y = Y \cap \left( X \setminus U \right) = Y\cap F \right] 
+    Y \setminus U \cap Y = Y \cap \left( X \setminus U \right) = Y\cap F
     \]
+    \end{demo}
     \item 
     $\begin{cases}
         y \in Y \subset X\\
@@ -573,6 +575,8 @@ $Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topologí
     \end{cases}$
 
     \item $\mathcal{B}$ base de $\mathcal{T} \Rightarrow \mathcal{B} \cap Y = \{B \cap Y : B \in \mathcal{B}\}$ base de $\mathcal{T}|_Y$
+
+    \item adh? int?
 \end{enumerate}
 \end{obs}
 
@@ -580,10 +584,11 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
 
 \begin{ej}
 \begin{enumerate}
-    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{T}|_Y. \left[ \{y\} = V^y \cap Y \right]$
-    \item Todos los puntos de $Y$ son aislados $\Leftrightarrow C|_Y = $ discreta.
+    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{T}|_Y. \left[ \exists U^y_{\text{ab.}}: \{y\} = U^y \cap Y \right]$
 
-    Se dice: $Y$ es un \underline{subespacio discreto}. 
+    \item Todos los puntos de $Y$ son aislados $\Leftrightarrow \mathcal{T}|_Y = $ discreta.
+
+    Se dice que $Y$ es un \underline{subespacio discreto}. 
 
     Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
     %TODO: Fix imagen
@@ -591,20 +596,37 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
         \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
     \end{center}
 
-    \item $a \in X, \mathcal{T}_a|_{X \setminus \{a\}} = $ discreta.
+    \item Sea $a \in X$ y $\mathcal{T}_a$. Entonces:
+
+    La base mínima es $\mathcal{B} = \{\{a\} , \{a, x\}; x \in X\}$. Porque sea $B' \subset \mathcal{B}'$ (base), entonces como $\{a\} = \bigcup_{B'} B',\ \exists B' = \{a\}$ y, por otro lado, $\{a, x\} = \bigcup_{B'} B',\ \exists B': x, a \in B' \Rightarrow \{x, a\} = B'$ al ser $B'$ abierto. Con esto, los elementos de $\mathcal{B}$ están contenidos en todas las posibles bases.
+
+    Por tanto, $a \in X, \mathcal{T}_a|_{X \setminus \{a\}} = $ discreta. Porque: $\mathcal{B} \cap Y = \{\{x\}: x \in X\setminus \{a\}\}$.
+
+    \item Sea $W \subset Y \subset X$ con $W$ abierto/cerrado en $Y$ que es abierto/cerrado en $X \Rightarrow W$ es abierto/cerrado en $X$.
+
+    \item Si $Y \subset X$ es abierto $\Rightarrow \mathcal{V}^a|_Y = \{V \cap Y : V \in \mathcal{V}^a\} $ es base entornos en $Y$ y en $X$.
+    \begin{demo}
+        Sea $W \stackrel{\text{ab.}}{\subset } X \Rightarrow a \in W \cap Y \stackrel{\text{ab.}}{\subset } Y \supset V \in \mathcal{V}^a|_Y$.
+
+        Por otro lado, como $a \in V^a \Rightarrow \exists a \in U \subset V^a \subset Y$ abierto. Como $Y$ abierto $\Rightarrow U \subset X$ abierto $\Rightarrow V^a$ entorno de $X$.
+    \end{demo}
 \end{enumerate}
 \end{ej}
 
 \begin{obs}
 \begin{enumerate}
     \item $Y \subset_{\text{ab}} X: W \text{ abierto de } Y \Leftrightarrow W \text{ abierto de } X$ contenido en $Y$.
+    \begin{demo}    
     \[
-    \left[ W = U \cap Y^{\text{ab}},\ U^{\text{ab}} \subset X \Rightarrow W^{\text{ab}} \subset X \text{ por intersección finita} \right] 
+    W = U \cap Y^{\text{ab}},\ U^{\text{ab}} \subset X \Rightarrow W^{\text{ab}} \subset X \text{ por intersección finita}
     \]
+    \end{demo}
     \item $Y \subset_{\text{cerr}} X: F \text{ cerrado de } Y \Leftrightarrow F \text{ cerrado de } X$ contenido en $Y$.
+    \begin{demo}
     \[
-    \left[ C = F \cap Y^{\text{cerr}},\ F^{\text{cerr}} \subset X \Rightarrow C^{\text{cerr}} \subset X \text{ por intersección finita} \right] 
+    C = F \cap Y^{\text{cerr}},\ F^{\text{cerr}} \subset X \Rightarrow C^{\text{cerr}} \subset X \text{ por intersección finita}
     \]
+    \end{demo}
 \end{enumerate}
 \end{obs}
 
