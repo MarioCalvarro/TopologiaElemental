@@ -348,7 +348,10 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si } B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
+    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. 
+    \begin{demo}
+        $\text{si } B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\}$ 
+    \end{demo}
     \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
     \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}\ \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
     %TODO: Fix imágenes 
@@ -375,7 +378,7 @@ $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \e
 \end{il}
 
 \begin{prop}
-``$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{T}$ en $X$'', equivalente a: 
+``$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{T}$ en $X$'' es equivalente a: 
 \begin{itemize}
     \item $X = \bigcup_{B \in \mathcal{B}} B$.
     \item $\forall x \in B_1 \cap B_2,\ \exists B^x \subset B_1 \cap B_2$.
@@ -444,7 +447,10 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
 
 \begin{ej}
 \begin{enumerate}
-    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{T}|_Y. \left[ \exists U^y_{\text{ab.}}: \{y\} = U^y \cap Y \right]$
+    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{T}|_Y$.
+    \begin{demo}
+        $\exists U^y_{\text{ab.}}: \{y\} = U^y \cap Y$
+    \end{demo}
 
     \item Todos los puntos de $Y$ son aislados $\Leftrightarrow \mathcal{T}|_Y = $ discreta.
 
@@ -466,7 +472,7 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
 
     \item Si $Y \subset X$ es abierto $\Rightarrow \mathcal{V}^a|_Y = \{V \cap Y : V \in \mathcal{V}^a\} $ es base entornos en $Y$ y en $X$.
     \begin{demo}
-        Sea $W \stackrel{\text{ab.}}{\subset } X \Rightarrow a \in W \cap Y \stackrel{\text{ab.}}{\subset } Y \supset V \in \mathcal{V}^a|_Y$.
+        Sea $(a \in ) W \stackrel{\text{ab.}}{\subset } X \Rightarrow a \in W \cap Y \stackrel{\text{ab.}}{\subset } Y \supset V \in \mathcal{V}^a|_Y$.
 
         Por otro lado, como $a \in V^a \Rightarrow \exists a \in U \subset V^a \subset Y$ abierto. Como $Y$ abierto $\Rightarrow U \subset X$ abierto $\Rightarrow V^a$ entorno de $X$.
     \end{demo}

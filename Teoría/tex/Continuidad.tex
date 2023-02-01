@@ -2,7 +2,7 @@
 \label{cha:aplicaciones_continuas}
 \section{Continuidad}%
 \label{sec:continuidad}
-El famoso $\varepsilon-\delta$ en $\mathbb{R}^n \mathcal{T}_u; x_0 \in X,\ f : \overbrace{X}^{\subset \mathbb{R}^p} \rightarrow \overbrace{Y}^{\subset \mathbb{R}^q}$: 
+El famoso $\varepsilon-\delta$ en $\mathbb{R}^n\ \mathcal{T}_u,\ x_0 \in X,\ f : \overbrace{X}^{\subset \mathbb{R}^p} \rightarrow \overbrace{Y}^{\subset \mathbb{R}^q}$: 
 \begin{gather*}        
 \forall \varepsilon > 0, \exists \delta > 0: 
 \begin{cases}
@@ -16,8 +16,9 @@ El famoso $\varepsilon-\delta$ en $\mathbb{R}^n \mathcal{T}_u; x_0 \in X,\ f : \
 \begin{defi}
 $f: X \rightarrow Y$ será \underline{continua en $x_0$} $\in X$ si: 
 \[
-\forall V^{f\left( x_0 \right)}: f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0} 
+\forall V^{f\left( x_0 \right)}: f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0},
 \]
+es decir, $f^{-1}\left( V^{f\left( x_0 \right)} \right)$ será entorno de $x_0$.
 \end{defi}
 
 \begin{prop}[Composición de continuidades]
@@ -31,18 +32,31 @@ X \xrightarrow{f} Y \xrightarrow{g} Z: \begin{rcases}
 \]
 \end{prop}
 \begin{demo}
-Sea $V^{h\left( x_0 \right)} \rightarrow h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^{y_0} = V^{x_0}$.
+Sea $V^{h\left( x_0 \right)} \rightarrow h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^{y_0} = V^{x_0}$. Por las continuidades de $g$ y $f$.
 \end{demo}
+
+\begin{defi}
+$f: X \rightarrow Y$ es \underline{continua} si lo es en todos los puntos de su dominio.
+\end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\forall f: X_{\text{discreta}} \rightarrow Y$ es continua. [Todo es abierto, luego todo es entorno en $\mathcal{T}_{\text{disc}}$]
-    \item $\forall f: X \rightarrow Y_{\text{trivial}}$ continua. [$V^{f\left( x \right)} = Y$ es el único abierto, luego el único entorno, de $f^{-1}V^{f\left( x \right)} = f^{-1}Y = X$ es abierto]
-    \item $f: X \rightarrow Y_{\text{discreta}}$ es continua $\Rightarrow f$ localmente creciente.
-        [$\{f\left( x_0 \right)\} = V^{f\left( x_0 \right)}$ en $\mathcal{T}_{\text{discr}} \xRightarrow[f\text{ cont.}]{} f^{-1}f\left( x_0 \right) = V^{x_0}\; \land \;f \equiv f\left( x_0 \right)$]
+    \item $\forall f: X_{\text{discreta}} \rightarrow Y$ es continua. 
+    \begin{demo}
+        Todo es abierto, luego todo es entorno en $\mathcal{T}_{\text{disc}}$.
+    \end{demo}
+    \item $\forall f: X \rightarrow Y_{\text{trivial}}$ continua. 
+    \begin{demo} 
+        $V^{f\left( x \right)} = Y$ es el único abierto, luego el único entorno, de $f^{-1}V^{f\left( x \right)} = f^{-1}Y = X$ es abierto.
+    \end{demo}
+    \item $f: X \rightarrow Y_{\text{discreta}}$ es continua $\Rightarrow f$ localmente constante.
+    \begin{demo}
+        $\{f\left( x_0 \right)\} = V^{f\left( x_0 \right)}$ en $\mathcal{T}_{\text{discr}} \xRightarrow[f\text{ cont.}]{} f^{-1}f\left( x_0 \right) = V^{x_0}\; \land \;f \equiv f\left( x_0 \right),\ \forall x \in V^{x_0}$.
+    \end{demo}
     \item $f: X \rightarrow Y$ localmente constante $\Rightarrow$ continua.
-
-    [$\forall x_0 \in X, \exists U^{x_0} : f \stackrel{U^{x_0}}{\equiv} f\left( x_0 \right) \Rightarrow \forall V^{f\left( x_0 \right)}: f^{-1}V^{f\left( x_0 \right)} \supset U^{x_0} \Rightarrow f^{-1}V^{f\left( x_0 \right)} = V^{x_0}$ es entorno de $x_0$]
+    \begin{demo}
+        $\forall x_0 \in X,\ \exists U^{x_0} : f \stackrel{U^{x_0}}{\equiv} f\left( x_0 \right) \Rightarrow \forall V^{f\left( x_0 \right)}: f^{-1}V^{f\left( x_0 \right)} \supset U^{x_0} \Rightarrow f^{-1}V^{f\left( x_0 \right)} = V^{x_0}$ es entorno de $x_0$.
+    \end{demo}
 \end{enumerate}
 \end{ej}
 
@@ -53,28 +67,28 @@ Son equivalentes:
     \item $f^{-1}\left( \text{abierto}  \right) = \text{abierto} ,\ \forall \text{abierto} \in Y$.
     \item $f^{-1}\left( \text{cerrado} \right) = \text{cerrado},\ \forall $ cerrado de $Y$.
     \item $f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}\left( A \right) \right),\ \forall A \subset Y$
-    \item $f\left( \overline{A} \right) \subset \overline{f\left( A \right)},\ \forall A \subset X$
+    \item $f\left( \overline{A} \right) \subset \overline{f\left( A \right)},\ \forall A \subset X$. (Podemos pensarlo como límites de sucesiones)
 \end{enumerate}
 \end{prop}
 \begin{demo}
 \begin{enumerate}
     \item $1 \Rightarrow 2)$
     \[
-        W^{\text{ab}} \subset Y \Rightarrow W \text{ ent. de } f\left( x \right),\ \forall x \in f^{-1}W \Rightarrow f^{-1} W \text{ ent. de } \forall x \in f^{-1}W \Rightarrow f^{-1} W \subset X 
+        W \stackrel{\text{ab.}}{\subset}  Y \Rightarrow W \text{ ent. de } f\left( x \right),\ \forall x \in f^{-1}W \xRightarrow{f \text{cont.}} f^{-1} W \text{ ent. } \forall x \in f^{-1}W \Rightarrow f^{-1} W \stackrel{\text{ab.}}{\subset}  X 
     \]
     \item $2 \Rightarrow 3)$
     \[
-        C_{\text{cerr}} \subset Y \Rightarrow Y \setminus C \subset Y \Rightarrow^{2)} \underbrace{f^{-1}\left( Y\setminus C \right)}_{= X \setminus f^{-1}C} \subset X \Rightarrow f^{-1}C \stackrel{\text{cerr}}{\subset} X 
+        C \stackrel{\text{cerr.}}{\subset}  Y \Rightarrow Y \setminus C \stackrel{\text{ab.}}{\subset} Y \Rightarrow^{2)} \underbrace{f^{-1}\left( Y\setminus C \right)}_{= X \setminus f^{-1}C} \stackrel{\text{ab.}}{\subset} X \Rightarrow f^{-1}C \stackrel{\text{cerr}}{\subset} X 
     \]
     \item $3 \Rightarrow 5)$
 
     \[
-        \overline{f\left( A \right)} \stackrel{\text{cerr}}{\subset} Y \Rightarrow^{3)} \underbrace{f^{-1}\overline{f\left( A \right)}}_{\subset f^{-1}f\left( A \right) \supset A} \subset X \Rightarrow \overline{A} \subset f^{-1}\overline{f\left( A \right)} \Rightarrow f\left( \overline{A} \right) \subset \overline{f\left( A \right)} 
+        \overline{f\left( A \right)} \stackrel{\text{cerr}}{\subset} Y \Rightarrow^{3)} \underbrace{f^{-1}\overline{f\left( A \right)}}_{\supset f^{-1}f\left( A \right) \supset A} \stackrel{\text{cerr.}}{\subset} X \Rightarrow \overline{A} \subset f^{-1}\overline{f\left( A \right)} \Rightarrow f\left( \overline{A} \right) \subset \overline{f\left( A \right)} 
     \]
     \item $5 \Rightarrow 4)$
     \begin{gather*}
         Y \setminus \mathring{A}\Rightarrow \overline{Y\setminus A} \supset \overline{f\left( X \setminus f^{-1}A \right)} \stackrel{5)}{\supset} f\left( \overline{X \setminus f^{-1}\left( A \right)} \right) = f\left( X \setminus \inter\left( f^{-1}A \right) \right) \Rightarrow\\
-        X \setminus \inter\left( f^{-1}A \right) \subset f^{-1}\left( Y\setminus \mathring{A} \right) = X \setminus f^{-1}\left( \mathring{A} \right)\Rightarrow f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}A \right) 
+        X \setminus \inter\left( f^{-1}A \right) \subset f^{-1}\left( Y\setminus \mathring{A} \right) = X \setminus f^{-1}\left( \mathring{A} \right)\stackrel{c}{\Rightarrow}  f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}A \right) 
     .\end{gather*}
 
     \item $4 \Rightarrow 1)$
