@@ -80,7 +80,7 @@ Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\
 \begin{defi}
 Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ es entorno (luego $A$ lo contiene). El \underline{interior de $A$} es el conjunto de sus puntos interiores:
 \[
-\inter_X \left( A \right) = \mathring{A} = \{x \in A: \exists U_{\text{ab}}^x \subset A\} 
+\inter_X \left( A \right) = \mathring{A} = \{x \in A: \exists U^x \stackrel{\text{ab.}}{\subset}  A\} 
 \]
 \end{defi}
 %TODO: Fix imagen
@@ -91,7 +91,7 @@ Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ 
 \begin{prop}
 $\mathring{A}$ es el mayor abierto contenido en $A$: 
 \[
-\mathring{A} = \bigcup_{U^{ab} \subset A} U
+\mathring{A} = \bigcup_{U \stackrel{\text{ab.}}{\subset} A} U
 \]
 En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ es un entorno de todos los puntos.    
 \end{prop}
@@ -100,14 +100,14 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
     \item $\mathring{A}$ es abierto: 
     \begin{gather*}
         \begin{rcases}
-        \forall x \in \mathring{A} &\Rightarrow \exists U_{\text{ab}}^x \subset A\\
+        \forall x \in \mathring{A} &\Rightarrow \exists U^x \stackrel{\text{ab.}}{\subset}  A\\
         \forall y \in U^x &\Rightarrow A \supset U^x \text{ es un abierto que contiene a } y \Rightarrow y \in \mathring{A}.\\
         \end{rcases} \Rightarrow U^x \subset \mathring{A}\\
         \Rightarrow \mathring{A} = \bigcup_{x \in \mathring{A}} U^x \text{ es abierto como unión de abiertos}
     .\end{gather*}
     \item $\mathring{A}$ es el mayor abierto contenido en $A$.
     \[
-    U^{\text{ab}} \subset A \Rightarrow \forall x \in U \subset A \Rightarrow x \in \mathring{A} \Rightarrow U \subset \mathring{A} 
+    U \stackrel{\text{ab.}}{\subset} A \Rightarrow \forall x \in U \subset A \Rightarrow x \in \mathring{A} \Rightarrow U \subset \mathring{A} 
     \]
 \end{enumerate}
 \end{demo}
@@ -205,7 +205,7 @@ Las primeras fórmulas importantes son:
 \begin{prop}
 $\overline{A}$ es el menor cerrado que contiene a $A$: 
 \[
-    \boxed{\overline{A} = \bigcap_{F_{\text{cerr.}} \supset A} F } 
+    \boxed{\overline{A} = \bigcap_{F \stackrel{\text{cerr.}}{\supset} A} F } 
 \]
 
 En particular, $A$ cerrado $\Leftrightarrow \overline{A} = A \Leftrightarrow A$ contiene todos sus puntos de adherencia.
@@ -481,16 +481,16 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
 
 \begin{obs}
 \begin{enumerate}
-    \item $Y \subset_{\text{ab}} X: W \text{ abierto de } Y \Leftrightarrow W \text{ abierto de } X$ contenido en $Y$.
+    \item $Y \stackrel{\text{ab.}}{\subset} X: W \text{ abierto de } Y \Leftrightarrow W \text{ abierto de } X$ contenido en $Y$.
     \begin{demo}    
     \[
-    W = U \cap Y^{\text{ab}},\ U^{\text{ab}} \subset X \Rightarrow W^{\text{ab}} \subset X \text{ por intersección finita}
+    W = U \cap Y^{\text{ab.}},\ U \stackrel{\text{ab.}}{\subset} X \Rightarrow W \stackrel{\text{ab.}}{\subset} X \text{ por intersección finita}
     \]
     \end{demo}
-    \item $Y \subset_{\text{cerr}} X: F \text{ cerrado de } Y \Leftrightarrow F \text{ cerrado de } X$ contenido en $Y$.
+    \item $Y \stackrel{\text{cerr.}}{\subset} X: F \text{ cerrado de } Y \Leftrightarrow F \text{ cerrado de } X$ contenido en $Y$.
     \begin{demo}
     \[
-    C = F \cap Y^{\text{cerr}},\ F^{\text{cerr}} \subset X \Rightarrow C^{\text{cerr}} \subset X \text{ por intersección finita}
+    C = F \cap Y^{\text{cerr.}},\ F \stackrel{\text{cerr.}}{\subset} X \Rightarrow C \stackrel{\text{cerr.}}{\subset} X \text{ por intersección finita}
     \]
     \end{demo}
 \end{enumerate}
