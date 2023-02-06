@@ -123,34 +123,88 @@ Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
 \]
 \end{demo}
 
-\underline{Criterios de continuidad por recubrimientos.} Sea $f: X \rightarrow Y$. 
-\begin{itemize}
-    \item \textbf{Por abiertos:} $\exists X = \bigcup_{i \in  I} U_i: \forall f|_{U_i} : U_i \rightarrow Y$ es continua. 
-
+%TODO: Diagramas composición
+\begin{obs}
+\begin{enumerate}
+    \item $Z \stackrel{j}{\subset} X$ es continua.
     \begin{demo}
-    $W \subset Y \Rightarrow$
+        \begin{itemize}
+            \item $z \in \mathbb{Z}: \forall V^{j\left( z \right)} : \underbrace{j^{-1}\left( V^{j\left( z \right) } \right)}_{= V^{j\left( z \right)} \cap Z}$ entorno de $z$ en $Z$.
+            \item $\forall U \stackrel{\text{ab.}}{\subset } X: \underbrace{j^{-1}\left( U \right)}_{U \cap Z} \stackrel{\text{ab.}}{\subset} Z$
+        \end{itemize}
+    \end{demo}
+
+    \item $\overbrace{X}^{\stackrel{j}{\supset} Z} \xrightarrow{f} Y$. Si $f$ es cont. $\Rightarrow f|_Z$ continua. (No a la inversa).
+
+    \item La continuidad es \underline{local}. 
+
+    Si $f|_{E^x}$ continua en $x \Rightarrow f$ continua en $x$.
+    \begin{demo}
+        $\forall V^{f\left( x \right)} \Rightarrow \left( f|_{E} \right)^{-1}\overbrace{\left( V^{f\left( x \right)} \right)}^{= W^x}$ entorno de $x$ en $E^x$.
+
+        Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X$ (entorno en entorno es entorno). %TODO: Demostrar.
+    \end{demo}
+
+    \item Si $f|_{U \stackrel{\text{ab.}}{\subset} X}$ es continua $\Rightarrow f$ continua $\forall x \in U$.
+
+    \item $x$ es aislado $\Rightarrow f$ continua en $x$. 
+    \begin{demo}
+        $x$ aislado $\Leftrightarrow V^x = \{x\}$ es abierto de $X$. $f|_{V^x} : \{x\} \rightarrow Y$.
+    \end{demo}
+
+    \item $f: X \rightarrow \underbrace{Y}_{\supset Z}$ tal que $f\left( X \right) \subset Z \subset Y$ (si no es así puede estar mal definido). Entonces, $f$ a $Y$ es continua $\Leftrightarrow f$ a $Z$ es continua.
+    \begin{demo}
+        \begin{itemize}
+            \item $f$ cont. en $Z \xRightarrow{j \circ f} f$ cont. en $Y$.
+            \item $f$ cont. en $Y \xRightarrow{?} f$ cont. en $Z$. 
+
+            Sea $U_z$ ab. en $Z$. Este será $U_y \cap Z = U_z$ que cumple, $f_z^{-1}\left( U_y \cap Z \right) \stackrel{f\left( X \right) \subset Z}{=}  f_y^{-1}\left( U_y \right)$ que es abierto en $X$ (por ser $f_y$ continua).
+        \end{itemize}
+    \end{demo}
+\end{enumerate}
+\end{obs}
+
+\begin{prop}[Criterios de continuidad por recubrimientos]
+Sea $f: X \rightarrow Y$ será continua sii:
+   \begin{itemize}
+        \item \textbf{Por abiertos:} $\exists X = \bigcup_{i \in  I} U_i^{\text{ab.}}: \forall f|_{U_i} : U_i \rightarrow Y$ es continua. 
+
+        \item \textbf{Por cerrados:} $\exists X = \bigcup_{i = 0}^{n} F_i^{\text{cerr.}}: \forall f|_{F_i} : F_i \rightarrow Y$ es continua. 
+   \end{itemize} 
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item $W \stackrel{\text{ab.}}{\subset} Y \Rightarrow$
     \[
     \begin{cases}
         f^{-1}W = \bigcup_{i \in  I} U_i \cap f^{-1} W = \bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W\\
-        \left( f|_{U_i} \right)^{-1}W \subset U_i \subset X \Rightarrow \left( f|_{U_i} \right)^{-1} W \subset X
-    \end{cases}\Rightarrow f^{-1}W \subset X  
+        \left( f|_{U_i} \right)^{-1}W \stackrel[\text{cont.}]{\text{ab.}}{\subset} U_i \stackrel{\text{ab.}}{\subset} X \Rightarrow \left( f|_{U_i} \right)^{-1} W \stackrel{\text{ab.}}{\subset} X
+    \end{cases}\Rightarrow f^{-1}W \stackrel{\text{ab.}}{\subset} X  
     \]
     Por unión de abiertos.
-    \end{demo}
 
-    \item \textbf{Por cerrados:} $\exists X = \bigcup_{i = 0}^{n} F_i: \forall f|_{F_i} : F_i \rightarrow Y$ es continua. 
-
-    \begin{demo}
-    $C \subset Y \Rightarrow$
+    \item $C \stackrel{\text{cerr.}}{\subset} Y \Rightarrow$
     \[
     \begin{cases}
-        f^{-1}C = \bigcup_{i \in  I} F_i \cap f^{-1} C = \bigcup_{i \in  I} \left( f|_{F_i} \right)^{-1} C\\
-        \left( f|_{F_i} \right)^{-1}C \subset F_i \subset X \Rightarrow \left( f|_{F_i} \right)^{-1} C \subset X
-    \end{cases}\Rightarrow f^{-1}C \subset X  
+        f^{-1}C = \bigcup_{i = 0}^{n}  F_i \cap f^{-1} C = \bigcup_{i = 0}^{n} \left( f|_{F_i} \right)^{-1} C\\
+        \left( f|_{F_i} \right)^{-1}C \stackrel[\text{cont.}]{\text{cerr.}}{\subset} F_i \stackrel{\text{cerr.}}{\subset} X \Rightarrow \left( f|_{F_i} \right)^{-1} C \stackrel{\text{cerr.}}{\subset} X
+    \end{cases}\Rightarrow f^{-1}C \stackrel{\text{cerr.}}{\subset} X  
     \]
     Por unión finita de cerrados.
-    \end{demo}
 \end{itemize}
+\end{demo}
+
+\begin{defi}[Aplicaciones continuas por recubrimientos]
+\begin{itemize}
+    \item Por \underline{abiertos}: $\{f_i: U_i \xrightarrow{\text{cont.}} Y\}_{i \in I}$. Donde $X = \bigcup_{i \in I} U_i$. 
+
+    $\exists f: X \rightarrow Y \Leftrightarrow f_i|_{U_i \cap U_j} = f_j|_{U_i \cap U_j}$.
+
+    \item Por \underline{cerrados}: $\{f_i: F_i \xrightarrow{\text{cont.}} Y\}_{i = 1}^n$. Donde $X = \bigcup_{i = 1}^n F_i$. 
+
+    $\exists f: X \rightarrow Y \Leftrightarrow f_i|_{F_i \cap F_j} = f_j|_{F_i \cap F_j}$.
+\end{itemize} 
+\end{defi}
 
 \section{Homeomorfismos}%
 \label{sec:homeomorfismos}
