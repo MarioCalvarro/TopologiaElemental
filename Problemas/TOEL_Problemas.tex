@@ -229,7 +229,32 @@ Se consideran una aplicación $f: A \rightarrow B$ y colecciones de subconjutos 
 Probar que el conjunto $\mathbb{Q}$ de los números racionales es numerable. Probar que el intervalo $[0,1]$ no es numerable, y que por tanto no lo es $\mathbb{R}$.
 \end{enun}
 \begin{ej}
-dgerhgsre
+\begin{enumerate}[label={(\arabic*)}]
+\item Veamos primeramente que el conjunto $\mathbb{Q}$ es numerable. Apoyándonos en el hecho de que $\mathbb{Z}$ es numerable, construimos la siguiente aplicación: \begin{align*}
+f: \mathbb{Z} \times \mathbb{Z}^* &\rightarrow \mathbb{Q} \\ 
+(p,q) &\mapsto \frac{p}{q}
+\end{align*}
+La aplicación $f$ es sobreyectiva, ya que $\forall x \in \mathbb{Q}, \exists p,q \in \mathbb{Z} : x = \frac{p}{q}, q \neq 0$. Así, $$Card(\mathbb{Q}) \leq Card(\mathbb{Z} \times \mathbb{Z}) = Card(\mathbb{N})$$ Luego $\mathbb{Q}$ es numerable.
+\item Para probar que el intervalo $[0,1]$ no es numerable, emplearemos el argumento conocido como \textit{diagonalización de Cantor}. Por reducción al absurdo, supongamos que el intervalo fuere numerable. Si lo fuera, admitiría una posible enumeración $\{r_n\}_n$. Cada uno de los elementos de la sucesión será un $x \in (0,1)$ (no afecta a la numerabilidad que quitemos los extremos, pues son únicamente dos puntos, es decir, un conjunto finito), que podemos expresar utilizando sus cifras decimales $x = 0.\ldots$ La sucesión tendría la pinta:
+\begin{align*}
+r_1 &= 0.a_1^1a_2^1a_3^1\ldots \\ 
+r_2 &= 0.a_1^2a_2^2a_3^2\ldots \\ 
+r_3 &= 0.a_1^3a_2^3a_3^3\ldots \\ 
+r_4 &= 0.a_1^4a_2^4a_3^4\ldots \\ 
+r_5 &= 0.a_1^5a_2^5a_3^5\ldots \\ 
+&\vdots
+\end{align*}
+Cada $a_i^j$ es un número natural comprendido entre $0$ y $9$. Consideramos entonces el siguiente número: $$R= 0.r_1r_2r_3r_4 \ldots: r_i = a_i^i + 1 (\textsf{mod} 10)$$
+El número $R$ pertenece al intervalo; no obstante, difiere con todos los $r_i$ en al menos una posición. Es decir, hemos construido un número que no se encuentra en la sucesión $\{r_n\}_n$, por lo que nuestra hipótesis de que el intervalo $[0,1]$ fuera numerable debe ser falsa.
+
+Además, no es difícil comprobar que la aplicación 
+\begin{align*}
+f: (0,1) &\rightarrow \mathbb{R} \\
+x &\mapsto \tan\left[\pi (x - \frac{1}{2})\right]
+\end{align*}
+Es una biyección. Por tanto, $\mathbb{R}$ no es numerable, y en particular, $Card(\mathbb{R}) = Card([0,1])$
+\end{enumerate}
+
 \end{ej}
 
 \section{Número 0.5}
