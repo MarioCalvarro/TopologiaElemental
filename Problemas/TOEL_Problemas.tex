@@ -289,11 +289,19 @@ Como $U, U' \in \matheuler{T}_{CF}$, su complementario es finito, y la unión fi
 En particular, si $X$ es finito, cualquier subconjunto suyo $A \subset X$ tiene complementario finito, y por tanto, pertenece a $\matheuler{T}_{CF}$. Así, en particular todos los puntos son abiertos, y por tanto, $\matheuler{T}_{CF} = \matheuler{T}_{Discreta}$.
 \end{ej}
 
+
 \section{Número 1.4}
 \begin{enun}
 Sea $X$ un conjunto infinito y $\matheuler{T}$ una topología en la que todos los conjuntos infinitos son abiertos. Demostrar que $\matheuler{T}$ es la topología discreta.
 \end{enun}
 \begin{ej}
+La idea de la demostración consiste en utilizar la caracterización de la topología discreta, es decir, para ver que la topología es la discreta tenemos que ver que todos los puntos del conjunto son abiertos.
+
+Como $X$ es infinito, existe una sucesión $\{x_n\}_{n \in \mathbb{N}}$ de elementos diferentes. Sea $A = \{x_1, x_2,x_3,\ldots \} \subset X$ cuyos elementos son los de la sucesión $x_n$. Como $A$ es infinito, por la definición de la topología, $A \in \matheuler{T}$, y además podemos descomponer de forma disjunta $A$ como la subsucesión de elementos con índice par y la subsucesión de elementos de índice impar:
+$$A = A_1 \sqcup A_2 = \{x_i : i \ \mathsf{mod} \ 2 = 1\} \sqcup \{x_i : i\  \mathsf{mod} \ 2 = 0\}$$
+Y además, por ser ambos infinitos, $A_1, A_2 \in \matheuler{T}$. Por ser $\matheuler{T}$, las intersecciones finitas de elementos de $\matheuler{T}$ están contenidas en $\matheuler{T}$, y también las uniones arbitrarias; así, dado $x \in X$ arbitrario:
+$$\underbrace{(A_1 \cup \{x\})}_{\in \matheuler{T}} \cap \underbrace{(A_2 \cup \{x\})}_{\in \matheuler{T}} = \{x\} \in \matheuler{T}$$
+Como $x$ es arbitrario, quiere decir que todos los puntos son abiertos, y por la caracterización, la topología ante la que nos encontramos es la discreta.
 \end{ej}
 
 \section{Número 1.7}
@@ -303,13 +311,83 @@ $$((a - \varepsilon, a + \varepsilon) \times \{b\}) \cup (\{a\} \times (b-\varep
 Estudiar si $\matheuler{T}$  es una topología en $X$.
 \end{enun}
 \begin{ej}
+Para comprobar que $\matheuler{T}$ es en efecto una topología, debemos comprobar que satisface las tres propiedades de la definición de topología. No obstante, antes de comenzar a demostrar, intentaremos tener una idea intuitiva de cómo son los abiertos en esta topología.
+\begin{figure}[h]
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Polygon Curved [id:ds521474139569552] 
+\draw   (135,31) .. controls (170,-13) and (282,26) .. (262,46) .. controls (242,66) and (277,104) .. (297,134) .. controls (317,164) and (166,174) .. (146,144) .. controls (126,114) and (100,75) .. (135,31) -- cycle ;
+%Straight Lines [id:da9767797404673607] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (169.53,45.25) -- (169.97,97.25) ;
+\draw [shift={(170,100.25)}, rotate = 269.51] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+\draw [shift={(169.5,42.25)}, rotate = 89.51] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+%Straight Lines [id:da08757217471883894] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (143.5,71.25) -- (197.5,71.25) ;
+\draw [shift={(200.5,71.25)}, rotate = 180] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+\draw [shift={(140.5,71.25)}, rotate = 0] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+%Straight Lines [id:da42265688096601306] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (433.5,90.25) -- (526.5,90.25) ;
+\draw [shift={(529.5,90.25)}, rotate = 180] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+\draw [shift={(430.5,90.25)}, rotate = 0] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+%Straight Lines [id:da8106871969505601] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (480,135.5) -- (480,43.5) ;
+\draw [shift={(480,40.5)}, rotate = 90] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+\draw [shift={(480,138.5)}, rotate = 270] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (10.72,-5.15) -- (0,0) -- (10.72,5.15) -- (7.12,0) -- cycle    ;
+%Shape: Circle [id:dp8014470706963328] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (478.13,90.25) .. controls (478.13,89.21) and (478.96,88.38) .. (480,88.38) .. controls (481.04,88.38) and (481.88,89.21) .. (481.88,90.25) .. controls (481.88,91.29) and (481.04,92.13) .. (480,92.13) .. controls (478.96,92.13) and (478.13,91.29) .. (478.13,90.25) -- cycle ;
+
+% Text Node
+\draw (493,72) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 80; green, 107; blue, 227 }  ,opacity=1 ] [align=left] {$\varepsilon$};
+% Text Node
+\draw (468.5,62) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 80; green, 107; blue, 227 }  ,opacity=1 ] [align=left] {$\varepsilon$};
+% Text Node
+\draw (455,92.43) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize,color={rgb, 255:red, 80; green, 107; blue, 227 }  ,opacity=1 ] [align=left] {(a,b)};
+% Text Node
+\draw (253,93) node [anchor=north west][inner sep=0.75pt]   [align=left] {U};
+
+
+\end{tikzpicture}
+\end{figure}
+
+Observamos en primer lugar que la propiedad descrita puede decirse informalmente como que alrededor de cada punto $(a,b)$ de un abierto $U$, existe un \textit{aspa} de longitud $\varepsilon$ totalmente contenida en $U$, que denotaremos $aspa((a,b), \varepsilon)$. Nos surge la duda de si la topología descrita es la usual; aunque pronto observamos que no, ya que $\matheuler{T}_{Aspa} \subset \matheuler{T}_{Usual}$. Intuitivamente, todos los abiertos de la topología usual están contenidos en esta topología, que denotamos topología del aspa, y además tiene otros abiertos. Por ejemplo, dada una recta $L$ no vertical y un punto $p \in L$, el conjunto $\mathbb{R}^2 \setminus (L \setminus \{p\})$.
+\begin{figure}[h]
+\centering
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,232); %set diagram left start at 0, and has height of 232
+
+%Straight Lines [id:da057879134343034266] 
+\draw    (377,46) -- (258,177) ;
+
+%Shape: Circle [id:dp27886143138574426] 
+\draw   (315.6,109.5) .. controls (315.6,107.46) and (317.26,105.8) .. (319.3,105.8) .. controls (321.34,105.8) and (323,107.46) .. (323,109.5) .. controls (323,111.54) and (321.34,113.2) .. (319.3,113.2) .. controls (317.26,113.2) and (315.6,111.54) .. (315.6,109.5) -- cycle ;
+
+% Text Node
+\draw (326.4,103.8) node [anchor=north west][inner sep=0.75pt]   [align=left] {$p$};
+% Text Node
+\draw (268.4,58.8) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\mathbb{R}^2 \setminus (L \setminus \{p\})$};
+% Text Node
+\draw (375.6,49.4) node [anchor=north west][inner sep=0.75pt]   [align=left] {$L$};
+\end{tikzpicture}
+\end{figure}
+
+Comprobemos entonces que $\matheuler{T}_{Aspa}$ es topología:
+\begin{enumerate}[label={(\arabic*)}]
+\item Es inmediato comprobar que $\emptyset, X \in \matheuler{T}_{Aspa}$.
+\item Comprobemos las uniones arbitrarias. Sean $U_i \in \matheuler{T}_{Aspa}$ con $i \in I$ arbitrario. Sea $(a,b) \in \bigcup_{i \in I} U_i$. Entonces, existe un $i_0 \in I$ tal que $(a,b) \in U_{i_0}$, luego $\exists \varepsilon > 0$ tal que $aspa((a,b), \varepsilon) \subset U_{i_0} \subset \bigcup_{i \in I} U_i$. Así, $\bigcup_{i \in I} U_i \in \matheuler{T}_{Aspa}$.
+\item Comprobamos finalmente las intersecciones finitas. Sean $U, U' \in \matheuler{T}_{Aspa}$, y consideramos $(a,b) \in U \cap U'$. Entonces, $\begin{cases} \exists \varepsilon > 0 : aspa((a,b), \varepsilon) \subset U \\ \exists \varepsilon' > 0 : aspa((a,b), \varepsilon') \subset U' \end{cases}$. Si elegimos $\varepsilon_0 = \min \{\varepsilon, \varepsilon'\}$ se cumple que $aspa((a,b), \varepsilon_0) \subset U \cap U'$. Por tanto, $U \cap U' \in \matheuler{T}_{Aspa}$ y consecuentemente $\bigcap_{i \in I} U_i : I$ finito $\in \matheuler{T}_{Aspa}$.
+\end{enumerate}
 \end{ej}
 
 \section{Número 1.8}
 \begin{enun}
 En $X = \mathbb{R}^2$ se consideran los subconjuntos $$G_t = \{(x,y) \in X : x > y + t\} \mbox{ con } t \in \mathbb{R}$$
 Demostrar que estos subconjuntos, junto con $\emptyset$ y $X$, son los abiertos de una topología en $X$. ¿Es esto mismo cierto si $t \in \mathbb{N}$? ¿Y si $t \in \mathbb{Q}$?
-\end{enun}<
+\end{enun}
 \begin{ej}
 \end{ej}
 \chapter{Lista 2: Aplicaciones continuas}%
