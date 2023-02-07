@@ -129,12 +129,15 @@ Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
     \item $Z \stackrel{j}{\subset} X$ es continua.
     \begin{demo}
         \begin{itemize}
-            \item $z \in \mathbb{Z}: \forall V^{j\left( z \right)} : \underbrace{j^{-1}\left( V^{j\left( z \right) } \right)}_{= V^{j\left( z \right)} \cap Z}$ entorno de $z$ en $Z$.
+            \item $z \in Z: \forall V^{j\left( z \right)} : \underbrace{j^{-1}\left( V^{j\left( z \right) } \right)}_{= V^{j\left( z \right)} \cap Z}$ entorno de $z$ en $Z$.
             \item $\forall U \stackrel{\text{ab.}}{\subset } X: \underbrace{j^{-1}\left( U \right)}_{U \cap Z} \stackrel{\text{ab.}}{\subset} Z$
         \end{itemize}
     \end{demo}
 
-    \item $\overbrace{X}^{\stackrel{j}{\supset} Z} \xrightarrow{f} Y$. Si $f$ es cont. $\Rightarrow f|_Z$ continua. (No a la inversa).
+    \item $Z \stackrel{j}{\subset} X \xrightarrow{f} Y$. Si $f$ es cont. $\Rightarrow f|_Z$ continua. (No a la inversa).
+    \begin{demo}
+    Como $f|_Z = f \circ j$ y ambas son continuas, por composición, $f|_Z$ es continua.
+    \end{demo}
 
     \item La continuidad es \underline{local}. 
 
@@ -142,7 +145,13 @@ Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
     \begin{demo}
         $\forall V^{f\left( x \right)} \Rightarrow \left( f|_{E} \right)^{-1}\overbrace{\left( V^{f\left( x \right)} \right)}^{= W^x}$ entorno de $x$ en $E^x$.
 
-        Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X$ (entorno en entorno es entorno). %TODO: Demostrar.
+        Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X$ (entorno en entorno es entorno). Porque, 
+        \[
+        \begin{rcases}
+            x \in W^x: \exists G \stackrel{\text{ab.}}{\subset} W^x \subset E^x: G = A \cap E^x \subset X\\ 
+            x \in E^x: \exists B \stackrel{\text{ab.}}{\subset} E^x \subset X 
+        \end{rcases} \Rightarrow x \in \underbrace{A \cap B}_{\stackrel[\text{ab.}]{}{\subset} X} \subset \underbrace{A \cap E^x}_{= G}  \subset W^x
+        \]
     \end{demo}
 
     \item Si $f|_{U \stackrel{\text{ab.}}{\subset} X}$ es continua $\Rightarrow f$ continua $\forall x \in U$.
@@ -152,7 +161,9 @@ Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
         $x$ aislado $\Leftrightarrow V^x = \{x\}$ es abierto de $X$. $f|_{V^x} : \{x\} \rightarrow Y$.
     \end{demo}
 
-    \item $f: X \rightarrow \underbrace{Y}_{\supset Z}$ tal que $f\left( X \right) \subset Z \subset Y$ (si no es así puede estar mal definido). Entonces, $f$ a $Y$ es continua $\Leftrightarrow f$ a $Z$ es continua.
+    \item $f: X \rightarrow Y \supset Z$ tal que $f\left( X \right) \subset Z \subset Y$ (si no es así puede estar mal definido).
+
+    Entonces, $f$ a $Y$ es continua $\Leftrightarrow f$ a $Z$ es continua.
     \begin{demo}
         \begin{itemize}
             \item $f$ cont. en $Z \xRightarrow{j \circ f} f$ cont. en $Y$.
@@ -178,7 +189,7 @@ Sea $f: X \rightarrow Y$ será continua sii:
     \[
     \begin{cases}
         f^{-1}W = \bigcup_{i \in  I} U_i \cap f^{-1} W = \bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W\\
-        \left( f|_{U_i} \right)^{-1}W \stackrel[\text{cont.}]{\text{ab.}}{\subset} U_i \stackrel{\text{ab.}}{\subset} X \Rightarrow \left( f|_{U_i} \right)^{-1} W \stackrel{\text{ab.}}{\subset} X
+        \left( f|_{U_i} \right)^{-1}W \stackrel[\text{(cont.)}]{\text{ab.}}{\subset} U_i \stackrel{\text{ab.}}{\subset} X \Rightarrow \left( f|_{U_i} \right)^{-1} W \stackrel{\text{ab.}}{\subset} X
     \end{cases}\Rightarrow f^{-1}W \stackrel{\text{ab.}}{\subset} X  
     \]
     Por unión de abiertos.
@@ -187,7 +198,7 @@ Sea $f: X \rightarrow Y$ será continua sii:
     \[
     \begin{cases}
         f^{-1}C = \bigcup_{i = 0}^{n}  F_i \cap f^{-1} C = \bigcup_{i = 0}^{n} \left( f|_{F_i} \right)^{-1} C\\
-        \left( f|_{F_i} \right)^{-1}C \stackrel[\text{cont.}]{\text{cerr.}}{\subset} F_i \stackrel{\text{cerr.}}{\subset} X \Rightarrow \left( f|_{F_i} \right)^{-1} C \stackrel{\text{cerr.}}{\subset} X
+        \left( f|_{F_i} \right)^{-1}C \stackrel[\text{(cont.)}]{\text{cerr.}}{\subset} F_i \stackrel{\text{cerr.}}{\subset} X \Rightarrow \left( f|_{F_i} \right)^{-1} C \stackrel{\text{cerr.}}{\subset} X
     \end{cases}\Rightarrow f^{-1}C \stackrel{\text{cerr.}}{\subset} X  
     \]
     Por unión finita de cerrados.
