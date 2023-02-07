@@ -1,8 +1,9 @@
 \documentclass[10pt,a4paper,openright]{book}
 
 %% Formateo del título del documento
-\title{Topología elemental}
-\author{Mario Calvarro Marines}
+\title{\Huge TOPOLOGÍA ELEMENTAL}
+\author{Mario Calvarro Marines, Juan Diego Barrado Daganzo  \\
+e Iker Muñoz Jiménez}
 \date{}
 
 %% Formateo del estilo de escritura y de la pagina
@@ -139,89 +140,69 @@
 \maketitle
 \setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
 \tableofcontents
-\chapter{Espacios topológicos}%
+\chapter{Espacios topológicos}
 \label{cha:espacios_topologicos}
 
-\section{Conjuntos abiertos}%
+\section{Conjuntos abiertos}
 \label{sec:conjuntos_abiertos}
-\begin{defi}
-Una \underline{topología} en un conjunto $X$ es una colección $\mathcal{T} \subset \mathcal{P}\left( x \right)$ de subconjuntos tal que:
+\begin{defi}[Topología]
+Sea $X$ un conjunto, definimos una \textbf{topología} como una colección $\mathcal{T} \subset \mathcal{P}\left( x \right)$ de subconjuntos tal que:
 \begin{enumerate}
     \item $\emptyset, X \in \mathcal{T}$ 
-    \item Las uniones arbitrarias de elementos de $\mathcal{T}$ están en $\mathcal{T}$.
-    \item Las intersecciones \underline{finitas} de elementos de $\mathcal{T}$ están en $\mathcal{T}$.
+    \item $\bigcup_{U \in \mathcal{T}} U \in \mathcal{T}$
+    \item $\bigcap_{i=1}^n U_i \in \mathcal{T}$ donde $U_i \in \mathcal{T}$
 \end{enumerate}
-Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico}, los elementos de $\mathcal{T}$ se llaman \underline{abiertos} y los elementos de $X$ se llaman \underline{puntos}. 
+al par $\left( X, \mathcal{T} \right)$ lo llamamos \textbf{espacio topológico}, a los elementos de $\mathcal{T}$ \textbf{abiertos}, y a los elementos de $X$ \textbf{puntos}. 
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item \label{ejemplos_topologia:first} $\mathcal{T} = \{\emptyset, X\}$ es la topología \underline{trivial}; $\mathcal{T} = P\left( X \right)$, topología \underline{discreta}: si los puntos $\{x\} \in \mathcal{T}$, entonces cualquier $A = \bigcup_{x \in A} \{x\}$ es abierto.
-    \item $\mathbb{R}^n$ con la topología usual definida mediante las bolas euclídeas.
-    \item Cualquier distancia $d$ define una topología mediante sus bolas abiertas, igual que se define la usual. \underline{Notación}: 
-    \[
-    B\left( a, \varepsilon \right) = \{d\left( a, x \right) < \varepsilon\},\ B\left[ a, \varepsilon \right] = \{d\left( a, x \right) \le \varepsilon \},\ S\left[ a, \varepsilon \right] = \{d\left( a, x \right) = \varepsilon\} 
-    \]
-    \item En un conjunto se pueden definir muchas topologías distintas (por ejemplo (\ref{ejemplos_topologia:first})) pero se puede asumir que solo ``parezcan'' distintas. Ya se sabe que la topología usual de $\mathbb{R}^n$ se puede definir mediante muchas distancias distintas.
-
-    %TODO: Dibujo
+    \item \label{ejemplos_topologia:first} $\mathcal{T} = \{\emptyset, X\}$ es la topología \textbf{trivial}, que está contenida en cualquier otra topología.
+    \item $\mathcal{T} = P\left( X \right)$ es la topología \textbf{discreta}, que contiene a cualquier\footnote{En parte porque si los puntos $\{x\} \in \mathcal{T}$ son abiertos, entonces cualquier conjunto $A = \bigcup_{x \in A} \{x\}$ es abierto.} otra topología.
+    \item $\mathbb{R}^n$ junto con las bolas euclídeas es la topología habitual que utilizamos.
+    \item Cualquier distancia $d(x,y)$ define una topología a través de sus bolas abiertas, igual que definíamos la usual en $\mathbb{R}^n$, de hecho, se puede demostrar sin mayor dificultad (y tal y como se ve en el dibujo) que todas las normas $p$ en $\mathbb{R}^n$ definen bolas que contienen y están contenidas en las restantes. En consecuencia, si la definición de abierto usual se hacía a través de bolas redondas y hemos visto que estas contienen a bolas cuadradas o romboidales, también se tiene que es abierto cuadrado o romboidal y el recíproco por los contenidos en ambos lados.
+    %TODO: esto debería hacerse con el entorno figure para que la anotación de abajo sea un caption
     \begin{center}
         \includegraphics[scale=0.2]{images/topologia_metricas}  
-
         \textit{El dibujo representa distintas distancias\footnote{Procedentes de \textit{normas}.} en $\mathbb{R}^n$, pero todas definen la misma topología.} 
     \end{center}
-    \item Una topología para ilustrar muchas propiedades (y contraejemplos). 
-
-    Fijamos $a \in X$:
-    \[
-    \mathcal{T}_a = \{U \subset X: a \in U\} \cup \{\emptyset\} 
-    \]
-    La topología ``del punto''. El punto $\{a\}$ y todos los pares de puntos $\{a, x\}$ son abiertos. Se parece a la discreta pero difiere en que en esta última todos los puntos son abiertos.
+    es decir, cambiar de norma igual cambia la noción de distancia en $\mathbb{R}^n$ ¡Pero no la topología asociada! Sigue siendo la topología usual de $\mathbb{R}^n$.
+    
+    \item En general, cuando queramos ver resultados que no son ciertos pondremos un contraejemplo donde no se cumpla. Para poder hacer esto, tenemos que disponer de muchos y muy variados ejemplos de topologías poco usuales, como por ejemplo, la topología ``del punto'':
+    $$
+    \mbox{Fijado } a \in X : \mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\} 
+    $$
+    en esta topología, el punto $\{a\}$ y todos los pares $\{a, x\}$ son abiertos y, aunque puede parecer igual a la discreta, no lo es. Hay que fijarse en que los abiertos de esta topología son los que contienen a mi punto, no todos los puntos en general. De este modo, $\{x\}\notin \mathcal{T}$, pero $\{a,x_1, x_2, \cdots\}\in \mathcal{T}$.
 \end{enumerate}
 \end{ej}
 
-\begin{defi}
-Dos topologías $\mathcal{T}_1 \subset \mathcal{T}_2$ en $X$ se llaman \underline{comparables}: $\mathcal{T}_2$ es más ``fina'' que $\mathcal{T}_1$.
-\end{defi}
-Siempre se da:
-\[
-\mathcal{T}_{\text{trivial}} \subset \mathcal{T} \subset \mathcal{T}_{\text{discreta}} 
-\]
-Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\mathcal{T}$ ó el calificativo ``topológico''. 
-
-\begin{defi}
+\begin{defi}[Entorno]
+Sea $X$ un conjunto y $\mathcal{T}$ una topología y $x\in X$ un punto, definimos:
 \begin{enumerate}
-    \item Un \underline{entorno abierto} de un punto $x \in X$ es un abierto $U$ que lo contiene. Se suele escribir $U^x$.
-    \item Un \underline{entorno} de un punto $x \in X$ es un conjunto $V$ que contiene un abierto $U$ que contiene al punto. Se suele escribir $V^x$.\footnote{La intersección finita de entornos es entorno. (Si son abiertos es trivial)}
+    \item Un \textbf{entorno abierto} de $x$ como un abierto $U^x$ que lo contiene.
+    \item Un \textbf{entorno} de $x$ como un conjunto $V^x$ que contiene un abierto $U$ que contiene al punto.
 \end{enumerate}
 \end{defi}
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.2]{images/def_entornos} 
-\end{center}
 \begin{obs}    
 \begin{enumerate}
-    \item Con $U^x \subset V^x$:
+    \item La intersección finita\footnote{La demostración es trivial si son entornos abiertos. Si no lo son, como habrá dos abiertos contenidos en ellos y que contengan al punto, la intersección de esos abiertos es abierta, está en la intersección de esos entornos y al menos contienen al punto, luego la intersección de entornos es entorno de nuevo.} de entornos es de nuevo un entorno:
     \begin{align*}
-        V_1^x \cap V_2^x &= V^x\\
-        U_1^x \cap U_2^x &= U_{\text{ab}}^x \ni x
+    U^x_1 \cap U_2^x = U^x && V_1^x\cap V_2^x = V^x
     \end{align*}
-
-    %TODO: Corregir esta observación
-    \item $U \in \mathcal{T}$ es entorno de todos \underline{sus} puntos.
-    \begin{demo}
-    \[
-    x \in U \text{ abierto} \subset U
-    \]
-    \end{demo}
+    
+    \item Cualquier abierto $U \in \mathcal{T}$ es entorno de todos sus puntos.
+	\begin{center}
+    	\includegraphics[scale=0.2]{images/def_entornos} 
+	\end{center}
 \end{enumerate}
 \end{obs}
 
-\begin{defi}
-Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ es entorno (luego $A$ lo contiene). El \underline{interior de $A$} es el conjunto de sus puntos interiores:
-\[
-\inter_X \left( A \right) = \mathring{A} = \{x \in A: \exists U_{\text{ab}}^x \subset A\} 
-\]
+\begin{defi}[Punto interior]
+Sea $A \subset X$ un subconjunto de puntos, decimos que un punto $x$ es \textbf{punto interior de $A$} si y sólo si $A$ es entorno de $x$:
+$$
+x\in \inter_X(A) \Leftrightarrow \exists U \in \mathcal{T} : x\in U \cup A
+$$
+Al conjunto de puntos interiores lo llamamos \textbf{interior de $A$} y se denota por $\inter_X \left( A \right)$ o $\mathring{A}$.
 \end{defi}
 %TODO: Fix imagen
 \begin{center}
@@ -229,26 +210,25 @@ Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ 
 \end{center}
 
 \begin{prop}
-$\mathring{A}$ es el mayor abierto contenido en $A$: 
-\[
-\mathring{A} = \bigcup_{U^{ab} \subset A} U
-\]
-En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ es un entorno de todos los puntos.    
+Sea $A\subset X$ un subconjunto de puntos, entonces:
+\begin{itemize}
+\item $\mathring{A}$ es el mayor abierto en $A$ o lo que es lo mismo $ \mathring{A} = \bigcup_{U \subset A} U$.
+\item $A$ abierto si y sólo si todos sus puntos son interiores, es decir, $A = \mathring{A}$
+\item $A$ es abierto si y sólo si es entorno de todos sus puntos.
+\end{itemize}
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $\mathring{A}$ es abierto: 
-    \begin{gather*}
-        \begin{rcases}
-        \forall x \in \mathring{A} &\Rightarrow \exists U_{\text{ab}}^x \subset A\\
-        \forall y \in U^x &\Rightarrow A \supset U^x \text{ es un abierto que contiene a } y \Rightarrow y \in \mathring{A}.\\
-        \end{rcases} \Rightarrow U^x \subset \mathring{A}\\
-        \Rightarrow \mathring{A} = \bigcup_{x \in \mathring{A}} U^x \text{ es abierto como unión de abiertos}
-    .\end{gather*}
-    \item $\mathring{A}$ es el mayor abierto contenido en $A$.
-    \[
-    U^{\text{ab}} \subset A \Rightarrow \forall x \in U^{\text{ab}} \subset A \Rightarrow x \in \mathring{A} \Rightarrow U \subset \mathring{A} 
-    \]
+    \item Si $x\in \mathring{A}$, entonces $\exists U \subset A : x\in U \Rightarrow x\in \bigcup_{U\subset A}U$, pero es que si $x\in U$ para algún $U\subset A$, por definición es interior de $A$, luego $x\in \mathring{A}$.
+   
+   Como $\mathring{A}$ es unión de abiertos, la definición de topología nos asegura que será un abierto y además es el más grande de todos porque cualquier otro está contenido en él por ser la unión de todos los abiertos.   
+   \item El contenido $\mathring{A}\subset A$ se tiene siempre, puesto que $x\in \mathring{A}\Leftrightarrow \exists U \subset A : x\in U \subset A \Rightarrow x\in A$ (dicho de otra forma, los puntos interiores de $A$ son aquellos para los cuales $A$ es entorno y como un entorno contiene al punto se tiene trivialmente).
+   
+   De esta manera, si $A$ es abierto, como $\mathring{A}$ es el mayor abierto de $A$, tiene que ser $\mathring{A} = A$ y si $\mathring{A} = A$, como $\mathring{A}$ es abierto, pues lo es $A$.
+    
+   \item Se tiene trivialmente de la implicación anterior. Cuando $A$ es abierto sabemos que todos los puntos son interiores y un punto es interior si y sólo si $A$ es entorno para él, luego es entorno para todos sus puntos.
+   
+   Recíprocamente, $A$ es entorno de todos sus puntos, entonces todos sus puntos están en el interior y $A = \mathring{A}$, lo que indica que es abierto.
 \end{enumerate}
 \end{demo}
 
@@ -264,115 +244,117 @@ En particular, $A$ abierto $\Leftrightarrow A = \mathring{A} \Leftrightarrow A$ 
 \end{enumerate}
 \end{ej}
 
-\begin{prop}
+\begin{coro}
 \begin{enumerate}
     \item $A \subset B \Rightarrow \mathring{A} \subset \mathring{B}$.
     \item $\mathring{A} \cap \mathring{B} = \inter \left( A \cap B \right)$.
 \end{enumerate}
-\end{prop}
+\end{coro}
 \begin{demo}
 \begin{enumerate}
-    \item $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ y $\mathring{A}$ es abierto $\Rightarrow \mathring{A} \subset \mathring{B}$.
-    \item 
-    \begin{gather*}
-    \begin{rcases}
-    \begin{cases}
-        \mathring{A} \cap \mathring{B} \text{ abierto (intersección finita de abiertos)}\\
-        \mathring{A} \cap \mathring{B} \subset A \cap B 
-    \end{cases} &\Rightarrow \mathring{A} \cap \mathring{B} \subset \inter \left( A \cap B \right)\\
-    A \cap B \subset A, B \Rightarrow \inter \left( A \cap B \right) \subset \mathring{A}, \mathring{B} &\Rightarrow \inter\left( A \cap B \right) \subset \mathring{A} \cap \mathring{B}
-    \end{rcases} \Rightarrow\\
-    \boxed{\mathring{A} \cap \mathring{B} = \inter\left( A \cap B \right)} 
-    .\end{gather*}
+    \item La relación $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ implica que, como $\mathring{A}$ es abierto y $\mathring{B}$ es la unión de todos los abiertos de $B$, $\mathring{A} \subset \mathring{B}$.
+    \item En primer lugar, como $\mathring{A}\cap \mathring{B}$ es intersección de abiertos, entonces es abierto y está contenido en $A\cap B$, luego por ser $\inter(A\cap B) = \bigcup_{U\in A\cap B}U$ sabemos que $\mathring{A}\cap \mathring{B} \subset \inter(A\cap B)$.
+    
+	Recíprocamente, si $x\in \inter(A\cap B)$ existe un abierto $U \in A\cap B$ tal que $x\in U$. Por ser de la intersección, en particular también es abierto de cada conjunto, luego $x\in \mathring{A}$ y $x\in \mathring{B}$, es decir, $x\in \mathring{A}\cap \mathring{B}$.
 \end{enumerate}
 \end{demo}
 
 \section{Conjuntos cerrados}%
 \label{sec:conjuntos_cerrados}
-Sea $\left( X, \mathcal{T} \right)$ un espacio topológico.
-\begin{defi}
-Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \setminus F$ es abierto.
+
+\begin{defi}[Conjunto cerrado]
+Sea $\left( X, \mathcal{T} \right)$ un espacio topológico, definimos un \textbf{conjunto cerrado} como $F \subset X : U = X \setminus F$ es abierto.
 \end{defi}
 \begin{obs}
-    Cerrado \underline{no} significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
-    %TODO: Fix imagen
+A pesar de lo que pueda sugerir el lenguaje habitual, la definición cerrado NO significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
     \begin{center}
         \includegraphics[scale=0.3]{images/def_cerrados} 
     \end{center}
-\end{obs}
-\begin{obs}
-Se cumple, $\mathcal{F} = \{\text{cerrados}\}$:
-\begin{enumerate}
-    \item $X, \emptyset$ son cerrados.
-    \item La intersección arbitraria de cerrados es cerrada.
-    \item La unión finita de cerrados es cerrado.
-\end{enumerate}
-\begin{demo}
-    Porque $\bigcap_{i \in  I} \left( X \setminus U_i \right) = X \setminus \bigcup_{i \in  I} U_i$ y $\bigcup_{i \in  I} X \setminus U_i = X \setminus \bigcap_{i \in  I} U_i$.
-\end{demo}
-\end{obs}
-
-\begin{ej}
-\begin{enumerate}
-    \item En la topología trivial solo son cerrados $\emptyset$ y $X$. En la discreta, todos los subconjuntos son cerrados.
-    \item En $\mathbb{R}^n$ con la topología usual ya sabemos todos los ejemplos: $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
-    \item Si $\mathcal{T}_1 \subset \mathcal{T}_2$, todo cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$. (Cuidado con el orden) 
-\end{enumerate}
-\end{ej}
-
-Para saber cuándo se aleja un conjunto de ser cerrado tenemos:
-\begin{defi}
-Sea $A \subset X$. Un punto \underline{adherente} a $A$ es un punto cuyos entornos intersecan todos a $A$. La \underline{adherencia} de $A$ es el conjunto de sus puntos adherentes. 
-\[
-\adh_X\left( A \right) = \overline{A} = \{x \in X: \forall V^x \cap A \neq \emptyset\} \supset A
-\]
-\end{defi}
-
-\begin{obs}
-Las primeras fórmulas importantes son:
-\begin{gather*}
-    \boxed{X \setminus \overline{A} = \inter\left( X \setminus A \right)} \\
-    \boxed{X \setminus \mathring{B} = \overline{X \setminus B}} 
-.\end{gather*}
-\begin{demo}
-\begin{itemize}
-    \item $x \in X \setminus \overline{A} \Leftrightarrow x \not\in \overline{A} \Leftrightarrow \exists U^x \cap A = \emptyset \Leftrightarrow \exists U^x \subset X \setminus A \Leftrightarrow x \in \inter\left( X \setminus A \right)$
-    \item $x \not\in \mathring{B} \Leftrightarrow \nexists U^x \subset B \Leftrightarrow \forall U^x \cap \left( X \setminus B \right) \neq \emptyset \Leftrightarrow x \in \overline{X \setminus B}$.
-\end{itemize}
-\end{demo}
+y otros que son abiertos y cerrados simultáneamente, como son el vacío y el total.
 \end{obs}
 
 \begin{prop}
-$\overline{A}$ es el menor cerrado que contiene a $A$: 
-\[
-    \boxed{\overline{A} = \bigcap_{F_{\text{cerrado}} \supset A} F } 
-\]
-
-En particular, $A$ cerrado $\Leftrightarrow \overline{A} = A \Leftrightarrow A$ contiene todos sus puntos de adherencia.
+Sea $(X,\mathcal{T})$ un espacio topológico y denotando por $\mathcal{F}$ al conjunto de cerrados del espacio, entonces:
+\begin{enumerate}
+    \item $\emptyset, X \in \mathcal{F}$ 
+    \item $\bigcap_{F \in \mathcal{F}} F \in \mathcal{F}$
+    \item $\bigcup_{i=1}^n F_i \in \mathcal{F}$ donde $F_i \in \mathcal{F}$
+\end{enumerate}
 \end{prop}
 \begin{demo}
-$\overline{A} = X \setminus \inter\left( X \setminus A \right) = X \setminus \underbrace{\bigcup_{U \subset X \setminus A} U = X \setminus \bigcup_{F \supset A}}_{F = X \setminus U} \left( X \setminus F \right) = \bigcap_{F \supset A} F$.
+\begin{itemize}
+\item Trivial, porque el uno es el complementario del otro y ambos son abiertos.
+
+\item Porque el complementario de la intersección $X\setminus \left(\bigcap_{F \in \mathcal{F}} F\right) = \bigcup_{F \in \mathcal{F}} \left( X \setminus F \right) = \bigcup_{F \in \mathcal{F}} U_F$ es abierto.
+
+\item Porque el complementario de la unión $X\setminus \left(\bigcup_{i = 0}^n F_i\right) = \bigcap_{i=0}^n \left( X \setminus F_i\right) = \bigcap_{i=0}^n U_i$ es abierto.
+\end{itemize}
 \end{demo}
 
-\begin{obs}
-Lo anterior nos implica:
-\begin{itemize}
-    \item $B \supset A \Rightarrow \overline{B} \supset B \supset A \Rightarrow \overline{B} \supset \overline{A}$.
-    \item $\overline{A \cup B} = \overline{A} \cup \overline{B}$:
-    \[
-    \begin{cases}
-        \overline{A\cup B} \supset A \cup B \supset \begin{cases}
-            A\\B
-        \end{cases} \Rightarrow \overline{A\cup B} \supset \begin{cases}
-            \overline{A} \\ \overline{B} 
-        \end{cases} \Rightarrow \overline{A\cup B} \supset \overline{A} \cup \overline{B}\\
+\begin{ej}
+\begin{enumerate}
+    \item En la topología trivial solo son cerrados $\emptyset$ y $X$ y en la discreta, todos los subconjuntos son cerrados.
+    \item En $\mathbb{R}^n$ con la topología usual ya sabemos todos los ejemplos: $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
+    \item Si $\mathcal{T}_1 \subset \mathcal{T}_2$, todo cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$, pues es cerrado por ser el complementario de un abierto y los abiertos de $\mathcal{T}_1$ también lo son el $\mathcal{T}_2$.
+\end{enumerate}
+\end{ej}
 
-        A \cup B \subset \overline{A} \cup \overline{B} \Rightarrow \overline{A\cup B} \subset \overline{A} \cup \overline{B} 
-    \end{cases} 
-    \]
-    La última implicación por que es cerrado al ser la unión de dos cerrados.
+\begin{defi}[Adherencia]
+Sea $A \subset X$ y $x\in X$ un punto, decimos que es \textbf{adherente a $A$} si y sólo si todos sus entornos intersecan con $A$.
+$$
+\adh_X\left( A \right) = \overline{A} := \{x \in X: \forall V^x \cap A \neq \emptyset\} \supset A
+$$
+al conjunto de puntos adherentes a $A$ lo llamamos su \textbf{adherencia}.
+\end{defi}
+
+\begin{obs}
+La propia definición nos sugiere ciertas equivalencias útiles que se obtienen escribiendo de forma distinta lo que hemos definido:
+\begin{itemize}
+\item $X \setminus \overline{A} = \inter\left( X \setminus A \right)$
+$$
+x \in X \setminus \overline{A} \Leftrightarrow x \not\in \overline{A} \Leftrightarrow \exists U^x \cap A = \emptyset \Leftrightarrow \exists U^x \subset X \setminus A \Leftrightarrow x \in \inter\left( X \setminus A \right)
+$$
+\item $X \setminus \mathring{B} = \overline{X \setminus B}$
+$$
+x \not\in \mathring{B} \Leftrightarrow \nexists U^x \subset B \Leftrightarrow \forall U^x \cap \left( X \setminus B \right) \neq \emptyset \Leftrightarrow x \in \overline{X \setminus B}
+$$
 \end{itemize}
 \end{obs}
+
+\begin{prop}
+Sea $A\subset X$ un subconjunto de puntos y denotando por $\overline{A}$ a su adherencia, entonces:
+\begin{itemize}
+\item $\overline{A}$ es el menor cerrado que contiene a $A$, en otras palabras:
+$$
+\overline{A} = \bigcap_{F \supset A} F \mbox{ donde }F \mbox{ cerrado}
+$$
+que, en particular, caracteriza que $A$ es cerrado si y sólo si $\overline{A} = A$.
+
+\item $B \subset A \Rightarrow \overline{B} \subset \overline{A}$.
+\item $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
+\end{itemize}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item 
+$$
+\overline{A} = X \setminus \inter\left( X \setminus A \right) = X \setminus \left(\bigcup_{U \subset X \setminus A} U \right) \stackrel{F = X \setminus U}{=} X \setminus \left(\bigcup_{F \supset A} \left( X \setminus F \right) \right) = \bigcap_{F \supset A} F
+$$
+\item
+$$
+B\subset A \subset \overline{A} \Rightarrow \overline{B} \subset \overline{A}
+$$
+\item
+$$
+\begin{cases}
+	\overline{A\cup B} \supset A \cup B \supset
+		A,B \Rightarrow \overline{A\cup B} \supset
+		\overline{A}, \overline{B} \Rightarrow \overline{A\cup B} \supset \overline{A} \cup \overline{B} \\
+	A \cup B \subset \overline{A} \cup \overline{B} \Rightarrow \overline{A\cup B} \subset \overline{A} \cup \overline{B}
+\end{cases} \Rightarrow \overline{A}\cup \overline{B} = \overline{A\cup B}
+$$
+\end{itemize}
+\end{demo}
 
 \begin{ej}
 \begin{enumerate}
@@ -387,38 +369,56 @@ Lo anterior nos implica:
 \end{enumerate}
 \end{ej}
 
-\begin{defi}[Otros puntos especiales]    
-\begin{enumerate}
-    \item $x$ es un \underline{punto aislado} de $A$ si $\exists V^x \cap A = \{x\}$.
-    \item $x$ es un \underline{punto de acumulación} de $A$ si $\forall V^x \cap A \setminus \{x\} \neq \emptyset$. Y, evidentemente,
+\begin{defi}[Acumulación]    
+Sea $A\subset X$ un subconjunto de puntos y $x\in A$ un punto del mismo, decimos que $x$ es:
+\begin{itemize}
+\item \textbf{punto aislado de $A$} si y sólo si existe algún entorno que sólo interseca con $A$ en el propio punto, es decir:
+$$
+\exists V^x \subset X : V^x \cap A = \{x\}
+$$
+\item \textbf{punto de acumulación de $A$} si y sólo si cualquier entorno interseca a $A$ en más puntos, es decir:
+$$
+\forall V^x \subset X : V^x \cap A \setminus \{x\} \neq \emptyset
+$$
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+La definición anterior para puntos aislados hace evidente el hecho de que los puntos aislados solo pueden ser de $A$. Por contra, los puntos de acumulación no tienen por qué y, de hecho, su definición en términos de entornos prescinde de ellos mismos para analizar su intersección con $A$. De esta manera, obtenemos el siguiente resultado:
+$$
+\overline{A} = \{\underbrace{\text{puntos aislados}}_{\subset A}\} \sqcup \{\underbrace{\text{puntos de acumulación}}_{\supset \overline{A} \setminus A}\}
+$$
+Además, nótese que si uno es punto de $A$ sólo tiene dos posibilidades: ser aislado o ser de acumulación. Por tanto, podemos reescribir lo anterior como:
+$$
+\overline{A} = A \cup A'
+$$
+\end{obs}
+
+\begin{defi}[Frontera]
+Sea $A\subset X$ un subconjunto de puntos y $x\in A$ un punto del mismo, decimos que $x$ es un \textbf{punto frontera de $A$} si y sólo si es adherente\footnote{Por las observaciones hechas sobre las adherencias, también podríamos caracterizar los puntos frontera como los que no son interior de $X \setminus A$ ni de $A$.} a $A$ y a su complementario $X \setminus A$
     \[
-    \overline{A} = \{\underbrace{\text{puntos aislados}}_{\subset A}\} \sqcup \{\underbrace{\text{puntos de acumulación}}_{\supset \overline{A} \setminus A}\} 
+    \fr\left( A \right) := \overline{A} \cap \overline{X \setminus A} = \overline{A} \setminus \mathring{A}     
     \]
-    \item $x$ es un \underline{punto frontera} de $A$ si es adherente a $A$ y a $X \setminus A$, o bien, si no es interior de $X \setminus A$ ni de $A$. La \underline{frontera} de $A$ es: 
-    \[
-    \fr\left( A \right) = \{x \in X: x \text{ es punto frontera de } A\} = \overline{A} \cap \overline{X \setminus A} = \overline{A} \setminus \mathring{A}     
-    \]
-\end{enumerate}
+al conjunto de puntos de la frontera de $A$ lo llamamos \textbf{frontera} de $A$.
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item En $\mathbb{R}, \mathcal{T}_n$ todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
-    \item En $\mathbb{R}^n, \mathcal{T}_n: \fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
-    \item En $\mathcal{T}_{\text{discreta}}$ todos los puntos son aislados, todas las fronteras son vacías.
-    \item $a \in X, \mathcal{T}_a: $
-    \[
-    \begin{cases}
-        \fr\left( \{a\} \right) = \overline{\{a\}} \setminus \mathring{\{a\}} = X \setminus \{a\}\\
-        x \neq a, \fr\left( \{x\} \right) = \overline{\{x\}} \setminus \mathring{\{x\}} = \{x\} 
-    \end{cases} 
-    \]
+    \item En $\mathbb{R}$, con la topología usual $\mathcal{T}_u$, todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
+    \item En $\mathbb{R}^n$, con la topología usual $\mathcal{T}_u$: $\fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
+    \item En la topología $\mathcal{T}_{\text{discreta}}$ todos los puntos son aislados y todas las fronteras, vacías.
+    \item Para un punto cualquiera $a \in X$ podemos escoger la topología del punto $\mathcal{T}_a$ y entonces:
+$$
+\begin{cases}
+	\fr\left( \{a\} \right) = \overline{\{a\}} \setminus \mathring{\{a\}} = X \setminus \{a\} \\
+    x \neq a \Rightarrow \fr\left( \{x\} \right) = \overline{\{x\}} \setminus \mathring{\{x\}} = \{x\} 
+\end{cases} 
+$$
 \end{enumerate}
 \end{ej}
 
-Ahora, un concepto importante:
-\begin{defi}
-$A \subset X$ es \underline{denso} si $\overline{A} = X$, o bien, todo punto es adherente a $A$, o bien, todo abierto $\left( \neq \emptyset \right)$ corta a $A$.
+\begin{defi}[Densidad]
+Sea $X$ un conjunto de puntos y $A \subset X$ un subconjunto suyo, decimos que $A$ es \textbf{denso en $X$} si y sólo si $\overline{A} = X$ o, dicho de otro modo, todo abierto no vacío corta a $A$.
 \end{defi}
 
 \begin{ej}
@@ -430,25 +430,22 @@ $A \subset X$ es \underline{denso} si $\overline{A} = X$, o bien, todo punto es 
 
 \section{Bases}%
 \label{sec:bases}
-Sea $X, \mathcal{T}$ un espacio topológico.
-\begin{defi}
-Una \underline{base de entornos} de $a \in X$ es una colección $\mathcal{V}^a$ de entornos de $a$, tal que todo entorno de $a$ contiene uno de $\mathcal{V}^a$.
+\begin{defi}[Base de entornos]
+Sea $(X, \mathcal{T})$ un espacio topológico, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier entorno de $a$ tenga que contener a uno de $\mathcal{V}^a$.
 \end{defi}
 
 \begin{obs}
-No se supone ninguna propiedad especial, ni que sean abiertos. Veremos que la existencia de base de entornos con propiedades adicionales es una de las cosas que determinan el comportamiento de la topología.
+Para la definición no hemos supuesto ninguna propiedad especial como pedir que sean cerrados, abiertos, etc. Precisamente esta ``variedad'' es la que permite que, escogiendo una base de entornos con las características adecuadas en cada caso, sea más sencillo estudiar la topología que tengamos entre manos.
 
-Pero, $\forall \mathcal{V}^a$ se puede \underline{refinar} a una base $\mathcal{B}^a$ de entornos de abiertos. 
+En general, las bases de entornos nos serán útiles porque comprobar propiedades en ella extenderá automáticamente dichas propiedades a cualquier entorno arbitrario.
+\end{obs}
+
+Pero, $\forall \mathcal{V}^a$ se puede \textbf{refinar} a una base $\mathcal{B}^a$ de entornos de abiertos. 
 \begin{demo}    
 \[
 \forall V^a \in \mathcal{V}^a,\ \exists U^a \subset V^a \Rightarrow \mathcal{B}^a = \{U^a: V^a \in \mathcal{V}^a\} \text{ es base de entornos}. \left[ \forall E^a \supset V^a \supset U^a \right] 
 \]
 \end{demo}
-\end{obs}
-
-\begin{pg}
-    Bastan las bases de entornos para comprobar propiedades de todos los entornos.
-\end{pg}
 
 \begin{il}    
 Por ejemplo,
@@ -471,8 +468,8 @@ Por ejemplo,
 \end{enumerate}
 \end{ej}
 
-\begin{defi}
-Una \underline{base de abiertos} de $\mathcal{T}$ es una colección de abiertos $\mathcal{B} \subset \mathcal{T}$ tal que todo abierto es unión de abiertos de $\mathcal{B}$.
+\begin{defi}[Base de abiertos]
+Una \textbf{base de abiertos} de $\mathcal{T}$ es una colección de abiertos $\mathcal{B} \subset \mathcal{T}$ tal que todo abierto es unión de abiertos de $\mathcal{B}$.
 \end{defi}
 
 \begin{prop}
@@ -488,7 +485,7 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \underline{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
+    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \textbf{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
     \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
     \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}\ \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
     %TODO: Fix imágenes 
@@ -531,8 +528,8 @@ La implicación $\Rightarrow)$ se cumple por propiedades vistas.
 
 En el otro sentido tenemos:
 \begin{itemize}
-    \item \underline{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
-    \item \underline{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. 
+    \item \textbf{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
+    \item \textbf{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. 
         \begin{itemize}
             \item $\emptyset$ unión de vacío, $X = \bigcup_{i} U_i \Rightarrow \emptyset, X \in \mathcal{T}$.
             \item Uniones: $\bigcup_{j} \underbrace{\bigcup_{i} B_{ij}}_{\in \mathcal{T}} = \underbrace{\bigcup_{j} B_{ij}}_{\in \mathcal{T}}$. 
@@ -550,7 +547,7 @@ En el otro sentido tenemos:
 \label{sec:topologia_relativa}
 Sea $\left( X, \mathcal{T} \right)$ espacio topológico.
 \begin{defi}
-$Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topología en $Y$ (fácil), denominada \underline{relativa} ó \underline{restricción} a $Y$; también se dice que $\left( Y, \mathcal{T}|_Y \right)$ es un \underline{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \underline{ambiente}. 
+$Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topología en $Y$ (fácil), denominada \textbf{relativa} ó \textbf{restricción} a $Y$; también se dice que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \textbf{ambiente}. 
 \begin{center}
     %TODO: Fix imagen
     \includegraphics[scale=0.3]{images/def_subespacio_top} 
@@ -583,7 +580,7 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
     \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{T}|_Y. \left[ \{y\} = V^y \cap Y \right]$
     \item Todos los puntos de $Y$ son aislados $\Leftrightarrow C|_Y = $ discreta.
 
-    Se dice: $Y$ es un \underline{subespacio discreto}. 
+    Se dice: $Y$ es un \textbf{subespacio discreto}. 
 
     Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
     %TODO: Fix imagen
@@ -624,7 +621,7 @@ El famoso $\varepsilon-\delta$ en $\mathbb{R}^n \mathcal{T}_u; x_0 \in X,\ f : \
 .\end{gather*}
 
 \begin{defi}
-$f: X \rightarrow Y$ será \underline{continua en $x_0$} $\in X$ si: 
+$f: X \rightarrow Y$ será \textbf{continua en $x_0$} $\in X$ si: 
 \[
 \forall V^{f\left( x_0 \right)}: f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0} 
 \]
