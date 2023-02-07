@@ -1,5 +1,7 @@
 \chapter{Aplicaciones continuas}%
 \label{cha:aplicaciones_continuas}
+
+
 \section{Continuidad}%
 \label{sec:continuidad}
 El famoso $\varepsilon-\delta$ en $\mathbb{R}^n\ \mathcal{T}_u,\ x_0 \in X,\ f : \overbrace{X}^{\subset \mathbb{R}^p} \rightarrow \overbrace{Y}^{\subset \mathbb{R}^q}$: 
@@ -111,6 +113,7 @@ Son equivalentes:
 Y no mencionamos todos los ejemplos conocidos en espacios afines $\mathbb{R}^n$ con $\mathcal{T}_u$.
 \end{obs}
 
+
 \section{Continuidad y subespacios}%
 \label{sec:continuidad_y_subespacios}
 \begin{prop}
@@ -121,6 +124,7 @@ Se aplica el criterio ``imagen inversa de abierto es abierto'' y la fórmula:
 \[
 \left( f|_Z \right)^{-1} \left( A \right) = Z \cap f^{-1}A,\ \forall A \subset Y
 \]
+que es abierta por definición de abierta en una restricción.
 \end{demo}
 
 %TODO: Diagramas composición
@@ -217,6 +221,7 @@ Sea $f: X \rightarrow Y$ será continua sii:
 \end{itemize} 
 \end{defi}
 
+
 \section{Homeomorfismos}%
 \label{sec:homeomorfismos}
 Recordemos las definiciones de continuidad que hemos visto:
@@ -243,14 +248,14 @@ Cuidado: Continuidad no implica que sea abierta, cerrada ni viceversa.
 \begin{enumerate}
     \item $id: X_{\text{trivial}} \rightarrow X_{\text{discreta}}$, -cont. +ab. +cerr.
     \item $id: X_{\text{discreta}} \rightarrow X_{\text{trivial}}$, +cont. -ab. -cerr.
-    %TODO: Inclusión?
-    \item $j: \left[ 0, 1 \right] \subset \mathbb{R}_{u}$, +cont. -ab. +cerr.
+    \item $j: \left[ 0, 1 \right] \subset \mathbb{R}_{u}$, +cont. -ab. +cerr. 
     \item $j: \left( 0, 1 \right) \subset \mathbb{R}_u$, +cont. +ab. -cerr.
+    \item $j: \left( 0, 1 \right] \subset \mathbb{R}^{}$, +cont. -ab. -cerr.
 \end{enumerate}
 \end{ej}
 
 \begin{prop}[Trivialidades esenciales]
-Sea $f$ biyectiva $\Rightarrow$ es equivalente:
+Sea $f$ biyectiva $\Rightarrow$ Es equivalente:
 \begin{itemize}
     \item $f$ es abierta
     \item $f$ es cerrada
@@ -263,7 +268,7 @@ Sea $f$ biyectiva $\Rightarrow$ es equivalente:
 
     \item $F \stackrel{\text{cerr.}}{\subset} X \xRightarrow{f \text{cerr.}} \underbrace{f\left( F \right)}_{\stackrel[\text{biy.}]{}{=} \left( f^{-1} \right)^{-1} \left( F \right)} \stackrel{\text{cerr.}}{\subset} Y \Rightarrow f^{-1}$ cont.
 
-    \item $U \stackrel{\text{ab.}}{\subset} X \xRightarrow{f^{-1} \text{cont}} \underbrace{\left( f^{-1} \right) ^{-1} \left( U \right) }_{\stackrel[\text{biy.}]{}{=} f\left( U \right)} \subset Y \Rightarrow f$ ab.
+    \item $U \stackrel{\text{ab.}}{\subset} X \xRightarrow{f^{-1} \text{cont}} \underbrace{\left( f^{-1} \right) ^{-1} \left( U \right) }_{\stackrel[\text{biy.}]{}{=} f\left( U \right)} \stackrel{\text{ab.}}{\subset} Y \Rightarrow f$ ab.
 \end{enumerate}
 \end{demo}
 
@@ -282,11 +287,56 @@ Sea $f$ biyectiva $\Rightarrow$ es equivalente:
     \]
 \end{defi}
 
+\begin{obs}
+\begin{itemize}
+    \item Cuando $f$ es homeomorfismo establecemos una biyección entre las topologías:
+    \begin{align*}
+        f: \mathcal{T}_X &\rightarrow \mathcal{T}_Y\\
+        U &\mapsto f\left( U \right)\\
+        f^{-1}\left( W \right) &\mapsfrom W 
+    .\end{align*}
+
+    %TODO: Tal vez, eliminar?
+    \item Se conserva por rotación, por composición.
+\end{itemize}
+\end{obs}
+
 \begin{defi}[Localización de un homeomorfismo]
-Sea $f: X \rightarrow Y$, es \underline{homeomorfismo local} en $x_0 \in X$ si $f: V^{x_0} \rightarrow V^{f\left( x_0 \right)}$ es homeomorfismo para entornos de $x_0$ y $f\left( x_0 \right)$. Se suele decir para entornos ``suficientemente pequeños''.
+Sea $f: X \rightarrow Y$,
+\begin{itemize}
+    \item Es \underline{homeomorfismo local en} $x_0 \in X$ si $f: V^{x_0} \rightarrow V^{f\left( x_0 \right)}$ es homeomorfismo para entornos de $x_0$ y $f\left( x_0 \right)$. Se suele decir para entornos ``suficientemente pequeños''.
+
+    \item Es \underline{homeomorfismo local} si lo es en todo el dominio. 
+\end{itemize}
 \end{defi}
 
-\underline{Ejercicio:} Se pueden tomar $V^{x_0}, V^{f\left( x_0 \right)}$ abiertos.
+\begin{obs}
+Se pueden tomar $V^{x_0}, V^{f\left( x_0 \right)}$ entornos abiertos.
+%TODO: Corregir
+\begin{demo}
+Tenemos: 
+\[
+    \underbrace{V^a}_{\subset X} \xrightarrow{f} \underbrace{V^{f\left( a \right)}}_{\subset Y} 
+\]
+Sabemos que $\exists U^a (\stackrel{\text{ab.}}{\subset} V^a) \mapsto f\left( U^a \right) (\stackrel{\text{ab.}}{\subset} V^{f\left( a \right)})$ al ser homeomorfismo. 
+
+Además, como $f$ es abierto, local en $V^{f\left( a \right)}$ (homeomorfismo local), $f\left( U^a \right)$ es entorno de $f\left( a \right)$, pero no abierto (tal vez sí). 
+
+Por tanto, tiene un abierto ($W^{f\left( a \right)} \subset f\left( U \right)$) que es imagen de un abierto, $G$, en $X \rightarrow f\left( G \right) = W^{f\left( a \right)} \stackrel{\text{ab.}}{\subset} Y$, con $G \stackrel{\text{ab.}}{\subset} X$.
+\end{demo}
+\end{obs}
+
+\begin{prop}[Restricción de homeomorfismos]
+Sea $f: X \rightarrow Y$, la restricción a $Z \subset X$ también es homeomorfismo: $f: Z \rightarrow f\left( Z \right)$.
+\end{prop}
+\begin{demo}
+%TODO: No sé si está bien, me lo he inventado yo.
+La restricción será biyectiva por serlo $f$ (y por estar restringida la llegada $Y$). Una biyección es homeomorfismo si son continuas ellas y su inversa, pero como ya vimos la restricción de una continua es continua, por lo tanto, la restricción de $f$ y $f^{-1}$ a $Z$ y $f\left( Z \right)$ son también continuas. Es decir, $f|_Z$ es homeomorfismo.
+\end{demo}
+
+\begin{prop}[Composición de homeomorfismos]
+Sean $f: X \rightarrow Y$ y $g: Y \rightarrow Z$ homeomorfismos $\Rightarrow h = f \circ g$ es homeomorfismo.
+\end{prop}
 
 \begin{prop}
 Un homeomorfismo local es abierto.
@@ -294,24 +344,28 @@ Un homeomorfismo local es abierto.
 \begin{demo}
     $U \stackrel{\text{ab.}}{\subset} X \xRightarrow{?} f\left( U \right)$ entorno $\forall y_0 = f\overbrace{\left( x_0 \right)}^{\in U} \in f\left( U \right)$.
 
-    Como $f$ homeomorfismo local $\Rightarrow f| : V^{x_0} \rightarrow V^{y_0}$ es homeomorfismo $\Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\ni y_0 = f\left( x_0 \right)} \stackrel{\text{ab.}}{\subset} V^{y_0} \Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\subset f\left( U \right)}$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
+    Como $f$ homeomorfismo local $\Rightarrow \forall x_0 \in U,\ \exists f| : V^{x_0} \rightarrow V^{y_0}$, homeomorfismo $\Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\ni y_0 = f\left( x_0 \right)} \stackrel{\text{ab.}}{\subset} V^{y_0} \Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\subset f\left( U \right)}$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
+
+    Se puede ver también porque, como $U = \bigcup_{x \in U} W^x (\stackrel{\text{ab.}}{\subset} V^{x}) \Rightarrow f\left( U \right) = f\left( \bigcup_{x} W^{x} \right) = \bigcup_{x} f\left( W^x \right)$ es abierto por unión de abiertos.
 \end{demo}
 
 \begin{ej}[¡Importantes!]
 \begin{enumerate}
     \item Proyección estereográfica $\mathbb{S}^{m} \setminus \{\text{punto}\} \rightarrow \mathbb{R}^m$ homeomorfismo.
-    \item Proyección exponencial $\mathbb{R} \rightarrow \mathbb{S}': \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$, homeomorfismo local.
-    \item Proyección antipodal: $\mathbb{S}^m \rightarrow \mathbb{R}P^{m}: x \mapsto \left[ x \right]$ homeomorfismo local.
-    \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t_4} \right)$ es biy. cont, pero \underline{no} homeomorfismo local.
+    \item Proyección exponencial $\mathbb{R} \rightarrow \mathbb{S}^1: \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$, homeomorfismo local, pero no es inyectiva (periódica).
+    \item Proyección antipodal: $\mathbb{S}^m \rightarrow \mathbb{R}\mathrm{P}^{m}: x \mapsto \left[ x \right]$ homeomorfismo local.
+    \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t_4} \right)$ es biyectiva continua, pero \underline{no} homeomorfismo local.
 
     %TODO: Dibujo Lemniscata
     Engañosamente: 
     \[
-        \forall t \in \mathbb{R} \exists \left( t - \varepsilon, t + \varepsilon \right) = I_{\varepsilon}: f| : I_{\varepsilon} \rightarrow f\left( I_{\varepsilon} \right) 
+        \forall t \in \mathbb{R},\ \exists \left( t - \varepsilon, t + \varepsilon \right) = I_{\varepsilon}: f| : I_{\varepsilon} \rightarrow f\left( I_{\varepsilon} \right) 
     \]
     es homeomorfismo.
 
     En $t = 0, f\left( I_{\varepsilon} \right)$ \underline{no} es entorno de $f\left( 0 \right) = \left( 0, 0 \right)$.
+
+    \item Las coordenadas polares $\left( 0, \rightarrow \right) \times \mathbb{R}^{} \rightarrow \mathbb{R}^{2},\ \left( r, \theta \right) \mapsto \left( r\cos \theta, r \sin \theta \right)$ es homeomorfismo local con $\theta_0 \in \left( \theta_0 - \pi, \theta_0 + \pi \right)$ hasta $\mathbb{R}^{2} \setminus L$ con $L$ la recta entre $O$ y $\theta_0$.
 \end{enumerate} 
 \end{ej}
 
