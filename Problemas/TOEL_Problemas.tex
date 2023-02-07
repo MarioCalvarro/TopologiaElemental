@@ -134,6 +134,7 @@
     \usetikzlibrary{shapes}
 
 \usepackage{enumitem}
+\DeclareMathAlphabet{\matheuler}{U}{eus}{m}{n}
 \begin{document}
 \maketitle
 \setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
@@ -270,7 +271,47 @@ dgerhgsre
 \end{ej}
 \chapter{Lista 1: Espacios Topológicos}%
 \label{cha:lista1}
+\section{Número 1.1}
+\begin{enun}
+Sea $X$ un conjunto, y $\matheuler{T}_{CF}$ la familia de todos los subconjuntos de $X$ cuyo complementario es finito, más el conjunto vacío. Probar que $\matheuler{T}_{CF}$ es una topología en $X$. Esta topología se llama, por razones evidentes, \textit{topología de los complementarios finitos}. ¿Qué topología obtenemos si $X$ es un conjunto finito?
+\end{enun}
+\begin{ej}
+Veamos que $\matheuler{T}_{CF}$ satisface las tres propiedades para que sea topología:
+\begin{enumerate}[label={(\arabic*)}]
+\item Por definición, $\emptyset \in \matheuler{T}_{CF}$. Además, $X^c = \emptyset$ es finito, por lo que $X \in \matheuler{T}_{CF}$.
+\item Comprobemos que las uniones arbitrarias de elementos del $\matheuler{T}_{CF}$ están en $\matheuler{T}_{CF}$. Sean $U_i \in \matheuler{T}_{CF}$ con $i \in I$ arbitrario. Veamos entonces que $X \setminus \bigcup_{i \in I} U_i$ es finito.
+$$X \setminus \bigcup_{i \in I} U_i \overset{De Morgan}{=} \bigcap_{i \in I}X \setminus U_i$$
+Como los $U_i \in \matheuler{T}_{CF}$, su complementario es finito, y la intersección arbitraria de conjuntos finitos es finita. Así, $\bigcup_{i \in I} U_i \in \matheuler{T}_{CF}$
+\item Finalmente, comprobemos que las intersecciones finitas de elementos de $\matheuler{T}_{CF}$ están en $\matheuler{T}_{CF}$. Basta comprobarlo para dos conjuntos $U, U'$, pues la intersección finita de conjuntos puede definirse dos a dos. Así, sean $U, U' \in \matheuler{T}_{CF}$, y veamos que $X \setminus (U \cap U')$ es finito.
+$$X \setminus (U \cap U') \overset{De Morgan}{=} (X \setminus U) \cup (X \setminus U')$$
+Como $U, U' \in \matheuler{T}_{CF}$, su complementario es finito, y la unión finita de conjuntos finitos es finita. Por tanto, $\bigcap_{i \in I} U_i : I $ finito $\in \matheuler{T}_{CF}$.
+\end{enumerate}
+En particular, si $X$ es finito, cualquier subconjunto suyo $A \subset X$ tiene complementario finito, y por tanto, pertenece a $\matheuler{T}_{CF}$. Así, en particular todos los puntos son abiertos, y por tanto, $\matheuler{T}_{CF} = \matheuler{T}_{Discreta}$.
+\end{ej}
 
+\section{Número 1.4}
+\begin{enun}
+Sea $X$ un conjunto infinito y $\matheuler{T}$ una topología en la que todos los conjuntos infinitos son abiertos. Demostrar que $\matheuler{T}$ es la topología discreta.
+\end{enun}
+\begin{ej}
+\end{ej}
+
+\section{Número 1.7}
+\begin{enun}
+En el plano $X = \mathbb{R}^2$ se considera la familia $\matheuler{T}$ de todos los subconjuntos $U$ tales que para cada punto $(a,b) \in U$ existe $\varepsilon > 0$ con 
+$$((a - \varepsilon, a + \varepsilon) \times \{b\}) \cup (\{a\} \times (b-\varepsilon, b + \varepsilon)) \subset U$$
+Estudiar si $\matheuler{T}$  es una topología en $X$.
+\end{enun}
+\begin{ej}
+\end{ej}
+
+\section{Número 1.8}
+\begin{enun}
+En $X = \mathbb{R}^2$ se consideran los subconjuntos $$G_t = \{(x,y) \in X : x > y + t\} \mbox{ con } t \in \mathbb{R}$$
+Demostrar que estos subconjuntos, junto con $\emptyset$ y $X$, son los abiertos de una topología en $X$. ¿Es esto mismo cierto si $t \in \mathbb{N}$? ¿Y si $t \in \mathbb{Q}$?
+\end{enun}<
+\begin{ej}
+\end{ej}
 \chapter{Lista 2: Aplicaciones continuas}%
 \label{cha:lista2}
 
