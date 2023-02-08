@@ -389,6 +389,38 @@ En $X = \mathbb{R}^2$ se consideran los subconjuntos $$G_t = \{(x,y) \in X : x >
 Demostrar que estos subconjuntos, junto con $\emptyset$ y $X$, son los abiertos de una topología en $X$. ¿Es esto mismo cierto si $t \in \mathbb{N}$? ¿Y si $t \in \mathbb{Q}$?
 \end{enun}
 \begin{ej}
+Antes de comprobar que la topología descrita $\matheuler{T}$ en efecto lo es, echamos un vistazo a la pinta que tienen los conjuntos $G_t$, lo cual nos ayudará a desarrollar una intuición de cómo proceder con la demostración.
+$$\begin{tikzpicture}
+\begin{axis}[
+axis y line=middle,
+axis x line=middle,
+xticklabels={},yticklabels={},
+grid = none, %major/minor
+];
+\addplot [
+name path=A, very thick,black,mark=none, dashed,
+domain=-3:12,samples=50,
+] {x - 5};
+\path    [name path=B] (-3,-8) --  (12,-8);
+\addplot [teal, opacity=0.6] fill between [of=B and A,
+        ];
+\end{axis};
+\end{tikzpicture}$$
+Comprobemos entonces que $\matheuler{T}$ es una topología:
+\begin{enumerate}[label={(\arabic*)}]
+\item Por definición $\emptyset, X \in \matheuler{T}$.
+\item Comprobemos las uniones arbitrarias. Sean $G_{t_i} \in \matheuler{T}$ con $i \in I$ arbitrario. Definimos $t^* = \inf t_i$, y observamos que 
+$$\bigcup_{i \in I} G_{t_i} = \{(x,y) \in \mathbb{R}^2 : x > y + t_i\}$$
+Distinguimos dos casos. En caso de que el ínfimo $t^*$ esté bien definido, esta unión es $G_{t^*}$, y por tanto es un abierto de $\matheuler{T}$. En el caso de que este ínfimo fuera $-\infty$, esta unión equivaldría a todo el conjunto $X$, que por definición también es abierto. Así, la unión arbitraria de elementos de $\matheuler{T}$ está en $\matheuler{T}$.
+\item  Finalmente, comprobamos las intersecciones finitas. Sean $G_t, G_s \in \matheuler{T}$. Así, $G_t \cap G_s = \begin{cases} x - y > t \\ x - y > s \end{cases} \Rightarrow x - y > \max\{s,t\} = G_{\max\{s,t\}}$. Por tanto, $U \cap U' \in \matheuler{T}$ y consecuentemente $\bigcap_{i \in I} U_i : I$ finito $\in \matheuler{T}$.
+\end{enumerate}
+Contestamos las dos cuestiones siguientes:
+\begin{itemize}
+\item En el caso de que $t \in \mathbb{N}$, se siguen manteniendo las propiedades de topología, ya que si $t,t' \in \mathbb{N}$, entonces $\max \{t,t'\} \in \mathbb{N}$, y por tanto se conserva la propiedad de intersecciones finitas; y además, si tenemos una colección arbitraria $\{t_i\} \subset \mathbb{N}$, entonces sabemos que $\inf \{t_i\} \in \mathbb{N}$, luego también mantiene la propiedad de uniones arbitrarias. No obstante, la topología con los naturales tiene menos abiertos, y se dice menos fina o más gruesa.
+\item En el caso de que $t \in \mathbb{Q}$, ya no nos encontramos ante una topología, pues el ínfimo de una sucesión de racional puede no ser racional, y por tanto no preservaría la propiedad de uniones arbitrarias.
+
+Por ejemplo, si consideramos la sucesión $\displaystyle \lbrace - \left(1 + \frac{1}{n} \right)^n \} \longrightarrow -e$ obtenemos un contraejemplo.
+\end{itemize}
 \end{ej}
 \chapter{Lista 2: Aplicaciones continuas}%
 \label{cha:lista2}
