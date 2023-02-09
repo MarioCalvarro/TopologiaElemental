@@ -149,10 +149,10 @@ e Iker Muñoz Jiménez}
 Sea $X$ un conjunto, definimos una \textbf{topología} como una colección $\mathcal{T} \subset \mathcal{P}\left( x \right)$ de subconjuntos tal que:
 \begin{enumerate}
     \item $\emptyset, X \in \mathcal{T}$ 
-    \item $\bigcup_{U \in \mathcal{T}} U \in \mathcal{T}$
+    \item $\bigcup_{i \in I} U_i \in \mathcal{T}$ donde $U_i \in \mathcal{T}$
     \item $\bigcap_{i=1}^n U_i \in \mathcal{T}$ donde $U_i \in \mathcal{T}$
 \end{enumerate}
-al par $\left( X, \mathcal{T} \right)$ lo llamamos \textbf{espacio topológico}, a los elementos de $\mathcal{T}$ \textbf{abiertos}, y a los elementos de $X$ \textbf{puntos}. 
+Al par $\left( X, \mathcal{T} \right)$ lo llamamos \textbf{espacio topológico}, a los elementos de $\mathcal{T}$ \textbf{abiertos} y a los elementos de $X$ \textbf{puntos}. 
 \end{defi}
 
 \begin{ej}
@@ -164,15 +164,16 @@ al par $\left( X, \mathcal{T} \right)$ lo llamamos \textbf{espacio topológico},
     %TODO: esto debería hacerse con el entorno figure para que la anotación de abajo sea un caption
     \begin{center}
         \includegraphics[scale=0.2]{images/topologia_metricas}  
+
         \textit{El dibujo representa distintas distancias\footnote{Procedentes de \textit{normas}.} en $\mathbb{R}^n$, pero todas definen la misma topología.} 
     \end{center}
-    es decir, cambiar de norma igual cambia la noción de distancia en $\mathbb{R}^n$ ¡Pero no la topología asociada! Sigue siendo la topología usual de $\mathbb{R}^n$.
+    Es decir, cambiar de norma igual cambia la noción de distancia en $\mathbb{R}^n$, ¡pero no la topología asociada! Sigue siendo la topología usual de $\mathbb{R}^n$.
     
     \item En general, cuando queramos ver resultados que no son ciertos pondremos un contraejemplo donde no se cumpla. Para poder hacer esto, tenemos que disponer de muchos y muy variados ejemplos de topologías poco usuales, como por ejemplo, la topología ``del punto'':
     $$
     \mbox{Fijado } a \in X : \mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\} 
     $$
-    en esta topología, el punto $\{a\}$ y todos los pares $\{a, x\}$ son abiertos y, aunque puede parecer igual a la discreta, no lo es. Hay que fijarse en que los abiertos de esta topología son los que contienen a mi punto, no todos los puntos en general. De este modo, $\{x\}\notin \mathcal{T}$, pero $\{a,x_1, x_2, \cdots\}\in \mathcal{T}$.
+    En esta topología, el punto $\{a\}$ y todos los pares $\{a, x\}$ son abiertos y, aunque puede parecer igual a la discreta, no lo es. Hay que fijarse en que los abiertos de esta topología son los que contienen al punto, no todos los puntos en general. De este modo, $\{x\}\notin \mathcal{T}$, pero $\{a,x_1, x_2, \ldots\}\in \mathcal{T}$.
 \end{enumerate}
 \end{ej}
 
@@ -185,7 +186,7 @@ Sea $X$ un conjunto y $\mathcal{T}$ una topología y $x\in X$ un punto, definimo
 \end{defi}
 \begin{obs}    
 \begin{enumerate}
-    \item La intersección finita\footnote{La demostración es trivial si son entornos abiertos. Si no lo son, como habrá dos abiertos contenidos en ellos y que contengan al punto, la intersección de esos abiertos es abierta, está en la intersección de esos entornos y al menos contienen al punto, luego la intersección de entornos es entorno de nuevo.} de entornos es de nuevo un entorno:
+    \item La intersección finita\footnote{La demostración es trivial si son entornos abiertos. Si no lo son, como habrá dos abiertos contenidos en ellos y que contengan al punto, la intersección de esos abiertos es abierta, está en la intersección de esos entornos y al menos contienen al punto, luego la intersección de entornos es entorno de nuevo.} de entornos es, de nuevo, un entorno:
     \begin{align*}
     U^x_1 \cap U_2^x = U^x && V_1^x\cap V_2^x = V^x
     \end{align*}
@@ -200,7 +201,7 @@ Sea $X$ un conjunto y $\mathcal{T}$ una topología y $x\in X$ un punto, definimo
 \begin{defi}[Punto interior]
 Sea $A \subset X$ un subconjunto de puntos, decimos que un punto $x$ es \textbf{punto interior de $A$} si y sólo si $A$ es entorno de $x$:
 $$
-x\in \inter_X(A) \Leftrightarrow \exists U \in \mathcal{T} : x\in U \cup A
+x\in \inter_X(A) \Leftrightarrow \exists U^{\text{ab.}} \subset A : x \in U
 $$
 Al conjunto de puntos interiores lo llamamos \textbf{interior de $A$} y se denota por $\inter_X \left( A \right)$ o $\mathring{A}$.
 \end{defi}
