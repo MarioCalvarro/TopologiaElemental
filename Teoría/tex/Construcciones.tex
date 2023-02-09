@@ -1,84 +1,97 @@
 \chapter{Construcciones}%
 \label{cha:construcciones}
+
+
 \section{Imágenes inversas}%
 \label{sec:imagenes_inversas}
 \underline{Problema:} Hacer $f: Y \rightarrow \left( X, \mathcal{T} \right)$ continua con $\begin{cases}
-    \text{top. discreta en } Y \text{ (matricialidad)}\\
-    \text{top. \underline{menos fina} en } Y 
-\end{cases}$ 
+    \text{topología discreta en } Y \text{ (matricialidad)\footnote{Añadimos la característica de que la topología debe ser la menos fina para no tener simplemente la solución trivial de usar 
+    la discreta.}}\\
+    \text{topología \underline{menos fina} en } Y 
+\end{cases}$. 
 
-\underline{Sol:} $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$ top. \underline{imagen inversa}. 
+Es decir, buscamos crear una topología en base a $f$ de tal modo que $f$ sea siempre continua.
+
+\underline{Sol:} 
+\begin{defi}    
+Llamamos \underline{topología de la imagen inversa} a: $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$, siendo $f$ continua.
+\end{defi}
+\begin{prop}    
+La topología de la imagen inversa cumple:
 \begin{enumerate}
-    \item Es topología (inm.)
-    \item Es mínima. [$f$ es continua $\Rightarrow \forall f^{-1}U$ es abierto]
+    \item Es topología. 
+    \item Es mínima. 
 \end{enumerate}
-
+\end{prop}
+%TODO: Acabar
+\begin{demo}
+    2. $f$ es continua $\Rightarrow \forall f^{-1}U$ es abierto
+\end{demo}
 
 %TODO: Fix teorema
-\begin{theo}[Caracterización imagen inversa]
-\begin{enumerate}
-    \item
+\begin{theo}[Propiedad universal de las inmersiones]
+Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T} \right)$. Entonces:
     \[
     \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow  
     \]
     \begin{equation}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.} \right]
+        \left[\forall g: g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.} \right]  
     \end{equation}
 
-    \item Y.
-    %TODO: Fix composición
+    Ilustrado:
     \begin{center}
         \includegraphics[scale=0.3]{images/caracterizacion_img_inv} 
     \end{center}
-\end{enumerate}
 \end{theo}
 \begin{demo}
-\begin{enumerate}
-    \item $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
+\begin{itemize}
+    \item $\Rightarrow)$ $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
     \begin{itemize}
         \item $g$ cont. $\Rightarrow f \circ g$ cont. (Composición de continuas)
         \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
     \end{itemize}
 
-    \item Por otro lado,
+    \item $\Leftarrow)$ Por otro lado,
     %TODO: Fix
     \begin{center}
         \includegraphics[scale=0.4]{images/dem_carac_img_inv_1} 
         \includegraphics[scale=0.4]{images/dem_carac_img_inv_2} 
     \end{center}
-\end{enumerate}
+\end{itemize}
 \end{demo}
 
-\underline{Ejercicio}: Demostrar (ii) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización).
-
-La anterior caracterización se llama \underline{propiedad universal}.
+\underline{Ejercicio}: Demostrar $\Leftarrow$) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización).
 
 Caso esencial: 
 \[
 \boxed{f: Y \rightarrow X \text{ inyectiva}} 
 \]
-
 \begin{defi}
-Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \underline{inmersión} (se suelen omitir las topologías).
+Una aplicación continua \textbf{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \underline{inmersión}.
 \end{defi}
 
 \begin{obs}
 \begin{enumerate}
-    \item $\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeomorfismo}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$
+    \item $\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeo.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$
+    \begin{demo}    
+    Tenemos:
     \[
-    [V \in f^{-1}\mathcal{T} \Leftrightarrow V = f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid f\left( Y \right)} \right)] 
+    V \in f^{-1}\mathcal{T} \Leftrightarrow V = f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid f\left( Y \right)} \right)
     \]
+    \end{demo}
 
     \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
         \text{ab. } \Rightarrow \text{inmersión } [\text{ab. en } X \Rightarrow \text{ab. en } f\left( Y \right)\\
         \text{cerr.} \Rightarrow \text{inmersión } [\text{cerr. en } X \Rightarrow \text{cerr. en} f\left( Y \right)] 
-    \end{cases} $
-    \[
-    \begin{cases}
-        f\left( Y \right) \stackrel{\text{ab.}} X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = U \cap f\left( Y \right) \in \mathcal{T} \left( \text{inter. abierto} \right)\\
-        f\left( Y \right) \stackrel{\text{cerr.}} X: C \text{ c.} f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) \left( X\setminus U \right) \cap f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X \text{ i. c.} 
-    \end{cases} 
-    \]
+    \end{cases}$
+    \begin{demo}
+    \begin{itemize}
+        \item 
+        $f\left( Y \right) \stackrel{\text{ab.}}{\subset} X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
+        \item 
+        $f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X: C \stackrel{\text{cerr.}}{\subset}  f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \stackrel{\text{cerr.}}{\subset} X$ 
+    \end{itemize} 
+    \end{demo}
 
     \item Tenemos: 
     \begin{itemize}
@@ -93,6 +106,7 @@ Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right
 Las inmersiones permiten considerar unos espacios como subespacios de otros. Las frases ``el plano proyectivo real no es un subespacio de $\mathbb{R}^3$'', ``la esfera no es un subespacio de $\mathbb{R}^2$'', ``el plano proyectivo real es un subespacio de $\mathbb{R}^4$'' se refieren a esto: \underline{cuándo hay o no hay} una inmersión del primer espacio en el segundo, es decir, un subespacio del segundo homeomorfismo al primero. Es un problema fundamental de la topología
 y de la geometría.
 \end{obs}
+
 
 \section{Imágenes directas}%
 \label{sec:imagenes_directas}
@@ -252,6 +266,7 @@ Para representar cocientes se utilizan dibujos que indican las identificaciones 
 \end{center}
 \end{ej}
 
+
 \section{Productos (finitos)}%
 \label{sec:productos_finitos_}
 \underline{Problema:} Hacer $X_1 \times \ldots \times X_r = Y \xrightarrow{p_i} \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ continuas con 
@@ -332,6 +347,7 @@ En una topología producto ``todo se genera en productos''.
 \end{ej}
 \end{pg}
 
+
 \section{Sumas (finitas)}%
 \label{sec:sumas_finitas_}
 \underline{Problema:} Hacer $\left( X_i, \mathcal{T}_i \right) \xrightarrow{e_i} Y = X_1 + \ldots X_r = \left( X_1 \times \{1\} \right) \cup \ldots \cup \left( X_r \times \{r\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ continuas, ,con 
@@ -396,6 +412,7 @@ y más elaborado $h: \partial D \stackrel{\text{homeo.}}{\approx} \partial D$ co
 
 Finalmente, hay otros conceptos de ``suma'' más significativos que veremos en algún ejemplo.
 \end{pg}
+
 
 \section{Espacios proyectivos reales}%
 \label{sec:espacios_proyectivos_reales}
