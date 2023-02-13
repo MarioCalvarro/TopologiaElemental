@@ -23,12 +23,12 @@ Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico
     \]
     \item En un conjunto se pueden definir muchas topologías distintas (por ejemplo (\ref{ejemplos_topologia:first})) pero se puede asumir que solo ``parezcan'' distintas. Ya se sabe que la topología usual de $\mathbb{R}^n$ se puede definir mediante muchas distancias distintas.
 
-    %TODO: Dibujo
-    \begin{center}
-        \includegraphics[scale=0.2]{images/topologia_metricas}  
-
-        \textit{El dibujo representa distintas distancias\footnote{Procedentes de \textit{normas}.} en $\mathbb{R}^n$, pero todas definen la misma topología.} 
-    \end{center}
+    \begin{figure}[ht]
+        \centering
+        \incfig{normas-topología}
+        \caption{\textit{El dibujo representa distintas distancias, pero todas definen la misma topología.}}
+        \label{fig:normas-topología}
+    \end{figure}
     \item Una topología para ilustrar muchas propiedades (y contraejemplos). 
 
     Fijamos $a \in X$:
@@ -418,6 +418,7 @@ $Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topologí
     %TODO: Fix imagen
     \includegraphics[scale=0.3]{images/def_subespacio_top} 
 \end{center}
+
 \end{defi}
 
 \begin{obs}
@@ -456,7 +457,7 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
 
     Se dice que $Y$ es un \underline{subespacio discreto}. 
 
-    Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
+    Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:    
     %TODO: Fix imagen
     \begin{center}
         \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
