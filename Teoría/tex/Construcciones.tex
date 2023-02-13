@@ -36,14 +36,23 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
     \[
     \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow  
     \]
-    \begin{equation}
+    \begin{equation}\label{ec:prop_universal_inm}
         \left[\forall g: g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.} \right]  
     \end{equation}
 
-    Ilustrado:
-    \begin{center}
-        \includegraphics[scale=0.3]{images/caracterizacion_img_inv} 
-    \end{center}
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(Y) {$\left( Y, \mathcal{T}' \right)$};
+            \node(X) [right of=Y] {$\left( X, \mathcal{T} \right)$};
+            \node(Z) [below of=Y] {$\left( Z, \mathcal{T}'' \right)$};
+            \draw[->](Y) to node {$f$}(X);
+            \draw[->](Z) to node [left] {$g$}(Y);
+            \draw[->](Z) to node [right=0.2ex] {$f \circ g$}(X);
+            \end{tikzpicture}
+        \caption{\textit{Ilustración de la composición propuesta}}
+        \label{prop_universal_inmersiones}
+    \end{figure}
 \end{theo}
 \begin{demo}
 \begin{itemize}
@@ -54,11 +63,32 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
     \end{itemize}
 
     \item $\Leftarrow)$ Por otro lado,
-    %TODO: Fix
-    \begin{center}
-        \includegraphics[scale=0.4]{images/dem_carac_img_inv_1} 
-        \includegraphics[scale=0.4]{images/dem_carac_img_inv_2} 
-    \end{center}
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(Y) {$\left( Y, \mathcal{T}' \right)$};
+            \node(X) [right of=Y] {$\left( X, \mathcal{T} \right)$};
+            \node(Z) [below of=Y] {$\left( Y, \mathcal{T}' \right)$};
+            \draw[->](Y) to node {$f$}(X);
+            \draw[->](Z) to node [left] {$id$}(Y);
+            \draw[->](Z) to node [right=0.2ex] {$f$}(X);
+            \end{tikzpicture}
+    \end{figure}
+    Como la $id$ es continua, por (\ref{prop_universal_inmersiones}), $f$ es también continua. Al ser $f^{-1}\mathcal{T}$ la menos fina, $\mathcal{T}' \supset f^{-1}\mathcal{T}$.
+
+    Además, 
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(Y) {$\left( Y, \mathcal{T}' \right)$};
+            \node(X) [right of=Y] {$\left( X, \mathcal{T} \right)$};
+            \node(Z) [below of=Y] {$\left( Y, f^{-1}\mathcal{T} \right)$};
+            \draw[->](Y) to node {$f$}(X);
+            \draw[->](Z) to node [left] {$id$}(Y);
+            \draw[->](Z) to node [right=0.2ex] {$f$ cont.}(X);
+            \end{tikzpicture}
+    \end{figure}
+    Como la $f$ es continua, por (\ref{prop_universal_inmersiones}), $id$ es también continua $\Rightarrow f^{-1}\mathcal{T} \supset \mathcal{T}'$.
 \end{itemize}
 \end{demo}
 
