@@ -21,6 +21,7 @@
 \usepackage{accents} %Paquete acentos
 \usepackage{stackrel} %Paquete para poner por encima y debajo
 \usepackage{float} %Paquete para figuras
+\usepackage{enumitem} %Paquete para el control de enumeraciones
 
 %% Ruta de las fotos e inclusion de las mismas
 \usepackage{graphicx}
@@ -60,6 +61,9 @@
     \theoremnumbering{arabic}
     \theoremsymbol{}
     \theoremprework{\vspace{0.2cm} \hrule}
+    \theorempostwork{\vspace{0.2cm}\hrule}
+        \newtheorem*{enun}{Enunciado}
+
     \theorempostwork{\vspace{0.2cm}\hrule}
         \newtheorem*{defi}{Definición}
 
@@ -140,3 +144,4 @@
     \import{./figures/}{#1.pdf_tex}
 }
 %\pdfsupresswarningpagegroup=1
+\DeclareMathAlphabet{\matheuler}{U}{eus}{m}{n}
