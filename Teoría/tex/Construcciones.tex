@@ -5,17 +5,19 @@
 \section{Imágenes inversas}%
 \label{sec:imagenes_inversas}
 \underline{Problema:} Hacer $f: Y \rightarrow \left( X, \mathcal{T} \right)$ continua con $\begin{cases}
-    \text{topología discreta en } Y \text{ (matricialidad)\footnote{Añadimos la característica de que la topología debe ser la menos fina para no tener simplemente la solución trivial de usar 
-    la discreta.}}\\
+    \text{topología discreta en } Y \text{ (trivialidad)}\\
     \text{topología \underline{menos fina} en } Y 
 \end{cases}$. 
 
 Es decir, buscamos crear una topología en base a $f$ de tal modo que $f$ sea siempre continua.
 
-\underline{Sol:} 
+\underline{Solución}: 
 \begin{defi}    
-Llamamos \underline{topología de la imagen inversa} a: $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$, siendo $f$ continua.
+Llamamos \textbf{topología de la imagen inversa} a: $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$.
 \end{defi}
+\begin{obs}
+Con esta definición, $f$ será continua.
+\end{obs}
 \begin{prop}    
 La topología de la imagen inversa cumple:
 \begin{enumerate}
@@ -48,7 +50,7 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
     \item $\Rightarrow)$ $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
     \begin{itemize}
         \item $g$ cont. $\Rightarrow f \circ g$ cont. (Composición de continuas)
-        \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
+        \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ g \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
     \end{itemize}
 
     \item $\Leftarrow)$ Por otro lado,
