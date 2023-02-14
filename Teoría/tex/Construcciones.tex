@@ -109,19 +109,30 @@ Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right
     \[
     V \in f^{-1}\mathcal{T} \Leftrightarrow V \stackrel{\text{biy.}}{=} f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid_{f\left( Y \right)}} \right)
     \]
-    Con esto $f$ es abierta? y continua.
+    Con esto $f$ es abierta y continua.
     \end{demo}
 
     \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
-        \text{ab. } \Rightarrow \text{inmersión } [\text{ab. en } X \Rightarrow \text{ab. en } f\left( Y \right)\\
-        \text{cerr.} \Rightarrow \text{inmersión } [\text{cerr. en } X \Rightarrow \text{cerr. en} f\left( Y \right)] 
+        \text{abierto} \Rightarrow \text{inmersión }\\
+        \text{cerrado} \Rightarrow \text{inmersión } 
+    \end{cases}$
+    \begin{demo}
+        \begin{itemize}
+            \item Abierto en $X \Rightarrow$ abierto en $f\left( Y \right)$.
+            \item Cerrado en $X \Rightarrow$ cerrado en $f\left( Y \right)$.
+        \end{itemize}
+    \end{demo}
+
+    \item $f: Y \rightarrow X$ inmersión: $\begin{cases}
+        \text{abierto } \Leftrightarrow f\left( Y \right) \text{abierto en } X\\
+        \text{cerrado } \Leftrightarrow f\left( Y \right) \text{cerrado en } X\\
     \end{cases}$
     \begin{demo}
     \begin{itemize}
         \item 
         $f\left( Y \right) \stackrel{\text{ab.}}{\subset} X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
         \item 
-        $f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X: C \stackrel{\text{cerr.}}{\subset}  f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \stackrel{\text{cerr.}}{\subset} X$ 
+        $f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X: C \stackrel{\text{cerr.}}{\subset}  f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) = \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \stackrel{\text{cerr.}}{\subset} X$ 
     \end{itemize} 
     \end{demo}
 
@@ -129,7 +140,7 @@ Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right
     \begin{itemize}
         \item Inmersión $ + \not$ ab. $+ \not$ cerr.
         \item Inmersión $+$ ab. $+ \not $ cerr.
-        \item Inmersión $+$ ab. $+$ cerr.
+        \item Inmersión $+ \not$ ab. $+$ cerr.
     \end{itemize}
 \end{enumerate}
 \end{obs}
