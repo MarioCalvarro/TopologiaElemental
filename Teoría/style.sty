@@ -65,6 +65,7 @@
     \theorempostwork{\vspace{0.2cm}\hrule}
         \newtheorem*{defi}{Definición}
 
+    \theoremprework{\vspace{0.2cm} \hrule}
     \theorempostwork{\vspace{0.2cm}\hrule}
         \newtheorem*{enun}{Enunciado}
 
@@ -92,6 +93,10 @@
     	\newtheorem*{ej}{\underline{Ejemplo}:}
     	\newtheorem*{pg}{\underline{Política general}:}
     	\newtheorem*{il}{\underline{Ilustración}:}
+    	
+    	\theoremheaderfont{\normalfont}
+    \theorembodyfont{\sffamily}
+    	\newtheorem*{sol}{\underline{Solución}:}
 
 %% Definicion de operadores especiales para simplificar la escritura matematica
 \DeclareMathOperator{\dom}{dom}
@@ -138,12 +143,13 @@
 
 % Paquetes para figuras con InkScape
 \usepackage{import}
-\usepackage{xifthen}
-\usepackage{pdfpages}
-\usepackage{transparent}
+%\usepackage{xifthen}
+%\usepackage{pdfpages}
+%\usepackage{transparent}
 \newcommand{\incfig}[1]{
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
 %\pdfsupresswarningpagegroup=1
 \DeclareMathAlphabet{\matheuler}{U}{eus}{m}{n}
+\usepackage{ marvosym }
