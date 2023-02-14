@@ -70,6 +70,7 @@
     \theorempostwork{\vspace{0.2cm}\hrule}
         \newtheorem*{defi}{Definición}
 
+	\theoremprework{\vspace{0.2cm} \hrule}
     \theorempostwork{\vspace{0.2cm}\hrule}
         \newtheorem*{enun}{Enunciado}
 
@@ -97,6 +98,10 @@
     	\newtheorem*{ej}{\underline{Ejemplo}:}
     	\newtheorem*{pg}{\underline{Política general}:}
     	\newtheorem*{il}{\underline{Ilustración}:}
+    	
+    \theoremheaderfont{\normalfont}
+    \theorembodyfont{\sffamily}
+    	\newtheorem*{sol}{\underline{Solución}:}
 
 %% Definicion de operadores especiales para simplificar la escritura matematica
 \DeclareMathOperator{\dom}{dom}
@@ -167,7 +172,7 @@
 \begin{enun}
 Comprobar las leyes distributivas para la unión y la intersección de conjuntos, y las leyes de De Morgan.
 \end{enun}
-\begin{ej}
+\begin{sol}
 \begin{itemize}
 \item Ley distributiva de la unión: $(A \cap B) \cup C = (A \cup C) \cap (B \cup C)$
 
@@ -181,7 +186,7 @@ $x \in (A \cup B) \cap C \Leftrightarrow (x \in A \vee x \in B) \wedge x \in C \
 \item $A \cap B = A^{cc} \cap B^{cc} \overset{(1)}{=} (A^c \cup B^c)^c$, y tomando complementarios en ambos lados obtenemos la segunda ley.
 \end{enumerate}
 \end{itemize}
-\end{ej}
+\end{sol}
 
 \section{Número 0.2}
 \begin{enun}
@@ -191,13 +196,13 @@ Se consideran una aplicación $f: A \rightarrow B$ y subconjutos $A_0 \subset A,
  \item Demostrar que $f(f^{-1}(B_0)) \subset B_0$ y que se da la igualdad si $f$ es sobreyectiva.
 \end{enumerate}
 \end{enun}
-\begin{ej}
+\begin{sol}
 \begin{enumerate}[label={(\arabic*)}]
  \item Sea $x \in A_0$. Así, $f(x) \in f(A_0)$, y por definición de preimagen, $x \in f^{-1}(f(A_0))$. En particular, obtenemos la igualdad $A_0 
  = f^{-1}(f(A_0))$ si $f$ es inyectiva. Supongamos que $\exists y \in f^{-1}(f(A_0)) \setminus A_0$. Así, $f(y) \in f(A_0)$, luego existe un $x \in A_0$ tal que $f(y) = f(x)$. Como $f$ es inyectiva, $x = y \in A_0$, lo que nos lleva a una contradicción. 
  \item Sea $y \in f(f^{-1}(B_0))$. Así, existe $x \in f^{-1}(B_0)$ tal que $y = f(x)$. Por tanto, si aplicamos f, obtenemos que $f(x) = y \in B_0$. En particular, obtenemos la igualdad $f(f^{-1}(B_0)) = B_0$ si $f$ es sobreyectiva. Si $y \in B_0$, como $f$ es sobreyectiva, existe un $x \in f^{-1} (B_0)$ tal que $f(x) = y$. Aplicamos $f^{-1}$ y obtenemos que $f^{-1}(y) = x \in f^{-1}(B_0)$, y al aplicar $f$ obtenemos $f(x) = y \in f(f^{-1}(B_0))$.
 \end{enumerate}
-\end{ej}
+\end{sol}
 
 \section{Número 0.3}
 \begin{enun}
@@ -219,7 +224,7 @@ Se consideran una aplicación $f: A \rightarrow B$ y colecciones de subconjutos 
  \end{enumerate}
 \end{enumerate}
 \end{enun}
-\begin{ej}
+\begin{sol}
 \begin{enumerate}[label={(\arabic*)}]
  \item Probar que $f^{-1}$ conserva inclusiones, uniones, intersecciones y diferencias
  \begin{enumerate}[label={(\alph*)}]
@@ -244,13 +249,13 @@ Se consideran una aplicación $f: A \rightarrow B$ y colecciones de subconjutos 
  \end{itemize}
  \end{enumerate}
 \end{enumerate}
-\end{ej}
+\end{sol}
 
 \section{Número 0.4}
 \begin{enun}
 Probar que el conjunto $\mathbb{Q}$ de los números racionales es numerable. Probar que el intervalo $[0,1]$ no es numerable, y que por tanto no lo es $\mathbb{R}$.
 \end{enun}
-\begin{ej}
+\begin{sol}
 \begin{enumerate}[label={(\arabic*)}]
 \item Veamos primeramente que el conjunto $\mathbb{Q}$ es numerable. Apoyándonos en el hecho de que $\mathbb{Z}$ es numerable, construimos la siguiente aplicación: \begin{align*}
 f: \mathbb{Z} \times \mathbb{Z}^* &\rightarrow \mathbb{Q} \\ 
@@ -277,7 +282,7 @@ x &\mapsto \tan\left[\pi (x - \frac{1}{2})\right]
 Es una biyección. Por tanto, $\mathbb{R}$ no es numerable, y en particular, $Card(\mathbb{R}) = Card([0,1])$
 \end{enumerate}
 
-\end{ej}
+\end{sol}
 
 \section{Número 0.5}
 \begin{enun}
@@ -287,16 +292,16 @@ d(x,y) = \sqrt{\sum_i (x_i - y_i)^2} && \rho_1(x,y) = \sum_i | x_i - y_i| && \rh
 \end{align*}
 Para la primera, utilizar la \textit{desigualdad triangular} o \textit{de Minkowsky} $$\sqrt{\sum_i (a_i + b_i)^2} \leq \sqrt{\sum_i a_i^2} + \sqrt{\sum_i b_i^2}$$
 \end{enun}
-\begin{ej}
+\begin{sol}
 dgerhgsre
-\end{ej}
+\end{sol}
 \chapter{Lista 1: Espacios Topológicos}%
 \label{cha:lista1}
 \section{Número 1.1}
 \begin{enun}
 Sea $X$ un conjunto, y $\matheuler{T}_{CF}$ la familia de todos los subconjuntos de $X$ cuyo complementario es finito, más el conjunto vacío. Probar que $\matheuler{T}_{CF}$ es una topología en $X$. Esta topología se llama, por razones evidentes, \textit{topología de los complementarios finitos}. ¿Qué topología obtenemos si $X$ es un conjunto finito?
 \end{enun}
-\begin{ej}
+\begin{sol}
 Veamos que $\matheuler{T}_{CF}$ satisface las tres propiedades para que sea topología:
 \begin{enumerate}[label={(\arabic*)}]
 \item Por definición, $\emptyset \in \matheuler{T}_{CF}$. Además, $X^c = \emptyset$ es finito, por lo que $X \in \matheuler{T}_{CF}$.
@@ -308,14 +313,14 @@ $$X \setminus (U \cap U') \overset{De Morgan}{=} (X \setminus U) \cup (X \setmin
 Como $U, U' \in \matheuler{T}_{CF}$, su complementario es finito, y la unión finita de conjuntos finitos es finita. Por tanto, $\bigcap_{i \in I} U_i : I $ finito $\in \matheuler{T}_{CF}$.
 \end{enumerate}
 En particular, si $X$ es finito, cualquier subconjunto suyo $A \subset X$ tiene complementario finito, y por tanto, pertenece a $\matheuler{T}_{CF}$. Así, en particular todos los puntos son abiertos, y por tanto, $\matheuler{T}_{CF} = \matheuler{T}_{Discreta}$.
-\end{ej}
+\end{sol}
 
 
 \section{Número 1.4}
 \begin{enun}
 Sea $X$ un conjunto infinito y $\matheuler{T}$ una topología en la que todos los conjuntos infinitos son abiertos. Demostrar que $\matheuler{T}$ es la topología discreta.
 \end{enun}
-\begin{ej}
+\begin{sol}
 La idea de la demostración consiste en utilizar la caracterización de la topología discreta, es decir, para ver que la topología es la discreta tenemos que ver que todos los puntos del conjunto son abiertos.
 
 Como $X$ es infinito, existe una sucesión $\{x_n\}_{n \in \mathbb{N}}$ de elementos diferentes. Sea $A = \{x_1, x_2,x_3,\ldots \} \subset X$ cuyos elementos son los de la sucesión $x_n$. Como $A$ es infinito, por la definición de la topología, $A \in \matheuler{T}$, y además podemos descomponer de forma disjunta $A$ como la subsucesión de elementos con índice par y la subsucesión de elementos de índice impar:
@@ -323,7 +328,7 @@ $$A = A_1 \sqcup A_2 = \{x_i : i \ \mathsf{mod} \ 2 = 1\} \sqcup \{x_i : i\  \ma
 Y además, por ser ambos infinitos, $A_1, A_2 \in \matheuler{T}$. Por ser $\matheuler{T}$, las intersecciones finitas de elementos de $\matheuler{T}$ están contenidas en $\matheuler{T}$, y también las uniones arbitrarias; así, dado $x \in X$ arbitrario:
 $$\underbrace{(A_1 \cup \{x\})}_{\in \matheuler{T}} \cap \underbrace{(A_2 \cup \{x\})}_{\in \matheuler{T}} = \{x\} \in \matheuler{T}$$
 Como $x$ es arbitrario, quiere decir que todos los puntos son abiertos, y por la caracterización, la topología ante la que nos encontramos es la discreta.
-\end{ej}
+\end{sol}
 
 \section{Número 1.7}
 \begin{enun}
@@ -331,7 +336,7 @@ En el plano $X = \mathbb{R}^2$ se considera la familia $\matheuler{T}$ de todos 
 $$((a - \varepsilon, a + \varepsilon) \times \{b\}) \cup (\{a\} \times (b-\varepsilon, b + \varepsilon)) \subset U$$
 Estudiar si $\matheuler{T}$  es una topología en $X$.
 \end{enun}
-\begin{ej}
+\begin{sol}
 Para comprobar que $\matheuler{T}$ es en efecto una topología, debemos comprobar que satisface las tres propiedades de la definición de topología. No obstante, antes de comenzar a demostrar, intentaremos tener una idea intuitiva de cómo son los abiertos en esta topología.
 \begin{figure}[h]
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -402,14 +407,14 @@ Comprobemos entonces que $\matheuler{T}_{Aspa}$ es topología:
 \item Comprobemos las uniones arbitrarias. Sean $U_i \in \matheuler{T}_{Aspa}$ con $i \in I$ arbitrario. Sea $(a,b) \in \bigcup_{i \in I} U_i$. Entonces, existe un $i_0 \in I$ tal que $(a,b) \in U_{i_0}$, luego $\exists \varepsilon > 0$ tal que $aspa((a,b), \varepsilon) \subset U_{i_0} \subset \bigcup_{i \in I} U_i$. Así, $\bigcup_{i \in I} U_i \in \matheuler{T}_{Aspa}$.
 \item Comprobamos finalmente las intersecciones finitas. Sean $U, U' \in \matheuler{T}_{Aspa}$, y consideramos $(a,b) \in U \cap U'$. Entonces, $\begin{cases} \exists \varepsilon > 0 : aspa((a,b), \varepsilon) \subset U \\ \exists \varepsilon' > 0 : aspa((a,b), \varepsilon') \subset U' \end{cases}$. Si elegimos $\varepsilon_0 = \min \{\varepsilon, \varepsilon'\}$ se cumple que $aspa((a,b), \varepsilon_0) \subset U \cap U'$. Por tanto, $U \cap U' \in \matheuler{T}_{Aspa}$ y consecuentemente $\bigcap_{i \in I} U_i : I$ finito $\in \matheuler{T}_{Aspa}$.
 \end{enumerate}
-\end{ej}
+\end{sol}
 
-\section{Número 1.8}
+\section*{Número 1.8} \label{1.8}
 \begin{enun}
 En $X = \mathbb{R}^2$ se consideran los subconjuntos $$G_t = \{(x,y) \in X : x > y + t\} \mbox{ con } t \in \mathbb{R}$$
 Demostrar que estos subconjuntos, junto con $\emptyset$ y $X$, son los abiertos de una topología en $X$. ¿Es esto mismo cierto si $t \in \mathbb{N}$? ¿Y si $t \in \mathbb{Q}$?
 \end{enun}
-\begin{ej}
+\begin{sol}
 Antes de comprobar que la topología descrita $\matheuler{T}$ en efecto lo es, echamos un vistazo a la pinta que tienen los conjuntos $G_t$, lo cual nos ayudará a desarrollar una intuición de cómo proceder con la demostración.
 $$\begin{tikzpicture}
 \begin{axis}[
@@ -442,7 +447,57 @@ Contestamos las dos cuestiones siguientes:
 
 Por ejemplo, si consideramos la sucesión $\displaystyle \lbrace - \left(1 + \frac{1}{n} \right)^n \} \longrightarrow -e$ obtenemos un contraejemplo.
 \end{itemize}
-\end{ej}
+\end{sol}
+
+\section*{Número 1.14}
+\begin{enun}
+La topología \textit{usual} $\matheuler{T}_u$ de la recta real $\mathbb{R}$ está generada por los intervalos abiertos $(a,b)$. Mostrar que los intervalos semiabiertos $[a,b)$ generan otra topología $\matheuler{T}_{[,)}$. Esta topología se denomina de \textit{Sorgenfrey}. Compararla con la usual. ¿Y si se toman los intervalos $(a,b]$?
+\end{enun}
+\begin{sol}
+\end{sol}
+
+\section*{Número 1.15}
+\begin{enun}
+En $\mathbb{R}^2$ se considera la familia $\matheuler{B}$ de todos los subconjuntos $$B((x,y), \varepsilon) = ((x,x+\varepsilon) \times (y,y + \varepsilon)) \cup \{(x,y)\} : \  (x,y) \in \mathbb{R}^2, \varepsilon > 0$$
+\begin{enumerate}[label={(\arabic*)}]
+\item Demostrar que $\matheuler{B}$ es base de una topología $\matheuler{T}$ en $\mathbb{R}^2$.
+\item Estudiar la relación de esta topología con la topología usual $\matheuler{T}_{u}$ del plano.
+\item Hallar el interior de $[0,1] \times [0,1]$ y la adherencia de $(0,1) \times (0,1)$ en $\matheuler{T}$ y en $\matheuler{T}_u$.
+\end{enumerate}
+\end{enun}
+\begin{sol}
+\end{sol}
+
+\section*{Número 1.16}
+\begin{enun}
+En $\mathbb{R}^2$ se considera la topología $\matheuler{T}$ del número {\color{blue}{\hyperref[1.8]{1.8}}}. ¿Son las rectas cerrados de esta topología? Si no lo son, ¿cuál es su adherencia? Calcular:
+\begin{enumerate}[label={(\arabic*)}]
+\item Las adherencias de los cuadrantes $A: x \geq 0, y \leq 0$ y $B: x \geq 0, y \geq 0$.
+\item El interior y la adherencia del conjunto $\{x > y\}\cup\{x > -y\}$.
+\item ¿Tiene algún punto $(x,y)$ algún entorno cerrado distinto de todo el plano?
+\end{enumerate}
+\end{enun}
+\begin{sol}
+\end{sol}
+
+\section*{Número 1.17}
+\begin{enun}
+Sea $d$ la distancia euclídea en el plano $\mathbb{R}^2$. Se definen otras dos distancias mediante $$D(P,Q) = \begin{cases} 0 & \mbox{si } P = Q \\ d(O,P) + d(O,Q) & \mbox{ si no} \end{cases}$$
+$$\delta(P,Q) = \begin{cases} d(P,Q) & \mbox{si } O,P \mbox{ y } Q \mbox{ están alineados} \\ d(O,P) + d(O,Q) & \mbox{ si no} \end{cases}$$
+donde $O$ es el origen, y una tercera 
+$$\rho(P,Q) = \begin{cases} |y_1 - y_2| & \mbox{si } x_1 = x_2  \\ |y_1| + |x_1 - x_2| + |y_2| & \mbox{ si no}\end{cases}$$
+donde $P = (x_1,y_1)$ y $Q = (x_2,y_2)$. Se consideran entonces las cuatro topologías del plano asociadas a las cuatro distancias $d,D,\delta,\rho$. Hallar en todas ellas el interior y la adherencia de:
+\begin{enumerate}[label={(\arabic*)}]
+\item Una recta.
+\item $[0,1) \times [0,1)$
+\item $[0,1] \times [0,1]$
+\item $[1,2] \times [1,2]$
+\end{enumerate}
+\end{enun}
+
+\begin{sol}
+\end{sol}
+
 \chapter{Lista 2: Aplicaciones continuas}%
 \label{cha:lista2}
 
