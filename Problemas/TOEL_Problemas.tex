@@ -454,6 +454,15 @@ Por ejemplo, si consideramos la sucesión $\displaystyle \lbrace - \left(1 + \fr
 La topología \textit{usual} $\matheuler{T}_u$ de la recta real $\mathbb{R}$ está generada por los intervalos abiertos $(a,b)$. Mostrar que los intervalos semiabiertos $[a,b)$ generan otra topología $\matheuler{T}_{[,)}$. Esta topología se denomina de \textit{Sorgenfrey}. Compararla con la usual. ¿Y si se toman los intervalos $(a,b]$?
 \end{enun}
 \begin{sol}
+Para comprobar que en efecto los intervalos semiabiertos generan otra topología, comprobaremos que el conjunto $\matheuler{B} = \{[a,b) : a,b \in \mathbb{R}, a < b\}$ es una base.
+\begin{enumerate}[label={(\arabic*)}]
+\item Primeramente comprobamos que $\mathbb{R}$ se puede expresar como unión de estos intervalos, lo que es inmediato pues 
+$$\mathbb{R} = \bigcup_{a,b \in \mathbb{R}} [a,b) = \bigcup_{B \in \matheuler{B}} B$$
+\item Comprobamos también que dados dos elementos de la base $B_1 = [a_1, b_1)$ y $B_2 = [a_2,b_2)$, y un elemento arbitrario $x \in B_1 \cap B_2$, entonces existe un tercer elemento de la base $B_3 = [a_3,b_3)$ tal que $x \in B_3 \subset B_1 \cap B_2$. Si tomamos $B_3 = B_1 \cap B_2 = [\max\{a_1,a_2\}, \min\{b_1,b_2\})$, entonces $B_3 \in \matheuler{B}$ y además cumple las condiciones pedidas.
+\end{enumerate}
+Por tanto, $\matheuler{B}$ es base de la topología de Sorgenfrey. Comparándola con la topología usual, resulta que esta nueva topología es  más fina que la usual, ya que todo abierto usual de la forma $(a,b)$ se puede expresar como unión arbitraria de abiertos de Sorgenfrey, por ejemplo: $$(a,b) = \bigcup_{c \in (a,b)} [c,b)$$ o bien $$\bigcup_{n \in \mathbb{N}} [a + \frac{1}{n}, b)$$ Y además es estrictamente más fina, ya que existen abiertos de Sorgenfrey que no son abiertos con la topología usual; por ejemplo, el intervalo $[0,1)$ no es un abierto usual pues si lo fuese, entonces $[0,1) = \bigcup_{i \in I} (a_i,b_i)$, y por tanto existiría un $i_0$ tal que $0 \in (a_{i_0},b_{i_0})$, y por tanto existiría un número negativo contenido en dicho intervalo. Obsérvese que además, dado un abierto de Sorgenfrey, también es cerrado en esta topología pues su complementario $$\mathbb{R} \setminus [a,b) = (-\infty,a) \cup [b,a)$$ está compuesto por una unión de abiertos, y por tanto, es cerrado.
+
+Finalmente, si se tomaran intervalos de la forma $(a,b]$, el razonamiento sería análogo.
 \end{sol}
 
 \section*{Número 1.15}
