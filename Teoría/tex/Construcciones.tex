@@ -30,7 +30,6 @@ La topología de la imagen inversa cumple:
     2. $f$ es continua $\Rightarrow \forall f^{-1}U$ es abierto
 \end{demo}
 
-%TODO: Fix teorema
 \begin{theo}[Propiedad universal de las inmersiones]
 Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T} \right)$. Entonces:
     \[
@@ -108,8 +107,9 @@ Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right
     \begin{demo}    
     Tenemos:
     \[
-    V \in f^{-1}\mathcal{T} \Leftrightarrow V = f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid f\left( Y \right)} \right)
+    V \in f^{-1}\mathcal{T} \Leftrightarrow V \stackrel{\text{biy.}}{=} f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid_{f\left( Y \right)}} \right)
     \]
+    Con esto $f$ es abierta? y continua.
     \end{demo}
 
     \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
@@ -143,19 +143,25 @@ y de la geometría.
 \section{Imágenes directas}%
 \label{sec:imagenes_directas}
 \underline{Problema:} Hacer $f: \left( X, \mathcal{T} \right) \rightarrow Y$ continua en $\begin{cases}
-    \text{top. trivial en } Y \text{(matrivialidad)}\\
+    \text{top. trivial en } Y \text{(trivialidad)}\\
     \text{top. \underline{más fina} en } Y 
 \end{cases} $ 
 
+Es decir, buscamos una topología para que $f$ sea continua.
+
 \underline{Sol:} $f\mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}$ top. \underline{imagen directa}.
+\begin{prop}    
 \begin{enumerate}
     \item Es topología (inm.)
-    \item Máxima [$f$ es continua $\Leftrightarrow \forall f^{-1} V$ es abierto] 
+    \item Máxima. 
 \end{enumerate}
+\end{prop}
+\begin{demo}
+2.) $f$ es continua $\Leftrightarrow \forall f^{-1} V$ es abierto
+\end{demo}
 
 \begin{theo}[Caracterización imágenes directas]
-\begin{enumerate}
-    \item
+Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
     \[
     \mathcal{T}' = f\mathcal{T} \Leftrightarrow  
     \]
@@ -163,19 +169,26 @@ y de la geometría.
         \forall g \left[ g \text{ cont.} \Leftrightarrow g \circ f \text{ cont.} \right]
     \end{equation}
 
-    \item Y.
-    %TODO: Fix composición
-    \begin{center}
-        \includegraphics[scale=0.3]{images/caracterizacion_img_dir} 
-    \end{center}
-\end{enumerate}
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$\left( X, \mathcal{T} \right)$};
+            \node(Y) [right of=Y] {$\left( Y, \mathcal{T}' \right)$};
+            \node(Z) [below of=Y] {$\left( Z, \mathcal{T}'' \right)$};
+            \draw[->](X) to node {$f$}(Y);
+            \draw[->](X) to node [left=0.3cm] {$g \circ f$}(Z);
+            \draw[->](Y) to node [right=0.2ex] {$g$}(Z);
+            \end{tikzpicture}
+        \caption{\textit{Ilustración de la composición propuesta}}
+        \label{prop_universal_directas}
+    \end{figure}
 \end{theo}
 \begin{demo}
 \begin{enumerate}
     \item $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
     \begin{itemize}
         \item $g$ cont. $\Rightarrow g \circ f$ cont. (Composición de continuas)
-        \item $g \circ f$ cont. $\Rightarrow g$ cont. ($W \in \mathcal{T}'' \Rightarrow f^{-1}\left( g^{-1} W \right) = \underbrace{\left( g \circ f \right)}_{\text{cont.}}^{-1} W \in \mathcal{T} \stackrel{\mathcal{T}' = f\mathcal{T}}{\Rightarrow} g^{-1}W \in \mathcal{T}'$)
+        \item $g \circ f$ cont. $\Rightarrow g$ cont. ($W \in \mathcal{T}'' \Rightarrow f^{-1}\left( g^{-1} W \right) = \underbrace{\left( g \circ f \right)^{-1}}_{\text{cont.}} W \in \mathcal{T} \stackrel{\mathcal{T}' = f\mathcal{T}}{\Rightarrow} g^{-1}W \in \mathcal{T}'$)
     \end{itemize}
 
     \item Por otro lado,
@@ -204,8 +217,10 @@ Caso esencial:
 \]
 Para entender los abiertos de una imagen directa es conveniente representarlos en el dominio. El concepto es conjuntista en realidad:
 
+%TODO: explicar el interés de este caso. f(X) nos dirá todo lo necesario.
+
 \begin{defi}
-Un conjunto $A \subset X$ es \underline{saturado} (respecto de $f$) si $f^{-1}f\left( A \right) = A$.
+Un conjunto $A \subset X$ es \textbf{saturado} (respecto de $f$) si $f^{-1}f\left( A \right) = A$.
 \end{defi}
 \begin{prop}
 Los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$.    
@@ -247,7 +262,7 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 \end{ej}
 
 \begin{defi}
-Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ tal que $\mathcal{T}' = f\mathcal{T}$ se llama \underline{identificación} (se suelen omitir las topologías)
+Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ tal que $\mathcal{T}' = f\mathcal{T}$ se llama \textbf{identificación} 
 \end{defi}
 
 \begin{obs}
