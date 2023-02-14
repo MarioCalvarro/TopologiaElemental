@@ -62,7 +62,7 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
         \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ g \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
     \end{itemize}
 
-    \item $\Leftarrow)$ Por otro lado,
+    \item $\Leftarrow)$ Por otro lado, veamos la unicidad:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -74,7 +74,7 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
             \draw[->](Z) to node [right=0.2ex] {$f$}(X);
             \end{tikzpicture}
     \end{figure}
-    Como la $id$ es continua, por (\ref{prop_universal_inmersiones}), $f$ es también continua. Al ser $f^{-1}\mathcal{T}$ la menos fina, $\mathcal{T}' \supset f^{-1}\mathcal{T}$.
+    Como esta $id$ es continua, por (\ref{prop_universal_inmersiones}), $f\circ id = f$ es también continua. Al ser $f^{-1}\mathcal{T}$ la menos fina, $\mathcal{T}' \supset f^{-1}\mathcal{T}$.
 
     Además, 
     \begin{figure}[H]
@@ -88,18 +88,18 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
             \draw[->](Z) to node [right=0.2ex] {$f$ cont.}(X);
             \end{tikzpicture}
     \end{figure}
-    Como la $f$ es continua, por (\ref{prop_universal_inmersiones}), $id$ es también continua $\Rightarrow f^{-1}\mathcal{T} \supset \mathcal{T}'$.
+    Como la $f$ es continua, por (\ref{prop_universal_inmersiones}), esta nueva $id$ es también continua $\Rightarrow f^{-1}\mathcal{T} \supset \mathcal{T}'$.
 \end{itemize}
 \end{demo}
 
-\underline{Ejercicio}: Demostrar $\Leftarrow$) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización).
+\underline{Ejercicio}: Demostrar $\Leftarrow$) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización). Hecho en clase.
 
 Caso esencial: 
 \[
 \boxed{f: Y \rightarrow X \text{ inyectiva}} 
 \]
 \begin{defi}
-Una aplicación continua \textbf{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \underline{inmersión}.
+Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \textbf{inmersión}.
 \end{defi}
 
 \begin{obs}
