@@ -171,7 +171,7 @@ Es decir, buscamos una topología para que $f$ sea continua.
 2.) $f$ es continua $\Leftrightarrow \forall f^{-1} V$ es abierto
 \end{demo}
 
-\begin{theo}[Caracterización imágenes directas]
+\begin{theo}[Propiedad universal de las identificaciones]
 Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
     \[
     \mathcal{T}' = f\mathcal{T} \Leftrightarrow  
@@ -184,7 +184,7 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(X) {$\left( X, \mathcal{T} \right)$};
-            \node(Y) [right of=Y] {$\left( Y, \mathcal{T}' \right)$};
+            \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
             \node(Z) [below of=Y] {$\left( Z, \mathcal{T}'' \right)$};
             \draw[->](X) to node {$f$}(Y);
             \draw[->](X) to node [left=0.3cm] {$g \circ f$}(Z);
@@ -208,7 +208,7 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(X) {$\left( X, \mathcal{T} \right)$};
-            \node(Y) [right of=Y] {$\left( Y, \mathcal{T}' \right)$};
+            \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
             \node(Z) [below of=Y] {$\left( Y, \mathcal{T}' \right)$};
             \draw[->](X) to node {$f$}(Y);
             \draw[->](X) to node [left=0.3cm] {$g \circ f = f$}(Z);
@@ -217,11 +217,18 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
     \end{figure}
     Como $id$ será continua, aplicamos \ref{eq:prop_universal_directa} y tenemos que $g \circ f = f$es continua. Al ser $f \mathcal{T}$ la más fina $\Rightarrow \mathcal{T}' \subset f \mathcal{T}$.
 
-    %TODO: Fix
-    \begin{center}
-        \includegraphics[scale=0.4]{images/dem_carac_img_dir_1} 
-        \includegraphics[scale=0.4]{images/dem_carac_img_dir_2} 
-    \end{center}
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$\left( X, \mathcal{T} \right)$};
+            \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
+            \node(Z) [below of=Y] {$\left( Y, f\mathcal{T} \right)$};
+            \draw[->](X) to node {$f$}(Y);
+            \draw[->](X) to node [left=0.3cm] {$f$ cont.}(Z);
+            \draw[->](Y) to node [right=0.2ex] {$id$}(Z);
+            \end{tikzpicture}
+    \end{figure}
+    Como $f$ es continua por definición de $f \mathcal{T}$, aplicamos \ref{eq:prop_universal_directa} y tenemos que esta $id$ es continua. Por esta razón, $f \mathcal{T} \subset \mathcal{T}'$.
 \end{enumerate}
 \end{demo}
 
