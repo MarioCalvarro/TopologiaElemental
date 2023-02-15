@@ -23,12 +23,13 @@ Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico
     \]
     \item En un conjunto se pueden definir muchas topologías distintas (por ejemplo (\ref{ejemplos_topologia:first})) pero se puede asumir que solo ``parezcan'' distintas. Ya se sabe que la topología usual de $\mathbb{R}^n$ se puede definir mediante muchas distancias distintas.
 
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
         \incfig{normas-topología}
-        \caption{\textit{El dibujo representa distintas distancias, pero todas definen la misma topología.}}
+        \caption{\textit{El dibujo representa distintas topologías generadas por distintas normas, pero todas equivalentes.}}
         \label{fig:normas-topología}
     \end{figure}
+
     \item Una topología para ilustrar muchas propiedades (y contraejemplos). 
 
     Fijamos $a \in X$:
@@ -55,10 +56,12 @@ Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\
     \item Un \underline{entorno} de un punto $x \in X$ es un conjunto $V$ que contiene un abierto $U$ que contiene al punto. Se suele escribir $V^x$.\footnote{La intersección finita de entornos es entorno. (Si son abiertos es trivial)}
 \end{enumerate}
 \end{defi}
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.2]{images/def_entornos} 
-\end{center}
+\begin{figure}[H]
+    \centering
+    \incfig{definición-entornos}
+    \caption{Definición entornos}
+    \label{fig:definición-entornos}
+\end{figure}
 \begin{obs}    
 \begin{enumerate}
     \item Con $U^x \subset V^x$:
@@ -83,10 +86,12 @@ Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ 
 \inter_X \left( A \right) = \mathring{A} = \{x \in A: \exists U^x \stackrel{\text{ab.}}{\subset}  A\} 
 \]
 \end{defi}
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.4]{images/def_interior} 
-\end{center}
+\begin{figure}[H]
+    \centering
+    \incfig{definición-interior}
+    \caption{Definición interior}
+    \label{fig:definición-interior}
+\end{figure}
 
 \begin{prop}
 $\mathring{A}$ es el mayor abierto contenido en $A$: 
@@ -155,11 +160,14 @@ Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \
 \end{defi}
 \begin{obs}
     Cerrado \underline{no} significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
-    %TODO: Fix imagen
-    \begin{center}
-        \includegraphics[scale=0.3]{images/def_cerrados} 
-    \end{center}
+\begin{figure}[H]
+    \centering
+    \incfig{observación-abiertos-y-cerrados.}
+    \caption{Observación abiertos y cerrados.}
+    \label{fig:observación-abiertos-y-cerrados.}
+\end{figure}
 \end{obs}
+
 \begin{prop}
 Se cumple que, $\mathcal{F} = \{\text{cerrados}\}$:
 \begin{enumerate}
@@ -354,19 +362,30 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
     \end{demo}
     \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
     \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}\ \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
-    %TODO: Fix imágenes 
+    Pero también,
+\begin{figure}[H]
+    \centering
+    \incfig{bases-alternativas-en-rn}
+    \caption{Bases alternativas en $\mathbb{R}^n$}
+    \label{fig:bases-alternativas-en-rn}
+\end{figure}
+    porque
+    \[
+    B\left( x, \varepsilon \right) = \bigcup_{i \in  I} \ooalign{$\sqsubset\mkern3mu$\cr$\mkern3mu\sqsupset$\cr} = \bigcup_{j \in J} \diamond
+    \]
+Ilustrado:
+%TODO: No se como hacerlo
+%\begin{figure}[H]
+%    \centering
+%    \incfig{bola-como-unión-de-rectángulos}
+%    \caption{Bola como unión de rectángulos}
+%    \label{fig:bola-como-unión-de-rectángulos}
+%\end{figure}
     \begin{center}
         \includegraphics[scale=0.3]{images/base_rn} 
     \end{center}
-    Pero también,
-    \begin{center}
-        \includegraphics[scale=0.3]{images/bases_alternativas_rn} 
-    \end{center}
-    porque
-    \[
-    B\left( x, \varepsilon \right) = \bigcup_{i \in  I} cuadrados = \bigcup_{j \in J} rectangulos
-    \]
 \end{enumerate}
+
 \end{ej}
 
 \begin{pg}
@@ -383,6 +402,12 @@ $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \e
     \item $X = \bigcup_{B \in \mathcal{B}} B$.
     \item $\forall x \in B_1 \cap B_2,\ \exists B^x \subset B_1 \cap B_2$.
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \incfig{caracterización-de-la-topología-dada-una-base}
+    \caption{Caracterización de la topología dada una base}
+    \label{fig:caracterización-de-la-topología-dada-una-base}
+\end{figure}
 %TODO: Fix imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/base_unica} 
