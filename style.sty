@@ -22,6 +22,7 @@
 \usepackage{stackrel} %Paquete para poner por encima y debajo
 \usepackage{float} %Paquete para figuras
 \usepackage{enumitem} %Paquete para el control de enumeraciones
+\usepackage{marvosym} %Paquete para rayito ejercicios
 
 %% Ruta de las fotos e inclusion de las mismas
 \usepackage{graphicx}
@@ -143,13 +144,12 @@
 
 % Paquetes para figuras con InkScape
 \usepackage{import}
-%\usepackage{xifthen}
-%\usepackage{pdfpages}
-%\usepackage{transparent}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+%\usepackage{transparent} NO funciona en ocasiones
 \newcommand{\incfig}[1]{
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
 %\pdfsupresswarningpagegroup=1
 \DeclareMathAlphabet{\matheuler}{U}{eus}{m}{n}
-\usepackage{ marvosym }
