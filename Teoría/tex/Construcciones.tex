@@ -176,7 +176,7 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
     \[
     \mathcal{T}' = f\mathcal{T} \Leftrightarrow  
     \]
-    \begin{equation}
+    \begin{equation}\label{eq:prop_universal_directa}
         \forall g \left[ g \text{ cont.} \Leftrightarrow g \circ f \text{ cont.} \right]
     \end{equation}
 
@@ -202,7 +202,21 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
         \item $g \circ f$ cont. $\Rightarrow g$ cont. ($W \in \mathcal{T}'' \Rightarrow f^{-1}\left( g^{-1} W \right) = \underbrace{\left( g \circ f \right)^{-1}}_{\text{cont.}} W \in \mathcal{T} \stackrel{\mathcal{T}' = f\mathcal{T}}{\Rightarrow} g^{-1}W \in \mathcal{T}'$)
     \end{itemize}
 
-    \item Por otro lado,
+    \item Por otro lado, veamos la unicidad:
+
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$\left( X, \mathcal{T} \right)$};
+            \node(Y) [right of=Y] {$\left( Y, \mathcal{T}' \right)$};
+            \node(Z) [below of=Y] {$\left( Y, \mathcal{T}' \right)$};
+            \draw[->](X) to node {$f$}(Y);
+            \draw[->](X) to node [left=0.3cm] {$g \circ f = f$}(Z);
+            \draw[->](Y) to node [right=0.2ex] {$id$}(Z);
+            \end{tikzpicture}
+    \end{figure}
+    Como $id$ será continua, aplicamos \ref{eq:prop_universal_directa} y tenemos que $g \circ f = f$es continua. Al ser $f \mathcal{T}$ la más fina $\Rightarrow \mathcal{T}' \subset f \mathcal{T}$.
+
     %TODO: Fix
     \begin{center}
         \includegraphics[scale=0.4]{images/dem_carac_img_dir_1} 
@@ -212,8 +226,6 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
 \end{demo}
 
 \underline{Ejercicio}: Demostrar (ii) sin usar que $f\mathcal{T}$ es la más fina (usar que cumple la caracterización)
-
-La caracterización anterior se llama \underline{propiedad universal}.
 
 \begin{obs}
 $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
