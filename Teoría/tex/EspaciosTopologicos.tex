@@ -408,10 +408,7 @@ $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \e
     \caption{Caracterización de la topología dada una base}
     \label{fig:caracterización-de-la-topología-dada-una-base}
 \end{figure}
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/base_unica} 
-\end{center}
+
 \end{prop}
 %TODO: Mejorar
 \begin{demo}
@@ -439,12 +436,13 @@ En el otro sentido tenemos:
 Sea $\left( X, \mathcal{T} \right)$ espacio topológico.
 \begin{defi}
 $Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topología en $Y$ (fácil), denominada \underline{relativa} ó \underline{restricción} a $Y$; también se dice que $\left( Y, \mathcal{T}|_Y \right)$ es un \underline{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \underline{ambiente}. 
-\begin{center}
-    %TODO: Fix imagen
-    \includegraphics[scale=0.3]{images/def_subespacio_top} 
-\end{center}
-
 \end{defi}
+\begin{figure}[H]
+    \centering
+    \incfig{definición-topología-relativa.}
+    \caption{Definición topología relativa}
+    \label{fig:definición-topología-relativa}
+\end{figure}
 
 \begin{obs}
 \begin{enumerate}
@@ -483,10 +481,25 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
     Se dice que $Y$ es un \underline{subespacio discreto}. 
 
     Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:    
-    %TODO: Fix imagen
-    \begin{center}
-        \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
-    \end{center}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[gray] (-3,0) -- (3,0);
+        \foreach \Point in {(-3, 0), (-2, 0), (-1, 0), (0, 0), (1, 0), (2, 0), (3, 0)}{
+            \node[gray] at \Point {\textbullet};
+        }
+        \foreach \Point in {(-2.2, 0), (-0.2, 0), (1.8, 0)}{
+            \node[gray] at \Point {$($};
+        }
+        \foreach \Point in {(-1.8, 0), (0.2, 0), (2.2, 0)}{
+            \node[gray] at \Point {$)$};
+        }
+        \node at (0, 0.4) {$k$};
+        \node at (0, -0.5) {$\left( k - \frac{1}{2}, k + \frac{1}{2} \right)$};
+    \end{tikzpicture}
+    \caption{Enteros en los reales como subespacio discreto.}
+    \label{fig:enteros-en-los-reales-como-subespacio-discreto.}
+\end{figure}
 
     \item Sea $a \in X$ y $\mathcal{T}_a$. Entonces:
 
