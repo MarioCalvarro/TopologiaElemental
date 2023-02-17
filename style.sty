@@ -23,6 +23,7 @@
 \usepackage{float} %Paquete para figuras
 \usepackage{enumitem} %Paquete para el control de enumeraciones
 \usepackage{marvosym} %Paquete para rayito ejercicios
+\usepackage{faktor} %Paquete para cocientes complicados
 
 %% Ruta de las fotos e inclusion de las mismas
 \usepackage{graphicx}
@@ -147,9 +148,8 @@
 \usepackage{xifthen}
 \usepackage{pdfpages}
 %\usepackage{transparent} NO funciona en ocasiones
-\newcommand{\incfig}[1]{
-    \def\svgwidth{\columnwidth}
-    \import{./figures/}{#1.pdf_tex}
+\newcommand{\incfig}[2][1]{
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
 }
-%\pdfsupresswarningpagegroup=1
 \DeclareMathAlphabet{\matheuler}{U}{eus}{m}{n}

@@ -363,7 +363,6 @@ Un homeomorfismo local es abierto.
 
     \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t^4} \right)$ es biyectiva continua, pero \underline{no} homeomorfismo local.
 
-    %TODO: No se acaba la figura
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -372,10 +371,16 @@ Un homeomorfismo local es abierto.
                 ymin=-1,ymax=1,
                 grid=both,
                 ]
-                \addplot [domain=-3:3,samples=500]({x/(1+x^4)},{x^3/(1+x^4)}); 
+                %TODO: Aumentar el tamaño para la versión final
+                %Ponemos varios intervalos para minimizar las samples y, por tanto, el tiempo de compilación.
+                \addplot [domain=-3:3,samples=100]({(x/(1+x^4))},{(x^3/(1+x^4))}); 
+                \addplot [domain=-3:-50,samples=50]({(x/(1+x^4))},{(x^3/(1+x^4))}); 
+                \addplot [domain=-50:-200,samples=50]({(x/(1+x^4))},{(x^3/(1+x^4))}); 
+                \addplot [domain=3:50,samples=50]({(x/(1+x^4))},{(x^3/(1+x^4))}); 
+                \addplot [domain=50:200,samples=50]({(x/(1+x^4))},{(x^3/(1+x^4))}); 
             \end{axis}
         \end{tikzpicture}
-        \caption{Representación Lemniscata.}
+        \caption{\textit{Representación Lemniscata.}}
         \label{fig:lemniscata}
     \end{figure}
 

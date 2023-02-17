@@ -277,7 +277,7 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
             \draw[gray] (0,0) -- (3,0); 
             \draw[green, ->] (0,0) -- (1,0); 
             \draw[green, ->] (3,0) -- (2,0); 
-            \draw[red, ->] (3,0.4) -- (2,0.4); 
+            \draw[red, ->] (3,0.4) -- (2.2,0.4); 
             \node[green] at (3.1,0.03) [right] {Saturado};
             \node[red] at (3.05,0.45) [right] {No saturado};
 
@@ -297,7 +297,8 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
             \node[gray] at (1.3,0) {(};
             \node[gray] at (1.7,0) {)};
 
-            \node[gray] at (5.2,0.25) [right] {Abierto};
+            \draw [gray, decorate, decoration = {brace}] (5.1,0.6) -- (5.1,-0.2);
+            \node[gray] at (5.2,0.2) [right] {Abierto};
 
             %Función
             \node(X) at (-1,0) {$X$};
@@ -325,13 +326,19 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
                 %Radio izquierdo
                 \draw[gray, dashed] (O) -- (izq);
                 
+            %Entorno derecho
             \node[gray] at (der) [right] {$f\left( 0 \right) = f\left( 2 \pi \right)$};
             \node[green] at (2.5,-1.4) [right] {Es entorno abierto de $f\left( 0 \right)$};
             \node[red] at (2.5,-2.7) [right] {No es entorno abierto de $f\left( 0 \right)$};
 
+            %Entorno izquierdo
             \node[gray] at (izq) [left] {$f\left( t \right)$};
             \draw[->, thick, gray] (-0.7,-2.3) -- (0.2,-1.8);
             \node[gray] at (0.5,-2.7) [left] {Entorno en $f \mathcal{T}$};
+
+            %Localización
+            \draw [gray, decorate, decoration = {brace}] (7.4,-1.1) -- (7.4,-3);
+            \node[gray] at (7.5,-2.05) [right] {En $f\mathcal{T}$};
         \end{tikzpicture}
         \caption{\textit{La topología imagen directa es la usual en $\mathbb{S}^1$}}
         \label{fig:proyeccion_exponencial_img_directa}
@@ -345,7 +352,7 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 
 \begin{figure}[H]
     \centering
-    \incfig{rectángulo-a-cilindro-por-imagen-directa.}
+    \incfig[0.7]{rectángulo-a-cilindro-por-imagen-directa.}
     \caption{\textit{Analizando los abiertos saturados y no saturados se concluye que la topología imagen directa es la usual en el tronco del cilindro.}}
     \label{fig:rectángulo-a-cilindro-por-imagen-directa.}
 \end{figure}
@@ -373,14 +380,30 @@ Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \le
 \begin{defi}[Cociente]
 Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = \underbrace{X / \sim}_{p \mathcal{T} = \text{top. cociente}}$. Cociente respecto de una relación de equivalencia en $X$. 
 \end{defi}
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.2]{images/def_cociente} 
-\end{center}
+
+\begin{figure}[H]
+    \centering    
+        \begin{tikzpicture}[node distance=2cm, auto]
+        \node(X) {$X$};
+        \node(Y) [right of=X] {$Y$};
+        \node(Z) [below of=X] {$\faktor{X}{\sim}$};
+        \draw[->](X) to node {$f$}(Y);
+        \draw[->](X) to node [left] {$p$}(Z);
+        \draw[->](Z) to node [right=0.2] {$\overline{f}$}(Y);
+        \end{tikzpicture}  
+        \begin{tikzpicture}[node distance=2cm, auto]
+        \node(x) {$x$};
+        \node(y) [right of=x] {$f\left( x \right)$};
+        \node(z) [below of=x] {$\left[ x \right]$};
+        \draw[|->](x) to (y);
+        \draw[|->](x) to (z);
+        \draw[|->](z) to (y);
+        \end{tikzpicture}
+\end{figure}
 Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \right) = f\left( x_2 \right)$. Homeoforma de $p\mathcal{T}$ sobre $f\mathcal{T} \Leftrightarrow f$ identificación tal que:
 \[
 \begin{cases}
-    \overline{f} \text{ es biyección}\\
+    \overline{f} \text{ es biyección.}\\
     p^{-1}V = f^{-1}\overline{f} V \text{ y } f^{-1}W = p^{-1} \overline{f}^{-1}W
 \end{cases} 
 \]
@@ -389,19 +412,62 @@ Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \ri
     Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente.
 \end{pg}
 
-%TODO: Fix imágenes
 \begin{ej}[Anteriores]
-La circunferencia y el cilindro como cocientes:
-\begin{center}
-    \includegraphics[scale=0.4]{images/ej_cociente_1} 
-    \includegraphics[scale=0.4]{images/ej_cociente_2}
-\end{center}
+\begin{itemize}
+    \item Circunferencia y el cilindro como cocientes:
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$\left[ 0, 1 \right]$};
+            \node(Y) [right of=X] {$\mathbb{S}^1 \subset \mathbb{R}^2$};
+            \node(Z) [below of=X] {$\faktor{\left[ 0, 1 \right]}{0 \equiv 1}$};
+            \draw[->](X) to (Y);
+            \draw[->](X) to (Z);
+            \draw[<->](Z) to (Y);
+        \end{tikzpicture}
+        %TODO: arreglar distancia X a Y
+        \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$\left[ 0, 1 \right] \times \left[ 0, 1 \right]$};
+            \node(Y) [right of=X] {$C \subset \mathbb{R}^3$};
+            \node(Z) [below of=X] {$\faktor{\left[ 0, 1 \right] \times \left[ 0, 1 \right]}{\left( 0, t \right) \equiv \left( 1, t \right)}$};
+            \draw[->](X) to (Y);
+            \draw[->](X) to (Z);
+            \draw[<->](Z) to (Y);
+        \end{tikzpicture}
+    \end{figure}
 
-Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
-%TODO: Fix
-\begin{center}
-    \includegraphics[scale=0.3]{images/ej_cociente_3} 
-\end{center}
+    \item Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
+    \begin{figure}[H]
+        \centering
+        \hspace{2cm}
+        \begin{tikzpicture}
+            \node at (1,2.3) {Cilindro};
+            \filldraw[color=cyan, fill=cyan!5, very thick,
+                decoration={markings, mark=at position 0.18 with \arrow{>};,
+                                      mark=at position 0.59 with \arrow{<};,
+                           },
+                postaction={decorate}
+                ] (0,0) rectangle (2,2);
+            \node[cyan] at (0,1.35) {\textbullet};
+            \node[cyan] at (2,1.35) {\textbullet};
+            \node[gray] at (2.1,1) [right] {$\left( 0, t \right) \equiv \left( 1, t \right)$};
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \node at (1,2.3) {Banda de Möbius};
+            \filldraw[color=cyan, fill=cyan!5, very thick,
+                decoration={markings, mark=at position 0.18 with \arrow{>};,
+                                      mark=at position 0.67 with \arrow{>};,
+                           },
+                postaction={decorate}
+                ] (0,0) rectangle (2,2);
+            \node[cyan](izq) at (0,1.35) {\textbullet};
+            \node[cyan](der) at (2,0.67) {\textbullet};
+            \node[cyan](O) at (1,1) {\textbullet};
+            \draw[-, cyan, dashed] (izq) -- (der);
+            \node[gray] at (2.1,1) [right] {$\left( 0, t \right) \equiv \left( 0, 1-t \right)$};
+        \end{tikzpicture}
+    \end{figure}
+\end{itemize}
 \end{ej}
 
 

@@ -25,7 +25,7 @@ Se dice que $\left( X, \mathcal{T} \right)$ es un \underline{espacio topológico
 
     \begin{figure}[H]
         \centering
-        \incfig{normas-topología}
+        \incfig[0.7]{normas-topología}
         \caption{\textit{El dibujo representa distintas topologías generadas por distintas normas, pero todas equivalentes.}}
         \label{fig:normas-topología}
     \end{figure}
@@ -56,12 +56,15 @@ Sea $\left( X, \mathcal{T} \right)$ un espacio topológico; a menudo se omite $\
     \item Un \underline{entorno} de un punto $x \in X$ es un conjunto $V$ que contiene un abierto $U$ que contiene al punto. Se suele escribir $V^x$.\footnote{La intersección finita de entornos es entorno. (Si son abiertos es trivial)}
 \end{enumerate}
 \end{defi}
+
+%TODO: Mejorar imagen
 \begin{figure}[H]
     \centering
-    \incfig{definición-entornos}
-    \caption{Definición entornos}
+    \incfig[0.6]{definición-entornos}
+    \caption{\textit{Definición de entornos}}
     \label{fig:definición-entornos}
 \end{figure}
+
 \begin{obs}    
 \begin{enumerate}
     \item Con $U^x \subset V^x$:
@@ -86,10 +89,12 @@ Sea $A \subset X$. Un \underline{punto interior de $A$} es un punto del que $A$ 
 \inter_X \left( A \right) = \mathring{A} = \{x \in A: \exists U^x \stackrel{\text{ab.}}{\subset}  A\} 
 \]
 \end{defi}
+
+%TODO: Mejorar bordes
 \begin{figure}[H]
     \centering
-    \incfig{definición-interior}
-    \caption{Definición interior}
+    \incfig[0.6]{definición-interior}
+    \caption{\textit{Definición de interior de un conjunto.}}
     \label{fig:definición-interior}
 \end{figure}
 
@@ -160,10 +165,11 @@ Un conjunto \underline{cerrado} es un subconjunto $F \subset X$ tal que $U = X \
 \end{defi}
 \begin{obs}
     Cerrado \underline{no} significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
+
 \begin{figure}[H]
     \centering
-    \incfig{observación-abiertos-y-cerrados.}
-    \caption{Observación abiertos y cerrados.}
+    \incfig[0.5]{observación-abiertos-y-cerrados.}
+    \caption{\textit{Ejemplo de conjunto que no es ni abierto ni cerrado.}}
     \label{fig:observación-abiertos-y-cerrados.}
 \end{figure}
 \end{obs}
@@ -365,8 +371,8 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
     Pero también,
 \begin{figure}[H]
     \centering
-    \incfig{bases-alternativas-en-rn}
-    \caption{Bases alternativas en $\mathbb{R}^n$}
+    \incfig[0.4]{bases-alternativas-en-rn}
+    \caption{\textit{Bases alternativas en $\mathbb{R}^n$}}
     \label{fig:bases-alternativas-en-rn}
 \end{figure}
     porque
@@ -404,8 +410,8 @@ $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \e
 \end{itemize}
 \begin{figure}[H]
     \centering
-    \incfig{caracterización-de-la-topología-dada-una-base}
-    \caption{Caracterización de la topología dada una base}
+    \incfig[0.6]{caracterización-de-la-topología-dada-una-base}
+    \caption{\textit{Caracterización de la topología dada una base}}
     \label{fig:caracterización-de-la-topología-dada-una-base}
 \end{figure}
 
@@ -437,10 +443,12 @@ Sea $\left( X, \mathcal{T} \right)$ espacio topológico.
 \begin{defi}
 $Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topología en $Y$ (fácil), denominada \underline{relativa} ó \underline{restricción} a $Y$; también se dice que $\left( Y, \mathcal{T}|_Y \right)$ es un \underline{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \underline{ambiente}. 
 \end{defi}
+
+%TODO: Mejorar
 \begin{figure}[H]
     \centering
-    \incfig{definición-topología-relativa.}
-    \caption{Definición topología relativa}
+    \incfig[0.6]{definición-topología-relativa.}
+    \caption{\textit{Definición topología relativa}}
     \label{fig:definición-topología-relativa}
 \end{figure}
 
@@ -497,7 +505,7 @@ Esta idea es general: en un subespacio se hacen las construcciones intersecando.
         \node at (0, 0.4) {$k$};
         \node at (0, -0.5) {$\left( k - \frac{1}{2}, k + \frac{1}{2} \right)$};
     \end{tikzpicture}
-    \caption{Enteros en los reales como subespacio discreto.}
+    \caption{\textit{Enteros en los reales como subespacio discreto.}}
     \label{fig:enteros-en-los-reales-como-subespacio-discreto.}
 \end{figure}
 
