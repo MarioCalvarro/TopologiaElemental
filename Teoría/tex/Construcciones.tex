@@ -269,12 +269,73 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 \begin{ej}
 \begin{enumerate}
     \item $f: \left[ 0, 1 \right] \rightarrow \mathbb{S}^1 = Y: t \mapsto \left( \cos 2\pi t, \sin 2\pi t \right) = \exp\left( 2 \pi i t \right)$
-    %TODO: Fix image
-    \begin{center}
-        \includegraphics[scale=0.4]{images/ej_sat_1} 
 
-        \textit{La topología imagen directa es la usual en $\mathbb{S}^1$.} 
-    \end{center}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            %Flechas y texto
+            \draw[gray] (0,0) -- (3,0); 
+            \draw[green, ->] (0,0) -- (1,0); 
+            \draw[green, ->] (3,0) -- (2,0); 
+            \draw[red, ->] (3,0.4) -- (2,0.4); 
+            \node[green] at (3.1,0.03) [right] {Saturado};
+            \node[red] at (3.05,0.45) [right] {No saturado};
+
+            %0 y 1
+            \node[gray] at (0,0) [below] {$0$};
+            \node[gray] at (0,0) {\textbullet};
+
+            \node[gray] at (3,0) [below] {$1$};
+            \node[gray] at (3,0) {\textbullet};
+
+            %t saturado
+            \node[gray] at (1.5,0.3) {$t$};
+            \node[gray] at (1.5,0) {\textbullet};
+            \node[gray] at (1.5,-0.3) {Saturado};
+
+            %Paréntesis t
+            \node[gray] at (1.3,0) {(};
+            \node[gray] at (1.7,0) {)};
+
+            \node[gray] at (5.2,0.25) [right] {Abierto};
+
+            %Función
+            \node(X) at (-1,0) {$X$};
+            \node(S) at (-1,-1.5) {$\mathbb{S}^1$};
+            \draw[->](X) -- node [left] {$f$} (S);
+
+            %Circulo 
+            \draw[color=gray, very thick,
+                decoration={markings, mark=at position 0.07 with \arrow[green]{)};,
+                                      mark=at position 0.35 with \arrow{(};,
+                                      mark=at position 0.47 with \arrow{)};,
+                                      mark=at position 0.95 with \arrow[green]{(};,
+                                      mark=at position 0.97 with \arrow[red]{(};,
+                           },
+                postaction={decorate}
+                ] (1.5,-2) circle (1);
+                %Centro
+                \node(O) [gray] at (1.5,-2) {\textbullet};
+                %Izquierda
+                \node(izq) [gray] at (0.7,-1.4) {\textbullet};
+                %Derecha
+                \node(der) [gray] at (2.5,-2) {\textbullet};
+                %Radio derecho
+                \draw[gray, dashed] (O) -- (der);
+                %Radio izquierdo
+                \draw[gray, dashed] (O) -- (izq);
+                
+            \node[gray] at (der) [right] {$f\left( 0 \right) = f\left( 2 \pi \right)$};
+            \node[green] at (2.5,-1.4) [right] {Es entorno abierto de $f\left( 0 \right)$};
+            \node[red] at (2.5,-2.7) [right] {No es entorno abierto de $f\left( 0 \right)$};
+
+            \node[gray] at (izq) [left] {$f\left( t \right)$};
+            \draw[->, thick, gray] (-0.7,-2.3) -- (0.2,-1.8);
+            \node[gray] at (0.5,-2.7) [left] {Entorno en $f \mathcal{T}$};
+        \end{tikzpicture}
+        \caption{\textit{La topología imagen directa es la usual en $\mathbb{S}^1$}}
+        \label{fig:proyeccion_exponencial_img_directa}
+    \end{figure}
 
     \item Tenemos:
     \begin{align*}
