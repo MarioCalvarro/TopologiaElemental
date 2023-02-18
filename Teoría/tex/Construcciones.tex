@@ -476,7 +476,7 @@ Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \ri
 \underline{Problema:} Hacer $X_1 \times \ldots \times X_r = Y \xrightarrow{p_i} \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ continuas con 
 \[
 \begin{cases}
-    \text{top. discreta en } Y \text{ matrivialidad}\\
+    \text{top. discreta en } Y \text{ trivialidad}\\
     \text{top. \underline{menos fina} en} Y
 \end{cases} 
 \]
@@ -488,23 +488,28 @@ Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \ri
 La $\mathcal{T}_u$ en $\mathbb{R}^n$ ese el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas''.
 \end{ej}
 
-%TODO: Fix teorema
-\begin{theo}[Caracterización topología producto]
-\begin{enumerate}
-    \item
+\begin{theo}[Caracterización de la topología producto]
+Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $p_i: \left( Y, \mathcal{T}' \right) \rightarrow \left( X_i, \mathcal{T}_i \right)$. Entonces:
     \[
     \mathcal{T}' = \prod_{i} \mathcal{T} \Leftrightarrow  
     \]
-    \begin{equation}
+    \begin{equation}\label{eq:prop_universal_prod}
         \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
     \end{equation}
 
-    \item Y.
-    %TODO: Fix composición
-    \begin{center}
-        \includegraphics[scale=0.3]{images/caracterizacion_top_prod} 
-    \end{center}
-\end{enumerate}
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(Y) {$\left( Y, \mathcal{T}' \right)$};
+            \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
+            \node(Z) [below of=Y] {$\left( Z, \mathcal{T}'' \right)$};
+            \draw[->](Y) to node {$p_i$}(X);
+            \draw[->](Z) to node [left] {$g = \left( g_1, ..., g_r \right)$}(Y);
+            \draw[->](Z) to node [right=0.2ex] {$g_i = p_i \circ g$}(X);
+            \end{tikzpicture}
+        \caption{\textit{Ilustración de la composición propuesta}}
+        \label{prop_universal_prod_finitos}
+    \end{figure}
 \end{theo}
 \begin{demo}
 \begin{enumerate}
@@ -515,10 +520,32 @@ La $\mathcal{T}_u$ en $\mathbb{R}^n$ ese el producto de la usual en cada factor 
     \end{itemize}
 
     \item Por otro lado,
-    %TODO: Fix
-    \begin{center}
-        \includegraphics[scale=0.4]{images/dem_carac_top_prod} 
-    \end{center}
+
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(Y) {$\left( Y, \mathcal{T}' \right)$};
+            \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
+            \node(Z) [below of=Y] {$\left( Y, \mathcal{T}' \right)$};
+            \draw[->](Y) to node {$p_i$}(X);
+            \draw[->](Z) to node [right=0.1cm] {$pr_i$}(X);
+            \draw[->](Z) to node [left] {$id$ cont.}(Y);
+            \end{tikzpicture}
+    \end{figure}
+    Como $id$ será continua, aplicamos \ref{eq:prop_universal_prod} y tenemos que $g \circ p_i = pr_i$ es continua. Al ser $\prod_{i} \mathcal{T}_i $ la menos fina $\Rightarrow \mathcal{T}' \supset \prod_{i} \mathcal{T}_i$.
+
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(Y) {$\left( Y, \mathcal{T}' \right)$};
+            \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
+            \node(Z) [below of=Y] {$\left( Y, \prod_{i} \mathcal{T}_i \right)$};
+            \draw[->](Y) to node {$p_i$}(X);
+            \draw[->](Z) to node [right=0.1cm] {$pr_i$ cont.}(X);
+            \draw[->](Z) to node [left] {$id$}(Y);
+            \end{tikzpicture}
+    \end{figure}
+    Como $pr_i$ es continua por definición de $\prod_{i} \mathcal{T}_i$, aplicamos \ref{eq:prop_universal_prod} y tenemos que esta $id$ es continua. Por esta razón, $\prod_{i=1} \mathcal{T}_i \supset \mathcal{T}'$.
 \end{enumerate}
 \end{demo}
 
@@ -532,12 +559,14 @@ La anterior caracterización se llama \underline{propiedad universal}.
 \begin{enumerate}
     \item $p_i: Y \rightarrow X_i$ es abierta. [$p_i\left( U_1 \times \ldots \times U_r \right) = U_i$]
     \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados).
+    \begin{demo}      
     \[
-    \left[\begin{cases}
+    \begin{cases}
         \alpha_j\left( X_j \right) = \{a_1\} \times \ldots \times X_j \times \ldots \times \{a_r\} \\
         \alpha_j\left( U_j \right) = \{a_1\} \times \ldots \times U_j \times \ldots \times \{a_r\} = \alpha\left( X_j \right) \cap \left( X_1 \times \ldots \times U_j \times \ldots \times X_r \right) 
-    \end{cases}\right]     
+    \end{cases}
     \]
+    \end{demo}
 \end{enumerate}
 \end{prop}
 
@@ -557,7 +586,7 @@ En una topología producto ``todo se genera en productos''.
 \underline{Problema:} Hacer $\left( X_i, \mathcal{T}_i \right) \xrightarrow{e_i} Y = X_1 + \ldots X_r = \left( X_1 \times \{1\} \right) \cup \ldots \cup \left( X_r \times \{r\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ continuas, ,con 
 \[
 \begin{cases}
-    \text{top. trivial en } Y \text{ matrivialidad}\\
+    \text{top. trivial en } Y \text{ trivialidad}\\
     \text{top. \underline{más fina} en} Y
 \end{cases} 
 \]
@@ -575,21 +604,27 @@ $\forall i, e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times 
 
 %TODO: Fix teorema
 \begin{theo}[Caracterización topología suma]
-\begin{enumerate}
-    \item
+Sea $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
     \[
     \mathcal{T}' = \mathcal{T}_1 + \ldots + \mathcal{T}_r \Leftrightarrow  
     \]
-    \begin{equation}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right] \text{(Propiedad universal)} 
+    \begin{equation}\label{eq:prop_universal_sum}
+        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
     \end{equation}
 
-    \item Y.
-    %TODO: Fix composición
-    \begin{center}
-        \includegraphics[scale=0.3]{images/caracterizacion_top_sum} 
-    \end{center}
-\end{enumerate}
+    \begin{figure}[H]
+        \centering    
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$\left( X_i, \mathcal{T}_i \right)$};
+            \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
+            \node(Z) [below of=Y] {$\left( Z, \mathcal{T}'' \right)$};
+            \draw[->](X) to node {$e_i$}(Y);
+            \draw[->](X) to node [left] {$g|_{X_i} = g \circ e_i$}(Z);
+            \draw[->](Y) to node {$g$}(Z);
+            \end{tikzpicture}
+        \caption{\textit{Ilustración de la composición propuesta}}
+        \label{prop_universal_sum_finitas}
+    \end{figure}
 \end{theo}
 %TODO: Tal vez hacerlo bien?
 \begin{demo}
@@ -604,14 +639,17 @@ Localmente $Y = X_1 + \ldots + X_r$ es como sea cada $X_i$. Por ejemplo, las bas
 \end{center}
 Es un formalismo para hacer cómodamente otras construcciones. Por ejemplo, ``pegar dos discos por sus bordes'' sería:
 \begin{gather*}
-    \text{disco} D \subset \mathbb{R}^2: x^2 + y^2 \le 1, \text{ borde } \partial D = \mathbb{S}^1: x^2 + y^2 = 1\\
+    \text{Disco } D \subset \mathbb{R}^2: x^2 + y^2 \le 1, \text{ borde } \partial D = \mathbb{S}^1: x^2 + y^2 = 1\\
     %TODO: Fix cociente
     D_1 + D_2 / \sim\quad \overbrace{\left( p, 1 \right)}^{\partial D} \sim \left( p, 2 \right) 
 .\end{gather*}
-%TODO Fix
-\begin{center}    
-    \includegraphics[scale=0.3]{images/pg_top_sum} 
-\end{center}
+
+\begin{figure}[H]
+    \centering
+    \incfig{dos-discos.}
+    \caption{\textit{Dos discos}}
+    \label{fig:dos-discos.}
+\end{figure}
 y más elaborado $h: \partial D \stackrel{\text{homeo.}}{\approx} \partial D$ con $\overbrace{p}^{\in \partial D} \sim h\left( p \right)$.
 
 Finalmente, hay otros conceptos de ``suma'' más significativos que veremos en algún ejemplo.
