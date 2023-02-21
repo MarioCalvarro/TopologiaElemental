@@ -268,6 +268,7 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 
 \begin{ej}
 \begin{enumerate}
+    %TODO: Hacer la circunferencia con todo R
     \item $f: \left[ 0, 1 \right] \rightarrow \mathbb{S}^1 = Y: t \mapsto \left( \cos 2\pi t, \sin 2\pi t \right) = \exp\left( 2 \pi i t \right)$
 
     \begin{figure}[H]
@@ -352,7 +353,7 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 
 \begin{figure}[H]
     \centering
-    \incfig[0.7]{rectángulo-a-cilindro-por-imagen-directa.}
+    \incfig[0.9]{rectángulo-a-cilindro-por-imagen-directa.}
     \caption{\textit{Analizando los abiertos saturados y no saturados se concluye que la topología imagen directa es la usual en el tronco del cilindro.}}
     \label{fig:rectángulo-a-cilindro-por-imagen-directa.}
 \end{figure}
@@ -369,27 +370,55 @@ Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \le
 
     Continua: $V \stackrel{\text{ab}}{\subset } Y \Rightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
 
-    \item Sea $f: X \rightarrow Y$ sobre. continua. Si además es:
+    \item Sea $f: X \rightarrow Y$ sobreyectiva continua. Si además es:
     \begin{itemize}
-        \item Abierta $\Rightarrow f$ es identificación [por (1)]
-        \item Cerrada $\Rightarrow f$ es identificación [$f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{+ cerr.}}{\Rightarrow} f\left( \underbrace{X \setminus f^{-1}\left( V \right)}_{= Y\setminus V} \right) \stackrel{\text{cerr.}}{\subset} Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
+        \item Abierta $\Rightarrow f$ es identificación. 
+        \begin{demo}
+            Por (1).
+        \end{demo}
+        \item Cerrada $\Rightarrow f$ es identificación.
+        \begin{demo}
+            $f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \stackrel{\text{cerr.}}{\subset} Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
+        \end{demo}
     \end{itemize}
 \end{enumerate}
 \end{obs}
 
-\begin{defi}[Cociente]
-Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = \underbrace{X / \sim}_{p \mathcal{T} = \text{top. cociente}}$. Cociente respecto de una relación de equivalencia en $X$. 
+\subsection{Cocientes}
+\label{sub:cocientes}
+\begin{defi}[Relación de inyectividad]
+Llamamos \textbf{relación de inyectividad} a aquella relación de equivalencia que viene dada por una función $f$ tal que dos elementos están relacionados si comparten imagen:
+\[
+x \sim y \Leftrightarrow f\left( x \right) = f\left( y \right)
+\]
+\end{defi}
+
+\begin{defi}[Proyección canónica]
+Llamamos \textbf{proyección canónica} respecto de una relación de equivalencia a la aplicación:
+\begin{align*}
+    p: X &\rightarrow \faktor{X}{\sim}\\ 
+    x &\mapsto \left[ x \right]
+\end{align*}
+donde $\left[ x \right]$ es la relación de equivalencia de $x$.
+\end{defi}
+Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = X / \sim$. Con esto definimos:
+\begin{defi}[Topología cociente]
+Llamamos \textbf{topología cociente} a: 
+\[
+    \faktor{\mathcal{T}}{\sim} := \left\{ U \subset \faktor{X}{\sim}: p ^{-1}\left( U \right) \in \mathcal{T} \right\}
+\]
+que viene a ser la topología imagen directa por $p$.
 \end{defi}
 
 \begin{figure}[H]
     \centering    
         \begin{tikzpicture}[node distance=2cm, auto]
-        \node(X) {$X$};
-        \node(Y) [right of=X] {$Y$};
-        \node(Z) [below of=X] {$\faktor{X}{\sim}$};
+        \node(X) {$\left( X, \mathcal{T} \right)$};
+        \node(Y) [right of=X] {$\left( Y, f\left( \mathcal{T} \right) \right)$};
+        \node(Z) [below of=X] {$\left( \faktor{X}{\sim}, p\left( \mathcal{T} \right) \right)$};
         \draw[->](X) to node {$f$}(Y);
         \draw[->](X) to node [left] {$p$}(Z);
-        \draw[->](Z) to node [right=0.2] {$\overline{f}$}(Y);
+        \draw[->](Z) to node [right=0.2] {$\overline{f} = f \circ p^{-1}$}(Y);
         \end{tikzpicture}  
         \begin{tikzpicture}[node distance=2cm, auto]
         \node(x) {$x$};
@@ -399,17 +428,40 @@ Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T
         \draw[|->](x) to (z);
         \draw[|->](z) to (y);
         \end{tikzpicture}
+        \caption{\textit{Representación de la composición del cociente}}
 \end{figure}
-Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \right) = f\left( x_2 \right)$. Homeoforma de $p\mathcal{T}$ sobre $f\mathcal{T} \Leftrightarrow f$ identificación tal que:
-\[
-\begin{cases}
-    \overline{f} \text{ es biyección.}\\
-    p^{-1}V = f^{-1}\overline{f} V \text{ y } f^{-1}W = p^{-1} \overline{f}^{-1}W
-\end{cases} 
-\]
+
+%TODO: Demostrar
+\begin{prop}
+\begin{enumerate}
+    \item $\exists \overline{f} \Leftrightarrow x \sim y \Rightarrow f\left( x \right) \sim f\left( y \right)$
+    \item $\exists \overline{f} : \overline{f}$ continua $\Leftrightarrow f$ continua.
+    \item $\exists \overline{f}: \overline{f}: \begin{cases}
+        \text{sobre. }\\ 
+        \text{iny.}\\ 
+    \end{cases} \Leftrightarrow f \begin{cases}
+        \text{sobre.}\\ 
+        x \sim y \Leftarrow f \left( x \right) \sim f \left( y \right)
+    \end{cases}$
+
+    \item $\overline{f}$ homeomorfa $\Leftrightarrow f$ identificación.
+    %TODO: Fix 
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+        \node(X) {$\left( X, \mathcal{T} \right)$};
+        \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
+        \node(Z) [below of=X] {$\left( \faktor{X}{\sim}, \overline{\mathcal{T}} \right)$};
+        \draw[->](X) to node {$f$} node [below] {ident.}(Y);
+        \draw[->](X) to node [right] {$p$} node [left] {$\sim$} (Z);
+        \draw[->](Z) to node [left] {$\overline{f}$} node [right=0.2] {homeo} (Y);
+        \end{tikzpicture}  
+    \end{figure}
+\end{enumerate} 
+\end{prop}
 
 \begin{pg}
-    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente.
+    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente. Es decir, utilizamos el cociente como ``modelo teórico'' y la identificación como ``modelo geométrico''. Esto no siempre será posible ya que dependerá de ciertas propiedades geométricas que veremos.
 \end{pg}
 
 \begin{ej}[Anteriores]
@@ -421,20 +473,26 @@ Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \ri
             \node(X) {$\left[ 0, 1 \right]$};
             \node(Y) [right of=X] {$\mathbb{S}^1 \subset \mathbb{R}^2$};
             \node(Z) [below of=X] {$\faktor{\left[ 0, 1 \right]}{0 \equiv 1}$};
-            \draw[->](X) to (Y);
-            \draw[->](X) to (Z);
-            \draw[<->](Z) to (Y);
+            \draw[->](X) to node {$f$} (Y);
+            \draw[->](X) to node [left] {$p$} (Z);
+            \draw[<->](Z) to node [right] {cont.}(Y);
         \end{tikzpicture}
         %TODO: arreglar distancia X a Y
         \begin{tikzpicture}[node distance=2cm, auto]
             \node(X) {$\left[ 0, 1 \right] \times \left[ 0, 1 \right]$};
-            \node(Y) [right of=X] {$C \subset \mathbb{R}^3$};
+            \node(Y) [right=1.5cm of X] {$C \subset \mathbb{R}^3$};
             \node(Z) [below of=X] {$\faktor{\left[ 0, 1 \right] \times \left[ 0, 1 \right]}{\left( 0, t \right) \equiv \left( 1, t \right)}$};
             \draw[->](X) to (Y);
             \draw[->](X) to (Z);
             \draw[<->](Z) to (Y);
         \end{tikzpicture}
     \end{figure}
+
+    Para la circunferencia tenemos:
+    \[
+        \faktor{X}{\sim} = \left\{ \left\{ t \right\} : 0 < t < 1, \left\{ 0, 1 \right\} \right\}
+    \]
+    la biyección entre el cociente y la esfera se da por el punto (3) de la anterior proposición y la continuidad por (2). Por último, la identificación se da por el anterior ejemplo.
 
     \item Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
     \begin{figure}[H]
