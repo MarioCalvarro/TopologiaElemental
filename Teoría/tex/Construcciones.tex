@@ -1,23 +1,13 @@
 \chapter{Construcciones}%
 \label{cha:construcciones}
-
+En este capítulo buscaremos topologías en base a unas aplicaciones con el objetivo de hacer a dichas aplicaciones continuas. Tras esto, daremos una caracterización de la topología construida. Por último, exploraremos las propiedades de las construcciones.
 
 \section{Imágenes inversas}%
 \label{sec:imagenes_inversas}
-\underline{Problema:} Hacer $f: Y \rightarrow \left( X, \mathcal{T} \right)$ continua con $\begin{cases}
-    \text{topología discreta en } Y \text{ (trivialidad)}\\
-    \text{topología \underline{menos fina} en } Y 
-\end{cases}$. 
-
-Es decir, buscamos crear una topología en base a $f$ de tal modo que $f$ sea siempre continua.
-
-\underline{Solución}: 
+Supongamos que tenemos $f: Y \rightarrow \left( X, \mathcal{T} \right)$ y buscamos hacerla continua . Trivialmente, podemos hacer que la topología en $Y$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{menos fina} que haga $f$ continua. 
 \begin{defi}    
 Llamamos \textbf{topología de la imagen inversa} a: $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$.
 \end{defi}
-\begin{obs}
-Con esta definición, $f$ será continua.
-\end{obs}
 \begin{prop}    
 La topología de la imagen inversa cumple:
 \begin{enumerate}
@@ -27,9 +17,21 @@ La topología de la imagen inversa cumple:
 \end{prop}
 %TODO: Acabar
 \begin{demo}
-    2. $f$ es continua $\Rightarrow \forall f^{-1}U$ es abierto
+\begin{enumerate}
+    \item Trivial.
+    \item Sea $\mathcal{T}'$ otra topología en $Y$ que haga $f$ continua. 
+
+    Tomamos $U \in f^{-1}\mathcal{T} \Rightarrow \exists V \in \mathcal{T}: f^{-1}V = U$. Como $f$ en $\mathcal{T}'$ es también continua tenemos que $U = f^{-1}V$ es abierto en $\mathcal{T}'$. Es decir, todo abierto en $f\mathcal{T}$ es también abierto en $\mathcal{T}' \Rightarrow \boxed{f \mathcal{T} \subset \mathcal{T}'}$.
+\end{enumerate}
 \end{demo}
 
+\begin{obs}
+    Con esta definición, $f$ será continua.
+\end{obs}
+
+\subsection{Caracterización de la imagen inversa}
+\label{sub:caracterizacion_de_la_imagen_inversa}
+Veamos ahora una caracterización de la topología que acabamos de introducir.
 \begin{theo}[Propiedad universal de las inmersiones]
 Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T} \right)$. Entonces:
     \[
@@ -91,9 +93,13 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
 \end{itemize}
 \end{demo}
 
-\underline{Ejercicio}: Demostrar $\Leftarrow$) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización). Hecho en clase.
+\begin{enun}
+Demostrar $\Leftarrow$) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización). Hecho en clase.
+\end{enun}
 
-Caso esencial: 
+\subsection{Inmersiones}
+\label{sub:inmersiones}
+Veamos ahora un caso de especial relevancia:
 \[
 \boxed{f: Y \rightarrow X \text{ inyectiva}} 
 \]
@@ -101,17 +107,43 @@ Caso esencial:
 Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \textbf{inmersión}.
 \end{defi}
 
+\begin{prop}
+Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( f\left( Y \right), \mathcal{T} \right)$. Entonces:
+\[
+    \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow f: \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeo.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)
+\]
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item $\Rightarrow)$ Tenemos que $f: \left( Y, f^{-1}\mathcal{T} \right) \rightarrow \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$. 
+
+    Al ser $f$ inyectiva, también será biyectiva. Veamos que es continua y abierta:
+    \begin{itemize}
+        \item \underline{Continua}: Sea $U \in \mathcal{T}|_{f\left( Y \right)} \Rightarrow \exists W \in \mathcal{T}: U = f\left( Y \right) \cap W \Rightarrow$ 
+        \[
+        f^{-1}\left( U \right) = f^{-1}\left( W \cap f\left( Y \right) \right) = Y \cap f^{-1}\left( W \right) = f^{-1}\left( W \right)
+        \]
+        que es abierto en $f^{-1}\mathcal{T}$.
+        \item \underline{Abierta}: Sea $U \in f^{-1}\mathcal{T} \Rightarrow \exists W \in \mathcal{T}: f^{-1}W = U$. Aplicando $f$:
+        \[
+        fU = ff^{-1}W = W \cap f\left( Y \right) \stackrel{\text{ab.}}{\subset} f\left( Y \right)
+        \]
+        es decir que $fU$ es abierto en $f\left( Y \right)$.
+    \end{itemize}
+
+    %TODO: Posiblemente mal. Algo de la relativa 
+    \item $\Leftarrow)$ Veamos la doble contención:
+    \begin{itemize}
+        \item $\subset)$ Sea $U \in \mathcal{T}' \xRightarrow{\text{ab.}} fU \in \mathcal{T}|_{f\left( Y \right)}$, es decir, $\exists W \in \mathcal{T}'|_{f\left( Y \right)}: f^{-1}W = U$. Por tanto, $U \in f^{-1}\mathcal{T}$. 
+        \item $\supset)$ Sea $U \in f^{-1}\mathcal{T} \xRightarrow{\text{def.}} \exists W \in \mathcal{T}|_{f\left( Y \right)}: f^{-1}W = U$. Como $f$ es continua en $\mathcal{T}'$, $U = f^{-1} W \in \mathcal{T}'$.
+    \end{itemize}
+\end{itemize} 
+\end{demo}
+
+%TODO: No se si es necesario
 \begin{obs}
 \begin{enumerate}
-    \item $\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeo.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$
-    \begin{demo}    
-    Tenemos:
-    \[
-    V \in f^{-1}\mathcal{T} \Leftrightarrow V \stackrel{\text{biy.}}{=} f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid_{f\left( Y \right)}} \right)
-    \]
-    Con esto $f$ es abierta y continua.
-    \end{demo}
-
+    %TODO: Igual al anterior?
     \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
         \text{abierto} \Rightarrow \text{inmersión }\\
         \text{cerrado} \Rightarrow \text{inmersión } 
@@ -136,7 +168,7 @@ Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right
     \end{itemize} 
     \end{demo}
 
-    \item Tenemos: 
+    \item Tenemos como posibilidades: 
     \begin{itemize}
         \item Inmersión $ + \not$ ab. $+ \not$ cerr.
         \item Inmersión $+$ ab. $+ \not $ cerr.
@@ -153,24 +185,32 @@ y de la geometría.
 
 \section{Imágenes directas}%
 \label{sec:imagenes_directas}
-\underline{Problema:} Hacer $f: \left( X, \mathcal{T} \right) \rightarrow Y$ continua en $\begin{cases}
-    \text{top. trivial en } Y \text{(trivialidad)}\\
-    \text{top. \underline{más fina} en } Y 
-\end{cases} $ 
+Supongamos que tenemos $f: \left( X, \mathcal{T} \right) \rightarrow Y$ y buscamos hacerla continua. Trivialmente, podemos hacer que la topología en $X$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
 
-Es decir, buscamos una topología para que $f$ sea continua.
-
-\underline{Sol:} $f\mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}$ top. \underline{imagen directa}.
+\begin{defi}
+Llamamos \textbf{topología de la imagen directa} a: $f\mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}$.
+\end{defi}
 \begin{prop}    
 \begin{enumerate}
-    \item Es topología (inm.)
+    \item Es topología.
     \item Máxima. 
 \end{enumerate}
 \end{prop}
 \begin{demo}
-2.) $f$ es continua $\Leftrightarrow \forall f^{-1} V$ es abierto
-\end{demo}
+\begin{enumerate}
+    \item Trivial.
+    \item Sea $\mathcal{T}'$ tal que haga $f$ continua. Veamos que $\mathcal{T}' \subset f\mathcal{T}$.
 
+    Tomamos $U \in \mathcal{T}' \Rightarrow \exists W \in \mathcal{T}': f^{-1} U = W$. Por definición de $f \mathcal{T}$, ya tenemos que $U \in f \mathcal{T}$ (porque $W \in Y$).
+\end{enumerate}
+\end{demo}
+\begin{obs}
+Con esta definición, $f$ será continua.
+\end{obs}
+
+\subsection{Caracterización de la imagen directa}
+\label{sub:caracterizacion_de_la_imagen_directa}
+Veamos ahora una caracterización de la topología que acabamos de introducir.
 \begin{theo}[Propiedad universal de las identificaciones]
 Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
     \[
@@ -232,7 +272,9 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
 \end{enumerate}
 \end{demo}
 
-\underline{Ejercicio}: Demostrar (ii) sin usar que $f\mathcal{T}$ es la más fina (usar que cumple la caracterización)
+\begin{enun}    
+Demostrar (ii) sin usar que $f\mathcal{T}$ es la más fina (usar que cumple la caracterización)
+\end{enun}
 
 \begin{obs}
 $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
@@ -241,25 +283,34 @@ $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
 \end{cases}$
 \end{obs}
 
-Caso esencial:
+%TODO: En sus apuntes el orden es distinto a como lo dio en clase. De momento, lo dejo como en los apuntes.
+\subsection{Identificaciones}
+\label{sub:identificaciones}
+Veamos ahora un caso de especial relevancia:
 \[
 \boxed{f: X \rightarrow Y \text{ sobreyectiva}.} 
 \]
+%TODO: No sé de donde viene esto. Explicar el interés de este caso. f(X) nos dirá todo lo necesario.
 Para entender los abiertos de una imagen directa es conveniente representarlos en el dominio. El concepto es conjuntista en realidad:
 
-%TODO: explicar el interés de este caso. f(X) nos dirá todo lo necesario.
-
-\begin{defi}
+\subsubsection*{Conjuntos saturados}
+Conjuntos saturados\begin{defi}
 Un conjunto $A \subset X$ es \textbf{saturado} (respecto de $f$) si $f^{-1}f\left( A \right) = A$.
 \end{defi}
 \begin{prop}
-Los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$.    
+Los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$:
+\[
+U \in f \mathcal{T} \Leftrightarrow \exists W \in \mathcal{T}\text{, saturado}: fW = U.
+\]
 \end{prop}
 \begin{demo}
-\begin{enumerate}
-    \item $V \in f\mathcal{T} \Rightarrow f^{-1}V \in \mathcal{T}$ y $V \stackrel{f \text{ sobre}}{=} f^{-1}fV$
-    \item $U \in \mathcal{T}$, saturado $\Rightarrow f\left( U \right) = V \in f\mathcal{T}: f^{-1}V = f^{-1}f\left( U \right) \stackrel{U \text{ sat.}}{=} U \in \mathcal{T}$
-\end{enumerate}
+\begin{itemize}
+    %TODO: No sé si está del todo bien.
+    \item $\Rightarrow)\ V \in f\mathcal{T} \Rightarrow f^{-1}V \in \mathcal{T}$ y $V \stackrel{f \text{ sobre}}{=} f^{-1}fV$, es decir, que $f^{-1} V$ es saturado.
+    \item $\Leftarrow)$ Sea $V \in Y: \exists U \in \mathcal{T}$, saturado tal que: $fU = V$. Debemos ver que $f^{-1}V \in \mathcal{T}$.
+
+    Como $f^{-1}V = f^{-1}fU \stackrel{\text{sat.}}{=} U \in \mathcal{T}$ ya lo tenemos.
+\end{itemize}
 \end{demo}
 
 \begin{obs}
@@ -269,8 +320,12 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 \begin{ej}
 \begin{enumerate}
     %TODO: Hacer la circunferencia con todo R
-    \item $f: \left[ 0, 1 \right] \rightarrow \mathbb{S}^1 = Y: t \mapsto \left( \cos 2\pi t, \sin 2\pi t \right) = \exp\left( 2 \pi i t \right)$
-
+    \item Sea:
+    \begin{align*}
+        f: \left[ 0, 1 \right] &\rightarrow \mathbb{S}^1 = Y\\ 
+        t &\mapsto \underbrace{\left( \cos 2\pi t, \sin 2\pi t \right)}_{\exp\left( 2 \pi it \right)}
+    \end{align*}
+    que geométricamente es:
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -350,16 +405,17 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
         f: R = \left[ 0, 1 \right] \times \left[ 0, 1 \right] &\rightarrow C \subset \mathbb{R}^3: x^2 + y^2 = 1,\ 0 \le z \le 1\\
         \left( s, t \right) &\mapsto \left( \cos 2\pi s, \sin 2\pi s, t \right) 
     .\end{align*}
-
-\begin{figure}[H]
-    \centering
-    \incfig[0.9]{rectángulo-a-cilindro-por-imagen-directa.}
-    \caption{\textit{Analizando los abiertos saturados y no saturados se concluye que la topología imagen directa es la usual en el tronco del cilindro.}}
-    \label{fig:rectángulo-a-cilindro-por-imagen-directa.}
-\end{figure}
+    que geométricamente es:
+    \begin{figure}[H]
+        \centering
+        \incfig[0.9]{rectángulo-a-cilindro-por-imagen-directa.}
+        \caption{\textit{Analizando los abiertos saturados y no saturados se concluye que la topología imagen directa es la usual en el tronco del cilindro.}}
+        \label{fig:rectángulo-a-cilindro-por-imagen-directa.}
+    \end{figure}
 \end{enumerate}
 \end{ej}
 
+\subsubsection*{Identificaciones}
 \begin{defi}
 Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ tal que $\mathcal{T}' = f\mathcal{T}$ se llama \textbf{identificación} 
 \end{defi}
@@ -370,16 +426,23 @@ Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \le
 
     Continua: $V \stackrel{\text{ab}}{\subset } Y \Rightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
 
-    \item Sea $f: X \rightarrow Y$ sobreyectiva continua. Si además es:
+    \item Sea $f: X \rightarrow Y$ sobreyectiva continua. Será identificación si además es:
     \begin{itemize}
-        \item Abierta $\Rightarrow f$ es identificación. 
+        \item Abierta. 
         \begin{demo}
             Por (1).
         \end{demo}
-        \item Cerrada $\Rightarrow f$ es identificación.
+        \item Cerrada.
         \begin{demo}
             $f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \stackrel{\text{cerr.}}{\subset} Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
         \end{demo}
+    \end{itemize}
+
+    \item Tenemos como posibilidades:
+    \begin{itemize}
+        \item Identificación $+ \not$ ab. $+ \not$ cerr.
+        \item Identificación $+$ ab. $+ \not$ cerr.
+        \item Identificación $+ \not$ ab. $+$ cerr.
     \end{itemize}
 \end{enumerate}
 \end{obs}
@@ -399,9 +462,13 @@ Llamamos \textbf{proyección canónica} respecto de una relación de equivalenci
     p: X &\rightarrow \faktor{X}{\sim}\\ 
     x &\mapsto \left[ x \right]
 \end{align*}
-donde $\left[ x \right]$ es la relación de equivalencia de $x$.
+donde $\left[ x \right]$ es la clase de equivalencia de $x$.
 \end{defi}
-Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = X / \sim$. Con esto definimos:
+Con esto vemos que dentro de las identificaciones tenemos el caso particular del cociente:
+\[
+p: \left( X, \mathcal{T} \right) \rightarrow \faktor{X}{\sim}.
+\]
+Con esto definimos:
 \begin{defi}[Topología cociente]
 Llamamos \textbf{topología cociente} a: 
 \[
@@ -432,13 +499,20 @@ que viene a ser la topología imagen directa por $p$.
 \end{figure}
 
 \begin{obs}
-La relación de equivalencia que vamos a usar en la que viene dada por la relación de \underline{inyectividad} respecto de $f$. Por esta razón, $\overline{f}$ será una biyección.
+La relación de equivalencia que vamos a usar es la que viene dada por la relación de \underline{inyectividad} respecto de $f$. Por esta razón, $\overline{f}$ será una biyección.
 \end{obs}
+\begin{demo}
+Sea $z \in Y$ como $f$ es suprayectiva $\exists x \in X: f\left( x \right) = z$. A su vez, $y \in \left[ x \right] \Leftrightarrow f\left( x \right) = f\left( y \right) \Rightarrow \overline{f}\left( \left[ x \right] \right) = z$. Con esto, $\overline{f}$ es sobreyectiva y bien definida.
+
+Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\overline{f}\left[ x \right] = \overline{f}\left[ y \right] \Rightarrow f\left( x \right) = f\left( y \right) \Rightarrow \left[ x \right] = \left[ y \right]$. Por tanto, también es inyectiva.
+\end{demo}
+
+%TODO: No estoy seguro de como es esta proposición
 \begin{prop}
 \begin{enumerate}
     \item $\exists \overline{f} \Leftrightarrow x \sim y \Rightarrow f\left( x \right) \sim f\left( y \right)$
     \item $\exists \overline{f} : \overline{f}$ continua $\Leftrightarrow f$ continua.
-    \item $\exists \overline{f}: \overline{f}: \begin{cases}
+    \item $\exists \overline{f}: \overline{f} \begin{cases}
         \text{sobre. }\\ 
         \text{iny. 1-1}\\ 
     \end{cases} \Leftrightarrow f \begin{cases}
@@ -452,27 +526,33 @@ La relación de equivalencia que vamos a usar en la que viene dada por la relaci
         \centering
         \begin{tikzpicture}[node distance=2cm, auto]
         \node(X) {$\left( X, \mathcal{T} \right)$};
-        \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
-        \node(Z) [below of=X] {$\left( \faktor{X}{\sim}, \overline{\mathcal{T}} \right)$};
+        \node(Y) [right=2cm of X] {$\left( Y, \mathcal{T}' \right)$};
+        \node(Z) [below=1.5cm of X] {$\left( \faktor{X}{\sim}, \overline{\mathcal{T}} \right)$};
         \draw[->](X) to node {$f$} node [below] {ident.}(Y);
-        \draw[->](X) to node [right] {$p$} node [left] {$\sim$} (Z);
-        \draw[->](Z) to node [left] {$\overline{f}$} node [right=0.2] {homeo} (Y);
+        \draw[->](X) to node [left] {$p$} (Z);
+        \draw[->](Z) to node [left=0.2] {$\overline{f}$} node [below=0.3] {homeo.} (Y);
         \end{tikzpicture}  
+        \caption{\textit{Relación entre el cociente y una identificación.}}
+        \label{fig:relacion_cociente_identificacion}
     \end{figure}
 \end{enumerate} 
 \end{prop}
 \begin{demo}
 \begin{enumerate}
     \item Por la definición de $\sim$ y de $\overline{f}$.
-    %TODO: Corregir
-    \item $p$ siempre será continua por como se define la topología cociente. Entonces, si $f$ es continua por hipótesis, la composición $\overline{f}$ también será continua. 
+    %TODO: Corregir. Creo que se puede usar la propiedad universal
+    \item Sea $\overline{f}$ continua. Tomemos $U \in \mathcal{T}' \Rightarrow \overline{f}^{-1}U \in \overline{\mathcal{T}}$. Como $p$ es continua por definición de $\overline{\mathcal{T}}$, $f^{-1} U = p^{-1} \overline{f}^{-1} U \in \mathcal{T}$. Por lo que $f$ es continua.
 
-    \item Si $\overline{f}$ es inyectiva 1-1 $\Rightarrow \underbrace{\overline{f}\left[ x \right] = \overline{f}\left[ y \right]}_{\Leftrightarrow f\left( x \right) \sim f\left( y \right)} \Rightarrow \underbrace{\left[ x \right] = \left[ y \right]}_{\Leftrightarrow x \sim y}$
+    Sea ahora $f$ continua. Tomemos $U \in \mathcal{T}' \Rightarrow W = f^{-1}U \in \mathcal{T}$. Al ser $p$ sobreyectiva $W = p^{-1}pW$, es decir, que $pW \in \overline{\mathcal{T}}$ (ya que $p^{-1}\left( p W \right) \in \mathcal{T}$ y la definición de $\overline{\mathcal{T}}$).
+
+    \item (Anterior observación) Si $\overline{f}$ es inyectiva 1-1 $\Rightarrow \underbrace{\overline{f}\left[ x \right] = \overline{f}\left[ y \right]}_{\Leftrightarrow f\left( x \right) \sim f\left( y \right)} \Rightarrow \underbrace{\left[ x \right] = \left[ y \right]}_{\Leftrightarrow x \sim y}$
 \end{enumerate}
 \end{demo}
 
 \begin{pg}
-    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente. Es decir, utilizamos el cociente como ``modelo teórico'' y la identificación como ``modelo geométrico''. Esto no siempre será posible ya que dependerá de ciertas propiedades geométricas que veremos.
+    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior (\ref{fig:relacion_cociente_identificacion}). 
+
+    Se puede contemplar $Y$ como un modelo del cociente. Es decir, utilizamos el cociente como ``modelo teórico'' y la identificación como ``modelo geométrico''. Esto no siempre será posible ya que dependerá de ciertas propiedades geométricas que veremos.
 \end{pg}
 
 \begin{ej}[Anteriores]
@@ -497,12 +577,14 @@ La relación de equivalencia que vamos a usar en la que viene dada por la relaci
             \draw[->](X) to (Z);
             \draw[<->](Z) to (Y);
         \end{tikzpicture}
+        \caption{\textit{En el primero tomamos un segmento de longitud $1$ y ``pegamos'' los extremos, lo que nos da una figura equivalente a un circunferencia. En el segundo, tomamos un rectángulo de área $1$ y ``pegamos'' el lado izquierdo con el derecho directamente.}}
     \end{figure}
 
     Para la circunferencia tenemos:
     \[
         \faktor{X}{\sim} = \left\{ \left\{ t \right\} : 0 < t < 1, \left\{ 0, 1 \right\} \right\}
     \]
+    %TODO: Posiblemente mal
     la biyección entre el cociente y la esfera se da por el punto (3) de la anterior proposición y la continuidad por (2). Por último, la identificación se da por el anterior ejemplo.
 
     \item Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
@@ -727,8 +809,11 @@ Finalmente, hay otros conceptos de ``suma'' más significativos que veremos en a
 
 \section{Espacios proyectivos reales}%
 \label{sec:espacios_proyectivos_reales}
+\subsection{Geometría lineal}
+\label{sub:geometría_lineal}
+En primer lugar, veamos un repaso de lo visto en geometría lineal sobre espacios proyectivos.
 \begin{defi}[Espacio proyectivo real]    
-Como vimos en geometría lineal tenemos que, usando $\sim$ proporcionalidad: 
+Usando $\sim$, proporcionalidad: 
 \[
 \mathbb{R}P^n = \mathbb{P}^{n} = \faktor{\mathbb{R}^{n+1}\setminus \{0\}}{\sim} \Rightarrow \mathbb{P}^{n} = \{\text{rectas vectoriales de } \mathbb{R}^{n+1}\}     
 \]
@@ -743,31 +828,38 @@ Las ecuaciones serán de la forma: $h\in \mathbb{R}\left[ x_0, \ldots, x_n \righ
     h\left( x \right) = 0\\
     h\left( x \right) \neq 0
 \end{cases}$ está bien definido en $\mathbb{P}^{n}$.
-\[
-\begin{rcases}
-    %TODO: Fix lista
-   \text{· Variedades proyectivas lineales}\\  
-   \text{· Variedades proyectivas}\\
-   \text{· Variedades proyectivas algebraicas}  
-\end{rcases} \text{ecuaciones homogéneas de grado:} 
-\begin{cases}
-    1\\
-    2\\
-    \text{arbitrario} 
-\end{cases} 
-\]
+Sabemos que el grado de la ecuación homogénea $h$ nos dará lugar a:
+\begin{itemize}
+    \item Grado \underline{1}: Variedades proyectivas lineales.
+    \item Grado \underline{2}: Cuádricas proyectivas.
+    \item Grado \underline{arbitrario}: Variedades proyectivas algebraicas.
+\end{itemize}
 \end{obs}
 
 \begin{defi}[Cartas afines]
-\begin{gather*}
-    \underbrace{H \subset \mathbb{P}^{n}}_{\text{hiperplano proyectivo}} \rightarrow \underbrace{\hat{H} \subset \mathbb{R}^{n + 1}}_{\text{hiperplano lineal} } : \underbrace{h = 0}_{\text{forma lineal}}, H = \faktor{\hat{H} \setminus \{0\}}{\sim}\\
-    \pi|: \underbrace{\{h = 1\} \subset \mathbb{R}^{n + 1} \setminus \{0\}}_{\text{hiperplano afín}} \rightarrow \underbrace{\mathbb{P}^{n} \setminus H}_{\{h \neq 0\}} = 0 \text{ es biyección.}    
-\end{gather*}
+Sea $H \subset \mathbb{P}^n$ un hiperplano proyectivo. Entonces, tenemos un hiperplano lineal $\hat{H} \subset \mathbb{R}^{n+1}$, con una forma lineal asociada $h = 0$, de la siguiente forma:
+\[
+H = \faktor{\hat{H}\setminus \left\{ 0 \right\}}{\sim}
+\]
 Decimos que $H$ es \textbf{hiperplano del infinito} de la \textbf{carta afín} $U = \mathbb{P}^n \setminus H$.
 \end{defi}
-
 \begin{prop}
-Topología en $U$: La imagen directa de la usual en $\{h = 1\} \subset \mathbb{R}^{n + 1} \Rightarrow \pi|: \{h = 1\} \rightarrow U$ \underline{homeomorfismo}.     
+La aplicación 
+\[
+\pi|: \underbrace{\left\{ h = 1 \right\}\subset \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}}_{\text{Hiperplano afín}} \rightarrow \underbrace{\mathbb{P}^{n} \setminus H}_{\left\{ h \neq 0 \right\}} = U
+\]
+es una biyección.
+\end{prop}
+
+\subsection{Topología de espacio proyectivos}
+\label{sub:topología_de_espacio_proyectivos}
+Para la topología en $U$ usaremos la imagen directa de la usual en $\left\{ h = 1 \right\} \subset \mathbb{R}^{n+1}$
+\begin{prop}
+Con la anterior suposición tenemos que la aplicación:
+\[
+\pi|: \{h = 1\} \rightarrow U
+\]
+es un \underline{homeomorfismo}.     
 \end{prop}
 \begin{demo}
 Veamos lo que tenemos:
