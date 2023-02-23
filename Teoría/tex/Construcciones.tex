@@ -727,15 +727,18 @@ Finalmente, hay otros conceptos de ``suma'' más significativos que veremos en a
 
 \section{Espacios proyectivos reales}%
 \label{sec:espacios_proyectivos_reales}
-Como vimos en geometría lineal tenemos que: 
+\begin{defi}[Espacio proyectivo real]    
+Como vimos en geometría lineal tenemos que, usando $\sim$ proporcionalidad: 
 \[
-\mathbb{R}P^n = \mathbb{P}^{n} = \mathbb{R}^{nH}\setminus \{0\} / \underbrace{\sim }_{\text{Prop.}} \Rightarrow \mathbb{P}^{n} = \{\text{rectas vectoriales de } \mathbb{R}^{n+1}\}     
+\mathbb{R}P^n = \mathbb{P}^{n} = \faktor{\mathbb{R}^{n+1}\setminus \{0\}}{\sim} \Rightarrow \mathbb{P}^{n} = \{\text{rectas vectoriales de } \mathbb{R}^{n+1}\}     
 \]
 Que en coordenadas es:
 \begin{align*}
-    \pi: \mathbb{R}^{nH} \setminus \{0\} &\rightarrow \mathbb{P}^{n}\\
+    \pi: \mathbb{R}^{n+1} \setminus \{0\} &\rightarrow \mathbb{P}^{n}\\
     \left( x_0, \ldots, x_n \right) &\mapsto \left( x_0 : \ldots : x_n \right) 
 .\end{align*}
+\end{defi}
+\begin{obs}
 Las ecuaciones serán de la forma: $h\in \mathbb{R}\left[ x_0, \ldots, x_n \right]$ homogénea $\Rightarrow \begin{cases}
     h\left( x \right) = 0\\
     h\left( x \right) \neq 0
@@ -753,17 +756,55 @@ Las ecuaciones serán de la forma: $h\in \mathbb{R}\left[ x_0, \ldots, x_n \righ
     \text{arbitrario} 
 \end{cases} 
 \]
-\underline{Cartas afines:} 
+\end{obs}
+
+\begin{defi}[Cartas afines]
 \begin{gather*}
-    \underbrace{H \subset \mathbb{P}^{n}}_{\text{hiperplano proyectivo}} \rightarrow \underbrace{\hat{H} \subset \mathbb{R}^{n + 1}}_{\text{hiperplano lineal} } : \underbrace{h = 0}_{\text{forma lineal}}, H = \hat{H} \setminus \{0\} / \sim  \\
+    \underbrace{H \subset \mathbb{P}^{n}}_{\text{hiperplano proyectivo}} \rightarrow \underbrace{\hat{H} \subset \mathbb{R}^{n + 1}}_{\text{hiperplano lineal} } : \underbrace{h = 0}_{\text{forma lineal}}, H = \faktor{\hat{H} \setminus \{0\}}{\sim}\\
     \pi|: \underbrace{\{h = 1\} \subset \mathbb{R}^{n + 1} \setminus \{0\}}_{\text{hiperplano afín}} \rightarrow \underbrace{\mathbb{P}^{n} \setminus H}_{\{h \neq 0\}} = 0 \text{ es biyección.}    
-.\end{gather*}
-Terminología: $H$ es \underline{hiperplano del infinito} de la \underline{carta afín} $U$.
+\end{gather*}
+Decimos que $H$ es \textbf{hiperplano del infinito} de la \textbf{carta afín} $U = \mathbb{P}^n \setminus H$.
+\end{defi}
 
-Topología en $U$: La imagen directa de la usual en $\{h = 1\} \subset \mathbb{R}^{n + 1} \Rightarrow \pi|: \{h = 1\} \rightarrow U$ \underline{homeomorfismo}. 
+\begin{prop}
+Topología en $U$: La imagen directa de la usual en $\{h = 1\} \subset \mathbb{R}^{n + 1} \Rightarrow \pi|: \{h = 1\} \rightarrow U$ \underline{homeomorfismo}.     
+\end{prop}
+\begin{demo}
+Veamos lo que tenemos:
+\begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+        \node(X) {$\mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ usual};
+        \node(Z) [below of=X] {$U \subset \mathbb{P}^n$ cociente};
+        \node(Y) [left=1.2cm of Z] {$\mathbb{R}^{n+1} \supset \left\{ h = 1 \right\}$};
+        \draw[->](X) to node [left] {$\pi$}(Z);
+        \draw[->](Y) to node [below] {homeo.}(Z);
+        \end{tikzpicture}
+    \captionsetup{font={color=gray}}
+    \caption[gray]{\textit{Composición propuesta}}
+    \label{}
+\end{figure}
+Tomemos $W \subset U \begin{cases}
+    \text{cociente: } \pi^{-1} \left( W \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}\\
+    \text{homeo: } \pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\} \stackrel{\text{ab.}}{\subset} \left\{ h=1 \right\}
+\end{cases}$.    
+Cociente $\Rightarrow$ homeomorfismo es trivial y significa que $\pi|_{\left\{ h=1 \right\}}$ es continua. Homeomorfismo $\Rightarrow$ cociente porque:
+\[
+\pi^{-1}\left( W \right) = \text{cono de } \underbrace{\pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\}}_{A}
+\]
+Como $\left\{ h=1 \right\} \supset A$ abierto $\Leftrightarrow \text{cono}\left( A \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ donde cono$\left( A \right) = \left\{ \lambda a: a \in A, \lambda \in \mathbb{R} \setminus \left\{ 0 \right\} \right\}$
+\end{demo}
 
-%TODO: Fix subrayado
-\underline{Topología en }$\mathbb{P}^{n}$: 
+\begin{prop}
+En este caso, la $\mathcal{T}_{\text{cociente}}$ tendrá como base: $\left\{ \pi\left( B \right) \subset U : B \stackrel{\text{ab.}}{\subset} \left\{ h = 1 \right\},\ h \in \mathbb{P}\left[ x_0, \ldots, x_n \right] \right\}$ homogéneo de grado $1: G = \bigcup_{U} G \cap U$ abierto en $\mathbb{P}^n$ y abierto en $U$.
+\end{prop}
+
+\begin{obs}
+En $U_1 \cap U_2$ la topología definida por $\pi_1 = $ definida por $\pi_2$.
+\end{obs}
+
+%TODO: Fix topologia
+\begin{prop}[Topología en Pn]    
 \begin{itemize}
     \item \underline{Cociente} de la usual vía $\mathbb{R}^{n+1}\setminus \{0\} \xrightarrow{\pi} \mathbb{P}^{n}: \left( x_0, \ldots, x_n \right) \mapsto \left( x_0 : \ldots : x_n \right)$
     \item ``\underline{Suma}'' de las definidas en las cartas afines:
@@ -772,6 +813,7 @@ Topología en $U$: La imagen directa de la usual en $\{h = 1\} \subset \mathbb{R
     \]
 \end{itemize}
 Estas dos topologías coinciden.
+\end{prop}
 \begin{demo}
 \begin{enumerate}
     \item $U$ es abierto en la top. cociente. [$\pi^{-1} U = \{h \neq 0\}$ abierto usual]
