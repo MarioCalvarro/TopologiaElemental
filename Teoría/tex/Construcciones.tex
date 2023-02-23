@@ -431,14 +431,16 @@ que viene a ser la topología imagen directa por $p$.
         \caption{\textit{Representación de la composición del cociente}}
 \end{figure}
 
-%TODO: Demostrar
+\begin{obs}
+La relación de equivalencia que vamos a usar en la que viene dada por la relación de \underline{inyectividad} respecto de $f$. Por esta razón, $\overline{f}$ será una biyección.
+\end{obs}
 \begin{prop}
 \begin{enumerate}
     \item $\exists \overline{f} \Leftrightarrow x \sim y \Rightarrow f\left( x \right) \sim f\left( y \right)$
     \item $\exists \overline{f} : \overline{f}$ continua $\Leftrightarrow f$ continua.
     \item $\exists \overline{f}: \overline{f}: \begin{cases}
         \text{sobre. }\\ 
-        \text{iny.}\\ 
+        \text{iny. 1-1}\\ 
     \end{cases} \Leftrightarrow f \begin{cases}
         \text{sobre.}\\ 
         x \sim y \Leftarrow f \left( x \right) \sim f \left( y \right)
@@ -459,6 +461,15 @@ que viene a ser la topología imagen directa por $p$.
     \end{figure}
 \end{enumerate} 
 \end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item Por la definición de $\sim$ y de $\overline{f}$.
+    %TODO: Corregir
+    \item $p$ siempre será continua por como se define la topología cociente. Entonces, si $f$ es continua por hipótesis, la composición $\overline{f}$ también será continua. 
+
+    \item Si $\overline{f}$ es inyectiva 1-1 $\Rightarrow \underbrace{\overline{f}\left[ x \right] = \overline{f}\left[ y \right]}_{\Leftrightarrow f\left( x \right) \sim f\left( y \right)} \Rightarrow \underbrace{\left[ x \right] = \left[ y \right]}_{\Leftrightarrow x \sim y}$
+\end{enumerate}
+\end{demo}
 
 \begin{pg}
     Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente. Es decir, utilizamos el cociente como ``modelo teórico'' y la identificación como ``modelo geométrico''. Esto no siempre será posible ya que dependerá de ciertas propiedades geométricas que veremos.
