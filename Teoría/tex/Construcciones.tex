@@ -862,38 +862,45 @@ Con la anterior suposición tenemos que la aplicación:
 es un \underline{homeomorfismo}.     
 \end{prop}
 \begin{demo}
-Veamos lo que tenemos:
-\begin{figure}[H]
-    \centering
-        \begin{tikzpicture}[node distance=2cm, auto]
-        \node(X) {$\mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ usual};
-        \node(Z) [below of=X] {$U \subset \mathbb{P}^n$ cociente};
-        \node(Y) [left=1.2cm of Z] {$\mathbb{R}^{n+1} \supset \left\{ h = 1 \right\}$};
-        \draw[->](X) to node [left] {$\pi$}(Z);
-        \draw[->](Y) to node [below] {homeo.}(Z);
-        \end{tikzpicture}
-    \captionsetup{font={color=gray}}
-    \caption[gray]{\textit{Composición propuesta}}
-    \label{}
-\end{figure}
-Tomemos $W \subset U \begin{cases}
-    \text{cociente: } \pi^{-1} \left( W \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}\\
-    \text{homeo: } \pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\} \stackrel{\text{ab.}}{\subset} \left\{ h=1 \right\}
-\end{cases}$.    
-Cociente $\Rightarrow$ homeomorfismo es trivial y significa que $\pi|_{\left\{ h=1 \right\}}$ es continua. Homeomorfismo $\Rightarrow$ cociente porque:
-\[
-\pi^{-1}\left( W \right) = \text{cono de } \underbrace{\pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\}}_{A}
-\]
-Como $\left\{ h=1 \right\} \supset A$ abierto $\Leftrightarrow \text{cono}\left( A \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ donde cono$\left( A \right) = \left\{ \lambda a: a \in A, \lambda \in \mathbb{R} \setminus \left\{ 0 \right\} \right\}$
+Ya sabemos que es biyección por lo que queda ver que es continua y abierta/cerrada. Continua lo será por tener $U$ la topología imagen directa. Y abierta porque???%TODO
 \end{demo}
+%TODO: Creo que esta demostración no es de esto.
+%\begin{demo}
+%Veamos lo que tenemos:
+%\begin{figure}[H]
+%    \centering
+%        \begin{tikzpicture}[node distance=2cm, auto]
+%        \node(X) {$\mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ usual};
+%        \node(Z) [below of=X] {$U \subset \mathbb{P}^n$ cociente};
+%        \node(Y) [left=1.2cm of Z] {$\mathbb{R}^{n+1} \supset \left\{ h = 1 \right\}$};
+%        \draw[->](X) to node [left] {$\pi$}(Z);
+%        \draw[->](Y) to node [below] {homeo.}(Z);
+%        \end{tikzpicture}
+%    \captionsetup{font={color=gray}}
+%    \caption[gray]{\textit{Composición propuesta}}
+%    \label{}
+%\end{figure}
+%Tomemos $W \subset U \begin{cases}
+%    \text{cociente: } \pi^{-1} \left( W \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}\\
+%    \text{homeo: } \pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\} \stackrel{\text{ab.}}{\subset} \left\{ h=1 \right\}
+%\end{cases}$.    
+%Cociente $\Rightarrow$ homeomorfismo es trivial y significa que $\pi|_{\left\{ h=1 \right\}}$ es continua. Homeomorfismo $\Rightarrow$ cociente porque:
+%\[
+%\pi^{-1}\left( W \right) = \text{cono de } \underbrace{\pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\}}_{A}
+%\]
+%Como $\left\{ h=1 \right\} \supset A$ abierto $\Leftrightarrow \text{cono}\left( A \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ donde cono$\left( A \right) = \left\{ \lambda a: a \in A, \lambda \in \mathbb{R} \setminus \left\{ 0 \right\} \right\}$
+%\end{demo}
 
 \begin{prop}
-En este caso, la $\mathcal{T}_{\text{cociente}}$ tendrá como base: $\left\{ \pi\left( B \right) \subset U : B \stackrel{\text{ab.}}{\subset} \left\{ h = 1 \right\},\ h \in \mathbb{P}\left[ x_0, \ldots, x_n \right] \right\}$ homogéneo de grado $1: G = \bigcup_{U} G \cap U$ abierto en $\mathbb{P}^n$ y abierto en $U$.
+La siguiente definición es topología en $\mathbb{P}^n$:
+\[
+W \text{ abierto si } W \cap U \text{ es abierto } \forall U \text{ carta afín.}
+\]
 \end{prop}
-
-\begin{obs}
-En $U_1 \cap U_2$ la topología definida por $\pi_1 = $ definida por $\pi_2$.
-\end{obs}
+\begin{demo}
+%TODO
+Ni idea
+\end{demo}
 
 %TODO: Fix topologia
 \begin{prop}[Topología en Pn]    
@@ -901,74 +908,119 @@ En $U_1 \cap U_2$ la topología definida por $\pi_1 = $ definida por $\pi_2$.
     \item \underline{Cociente} de la usual vía $\mathbb{R}^{n+1}\setminus \{0\} \xrightarrow{\pi} \mathbb{P}^{n}: \left( x_0, \ldots, x_n \right) \mapsto \left( x_0 : \ldots : x_n \right)$
     \item ``\underline{Suma}'' de las definidas en las cartas afines:
     \[
-        W \text{ abierto si } W \cap U \text{ es abierto } \forall U \text{ carta afín. [Es top. en } \mathbb{P}^{n}] 
+        W \text{ abierto si } W \cap U \text{ es abierto } \forall U \text{ carta afín.} 
     \]
 \end{itemize}
 Estas dos topologías coinciden.
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $U$ es abierto en la top. cociente. [$\pi^{-1} U = \{h \neq 0\}$ abierto usual]
+    \item $U$ es abierto en la topología cociente ya que $\pi^{-1} U = \{h \neq 0\}$ es abierto usual.
     \item La topología cociente en $U$ coincide con la topología de carta afín:
-    %TODO: Fix diagrama
-    \begin{center}
-        \includegraphics[scale=0.3]{images/eq_top_proyectivo} 
-    \end{center}
+    %¡¡¡¡IMPORTANTE!!!!: TOCAR LO MINIMO POSIBLE
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \node(top) at (0,0) {$W \subset U : \pi^{-1}W = $ cono sobre $\underbrace{\left( \pi^{-1} W \right)\cap \left\{ h = 1 \right\}}_{= \left( \pi|_{\left\{ h=1 \right\}} \right)^{-1}W}$}; 
+            %Izquierda
+            \draw[->] (-2.4,0) -- (-2,0.1);
+            \node at (-2,0) [below, text width=2cm] {para la top. cociente};
+            %Derecha
+            \draw[->] (4.4,-0.3) -- (3.5,-0.3);
+            \node at (5.5,0.2) [below, text width=2cm] {para la top. de carta afín};
+
+            \draw[-{implies},double] (0,0) -- (0,-2);
+
+            \node(bottom) at (0.7,-2.2) {$\pi^{-1}W \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \Leftrightarrow \left( \pi|_{\left\{ h=1 \right\}}^{-1} \right)W \stackrel{\text{ab.}}{\subset}\left\{ h=1 \right\}$};
+
+            %Izquieda
+            \draw[implies-implies,double] (-1.35,-2.4) -- (-1.35,-3);
+            \node at (-1.35,-3) [below, text width=2cm] {$W$ abierto top. cociente};
+            %Derecha
+            \draw[implies-implies,double] (2.55,-2.4) -- (2.55,-3);
+            \node at (2.55,-3) [below, text width=2cm] {$W$ abierto top. carta afín};
+        \end{tikzpicture}
+        \captionsetup{font={color=gray}}
+        \caption[gray]{\textit{Equivalencia entre las topologías cociente y suma.}}
+        \label{fig:cociente_suma_equivalentes}
+    \end{figure}
     \item[1. + 2.] $\Rightarrow $ La top. cociente está generada por las topologías de las cartas afines, que forman un recubrimiento abierto de $\mathbb{P}^{n}$.
 \end{enumerate}
 \end{demo}
+
+%TODO: Fix orden
+\begin{prop}
+    En este caso, la $\mathcal{T}_{\text{cociente}}$ tendrá como base: $\left\{ \pi\left( B \right) \subset U : B \stackrel{\text{ab.}}{\subset} \left\{ h = 1 \right\},\ h \in \mathbb{P}\left[ x_0, \ldots, x_n \right] \right\}$ homogéneo de grado $1: G = \bigcup_{U} G \cap U$ abierto en $\mathbb{P}^n$ y abierto en $U$.
+\end{prop}
+
+\begin{obs}
+    En $U_1 \cap U_2$ la topología definida por $\pi_1 = $ definida por $\pi_2$.
+\end{obs}
 
 \begin{obs}
 De lo anterior deducimos:
 \begin{enumerate}
     \item $U_1, U_2$ dos cartas afines $\Rightarrow U_1 \cap U_2$ abiertos.
+    \begin{demo}
     \[
-    \left[ \text{Cartas afines: } U_i = \{h_1 \neq 0\} \begin{cases}
-        \pi|: \{h_1 = 1\} \rightarrow U_1 \text{homeo.}\\
-        \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \stackrel{\text{ab.}}{\subset} \{h_1 = 1\}  
-    \end{cases} \right] 
+        \text{Cartas afines: } U_i = \{h_1 \neq 0\} \begin{cases}
+                \pi|: \{h_1 = 1\} \rightarrow U_1 \text{homeo.}\\
+                \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \stackrel{\text{ab.}}{\subset} \{h_1 = 1\}  
+        \end{cases}  
     \]
+    \end{demo}
     \item Las topologías de $U_1$ y $U_2$ coinciden en $U_1 \cap U_2$.
-
-    [De nuevo conviene entenderlo con cartas:
-    %TODO: Fix
-    \begin{center}
-        \includegraphics[scale=0.3]{images/obs_cartas_afines} ]
-    \end{center}
+    \begin{demo}
+        De nuevo conviene entenderlo con cartas:
+        %TODO: Fix
+        \begin{center}
+            \includegraphics[scale=0.3]{images/obs_cartas_afines} 
+        \end{center}
+    \end{demo}
 \end{enumerate}
 \end{obs}
 
 %TODO: Esto es posible que se pueda agrupar mejor (hasta Möbius)
-\underline{Atlas afín canónico}: No se suelen utilizar todas las cartas afines: $n + 1$ distintas ya cubren $\mathbb{P}^{n}$. Típicamente $\mathbb{P}^{n} = U_0 \cup \ldots \cup U_n$ con:
+\begin{defi}[Atlas afín canónico]
+No se suelen utilizar todas las cartas afines: $n + 1$ distintas ya cubren $\mathbb{P}^{n}$. Típicamente $\mathbb{P}^{n} = U_0 \cup \ldots \cup U_n$ con:
 \[
-U_i = \{x_i \neq 0\} \leftrightarrow \{\underbrace{x_i = 1}_{\equiv \mathbb{R}^n}\}: \left( x_0 : \ldots : x_i : \ldots : x_n \right) \mapsto \left( \frac{x_0}{x_i}, \ldots, \overbrace{1}^{\mathbb{R}^n \rightarrow}, \ldots, \frac{x_n}{x_i} \right), 0 \le i \le n
+    U_i = \{x_i \neq 0\} \leftrightarrow \{\underbrace{x_i = 1}_{\equiv \mathbb{R}^n}\}: \left( x_0 : \ldots : x_i : \ldots : x_n \right) \mapsto \left( \frac{x_0}{x_i}, \ldots, \underbrace{\not1}_{\mathbb{R}^n \rightarrow}, \ldots, \frac{x_n}{x_i} \right), 0 \le i \le n
 \]
+\end{defi}
 
-\underline{Cociente antipodal}: Toda recta de $\mathbb{R}^{n + 1}$ corta a $\mathbb{S}^{n}: x_0^2 + \ldots + x_n^2 = 1$ en dos puntos \underline{antipodales}, así que denotamos un ``sub'' cociente, que es también identificación.
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/cociente_antipodal} 
+\begin{prop}[Cociente antipodal]
+    Toda recta de $\mathbb{R}^{n + 1}$ corta a $\mathbb{S}^{n}: x_0^2 + \ldots + x_n^2 = 1$ en dos puntos \underline{antipodales}, así que denotamos un ``sub'' cociente, que es también identificación.
+    %TODO: Fix imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/cociente_antipodal} 
 
-    [Como antes tenemos conos: $\pi^{-1}W = $ cono sobre $\underbrace{\mathbb{S}^n \cap \pi^{-1}W}_{= \left( \pi / \mathbb{S}^n \right)^{-1} W}$]
-\end{center}
+    \end{center}
+\end{prop}
+\begin{demo} 
+    Como antes tenemos conos: $\pi^{-1}W = $ cono sobre $\underbrace{\mathbb{S}^n \cap \pi^{-1}W}_{= \left( \pi / \mathbb{S}^n \right)^{-1} W}$.
+\end{demo}
+\begin{obs}
+    Las cartas afines tienen una representación muy conveniente:
+    %TODO: Fix imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/repr_carta_afin} 
+    \end{center}
+\end{obs}
 
-Las cartas afines tienen una representación muy conveniente:
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/repr_carta_afin} 
-\end{center}
 
-\underline{Cociente de un disco}:
+\begin{prop}[Cociente de un disco]
+Consideremos un disco:
 \[
-E = \{h = 0, x_0^2 + \cdots + x_n^2 = 1\} = \partial \begin{cases}
-    \overline{S}_+ = \mathbb{S}^n \cap \{h \ge 0\} \text{ hemisferio cerrado.} \\
-    D^n = \{h = 0, x_0^2 + \cdots + x_n^2 \le 1\} \text{ disco.} 
-\end{cases} 
+    E = \{h = 0, x_0^2 + \cdots + x_n^2 = 1\} = \partial \begin{cases}
+        \overline{S}_+ = \mathbb{S}^n \cap \{h \ge 0\} \text{ hemisferio cerrado.} \\
+        D^n = \{h = 0, x_0^2 + \cdots + x_n^2 \le 1\} \text{ disco.} 
+    \end{cases} 
 \]
 %TODO: Fix imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/cociente_disco} 
 \end{center}
+\end{prop}
 
 \begin{ej}
 $\mathbb{P}^{2} \setminus D^2 = $ banda de Möbius.
