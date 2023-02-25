@@ -996,11 +996,25 @@ No se suelen utilizar todas las cartas afines: $n + 1$ distintas ya cubren $\mat
 
 \begin{prop}[Cociente antipodal]
     Toda recta de $\mathbb{R}^{n + 1}$ corta a $\mathbb{S}^{n}: x_0^2 + \ldots + x_n^2 = 1$ en dos puntos \underline{antipodales}, así que denotamos un ``sub'' cociente, que es también identificación.
-    %TODO: Fix imagen
-    \begin{center}
-        \includegraphics[scale=0.3]{images/cociente_antipodal} 
-
-    \end{center}
+    \begin{figure}[H]
+        \tikzset{
+            draw=none,
+            subset/.style={
+                edge node={node [sloped, allow upside down, auto=false]{$\subseteq$}}
+            }
+        }
+        \centering
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$\mathbb{R}^{n+1}\setminus \left\{ 0 \right\}$};
+            \node(Y) [right=0.2cm of X] {$\mathbb{S}^n$};
+            \node(Z) [below of=X] {$\mathbb{R}^n$};
+            \node at (1.03,-0.01) {$\supset$};
+            \draw[->](X) to (Z);
+            \draw[->](Y) to node [right] {$\pi|$} (Z);
+            \end{tikzpicture}
+        \caption{\textit{Cociente antipodal de $\mathbb{S}^n$}}
+        \label{fig:cociente_antipodal_Sn}
+    \end{figure}
 \end{prop}
 \begin{demo} 
     Como antes tenemos conos: $\pi^{-1}W = $ cono sobre $\underbrace{\mathbb{S}^n \cap \pi^{-1}W}_{= \left( \pi / \mathbb{S}^n \right)^{-1} W}$.
