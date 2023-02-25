@@ -4,7 +4,7 @@ En este capítulo buscaremos topologías en base a unas aplicaciones con el obje
 
 \section{Imágenes inversas}%
 \label{sec:imagenes_inversas}
-Supongamos que tenemos $f: Y \rightarrow \left( X, \mathcal{T} \right)$ y buscamos hacerla continua . Trivialmente, podemos hacer que la topología en $Y$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{menos fina} que haga $f$ continua. 
+Supongamos que tenemos $f: Y \rightarrow \left( X, \mathcal{T} \right)$ y buscamos hacerla continua. Trivialmente, podemos hacer que la topología en $Y$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{menos fina} que haga $f$ continua. 
 \begin{defi}    
 Llamamos \textbf{topología de la imagen inversa} a: $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$.
 \end{defi}
@@ -624,22 +624,21 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
 
 \section{Productos (finitos)}%
 \label{sec:productos_finitos_}
-\underline{Problema:} Hacer $X_1 \times \ldots \times X_r = Y \xrightarrow{p_i} \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ continuas con 
+Supongamos que tenemos $p_i: X_1 \times \ldots X_r = \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $X_i$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos las topologías \underline{menos finas} que hagan $p_i$ continuas. 
+
+Que $p_i$ sea continua quiere decir que $\forall U_i \in \mathcal{T}_i : U_i = X_1 \times \ldots U_i \times \ldots \times X_r$ debe ser abierto, es decir, que todos lo sean. Por tanto, $\bigcap_{i=1}^{r} p_i^{-1}U_i = U_1 \times \ldots \times U_r$ que son abiertos, pero no topología. Por tanto, definimos:
+\begin{defi}
+Llamamos \textbf{topología producto}, $\prod_{i=1}^{r} \mathcal{T}_i$, a aquella que viene determinada por la siguiente base:
 \[
-\begin{cases}
-    \text{top. discreta en } Y \text{ trivialidad}\\
-    \text{top. \underline{menos fina} en} Y
-\end{cases} 
+\mathcal{B} = \left\{ U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \right\}
 \]
-\underline{Solución:} $p_i$ cont. $\Rightarrow p_i^{-1} \underbrace{U_i}_{\mathcal{T}_i} = \underbrace{X_1 \times \ldots \times U_i \times \ldots \times X_r}_{\text{deben ser abiertos}}  \Rightarrow \bigcap_{i} p_i^{-1}U_i = \underbrace{U_1 \times \ldots \times U_r}_{\text{abiertos}}$ pero \underline{no} son topología $\Rightarrow$
-\[
-\mathcal{B} = \{U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \} \text{ es la \underline{base} de la \underline{topología producto}: } \boxed{\prod_{i} \mathcal{T}_i} 
-\]
+\end{defi}
+
 \begin{ej}
 La $\mathcal{T}_u$ en $\mathbb{R}^n$ ese el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas''.
 \end{ej}
 
-\begin{theo}[Caracterización de la topología producto]
+\begin{theo}[Propiedad universal de la topología producto]
 Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $p_i: \left( Y, \mathcal{T}' \right) \rightarrow \left( X_i, \mathcal{T}_i \right)$. Entonces:
     \[
     \mathcal{T}' = \prod_{i} \mathcal{T} \Leftrightarrow  
@@ -700,26 +699,28 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
 \end{enumerate}
 \end{demo}
 
-\begin{ej}
+\begin{enun}
 Demostrar (ii) sin usar que $\prod_{i} \mathcal{T}_i$ es la menos fina (usar que cumple la caracterización)
-\end{ej}
-
-La anterior caracterización se llama \underline{propiedad universal}.
+\end{enun}
 
 \begin{prop}
 \begin{enumerate}
-    \item $p_i: Y \rightarrow X_i$ es abierta. [$p_i\left( U_1 \times \ldots \times U_r \right) = U_i$]
+    \item $p_i: Y \rightarrow X_i$ es abierta. 
     \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados).
-    \begin{demo}      
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $p_i\left( U_1 \times \ldots \times U_r \right) = U_i$ 
+    \item
     \[
     \begin{cases}
         \alpha_j\left( X_j \right) = \{a_1\} \times \ldots \times X_j \times \ldots \times \{a_r\} \\
         \alpha_j\left( U_j \right) = \{a_1\} \times \ldots \times U_j \times \ldots \times \{a_r\} = \alpha\left( X_j \right) \cap \left( X_1 \times \ldots \times U_j \times \ldots \times X_r \right) 
     \end{cases}
     \]
-    \end{demo}
 \end{enumerate}
-\end{prop}
+\end{demo}
 
 \begin{pg}
 En una topología producto ``todo se genera en productos''.
@@ -733,18 +734,23 @@ En una topología producto ``todo se genera en productos''.
 
 
 \section{Sumas (finitas)}%
-\label{sec:sumas_finitas_}
-\underline{Problema:} Hacer $\left( X_i, \mathcal{T}_i \right) \xrightarrow{e_i} Y = X_1 + \ldots X_r = \left( X_1 \times \{1\} \right) \cup \ldots \cup \left( X_r \times \{r\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ continuas, ,con 
+\label{sec:sumas_finitas}
+Supongamos que tenemos $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow X_1 + \ldots + X_r = \left( X_1 \times \left\{ 1 \right\} \right) \cup \ldots \cup \left( X_r \times \left\{ r \right\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $Y$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
+
+Debido a que, $\forall U_i \in \mathcal{T}_i,\ e_i^{-1}\left( U_i \times \left\{ i \right\} \right)$, podemos definir lo siguiente:
+\begin{defi}
+Llamamos \textbf{topología suma}, $\sum_{i=1}^{k} \mathcal{T}_i$, a aquella que viene determinada por la siguiente base:
 \[
-\begin{cases}
-    \text{top. trivial en } Y \text{ trivialidad}\\
-    \text{top. \underline{más fina} en} Y
-\end{cases} 
+\mathcal{B} = \left\{ U_1 \times \left\{ 1 \right\}, \ldots, U_r \times \left\{ r \right\}: U_i \in \mathcal{T}_i \right\}
 \]
-\underline{Solución:} $\underbrace{U_i}_{\mathcal{T}_i} \in e_i^{-1}\left( U_i \times \{i\} \right) \Rightarrow \mathcal{B} = \{U_1 \times \{1\}, \ldots, U_r \times \{r\}: U_1 \in \mathcal{T}_1, U_r \in \mathcal{T}_r\}$ es base de una topología en $Y$, la topología \underline{suma}: $\mathcal{T}_1 + \ldots + \mathcal{T}_r$.
+\end{defi}
 
 \begin{prop}
-$\forall i, e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right)$ es inmersión abierta y cerrada.
+Con la anterior definición sabemos que 
+\[
+e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right),\ \forall i \in \left\{ 1, \ldots, r \right\}
+\]
+es inmersión abierta y cerrada.
 \end{prop}
 \begin{demo}
 \begin{itemize}
@@ -792,7 +798,7 @@ Es un formalismo para hacer cómodamente otras construcciones. Por ejemplo, ``pe
 \begin{gather*}
     \text{Disco } D \subset \mathbb{R}^2: x^2 + y^2 \le 1, \text{ borde } \partial D = \mathbb{S}^1: x^2 + y^2 = 1\\
     %TODO: Fix cociente
-    D_1 + D_2 / \sim\quad \overbrace{\left( p, 1 \right)}^{\partial D} \sim \left( p, 2 \right) 
+    \faktor{D_1 + D_2}{\sim} \quad \overbrace{\left( p, 1 \right)}^{\in \partial D} \sim \left( p, 2 \right) 
 .\end{gather*}
 
 \begin{figure}[H]
