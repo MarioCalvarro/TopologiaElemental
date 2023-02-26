@@ -978,10 +978,28 @@ De lo anterior deducimos:
     \item Las topologías de $U_1$ y $U_2$ coinciden en $U_1 \cap U_2$.
     \begin{demo}
         De nuevo conviene entenderlo con cartas:
-        %TODO: Fix
-        \begin{center}
-            \includegraphics[scale=0.3]{images/obs_cartas_afines} 
-        \end{center}
+        \begin{figure}[H]
+            \centering
+                \begin{tikzpicture}[node distance=2cm, auto]
+                %Lado izquierdo
+                \node(X) {$\mathbb{R}^{n+1} \supset \left\{ h_1=1, h_2 \neq 0 \right\}$};
+                \node(Y) [below=1cm of X] {$\mathbb{R}^{n+1} \supset \left\{ h_1 \neq 0, h_2=1 \right\}$};
+                \draw[<->] (X) to node [left] {\footnotesize homeo?} (Y);
+                \node(Z) [below right=0.3cm and 1.2cm of X] {$U_1 \cap U_2$};
+                \draw[->] (X) to node [text width=1.1cm, font=\tiny\linespread{0.8}\selectfont] {homeo. para $U_1$} (Z);
+                \draw[->] (Y) to node [pos=0.8, below=0.15, text width=1.1cm, font=\tiny\linespread{0.8}\selectfont] {homeo. para $U_2$} (Z);
+                %Lado derecho
+                \draw [decorate,
+                    decoration = {brace}] (4.7,-0.2) --  (4.7,-1.6);
+                \draw[-implies,double] (5,-0.9) -- (6,-0.9);
+                \node(x) at (7.5,-0.2) {$x = \faktor{y}{h_1\left( y \right)}$};
+                \node(y) [below=0.6cm of x] {$y = \faktor{x}{h_2\left( x \right)}$};
+                \draw[<->] (x) to node [right=1cm] {\footnotesize homeos usuales} (y);
+                \end{tikzpicture}
+            %TODO: Ni idea de que significa esto
+            %\caption{}
+            %\label{}
+        \end{figure}
     \end{demo}
 \end{enumerate}
 \end{obs}
