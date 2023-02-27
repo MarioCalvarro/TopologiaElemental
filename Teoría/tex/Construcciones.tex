@@ -624,18 +624,18 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
 
 \section{Productos (finitos)}%
 \label{sec:productos_finitos_}
-Supongamos que tenemos $p_i: X_1 \times \ldots X_r = \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $X_i$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos las topologías \underline{menos finas} que hagan $p_i$ continuas. 
+Supongamos que tenemos $p_i: X_1 \times \ldots X_r = Y \rightarrow \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $X_i$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos las topologías \underline{menos finas} que hagan $p_i$ continuas. 
 
-Que $p_i$ sea continua quiere decir que $\forall U_i \in \mathcal{T}_i : U_i = X_1 \times \ldots U_i \times \ldots \times X_r$ debe ser abierto, es decir, que todos lo sean. Por tanto, $\bigcap_{i=1}^{r} p_i^{-1}U_i = U_1 \times \ldots \times U_r$ que son abiertos, pero no topología. Por tanto, definimos:
+Que $p_i$ sea continua quiere decir que $\forall U_i \in \mathcal{T}_i : p^{-1}U_i = X_1 \times \ldots U_i \times \ldots \times X_r$ debe ser abierto, es decir, que todos lo sean. Por tanto, $\bigcap_{i=1}^{r} p_i^{-1}U_i = U_1 \times \ldots \times U_r$ debe ser abierto, pero no es topología (la unión de productos no tiene porque ser producto). Por tanto, definimos:
 \begin{defi}
-Llamamos \textbf{topología producto}, $\prod_{i=1}^{r} \mathcal{T}_i$, a aquella que viene determinada por la siguiente base:
+Llamamos \textbf{topología producto}, $\mathcal{T}_1 \times \ldots \times \mathcal{T}_r$, a aquella que viene determinada por la siguiente base:
 \[
 \mathcal{B} = \left\{ U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \right\}
 \]
 \end{defi}
 
 \begin{ej}
-La $\mathcal{T}_u$ en $\mathbb{R}^n$ ese el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas''.
+La $\mathcal{T}_u$ en $\mathbb{R}^n$ es el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas'', que son productos de intervalos.
 \end{ej}
 
 \begin{theo}[Propiedad universal de la topología producto]
@@ -665,7 +665,7 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
 \begin{enumerate}
     \item $\mathcal{T}' = \prod_{i} \mathcal{T}: $ 
     \begin{itemize}
-        \item $g$ cont. $\Rightarrow g_i$ cont. (Composición de continuas)
+        \item $g$ cont. $\Rightarrow g_i$ cont. (Todas sus componentes son continuas o composición de continuas)
         \item $g_i$ cont. $\Rightarrow g^{-1}\left( U_1 \times \ldots \times U_r \right) = \underbrace{g_1^{-1}\left( U_1 \right)}_{\mathcal{T}''} \cap \ldots \cap \underbrace{g_r^{-1}\left( U_i \right)}_{\mathcal{T}''} \in \mathcal{T}''$ (intersección finita de abiertos) 
     \end{itemize}
 
@@ -703,27 +703,46 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
 Demostrar (ii) sin usar que $\prod_{i} \mathcal{T}_i$ es la menos fina (usar que cumple la caracterización)
 \end{enun}
 
+%TODO: Hacer bien
+\begin{ej}
+La $\mathcal{T}_{\text{rad}}$ no es producto.
+\begin{demo}
+    Tomamos un abierto y veamos que no es producto. 
+    %TODO: Dibujo
+
+    Supongamos que sí:
+    $U = \mathbb{R}^2 \setminus $ arco $\ni \left( 0, 0 \right) \Rightarrow U_1 \times U_2 \subset U$ y $\left( 0, 0 \right) \in U_1 \times U_2 \subset \mathcal{T}_{\text{rad}}$. Tomando $x_1 \in U_1$ y vemos $x = x_1 \cap r$ con $r$ línea vertical por $x_1$ con esto $y_1 = x \cap l$ con $l$ línea horizontal por $x$ no pertenece a $U$ (de lo contrario el producto $y_1$ con $x_1 = x$ pertenecería). Por tanto, $I_k = \left[ \left( 0, y_k \right), \left( x_k, y_k \right) \right]$ no tiene ningún punto en $U_1 \times U_2$. Haciendo converger $I_k$ hacía $0$ para cualquier recta por $0$ tendremos un $I_k$ que tenga intersección con la recta, es decir, la recta tendrá un punto que no pertenezca al abierto y $U$ no sería abierto ¡!
+
+    Con esto, $\nexists x_k \rightarrow 0 \Rightarrow$ habrá un intervalo $\left( 0, \varepsilon \right)$ en el eje $x$ que no pertenece a $U_1$ y tendremos un ``vacío'' que de nuevo incumple que $U$ es abierto.
+\end{demo}
+\end{ej}
+
 \begin{prop}
 \begin{enumerate}
     \item $p_i: Y \rightarrow X_i$ es abierta. 
-    \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados).
+    \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados). La llamamos \textbf{aplicación parcial}.
 \end{enumerate}
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $p_i\left( U_1 \times \ldots \times U_r \right) = U_i$ 
-    \item
+    \item Nos vale con probarlo para una base: $p_i\left( U_1 \times \ldots \times U_r \right) = U_i$ 
+    \item Trivialmente? es inyectiva y continua. Por último, $X_i \rightarrow j\left( X_i \right)$ es homeomorfismo, es decir, que es abierta:
     \[
     \begin{cases}
         \alpha_j\left( X_j \right) = \{a_1\} \times \ldots \times X_j \times \ldots \times \{a_r\} \\
         \alpha_j\left( U_j \right) = \{a_1\} \times \ldots \times U_j \times \ldots \times \{a_r\} = \alpha\left( X_j \right) \cap \left( X_1 \times \ldots \times U_j \times \ldots \times X_r \right) 
     \end{cases}
     \]
+    Estamos limitando la topología producto a $\left\{ a_i \right\} \times \ldots \times X_i \times \ldots \times \left\{ a_r \right\} = j\left( X_i \right)$.
 \end{enumerate}
 \end{demo}
 
+\begin{ej}
+El ejemplo ahora de $\mathcal{T}_{\text{rad}}$ simplemente es porque si fuese producto sus elementos deberían ser la usual y el producto de usuales es usual que es distinta de la radial.
+\end{ej}
+
 \begin{pg}
-En una topología producto ``todo se genera en productos''.
+En una topología producto todo ``se genera en productos''.
 \begin{ej}
 \begin{itemize}
     \item Bases de entornos: $\mathcal{V}^a = \mathcal{V}^{a_1} \times \ldots \times \mathcal{V}^{a_r} \stackrel{mut??}{=} \{V_1 \times \ldots \times V_r: V_i \in \mathcal{V}^{a_i}\} \left( a \in Y \right)$.
@@ -733,17 +752,22 @@ En una topología producto ``todo se genera en productos''.
 \end{pg}
 
 
+%TODO: Cambiar e_i por j_i?
 \section{Sumas (finitas)}%
 \label{sec:sumas_finitas}
-Supongamos que tenemos $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow X_1 + \ldots + X_r = \left( X_1 \times \left\{ 1 \right\} \right) \cup \ldots \cup \left( X_r \times \left\{ r \right\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $Y$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
+Supongamos que tenemos $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow Y = X_1 + \ldots + X_r = \left( X_1 \times \left\{ 1 \right\} \right) \cup \ldots \cup \left( X_r \times \left\{ r \right\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ (ponemos los índices para hacerlos disjuntos) y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $Y$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
 
-Debido a que, $\forall U_i \in \mathcal{T}_i,\ e_i^{-1}\left( U_i \times \left\{ i \right\} \right)$, podemos definir lo siguiente:
+Debido a que, $\forall U_i \in \mathcal{T}_i,\ e_i^{-1}\left( U_i \times \left\{ i \right\} \right)$ debe ser abierto, podemos definir lo siguiente:
 \begin{defi}
 Llamamos \textbf{topología suma}, $\sum_{i=1}^{k} \mathcal{T}_i$, a aquella que viene determinada por la siguiente base:
 \[
-\mathcal{B} = \left\{ U_1 \times \left\{ 1 \right\}, \ldots, U_r \times \left\{ r \right\}: U_i \in \mathcal{T}_i \right\}
+\mathcal{B} = \left\{ U_1 \times \left\{ 1 \right\}, \ldots, U_r \times \left\{ r \right\}: U_i \in \mathcal{T}_i, 1 \le i \le r \right\}
 \]
 \end{defi}
+
+\begin{obs}
+Tenemos que los $\left\{ i \right\} \times X_i \in \sum_{i=1}^{r} \mathcal{T}_i$ son sumandos abiertos y cerrados (porque el complementario es la intersección del resto de sumandos que son abiertos?).
+\end{obs}
 
 \begin{prop}
 Con la anterior definición sabemos que 
