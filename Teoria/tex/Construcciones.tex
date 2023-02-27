@@ -666,10 +666,10 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
     \item $\mathcal{T}' = \prod_{i} \mathcal{T}: $ 
     \begin{itemize}
         \item $g$ cont. $\Rightarrow g_i$ cont. (Todas sus componentes son continuas o composición de continuas)
-        \item $g_i$ cont. $\Rightarrow g^{-1}\left( U_1 \times \ldots \times U_r \right) = \underbrace{g_1^{-1}\left( U_1 \right)}_{\mathcal{T}''} \cap \ldots \cap \underbrace{g_r^{-1}\left( U_i \right)}_{\mathcal{T}''} \in \mathcal{T}''$ (intersección finita de abiertos) 
+        \item $g_i$ cont. $\Rightarrow g^{-1}\left( U_1 \times \ldots \times U_r \right) = \underbrace{g_1^{-1}\left( U_1 \right)}_{\mathcal{T}''} \cap \ldots \cap \underbrace{g_r^{-1}\left( U_i \right)}_{\mathcal{T}''} \in \mathcal{T}''$. (Intersección finita de abiertos) 
     \end{itemize}
 
-    \item Por otro lado,
+    \item Por otro lado, veamos la unicidad:
 
     \begin{figure}[H]
         \centering    
@@ -726,14 +726,14 @@ La $\mathcal{T}_{\text{rad}}$ no es producto.
 \begin{demo}
 \begin{enumerate}
     \item Nos vale con probarlo para una base: $p_i\left( U_1 \times \ldots \times U_r \right) = U_i$ 
-    \item Trivialmente? es inyectiva y continua. Por último, $X_i \rightarrow j\left( X_i \right)$ es homeomorfismo, es decir, que es abierta:
+    \item Trivialmente es inyectiva y continua. Por último, $X_i \rightarrow j\left( X_i \right)$ es homeomorfismo, es decir, es abierta porque:
     \[
     \begin{cases}
         \alpha_j\left( X_j \right) = \{a_1\} \times \ldots \times X_j \times \ldots \times \{a_r\} \\
-        \alpha_j\left( U_j \right) = \{a_1\} \times \ldots \times U_j \times \ldots \times \{a_r\} = \alpha\left( X_j \right) \cap \left( X_1 \times \ldots \times U_j \times \ldots \times X_r \right) 
+        \alpha_j\left( U_j \right) = \{a_1\} \times \ldots \times U_j \times \ldots \times \{a_r\} = \alpha_j\left( X_j \right) \cap \left( X_1 \times \ldots \times U_j \times \ldots \times X_r \right) 
     \end{cases}
     \]
-    Estamos limitando la topología producto a $\left\{ a_i \right\} \times \ldots \times X_i \times \ldots \times \left\{ a_r \right\} = j\left( X_i \right)$.
+    que es abierto porque estamos restringiendo la topología producto a $\left\{ a_1 \right\} \times \ldots \times X_i \times \ldots \times \left\{ a_r \right\} = \alpha_j\left( X_j \right)$.
 \end{enumerate}
 \end{demo}
 
