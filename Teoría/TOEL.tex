@@ -424,7 +424,7 @@ Sea $X$ un conjunto de puntos y $A \subset X$ un subconjunto suyo, decimos que $
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{Q} \subset \mathbb{R}, \mathcal{T}_{\text{usual}}; \mathbb{Q} \times \overbrace{\ldots}^{n} \times \mathbb{Q} \subset \mathbb{R}^n, \mathcal{T}_{\text{usual}}$ son densos.
+    \item El conjunto de los números racionales $\mathbb{Q} \subset \mathbb{R}$ es denso en $\mathbb{R}$ con la topología usual $\mathcal{T}_{\text{usual}}$.
     \item $\{a\}$ es denso en $\left( X, \mathcal{T}_a \right)$.
 \end{enumerate}
 \end{ej}
@@ -432,48 +432,55 @@ Sea $X$ un conjunto de puntos y $A \subset X$ un subconjunto suyo, decimos que $
 \section{Bases}%
 \label{sec:bases}
 \begin{defi}[Base de entornos]
-Sea $(X, \mathcal{T})$ un espacio topológico, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier entorno de $a$ tenga que contener a uno de $\mathcal{V}^a$.
+Sea $(X, \mathcal{T})$ un espacio topológico y $a\in X$ un punto, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier otro entorno de $a$ tenga que contener a alguno de los entornos de la colección $\mathcal{V}^a$.
 \end{defi}
 
 \begin{obs}
-Para la definición no hemos supuesto ninguna propiedad especial como pedir que sean cerrados, abiertos, etc. Precisamente esta ``variedad'' es la que permite que, escogiendo una base de entornos con las características adecuadas en cada caso, sea más sencillo estudiar la topología que tengamos entre manos.
+La definición no ha hecho ninguna diferenciación especial en cuanto a si son cerrados, abiertos, etc. Precisamente esta ``variedad'' es la que permite que, escogiendo una base de entornos con las características adecuadas en cada caso, sea más sencillo estudiar la topología que tengamos entre manos.
 
-En general, las bases de entornos nos serán útiles porque comprobar propiedades en ella extenderá automáticamente dichas propiedades a cualquier entorno arbitrario.
+En Topología, las bases de entornos tendrán propiedades parecidas a las bases de los espacios vectoriales en Álgebra: comprobar propiedades en una base de entornos extenderá automáticamente dichas propiedades a cualquier entorno arbitrario.
 \end{obs}
 
-Pero, $\forall \mathcal{V}^a$ se puede \textbf{refinar} a una base $\mathcal{B}^a$ de entornos de abiertos. 
+\begin{prop}
+Sea $(X,\mathcal{T})$ un espacio topológico y $\{V_i^a \}_{i\in I}$ una base de entornos de un punto $a$, esta se puede refinar a una base de entornos abiertos $\{U_i^a\}_{i\in I}$. 
+\end{prop}
 \begin{demo}    
-\[
-\forall V^a \in \mathcal{V}^a,\ \exists U^a \subset V^a \Rightarrow \mathcal{B}^a = \{U^a: V^a \in \mathcal{V}^a\} \text{ es base de entornos}. \left[ \forall E^a \supset V^a \supset U^a \right] 
-\]
+Como todos los elementos de la colección son entornos, para todos existe algún abierto $U_i^a$ que contiene al punto. A este conjunto de abiertos (más bien de entornos abiertos) es al que llamamos $\{U_i^a\}_{i\in I}$. Cualquier otro entorno del punto $a$ contiene a un entorno $V_i^a$ de la base de entornos inicial, pero como estos contienen un abierto de la colección última, entonces $\{U_i^a\}_{i\in I}$ es una base de entornos de  $a$.
 \end{demo}
 
-\begin{il}    
-Por ejemplo,
-\begin{align*}
-    a \in \overline{A} &\xLeftrightarrow{\text{def}} \forall W^a \text{ entorno }: W^a \cap A \neq \emptyset\\
-   &\Longleftrightarrow \forall V^a \in \mathcal{V}^a: V^a\cap A \neq \emptyset 
-.\end{align*}
-\end{il}
+\begin{obs}    
+Podemos empezar a ver la utilidad de la base de entornos cuando tenemos que demostrar, por ejemplo, que un punto pertenece a la adherencia de un conjunto:
+$$
+a \in \overline{A} \xLeftrightarrow{\text{def}} \forall W^a \text{ entorno }: W^a \cap A \neq \emptyset \Leftrightarrow \forall V^a \in \mathcal{V}^a: V^a\cap A \neq \emptyset
+$$
+luego si escogemos una base de entornos $\mathcal{V}^a$ adecuada sobre la que sea muy fácil demostrar el resultado, este quedará demostrado para cualquier entorno ``raro'' que podamos encontrarnos.
+\end{obs}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}: $
-    \[
+    \item Sea el espacio real usual $(\mathbb{R}^n, \mathcal{T}_{\text{usual}})$ el espacio topológico a estudiar, entonces:
+    $$
     \begin{cases}
     \mathcal{B}^a = \{B\left( a, \varepsilon \right): \varepsilon > 0\} \text{ base de entornos abiertos.}  \\
     \mathcal{V}^a = \{B\left[ a, \varepsilon \right]: \varepsilon > 0\} \text{ base de entornos cerrados.} 
     \end{cases} 
-    \]
-    \item $a \in X, \mathcal{T}_a : \mathcal{B}^a = \{\{a\}\}, \mathcal{B}^x = \{\{a, x\}\},\ x \neq a$.
+    $$
+    \item Sea la topología del punto $(a \in X, \mathcal{T}_a)$, entonces:
+	$$
+	\begin{cases}
+	\mathcal{B}^a = \{\{a\}\} & x = a\\
+	\mathcal{B}^x = \{\{a, x\}\} & x \neq a
+	\end{cases}
+	$$
 \end{enumerate}
 \end{ej}
 
 \begin{defi}[Base de abiertos]
-Una \textbf{base de abiertos} de $\mathcal{T}$ es una colección de abiertos $\mathcal{B} \subset \mathcal{T}$ tal que todo abierto es unión de abiertos de $\mathcal{B}$.
+Sea $\mathcal{T}$ una topología y $B:=\{U_i\}_{i\in I}\subset \mathcal{T}$ una colección de abiertos, decimos que es una \textbf{base de abiertos de $\mathcal{T}$} si y sólo si todo abierto de $\mathcal{T}$ es unión de abiertos de $\mathcal{B}$.
 \end{defi}
 
 \begin{prop}
+
 $\mathcal{B}$ base de abiertos $\Leftrightarrow \forall x \in X,\ \mathcal{B}^x = \{B \in \mathcal{B} : x \in B\}$ es base de entornos (abiertos) de $x \Leftrightarrow \forall x \in U,\ \exists B \in \mathcal{B} : x \in B \subset U$.
 \end{prop}
 \begin{demo}
@@ -486,14 +493,14 @@ $\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathcal{T}_{\text{discreta}} : \mathcal{B} = \{\{x\} : x \in X\}$ es \textbf{mínima}. $\left[ \text{si} B' \text{ es base } : \forall x, \{x\} = \bigcup_{i \in  I} \overbrace{B_i}^{\in B'} \Rightarrow B_i = \{x\} \right]$ 
-    \item $\mathcal{T}_a: \mathcal{B} = \{\{a, x\} : x \in X\}$.
-    \item $\mathbb{R}^n, \mathcal{T}_{\text{usual}}\ \mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0, x \in \mathbb{R}^n\}$
+    \item Si tomamos la topología discreta $\mathcal{T}_{\text{discreta}}$ entonces una base de abiertos sería $\mathcal{B} = \{\{x\} : x \in X\}$. Además, esta base es mínima pues cualquier otra base $B' := \{B_i\}_{i\in I}$ de abiertos se cumpliría que $\forall x  : \{x\} = \bigcup_{i \in  I} B_i \Rightarrow \exists i \in I : B_i = \{x\}$.
+    \item Si tomamos la topología del punto $\mathcal{T}_a$, entonces una base de abiertos es $\mathcal{B} = \{\{a, x\} : x \in X\}$.
+    \item Si tomamos la topopología usual $\mathbb{R}^n, \mathcal{T}_{\text{usual}}$ en $\mathbb{R}^n$, entonces una base de abiertos es el conjunto de bolas abiertas $\mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0 \mbox{ y } x \in \mathbb{R}^n\}$ porque recordemos que un abierto se caracterizaba en $\mathbb{R}^n$ por el hecho de que todos sus puntos tenían una bola alrededor contenida en el conjunto, luego la unión de dichas bolas es el abierto inicial.
     %TODO: Fix imágenes 
     \begin{center}
         \includegraphics[scale=0.3]{images/base_rn} 
     \end{center}
-    Pero también,
+    Sin embargo, la base de abiertos lo sigue siendo si escogemos otra norma en $\mathbb{R}^n$ distinta de la euclídea, puesto que estas normas eran equivalentes en $\mathbb{R}^n$ (o visto geométricamente, cada bola de una norma contiene otra más pequeña de otra norma distinta y viceversa)
     \begin{center}
         \includegraphics[scale=0.3]{images/bases_alternativas_rn} 
     \end{center}
@@ -513,10 +520,10 @@ $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \e
 \end{il}
 
 \begin{prop}
-``$\mathcal{B} \subset \mathcal{P} \left( X \right)$ es base de una topología (única) $\mathcal{T}$ en $X$'', equivalente a: 
+Sea $X$ un conjunto de puntos y $\mathcal{B} := {B_i}_{i\in I} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos, esta colección define una topología $\mathcal{T}$ única en $X$ si y sólo si: 
 \begin{itemize}
-    \item $X = \bigcup_{B \in \mathcal{B}} B$.
-    \item $\forall x \in B_1 \cap B_2,\ \exists B^x \subset B_1 \cap B_2$.
+    \item $X = \bigcup_{i\in I} B_i$.
+    \item $\forall B_i,B_j\in \mathcal{B} \mbox{ y } \forall x \in B_i \cap B_j, \ \exists B_k \in \mathcal{B} : x\in B_k\subset B_i \cap B_j$.
 \end{itemize}
 %TODO: Fix imagen
 \begin{center}
@@ -525,30 +532,39 @@ $A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \e
 \end{prop}
 %TODO: Mejorar
 \begin{demo}
-La implicación $\Rightarrow)$ se cumple por propiedades vistas.
+\begin{itemize}
+\item $\Rightarrow$
 
-En el otro sentido tenemos:
+Trivial por las propiedades vistas sobre topología.
+
+\item $\Leftarrow$
+
+Veamos que se verifican las condiciones sobre la topología:
 \begin{itemize}
     \item \textbf{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
     \item \textbf{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. 
         \begin{itemize}
-            \item $\emptyset$ unión de vacío, $X = \bigcup_{i} U_i \Rightarrow \emptyset, X \in \mathcal{T}$.
-            \item Uniones: $\bigcup_{j} \underbrace{\bigcup_{i} B_{ij}}_{\in \mathcal{T}} = \underbrace{\bigcup_{j} B_{ij}}_{\in \mathcal{T}}$. 
-            \item Lo importante, intersecciones finitas: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{T}$.
-            \begin{gather*}
-                \forall x \in \left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) \stackrel{?}{=} \bigcup_{\lambda} B_{\lambda}\\
-                x \in B_{i_0} \cap B_{k_0} \Rightarrow \exists B^x \subset B_{i_0} \cap B_{k_0} \\
-                \bigcup_{\lambda} B_{\lambda} = \bigcup_{x} B^x
-            .\end{gather*}
+            \item $\emptyset \in \mathcal{T}$, $X = \bigcup_{i\in I} B_i \in \mathcal{T}$.
+            \item Uniones: $\bigcup_{j\in J} \left(\bigcup_{i\in I} B_{i}\right) = \bigcup_{j\in J} B_{ij} \in \mathcal{T}$. 
+            \item Intersecciones finitas: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{T}$.
+            $$
+            x \in \left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) \Rightarrow x \in B_{i_0} \cap B_{k_0} \Rightarrow \exists B^x \in \mathcal{B} : x\in B^x \subset B_{i_0} \cap B_{k_0}
+            $$
+            Por tanto, podemos decir que $\left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) = \bigcup_{x} B^x \in \mathcal{T}
+            $ y se tiene el resultado.
         \end{itemize}
+\end{itemize}
 \end{itemize}
 \end{demo}
 
 \section{Topología relativa}%
 \label{sec:topologia_relativa}
-Sea $\left( X, \mathcal{T} \right)$ espacio topológico.
-\begin{defi}
-$Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topología en $Y$ (fácil), denominada \textbf{relativa} ó \textbf{restricción} a $Y$; también se dice que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \textbf{ambiente}. 
+\begin{defi}[Topología Relativa]
+Sea $\left( X, \mathcal{T} \right)$ un espacio topológico e $Y \subset X$ un subconjunto de puntos, definimos la \textbf{topología relativa\footnote{La comprobación de que efectivamente se trata de una topología es completamente trivial.} en $Y$} como
+$$
+\mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}
+$$
+Además, decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \textbf{ambiente}. 
 \begin{center}
     %TODO: Fix imagen
     \includegraphics[scale=0.3]{images/def_subespacio_top} 
@@ -557,52 +573,41 @@ $Y \subset X: \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}$ es una topologí
 
 \begin{obs}
 \begin{enumerate}
-    \item Los cerrados en $\mathcal{T}|_Y$ son $F\cap Y$ con $F$ cerrado en $\mathcal{T}$.
-    \[
-    \left[ Y \setminus U \cap Y = Y \cap \left( X \setminus U \right) = Y\cap F \right] 
-    \]
-    \item 
-    $\begin{cases}
-        y \in Y \subset X\\
-        \mathcal{V}^y \text{ base de entornos de } y \text{ en } \mathcal{T} 
-    \end{cases}\Rightarrow \begin{cases}
-        \mathcal{V}^y \cap Y = \{V^y \cap Y : V^y \in \mathcal{V}^y\} \\
-        \text{base de entornos de } y \text{ en } \mathcal{T}|_Y 
-    \end{cases}$
+    \item Los cerrados de la topología relativa $\mathcal{T}|_Y$ son la intersección $F\cap Y$ de $Y$ con cerrados $F$ en $\mathcal{T}$.
+    $$
+    F \stackrel{cerr}{\subset} Y \Rightarrow F = Y\setminus W : W \stackrel{ab}{\subset} Y \Rightarrow \exists U \stackrel{ab}{\subset}X : Y\cap U = W \Rightarrow F = Y \setminus (Y \cap U) = Y \cap  (X\setminus U) = Y \cap F_x : F_x \stackrel{cerr}{\subset} X
+    $$
+    \item Si tenemos una base $\mathcal{V}^a$ de entornos en el espacio ambiente $(X,\mathcal{T})$, la base de entornos en el subespacio $(Y,\mathcal{T}\mid_Y)$ se obtiene intersecando los elementos de la base ambiente con el subespacio, es decir, $\mathcal{V}^a_Y := \mathcal{V}^a \cap Y := \{V^a \cap Y : V^a \in \mathcal{V}^a\}$.
 
-    \item $\mathcal{B}$ base de $\mathcal{T} \Rightarrow \mathcal{B} \cap Y = \{B \cap Y : B \in \mathcal{B}\}$ base de $\mathcal{T}|_Y$
+    \item Si tenemos una base $\mathcal{B}$ de abiertos en el espacio ambiente $(X,\mathcal{T})$, la base de abiertos en el subespacio $(Y,\mathcal{T}\mid_Y)$ se obtiene intersecando\footnote{Esta idea suele ser general, las construcciones en los subespacios se hacen intersecando elementos del espacio ambiente con el subespacio.} los elementos de la base ambiente con el subespacio, es decir, $\mathcal{B}_Y := \mathcal{B} \cap Y := \{B \cap Y : B \in \mathcal{B}\}$.
 \end{enumerate}
 \end{obs}
 
-Esta idea es general: en un subespacio se hacen las construcciones intersecando.
 
 \begin{ej}
 \begin{enumerate}
-    \item $y$ es un punto aislado de $Y \Leftrightarrow \{y\}$ abierto en $\mathcal{T}|_Y. \left[ \{y\} = V^y \cap Y \right]$
-    \item Todos los puntos de $Y$ son aislados $\Leftrightarrow C|_Y = $ discreta.
-
-    Se dice: $Y$ es un \textbf{subespacio discreto}. 
-
-    Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
+    \item Si $y$ es un punto aislado de $Y$, por la definición que hemos dado de la topología relativa, su topología relativa sería $\mathcal{T}|_Y := \{ U \cap \{y\} \} = \{y\}$. Por tanto, es abierto en su topología.
+    
+    \item Retomando el ejemplo anterior, si todos los puntos de $Y$ son aislados, hemos visto que todos son abiertos (pues cortar un abierto con ellos da ellos mismos) y, por tanto, la topología $\mathcal{T}\mid_Y $ es la discreta. Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
     %TODO: Fix imagen
     \begin{center}
         \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
     \end{center}
 
-    \item $a \in X, \mathcal{T}_a|_{X \setminus \{a\}} = $ discreta.
+    \item Si tomamos la topología del punto $(a \in X, \mathcal{T}_a|_{X \setminus \{a\}})$ vemos que se trata de la discreta.
 \end{enumerate}
 \end{ej}
 
 \begin{obs}
 \begin{enumerate}
-    \item $Y \subset_{\text{ab}} X: W \text{ abierto de } Y \Leftrightarrow W \text{ abierto de } X$ contenido en $Y$.
-    \[
-    \left[ W = U \cap Y^{\text{ab}},\ U^{\text{ab}} \subset X \Rightarrow W^{\text{ab}} \subset X \text{ por intersección finita} \right] 
-    \]
-    \item $Y \subset_{\text{cerr}} X: F \text{ cerrado de } Y \Leftrightarrow F \text{ cerrado de } X$ contenido en $Y$.
-    \[
-    \left[ C = F \cap Y^{\text{cerr}},\ F^{\text{cerr}} \subset X \Rightarrow C^{\text{cerr}} \subset X \text{ por intersección finita} \right] 
-    \]
+    \item Los abiertos $W$ de un subespacio abierto $Y \stackrel{ab}{\subset} X$ son abiertos en el espacio ambiente $X$.
+   	$$
+    W = U \cap Y : U,Y\stackrel{ab}{\subset} X \Rightarrow W \stackrel{ab}{\subset} X 
+    $$
+    \item Los cerrados $F$ de un subespacio cerrado $Y \stackrel{cerr}{\subset} X$ son cerrados en el espacio ambiente $X$.
+    $$
+    F = C \cap Y : Y,C\stackrel{cerr}{\subset} X \Rightarrow F \stackrel{cerr}{\subset} X
+    $$
 \end{enumerate}
 \end{obs}
 
@@ -621,47 +626,43 @@ El famoso $\varepsilon-\delta$ en $\mathbb{R}^n \mathcal{T}_u; x_0 \in X,\ f : \
 \boxed{\forall B\left( f\left( x_0 \right), \varepsilon \right),\ \exists B\left( x_0, \delta \right) \subset f^{-1}\left( B\left( f\left( x_0 \right), \varepsilon \right) \right)} 
 .\end{gather*}
 
-\begin{defi}
-$f: X \rightarrow Y$ será \textbf{continua en $x_0$} $\in X$ si: 
+\begin{defi}[Continuidad]
+Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es \textbf{continua en $x_0$ $\in X$} si y sólo si:
 \[
-\forall V^{f\left( x_0 \right)}: f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0} 
+\forall V^{f\left( x_0 \right)} :  f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0} 
 \]
+es decir, la preimagen de cualquier entorno de $f(x_0)$ es entorno de $x_0$.
 \end{defi}
 
 \begin{prop}[Composición de continuidades]
-La composición de funciones continuas es continua:
-
-\[
-X \xrightarrow{f} Y \xrightarrow{g} Z: \begin{rcases}
-    f \text{ continua en } x_0\\
-    g \text{ continua en } y_0
-\end{rcases} \Rightarrow h = g \circ f \text{ continua en }  x_0
-\]
+Sean $f:X \rightarrow Y$ y $g: Y \rightarrow Z$ funciones continuas en $x_0\in X$ e $y_0\in Y$ tales que $f(x_0) = y_0$, entonces la composición $h = g \circ f$ es una función continua en $x_0$.
 \end{prop}
 \begin{demo}
-Sea $V^{h\left( x_0 \right)} \rightarrow h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^{y_0} = V^{x_0}$.
+Escojamos un entorno $V^{h\left( x_0 \right)}$ de la imagen por $h$ de $x_0$, entonces
+\[
+h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^{y_0} = V^{x_0}
+\]
 \end{demo}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\forall f: X_{\text{discreta}} \rightarrow Y$ es continua. [Todo es abierto, luego todo es entorno en $\mathcal{T}_{\text{disc}}$]
-    \item $\forall f: X \rightarrow Y_{\text{trivial}}$ continua. [$V^{f\left( x \right)} = Y$ es el único abierto, luego el único entorno, de $f^{-1}V^{f\left( x \right)} = f^{-1}Y = X$ es abierto]
-    \item $f: X \rightarrow Y_{\text{discreta}}$ es continua $\Rightarrow f$ localmente creciente.
-        [$\{f\left( x_0 \right)\} = V^{f\left( x_0 \right)}$ en $\mathcal{T}_{\text{discr}} \xRightarrow[f\text{ cont.}]{} f^{-1}f\left( x_0 \right) = V^{x_0}\; \land \;f \equiv f\left( x_0 \right)$]
+    \item Sea $f: X_{\text{discreta}} \rightarrow Y$, entonces es continua sean cuales sean los conjuntos de partida y de llegada, pues todo es abierto y, en consecuencia, todo es entorno en $\mathcal{T}_{\text{disc}}$.
+    \item Sea $f: X \rightarrow Y_{\text{trivial}}$, entonces es continua sean cuales sean los conjuntos de partida y de llegada, pues como $Y$ es el único abierto, entonces es el único entorno $V^{f\left( x \right)}$ para cualquier $f(x)$ y $f^{-1}V^{f\left( x \right)} = f^{-1}Y = X$, que es abierto.
+    \item Si una función $f: X \rightarrow Y_{\text{discreta}}$ es continua, entonces $f$ es localmente constante, pues como en la trivial los puntos son abiertos, entonces el punto $\{f\left( x_0 \right)\}$ es entorno $V^{f\left( x_0 \right)}$ de sí mismo. Por tanto, por la continuidad de $f$, $f^{-1}f\left( x_0 \right) = V^{x_0}$, luego $f \equiv f\left( x_0 \right)$ en ese entorno $V^{x_0}$.
     \item $f: X \rightarrow Y$ localmente constante $\Rightarrow$ continua.
 
     [$\forall x_0 \in X, \exists U^{x_0} : f \stackrel{U^{x_0}}{\equiv} f\left( x_0 \right) \Rightarrow \forall V^{f\left( x_0 \right)}: f^{-1}V^{f\left( x_0 \right)} \supset U^{x_0} \Rightarrow f^{-1}V^{f\left( x_0 \right)} = V^{x_0}$ es entorno de $x_0$]
 \end{enumerate}
 \end{ej}
 
-\begin{prop}
-Son equivalentes:
+\begin{prop}[Caracterización de Continuidad]
+Sea $f:X\rightarrow Y$ una función entre espacios topológicos, entonces son equivalentes:
 \begin{enumerate}
     \item $f$ es continua.
-    \item $f^{-1}\left( \text{abierto}  \right) = \text{abierto} ,\ \forall \text{abierto} \in Y$.
-    \item $f^{-1}\left( \text{cerrado} \right) = \text{cerrado},\ \forall $ cerrado de $Y$.
-    \item $f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}\left( A \right) \right),\ \forall A \subset Y$
-    \item $f\left( \overline{A} \right) \subset \overline{f\left( A \right)},\ \forall A \subset X$
+    \item $\forall U \stackrel{ab}{\subset} Y : f^{-1}\left( U \right) \stackrel{ab}{\subset} X$.
+    \item $\forall F \stackrel{cerr}{\subset} Y : f^{-1}\left( F \right) \stackrel{cerr}{\subset} X$.
+    \item $\forall A \subset Y : f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}\left( A \right) \right)$.
+    \item $\forall A \subset X : f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
 \end{enumerate}
 \end{prop}
 \begin{demo}
