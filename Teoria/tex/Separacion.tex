@@ -10,6 +10,15 @@ Un espacio $X$ es \textbf{Hausdorff} o $T_2$ si cada par de puntos distintos $x,
 \]
 \end{defi}
 Hay otras formas de separación, más débiles o más fuertes, pero nos contentaremos con ésta al ser la más intuitiva.
+
+\begin{prop}
+Sea $X$ Hausdorff $\Rightarrow$ todos sus puntos son cerrados.
+\end{prop}
+\begin{demo}
+Sea $x \in X$, ¿es $X \setminus \left\{ x \right\}$ abierto? 
+
+Tomamos $y \in X \setminus \left\{ x \right\} \Rightarrow y \neq x,\ \exists V^y \cap V^x = \emptyset \Rightarrow x \not\in V^y \Rightarrow V^y \subset X \setminus \left\{ x \right\}$
+\end{demo}
 \begin{obs}
 \begin{enumerate}
     \item Si existen entornos disjuntos, existen entornos abiertos disjuntos.
@@ -22,9 +31,9 @@ Hay otras formas de separación, más débiles o más fuertes, pero nos contenta
     \forall y \neq x, \exists U^y \not\ni x \Rightarrow X \setminus \{x\} = \bigcup_{y \neq x} U^y  \text{ es abierto.} 
     \]
     \end{demo}
-    \item $\left( X, \mathcal{T}_{\text{CF}} \right)$ no es Hausdorff: dos abiertos cualesquiera se cortan ($X$ infinito) tiene puntos cerrados: $X\setminus \{x\}$ es abierto.
+    \item $\left( X, \mathcal{T}_{\text{CF}} \right)$ no es Hausdorff: dos abiertos cualesquiera se cortan ($X$ infinito). Sin embargo, tiene puntos cerrados.
 
-    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff: $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon \le \lVert x - y \rVert / 2$
+    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff: $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon \le \lVert x - y \rVert / 2$. Como $\mathcal{T}_{u} \subset \mathcal{T}_{\text{rad.}}$ esta última también es Hausdorff.
 
     \item En $\left( X, \mathcal{T}_a \right)$ el punto $a$ no es cerrado: $a \not\in X \setminus \{a\} \Rightarrow X \setminus \{a\}$ no es abierto. $\forall x \neq a, U^x \supset \{a, x\} \ni a$. Por lo tanto, no es Hausdorff. 
 \end{enumerate}
@@ -79,7 +88,7 @@ Se tiene:
     \hline
     & Subespacios & Cocientes & Productos & Sumas\\
     \hline
-    $T_2$ & \checkmark & $\times$ & \checkmark & \checkmark\\
+    $T_2$ & $\Rightarrow$ & $\times$ & $\Leftrightarrow$ & $\Leftrightarrow$\\
     \hline
 \end{tabular}
 \caption{\textit{Tabla que nos indica como se conserva la propiedad Hausdorff en distintas construcciones.}}
@@ -95,7 +104,7 @@ Se tiene:
     Sea $Y = \faktor{\mathbb{R}}{\mathbb{Q}}: \begin{rcases}
         y_1 = \mathbb{Q} \in Y\\
         y_2 = \sqrt{2} \in Y
-    \end{rcases} \nexists V^{y_1} \cap V^{y_2} = \emptyset: $ todo entorno abierto de $\sqrt{2}$ contiene racionales, luego al saturar, contiene $\mathbb{Q}$.
+    \end{rcases} \nexists V^{y_1} \cap V^{y_2} = \emptyset: $ todo entorno abierto de $\sqrt{2}$ contiene racionales, luego al saturar, contiene $\mathbb{Q}$. Con esto, todo entorno del cociente (recordemos que en el cociente los abiertos son imágenes por proyección de los saturados) contiene este punto y, por tanto, la intersección nunca es disjunta.
 
     \item Veamos que el producto conserva la propiedad: 
 
@@ -153,7 +162,7 @@ Se tiene:
             \draw[-, gray, dashed] (y2) -- (1.4,0.5);
         \end{tikzpicture}
         \captionsetup{font={color=gray}}
-        \caption{\textit{}}
+        \caption{\textit{Representación de la primera implicación.}}
     \end{figure}
 
     \item Veamos que la suma conserva la propiedad:

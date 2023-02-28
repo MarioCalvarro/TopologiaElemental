@@ -7,13 +7,20 @@
 \label{sub:i_axioma}
 
 \begin{defi}[I Ax.]
-$X$ es \underline{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \mathcal{V}^x$ base numerable de entornos.  
+$X$ es \textbf{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \mathcal{V}^x$ base numerable de entornos.  
 \end{defi}
 
 \begin{obs}
 \begin{enumerate}
-    \item $\mathcal{B}^x = \{Uk = \mathring{V}_k \}_{k \ge 1}$, base numerable de entornos de abiertos.
+    \item $\mathcal{B}^x = \{U_k = \mathring{V}_k \}_{k \ge 1}$, base numerable de entornos de abiertos.
     \item $\mathcal{W}^x = \{W_k = U_1 \cap \ldots \cap U_k\}_{k \ge 1}$, base numerable de entornos abiertos encajados.
+    \begin{demo}
+        Sea $\left\{ V_k, k \ge 1 \right\}$ que es base de entornos. Hacemos que: $W_1 = V_1,\ W_2 = V_1 \cap V_2 \ldots W_k = \bigcap_{i}^{\infty} V_i$ y tenemos que:
+        \[
+        W_{k+1} \subset W_{k}
+        \]
+        y mantiene el ser base de entornos.
+    \end{demo}
 \end{enumerate}
 \end{obs}
 
@@ -58,7 +65,7 @@ En general, los límites de sucesiones son poco útiles.
 \subsection{II Axioma}%
 \label{sub:iiax}
 \begin{defi}[II Ax.]
-$X$ es \underline{2º axioma} si $\exists \mathcal{B}$ base numerable de abiertos
+$X$ es \textbf{2º axioma} si $\exists \mathcal{B}$ base numerable de abiertos
 \end{defi}
 
 \begin{obs}
@@ -72,7 +79,7 @@ $X$ es \underline{2º axioma} si $\exists \mathcal{B}$ base numerable de abierto
 \subsection{Separable}%
 \label{sub:separable}
 \begin{defi}[Separable]
-$X$ es \underline{separable} si $\exists A$ numerable denso.
+$X$ es \textbf{separable} si $\exists A$ numerable denso.
 \end{defi}
 \begin{obs}
 \begin{enumerate}
@@ -86,7 +93,7 @@ $X$ es \underline{separable} si $\exists A$ numerable denso.
 \subsection{Lindelöf}%
 \label{sub:lindelof}
 \begin{defi}[Lindelöf]
-$X$ es \underline{Lindelöf} si $\forall X = \bigcup_{i} U_i$ (recubrimiento abierto) $\exists X = \bigcup_{k} U_{i_k}$ (subrecubrimiento numerable). 
+$X$ es \textbf{Lindelöf} si $\forall X = \bigcup_{i} U_i$ (recubrimiento abierto) $\exists X = \bigcup_{k} U_{i_k}$ (subrecubrimiento numerable). 
 \end{defi}
 
 Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
@@ -95,15 +102,16 @@ Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
 \label{sec:tabla_de_comportamiento_num}
 %TODO: Fix table
 \begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
+\hline
     I Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & \checkmark\\
-    \hline\\
+    \hline
     II Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & \checkmark\\
-    \hline\\
+    \hline
     Separable & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & $\times$ & \checkmark & \checkmark\\
-    \hline\\
+    \hline
     Lindelöf & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & $\times$ & \checkmark\\
     \hline
 \end{tabular}
