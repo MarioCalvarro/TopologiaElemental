@@ -11,14 +11,6 @@ Un espacio $X$ es \textbf{Hausdorff} o $T_2$ si cada par de puntos distintos $x,
 \end{defi}
 Hay otras formas de separación, más débiles o más fuertes, pero nos contentaremos con ésta al ser la más intuitiva.
 
-\begin{prop}
-Sea $X$ Hausdorff $\Rightarrow$ todos sus puntos son cerrados.
-\end{prop}
-\begin{demo}
-Sea $x \in X$, ¿es $X \setminus \left\{ x \right\}$ abierto? 
-
-Tomamos $y \in X \setminus \left\{ x \right\} \Rightarrow y \neq x,\ \exists V^y \cap V^x = \emptyset \Rightarrow x \not\in V^y \Rightarrow V^y \subset X \setminus \left\{ x \right\}$
-\end{demo}
 \begin{obs}
 \begin{enumerate}
     \item Si existen entornos disjuntos, existen entornos abiertos disjuntos.
@@ -27,15 +19,24 @@ Tomamos $y \in X \setminus \left\{ x \right\} \Rightarrow y \neq x,\ \exists V^y
     \end{demo}
     \item Si $X$ es Hausdorff, los puntos son cerrados.
     \begin{demo}    
+    Sea $x \in X$
     \[
-    \forall y \neq x, \exists U^y \not\ni x \Rightarrow X \setminus \{x\} = \bigcup_{y \neq x} U^y  \text{ es abierto.} 
+    \forall y \in X \setminus \left\{ x \right\},\ \exists U^y \not\ni x \Rightarrow X \setminus \{x\} = \bigcup_{y \neq x} U^y  \text{ es abierto.} 
     \]
     \end{demo}
-    \item $\left( X, \mathcal{T}_{\text{CF}} \right)$ no es Hausdorff: dos abiertos cualesquiera se cortan ($X$ infinito). Sin embargo, tiene puntos cerrados.
+    \item $\left( X, \mathcal{T}_{\text{CF}} \right)$ no es Hausdorff. Sin embargo, tiene puntos cerrados.
+    %TODO: Corregir
+    \begin{demo}
+        No es Hausdorff porque, si $X$ es infinito, dos abiertos cualesquiera se cortan.
+        Sean $U_1, U_2 \in \mathcal{T}_{\text{CF}} \Rightarrow X \setminus U_1, X \setminus U_2$ son finitos y como $X$ es infinito $\Rightarrow \exists x \not\in X \setminus U_1 \cup X \setminus U_2 \Rightarrow x \in U_1 \cap U_2$.
+    \end{demo}
 
-    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff: $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon \le \lVert x - y \rVert / 2$. Como $\mathcal{T}_{u} \subset \mathcal{T}_{\text{rad.}}$ esta última también es Hausdorff.
+    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff: $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon \le \lVert x - y \rVert / 2$. Como $\mathcal{T}_{u} \subset \mathcal{T}_{\text{rad}}$, esta última también es Hausdorff.
 
-    \item En $\left( X, \mathcal{T}_a \right)$ el punto $a$ no es cerrado: $a \not\in X \setminus \{a\} \Rightarrow X \setminus \{a\}$ no es abierto. $\forall x \neq a, U^x \supset \{a, x\} \ni a$. Por lo tanto, no es Hausdorff. 
+    \item En $\left( X, \mathcal{T}_a \right)$ el punto $a$ no es cerrado. Por lo tanto, no es Hausdorff. 
+    \begin{demo}
+    Veamos que $a$ no es cerrado: $a \not\in X \setminus \{a\} \Rightarrow X \setminus \{a\}$ no es abierto. $\forall x \neq a, U^x \supset \{a, x\} \ni a$.   
+    \end{demo}
 \end{enumerate}
 \end{obs}
 
@@ -45,9 +46,9 @@ Sean $f, g: X \rightarrow Y$ continuas con $Y$ Hausdorff $\Rightarrow \{f = g\} 
 \begin{demo}
 En primer lugar, veamos que si un punto cumple $f\left( x \right) \neq g\left( x \right) \Rightarrow$ tiene un entorno cuyos puntos cumplen todos que $f\left( y \right) \neq g\left( y \right)$. Con esto, tendremos que $\left\{ f \neq g \right\}$ es entorno de todos sus puntos y, por tanto, abierto.
 \begin{enumerate}
-    \item $f\left( x \right) \neq g\left( x \right) \xRightarrow{T_2} \exists V^{f\left( x \right)} \cap V^{g\left( x \right)} \stackrel{*}{=} \emptyset \xRightarrow{\text{cont.}} f^{-1}V^{f\left( x \right)} \cap g^{-1}V^{g\left( x \right)} = V^x$ entorno de $x$.
+    \item $f\left( x \right) \neq g\left( x \right) \xRightarrow{T_2} \exists V^{f\left( x \right)} \cap V^{g\left( x \right)} \stackrel{*}{=} \emptyset \xRightarrow{\text{cont.}} f^{-1}V^{f\left( x \right)} \cap g^{-1}V^{g\left( x \right)} = W^x$ entorno de $x$ (cada uno es entorno de $x$ no vacíos porque $x$ pertenece a ellos).
 
-    \item $V^x \cap \{f = g\} = \emptyset: y \in V^x \Rightarrow \begin{cases}
+    \item $W^x \cap \{f = g\} = \emptyset: y \in V^x \Rightarrow \begin{cases}
         f\left( y \right) \in V^{f\left( x \right)} \\
         g\left( y \right) \in V^{g\left( x \right)} 
     \end{cases} \xRightarrow{*} f\left( y \right) \neq g\left( y \right)$
@@ -57,7 +58,7 @@ En primer lugar, veamos que si un punto cumple $f\left( x \right) \neq g\left( x
 \end{demo}
 
 \begin{coro}
-Si $\left\{ f = g \right\}$ es un subconjunto denso, entonces $f \equiv g$
+Si $\left\{ f = g \right\}$ es un subconjunto denso, es decir, $\exists A \subset X: \overline{A} = X$ y $\left\{ f = g \right\}_A$, entonces $f \equiv g$
 \end{coro}
 \begin{demo}
 $\exists \overline{A} = X: f|_A = g|_A \Rightarrow \{f = g\} \supset A \xRightarrow{\text{prop.}} \overline{\left\{ f = g \right\}} = \{f = g\} \supset \overline{A} = X$.
@@ -73,7 +74,7 @@ f: X \rightarrow Y = \mathbb{R}
 \begin{obs}
 $f: X \rightarrow Y$ continua con $Y$ Hausdorff $\Rightarrow f^{-1}\left( y \right)$ cerrado $\forall y \in Y$.
 \begin{demo}
-Porque los puntos de $Y$ son cerrados y, de hecho, con eso basta.
+Porque los puntos de $Y$ son cerrados y la preimagen de cerrados por continuidad es cerrada.
 \end{demo}
 \end{obs}
 
@@ -97,14 +98,14 @@ Se tiene:
 \begin{enumerate}
     \item\label{it:subespacio_hausdorff} Veamos como los subespacios conservan la propiedad: 
 
-    Sea $Y \subset X = T_2: y_1, y_2 \in Y \Rightarrow \exists \underbrace{V^{y_1}}_{\text{En } X}  \cap V^{y_2} = \emptyset \Rightarrow \underbrace{\left( V^{y_1} \cap Y \right)}_{\text{En } Y}  \cap \left( V^{y_2} \cap Y \right) = \emptyset$.
+    Sea $Y \subset X = T_2: y_1, y_2 \in Y \Rightarrow \exists \underbrace{V^{y_1}}_{\text{En } X}  \cap \underbrace{V^{y_2}}_{\text{En } X} = \emptyset \Rightarrow \underbrace{\left( V^{y_1} \cap Y \right)}_{\text{En } Y}  \cap \underbrace{\left( V^{y_2} \cap Y \right)}_{\text{En } Y} = \emptyset$.
 
     \item Veamos un contraejemplo de un cociente que no conserva Hausdorff: 
 
     Sea $Y = \faktor{\mathbb{R}}{\mathbb{Q}}: \begin{rcases}
         y_1 = \mathbb{Q} \in Y\\
         y_2 = \sqrt{2} \in Y
-    \end{rcases} \nexists V^{y_1} \cap V^{y_2} = \emptyset: $ todo entorno abierto de $\sqrt{2}$ contiene racionales, luego al saturar, contiene $\mathbb{Q}$. Con esto, todo entorno del cociente (recordemos que en el cociente los abiertos son imágenes por proyección de los saturados) contiene este punto y, por tanto, la intersección nunca es disjunta.
+    \end{rcases} \nexists V^{y_1} \cap V^{y_2} = \emptyset: $ todo entorno abierto de $\sqrt{2}$ contiene racionales, luego al saturar, contiene $\mathbb{Q}$. Con esto, todo abierto en el cociente (recordemos que en el cociente los abiertos son imágenes por proyección de los saturados) contiene este punto y, por tanto, la intersección nunca es disjunta.
 
     \item Veamos que el producto conserva la propiedad: 
 
@@ -116,9 +117,7 @@ Se tiene:
             \item $y_1 \neq y_2$ podemos hacer lo mismo porque $Y$ es también $T_2$.
         \end{itemize}
 
-    \item[$\Leftarrow)$] Sabemos que $X \approx X \times \left\{ y_0 \right\} \subset X \times Y$ que es $T_2 \xRightarrow{\ref{it:subespacio_hausdorff}} X \times \left\{ y_0 \right\}$ es $T_2$ y, por tanto, $X$ también.
-    \end{itemize} 
-    %TODO: Añadir texto
+    %TODO: Corregir caption 
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -162,8 +161,13 @@ Se tiene:
             \draw[-, gray, dashed] (y2) -- (1.4,0.5);
         \end{tikzpicture}
         \captionsetup{font={color=gray}}
-        \caption{\textit{Representación de la primera implicación.}}
+        \caption{\textit{Siendo $x_1 \neq x_2$ vemos que es posible separar los puntos $\left( x_1, y_1 \right)$ y $\left( x_2, y_2 \right)$ simplemente separando en el factor $X$ del producto.}}
     \end{figure}
+
+    \item[$\Leftarrow)$] Sabemos que $X \approx 
+    %TODO: Por qué?
+    X \times \left\{ y_0 \right\} \subset X \times Y$ que es $T_2 \xRightarrow{\ref{it:subespacio_hausdorff}.} X \times \left\{ y_0 \right\}$ es $T_2$ y, por homeomorfismo, $X$ también.
+    \end{itemize} 
 
     \item Veamos que la suma conserva la propiedad:
 
