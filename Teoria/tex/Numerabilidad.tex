@@ -176,47 +176,74 @@ Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
 \end{tabular}
 \caption{\textit{Tabla que nos indica como se comportan las propiedades que hemos visto en la anterior sección con las distintas construcciones. Las sumas y productos son finitos.}}
 \end{table}
-
-%TODO: Agrupar mejor como en el "manuscrito azul".
+%TODO
+\begin{demo}
 \begin{itemize}
-    \item I Ax. y II Ax. se \underline{heredan} a subespacios intersecando bases.
-    \item Separable se hereda a subespacios abiertos intersecando el conjunto denso.
-    \item Lindelöf se hereda a subespacios cerrados como la compacidad. No en general: $Y$ no Lindelöf, $X = Y \cup \{w\}$ compacto, $\mathcal{B}^w = \{X \setminus F: F \subset Y\}$ con $F$ finito.
-\end{itemize}
-
-\begin{itemize}
-    \item $X = \mathbb{R}_u$ I y II Ax's, $Y = \mathbb{R}/\mathbb{Z}$ no es I.
-    %TODO: Image
-    \begin{center}
-        \includegraphics[scale=0.3]{images/ej_axiomas_num_real} 
-    \end{center}
-    \begin{demo}
-        $\alpha = \mathbb{Z} \in Y,\ \exists \mathcal{W}^{\alpha} = \{W_k : k \ge 1\}$ abiertos saturados, $W_k \supset \mathbb{Z},\ \forall k$
-
-        (figura) $\Rightarrow U = \mathbb{R} \setminus \{\varepsilon_k : k \ge 1\}$ entorno abierto saturado de $\mathbb{Z} U \not \supset W_k,\ \forall k$.
-    \end{demo}
-
-    \item $\forall$ aplicación continua y abierta conserva I y II 
-    \begin{demo}
-        Imagen de base es base.
-    \end{demo}
-    \item $\forall $ aplicación continua conserva separabilidad 
-    \begin{demo}
-        $f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
-    \end{demo}
-    %TODO: Ya se sabe xd
-    \item $\forall$ aplicación continua conserva Lindelöf. 
-    \begin{demo}
-        Como la compacidad, ya se sabe...
-    \end{demo}
-\end{itemize}
-
-\begin{itemize}
-    \item Para productos: producto finito de numerables es numerable.
-    \item Para sumas: suma finita de numerables es numerable.
-    \item Solo falla Lindelöf:
+    \item \underline{Subespacios}:
     \begin{itemize}
-        \item $\left( \mathbb{R}, \mathcal{T}_{[, )} \right)$ es Lindelöf (ejercicio no banal).
-        \item $\left( \mathbb{R}^2, \mathcal{T}_{[, )}^2 \right)$ no es Lindelöf: si lo fuera, $L = \{x + y = 0\} \subset \mathbb{R}^2$ heredaría la propiedad, pero es \underline{discreto} no numerable $\bot$.
+        \item I Ax. y II Ax. se \underline{heredan} a subespacios intersecando bases.
+        \item Separable se hereda a subespacios abiertos intersecando el conjunto denso.
+        \item Lindelöf se hereda a subespacios cerrados como la compacidad. 
+
+        No en general: Sea $Y$ no Lindelöf, $X = Y \cup \{w\}$ compacto, $\mathcal{B}^w = \{X \setminus F: F \subset Y\}$ con $F$ finito.    
     \end{itemize}
-\end{itemize}
+
+    \item \underline{Cocientes}:
+    \begin{itemize}
+        \item $X = \mathbb{R}_u$ es I y II Axiomas, $Y = \mathbb{R}/\mathbb{Z}$ no es I.
+        \begin{demo}
+            $\alpha = \mathbb{Z} \in Y,\ \exists \mathcal{W}^{\alpha} = \{W_k : k \ge 1\}$ abiertos \underline{saturados}, $W_k \supset \mathbb{Z},\ \forall k$
+
+            (figura) $\Rightarrow U = \mathbb{R} \setminus \{\varepsilon_k : k \ge 1\}$ entorno abierto saturado de $\mathbb{Z},\ U \not \supset W_k,\ \forall k$.
+
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \fill[cyan!15] (-1,0) rectangle (1, -0.14);
+                \draw[-] (-2.3,0) -- (2.3,0); 
+                \node(O) at (0,0) {$\mid$};
+                \node(e) at (-0.7,0) {\textbullet};
+                \node(izq) at (-2,0) {$\mid$};
+                \node(der) at (2,0) {$\mid$};
+                \node at (-1,0) {(};
+                \node(Wk) at (1,0) {)};
+                \node [below=0.001 of O] {$k$};
+                \node [below=0.001 of izq] {$k-1$};
+                \node [below=0.001 of der] {$k+1$};
+                \node [above=0.001 of e] {$\varepsilon_k$};
+                \node [above=0.001 of Wk] {$W_k$};
+            \end{tikzpicture}
+            \captionsetup{font={color=gray}}
+            \caption{\textit{Si $\varepsilon_k \not\in \mathbb{Z}$, vemos que aunque $\mathbb{R}_u$ cumple el I y el II axioma, existe un cociente que no.}}
+            \label{fig:I_ax_II_ax_cocientes}
+        \end{figure}
+        \end{demo}
+
+        \item Las aplicaciones continuas y abiertas conservan I y II.
+        \begin{demo}
+            Imagen de base es base.
+        \end{demo}
+        \item Las aplicaciones continuas conservan la separabilidad 
+        \begin{demo}
+            $f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
+        \end{demo}
+        %TODO: Ya se sabe xd
+        \item Las aplicaciones continuas conservan Lindelöf. 
+        \begin{demo}
+            Como la compacidad, ya se sabe...
+        \end{demo}
+    \end{itemize}
+
+    \item \underline{Productos/sumas} (finitos):
+    \begin{itemize}
+        \item Para productos: producto \underline{finito} de numerables es numerable.
+        \item Para sumas: suma \underline{finita} de numerables es numerable.
+        \item Solo falla Lindelöf:
+        \begin{itemize}
+            \item $\left( \mathbb{R}, \mathcal{T}_{[, )} \right)$ es Lindelöf (ejercicio no banal).
+            \item $\left( \mathbb{R}^2, \mathcal{T}_{[, )}^2 \right)$ no es Lindelöf: si lo fuera, $L = \{x + y = 0\} \subset \mathbb{R}^2$ heredaría la propiedad, pero es \underline{discreto} no numerable. ($\bot$)
+        \end{itemize}
+    \end{itemize}
+\end{itemize} 
+\end{demo}
+
