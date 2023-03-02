@@ -3,7 +3,7 @@
 \section{Concepto y mantras}%
 \label{sec:concepto_y_mantras_comp}
 \begin{defi}
-$X$ es \underline{compacto} si todo recubrimiento abierto tiene un subrecubrimiento finito:
+$X$ es \textbf{compacto} si todo recubrimiento abierto tiene un subrecubrimiento finito:
 \[
 X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} = X
 \]
@@ -13,19 +13,22 @@ X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} 
 Complementando lo anterior tenemos la \underline{propiedad de la intersección finita}: 
 \begin{gather*}
     \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Rightarrow\\
-    \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset
+    \boxed{    \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset}
 .\end{gather*}
 \end{obs}
 
 \begin{prop}[Subespacios]
-Sea $K \subset X$ (compacto) $\Rightarrow K \subset \underbrace{\bigcup_{i \in  I} U_i}_{\subset X} \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K$
+Sea $K \subset X$ (compacto) $\Rightarrow K \subset \bigcup_{i \in  I} U_i$ con $U_i \stackrel{\text{ab.}}{\subset} X \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K$
 \end{prop}
 
 \begin{ej}
 \begin{enumerate}
     \item $K \subset \mathbb{R}_u^n$ es compacto $\Leftrightarrow K$ es cerrado y acotado (Heine-Borel). 
-    \item $\left[ a, b \right] \subset \mathbb{R}_u$ compacto.
-    \item Si es compacto y discreto $\Rightarrow$ es finito [$X = \bigcup_{x \in X} \{x\}$ es rec. abierto en $\mathcal{T}_{\text{discreta}}$]
+    \item $\left[ a, b \right] \subset \mathbb{R}_u$ compacto. ($\Rightarrow$ Heine-Borel por resultados generales).
+    \item Si es compacto y discreto $\Rightarrow$ es finito 
+    \begin{demo}
+        $X = \bigcup_{x \in X} \{x\}$ es rec. abierto en $\mathcal{T}_{\text{discreta}}$ 
+    \end{demo}
     \item $x_k \rightarrow x \Rightarrow K = \{x, x_k: k \ge 1\}$ es compacto.
     \begin{demo}
         \[
