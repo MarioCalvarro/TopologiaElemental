@@ -64,7 +64,7 @@ Decimos que $\lim_{k \rightarrow \infty} x_k = x \Leftrightarrow$
 
     \item El I Axioma permite describir la topología con sucesiones:
     \[
-     x \in \overline{A} \Leftrightarrow \exists \{x_k\} \subset A, x_k \rightarrow x
+     x \in \overline{A} \Leftrightarrow \exists \{x_k\} \subset A: x_k \rightarrow x
     \]
 
     \begin{demo}
@@ -76,7 +76,7 @@ Decimos que $\lim_{k \rightarrow \infty} x_k = x \Leftrightarrow$
             \forall U^x \stackrel{\text{base ent.}}{\supset} W_{k_0} \supset W_{k + 1} \supset \ldots \Rightarrow x_k \in U^x,\ \forall k \ge k_0  
         \end{rcases} \Rightarrow x_k \rightarrow x
         \]
-        \item[$\Leftarrow)$]
+        \item[$\Leftarrow)$] Supongamos que $\exists \left\{ x_k \right\} \subset A: x_k \rightarrow x$:
         \[
         A \ni x_k \rightarrow x \Rightarrow \forall U^x,\ \exists x_{k_0} \in U^x \cap A
         \]
@@ -95,7 +95,13 @@ $X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
 \begin{ej}
 \begin{itemize}
     \item $\mathcal{T}_a, \mathcal{T}_{\text{discr.}}$ en $X$ no numerable no es II axioma.
-    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es II Axioma $\mathcal{B} = \{B \left( q, \frac{1}{k}\right) : q \in \mathbb{Q}^n, k \ge 1 \}$.
+    \begin{demo}
+        En $\mathcal{T}_a$ la base de abiertos es $\mathcal{B}_a = \left\{ \left\{ a, x \right\}: x \in X \right\}$, por tanto, si $X$ no es numerable
+        tampoco lo será esta base.
+
+        Por otro lado, en $\mathcal{T}_{\text{discr.}}$ tenemos como base $X$ que no es numerable.
+    \end{demo}
+    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es II Axioma ya que tenemos como base a: $\mathcal{B} = \{B \left( q, \frac{1}{k}\right) : q \in \mathbb{Q}^n, k \ge 1 \}$.
     \begin{demo}
         Ejercicio.
     \end{demo}
@@ -110,21 +116,21 @@ $X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow \mathcal{B}^x = \{B_k : x \in B_k\}$
-    \item Espacio discreto no numerable.
+    \item Sea la base de abiertos: $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow \mathcal{B}^x = \{B_k : x \in B_k\}$ es base de entornos $\forall x \in X$.
+    \item Tenemos como contraejemplo $\mathcal{T}_{\text{discr.}}$ en $X$ no numerable.
 \end{enumerate}
 \end{demo}
 
 \subsection{Separable}%
 \label{sub:separable}
 \begin{defi}[Separable]
-$X$ es \textbf{separable} si $\exists A$, numerable denso.
+$X$ es \textbf{separable} si $\exists A \subset X$, numerable denso.
 \end{defi}
 
 \begin{ej}
 \begin{itemize}
-    \item $\left( \mathbb{R}^n, \mathcal{T}_u \right)$ es separable, porque $\mathbb{Q}^2$ es denso.
-    \item $\left( X, \mathcal{T}_{\text{discr.}} \right)$ si $X$ es no numerable, no es separable.
+    \item $\left( \mathbb{R}^n, \mathcal{T}_u \right)$ es separable, porque $\mathbb{Q}^n$ es denso.
+    \item $\left( X, \mathcal{T}_{\text{discr.}} \right)$, si $X$ es no numerable, no es separable.
     \item $\mathcal{T}_a$ sí es separable porque $\overline{\left\{ a \right\}} = X$.
     \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right),\ \forall A \subset \mathbb{R}$, con $A$ numerable infinito, es denso y, por tanto, separable. 
     \item $\left( \mathbb{R}^2, \mathcal{T}_{\text{rad}} \right)$ también lo es. %TODO: Dibujo para ver que Q2 es denso aquí también
@@ -142,9 +148,9 @@ $X$ es \textbf{separable} si $\exists A$, numerable denso.
 \begin{demo}
 \begin{enumerate}
     \item $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow A = \{a_k : a_k \in B_k\}_{k \ge 1}$ corta a todo abierto (y, por tanto, denso).
-    \item $\left( X, \mathcal{T}_a \right), X$ no numerable.
-    \item Espacio discreto no numerable.
-    \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right) : \overline{\mathbb{Z}} = \mathbb{R}$.
+    \item Contraejemplo: $\left( X, \mathcal{T}_a \right), X$ no numerable.
+    \item Contraejemplo: Topología discreta en un espacio no numerable.
+    \item Contraejemplo: $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right) : \overline{\mathbb{Z}} = \mathbb{R}$.
 \end{enumerate}
 \end{demo}
 
@@ -154,7 +160,7 @@ $X$ es \textbf{separable} si $\exists A$, numerable denso.
 $X$ es \textbf{Lindelöf} si $\forall X = \bigcup_{i \in I} U_i$ (recubrimiento abierto), $\exists X = \bigcup_{k=1}^{\infty} U_{i_k}$ (subrecubrimiento numerable). 
 \end{defi}
 
-Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
+Esta forma débil de compacidad se menciona como complemento en los ejercicios.
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_num}
@@ -165,13 +171,13 @@ Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-    I Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & \checkmark\\
+    I Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
     \hline
-    II Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & \checkmark\\
+    II Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
     \hline
-    Separable & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
+    Separable & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
     \hline
-    Lindelöf & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & $\times$ & \checkmark\\
+    Lindelöf & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & $\times$ & \checkmark\\
     \hline
 \end{tabular}
 \caption{\textit{Tabla que nos indica como se comportan las propiedades que hemos visto en la anterior sección con las distintas construcciones. Las sumas y productos son finitos.}}
