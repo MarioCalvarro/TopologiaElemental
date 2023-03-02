@@ -5,7 +5,6 @@
 \label{sec:axiomas}
 \subsection{I Axioma}%
 \label{sub:i_axioma}
-
 \begin{defi}[I Ax.]
 $X$ es \textbf{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \mathcal{V}^x$ base numerable de entornos.  
 \end{defi}
@@ -28,14 +27,24 @@ $X$ es \textbf{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \math
 \begin{enumerate}
     \item $\mathbb{R}^n, \mathcal{T}_u$ cumple el I Axioma
     \begin{demo}    
-        Sea $x \in \mathbb{R}^n \Rightarrow \mathcal{W}^x = \{B\left( x, y_k \right): k \ge 1\}$ es base de entornos.
+        Sea $x \in \mathbb{R}^n \Rightarrow \mathcal{W}^x = \{B\left( x, \frac{1}{k} \right): k \ge 1\}$ es base de entornos.
     \end{demo}
     \item $\left( X, \mathcal{T}_a \right), \left( X, \mathcal{T}_{\text{discreta}} \right)$ cumplen el I Axioma.
     \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right)$ no es I Axioma.
     \begin{demo}
+    Sabemos que $\left\{ W_k \right\}$ no es base de entornos de $x$ si $\exists U^x \not \supset W_k,\ \forall k \ge 1$, $\forall k \exists \underbrace{x_k}_{\neq x} \in W_k \setminus U^x$.
+
     Veámoslo por reducción al absurdo. Supongamos que $\exists V^x$ numerable $\Rightarrow$
 
-    $\exists \mathcal{W}^x = \{W_k\}_{k \ge 1}$ abiertos encajados, $W_k = \mathbb{R} \setminus F_k$ finito $\Rightarrow \bigcap_{k \in \mathbb{N}} W_k = \mathbb{R} \setminus \bigcup_{k \in \mathbb{N}} F_k \neq \emptyset \Rightarrow \exists y \in \bigcap_{k \in \mathbb{N}} W_k \Rightarrow U^x = \mathbb{R}\setminus \{y\} \not \supset W_k,\ \forall k \in \mathbb{N}$ (porque $y$ pertenece a todos los $W_k$). Por tanto, los $W_k$ no son encajados y tenemos una contradicción. $\left( \bot \right)$
+    $\exists \mathcal{W}^x = \{W_k\}_{k \ge 1}$ abiertos encajados, $W_k = \mathbb{R} \setminus F_k$ finito $\Rightarrow \bigcap_{k \in \mathbb{N}} W_k = \mathbb{R} \setminus \bigcup_{k \in \mathbb{N}} F_k \neq \emptyset \Rightarrow \exists y \in \bigcap_{k \in \mathbb{N}} W_k \Rightarrow U^x = \mathbb{R}\setminus \{y\} \not \supset W_k,\ \forall k \in \mathbb{N}$ (porque $y$ pertenece a todos los $W_k$). Por tanto, tenemos un entorno que no contiene a ningún $W_k$.
+    \end{demo}
+
+    \item $\left( \mathbb{R}, \mathcal{T}_{\text{rad}} \right)$ no es I axioma.
+    \begin{demo}
+    %TODO: Dibujo 
+    Sea $\left\{ \underbrace{W_k}_{\ni x_0} : k \ge 1 \right\}$ y sea $L_k: $ recta de pendiente $\frac{1}{k}$. Si hacemos $W_k \cap L_k \supset \left( x_0 - \varepsilon, x_0 + \varepsilon \right) \ni x_k$ 
+    tal que $0 < \lVert x_k - x_0 \rVert < \frac{1}{k}$. Ya vimos que $U^{x_0} = \mathbb{R}^2 \setminus \left\{ x_k: k \ge 1 \right\}$ es abierto radial que 
+    no contiene ningún $W_k$ ya que a estos pertenecen los $x_k$.
     \end{demo}
 \end{enumerate}
 \end{ej}
@@ -83,6 +92,16 @@ En general, los límites de sucesiones son poco útiles.
 $X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
 \end{defi}
 
+\begin{ej}
+\begin{itemize}
+    \item $\mathcal{T}_a, \mathcal{T}_{\text{discr.}}$ en $X$ no numerable no es II axioma.
+    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es II Axioma $\mathcal{B} = \{B \left( q, \frac{1}{k}\right) : q \in \mathbb{Q}^n, k \ge 1 \}$.
+    \begin{demo}
+        Ejercicio.
+    \end{demo}
+\end{itemize}
+\end{ej}
+
 \begin{prop}
 \begin{enumerate}
     \item II Ax. $\Rightarrow$ I Ax. 
@@ -96,15 +115,22 @@ $X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
 \end{enumerate}
 \end{demo}
 
-\begin{obs} 
-    $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ II Ax. $\mathcal{B} = \{B \left( q, \frac{1}{k} : q \in \mathbb{Q}^n, k \ge 1 \right)\}$ [Ejercicio].
-\end{obs}
-
 \subsection{Separable}%
 \label{sub:separable}
 \begin{defi}[Separable]
 $X$ es \textbf{separable} si $\exists A$, numerable denso.
 \end{defi}
+
+\begin{ej}
+\begin{itemize}
+    \item $\left( \mathbb{R}^n, \mathcal{T}_u \right)$ es separable, porque $\mathbb{Q}^2$ es denso.
+    \item $\left( X, \mathcal{T}_{\text{discr.}} \right)$ si $X$ es no numerable, no es separable.
+    \item $\mathcal{T}_a$ sí es separable porque $\overline{\left\{ a \right\}} = X$.
+    \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right),\ \forall A \subset \mathbb{R}$, con $A$ numerable infinito, es denso y, por tanto, separable. 
+    \item $\left( \mathbb{R}^2, \mathcal{T}_{\text{rad}} \right)$ también lo es. %TODO: Dibujo para ver que Q2 es denso aquí también
+\end{itemize}
+\end{ej}
+
 \begin{prop}
 \begin{enumerate}
     \item II Ax. $\Rightarrow$ separable. 
@@ -115,17 +141,17 @@ $X$ es \textbf{separable} si $\exists A$, numerable denso.
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow A = \{\overbrace{a_k}^{\in B_k}\}_{k \ge 1}$ corta a todo abierto.
+    \item $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow A = \{a_k : a_k \in B_k\}_{k \ge 1}$ corta a todo abierto (y, por tanto, denso).
     \item $\left( X, \mathcal{T}_a \right), X$ no numerable.
     \item Espacio discreto no numerable.
-    \item $\left( \mathbb{R}, \mathcal{T}_{CF} \right) : \overline{\mathbb{Z}} = \mathbb{R}$.
+    \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right) : \overline{\mathbb{Z}} = \mathbb{R}$.
 \end{enumerate}
 \end{demo}
 
 \subsection{Lindelöf}%
 \label{sub:lindelof}
 \begin{defi}[Lindelöf]
-$X$ es \textbf{Lindelöf} si $\forall X = \bigcup_{i} U_i$ (recubrimiento abierto) $\exists X = \bigcup_{k} U_{i_k}$ (subrecubrimiento numerable). 
+$X$ es \textbf{Lindelöf} si $\forall X = \bigcup_{i \in I} U_i$ (recubrimiento abierto), $\exists X = \bigcup_{k=1}^{\infty} U_{i_k}$ (subrecubrimiento numerable). 
 \end{defi}
 
 Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
@@ -148,7 +174,7 @@ Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
     Lindelöf & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & $\times$ & \checkmark\\
     \hline
 \end{tabular}
-\caption{\textit{Tabla que nos indica como se comportan las propiedades que hemos visto en la anterior sección con las distintas construcciones.}}
+\caption{\textit{Tabla que nos indica como se comportan las propiedades que hemos visto en la anterior sección con las distintas construcciones. Las sumas y productos son finitos.}}
 \end{table}
 
 %TODO: Agrupar mejor como en el "manuscrito azul".
