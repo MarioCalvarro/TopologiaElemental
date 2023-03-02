@@ -46,14 +46,14 @@ Sean $f, g: X \rightarrow Y$ continuas con $Y$ Hausdorff $\Rightarrow \{f = g\} 
 \begin{demo}
 En primer lugar, veamos que si un punto cumple $f\left( x \right) \neq g\left( x \right) \Rightarrow$ tiene un entorno cuyos puntos cumplen todos que $f\left( y \right) \neq g\left( y \right)$. Con esto, tendremos que $\left\{ f \neq g \right\}$ es entorno de todos sus puntos y, por tanto, abierto.
 \begin{enumerate}
-    \item $f\left( x \right) \neq g\left( x \right) \xRightarrow{T_2} \exists V^{f\left( x \right)} \cap V^{g\left( x \right)} \stackrel{*}{=} \emptyset \xRightarrow{\text{cont.}} f^{-1}V^{f\left( x \right)} \cap g^{-1}V^{g\left( x \right)} = W^x$ entorno de $x$ (cada uno es entorno de $x$ no vacíos porque $x$ pertenece a ellos).
+    \item $f\left( x \right) \neq g\left( x \right) \xRightarrow{T_2} \exists V^{f\left( x \right)} \cap V^{g\left( x \right)} \stackrel{*}{=} \emptyset \xRightarrow{\text{cont.}} f^{-1}V^{f\left( x \right)} \cap g^{-1}V^{g\left( x \right)} = W^x$ entorno de $x$ (cada uno es entorno de $x$ y no son vacíos porque $x$ pertenece a ellos).
 
-    \item $W^x \cap \{f = g\} = \emptyset: y \in V^x \Rightarrow \begin{cases}
+    \item Vemos que $W^x \cap \{f = g\} = \emptyset: y \in V^x \Rightarrow \begin{cases}
         f\left( y \right) \in V^{f\left( x \right)} \\
         g\left( y \right) \in V^{g\left( x \right)} 
     \end{cases} \xRightarrow{*} f\left( y \right) \neq g\left( y \right)$
 
-    \item[1. + 2.] $X\setminus \{f = g\} = \{f \neq g\}$ es entorno de todos sus puntos, luego abierto, luego $\{f = g\}$ es cerrado.
+    \item[1. + 2.] $X\setminus \{f = g\} = \{f \neq g\}$ es entorno de todos sus puntos, luego abierto, es decir, $\{f = g\}$ es cerrado.
 \end{enumerate}
 \end{demo}
 
@@ -61,8 +61,12 @@ En primer lugar, veamos que si un punto cumple $f\left( x \right) \neq g\left( x
 Si $\left\{ f = g \right\}$ es un subconjunto denso, es decir, $\exists A \subset X: \overline{A} = X$ y $\left\{ f = g \right\}_A$, entonces $f \equiv g$
 \end{coro}
 \begin{demo}
-$\exists \overline{A} = X: f|_A = g|_A \Rightarrow \{f = g\} \supset A \xRightarrow{\text{prop.}} \overline{\left\{ f = g \right\}} = \{f = g\} \supset \overline{A} = X$.
+$f|_A = g|_A \Rightarrow \{f = g\} \supset A \xRightarrow{\text{prop.}} \overline{\left\{ f = g \right\}} = \{f = g\} \supset \overline{A} = X \Rightarrow \boxed{X = \left\{ f = g \right\}}$.
 \end{demo}
+
+\begin{obs}
+Este último resultado nos permite extender de forma única una función continua $f$ a su adherencia.
+\end{obs}
 
 \begin{ej}[Importante]
 Un caso importante en el que $Y$ es Hausdorff es: 
