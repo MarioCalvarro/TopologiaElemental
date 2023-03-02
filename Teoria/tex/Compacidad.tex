@@ -9,8 +9,8 @@ X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} 
 \]
 \end{defi}
 
-\begin{obs}
-Complementando lo anterior tenemos la \underline{propiedad de la intersección finita}: 
+\begin{obs}[Propiedad de la intersección finita]
+Complementando lo anterior tenemos:
 \begin{gather*}
     \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Rightarrow\\
     \boxed{    \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset}
@@ -25,14 +25,14 @@ Sea $K \subset X$ (compacto) $\Rightarrow K \subset \bigcup_{i \in  I} U_i$ con 
 \begin{enumerate}
     \item $K \subset \mathbb{R}_u^n$ es compacto $\Leftrightarrow K$ es cerrado y acotado (Heine-Borel). 
     \item $\left[ a, b \right] \subset \mathbb{R}_u$ compacto. ($\Rightarrow$ Heine-Borel por resultados generales).
-    \item Si es compacto y discreto $\Rightarrow$ es finito 
+    \item Si $X$ es compacto con $\mathcal{T}_{\text{discr.}} \Rightarrow$ es finito 
     \begin{demo}
-        $X = \bigcup_{x \in X} \{x\}$ es rec. abierto en $\mathcal{T}_{\text{discreta}}$ 
+        $X = \bigcup_{x \in X} \{x\}$ es recubrimiento abierto en $\mathcal{T}_{\text{discreta}}$ y como es compacto $\exists \bigcup_{i=1}^n \left\{ x_i \right\} = X$.
     \end{demo}
     \item $x_k \rightarrow x \Rightarrow K = \{x, x_k: k \ge 1\}$ es compacto.
     \begin{demo}
         \[
-            \exists U_{i_0} \ni x \xRightarrow{\lim} \begin{rcases}
+            \exists U_{i_0}^x \ni x \xRightarrow{\lim} \begin{rcases}
                 x_k \in U_{i_0},\ \forall k > k_0\\
                 x_k \in U_{i_k},\ \forall k \le k_0
             \end{rcases} \Rightarrow K \subset U_{i_0} \cup U_{i_1} \cup \ldots \cup U_{i_{k_0}} 
@@ -47,10 +47,10 @@ Sea $K \subset X$ (compacto) $\Rightarrow K \subset \bigcup_{i \in  I} U_i$ con 
 Cerrado en compacto es compacto. 
 \end{prop}
 \begin{demo}
-Sea $K \stackrel{\text{cerr.}}{\subset} X$,
+Sea $K \stackrel{\text{cerr.}}{\subset} X = \bigcup U_i$,
 \begin{align*}
-    K \subset \bigcup_{i} U_i &\Rightarrow X = \left( X \setminus K \right) \cup \bigcup_{i} U_i\\
-    X \text{ comp.} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
+    K \subset \bigcup U_i &\Rightarrow X = \left( X \setminus K \right) \cup \bigcup U_i\\
+    X \text{ compacto} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
     &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K
 .\end{align*}
 
@@ -61,12 +61,17 @@ Sea $K \stackrel{\text{cerr.}}{\subset} X$,
 Infinito en compacto tiene puntos de acumulación.
 \end{prop}
 \begin{demo}
-Sea $A \subset X$ (compacto) con $A' = \emptyset \Rightarrow$
+Sea $A \subset X$ (compacto) con $A' = \emptyset$ veamos que es finito:
 \begin{align*}
-    \overline{A} &= \overbrace{\{\text{puntos aislados}\}}^{\subset A}  \cup \overbrace{A'}^{= \emptyset} = \{\text{puntos aislados}\} = A\\
-     &\Rightarrow A \stackrel{\text{cerr.}}{\subset} X \text{ comp.} \Rightarrow \underbrace{A}_{= \{\text{pts. aisl.}\}} \text{ es compacto y discreto} \Rightarrow \#A < +\infty   
+    \overline{A} &= \overbrace{\{\text{puntos aislados}\}}^{\subset A} \cup \cancelto{\emptyset}{A'} = \{\text{puntos aislados}\} = A\\
+     &\Rightarrow A \stackrel{\text{cerr.}}{\subset} X \text{ comp.} \Rightarrow A \text{ es compacto y discreto} \Rightarrow \#A < +\infty   
 .\end{align*}
+El resultado del enunciado lo podemos sacar por el contrarrecíproco.
 \end{demo}
+
+\begin{obs}
+Este mantra es como ``la mitad'' del teorema de Bolzano-Weierstrass.
+\end{obs}
 
 \begin{prop}[Mantra 3]
 La imagen continua de un compacto es compacta. 
@@ -74,28 +79,32 @@ La imagen continua de un compacto es compacta.
 \begin{demo}
 Sea $f: X \rightarrow Y$ con $f$ continua y $X$ compacto $\Rightarrow$
 \begin{align*}
-    f\left( X \right) \times \bigcup_{i} V_i &\Rightarrow X = \bigcup_{i} f^{-1} V_i \Rightarrow \exists f^{-1}V_{i_1} \cup \ldots \cup f^{-1}V_{i_r} = X\\
+    f\left( X \right) \subset \bigcup_{i} V_i &\Rightarrow X = \bigcup_{i} f^{-1} V_i \Rightarrow \exists f^{-1}V_{i_1} \cup \ldots \cup f^{-1}V_{i_r} = X\\
      &\Rightarrow V_{i_1} \cup \ldots \cup V_{i_r} \supset f\left( X \right) 
 .\end{align*}
 \end{demo}
 
 \begin{ej}[¡Muy importante!]
-$\mathbb{R} \mathrm{P}^n$ es compacto: La imagen continua de $\mathbb{S}^n$ por la proyección antipodal. 
+$\mathbb{R} \mathrm{P}^n$ es compacto al ser la imagen continua de $\mathbb{S}^n$ por la \underline{proyección antipodal}. 
 \end{ej}
 
 \begin{prop}[Mantra 4]
 Un compacto en $T_2$ es cerrado. 
 \end{prop}
+%TODO: No estoy seguro que es cada cosa.
 \begin{demo}
-Sea $K \subset X$ con $K$ compacto y $X = T_2 \Rightarrow$
+Vamos a ver que $X \setminus K$ es abierto al ser entorno de todos sus puntos.
+
+Sea $K \subset X$ con $K$ compacto y $X$ Hausdorff $\Rightarrow$
 \begin{equation} \label{eq:mantra_4_1}
-    \forall x \in X \setminus K,\ \exists U^x \cap U^k = \emptyset
+    \forall x \in X \setminus K,\ \exists U^x \cap U^K = \emptyset
 \end{equation}
-A su vez, $\forall y \in K,\ \exists U_y^x \cap U^y = \emptyset$ por $T_2 \Rightarrow$
+
+Porque $\forall y \in K,\ \exists U_y^x \cap U^y = \emptyset$ por $T_2 \Rightarrow$
 \begin{align*}
     %TODO: Fix flecha
-    K \subset \bigcup_{y} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^k\\
-    &\Rightarrow x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x
+    K \subset \bigcup_{y} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^K\\
+    &\xRightarrow{\text{comp.}} x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x
 .\end{align*}
 Finalmente, utilizando \ref{eq:mantra_4_1} $\Rightarrow$
 \[
@@ -114,11 +123,12 @@ Dos compactos disjuntos en un $T_2$ se separan como puntos.
 \end{demo}
 
 \begin{prop}
-Si $f : X \rightarrow Y$ es continua, $X$ compacto e $Y = T_2 \Rightarrow$ cerrada.
+Si $f : X \rightarrow Y$ es continua, $X$ compacto e $Y$ Hausdorff $\Rightarrow f$ es cerrada.
 \end{prop}
 \begin{demo}
+Sea $F \stackrel{\text{cerr.}}{\subset} X \xRightarrow{\text{M1}}$
 \[
-    F \stackrel{\text{cerr.}}{\subset} X \xRightarrow{\mathrm{M}1} F \text{ comp.} \xRightarrow{\mathrm{M}3} f\left( F \right) \text{ comp.} \xRightarrow{\mathrm{M}4} f\left( F \right) \text{ cerr.} 
+    F \text{ comp.} \xRightarrow{\mathrm{M}3} f\left( F \right) \text{ comp.} \xRightarrow{\mathrm{M}4} f\left( F \right) \text{ cerr.} 
 \]
 \end{demo}
 \begin{coro}
@@ -140,16 +150,19 @@ Sea la $f$ de la anterior proposición entonces si además es:
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_comp}
 %TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
+\hline
     Compacidad & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
-    \hline\\
-               & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
-    \hline\\
+\hline
+    & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
+\hline
 \end{tabular}
-\end{center}
+\caption{\textit{La tabla nos indica como se mantiene (o no) la compacidad con las distintas construcciones que hemos visto. La última fila nos indica la demostración, o contraejemplo, de cada una.}}
+\end{table}
 
 \begin{theo}[de Tychonoff]
 Si $X$ e $Y$ son dos compactos $\Rightarrow X \times Y$ es compacto.
@@ -170,13 +183,17 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 
 \begin{obs}
 \begin{enumerate}
-    \item $X \times Y$ compacto $\Rightarrow X$ e $Y$ compactos. [Mantra $3$ para proyecciones] 
-    \item Heine-Borel: $K \subset \mathbb{R}_u^n$ cerrado y acotado $\Rightarrow$ compacto porque:
+    \item $X \times Y$ compacto $\Rightarrow X$ e $Y$ compactos.\begin{demo}
+        Aplicamos el Mantra $3$ para las proyecciones.
+    \end{demo} 
+    \item Heine-Borel: $K \subset \mathbb{R}_u^n$ cerrado y acotado $\Rightarrow$ compacto.
+    \begin{demo}
+    Ya que sabemos que $\left[ a, b \right]$ es compacto en $\mathbb{R}_u$, sabemos que:
     \[
-        \exists a_i, b_i: K \stackrel{\text{cerr.}}{\subset} \underbrace{\left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]}_{\text{Compacto por Tych.\footnotemark}}  
+        \exists a_i, b_i: K \stackrel{\text{cerr.}}{\subset} \underbrace{\left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]}_{\text{Compacto por Tych.}}  
     \]
-    \footnotetext{$\left[ a, b \right]$ es compacto.}
-    Y aplicamos el Mantra $1$.
+    y aplicamos el Mantra $1$.
+    \end{demo}
 \end{enumerate}
 \end{obs}
 
