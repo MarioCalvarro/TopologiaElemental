@@ -1,0 +1,3856 @@
+\documentclass[10pt,a4paper,openright]{book}
+
+%% Formateo del título del documento
+\title{\Huge TOPOLOGÍA ELEMENTAL}
+\author{Mario Calvarro Marines, Juan Diego Barrado Daganzo  \\
+e Iker Muñoz Jiménez}
+\date{}
+
+%% Formateo del estilo de escritura y de la pagina
+\pagestyle{plain}
+\setlength{\parskip}{0.35cm} %edicion de espaciado
+\setlength{\parindent}{0cm} %edicion de sangría
+\clubpenalty=10000 %líneas viudas NO
+\widowpenalty=10000 %líneas viudas NO
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry} % para establecer las medidas de los margenes
+\usepackage[spanish]{babel} %Para que el idioma por defecto sea español
+\usepackage{ulem} % para poder subrayar entornos especiales como las secciones
+
+%% Texto matematico y simbolos especiales
+\usepackage{amsmath} %Paquetes para mates
+\usepackage{mathtools}
+\usepackage{amsfonts} %Paquetes para mates
+\usepackage{amssymb} %Paquetes para mates
+\usepackage{pifont}
+\usepackage{stmaryrd} % paquete para mates
+\usepackage{latexsym} %Paquetes para mates
+\usepackage{cancel} %Paquete tachar cosas
+\usepackage{accents} %Paquete acentos
+\usepackage{stackrel} %Paquete para poner por encima y debajo
+
+%% Ruta de las fotos e inclusion de las mismas
+\usepackage{graphicx}
+\graphicspath{{./fotos/}}
+
+%% Inclusion de referencias cruzadas por defecto y específicas
+\usepackage{hyperref}
+
+%% Paquete para definir y utilizar colores por el documento
+\usepackage[dvipsnames,usenames]{xcolor} %activar e incluir colores
+    %% definicion de los colores que se van a utilizar en cada cabecera
+    \definecolor{capitulos}{RGB}{60,0,0}% gama de colores de los capitulos
+    \definecolor{secciones}{RGB}{95,8,5}% gama de colores de las secciones
+    \definecolor{subsecciones}{RGB}{140,36,31}% gama de colores de las subsections
+    \definecolor{subsubsecciones}{RGB}{188,109,79}% gama de colores de las subsubsections
+    \definecolor{teoremas}{RGB}{164,56,32}% gama de colores para los teoremas
+    \definecolor{demos}{RGB}{105,105,105} % gama de colores para el cuerpo de las demostraciones
+
+%% Paquete para la edición y el formateo de capítulos, secciones...
+\usepackage[explicit]{titlesec}
+    %% Definición del estilo de los capítulos, secciones, etc...
+    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge #1}[\titlerule]
+    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{#1}
+    \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{}{0pt}{\uline{#1}}
+    \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{}{0pt}{#1}
+
+%% Paquete para el formateo de entornos del proyecto
+\usepackage{ntheorem}[thmmarks]
+    %% Definicion del aspecto de los entornos matematicos del proyecto
+    \theoremstyle{break}
+    \theoremheaderfont{\normalfont\bfseries\color{teoremas}}
+    \theorembodyfont{\itshape}
+    \theoremseparator{\vspace{0.2cm}}
+    \theorempreskip{\topsep}
+    \theorempostskip{\topsep}
+    \theoremindent0cm
+    \theoremnumbering{arabic}
+    \theoremsymbol{}
+    \theoremprework{\vspace{0.2cm} \hrule}
+    \theorempostwork{\vspace{0.2cm}\hrule}
+        \newtheorem*{defi}{Definición}
+
+    \theoremprework{\vspace{0.25cm}}
+        \newtheorem*{theo}{Teorema}
+
+    \theoremprework{\vspace{0.25cm}}
+    	\newtheorem*{coro}{Corolario}
+
+    \theoremprework{\vspace{0.25cm}}
+    	\newtheorem*{lema}{Lema}
+
+    \theoremprework{\vspace{0.25cm}}
+    	\newtheorem*{prop}{Proposición}
+
+    \theoremheaderfont{\normalfont}
+    \theorembodyfont{\normalfont\color{demos}}
+    \theoremsymbol{\hfill\square}
+    	\newtheorem*{demo}{\underline{Demostración}:}
+
+    \theoremheaderfont{\normalfont}
+    \theorembodyfont{\normalfont}
+    	\newtheorem*{obs}{\underline{Observación}:}
+    	\newtheorem*{ej}{\underline{Ejemplo}:}
+    	\newtheorem*{pg}{\underline{Política general}:}
+    	\newtheorem*{il}{\underline{Ilustración}:}
+
+%% Definicion de operadores especiales para simplificar la escritura matematica
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\divg}{div}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\adh}{Adh}
+\DeclareMathOperator{\fr}{Fr}
+\newcommand{\dif}[1]{\ d#1}
+
+%% Paquete e instrucciones para la generacion de los dibujos
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{tkz-fct}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz,tikz-3dplot}
+\tdplotsetmaincoords{80}{45}
+\tdplotsetrotatedcoords{-90}{180}{-90}
+\usetikzlibrary{arrows}
+    %% style for surfaces
+    \tikzset{surface/.style={draw=blue!70!black, fill=blue!40!white, fill opacity=.6}}
+
+    %% macros to draw back and front of cones
+    %% optional first argument is styling; others are z, radius, side offset (in degrees)
+    \newcommand{\coneback}[4][]{
+        %% start at the correct point on the circle, draw the arc, then draw to the origin of the diagram, then close the path
+        \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:225+#4:#3) -- (O) --cycle;
+    }
+    \newcommand{\conefront}[4][]{
+        \draw[canvas is xy plane at z=#2, #1] (45-#4:#3) arc (45-#4:-135+#4:#3) -- (O) --cycle;
+    }
+    
+    \tikzset{middlearrow/.style={decoration={markings, mark= at position 0.5 with {\arrow{#1}},},postaction={decorate}}}
+    
+    \usetikzlibrary{decorations.markings}
+    
+    \newcommand{\AxisRotator}[1][rotate=0]{
+    \tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);
+    }
+    
+    \usetikzlibrary{shapes}
+
+
+%TODO: Los eta son en realidad xi
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{3}% para que salgan las subsubsecciones en el indice
+\tableofcontents
+\chapter{Espacios topológicos}
+\label{cha:espacios_topologicos}
+
+\section{Conjuntos abiertos}
+\label{sec:conjuntos_abiertos}
+\begin{defi}[Espacio Topológico]
+Sea $X$ un conjunto y $\mathcal{T} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos del mismo, decimos que $\mathcal{T}$ es una \textbf{topología} de $X$ si y sólo si:
+\begin{enumerate}
+    \item $\emptyset, X \in \mathcal{T}$ 
+    \item $\bigcup_{i \in I} U_i \in \mathcal{T}$ donde $U_i \in \mathcal{T}$
+    \item $\bigcap_{i=1}^n U_i \in \mathcal{T}$ donde $U_i \in \mathcal{T}$
+\end{enumerate}
+y denotamos por \textbf{espacio topolócio} al par $\left( X, \mathcal{T} \right)$. A los elementos de $X$ los llamaremos puntos y a los elementos de $\mathcal{T}$ los llamaremos abiertos.
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item \label{ejemplos_topologia:first} $\mathcal{T} = \{\emptyset, X\}$ es la topología \textbf{trivial}, que está contenida en cualquier otra topología.
+    \item $\mathcal{T} = P\left( X \right)$ es la topología \textbf{discreta}, que contiene a cualquier\footnote{En parte porque si los puntos $\{x\} \in \mathcal{T}$ son abiertos, entonces cualquier conjunto $A = \bigcup_{x \in A} \{x\}$ es abierto.} otra topología.
+    \item $\mathbb{R}^n$ junto con las bolas euclídeas es la topología habitual que utilizamos.
+    \item Cualquier distancia $d(x,y)$ define una topología a través de sus bolas abiertas, igual que definíamos la usual en $\mathbb{R}^n$, de hecho, se puede demostrar sin mayor dificultad (y tal y como se ve en el dibujo) que todas las normas $p$ en $\mathbb{R}^n$ definen bolas que contienen y están contenidas en las restantes. En consecuencia, si la definición de abierto usual se hacía a través de bolas redondas y hemos visto que estas contienen a bolas cuadradas o romboidales, también se tiene que es abierto cuadrado o romboidal y el recíproco por los contenidos en ambos lados.
+    %TODO: esto debería hacerse con el entorno figure para que la anotación de abajo sea un caption
+    \begin{center}
+        \includegraphics[scale=0.2]{images/topologia_metricas}  
+
+        \textit{El dibujo representa distintas distancias\footnote{Procedentes de \textit{normas}.} en $\mathbb{R}^n$, pero todas definen la misma topología.} 
+    \end{center}
+    Es decir, cambiar de norma igual cambia la noción de distancia en $\mathbb{R}^n$, ¡pero no la topología asociada! Sigue siendo la topología usual de $\mathbb{R}^n$.
+    
+    \item En general, cuando queramos ver resultados que no son ciertos pondremos un contraejemplo donde no se cumpla. Para poder hacer esto, tenemos que disponer de muchos y muy variados ejemplos de topologías poco usuales, como por ejemplo, la topología ``del punto'':
+    $$
+    \mbox{Fijado } a \in X : \mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\} 
+    $$
+    En esta topología, el punto $\{a\}$ y todos los pares $\{a, x\}$ son abiertos y, aunque puede parecer igual a la discreta, no lo es. Hay que fijarse en que los abiertos de esta topología son los que contienen al punto, no todos los puntos en general. De este modo, $\{x\}\notin \mathcal{T}$, pero $\{a,x_1, x_2, \ldots\}\in \mathcal{T}$.
+\end{enumerate}
+\end{ej}
+
+\begin{defi}[Entorno]
+Sea $(X, \mathcal{T})$ un espacio topológico y $x\in X$ un punto del mismo, definimos un \textbf{entorno\footnote{Cuando el abierto que contiene al punto es el propio entorno o, dicho de otra manera, el entorno de $x$ es un abierto de la topología, decimos que es un entorno \textit{abierto} de $x$.} de $x$} como un conjunto $V^x$ que contiene un abierto $U$ que contiene al punto.
+\end{defi}
+
+\begin{prop}[Caracterización de abierto]
+Sea $(X, \mathcal{T})$ un espacio topológico y $W \subset X$ un subconjunto de puntos, este es abierto si y sólo si es entorno de todos sus puntos.
+\end{prop}
+\begin{demo}
+La implicación de izquierda a derecha es trivial, pues todo conjunto se contiene a sí mismo y, como el conjunto es abierto, contiene a un abierto que contiene al punto, es decir, es entorno de cualquiera de sus puntos.
+
+Para probar el recíproco, si un subconjunto $W\subset X$ es entorno de todos sus puntos, entonces para cada $x$ del conjunto existe un $U^x\subset W$ que contiene a $x$. Por tanto, podemos expresar $W$ como unión arbitraria de todos estos abiertos, es decir, $W = \bigcup_{x\in W} U^x$ y, por ser topología, la unión arbitraria de abiertos es abierta.
+\end{demo}
+
+\begin{prop}
+Sea $(X,\mathcal{T})$ un espacio topológico y $V_1^x$ y $V_2^x$ dos entornos de un punto $x\in X$, entonces la intersección $V^x := V_1^x\cap V_2^x$ es entorno de $x$.
+\end{prop}
+\begin{demo}
+Por definición de entornos, existen dos abiertos $U_1^x\subset V_1^x$ y $U_2^x\subset V_2^x$ que contienen a $x$. Por la definición de topología, la intersección finita $U^x := U_1^x\cap U_2^x$ es un abierto de la topología y vemos que $U^x \subset V^x$, luego $V^x$ contiene a un abierto que contiene al punto, es decir, es entorno.
+\end{demo}
+
+\begin{defi}[Punto interior]
+Sea $(X,\mathcal{T})$ un espacio topológico y $A \subset X$ un subconjunto de puntos, decimos que un punto $x\in X$ es \textbf{punto interior de $A$} si y sólo si $A$ es entorno de $x$.
+$$
+x\in \inter_X(A) \Leftrightarrow \exists U^{\text{ab.}} \subset A : x \in U
+$$
+Al conjunto de puntos interiores lo llamamos \textbf{interior de $A$} y se denota por $\inter_X \left( A \right)$ o $\mathring{A}$.
+\end{defi}
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.4]{images/def_interior} 
+\end{center}
+
+\begin{prop}
+Sea $A\subset X$ un subconjunto de puntos, entonces:
+\begin{itemize}
+\item $\mathring{A}$ es el mayor abierto en $A$ o lo que es lo mismo $ \mathring{A} = \bigcup_{U \subset A} U$.
+\item $A$ abierto si y sólo si todos sus puntos son interiores, es decir, $A = \mathring{A}$
+\item $A$ es abierto si y sólo si es entorno de todos sus puntos.
+\end{itemize}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item Si $x\in \mathring{A}$, entonces $\exists U \subset A : x\in U \Rightarrow x\in \bigcup_{U\subset A}U$, pero es que si $x\in U$ para algún $U\subset A$, por definición es interior de $A$, luego $x\in \mathring{A}$.
+   
+   Como $\mathring{A}$ es unión de abiertos, la definición de topología nos asegura que será un abierto y además es el más grande de todos porque cualquier otro está contenido en él por ser la unión de todos los abiertos.   
+   \item El contenido $\mathring{A}\subset A$ se tiene siempre, puesto que $x\in \mathring{A}\Leftrightarrow \exists U \subset A : x\in U \subset A \Rightarrow x\in A$ (dicho de otra forma, los puntos interiores de $A$ son aquellos para los cuales $A$ es entorno y como un entorno contiene al punto se tiene trivialmente).
+   
+   De esta manera, si $A$ es abierto, como $\mathring{A}$ es el mayor abierto de $A$, tiene que ser $\mathring{A} = A$ y si $\mathring{A} = A$, como $\mathring{A}$ es abierto, pues lo es $A$.
+    
+   \item Se tiene trivialmente de la implicación anterior. Cuando $A$ es abierto sabemos que todos los puntos son interiores y un punto es interior si y sólo si $A$ es entorno para él, luego es entorno para todos sus puntos.
+   
+   Recíprocamente, $A$ es entorno de todos sus puntos, entonces todos sus puntos están en el interior y $A = \mathring{A}$, lo que indica que es abierto.
+\end{enumerate}
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\left( X, \mathcal{T}_{\text{trivial}} \right): A \neq X \Rightarrow A \not \supset X \Rightarrow \emptyset$ es el único abierto $\subset A \Rightarrow \mathring{A} = \emptyset$.
+
+    \item En $\mathbb{R}^n$ con $\mathcal{T}_{\text{trivial}}$ ya lo sabemos bien:
+    \[
+    \inter\left( B\left[ a, \varepsilon \right] \right)  = B\left( a, \varepsilon \right);\ \mathring{\mathbb{Q}}^n = \emptyset;\ \mathring{\mathbb{Z}}^n = \emptyset
+    \]
+    \item Si $a \in X,\ \mathcal{T}_a : \mathring{\{a\}} = \{a\};\ x \neq a,\ \mathring{\{x\}} = \emptyset$.
+\end{enumerate}
+\end{ej}
+
+\begin{coro}
+\begin{enumerate}
+    \item $A \subset B \Rightarrow \mathring{A} \subset \mathring{B}$.
+    \item $\mathring{A} \cap \mathring{B} = \inter \left( A \cap B \right)$.
+\end{enumerate}
+\end{coro}
+\begin{demo}
+\begin{enumerate}
+    \item La relación $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ implica que, como $\mathring{A}$ es abierto y $\mathring{B}$ es la unión de todos los abiertos de $B$, $\mathring{A} \subset \mathring{B}$.
+    \item En primer lugar, como $\mathring{A}\cap \mathring{B}$ es intersección de abiertos, entonces es abierto y está contenido en $A\cap B$, luego por ser $\inter(A\cap B) = \bigcup_{U\in A\cap B}U$ sabemos que $\mathring{A}\cap \mathring{B} \subset \inter(A\cap B)$.
+    
+	Recíprocamente, si $x\in \inter(A\cap B)$ existe un abierto $U \in A\cap B$ tal que $x\in U$. Por ser de la intersección, en particular también es abierto de cada conjunto, luego $x\in \mathring{A}$ y $x\in \mathring{B}$, es decir, $x\in \mathring{A}\cap \mathring{B}$.
+\end{enumerate}
+\end{demo}
+
+\section{Conjuntos cerrados}%
+\label{sec:conjuntos_cerrados}
+
+\begin{defi}[Conjunto cerrado]
+Sea $\left( X, \mathcal{T} \right)$ un espacio topológico, definimos un \textbf{conjunto cerrado} como $F \subset X : U = X \setminus F$ es abierto.
+\end{defi}
+\begin{obs}
+A pesar de lo que pueda sugerir el lenguaje habitual, la definición cerrado NO significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
+    \begin{center}
+        \includegraphics[scale=0.3]{images/def_cerrados} 
+    \end{center}
+y otros que son abiertos y cerrados simultáneamente, como son el vacío y el total.
+\end{obs}
+
+\begin{prop}
+Sea $(X,\mathcal{T})$ un espacio topológico y denotando por $\mathcal{F}$ al conjunto de cerrados del espacio, entonces:
+\begin{enumerate}
+    \item $\emptyset, X \in \mathcal{F}$ 
+    \item $\bigcap_{F \in \mathcal{F}} F \in \mathcal{F}$
+    \item $\bigcup_{i=1}^n F_i \in \mathcal{F}$ donde $F_i \in \mathcal{F}$
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item Trivial, porque el uno es el complementario del otro y ambos son abiertos.
+
+\item Porque el complementario de la intersección $X\setminus \left(\bigcap_{F \in \mathcal{F}} F\right) = \bigcup_{F \in \mathcal{F}} \left( X \setminus F \right) = \bigcup_{F \in \mathcal{F}} U_F$ es abierto.
+
+\item Porque el complementario de la unión $X\setminus \left(\bigcup_{i = 0}^n F_i\right) = \bigcap_{i=0}^n \left( X \setminus F_i\right) = \bigcap_{i=0}^n U_i$ es abierto.
+\end{itemize}
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item En la topología trivial solo son cerrados $\emptyset$ y $X$ y en la discreta, todos los subconjuntos son cerrados.
+    \item En $\mathbb{R}^n$ con la topología usual ya sabemos todos los ejemplos: $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
+    \item Si $\mathcal{T}_1 \subset \mathcal{T}_2$, todo cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$, pues es cerrado por ser el complementario de un abierto y los abiertos de $\mathcal{T}_1$ también lo son el $\mathcal{T}_2$.
+\end{enumerate}
+\end{ej}
+
+\begin{defi}[Adherencia]
+Sea $A \subset X$ y $x\in X$ un punto, decimos que es \textbf{adherente a $A$} si y sólo si todos sus entornos intersecan con $A$.
+$$
+\adh_X\left( A \right) = \overline{A} := \{x \in X: \forall V^x \cap A \neq \emptyset\} \supset A
+$$
+al conjunto de puntos adherentes a $A$ lo llamamos su \textbf{adherencia}.
+\end{defi}
+
+\begin{obs}
+La propia definición nos sugiere ciertas equivalencias útiles que se obtienen escribiendo de forma distinta lo que hemos definido:
+\begin{itemize}
+\item $X \setminus \overline{A} = \inter\left( X \setminus A \right)$
+$$
+x \in X \setminus \overline{A} \Leftrightarrow x \not\in \overline{A} \Leftrightarrow \exists U^x \cap A = \emptyset \Leftrightarrow \exists U^x \subset X \setminus A \Leftrightarrow x \in \inter\left( X \setminus A \right)
+$$
+\item $X \setminus \mathring{B} = \overline{X \setminus B}$
+$$
+x \not\in \mathring{B} \Leftrightarrow \nexists U^x \subset B \Leftrightarrow \forall U^x \cap \left( X \setminus B \right) \neq \emptyset \Leftrightarrow x \in \overline{X \setminus B}
+$$
+\end{itemize}
+\end{obs}
+
+\begin{prop}
+Sea $A\subset X$ un subconjunto de puntos y denotando por $\overline{A}$ a su adherencia, entonces:
+\begin{itemize}
+\item $\overline{A}$ es el menor cerrado que contiene a $A$, en otras palabras:
+$$
+\overline{A} = \bigcap_{F \supset A} F \mbox{ donde }F \mbox{ cerrado}
+$$
+que, en particular, caracteriza que $A$ es cerrado si y sólo si $\overline{A} = A$.
+
+\item $B \subset A \Rightarrow \overline{B} \subset \overline{A}$.
+\item $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
+\end{itemize}
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item 
+$$
+\overline{A} = X \setminus \inter\left( X \setminus A \right) = X \setminus \left(\bigcup_{U \subset X \setminus A} U \right) \stackrel{F = X \setminus U}{=} X \setminus \left(\bigcup_{F \supset A} \left( X \setminus F \right) \right) = \bigcap_{F \supset A} F
+$$
+\item
+$$
+B\subset A \subset \overline{A} \Rightarrow \overline{B} \subset \overline{A}
+$$
+\item
+$$
+\begin{cases}
+	\overline{A\cup B} \supset A \cup B \supset
+		A,B \Rightarrow \overline{A\cup B} \supset
+		\overline{A}, \overline{B} \Rightarrow \overline{A\cup B} \supset \overline{A} \cup \overline{B} \\
+	A \cup B \subset \overline{A} \cup \overline{B} \Rightarrow \overline{A\cup B} \subset \overline{A} \cup \overline{B}
+\end{cases} \Rightarrow \overline{A}\cup \overline{B} = \overline{A\cup B}
+$$
+\end{itemize}
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item En $\mathbb{R}^n, \mathcal{T}_{\text{usual}}: B\left[ a, \varepsilon \right] = \overline{B \left( a, \varepsilon \right)};\ \overline{\mathbb{Q}^n} = \mathbb{R}^n$.
+    \item $a \in X, \mathcal{T}_a$
+    \[
+        \begin{cases}
+        \overline{\{a\}} = X \left[ \forall x, \forall U^x \supset \{a, x\} \ni a \Rightarrow x \in \overline{\{a\}} \right]\\
+        x \neq a, \overline{\{x\}} = \{x\} \left[ y\neq x \Rightarrow U^y = \{a, y\} \cap \{x\} = \emptyset \right] 
+        \end{cases} 
+    \]
+\end{enumerate}
+\end{ej}
+
+\begin{defi}[Acumulación]    
+Sea $A\subset X$ un subconjunto de puntos y $x\in A$ un punto del mismo, decimos que $x$ es:
+\begin{itemize}
+\item \textbf{punto aislado de $A$} si y sólo si existe algún entorno que sólo interseca con $A$ en el propio punto, es decir:
+$$
+\exists V^x \subset X : V^x \cap A = \{x\}
+$$
+\item \textbf{punto de acumulación de $A$} si y sólo si cualquier entorno interseca a $A$ en más puntos, es decir:
+$$
+\forall V^x \subset X : V^x \cap A \setminus \{x\} \neq \emptyset
+$$
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+La definición anterior para puntos aislados hace evidente el hecho de que los puntos aislados solo pueden ser de $A$. Por contra, los puntos de acumulación no tienen por qué y, de hecho, su definición en términos de entornos prescinde de ellos mismos para analizar su intersección con $A$. De esta manera, obtenemos el siguiente resultado:
+$$
+\overline{A} = \{\underbrace{\text{puntos aislados}}_{\subset A}\} \sqcup \{\underbrace{\text{puntos de acumulación}}_{\supset \overline{A} \setminus A}\}
+$$
+Además, nótese que si uno es punto de $A$ sólo tiene dos posibilidades: ser aislado o ser de acumulación. Por tanto, podemos reescribir lo anterior como:
+$$
+\overline{A} = A \cup A'
+$$
+\end{obs}
+
+\begin{defi}[Frontera]
+Sea $A\subset X$ un subconjunto de puntos y $x\in A$ un punto del mismo, decimos que $x$ es un \textbf{punto frontera de $A$} si y sólo si es adherente\footnote{Por las observaciones hechas sobre las adherencias, también podríamos caracterizar los puntos frontera como los que no son interior de $X \setminus A$ ni de $A$.} a $A$ y a su complementario $X \setminus A$
+    \[
+    \fr\left( A \right) := \overline{A} \cap \overline{X \setminus A} = \overline{A} \setminus \mathring{A}     
+    \]
+al conjunto de puntos de la frontera de $A$ lo llamamos \textbf{frontera} de $A$.
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item En $\mathbb{R}$, con la topología usual $\mathcal{T}_u$, todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
+    \item En $\mathbb{R}^n$, con la topología usual $\mathcal{T}_u$: $\fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
+    \item En la topología $\mathcal{T}_{\text{discreta}}$ todos los puntos son aislados y todas las fronteras, vacías.
+    \item Para un punto cualquiera $a \in X$ podemos escoger la topología del punto $\mathcal{T}_a$ y entonces:
+$$
+\begin{cases}
+	\fr\left( \{a\} \right) = \overline{\{a\}} \setminus \mathring{\{a\}} = X \setminus \{a\} \\
+    x \neq a \Rightarrow \fr\left( \{x\} \right) = \overline{\{x\}} \setminus \mathring{\{x\}} = \{x\} 
+\end{cases} 
+$$
+\end{enumerate}
+\end{ej}
+
+\begin{defi}[Densidad]
+Sea $X$ un conjunto de puntos y $A \subset X$ un subconjunto suyo, decimos que $A$ es \textbf{denso en $X$} si y sólo si $\overline{A} = X$ o, dicho de otro modo, todo abierto no vacío corta a $A$.
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item El conjunto de los números racionales $\mathbb{Q} \subset \mathbb{R}$ es denso en $\mathbb{R}$ con la topología usual $\mathcal{T}_{\text{usual}}$.
+    \item $\{a\}$ es denso en $\left( X, \mathcal{T}_a \right)$.
+\end{enumerate}
+\end{ej}
+
+\section{Bases}%
+\label{sec:bases}
+\begin{defi}[Base de entornos]
+Sea $(X, \mathcal{T})$ un espacio topológico y $a\in X$ un punto, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier otro entorno de $a$ tenga que contener a alguno de los entornos de la colección $\mathcal{V}^a$.
+\end{defi}
+
+\begin{obs}
+La definición no ha hecho ninguna diferenciación especial en cuanto a si son cerrados, abiertos, etc. Precisamente esta ``variedad'' es la que permite que, escogiendo una base de entornos con las características adecuadas en cada caso, sea más sencillo estudiar la topología que tengamos entre manos.
+
+En Topología, las bases de entornos tendrán propiedades parecidas a las bases de los espacios vectoriales en Álgebra: comprobar propiedades en una base de entornos extenderá automáticamente dichas propiedades a cualquier entorno arbitrario.
+\end{obs}
+
+\begin{prop}
+Sea $(X,\mathcal{T})$ un espacio topológico y $\{V_i^a \}_{i\in I}$ una base de entornos de un punto $a$, esta se puede refinar a una base de entornos abiertos $\{U_i^a\}_{i\in I}$. 
+\end{prop}
+\begin{demo}    
+Como todos los elementos de la colección son entornos, para todos existe algún abierto $U_i^a$ que contiene al punto. A este conjunto de abiertos (más bien de entornos abiertos) es al que llamamos $\{U_i^a\}_{i\in I}$. Cualquier otro entorno del punto $a$ contiene a un entorno $V_i^a$ de la base de entornos inicial, pero como estos contienen un abierto de la colección última, entonces $\{U_i^a\}_{i\in I}$ es una base de entornos de  $a$.
+\end{demo}
+
+\begin{obs}    
+Podemos empezar a ver la utilidad de la base de entornos cuando tenemos que demostrar, por ejemplo, que un punto pertenece a la adherencia de un conjunto:
+$$
+a \in \overline{A} \xLeftrightarrow{\text{def}} \forall W^a \text{ entorno }: W^a \cap A \neq \emptyset \Leftrightarrow \forall V^a \in \mathcal{V}^a: V^a\cap A \neq \emptyset
+$$
+luego si escogemos una base de entornos $\mathcal{V}^a$ adecuada sobre la que sea muy fácil demostrar el resultado, este quedará demostrado para cualquier entorno ``raro'' que podamos encontrarnos.
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item Sea el espacio real usual $(\mathbb{R}^n, \mathcal{T}_{\text{usual}})$ el espacio topológico a estudiar, entonces:
+    $$
+    \begin{cases}
+    \mathcal{B}^a = \{B\left( a, \varepsilon \right): \varepsilon > 0\} \text{ base de entornos abiertos.}  \\
+    \mathcal{V}^a = \{B\left[ a, \varepsilon \right]: \varepsilon > 0\} \text{ base de entornos cerrados.} 
+    \end{cases} 
+    $$
+    \item Sea la topología del punto $(a \in X, \mathcal{T}_a)$, entonces:
+	$$
+	\begin{cases}
+	\mathcal{B}^a = \{\{a\}\} & x = a\\
+	\mathcal{B}^x = \{\{a, x\}\} & x \neq a
+	\end{cases}
+	$$
+\end{enumerate}
+\end{ej}
+
+\begin{defi}[Base de abiertos]
+Sea $\mathcal{T}$ una topología y $B:=\{U_i\}_{i\in I}\subset \mathcal{T}$ una colección de abiertos, decimos que es una \textbf{base de abiertos de $\mathcal{T}$} si y sólo si todo abierto de $\mathcal{T}$ es unión de abiertos de $\mathcal{B}$.
+\end{defi}
+
+\begin{prop}
+
+$\mathcal{B}$ base de abiertos $\Leftrightarrow \forall x \in X,\ \mathcal{B}^x = \{B \in \mathcal{B} : x \in B\}$ es base de entornos (abiertos) de $x \Leftrightarrow \forall x \in U,\ \exists B \in \mathcal{B} : x \in B \subset U$.
+\end{prop}
+\begin{demo}
+$\Rightarrow) \forall V^x \Rightarrow x \in U \subset V^x \Rightarrow$
+\[
+    \mathcal{B} \text{ base: } U = \bigcup_{i \in  I} \overbrace{B_i}^{\in \mathcal{B}} \xRightarrow{x \in U} \exists x \in B_i \subset U \subset V^x
+\]
+$\Leftarrow) U \in \mathcal{T},\ \forall x \in U,\ \exists \underbrace{B^x}_{\in \mathcal{B}} \subset U \Rightarrow U = \bigcup_{x \in U} B^x$ unión de abiertos de $\mathcal{B}$.
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item Si tomamos la topología discreta $\mathcal{T}_{\text{discreta}}$ entonces una base de abiertos sería $\mathcal{B} = \{\{x\} : x \in X\}$. Además, esta base es mínima pues cualquier otra base $B' := \{B_i\}_{i\in I}$ de abiertos se cumpliría que $\forall x  : \{x\} = \bigcup_{i \in  I} B_i \Rightarrow \exists i \in I : B_i = \{x\}$.
+    \item Si tomamos la topología del punto $\mathcal{T}_a$, entonces una base de abiertos es $\mathcal{B} = \{\{a, x\} : x \in X\}$.
+    \item Si tomamos la topopología usual $\mathbb{R}^n, \mathcal{T}_{\text{usual}}$ en $\mathbb{R}^n$, entonces una base de abiertos es el conjunto de bolas abiertas $\mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0 \mbox{ y } x \in \mathbb{R}^n\}$ porque recordemos que un abierto se caracterizaba en $\mathbb{R}^n$ por el hecho de que todos sus puntos tenían una bola alrededor contenida en el conjunto, luego la unión de dichas bolas es el abierto inicial.
+    %TODO: Fix imágenes 
+    \begin{center}
+        \includegraphics[scale=0.3]{images/base_rn} 
+    \end{center}
+    Sin embargo, la base de abiertos lo sigue siendo si escogemos otra norma en $\mathbb{R}^n$ distinta de la euclídea, puesto que estas normas eran equivalentes en $\mathbb{R}^n$ (o visto geométricamente, cada bola de una norma contiene otra más pequeña de otra norma distinta y viceversa)
+    \begin{center}
+        \includegraphics[scale=0.3]{images/bases_alternativas_rn} 
+    \end{center}
+    porque
+    \[
+    B\left( x, \varepsilon \right) = \bigcup_{i \in  I} cuadrados = \bigcup_{j \in J} rectangulos
+    \]
+\end{enumerate}
+\end{ej}
+
+\begin{pg}
+    Como antes, a menudo basta considerar los abiertos de $\mathcal{B}$ 
+\end{pg}
+
+\begin{il}
+$A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset$.
+\end{il}
+
+\begin{prop}
+Sea $X$ un conjunto de puntos y $\mathcal{B} := {B_i}_{i\in I} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos, esta colección define una topología $\mathcal{T}$ única en $X$ si y sólo si: 
+\begin{itemize}
+    \item $X = \bigcup_{i\in I} B_i$.
+    \item $\forall B_i,B_j\in \mathcal{B} \mbox{ y } \forall x \in B_i \cap B_j, \ \exists B_k \in \mathcal{B} : x\in B_k\subset B_i \cap B_j$.
+\end{itemize}
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/base_unica} 
+\end{center}
+\end{prop}
+%TODO: Mejorar
+\begin{demo}
+\begin{itemize}
+\item $\Rightarrow$
+
+Trivial por las propiedades vistas sobre topología.
+
+\item $\Leftarrow$
+
+Veamos que se verifican las condiciones sobre la topología:
+\begin{itemize}
+    \item \textbf{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
+    \item \textbf{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. 
+        \begin{itemize}
+            \item $\emptyset \in \mathcal{T}$, $X = \bigcup_{i\in I} B_i \in \mathcal{T}$.
+            \item Uniones: $\bigcup_{j\in J} \left(\bigcup_{i\in I} B_{i}\right) = \bigcup_{j\in J} B_{ij} \in \mathcal{T}$. 
+            \item Intersecciones finitas: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{T}$.
+            $$
+            x \in \left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) \Rightarrow x \in B_{i_0} \cap B_{k_0} \Rightarrow \exists B^x \in \mathcal{B} : x\in B^x \subset B_{i_0} \cap B_{k_0}
+            $$
+            Por tanto, podemos decir que $\left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) = \bigcup_{x} B^x \in \mathcal{T}
+            $ y se tiene el resultado.
+        \end{itemize}
+\end{itemize}
+\end{itemize}
+\end{demo}
+
+\section{Topología relativa}%
+\label{sec:topologia_relativa}
+\begin{defi}[Topología Relativa]
+Sea $\left( X, \mathcal{T} \right)$ un espacio topológico e $Y \subset X$ un subconjunto de puntos, definimos la \textbf{topología relativa\footnote{La comprobación de que efectivamente se trata de una topología es completamente trivial.} en $Y$} como
+$$
+\mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}
+$$
+Además, decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \textbf{ambiente}. 
+\begin{center}
+    %TODO: Fix imagen
+    \includegraphics[scale=0.3]{images/def_subespacio_top} 
+\end{center}
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item Los cerrados de la topología relativa $\mathcal{T}|_Y$ son la intersección $F\cap Y$ de $Y$ con cerrados $F$ en $\mathcal{T}$.
+    $$
+    F \stackrel{cerr}{\subset} Y \Rightarrow F = Y\setminus W : W \stackrel{ab}{\subset} Y \Rightarrow \exists U \stackrel{ab}{\subset}X : Y\cap U = W \Rightarrow F = Y \setminus (Y \cap U) = Y \cap  (X\setminus U) = Y \cap F_x : F_x \stackrel{cerr}{\subset} X
+    $$
+    \item Si tenemos una base $\mathcal{V}^a$ de entornos en el espacio ambiente $(X,\mathcal{T})$, la base de entornos en el subespacio $(Y,\mathcal{T}\mid_Y)$ se obtiene intersecando los elementos de la base ambiente con el subespacio, es decir, $\mathcal{V}^a_Y := \mathcal{V}^a \cap Y := \{V^a \cap Y : V^a \in \mathcal{V}^a\}$.
+
+    \item Si tenemos una base $\mathcal{B}$ de abiertos en el espacio ambiente $(X,\mathcal{T})$, la base de abiertos en el subespacio $(Y,\mathcal{T}\mid_Y)$ se obtiene intersecando\footnote{Esta idea suele ser general, las construcciones en los subespacios se hacen intersecando elementos del espacio ambiente con el subespacio.} los elementos de la base ambiente con el subespacio, es decir, $\mathcal{B}_Y := \mathcal{B} \cap Y := \{B \cap Y : B \in \mathcal{B}\}$.
+\end{enumerate}
+\end{obs}
+
+
+\begin{ej}
+\begin{enumerate}
+    \item Si $y$ es un punto aislado de $Y$, por la definición que hemos dado de la topología relativa, su topología relativa sería $\mathcal{T}|_Y := \{ U \cap \{y\} \} = \{y\}$. Por tanto, es abierto en su topología.
+    
+    \item Retomando el ejemplo anterior, si todos los puntos de $Y$ son aislados, hemos visto que todos son abiertos (pues cortar un abierto con ellos da ellos mismos) y, por tanto, la topología $\mathcal{T}\mid_Y $ es la discreta. Por ejemplo, en $\mathbb{Z} \subset \mathbb{R}$:
+    %TODO: Fix imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/def_subespacio_discreto} 
+    \end{center}
+
+    \item Si tomamos la topología del punto $(a \in X, \mathcal{T}_a|_{X \setminus \{a\}})$ vemos que se trata de la discreta.
+\end{enumerate}
+\end{ej}
+
+\begin{obs}
+\begin{enumerate}
+    \item Los abiertos $W$ de un subespacio abierto $Y \stackrel{ab}{\subset} X$ son abiertos en el espacio ambiente $X$.
+   	$$
+    W = U \cap Y : U,Y\stackrel{ab}{\subset} X \Rightarrow W \stackrel{ab}{\subset} X 
+    $$
+    \item Los cerrados $F$ de un subespacio cerrado $Y \stackrel{cerr}{\subset} X$ son cerrados en el espacio ambiente $X$.
+    $$
+    F = C \cap Y : Y,C\stackrel{cerr}{\subset} X \Rightarrow F \stackrel{cerr}{\subset} X
+    $$
+\end{enumerate}
+\end{obs}
+
+\chapter{Aplicaciones continuas}%
+\label{cha:aplicaciones_continuas}
+\section{Continuidad}%
+\label{sec:continuidad}
+El famoso $\varepsilon-\delta$ en $\mathbb{R}^n \mathcal{T}_u; x_0 \in X,\ f : \overbrace{X}^{\subset \mathbb{R}^p} \rightarrow \overbrace{Y}^{\subset \mathbb{R}^q}$: 
+\begin{gather*}        
+\forall \varepsilon > 0, \exists \delta > 0: 
+\begin{cases}
+    \lVert x - x_0 \rVert < \delta \Rightarrow \lVert f\left( x \right) - f\left( x_0 \right) \rVert < \varepsilon \Leftrightarrow\\
+    x \in B\left( x_0, \delta \right) \Rightarrow f\left( x \right) \in B\left( f\left( x_0 \right), \varepsilon \right) \Leftrightarrow\\
+    f\left( B\left( x_0, \delta \right) \right) \subset B\left( f\left( x_0 \right), \varepsilon \right) 
+\end{cases} \Rightarrow\\
+\boxed{\forall B\left( f\left( x_0 \right), \varepsilon \right),\ \exists B\left( x_0, \delta \right) \subset f^{-1}\left( B\left( f\left( x_0 \right), \varepsilon \right) \right)} 
+.\end{gather*}
+
+\begin{defi}[Continuidad]
+Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es \textbf{continua en $x_0$ $\in X$} si y sólo si:
+\[
+\forall V^{f\left( x_0 \right)} :  f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0} 
+\]
+es decir, la preimagen de cualquier entorno de $f(x_0)$ es entorno de $x_0$.
+\end{defi}
+
+\begin{prop}[Composición de continuidades]
+Sean $f:X \rightarrow Y$ y $g: Y \rightarrow Z$ funciones continuas en $x_0\in X$ e $y_0\in Y$ tales que $f(x_0) = y_0$, entonces la composición $h = g \circ f$ es una función continua en $x_0$.
+\end{prop}
+\begin{demo}
+Escojamos un entorno $V^{h\left( x_0 \right)}$ de la imagen por $h$ de $x_0$, entonces
+\[
+h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^{y_0} = V^{x_0}
+\]
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item Sea $f: X_{\text{discreta}} \rightarrow Y$, entonces es continua sean cuales sean los conjuntos de partida y de llegada, pues todo es abierto y, en consecuencia, todo es entorno en $\mathcal{T}_{\text{disc}}$.
+    \item Sea $f: X \rightarrow Y_{\text{trivial}}$, entonces es continua sean cuales sean los conjuntos de partida y de llegada, pues como $Y$ es el único abierto, entonces es el único entorno $V^{f\left( x \right)}$ para cualquier $f(x)$ y $f^{-1}V^{f\left( x \right)} = f^{-1}Y = X$, que es abierto.
+    \item Si una función $f: X \rightarrow Y_{\text{discreta}}$ es continua, entonces $f$ es localmente constante, pues como en la trivial los puntos son abiertos, entonces el punto $\{f\left( x_0 \right)\}$ es entorno $V^{f\left( x_0 \right)}$ de sí mismo. Por tanto, por la continuidad de $f$, $f^{-1}f\left( x_0 \right) = V^{x_0}$, luego $f \equiv f\left( x_0 \right)$ en ese entorno $V^{x_0}$.
+    \item Si una función $f: X \rightarrow Y$ es localmente constante, entonces es continua, puesto que si es localmente constante para cualquier $x_0 \in X$ existe un entorno $U^{x_0} : f\mid_{U^{x_0}} \equiv f\left( x_0 \right)$. De este modo, cualquier entorno $V^{f\left( x_0 \right)}$ de la imagen $f(x_0)$ cumple que $f^{-1}V^{f\left( x_0 \right)} \supset U^{x_0}$ y llamando $V^{x_0} = f^{-1} V^{f\left( x_0 \right)}$ entonces vemos que es entorno de $x_0$.
+\end{enumerate}
+\end{ej}
+
+\begin{prop}[Caracterización de Continuidad]
+Sea $f:X\rightarrow Y$ una función entre espacios topológicos, entonces son equivalentes:
+\begin{enumerate}
+    \item $f$ es continua.
+    \item $\forall U \stackrel{ab}{\subset} Y : f^{-1}\left( U \right) \stackrel{ab}{\subset} X$.
+    \item $\forall F \stackrel{cerr}{\subset} Y : f^{-1}\left( F \right) \stackrel{cerr}{\subset} X$.
+    \item $\forall A \subset Y : f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}\left( A \right) \right)$.
+    \item $\forall A \subset X : f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $1 \Rightarrow 2)$
+    
+    Escojamos un abierto cualquiera $W^{\text{ab}} \subset Y$. Por ser abierto, es entorno de todos sus puntos y, en particular, es entorno de las imágenes que puedan caer dentro de dicho abierto, es decir, $\forall x \in f^{-1} (W) : W = V^{f(x)}$. Por continuidad, las preimágenes de entornos de las imágenes son entornos de las preimágenes, luego $\forall x \in f^{-1} W : f^{-1}W = V^x$ y como es entorno de todos sus puntos, entonces $f^{-1} W \stackrel{ab}{\subset} X$.
+    \item $2 \Rightarrow 3)$
+    
+    Como lo que sabemos es que las preimágenes de abiertos son abiertas y los cerrados se definen en términos de abiertos, no nos queda otra estrategia que intentar demostrarlo pasando los cerrados a sus complementarios: los abiertos.
+    
+    Escojamos un cerrado cualquiera $C \stackrel{cerr}{\subset} Y$ de modo que conocemos que $Y \setminus C \stackrel{ab}{\subset} Y$. Como conocemos el resultado para abiertos, podemos decir que $f^{-1}\left( Y\setminus C \right) \stackrel{ab}{\subset} X$ y conjuntistamente $X \setminus f^{-1}C = f^{-1}\left( Y\setminus C \right)$, luego directamente tenemos que $f^{-1}C \stackrel{cerr}{\subset} X$. 
+    \item $3 \Rightarrow 5)$
+
+    \[
+        \overline{f\left( A \right)} \stackrel{\text{cerr}}{\subset} Y \Rightarrow^{3)} \underbrace{f^{-1}\overline{f\left( A \right)}}_{\subset f^{-1}f\left( A \right) \supset A} \subset X \Rightarrow \overline{A} \subset f^{-1}\overline{f\left( A \right)} \Rightarrow f\left( \overline{A} \right) \subset \overline{f\left( A \right)} 
+    \]
+    \item $5 \Rightarrow 4)$
+    \begin{gather*}
+        Y \setminus \mathring{A}\Rightarrow \overline{Y\setminus A} \supset \overline{f\left( X \setminus f^{-1}A \right)} \stackrel{5)}{\supset} f\left( \overline{X \setminus f^{-1}\left( A \right)} \right) = f\left( X \setminus \inter\left( f^{-1}A \right) \right) \Rightarrow\\
+        X \setminus \inter\left( f^{-1}A \right) \subset f^{-1}\left( Y\setminus \mathring{A} \right) = X \setminus f^{-1}\left( \mathring{A} \right)\Rightarrow f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}A \right) 
+    .\end{gather*}
+
+    \item $4 \Rightarrow 1)$
+    \begin{gather*}
+        V^{f\left( x \right)} \Rightarrow f\left( x \right) \in \inter\left( V^{f\left( x \right)} \right) \Rightarrow x \in f^{-1}\left( \inter\left( V^{f\left( x \right)} \right) \right) \subset \inter\left( f^{-1}V^{f\left( x \right)} \right) \Rightarrow \\
+        f^{-1}V^{f\left( x \right) } \text{ entorno de } x.
+    \end{gather*}
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+\begin{enumerate}
+    \item Los cuatros primeros enunciados tratan sobre ``imágenes inversas''. Por ejemplo, la segunda dice que $f^{-1}\mathcal{T}_Y \subset \mathcal{T}_X$.
+    \item Pensando que un punto adherente es un ``punto límite'', $5$ nos dice que ``la imagen del límite es el límite de la imagen''.
+    \item $Id: \left( X, \mathcal{T}_1 \right) \rightarrow \left( X, \mathcal{T}_2 \right)$ es continua $\Rightarrow \mathcal{T}_2 \subset \mathcal{T}_1$. [$Id^{-1}\mathcal{T}_1 = \mathcal{T}_2]$
+\end{enumerate}
+Y no mencionamos todos los ejemplos conocidos en espacios afines $\mathbb{R}^n$ con $\mathcal{T}_u$.
+\end{obs}
+
+\section{Continuidad y subespacios}%
+\label{sec:continuidad_y_subespacios}
+\begin{prop}
+Sea $f: X \rightarrow Y$ una función continua y $Z \subset X$ un subespacio topológico, entonces la restricción $f|_Z : Z \rightarrow Y$ también es continua.
+\end{prop}
+\begin{demo}
+Aplicando la caracterización de continuidad a través de las preimágenes de abiertos, tenemos que:
+\[
+\forall A \stackrel{ab}{\subset} Y : \left( f|_Z \right)^{-1} \left( A \right) = Z \cap f^{-1} A \stackrel{ab}{\subset} Z
+\]
+donde este último conjunto es abierto por ser un abierto ambiente cortado con el subespacio (que es como son los abiertos de la topología relativa).
+\end{demo}
+
+\begin{prop}[Continuidad por recubrimientos]
+Sea $f: X \rightarrow Y$ una función entre espacios topológicos, si se da alguna de las siguientes condiciones: 
+\begin{align*}
+\begin{cases}
+X = \bigcup_{i \in  I} U_i \mbox{ donde } U_i \stackrel{ab}{\subset} X \\
+\forall f|_{U_i} : U_i \rightarrow Y \mbox{ cont.}
+\end{cases}
+& &
+\begin{cases}
+X = \bigcup_{i =0}^n F_i \mbox{ donde } F_i \stackrel{cerr}{\subset} X \\
+\forall f|_{F_i} : F_i \rightarrow Y \mbox{ cont.}
+\end{cases}
+\end{align*}
+entonces la función $f$ del inicio es continua.
+\end{prop}
+\begin{demo}
+	\begin{itemize}
+	\item Escojamos un abierto cualquiera $W \stackrel{ab}{\subset} Y$ y veamos si su preimagen $f^{-1}W$ es un abierto en $X$. En primer lugar, por ser $X = \bigcup_{i \in  I} U_i$ podemos escribir que $f^{-1}W = X\cap f^{-1}W = \bigcup_{i \in  I} U_i \cap f^{-1} W = \bigcup_{i \in  I} \left( U_i \cap f^{-1} W\right) = \bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W$. Como $\left( f|_{U_i} \right)^{-1}W \stackrel{ab}{\subset} U_i \stackrel{ab}{\subset} X$, entonces $\left( f|_{U_i} \right)^{-1} W \stackrel{ab}{\subset} X$ y de esta manera podemos escribir $f^{-1}W$ como unión de abiertos $\bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W$ de $X$, es decir, que $f^{-1}W \stackrel{ab}{\subset} X$.
+	
+	\item Escojamos un cerradp cualquiera $C \stackrel{cerr}{\subset} Y$ y veamos si su preimagen $f^{-1}C$ es cerrada en $X$. En primer lugar, por ser $X = \bigcup_{i=0}^n F_i$ podemos escribir que $f^{-1}C = X\cap f^{-1}C = \bigcup_{i = 0}^n F_i \cap f^{-1} C = \bigcup_{i = 0}^n \left( F_i \cap f^{-1} C\right) = \bigcup_{i = 0}^n \left( f|_{F_i} \right)^{-1} C$. Como $\left( f|_{F_i} \right)^{-1}C \stackrel{cerr}{\subset} F_i \stackrel{cerr}{\subset} X$, entonces $\left( f|_{U_i} \right)^{-1} C \stackrel{cerr}{\subset} X$ y de esta manera podemos escribir $f^{-1}C$ como unión finita de cerrados $\bigcup_{i = 0}^n \left( f|_{F_i} \right)^{-1} C$ de $X$, es decir, que $f^{-1}C \stackrel{cerr}{\subset} X$.
+    \end{itemize}
+\end{demo}
+
+\section{Homeomorfismos}%
+\label{sec:homeomorfismos}
+Recordemos las definiciones de continuidad que hemos visto:
+\[
+f \text{ continua} \Leftrightarrow f^{-1}\left( \text{abierto} \right) = \text{abierto} \Leftrightarrow f^{-1}\left( \text{cerrado} \right) = \text{cerrado} 
+\]
+Ahora veamos que ocurre al invertir la relación.
+\begin{defi}[Aplicaciones abiertas y cerradas]
+Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es:
+\begin{itemize}
+\item \textbf{abierta} si y sólo si las imágenes de abiertos son abiertos.
+\item \textbf{cerrada} si y sólo si las imágenes de cerrados son cerrados.
+\end{itemize}
+\end{defi}
+
+\begin{obs}
+La caracterización que dimos de la continuidad hacía referencia a las preimagenes de abiertos y cerrados, no a sus imágenes. De hecho, ni la continuidad implica que la aplicación sea abierta o cerrada, ni viceversa.
+\end{obs}
+
+\begin{ej}
+En la siguiente tabla podemos ver distintos ejemplos de funciones que verifican algunas de las condiciones que hemos definido, pero no otras simultáneamente:
+\begin{center}
+\begin{tabular}{c|c|c|c}
+funcion & continua & abierta & cerrada \\
+\hline
+$Id: X_{\text{trivial}} \rightarrow X_{\text{discreta}}$ & \ding{55} & \checkmark & \checkmark \\
+\hline
+$Id: X_{\text{discreta}} \rightarrow X_{\text{trivial}}$ & \checkmark & \ding{55} & \ding{55} \\
+\hline
+$j: \left[ 0, 1 \right] \subset \mathbb{R}_{u}$ & \checkmark & \ding{55} & \checkmark \\
+\hline
+$j: \left( 0, 1 \right) \subset \mathbb{R}_u$ & \checkmark & \checkmark & \ding{55} \\
+\hline
+\end{tabular}
+\end{center}
+\end{ej}
+
+\begin{prop}[Trivialidades esenciales]
+Sea $f:X\rightarrow Y$ una función biyectiva, entonces las siguientes afirmaciones son equivalentes:
+\begin{itemize}
+    \item $f$ es abierta
+    \item $f$ es cerrada
+    \item $f^{-1}$ es continua.
+\end{itemize}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $F_{\text{cerr}} \subset X \Rightarrow X\setminus F_{\text{ab}} \subset X \Rightarrow^{ f\text{ ab}} \underbrace{f\left( X\setminus F \right)}_{= Y\setminus f\left( F \right) \text{(biy.)}} \subset_{\text{ab}} X \Rightarrow f\left( F \right) \subset_{\text{cerr}} Y \Rightarrow f$ cerr.
+
+    \item $F_{cerr} \subset X \Rightarrow^{f \text{cerr}} \underbrace{f\left( F \right)}_{= \left( f^{-1} \right)^{-1} \left( F \right) \text{(biy)}} \subset_{\text{cerr}} Y \Rightarrow f^{-1}$ cont.
+
+    \item $U_{\text{ab}} \subset X \Rightarrow^{f^{-1} \text{cont}} \underbrace{\left( f^{-1} \right) ^{-1} \left( U \right) }_{f\left( U \right) \text{(biy.)}} \subset Y \Rightarrow f$ ab.
+\end{enumerate}
+\end{demo}
+
+\begin{defi}[Homeomorfismo]
+Sea $f: X \rightarrow Y$ una aplicación biyectiva, decimos que es un \textbf{homeomorfismo} si y sólo si $f$ y $f^{-1}$ son continuas, o equivalentemente si:
+    \[
+    \begin{cases}
+        f \text{ biy.}\\
+        \text{cont.}\\
+        \text{ab.} 
+    \end{cases} \Leftrightarrow \begin{cases}
+        f \text{ biy.}\\
+        \text{cont.}\\
+        \text{cerr.}
+    \end{cases} 
+    \]
+\end{defi}
+
+\begin{defi}[Homeomorfismo Local]
+Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es un \textbf{homeomorfismo local} en $x_0 \in X$ si y sólo si $f: V^{x_0} \rightarrow V^{f\left( x_0 \right)}$ restringida a algunos entornos de $x_0$ y $f\left( x_0 \right)$ es homeomorfismo.
+\end{defi}
+
+\underline{Ejercicio:} Se pueden tomar $V^{x_0}, V^{f\left( x_0 \right)}$ abiertos.
+
+\begin{obs}
+Un homeomorfismo local es abierto.
+\end{obs}
+\begin{demo}
+    $U \subset_{\text{ab}} X \Rightarrow f\left( U \right)$ entorno $\forall y_0 = f\left(\overbrace{x_0}^{\in U}\right) \in f\left( U \right)$.
+    Como $f$ homeomorfismo local $\Rightarrow f| : V^{x_0} \rightarrow V^{y_0}$ es homeomorfismo $\Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\ni y_0 = f\left( x_0 \right)} \right) \subset_{\text{ab}} V^{y_0} \Rightarrow f\left( \overbrace{U \cap V^{x_0}}^{\subset f\left( U \right)} \right)$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
+\end{demo}
+
+\begin{ej}[¡Importantes!]
+\begin{enumerate}
+    \item Proyección estéreo? $\mathbb{S}^{m} \setminus \{\text{punto}\} \rightarrow \mathbb{R}^m$ homeomorfismo.
+    \item Proyección exponencial $\mathbb{R} \rightarrow \mathbb{S}': \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$, homeomorfismo local.
+    \item Proyección antipodal: $\mathbb{S}^m \rightarrow \mathbb{R}P^{m}: x \mapsto \left[ x \right]$ homeomorfismo local.
+    \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t_4} \right)$ es biy. cont, pero \underline{no} homeomorfismo local.
+
+    %TODO: Dibujo Lemniscata
+    Engañosamente: 
+    \[
+        \forall t \in \mathbb{R} \exists \left( t - \varepsilon, t + \varepsilon \right) = I_{\varepsilon}: f| : I_{\varepsilon} \rightarrow f\left( I_{\varepsilon} \right) 
+    \]
+    es homeomorfismo.
+
+    En $t = 0, f\left( I_{\varepsilon} \right)$ \underline{no} es entorno de $f\left( 0 \right) = \left( 0, 0 \right)$.
+\end{enumerate} 
+\end{ej}
+
+\begin{defi}[Variedad Topológica]
+Una \textbf{variedad topológica} de dimensión $m$ es un espacio localmente homeomorfo a $\mathbb{R}^m$, es decir, que cada punto tiene un entorno abierto homeomorfo a una\footnote{Luego, en el fondo, es homeomorfo a cualquier bola y, por ser éstas parte de una base de $\mathbb{R}^m$, es homeomorfo a todo $\mathbb{R}^m$.} bola $B\left( 0, \varepsilon \right) \subset \mathbb{R}^m$.
+\end{defi}
+\begin{ej}
+Esferas, espacios proyectivos, toros...
+\end{ej}
+
+\chapter{Construcciones}%
+\label{cha:construcciones}
+\section{Imágenes inversas}%
+\label{sec:imagenes_inversas}
+\underline{Problema:} Hacer $f: Y \rightarrow \left( X, \mathcal{T} \right)$ continua con $\begin{cases}
+    \text{top. discreta en } Y \text{ (matricialidad)}\\
+    \text{top. \underline{menos fina} en } Y 
+\end{cases}$ 
+
+\underline{Sol:} $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$ top. \underline{imagen inversa}. 
+\begin{enumerate}
+    \item Es topología (inm.)
+    \item Es mínima. [$f$ es continua $\Rightarrow \forall f^{-1}U$ es abierto]
+\end{enumerate}
+
+
+%TODO: Fix teorema
+\begin{theo}[Caracterización imagen inversa]
+\begin{enumerate}
+    \item
+    \[
+    \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow  
+    \]
+    \begin{equation}
+        \forall g \left[ g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.} \right]
+    \end{equation}
+
+    \item Y.
+    %TODO: Fix composición
+    \begin{center}
+        \includegraphics[scale=0.3]{images/caracterizacion_img_inv} 
+    \end{center}
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{enumerate}
+    \item $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
+    \begin{itemize}
+        \item $g$ cont. $\Rightarrow f \circ g$ cont. (Composición de continuas)
+        \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
+    \end{itemize}
+
+    \item Por otro lado,
+    %TODO: Fix
+    \begin{center}
+        \includegraphics[scale=0.4]{images/dem_carac_img_inv_1} 
+        \includegraphics[scale=0.4]{images/dem_carac_img_inv_2} 
+    \end{center}
+\end{enumerate}
+\end{demo}
+
+\underline{Ejercicio}: Demostrar (ii) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización).
+
+La anterior caracterización se llama \underline{propiedad universal}.
+
+Caso esencial: 
+\[
+\boxed{f: Y \rightarrow X \text{ inyectiva}} 
+\]
+
+\begin{defi}
+Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \underline{inmersión} (se suelen omitir las topologías).
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item $\mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeomorfismo}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$
+    \[
+    [V \in f^{-1}\mathcal{T} \Leftrightarrow V = f^{-1}\underbrace{U}_{\mathcal{T}} = f^{-1}\left( \underbrace{U \cap f\left( Y \right)}_{\mathcal{T}\mid f\left( Y \right)} \right)] 
+    \]
+
+    \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
+        \text{ab. } \Rightarrow \text{inmersión } [\text{ab. en } X \Rightarrow \text{ab. en } f\left( Y \right)\\
+        \text{cerr.} \Rightarrow \text{inmersión } [\text{cerr. en } X \Rightarrow \text{cerr. en} f\left( Y \right)] 
+    \end{cases} $
+    \[
+    \begin{cases}
+        f\left( Y \right) \stackrel{\text{ab.}} X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = U \cap f\left( Y \right) \in \mathcal{T} \left( \text{inter. abierto} \right)\\
+        f\left( Y \right) \stackrel{\text{cerr.}} X: C \text{ c.} f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) \left( X\setminus U \right) \cap f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X \text{ i. c.} 
+    \end{cases} 
+    \]
+
+    \item Tenemos: 
+    \begin{itemize}
+        \item Inmersión $ + \not$ ab. $+ \not$ cerr.
+        \item Inmersión $+$ ab. $+ \not $ cerr.
+        \item Inmersión $+$ ab. $+$ cerr.
+    \end{itemize}
+\end{enumerate}
+\end{obs}
+
+\begin{obs}
+Las inmersiones permiten considerar unos espacios como subespacios de otros. Las frases ``el plano proyectivo real no es un subespacio de $\mathbb{R}^3$'', ``la esfera no es un subespacio de $\mathbb{R}^2$'', ``el plano proyectivo real es un subespacio de $\mathbb{R}^4$'' se refieren a esto: \underline{cuándo hay o no hay} una inmersión del primer espacio en el segundo, es decir, un subespacio del segundo homeomorfismo al primero. Es un problema fundamental de la topología
+y de la geometría.
+\end{obs}
+
+\section{Imágenes directas}%
+\label{sec:imagenes_directas}
+\underline{Problema:} Hacer $f: \left( X, \mathcal{T} \right) \rightarrow Y$ continua en $\begin{cases}
+    \text{top. trivial en } Y \text{(matrivialidad)}\\
+    \text{top. \underline{más fina} en } Y 
+\end{cases} $ 
+
+\underline{Sol:} $f\mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}$ top. \underline{imagen directa}.
+\begin{enumerate}
+    \item Es topología (inm.)
+    \item Máxima [$f$ es continua $\Leftrightarrow \forall f^{-1} V$ es abierto] 
+\end{enumerate}
+
+\begin{theo}[Caracterización imágenes directas]
+\begin{enumerate}
+    \item
+    \[
+    \mathcal{T}' = f\mathcal{T} \Leftrightarrow  
+    \]
+    \begin{equation}
+        \forall g \left[ g \text{ cont.} \Leftrightarrow g \circ f \text{ cont.} \right]
+    \end{equation}
+
+    \item Y.
+    %TODO: Fix composición
+    \begin{center}
+        \includegraphics[scale=0.3]{images/caracterizacion_img_dir} 
+    \end{center}
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{enumerate}
+    \item $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
+    \begin{itemize}
+        \item $g$ cont. $\Rightarrow g \circ f$ cont. (Composición de continuas)
+        \item $g \circ f$ cont. $\Rightarrow g$ cont. ($W \in \mathcal{T}'' \Rightarrow f^{-1}\left( g^{-1} W \right) = \underbrace{\left( g \circ f \right)}_{\text{cont.}}^{-1} W \in \mathcal{T} \stackrel{\mathcal{T}' = f\mathcal{T}}{\Rightarrow} g^{-1}W \in \mathcal{T}'$)
+    \end{itemize}
+
+    \item Por otro lado,
+    %TODO: Fix
+    \begin{center}
+        \includegraphics[scale=0.4]{images/dem_carac_img_dir_1} 
+        \includegraphics[scale=0.4]{images/dem_carac_img_dir_2} 
+    \end{center}
+\end{enumerate}
+\end{demo}
+
+\underline{Ejercicio}: Demostrar (ii) sin usar que $f\mathcal{T}$ es la más fina (usar que cumple la caracterización)
+
+La caracterización anterior se llama \underline{propiedad universal}.
+
+\begin{obs}
+$f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
+    \forall y \in Y \setminus f\left( X \right), f^{-1}y = \emptyset \in \mathcal{T} \Rightarrow \{y\} \in f\mathcal{T}\\
+    f^{-1}f\left( X \right) = X \in \mathcal{T} \Rightarrow f\left( X \right) \in f\mathcal{T}
+\end{cases}$
+\end{obs}
+
+Caso esencial:
+\[
+\boxed{f: X \rightarrow Y \text{ sobreyectiva}.} 
+\]
+Para entender los abiertos de una imagen directa es conveniente representarlos en el dominio. El concepto es conjuntista en realidad:
+
+\begin{defi}
+Un conjunto $A \subset X$ es \underline{saturado} (respecto de $f$) si $f^{-1}f\left( A \right) = A$.
+\end{defi}
+\begin{prop}
+Los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$.    
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $V \in f\mathcal{T} \Rightarrow f^{-1}V \in \mathcal{T}$ y $V \stackrel{f \text{ sobre}}{=} f^{-1}fV$
+    \item $U \in \mathcal{T}$, saturado $\Rightarrow f\left( U \right) = V \in f\mathcal{T}: f^{-1}V = f^{-1}f\left( U \right) \stackrel{U \text{ sat.}}{=} U \in \mathcal{T}$
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{no} abiertas de $Y$. 
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item $f: \left[ 0, 1 \right] \rightarrow \mathbb{S}^1 = Y: t \mapsto \left( \cos 2\pi t, \sin 2\pi t \right) = \exp\left( 2 \pi i t \right)$
+    %TODO: Fix image
+    \begin{center}
+        \includegraphics[scale=0.4]{images/ej_sat_1} 
+
+        \textit{La topología imagen directa es la usual en $\mathbb{S}^1$.} 
+    \end{center}
+
+    \item Tenemos:
+    \begin{align*}
+        f: R = \left[ 0, 1 \right] \times \left[ 0, 1 \right] &\rightarrow C \subset \mathbb{R}^3: x^2 + y^2 = 1,\ 0 \le z \le 1\\
+        \left( s, t \right) &\mapsto \left( \cos 2\pi s, \sin 2\pi s, t \right) 
+    .\end{align*}
+
+    %TODO: Fix image
+    \begin{center}
+        \includegraphics[scale=0.3]{images/ej_top_dir_2}
+
+        \textit{Analizando los abiertos saturados y no saturados se concluye que la topología imagen directa es la usual en el tronco del cilindro.} 
+    \end{center}
+\end{enumerate}
+\end{ej}
+
+\begin{defi}
+Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ tal que $\mathcal{T}' = f\mathcal{T}$ se llama \underline{identificación} (se suelen omitir las topologías)
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item Identificación: $V \stackrel{\text{ab}}{\subset} Y \Leftrightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
+
+    Continua: $V \stackrel{\text{ab}}{\subset } Y \Rightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
+
+    \item Sea $f: X \rightarrow Y$ sobre. continua. Si además es:
+    \begin{itemize}
+        \item Abierta $\Rightarrow f$ es identificación [por (1)]
+        \item Cerrada $\Rightarrow f$ es identificación [$f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{+ cerr.}}{\Rightarrow} f\left( \underbrace{X \setminus f^{-1}\left( V \right)}_{= Y\setminus V} \right) \stackrel{\text{cerr.}}{\subset} Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
+    \end{itemize}
+\end{enumerate}
+\end{obs}
+
+\begin{defi}[Cociente]
+Dentro de las identificaciones tenemos un caso particular: $\left( X, \mathcal{T} \right) \stackrel{p}{\rightarrow} Y = \underbrace{X / \sim}_{p \mathcal{T} = \text{top. cociente}}$. Cociente respecto de una relación de equivalencia en $X$. 
+\end{defi}
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.2]{images/def_cociente} 
+\end{center}
+Tenemos que $x_1 \sim x_2 \stackrel{\text{def}}{\Leftrightarrow} f\left( x_1 \right) = f\left( x_2 \right)$. Homeoforma de $p\mathcal{T}$ sobre $f\mathcal{T} \Leftrightarrow f$ identificación tal que:
+\[
+\begin{cases}
+    \overline{f} \text{ es biyección}\\
+    p^{-1}V = f^{-1}\overline{f} V \text{ y } f^{-1}W = p^{-1} \overline{f}^{-1}W
+\end{cases} 
+\]
+
+\begin{pg}
+    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior. Se puede contemplar $Y$ como un modelo del cociente.
+\end{pg}
+
+%TODO: Fix imágenes
+\begin{ej}[Anteriores]
+La circunferencia y el cilindro como cocientes:
+\begin{center}
+    \includegraphics[scale=0.4]{images/ej_cociente_1} 
+    \includegraphics[scale=0.4]{images/ej_cociente_2}
+\end{center}
+
+Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
+%TODO: Fix
+\begin{center}
+    \includegraphics[scale=0.3]{images/ej_cociente_3} 
+\end{center}
+\end{ej}
+
+\section{Productos (finitos)}%
+\label{sec:productos_finitos_}
+\underline{Problema:} Hacer $X_1 \times \ldots \times X_r = Y \xrightarrow{p_i} \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ continuas con 
+\[
+\begin{cases}
+    \text{top. discreta en } Y \text{ matrivialidad}\\
+    \text{top. \underline{menos fina} en} Y
+\end{cases} 
+\]
+\underline{Solución:} $p_i$ cont. $\Rightarrow p_i^{-1} \underbrace{U_i}_{\mathcal{T}_i} = \underbrace{X_1 \times \ldots \times U_i \times \ldots \times X_r}_{\text{deben ser abiertos}}  \Rightarrow \bigcap_{i} p_i^{-1}U_i = \underbrace{U_1 \times \ldots \times U_r}_{\text{abiertos}}$ pero \underline{no} son topología $\Rightarrow$
+\[
+\mathcal{B} = \{U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \} \text{ es la \underline{base} de la \underline{topología producto}: } \boxed{\prod_{i} \mathcal{T}_i} 
+\]
+\begin{ej}
+La $\mathcal{T}_u$ en $\mathbb{R}^n$ ese el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas''.
+\end{ej}
+
+%TODO: Fix teorema
+\begin{theo}[Caracterización topología producto]
+\begin{enumerate}
+    \item
+    \[
+    \mathcal{T}' = \prod_{i} \mathcal{T} \Leftrightarrow  
+    \]
+    \begin{equation}
+        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
+    \end{equation}
+
+    \item Y.
+    %TODO: Fix composición
+    \begin{center}
+        \includegraphics[scale=0.3]{images/caracterizacion_top_prod} 
+    \end{center}
+\end{enumerate}
+\end{theo}
+\begin{demo}
+\begin{enumerate}
+    \item $\mathcal{T}' = \prod_{i} \mathcal{T}: $ 
+    \begin{itemize}
+        \item $g$ cont. $\Rightarrow g_i$ cont. (Composición de continuas)
+        \item $g_i$ cont. $\Rightarrow g^{-1}\left( U_1 \times \ldots \times U_r \right) = \underbrace{g_1^{-1}\left( U_1 \right)}_{\mathcal{T}''} \cap \ldots \cap \underbrace{g_r^{-1}\left( U_i \right)}_{\mathcal{T}''} \in \mathcal{T}''$ (intersección finita de abiertos) 
+    \end{itemize}
+
+    \item Por otro lado,
+    %TODO: Fix
+    \begin{center}
+        \includegraphics[scale=0.4]{images/dem_carac_top_prod} 
+    \end{center}
+\end{enumerate}
+\end{demo}
+
+\begin{ej}
+Demostrar (ii) sin usar que $\prod_{i} \mathcal{T}_i$ es la menos fina (usar que cumple la caracterización)
+\end{ej}
+
+La anterior caracterización se llama \underline{propiedad universal}.
+
+\begin{prop}
+\begin{enumerate}
+    \item $p_i: Y \rightarrow X_i$ es abierta. [$p_i\left( U_1 \times \ldots \times U_r \right) = U_i$]
+    \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados).
+    \[
+    \left[\begin{cases}
+        \alpha_j\left( X_j \right) = \{a_1\} \times \ldots \times X_j \times \ldots \times \{a_r\} \\
+        \alpha_j\left( U_j \right) = \{a_1\} \times \ldots \times U_j \times \ldots \times \{a_r\} = \alpha\left( X_j \right) \cap \left( X_1 \times \ldots \times U_j \times \ldots \times X_r \right) 
+    \end{cases}\right]     
+    \]
+\end{enumerate}
+\end{prop}
+
+\begin{pg}
+En una topología producto ``todo se genera en productos''.
+\begin{ej}
+\begin{itemize}
+    \item Bases de entornos: $\mathcal{V}^a = \mathcal{V}^{a_1} \times \ldots \times \mathcal{V}^{a_r} \stackrel{mut??}{=} \{V_1 \times \ldots \times V_r: V_i \in \mathcal{V}^{a_i}\} \left( a \in Y \right)$.
+    \item Base de abiertos: $\mathcal{B} = \mathcal{B}_1 \times \ldots \times \mathcal{B}_r = \{B_1 \times \ldots \times B_r: B_i \in \mathcal{B}_i\}$ (esto repite la construcción de $\prod_{i} \mathcal{T}_i$)
+\end{itemize}
+\end{ej}
+\end{pg}
+
+\section{Sumas (finitas)}%
+\label{sec:sumas_finitas_}
+\underline{Problema:} Hacer $\left( X_i, \mathcal{T}_i \right) \xrightarrow{e_i} Y = X_1 + \ldots X_r = \left( X_1 \times \{1\} \right) \cup \ldots \cup \left( X_r \times \{r\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ continuas, ,con 
+\[
+\begin{cases}
+    \text{top. trivial en } Y \text{ matrivialidad}\\
+    \text{top. \underline{más fina} en} Y
+\end{cases} 
+\]
+\underline{Solución:} $\underbrace{U_i}_{\mathcal{T}_i} \in e_i^{-1}\left( U_i \times \{i\} \right) \Rightarrow \mathcal{B} = \{U_1 \times \{1\}, \ldots, U_r \times \{r\}: U_1 \in \mathcal{T}_1, U_r \in \mathcal{T}_r\}$ es base de una topología en $Y$, la topología \underline{suma}: $\mathcal{T}_1 + \ldots + \mathcal{T}_r$.
+
+\begin{prop}
+$\forall i, e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right)$ es inmersión abierta y cerrada.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item Inmersión abierta: $e_i\left( U_i \right) = U_i \times \{i\} \in \mathcal{T}$
+    \item Cerrada: $Y\setminus e_i\left( X_i \right) = Y \setminus X_i \times \{i\} = \bigcup_{j \neq i} X_j \times \{j\} \in \mathcal{T}$
+\end{itemize}
+\end{demo}
+
+%TODO: Fix teorema
+\begin{theo}[Caracterización topología suma]
+\begin{enumerate}
+    \item
+    \[
+    \mathcal{T}' = \mathcal{T}_1 + \ldots + \mathcal{T}_r \Leftrightarrow  
+    \]
+    \begin{equation}
+        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right] \text{(Propiedad universal)} 
+    \end{equation}
+
+    \item Y.
+    %TODO: Fix composición
+    \begin{center}
+        \includegraphics[scale=0.3]{images/caracterizacion_top_sum} 
+    \end{center}
+\end{enumerate}
+\end{theo}
+%TODO: Tal vez hacerlo bien?
+\begin{demo}
+    Análoga a las anteriores construcciones.
+\end{demo}
+
+\begin{pg}
+Localmente $Y = X_1 + \ldots + X_r$ es como sea cada $X_i$. Por ejemplo, las bases de entornos de $Y$ son las de los sumandos. Globalmente, se trata cada sumando separadamente. Por ejemplo, las bases de abiertos de los sumandos se unen para dar una base de abiertos de $Y$. Olvidando el tecnicismo $X_i \times \{i\} \equiv X_i$:
+\begin{center}
+   $Y$ es unión disjunta de los sumandos\\
+   Los sumando son subespacios abiertos y cerrados de $Y$
+\end{center}
+Es un formalismo para hacer cómodamente otras construcciones. Por ejemplo, ``pegar dos discos por sus bordes'' sería:
+\begin{gather*}
+    \text{disco} D \subset \mathbb{R}^2: x^2 + y^2 \le 1, \text{ borde } \partial D = \mathbb{S}^1: x^2 + y^2 = 1\\
+    %TODO: Fix cociente
+    D_1 + D_2 / \sim\quad \overbrace{\left( p, 1 \right)}^{\partial D} \sim \left( p, 2 \right) 
+.\end{gather*}
+%TODO Fix
+\begin{center}    
+    \includegraphics[scale=0.3]{images/pg_top_sum} 
+\end{center}
+y más elaborado $h: \partial D \stackrel{\text{homeo.}}{\approx} \partial D$ con $\overbrace{p}^{\in \partial D} \sim h\left( p \right)$.
+
+Finalmente, hay otros conceptos de ``suma'' más significativos que veremos en algún ejemplo.
+\end{pg}
+
+\section{Espacios proyectivos reales}%
+\label{sec:espacios_proyectivos_reales}
+Como vimos en geometría lineal tenemos que: 
+\[
+\mathbb{R}P^n = \mathbb{P}^{n} = \mathbb{R}^{nH}\setminus \{0\} / \underbrace{\sim }_{\text{Prop.}} \Rightarrow \mathbb{P}^{n} = \{\text{rectas vectoriales de } \mathbb{R}^{n+1}\}     
+\]
+Que en coordenadas es:
+\begin{align*}
+    \pi: \mathbb{R}^{nH} \setminus \{0\} &\rightarrow \mathbb{P}^{n}\\
+    \left( x_0, \ldots, x_n \right) &\mapsto \left( x_0 : \ldots : x_n \right) 
+.\end{align*}
+Las ecuaciones serán de la forma: $h\in \mathbb{R}\left[ x_0, \ldots, x_n \right]$ homogénea $\Rightarrow \begin{cases}
+    h\left( x \right) = 0\\
+    h\left( x \right) \neq 0
+\end{cases}$ está bien definido en $\mathbb{P}^{n}$.
+\[
+\begin{rcases}
+    %TODO: Fix lista
+   \text{· Variedades proyectivas lineales}\\  
+   \text{· Variedades proyectivas}\\
+   \text{· Variedades proyectivas algebraicas}  
+\end{rcases} \text{ecuaciones homogéneas de grado:} 
+\begin{cases}
+    1\\
+    2\\
+    \text{arbitrario} 
+\end{cases} 
+\]
+\underline{Cartas afines:} 
+\begin{gather*}
+    \underbrace{H \subset \mathbb{P}^{n}}_{\text{hiperplano proyectivo}} \rightarrow \underbrace{\hat{H} \subset \mathbb{R}^{n + 1}}_{\text{hiperplano lineal} } : \underbrace{h = 0}_{\text{forma lineal}}, H = \hat{H} \setminus \{0\} / \sim  \\
+    \pi|: \underbrace{\{h = 1\} \subset \mathbb{R}^{n + 1} \setminus \{0\}}_{\text{hiperplano afín}} \rightarrow \underbrace{\mathbb{P}^{n} \setminus H}_{\{h \neq 0\}} = 0 \text{ es biyección.}    
+.\end{gather*}
+Terminología: $H$ es \underline{hiperplano del infinito} de la \underline{carta afín} $U$.
+
+Topología en $U$: La imagen directa de la usual en $\{h = 1\} \subset \mathbb{R}^{n + 1} \Rightarrow \pi|: \{h = 1\} \rightarrow U$ \underline{homeomorfismo}. 
+
+%TODO: Fix subrayado
+\underline{Topología en }$\mathbb{P}^{n}$: 
+\begin{itemize}
+    \item \underline{Cociente} de la usual vía $\mathbb{R}^{n+1}\setminus \{0\} \xrightarrow{\pi} \mathbb{P}^{n}: \left( x_0, \ldots, x_n \right) \mapsto \left( x_0 : \ldots : x_n \right)$
+    \item ``\underline{Suma}'' de las definidas en las cartas afines:
+    \[
+        W \text{ abierto si } W \cap U \text{ es abierto } \forall U \text{ carta afín. [Es top. en } \mathbb{P}^{n}] 
+    \]
+\end{itemize}
+Estas dos topologías coinciden.
+\begin{demo}
+\begin{enumerate}
+    \item $U$ es abierto en la top. cociente. [$\pi^{-1} U = \{h \neq 0\}$ abierto usual]
+    \item La topología cociente en $U$ coincide con la topología de carta afín:
+    %TODO: Fix diagrama
+    \begin{center}
+        \includegraphics[scale=0.3]{images/eq_top_proyectivo} 
+    \end{center}
+    \item[1. + 2.] $\Rightarrow $ La top. cociente está generada por las topologías de las cartas afines, que forman un recubrimiento abierto de $\mathbb{P}^{n}$.
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+De lo anterior deducimos:
+\begin{enumerate}
+    \item $U_1, U_2$ dos cartas afines $\Rightarrow U_1 \cap U_2$ abiertos.
+    \[
+    \left[ \text{Cartas afines: } U_i = \{h_1 \neq 0\} \begin{cases}
+        \pi|: \{h_1 = 1\} \rightarrow U_1 \text{homeo.}\\
+        \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \stackrel{\text{ab.}}{\subset} \{h_1 = 1\}  
+    \end{cases} \right] 
+    \]
+    \item Las topologías de $U_1$ y $U_2$ coinciden en $U_1 \cap U_2$.
+
+    [De nuevo conviene entenderlo con cartas:
+    %TODO: Fix
+    \begin{center}
+        \includegraphics[scale=0.3]{images/obs_cartas_afines} ]
+    \end{center}
+\end{enumerate}
+\end{obs}
+
+%TODO: Esto es posible que se pueda agrupar mejor (hasta Möbius)
+\underline{Atlas afín canónico}: No se suelen utilizar todas las cartas afines: $n + 1$ distintas ya cubren $\mathbb{P}^{n}$. Típicamente $\mathbb{P}^{n} = U_0 \cup \ldots \cup U_n$ con:
+\[
+U_i = \{x_i \neq 0\} \leftrightarrow \{\underbrace{x_i = 1}_{\equiv \mathbb{R}^n}\}: \left( x_0 : \ldots : x_i : \ldots : x_n \right) \mapsto \left( \frac{x_0}{x_i}, \ldots, \overbrace{1}^{\mathbb{R}^n \rightarrow}, \ldots, \frac{x_n}{x_i} \right), 0 \le i \le n
+\]
+
+\underline{Cociente antipodal}: Toda recta de $\mathbb{R}^{n + 1}$ corta a $\mathbb{S}^{n}: x_0^2 + \ldots + x_n^2 = 1$ en dos puntos \underline{antipodales}, así que denotamos un ``sub'' cociente, que es también identificación.
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/cociente_antipodal} 
+
+    [Como antes tenemos conos: $\pi^{-1}W = $ cono sobre $\underbrace{\mathbb{S}^n \cap \pi^{-1}W}_{= \left( \pi / \mathbb{S}^n \right)^{-1} W}$]
+\end{center}
+
+Las cartas afines tienen una representación muy conveniente:
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/repr_carta_afin} 
+\end{center}
+
+\underline{Cociente de un disco}:
+\[
+E = \{h = 0, x_0^2 + \cdots + x_n^2 = 1\} = \partial \begin{cases}
+    \overline{S}_+ = \mathbb{S}^n \cap \{h \ge 0\} \text{ hemisferio cerrado.} \\
+    D^n = \{h = 0, x_0^2 + \cdots + x_n^2 \le 1\} \text{ disco.} 
+\end{cases} 
+\]
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/cociente_disco} 
+\end{center}
+
+\begin{ej}
+$\mathbb{P}^{2} \setminus D^2 = $ banda de Möbius.
+%TODO: Fix imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/banda_moebius} 
+\end{center}
+\end{ej}
+
+
+\chapter{Separación}%
+\label{cha:separacion}
+
+\section{Concepto}%
+\label{sec:concepto}
+\begin{defi}
+Un espacio $X$ es \underline{Hausdorff} o $T_2$ si cada par de puntos distintos $x, y \in X$ tienen entornos disjuntos: $V^x \cap V^y = \emptyset$. 
+\end{defi}
+Hay otras formas de separación, más débiles o más fuertes, pero nos contentaremos con ésta al ser la más intuitiva.
+\begin{obs}
+\begin{enumerate}
+    \item Si existen entornos disjuntos, existen entornos abiertos disjuntos [$\forall V \supset U$]
+    \item Si $X$ es Hausdorff, los puntos son cerrados.
+    \[
+    \left[ \forall y \neq x, \exists U^y \not\ni x \Rightarrow X \setminus \{x\} = \bigcup_{y \neq x} U^y  \text{ es abierto.} \right] 
+    \]
+    \item $\left( X, \mathcal{T}_{CF} \right)$ no es Hausdorff: dos abiertos cualesquiera se cortan ($X$ infinito) tiene puntos cerrados: $X\setminus \{x\}$ es abierto.
+
+    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff: $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon \le \lVert x - y \rVert / 2$
+
+    \item En $\left( X, \mathcal{T}_a \right)$ el punto $a$ no es cerrado: $a \not\in X \setminus \{a\} \Rightarrow X \setminus \{a\}$ no es abierto. $\forall x \neq a \forall U^x \supset \{a, x\} \ni a$ !!!.
+\end{enumerate}
+\end{obs}
+
+\begin{prop}
+Sean $f, g: X \rightarrow Y$ continuas con $Y$ Hausdorff $\Rightarrow \{f = g\} = \{x \in X : f\left( x \right) = g\left( x \right)\}$ es cerrado.
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $f\left( x \right) \neq g\left( x \right) \xRightarrow{T_2} \exists V^{f\left( x \right) \cap V\left( g\left( x \right) \right)} = \emptyset \xRightarrow{\text{cont.}} f^{-1}V^{f\left( x \right)} \cap g^{-1}V^{g\left( x \right)} = V^x$ entorno de $x$.
+
+    \item $V^x \cap \{f = g\} = \emptyset: y \in V^x \Rightarrow \begin{cases}
+        f\left( y \right) \in V^{f\left( x \right)} \\
+        g\left( y \right) \in V^{g\left( x \right)} 
+    \end{cases} \Rightarrow f\left( y \right) \neq g\left( y \right)$
+
+    \item[1. + 2.] $X\setminus \{f = g\} = \{f \neq g\}$ es entorno de todos sus puntos, luego abierto, luego $\{f = g\}$ es cerrado.
+\end{enumerate}
+\end{demo}
+
+\begin{coro}
+Si $f = g$ es un subconjunto denso, entonces $f \equiv g$
+\end{coro}
+\begin{demo}
+$\exists \overline{A} = X: f|_A = g|_A \Rightarrow \{f = g\} \supset A \xRightarrow{\text{prop.}} \{f = g\} \supset \overline{A} = X$.
+\end{demo}
+
+\underline{Caso particular importante}:
+Funciones $f: X \rightarrow \mathbb{R}$.
+
+\begin{obs}
+$f: X \rightarrow \underbrace{Y}_{\in T_2}$ continua $\Rightarrow f^{-1}\left( Y \right)$ cerrado $\forall y \in Y$.
+
+Porque  los puntos de $Y$ son cerrados y, de hecho, eso basta.
+\end{obs}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento}
+Se trata de saber si la propiedad se conserva por las construcciones conocidas.
+
+Se tiene:
+\begin{center}
+\begin{tabular}{ c | c | c | c | c |}
+    & Subespacios & Cocientes & Productos & Sumas\\
+    \hline
+    $T_2$ & \checkmark & $\times$ & \checkmark & \checkmark\\
+    \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}
+    \item $Y \subset X = T_2: y_1, y_2 \in Y \Rightarrow \exists \underbrace{V^{y_1}}_{\text{En } X}  \cap V^{y_2} = \emptyset \Rightarrow \underbrace{\left( V^{y_1} \cap Y \right)}_{\text{En } Y}  \cap \left( V^{y_2} \cap Y \right) = \emptyset$.
+
+    \item $Y = \mathbb{R}/\mathbb{Q}: \begin{rcases}
+        y_1 = \mathbb{Q} \in Y\\
+        y_2 = \sqrt{2} \in Y
+    \end{rcases} \nexists V^{y_1} \cap V^{y_2} = \emptyset: $ todo entorno abierto de $\sqrt{2}$ contiene racionales, luego al saturar, contiene $\mathbb{Q}$.
+
+    \item $X$ y $Y$ ambos $T_2 \Leftrightarrow X \times Y$ $T_2$.
+
+        $\Rightarrow)$
+        \[
+        \left( x_1, y_1 \right) \neq \left( x_2, y_2 \right) \in X \times Y \Rightarrow \begin{cases}
+            x_1 \neq x_2 \Rightarrow \exists V^{x_1} \cap V^{x_2} = \emptyset \Rightarrow \left( V^{x_1} \times Y \right) \cap \left( V^{x_2} \times Y \right) = \emptyset
+        \end{cases}  
+        \]
+
+        $\Leftarrow)$
+        \[
+        X \approx X \times \{y_0\} \subset X \times Y, T_2 \xRightarrow{1} X\times \{y_0\} T_2 \Rightarrow XT_2
+        \]
+        %TODO: Image
+        \begin{center}
+            \includegraphics[scale=0.4]{images/t2_top_prod} 
+        \end{center}
+
+    \item $X$ y $Y$ ambos $T_2 \Leftrightarrow X + Y\ T_2$
+
+    Único comentario: $x \in X$ y $y \in Y \Rightarrow X = V^x, Y = V^y$ y $X \cap Y = \emptyset$.
+\end{enumerate}
+
+\chapter{Numerabilidad}%
+\label{cha:numerabilidad}
+
+\section{Axiomas}%
+\label{sec:axiomas}
+\subsection{I Axioma}%
+\label{sub:i_axioma}
+
+\begin{defi}[I Ax.]
+$X$ es \underline{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \mathcal{V}^x$ base numerable de entornos.  
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item $\mathcal{B}^x = \{Uk = \mathring{V}_k \}_{k \ge 1}$, base numerable de entornos de abiertos.
+    \item $\mathcal{W}^x = \{W_k = U_1 \cap \ldots \cap U_k\}_{k \ge 1}$, base numerable de entornos abiertos encajados.
+\end{enumerate}
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\mathbb{R}^n, \mathcal{T}_u$ I Ax. $\mathcal{W}^x = \{B\left( x, y_k \right): k \ge 1\}$ 
+    \item $\left( X, \mathcal{T}_a \right), \left( X, \mathcal{T}_{\text{discreta}} \right)$, I Ax.
+    \item $\left( \mathbb{R}, \mathcal{T}_{CF} \right)$ no es I Ax. $\exists \mathcal{W}^x = \{W_k\}_{k \ge 1}$ abiertos encajados, $W_k = \mathbb{R} \setminus F_k$ finito $\Rightarrow \bigcap_{k} W_k = \mathbb{R} \setminus \bigcup_{k \text{ num.}} F_k \neq \emptyset \Rightarrow \exists y \in \bigcap_{k} W_k \Rightarrow U^x = \mathbb{R}\setminus \{y\} \not \supset W_k,\ \forall k$ 
+\end{enumerate}
+\end{ej}
+
+\begin{defi}[Límites]
+Decimos que $x_k \rightarrow x \Leftrightarrow$ 
+\[
+\forall U^x\ \exists k_0 : k \ge k_0 \Rightarrow x_k \in U^x
+\]
+\end{defi}
+\begin{obs}
+\begin{enumerate}
+    \item $X\ T_2 \Rightarrow \exists! $ límite. [$x_k \rightarrow x \neq y,\ \exists U^x \cap U^y = \emptyset \Rightarrow \{x_k : k \ge k_0\} \subset U^x$ y $x_k \not \rightarrow y$]
+
+    \item I Ax. permite describir la topología con sucesiones: $x \in \overline{A} \Leftrightarrow \exists \{x_k\} \subset A, x_k \rightarrow x$.
+
+    \begin{demo}
+    $\Rightarrow)$
+    \[
+    \begin{rcases}
+        \exists \mathcal{W}^x = \{W_k\}_{k \ge 1} \text{ encajados} \Rightarrow \exists x_k \in W_k \cap A\\
+        \forall U^x \stackrel{\text{base ent.}}{\supset} W_{k_0} \supset W_{k + 1} \supset \ldots \Rightarrow x_k \in U^x,\ \forall k \ge k_0  
+    \end{rcases} \Rightarrow x_k \rightarrow x
+    \]
+
+    $\Leftarrow)$
+    \[
+    A \ni x_k \rightarrow x \Rightarrow \forall U^x,\ \exists x_{k_0} \in U^x \cap A
+    \]
+    \end{demo}
+\end{enumerate}
+En general, los límites de sucesiones son poco útiles.
+\end{obs}
+
+\subsection{II AX}%
+\label{sub:iiax}
+\begin{defi}[II Ax.]
+$X$ es \underline{2º axioma} si $\exists \mathcal{B}$ base numerable de abiertos
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item II Ax. $\Rightarrow$ I Ax. [$\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow \mathcal{B}^x = \{B_k : x \in B_k\}$
+    \item I Ax $\not \Rightarrow$ II Ax. [Espacio discreto no numerable]
+    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ II Ax. $\mathcal{B} = \{B \left( q, \frac{1}{k} : q \in \mathbb{Q}^n, k \ge 1 \right)\}$ [Ejercicio]
+\end{enumerate}
+\end{obs}
+
+\subsection{Separable}%
+\label{sub:separable}
+\begin{defi}[Separable]
+$X$ es \underline{separable} si $\exists A$ numerable denso.
+\end{defi}
+\begin{obs}
+\begin{enumerate}
+    \item II Ax. $\Rightarrow$ separable. [$\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow A = \{\overbrace{a_k}^{\in B_k}\}_{k \ge 1}$ corta a todo abierto]
+    \item I Ax. $+$ separable $\not \Rightarrow$ II Ax. [$\left( X, \mathcal{T}_a \right), X$ no numerable]
+    \item I Ax. $\not \Rightarrow$ separable. [Espacio discreto no numerable]
+    \item Separable $\not \Rightarrow$ I Ax. [$\left( \mathbb{R}, \mathcal{T}_{CF} \right) : \overline{\mathbb{Z}} = \mathbb{R}$]
+\end{enumerate}
+\end{obs}
+
+\subsection{Lindelöf}%
+\label{sub:lindelof}
+\begin{defi}[Lindelöf]
+$X$ es \underline{Lindelöf} si $\forall X = \bigcup_{i} U_i$ (recubrimiento abierto) $\exists X = \bigcup_{k} U_{i_k}$ (subrecubrimiento numerable). 
+\end{defi}
+
+Esta forma débil de compacidad se menciona como complemento. [Ejercicios]
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_num}
+%TODO: Fix table
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    I Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & \checkmark\\
+    \hline\\
+    II Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & \checkmark\\
+    \hline\\
+    Separable & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & $\times$ & \checkmark & \checkmark\\
+    \hline\\
+    Lindelöf & \begin{tabular}{@{}c@{}}$\times$\\ abierto \checkmark \end{tabular} & \checkmark & $\times$ & \checkmark\\
+    \hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item I Ax. y II Ax. se \underline{heredan} a subespacios intersecando bases.
+    \item Separable se hereda a subespacios abiertos intersecando el conjunto denso.
+    \item Lindelöf se hereda a subespacios cerrados como la compacidad. No en general: $Y$ no Lindelöf, $X = Y \cup \{w\}$ compacto, $\mathcal{B}^w = \{X \setminus F: F \subset Y\}$ con $F$ finito.
+\end{itemize}
+
+\begin{itemize}
+    \item $X = \mathbb{R}_u$ I y II Ax's, $Y = \mathbb{R}/\mathbb{Z}$ no es I.
+    %TODO: Image
+    \begin{center}
+        \includegraphics[scale=0.3]{images/ej_axiomas_num_real} 
+    \end{center}
+    \begin{demo}
+        $\alpha = \mathbb{Z} \in Y,\ \exists \mathcal{W}^{\alpha} = \{W_k : k \ge 1\}$ abiertos saturados, $W_k \supset \mathbb{Z},\ \forall k$
+
+        (figura) $\Rightarrow U = \mathbb{R} \setminus \{\varepsilon_k : k \ge 1\}$ entorno abierto saturado de $\mathbb{Z} U \not \supset W_k,\ \forall k$.
+    \end{demo}
+
+    \item $\forall$ aplicación continua y abierta conserva I y II [Imagen de base es base]
+    \item $\forall $ aplicación continua conserva separabilidad [$f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$]
+    %TODO: Ya se sabe xd
+    \item $\forall$ aplicación continua conserva Lindelöf [Como la compacidad, ya se sabe...]
+\end{itemize}
+
+\begin{itemize}
+    \item Para productos: producto finito de numerables es numerable.
+    \item Para sumas: suma finita de numerables es numerable.
+    \item Solo falla Lindelöf:
+    \begin{itemize}
+        \item $\left( \mathbb{R}, \mathcal{T}_{[, )} \right)$ es Lindelöf [ejercicio no banal]
+        \item $\left( \mathbb{R}^2, \mathcal{T}_{[, )}^2 \right)$ no es Lindelöf: si lo fuera, $L = \{x + y = 0\} \subset \mathbb{R}^2$ heredaría la propiedad, pero es \underline{discreto} no numerable ¡!
+    \end{itemize}
+\end{itemize}
+
+\chapter{Compacidad}%
+\label{cha:compacidad}
+\section{Concepto y mantras}%
+\label{sec:concepto_y_mantras_comp}
+\begin{defi}
+$X$ es \underline{compacto} si todo recubrimiento abierto tiene un subrecubrimiento finito:
+\[
+X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} = X
+\]
+\end{defi}
+
+\begin{obs}
+Complementando lo anterior tenemos la \underline{propiedad de la intersección finita}: 
+\begin{gather*}
+    \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Rightarrow\\
+    \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset
+.\end{gather*}
+\end{obs}
+
+\begin{prop}[Subespacios]
+Sea $K \subset X$ (compacto) $\Rightarrow K \subset \underbrace{\bigcup_{i \in  I} U_i}_{\subset X} \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K$
+\end{prop}
+
+\begin{ej}
+\begin{enumerate}
+    \item $K \subset \mathbb{R}_u^n$ es compacto $\Leftrightarrow K$ es cerrado y acotado (Heine-Borel). 
+    \item $\left[ a, b \right] \subset \mathbb{R}_u$ compacto.
+    \item Si es compacto y discreto $\Rightarrow$ es finito [$X = \bigcup_{x \in X} \{x\}$ es rec. abierto en $\mathcal{T}_{\text{discreta}}$]
+    \item $x_k \rightarrow x \Rightarrow K = \{x, x_k: k \ge 1\}$ es compacto.
+    \begin{demo}
+        \[
+            \exists U_{i_0} \ni x \xRightarrow{\lim} \begin{rcases}
+                x_k \in U_{i_0},\ \forall k > k_0\\
+                x_k \in U_{i_k},\ \forall k \le k_0
+            \end{rcases} \Rightarrow K \subset U_{i_0} \cup U_{i_1} \cup \ldots \cup U_{i_{k_0}} 
+        \]
+    \end{demo}
+
+    \item $K \subset \mathbb{R}_u^n$ compacto $\Leftrightarrow \forall A^{\infty} \subset K, A' \cap K \neq \emptyset$ (Bolzano-Weierstrass)
+\end{enumerate}
+\end{ej}
+
+\begin{prop}[Mantra 1]
+Cerrado en compacto es compacto. 
+\end{prop}
+\begin{demo}
+Sea $K \stackrel{\text{cerr.}}{\subset} X$,
+\begin{align*}
+    K \subset \bigcup_{i} U_i &\Rightarrow X = \left( X \setminus K \right) \cup \bigcup_{i} U_i\\
+    X \text{ comp.} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
+    &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K
+.\end{align*}
+
+(Alternativa: Usar la propiedad de las intersecciones finitas)
+\end{demo}
+
+\begin{prop}[Mantra 2]
+Infinito en compacto tiene puntos de acumulación.
+\end{prop}
+\begin{demo}
+Sea $A \subset X$ (compacto) con $A' = \emptyset \Rightarrow$
+\begin{align*}
+    \overline{A} &= \overbrace{\{\text{puntos aislados}\}}^{\subset A}  \cup \overbrace{A'}^{= \emptyset} = \{\text{puntos aislados}\} = A\\
+     &\Rightarrow A \stackrel{\text{cerr.}}{\subset} X \text{ comp.} \Rightarrow \underbrace{A}_{= \{\text{pts. aisl.}\}} \text{ es compacto y discreto} \Rightarrow \#A < +\infty   
+.\end{align*}
+\end{demo}
+
+\begin{prop}[Mantra 3]
+La imagen continua de un compacto es compacta. 
+\end{prop}
+\begin{demo}
+Sea $f: X \rightarrow Y$ con $f$ continua y $X$ compacto $\Rightarrow$
+\begin{align*}
+    f\left( X \right) \times \bigcup_{i} V_i &\Rightarrow X = \bigcup_{i} f^{-1} V_i \Rightarrow \exists f^{-1}V_{i_1} \cup \ldots \cup f^{-1}V_{i_r} = X\\
+     &\Rightarrow V_{i_1} \cup \ldots \cup V_{i_r} \supset f\left( X \right) 
+.\end{align*}
+\end{demo}
+
+\begin{ej}[¡Muy importante!]
+$\mathbb{R} \mathrm{P}^n$ es compacto: La imagen continua de $\mathbb{S}^n$ por la proyección antipodal. 
+\end{ej}
+
+\begin{prop}[Mantra 4]
+Un compacto en $T_2$ es cerrado. 
+\end{prop}
+\begin{demo}
+Sea $K \subset X$ con $K$ compacto y $X = T_2 \Rightarrow$
+\begin{equation} \label{eq:mantra_4_1}
+    \forall x \in X \setminus K,\ \exists U^x \cap U^k = \emptyset
+\end{equation}
+A su vez, $\forall y \in K,\ \exists U_y^x \cap U^y = \emptyset$ por $T_2 \Rightarrow$
+\begin{align*}
+    %TODO: Fix flecha
+    K \subset \bigcup_{y} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^k\\
+    &\Rightarrow x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x
+.\end{align*}
+Finalmente, utilizando \ref{eq:mantra_4_1} $\Rightarrow$
+\[
+    U^x \subset X \setminus K\; \land \;X\setminus K \text{ es entorno de } x \Rightarrow X \setminus K \text{ abierto.} 
+\]
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/mantra_4} 
+\end{center}
+\end{demo}
+\begin{coro}
+Dos compactos disjuntos en un $T_2$ se separan como puntos.
+\end{coro}
+\begin{demo}
+    Ejercicio usando \ref{eq:mantra_4_1}.
+\end{demo}
+
+\begin{prop}
+Si $f : X \rightarrow Y$ es continua, $X$ compacto e $Y = T_2 \Rightarrow$ cerrada.
+\end{prop}
+\begin{demo}
+\[
+    F \stackrel{\text{cerr.}}{\subset} X \xRightarrow{\mathrm{M}1} F \text{ comp.} \xRightarrow{\mathrm{M}3} f\left( F \right) \text{ comp.} \xRightarrow{\mathrm{M}4} f\left( F \right) \text{ cerr.} 
+\]
+\end{demo}
+\begin{coro}
+Sea la $f$ de la anterior proposición entonces si además es:
+\[
+\begin{cases}
+    \text{inyectiva}\\
+    \text{sobreyectiva}\\
+    \text{biyectiva}
+\end{cases} \Rightarrow
+\begin{cases}
+    \text{inmersión cerrada}\\
+    \text{identificación cerrada}\\
+    \text{homeomorfismo}
+\end{cases} 
+\]
+\end{coro}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_comp}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Compacidad & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
+    \hline\\
+               & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
+    \hline\\
+\end{tabular}
+\end{center}
+
+\begin{theo}[de Tychonoff]
+Si $X$ e $Y$ son dos compactos $\Rightarrow X \times Y$ es compacto.
+\end{theo}
+\begin{demo}
+Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal{T}_Y$.
+\begin{enumerate}
+    \item $\forall x\ \forall y,\ \exists U_y^x \times V_x^y \subset W_i$, $i$ depende de $\left( x, y \right)$.
+    \item $\forall x\ Y = \bigcup_{y} V_x^y \xRightarrow{Y \text{comp.}} Y = V_x^{y_1} \cup \ldots \cup V_x^{y_r}$, los $y_k$ y su nº dependen de $x$.
+    \item $U^x = U_{y_1}^x \cap \ldots \cap U_{y_r}^x,\ U^x \times V_x^{y_k} \subset W_{i_k}$, $i_k$ depende de $x$.
+    \item $X = \bigcup_{x} U^x \xRightarrow{X \text{comp.}} X = U^{x_1} \cup \ldots \cup U^{x_s}$.
+    \item 
+    \[
+        X \times Y = \bigcup_{\substack{l, k\\ \text{fin.}}} U^{x_l} \times V_{x_l}^{y_k} \subset \bigcup_{\substack{l, k\\ \text{fin.}}} W_{i_k} \text{, los } i_k \text{ dependen de los } x_l. 
+    \]
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+\begin{enumerate}
+    \item $X \times Y$ compacto $\Rightarrow X$ e $Y$ compactos. [Mantra $3$ para proyecciones] 
+    \item Heine-Borel: $K \subset \mathbb{R}_u^n$ cerrado y acotado $\Rightarrow$ compacto porque:
+    \[
+        \exists a_i, b_i: K \stackrel{\text{cerr.}}{\subset} \underbrace{\left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]}_{\text{Compacto por Tych.\footnotemark}}  
+    \]
+    \footnotetext{$\left[ a, b \right]$ es compacto.}
+    Y aplicamos el Mantra $1$.
+\end{enumerate}
+\end{obs}
+
+\chapter{Compacidad local}%
+\label{cha:compacidad_local}
+\begin{defi}
+Sea $Y \subset X$, es \underline{localmente cerrado} si cumple las condiciones equivalentes siguientes:
+\begin{enumerate}
+    \item $\forall y \in Y,\ \exists U^y \subset X: Y \cap U^y \stackrel{\text{cerr.}}{\subset} U^y$. ($\Rightarrow$ lo mismo $\forall V^y \subset U^y$)
+    \item $Y$ es abierto en su adherencia.
+    \item $Y = F \cap U,\ F \stackrel{\text{cerr.}}{\subset} X,\ U \stackrel{\text{ab.}}{\subset} X$. ($\Rightarrow$ vale $F = \overline{Y}$)
+\end{enumerate}
+\end{defi}
+\begin{demo}
+\begin{enumerate}
+    \item[1. $\Rightarrow$ 2.)] $Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$:
+    \begin{align*}
+        x \in \overline{Y} \cap U^y &\Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) = Y \cap U^y \subset Y\\
+        U^x \subset U^y &\Rightarrow \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
+    .\end{align*}
+    \item[2. $\Rightarrow$ 3.)] Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
+    \[
+    F \cap U = Y \Rightarrow F \supset \overline{Y} \Rightarrow F \cap U = \overline{Y} \cap U.
+    \]
+    \item[3. $\Rightarrow$ 1.)] $Y = F \cap U \stackrel{\text{cerr.}}{\subset} U \left( = U^y,\ \forall y \right)$.
+\end{enumerate}
+\end{demo}
+
+Esto es un ejemplo de \underline{localización} de una propiedad topológica $\mathcal{P}$ (aquí es ser cerrado). Se puede entender como:
+\begin{align*}
+    &\forall x,\ \exists V^x \text{ que cumple } \mathcal{P} \text{ o } \\
+    &\forall x,\ \exists \mathcal{V}^x \text{ base de entornos que cumplen } \mathcal{P} 
+.\end{align*}
+A veces son equivalentes (como en este caso), a veces no. El concepto adecuado de localización es mediante \underline{bases de entornos}.
+
+\section{Compacidad local y mantras}%
+\label{sec:compacidad_local_y_mantras}
+\begin{defi}
+$X$ es \underline{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$ base de entornos compactos.
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\mathbb{R}_u^n$ es localmente compactos: $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$
+
+    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es compacto:
+    \begin{align*}
+        \exists V^p \stackrel{\text{comp.}}{\subset} T &\Rightarrow \exists B\left( 0, \varepsilon \right) \cap T \subset V^p \Rightarrow \exists \overbrace{x_k}^{\in V^p} \rightarrow x_0 \in S\left( 0, 1 \right) \setminus T\\
+       &\Rightarrow \{x_k : k \ge 1\} \subset V^p \subset T 
+    .\end{align*}
+    que es un conjunto infinito sin acumulación en $T$.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/loc_comp_ej_2} 
+    \end{center}
+
+    \item En general \underline{no} basta que exista un entorno compacto.
+
+    %TODO: no sé que pone
+    En $S = T \cup \{q\}?$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$).
+
+    Pero este caso es un ejemplo con un espacio \underline{no separado}.
+\end{enumerate}
+\end{ej}
+
+\begin{prop}
+Si $X$ es $T_2$ y $x \in X$ tiene un entorno compacto, entonces tiene una base de entornos compactos.
+\end{prop}
+\begin{demo}
+    $\exists \underbrace{V^x}_{\supset W^x \text{ab.}}$ compacto $\Rightarrow \mathcal{V}^x =$ { entornos compactos $K^x$} \underline{base de entornos}: $\forall U^x,\ \exists?K^x \subset U^x$.
+
+    $\exists_{\text{ab.}} U_1^x \subset \overline{U_1^x} \subset U^x$:
+    \begin{gather*}
+        V^x\setminus U^x \stackrel{\text{cerr.}}{\subset} V_{\text{comp.}}^x \Rightarrow \overbrace{V \setminus U}^{\not\ni x} \text{comp. en } T_2 \Rightarrow \exists \overbrace{U_1^x\ \&\ A}^{\text{ab. disjuntos}} \supset V^x \setminus U^x\\
+        K^x = \overline{W^x \cap U_1^x} \begin{cases}
+            %TODO: Anotación
+            \overline{V^x} \cap \overline{U_1^x} = V^x \cap \overline{U_1^x} \subset V^x \cap \overline{X \setminus A} = V^x \cap \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \subset U^x\\
+            \text{interdos ent.?} \Rightarrow \text{entorno}\\
+            W^x \cap U_1^x \subset V^x \stackrel{\text{comp. en } T_2}{=} \overline{V^x} \subset X \Rightarrow \underbrace{K^x}_{\text{cerr.}} \subset \underbrace{V^x}_{\text{comp.}} \Rightarrow K^x \text{ comp.} 
+        \end{cases}  
+    \end{gather*}
+\end{demo}
+
+Y tenemos dos mantras:
+\begin{prop}[Mantra 1]
+Localmente cerrado en localmente compacto es localmente compacto. 
+\end{prop}
+%TODO: Arreglar formato
+\begin{demo}
+    Sea $Y \subset X$ con $Y$ loc. cerrado y $X$ loc. compacto e $y \in Y$.
+
+    Tenemos:
+    \[
+    \overline{U_1^x} \cap V^x \subset \overline{X \setminus A} \cap V^x = \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \cap V^x \subset U^x
+    \]
+
+    Y como $Y$ es loc. cerrado, $\exists W^y \cap Y \stackrel{\text{cerr.}}{\subset} W^y$ ent. en $X$. Por ser $X$ loc. compacto $\exists K^y$ compacto tal que, $K^y \subset W^y \Rightarrow K^y \cap W^y \cap Y \stackrel{\text{cerr.}}{\subset} K^y \Rightarrow$
+    \[
+    L^y = \underbrace{K^y \cap W^y}_{\text{ent. en } X} \cap Y \stackrel{\text{cerr.}}{\subset} K^y \Rightarrow L^y \text{ ent. en } Y \text{ compacto.}  
+    \]
+\end{demo}
+
+\begin{prop}[Mantra 2]
+Localmente compacto en $T_2$ es localmente compacto.
+\end{prop}
+\begin{demo}
+Sea $Y \subset X$ con $Y$ loc. compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow$
+\[
+\underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V \cap Y}_{\text{ent. en } Y} \subset \underbrace{V}_{\text{ent. en } X} \xRightarrow{T_2} V \cap Y = L^y \stackrel{\text{cerr.}}{\subset} V.
+\]
+\end{demo}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_loc_comp}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Compacidad local & \begin{tabular}{@{}c@{}}$\times$\\ Loc. cerrados \checkmark \end{tabular} & \begin{tabular}{@{}c@{}}$\times$\\ ab. \checkmark \end{tabular} & \checkmark & \checkmark\\
+    \hline\\
+           & Mantra $1$ & $f\left( \text{ent.} \right) = $ ent & Tychonoff & Loc. suma es como sum's\\
+    \hline\\
+\end{tabular}
+\end{center}
+
+\begin{ej}
+$Y = \mathbb{R} / \mathbb{Z}$ no es localmente compacto.
+\begin{enumerate}
+    \item $\mathbb{Z} \subset \underbrace{W}_{\text{ab.}} \subset \mathbb{R}: \exists k + \underbrace{\varepsilon_k}_{0 < \varepsilon_k < 1} \in W\ \forall k \ge 1 \Rightarrow A = \{k + \varepsilon_k : k \ge 1\} \subset W$
+    \begin{itemize}
+        \item Cerrado
+        \item Saturado ($n\mathbb{Z} = \emptyset$)
+        \item Infinito
+        \item Discreto
+    \end{itemize}
+
+    \item $\exists K \subset Y$ entorno compacto de $y = \mathbb{Z} \in Y \Rightarrow \exists \underbrace{W^{\text{ab.}}}_{\supset \mathbb{Z}} \subset p^{-1} K \Rightarrow pA \subset K$ infinito sin acumulación.
+\end{enumerate}
+\end{ej}
+
+\section{Compactificación por un punto}%
+\label{sec:compactificacion_por_un_punto}
+Este es otro problema importante: \underline{sumergir un espacio} como subespacio abierto denso de un espacio compacto.
+
+Intuitivamente se trata de añadir los límites que el espacio no tiene (por no ser compacto).
+
+\begin{ej}
+\begin{enumerate}
+    \item $\mathbb{R}^n \equiv B^n \setminus \{a\} \subset \mathbb{S}^n$ vía proyección estéreo desde $a$.
+    \item $\mathbb{R}^n \equiv \mathbb{R}P^n \setminus H \subset \mathbb{R}P^n$ vía cartas afines.
+\end{enumerate}
+\end{ej}
+
+\begin{prop}
+$X$ localmente compacto $T_2$.
+\begin{enumerate}
+    \item $\exists j : X \xhookrightarrow{} X^*$ comp. $T_2,\ j$ inmersión abierta $X^* \setminus j\left( X \right) = \{w\}$.
+    \item Unicidad: 
+    \begin{center}
+        \includegraphics[scale=0.3]{images/comp_pto_prop_1} 
+    \end{center}
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $X^* = X \cup \{0\},\ \mathcal{T}^* = \mathcal{T} \cup \{X^* \setminus K: \overbrace{K}^{\subset X} \text{comp.}\}$.
+    \begin{itemize}
+        \item $\mathcal{T}^*$ es top: fácil por las hipótesis sobre $X$.
+        \begin{itemize}
+            \item $K_i \stackrel{\text{comp.}}{\subset} X \xRightarrow{T_2} K_i \stackrel{\text{cerr.}}{\subset} X \Rightarrow \overbrace{\bigcap_{i} K_i}^{\text{cerr.}} \subset \overbrace{K_{i_0}}^{\text{comp.}} \Rightarrow \bigcap_{i} K_i$ comp.
+            \item $U \stackrel{\text{ab.}}{\subset} X,\ X \stackrel{\text{comp.}}{\subset} X \Rightarrow U \setminus K =$ ab. $\setminus$ cerr. $ = $ ab.
+            \item $U \stackrel{\text{ab.}}{\subset} X,\ K \stackrel{\text{comp.}}{\subset} X \Rightarrow U \cup \left( X^* \setminus K \right) = X^* \setminus \left( K \setminus U \right),\ K \setminus U \subset K$ cerrado $\Rightarrow$ compacto.
+        \end{itemize}
+        \item $X \subset X^*$ inmersión abierta: $\left( X^* \setminus K \right) \cap X = X \setminus K \in \mathcal{T}$ pues $X$ es $T_2$.
+        \item $X^*$ es compacto: $X^* = \bigcup_{i} W_i$.
+        \[
+        \exists W_{i_0} \ni w \Rightarrow W_{i_0} = \underbrace{X^* \setminus K}_{\text{comp.}} \Rightarrow K \subset W_{i_1} \cup \ldots \cup W_{i_r} \Rightarrow X^* = W_{i_0} \cup W_{i_1} \cup \ldots \cup W_{i_r}  
+        \]
+        \item $X^*$ es $T_2:$
+        \[
+        x \in X \text{ loc. comp.} \Rightarrow \exists K^x \text{ ent. comp.} \Rightarrow X^* \setminus K^* = U^w \text{ ent. de } w
+        \]
+    \end{itemize}
+
+    \item Unicidad:
+    \begin{itemize}
+        \item $\begin{rcases}
+           h_{j_1} = j_2\\
+           j_i \text{ inmersiones} 
+        \end{rcases} \Rightarrow h|: j_1\left( X \right) \rightarrow j_2 \left( X \right)$ homeomorfismo.
+
+        \item $h$ continua en $w_1$ (análogamente $h^{-1}$ continua en $w_2$)
+        \begin{align*}
+            h\left( w_1 \right) = w_2 \in W \stackrel{\text{ab.}}{\subset} X_2^* &\Rightarrow X_2^* \setminus W \stackrel{\text{cerr.}}{\subset} X_2^* \Rightarrow X_2^* \setminus W \stackrel{\text{comp.}}{\subset} j_2\left( X \right)\\
+            &\Rightarrow K = h^{-1}\left( X_2^* \setminus W \right) \stackrel{\text{comp.}}{\subset} j_1\left( X \right) \subset X_1^*\\
+            \left[ X_1^* \text{ es } T_2 \right] &\Rightarrow K \stackrel{\text{cerr.}}{\subset} X_1^* \Rightarrow h^{-1}\left( W \right) = X_1^* \setminus K \stackrel{\text{ab.}}{\subset} X_1^*
+        .\end{align*}
+    \end{itemize}
+\end{enumerate}
+\end{demo}
+
+\begin{defi}
+El espacio $X^*$ se denomina \underline{compactificación por un punto} de $X$. 
+
+También, \underline{compactificación de Alexandroff}.
+\end{defi}
+Por ejemplo, $\mathbb{S}^n$ es la compactificación por un puntoo de $\mathbb{R}^n$ (vía proyección estéreo como dijimos antes).
+
+\begin{obs}[¡Importante!]
+\begin{enumerate}
+    \item La unicidad justifica? que un espacio $X^*$ compacto $T_2$ es la compactificación de $X^* \setminus \{0\}$ para cualquier $w \in X^*$.
+
+    \item Si dos espacios son homeomorfos, lo son sus compactos.
+    \[
+        X_1 \xrightarrow[\text{homeo.}]{f} X_2 \xhookrightarrow{j_2} X_2^* \Rightarrow j_1 = j_2 \circ f : X_1 \rightarrow X_2^*
+    \]
+    que cumple las condiciones.
+
+    \item Si dos espacios no son homeomorfos, pueden serlo sus compactos.
+    \begin{center}
+        \includegraphics[scale=0.3]{images/obs_comp_pto} 
+    \end{center}
+\end{enumerate} 
+\end{obs}
+
+[\underline{Ejercicio}: $\mathbb{R}_u^2$: ¿Por qué $X_1 \not \approx X_2$?]
+
+\chapter{Conexión}%
+\label{cha:conexion}
+\section{Concepto y mantras}%
+\label{sec:concepto_y_mantras_conx}
+\begin{defi}
+$X$ es \underline{conexo} si cumple las siguientes condiciones equivalentes:
+\begin{enumerate}
+    %TODO: union rara
+    \item $\nexists X = U \sqcup Y$ abiertos $\neq \emptyset$.
+    \item $\nexists X = F \sqcup C$ cerrados $\neq \emptyset$.
+    \item $\nexists E \subsetneq X$ abierto y cerrado $\neq \emptyset$.
+\end{enumerate}
+\end{defi}
+\begin{demo}
+Equivalencia: $F = X \setminus V,\ C = X \setminus U,\ E = U = X \setminus V.$
+\end{demo}
+
+\begin{obs}
+$Y \subset X$ subespacio conexo: $\nexists Y \subset U \cup V$ abierto de $X$, 
+\[
+\begin{cases}
+    U \cap Y \neq \emptyset\\
+    V \cap Y \neq \emptyset\\
+    U \cap V \cap Y = \emptyset
+\end{cases} 
+\]
+\end{obs}
+
+\begin{ej}[Fundamental]
+$\left( 0, 1 \right) \subset \mathbb{R}_u$ es conexo. 
+
+Mantras generales $\Rightarrow$ segmentos en $\mathbb{R}^n$, estrellados? y conexos son conexos.
+\end{ej}
+
+\begin{theo}[del pivote. Mantra 1] 
+Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq 0,\ \forall A_i$ conexos $\Rightarrow X$ conexos.
+\end{theo}
+\begin{demo}
+\begin{align*}
+    \emptyset \neq E \stackrel{\text{ab. cerr.}}{\subset} X &\Rightarrow \forall i,\ E \cap A_i \stackrel{\text{ab. cerr.}}{\subset} A_i \Rightarrow \forall i,\ \begin{cases}
+        E \cap A_i = \emptyset\\
+        E \supset A_i
+    \end{cases}\\
+    &\xRightarrow{E \neq \emptyset} \exists i_0: E \supset A_{i_0} \supset \bigcap_{i} A_i \neq \emptyset \Rightarrow \forall i,\ E \cap A_i \neq \emptyset \Rightarrow \forall i,\ E \supset A_i\\
+    &\Rightarrow E \supset \bigcup_{i} A_i \Rightarrow E = X
+.\end{align*}
+\end{demo}
+
+\begin{coro}[Variantes]
+\begin{enumerate}
+    \item $X = \bigcup_{i \in  I} A_i,\ \exists A_{i_0} \cap A_i \neq \emptyset$.
+    \begin{demo}
+        $X = \bigcup_{i \in  I}\left( A_{i_0} \cup A_i \right)$ conexo por mantra $1$ y se aplica el mantra $1$.
+    \end{demo}
+    \item Cadenas: $X = \underbrace{A_1 \cup \ldots \cup A_k \cup \ldots}_{\text{conexos}}\quad A_k \cap A_{k + 1} \neq \emptyset \Rightarrow X$ conexo.
+    \begin{demo}
+        Se usa el mantra $1$ dos veces:
+        \[
+        \begin{cases}
+            X_k = \left( \ldots \left( \left( A_1 \cup A_2 \right) \cup A_3 \right) \cup \ldots \cup \right) A_k\\
+            X = \bigcup_{k} \left( X_1 \cup \ldots \cup X_k \right) 
+        \end{cases} 
+        \]
+        %TODO: Imagen
+        \begin{center}
+            \includegraphics[scale=0.3]{images/dem_var_mantra_1_conx} 
+        \end{center}
+    \end{demo}
+\end{enumerate} 
+\end{coro}
+
+El ``recíproco'' es ``fácil'' pero útil.
+\begin{prop}[Construcción de cadenas]
+$X$ conexo, $X = \bigcup_{i} U_i$ recubrimiento abierto, $p, q \in X \Rightarrow \exists$ cadena finita $U_{i_k}$ de $p$ a $q: p \in U_{i_0}, U_{i_{k - 1}} \cap U_{i_k} \neq \emptyset,\ q \in U_{i_r}$. 
+\end{prop}
+\begin{demo}
+$A = \{x \in X: \exists U_{i_k} \text{ de } p \text{ a } x\} \neq \emptyset$ abierto y cerrado $\Rightarrow A = X$ y $q \in A$. Por ser:
+\begin{itemize}
+    \item $\neq \emptyset: \exists U_{i_0} \in? p$ y $U_{i_0}$ va de $p$ a $p$ !
+    \item Abierto: $\exists U_{i_0}, \ldots, U_{i_r}$ de $p$ a $x \Rightarrow U_{i_r} \subset A$.
+    \item Cerrado: 
+    \begin{align*}
+        y \in \overline{A} \text{ e } y \in U_{i\left( y \right)} &\Rightarrow A \cap U_{i\left( y \right)} \neq \emptyset\\
+        &\Rightarrow \exists U_{i_0}, \ldots, U_{i_r} \text{ de } p \text{ a } x\in U_{i\left( y \right)}\\
+        &\Rightarrow U_{i_0}, \ldots, U_{i_r}, U_{i\left( y \right)} \text{ de } p \text{ a } y
+    .\end{align*}
+\end{itemize}
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_const_cadenas} 
+\end{center}
+\end{demo}
+
+\begin{prop}[Mantra 2]
+Imagen continua de conexo es conexo. 
+\end{prop}
+\begin{demo}
+    $f: X \rightarrow Y$ continua, $\emptyset \neq E \stackrel{\text{ab. cerr.}}{\subset} f\left( X \right) \xRightarrow{\text{cont.}} \emptyset \neq f^{-1}\left( E \right) \stackrel{\text{ab. cerr.}}{\subset} X \Rightarrow f^{-1}\left( E \right) = X \Rightarrow E = f\left( X \right)$.
+\end{demo}
+
+\begin{prop}[Mantra 3]
+Adherencia de conexo es conexo: $Y \subset X$ con $Y$ conexo y denso $\Rightarrow X$ conexo. 
+\end{prop}
+\begin{demo}
+    $\emptyset \neq E \stackrel{\text{ab. cerr.}}{\subset} X \Rightarrow E \cap Y \stackrel{\text{ab. cerr.}}{\subset} Y \Rightarrow \begin{cases}
+        E \cap Y = \emptyset\ \times \text{densidad.} \\
+        E \cap Y = Y \Rightarrow Y \subset E \stackrel{\text{cerr.}}{\subset} X = \overline{Y} \Rightarrow E = X.
+    \end{cases}$
+\end{demo}
+
+\begin{ej}
+   %TODO: Ejemplos complicados
+    \begin{enumerate}
+        \item $\left( 0, 1 \right) \stackrel{\text{denso}}{\subset} \left[ 0, 1 \right] \xRightarrow{\mathrm{M}1} \Rightarrow \left[ 0, 1 \right]$ conexo. Con una interpolación?: $\sigma\left( t \right) = \left( 1 - t \right) a + tb$ es homeomorfismo con $\left[ a, b \right] \subset \mathbb{R}^n \xRightarrow{\mathrm{M}2} \left[ a, b \right]$ es conexo. Aplicando ahora:
+        \begin{itemize}
+            \item Pivote: $E = \bigcup_{\substack{x \in E\\ \text{conx.}}} \left[ a, x \right]$ \underline{estrellado} (resp. de $a$): convexos, bolas abiertas y cerradas, rectángulos... 
+            \item Mantra $2$: Trazas de curvas continuas $\sigma: \left[ 0, 1 \right] \rightarrow \mathbb{R}^n$.
+        \end{itemize}
+        \item \underline{Seno del topólogo} (polaco):
+
+        Conexos: $\begin{cases}
+            \Gamma = \text{imagen} : t \mapsto \left( t, \sin \frac{1}{t} \right),\ t > 0\\
+            J = \{0\} \times \left[ 0, 1 \right]\\
+            \overline{\Gamma} = \Gamma \cup J \text{ (adh.)} 
+        \end{cases}$
+        \begin{center}
+            \includegraphics[scale=0.3]{images/seno_topologo} 
+        \end{center}
+    \end{enumerate}
+\end{ej}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_conx}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Conexión & $\times$ & \checkmark & \checkmark & $\times$\\
+    \hline\\
+               & $\{0, 1\} \subset \left[ 0, 1 \right]$ & Mantra $3$ & Pivote & Cada sum. ab. y cerr.\\
+    \hline\\
+\end{tabular}
+\end{center}
+
+\begin{prop}
+$X \times Y$ conexo $\Leftrightarrow X$ y $Y$ conexo.
+\end{prop} 
+\begin{demo}
+$\Rightarrow)$ Mantra $3$ para las proyecciones.
+
+$\Leftarrow)$ Fijamos $a \in X$.
+\begin{gather*}    
+\forall y \in Y,
+\begin{rcases}
+    Z_y = \underbrace{\left( X \times \{y\} \right)}_{\approx X}\cup \underbrace{\left( \{a\} \times Y \right)}_{\approx Y} \text{ dos conx. se cortan en } \left( a, y \right) \xRightarrow{\text{Piv.}} Z_y \text{ conx.}\\
+    \bigcap_{y \in Y} Z_y = \{a\} \times Y \neq \emptyset
+\end{rcases} \xRightarrow{\text{Piv.}} \\
+\bigcup_{y \in Y} Z_y = X \times Y \text{ conx.} 
+\end{gather*}
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_conx2_conx} 
+\end{center}
+\end{demo}
+
+\chapter{Componentes conexas y conexión local}%
+\label{cha:componentes_conexas_y_conexion_local}
+\section{Componentes}%
+\label{sec:componentes}
+\begin{defi}
+Una \underline{componente conexa} (c.c) de $X$ es un subespacio conexo maximal.
+\end{defi}
+
+\begin{prop}
+\begin{enumerate}
+    \item $\forall a \in X.\ C\left( a \right) = \bigcup_{a \in A \text{conx.}} A$ es conexo (pivote), $a \in C\left( a \right)$.
+    \item $E \subset X$ conexo: 
+    \[
+    C\left( a \right) \cap E \neq \emptyset \Rightarrow C\left( a \right) \cup E \text{ conx. (pivote)} \Rightarrow C\left( a \right) \cup E \text{ es uno de los } A \text{ de } C\left( a \right) \Rightarrow E \subset C\left( a \right) 
+    \]
+    Luego, 
+    \begin{itemize}
+        \item $C\left( a \right)$ maximal $\Rightarrow$ componente conexa.
+        \item $a \neq b: C\left( a \right) = C\left( b \right)$ ó $C\left( a \right) \cap C\left( b \right) = \emptyset$ [Usar $E = C\left( b \right)$]
+    \end{itemize}
+
+    \item $\overline{C\left( a \right)}$ conexo (mantra adh.) $\Rightarrow \overline{C\left( a \right)} = \underbrace{C\left( a \right)}_{\text{cerr.}}$ (maximalidad)
+    %TODO: Fix
+    \item[1. + 2. + 3.] $\Rightarrow X = \bigsqcup_{C \stackrel{\text{c.c}}{\subset}  X} C$ es una \underline{partición} en cerrados disjuntos.
+\end{enumerate} 
+\end{prop}
+
+\begin{ej}
+\begin{enumerate}
+    \item $X_{\text{discreto}}: C\left( x \right) = \{x\}$ (puntos abiertos y cerrados)
+    \item $\mathbb{Q}_u : C\left( p \right) = \{p\}$ (todo intervalo de $\mathbb{R}$ tiene racionales)
+    \item $\left( \mathbb{R}, \mathcal{T}_{[, )} \right): C\left( t \right) = \{t\}$ ($\mathbb{R} = \left( \leftarrow, a \right) \cup \left[ a, \rightarrow \right)$ abierto y cerrado)
+    \item $X = \{0, Y_k,\ k \ge 1\} : \begin{cases}
+        C\left( 0 \right) = \{0\} \text{ cerrado, no abierto} \left( \{\frac{1}{k}: k\ge 1 \}  \text{ no cerr.}\right)\\
+        C\left( \frac{1}{k} \right) = \{\frac{1}{k}\} \text{ cerrado y abierto.} 
+    \end{cases} $
+\end{enumerate}
+\end{ej}
+
+\begin{defi}
+Un espacio cuyas componentes son los puntos se llama \underline{totalmente disconexo}. 
+\end{defi}
+
+\begin{prop}
+Las componentes conexas de $X \times Y$ son los puntos de componentes conexas.
+\end{prop}
+\begin{demo}
+$C \subset \underbrace{X}_{\xrightarrow{p} X} \times \underbrace{Y}_{\xrightarrow{q} Y} \Rightarrow p\left( C \right)$ y $q\left( C \right)$ conexos (imagen continua) $\Rightarrow \begin{cases}
+    p\left( C \right) \subset E \stackrel{\text{c.c}}{\subset}  X\\
+    q\left( C \right) \subset F \stackrel{\text{c.c}}{\subset}  Y
+\end{cases} \Rightarrow C \subset E \times F \xRightarrow{\text{Max. de} C} C = E\times F$.
+\end{demo}
+
+\section{Conexión local}%
+\label{sec:conexion_local}
+\begin{defi}
+$X$ es \underline{localmente conexo}  si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos.
+\end{defi}
+
+\begin{prop}
+$X$ es localmente conexo $\Leftrightarrow$ la componente conexa de un abierto es abierta.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item $\Rightarrow)$ Si $x \in C \stackrel{\text{cerr.}}{\subset} U \stackrel{\text{ab.}}{\subset} X \Rightarrow \exists \underbrace{U^x}_{\text{ab. conx.}} \subset U \Rightarrow U^x \subset C \Rightarrow C \stackrel{\text{ab.}}{X}$.
+    \item $\Leftarrow)\ \mathcal{B}^x = \{C\left( x \right) \stackrel{\text{c.c}}{\subset} U \stackrel{\text{ab.}}{\subset} X : x \in U\}$. Con $C\left( x \right)$ abierto por ser c.c de abierto.
+\end{itemize}
+\end{demo}
+
+\underline{Ejercicio}: $X$ es localmente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos.
+
+\begin{ej}[Esencial]
+$\{0, \frac{1}{k} : k \ge 1\} = Y \subset \mathbb{R}_u$ \underline{no} es localmente conexo. 
+\begin{demo}
+    La $\text{c.c}\left( 0 \right) = \{0\}$ no es abierto. Directamente:
+    \begin{align*}
+        0 \in \underbrace{V}_{\text{ent. de } 0 \in \mathbb{R}} \cap Y &\Rightarrow V \supset \left( 0, \varepsilon \right),\ \exists 0 < \underbrace{\theta}_{\not\in \mathbb{Q}} < \frac{1}{k} < \varepsilon < 1\\
+        &\Rightarrow V\cap Y \subset \underbrace{\left( \leftarrow, \theta \right)}_{\ni 0} \cup \underbrace{\left( \theta, \rightarrow \right)}_{\ni \frac{1}{k}}  \Rightarrow V \cap Y \text{ no conexo.} 
+    .\end{align*}
+\end{demo}
+\end{ej}
+
+\underline{Ejercicio}:
+\begin{enumerate}
+    \item Analizar una sucesión de segmentos que convergen a otro:
+    \begin{center}
+        \includegraphics[scale=0.3]{images/suc_conv_otro} 
+    \end{center}
+    \item ¿Y el seno del topólogo?
+\end{enumerate}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_loc_conx}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Conexión local & $\times$ & \checkmark & \checkmark & $\times$\\
+    \hline\\
+               & Ejemplo esencial & No banal & Prod. ent. conx. & Suma como sum's\\
+    \hline\\
+\end{tabular}
+\end{center}
+
+
+\begin{prop}
+Sea $f : X \rightarrow Y$ identificación con $X$ localmente conexo $\Rightarrow Y$ es localmente conexo.
+\end{prop}
+\begin{demo}
+    El diagrama siguiente resume el argumento (si se lee en el orden adecuado).
+    \begin{center}
+        \includegraphics[scale=0.3]{images/dem_loc_conx_loc_conx} 
+    \end{center}
+\end{demo}
+
+\chapter{Conexión por caminos}%
+\label{cha:conexion_por_caminos}
+\begin{defi}
+Un \underline{camino} en un espacio $X$ es una aplicación continua $\alpha: \left[ a, b \right] \subset \mathbb{R}_u \rightarrow X$. Decimos:
+\begin{itemize}
+    \item $\alpha$ \underline{va de} $\alpha\left( a \right)$ a $\alpha\left( b \right)$, \underline{conecta} $\alpha\left( a \right)$ con $\alpha\left( b \right)$, que son \underline{extremos}.
+    \item La imagen $\alpha\left[ a, b \right] \subset X$ es la \underline{traza}, conexa por imagen continua.
+\end{itemize}
+\end{defi}
+
+\begin{prop}[Cambios de parámetros]
+$\forall \varphi: \left[ c, d \right] \rightarrow \left[ a, b \right]$ continua $\Rightarrow \beta = \alpha \circ \varphi$ es otro camino con igual traza.    
+
+$\varphi$ es un \underline{cambio de parámetro} cuando es homeomorfismo (creciente o decreciente).
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/camb_par_caminos} 
+\end{center}
+\end{prop}
+
+\begin{ej}[Interpolación lineal]
+Dados $p, q \in \mathbb{R}^n,\ \alpha : \left[ 0, 1 \right] \rightarrow \left[ p, q \right]: t \mapsto \left( 1 - t \right) p + tq$ es un camino bien conocido y útil. También sirve para reparametrizar si $\left[ p, q \right] = \left[ a, b \right] \subset \mathbb{R}$. Vemos, por ejemplo, que siempre podemos reducirnos a caminos con dominio $\left[ 0, 1 \right]$. Esto será fundamental más adelante. 
+\end{ej}
+
+\begin{prop}[Producto de caminos]
+Topológicamente: 
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/prod_caminos} 
+\end{center}
+(Alternativa: Reparametrizar $\beta$ con dominio $\left[ b, b + \left( d - c \right) \right]$)
+\end{prop}
+
+\begin{ej}
+Si hacemos el producto de segmentos consecutivos obtenemos \underline{caminos poligonales}. 
+\end{ej}
+
+\section{Conexión por caminos}%
+\label{sec:conexion_por_caminos}
+\begin{defi}
+Un espacio $X$ es \underline{conexo por caminos} si sus puntos se pueden conectar con un camino:
+\[
+\forall x \forall y \in X,\ \exists \sigma_y: \left[ a, b \right] \rightarrow X,\ \sigma_y\left( a \right) = x\; \land \;\sigma_y\left( b \right) = y
+\]
+En particular, $X = \bigcup_{y} \sigma_y\left[ a, b \right]$ es \underline{conexo} (pivote, $\alpha_y\left( a \right) = x,\ \forall y$)
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item La mayor parte de los conexos conocidos son conexos por caminos:
+    \begin{itemize}
+        \item Los abiertos conexos (top. Usual) son conexos por poligonales, que son caminos.
+        \item Los conjuntos convexos y los estrellados también.
+    \end{itemize}
+    \item El seno del topólogo $\Gamma$ es la traza de $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right),\ t > 0$, es conexo y lo es su adherencia $\overline{\Gamma} = J \cup \Gamma,\ J = \{0\} \times \left[ 0, 1 \right]$. Pero $\overline{\Gamma}$ \underline{no} es conexo por caminos.
+    \begin{demo}
+        No existen caminos $\sigma: \left[ a, b \right] \rightarrow \overline{\Gamma} \begin{cases}
+            \sigma\left( a \right) = p \in J\\
+            \sigma\left( b \right) = q \in \Gamma
+        \end{cases}$:
+        \begin{center}
+            \includegraphics[scale=0.3]{images/dem_sin_top_no_conx_caminos} 
+        \end{center}
+        \begin{enumerate}
+            \item $\sigma\left( t \right) = \left( \alpha\left( t \right), \beta\left( t \right) \right),\ \alpha, \beta$ continuas. $\exists a' = \max \{t \in \left[ a, b \right] : \alpha\left( t \right) = 0\} \Rightarrow (\alpha$ continua en un compacto) %TODO: Fix orden 
+            $\Rightarrow \begin{cases}
+                \alpha\left( a' \right) = 0,\ \sigma\left( a' \right) = p' \in J\\
+                t > a': \alpha\left( t \right) > 0 \Rightarrow \sigma\left( t \right) \in \Gamma \Rightarrow \beta\left( t \right) = \sin \frac{1}{\alpha\left( t \right)} 
+            \end{cases} $
+
+            \item Supongamos $p' = \sigma\left( a' \right) \neq \left( 0, 1 \right)$ y $\exists \delta: B\left( p', \delta \right) \cap \{y = 1\} = \emptyset$. $\sigma$ continua $\Rightarrow \exists \sigma\left[ a', \varepsilon \right] \subset B\left( p', \delta \right) \Rightarrow \sigma\left[ a', \varepsilon \right] \cap \{y = 1\} = \emptyset$. (si $p' = \left( 0, 1 \right)$ evitariamos? $\{y = -1\}$)
+
+            \item $\alpha$ continua $\Rightarrow \alpha\left[ a', \varepsilon \right] \subset \mathbb{R}$ conexo compacto $=$ intervalo: $\alpha\left[ a', \varepsilon \right] = \left[ 0, c \right]$.
+
+            \item La oscilación de $\sin \frac{1}{x}$ lleva $\sigma$ a $\{y = 1\}$, fuera de la bola elegida:
+            \begin{align*}
+            k \gg 0 &\Rightarrow \frac{2}{\left( 1 + 4k \right) \pi} \in \left[ 0, c \right] = \alpha\left[ a', \varepsilon \right] \Rightarrow \exists a' < t_k < \varepsilon: \alpha\left( t_k \right) = \frac{2}{\left( 1 + 4k \right) \pi}\\ 
+                &\Rightarrow \sigma\left( t_k \right) = \left( \alpha\left( t_k \right), \sin\left( \frac{1}{\alpha\left( t_k \right)} \right) \right) = \left( x_k, 1 \right) 
+            !?\end{align*}
+            %TODO: red. abs?
+        \end{enumerate}
+    \end{demo}
+\end{enumerate}
+\end{ej}
+
+\section{Mantras}%
+\label{sec:mantras_conx_caminos}
+Todo (casi) lo que dijimos sobre la conexión nos vale:
+\begin{prop}[Mantra del pivote]
+    (Igual) Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq \emptyset,\ \forall A_i$ conexos por caminos $\Rightarrow X$ conexo por caminos. 
+\end{prop}
+\begin{demo}
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_pivote_caminos} 
+\end{center}
+\end{demo}
+
+\begin{prop}[Mantra de la imagen]
+Sea $f: X \rightarrow Y$ continua con $X$ conexo por caminos $\Rightarrow f\left( X \right)$ es conexo por caminos. 
+\end{prop}
+\begin{demo}
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_imagen_caminos} 
+\end{center}
+\end{demo}
+
+\begin{prop}[Mantra de la adherencia (¡NO!)]
+El seno del topólogo $\Gamma$ = grafo de $\sin \frac{1}{t}$ es conexo por caminos: $\left( a, \sin\frac{1}{a} \right)$ y $\left( b, \sin\frac{1}{b} \right)$ se conectan por el camino evidente, $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right),\ a \le t \le b$. Pero, como hemos visto, la adherencia $\overline{\Gamma}$ no es conexa por caminos. 
+\end{prop}
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_conx_caminos}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Conexión por caminos & $\times$ & \checkmark & \checkmark & $\times$\\
+    \hline\\
+\end{tabular}
+\end{center}
+
+\begin{prop}[Productos]
+Sean $\left( x_1, y_1 \right),\ \left( x_2, y_2 \right) \in X \times Y$: 
+\[
+\begin{rcases}
+    \sigma: \left[ a, b \right] \rightarrow X: \begin{cases}
+        \sigma\left( a \right) = x_1\\
+        \sigma\left( b \right) = x_2
+    \end{cases}\\
+    \tau: \left[ a, b \right] \rightarrow Y: \begin{cases}
+        \tau\left( a \right) = y_1\\
+        \tau\left( b \right) = y_2
+    \end{cases}
+\end{rcases} 
+    \Rightarrow \gamma = \left( \sigma, \tau \right) : \left[ a, b \right] \rightarrow X \times Y \begin{cases}
+        \gamma\left( a \right) = \left( x_1, y_1 \right)\\
+        \gamma\left( b \right) = \left( x_2, y_2 \right)
+    \end{cases}  
+\]
+\end{prop}
+
+
+\chapter{Componentes conexas por caminos y conexión local por caminos}%
+\label{cha:componentes_conexas_por_caminos_y_conexion_local_por_caminos}
+\section{Componentes conexas por caminos}%
+\label{sec:componentes_conexas_por_caminos}
+Todo análogo a las componentes conexas (casi). Sea $X$ espacio topológico.
+\begin{defi}
+Una componente conexa por caminos (c.c.c) es un subconjunto conexo por caminos maximal.
+\end{defi}
+\begin{prop}[Descripción]
+\begin{enumerate}
+    \item La c.c.c de $x \in X$ es $\bigcup_{x \in A} A$ con $A$ conexa por caminos.
+    \item Las c.c.c forman una partición de $X$, más fina que la de las c.c.
+    \begin{demo}
+        Porque conexo por caminos $\Rightarrow$ conexo pero no la inversa.
+
+        \textbf{¡OJO!} Las c.c.c no son necesariamente cerradas. 
+
+        Como contraejemplo de ambas cosas dichas tenemos la adherencia del seno topólogo. 
+    \end{demo}
+\end{enumerate} 
+\end{prop}
+
+\begin{ej}
+    $\Gamma$ seno del topólogo y $\overline{\Gamma} = J \cup \Gamma$ son conexos. Tenemos que $\overline{\Gamma}$ es una c.c, mientras que $J$ y $\Gamma$ son dos c.c.c, una cerrada ($J$) y la otra no ($\Gamma$). [Porque $\overline{\Gamma}$ \underline{no} es conexa por caminos]
+\end{ej}
+
+\section{Conexión local por caminos}%
+\label{sec:conexion_local_por_caminos}
+Imitamos sin sorpresa las demostraciones de la conexión local y tenemos:
+\begin{defi}
+$X$ es \underline{localmente conexo por caminos} si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos por caminos.
+\end{defi}
+\begin{prop}
+$X$ es localmente conexo por caminos $\Leftrightarrow$ c.c.c de un abierto es abierto.
+\end{prop}
+
+\underline{Ejercicio}:
+Locamente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos por caminos. 
+
+\section{Tabla de comportamiento}%
+\label{sec:tabla_de_comportamiento_conx_local_caminos}
+%TODO: Fix tabla
+\begin{center}    
+\begin{tabular}{c | c | c | c | c |}
+& Subespacios & Cocientes & Productos & Sumas\\
+\hline\\
+    Conexión local por caminos & $\times$ & \checkmark & \checkmark & \checkmark\\
+    \hline\\
+\end{tabular}
+
+También vale que las c.c.c del producto son los productos de las c.c.c de los factores.
+\end{center}
+
+\section{Relaciones entre las propiedades de conexión}%
+\label{sec:relaciones_entre_las_propiedades_de_conexion}
+Lo principal es que:
+\begin{prop}
+Conexo y localmente conexo por caminos $\Rightarrow$ Conexo por caminos.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+    \item Conexo $\Rightarrow \forall x, y,\ \exists \text{ cadenas de } x \text{ a } y$.
+    \item Localmente conexo por caminos $\Rightarrow$ cadenas de abiertos conexos por caminos $\Rightarrow{\text{Var. pivote}}$ Estas cadenas son conexas por caminos.
+\end{itemize}
+Por tanto, $\exists$ camino de $x$ a $y$.
+\end{demo}
+\begin{obs}
+    Esta es la demostración de que un abierto conexo de $\mathbb{R}_u^n$ lo es por poligonales (se usan cadenas de bolas).
+\end{obs}
+
+\begin{obs}[Resumen]
+Por especificar todas las posibilidades:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/resumen_conx} 
+\end{center}
+\end{obs}
+
+\underline{Ejercicio}: Contraejemplos. Los menos fáciles son $*$ y $**$ 
+
+\chapter{Homotopía}%
+\label{cha:homotopia}
+\section{Conceptos fundamentales}%
+\label{sec:conceptos_fundamentales}
+\begin{defi}
+Una \underline{homotopía} es una aplicación continua $H : Y \times \left[ 0, 1 \right] \rightarrow X$:
+\begin{enumerate}
+    \item $H_s : Y \rightarrow X: y \mapsto H\left( y, s \right),\ H \equiv \{H_s: 0 \le s \le 1\}$ familia uniparamétrica de aplicaciones.
+    \item Siendo $f = H_0$ y $g = H_1$:
+    \[
+    \begin{cases}
+        H_s : f \simeq g \text{ homotopía entre } f \text{ y } g\\
+        H \text{ deformación continua de } f \text{ a } g
+    \end{cases} \boxed{\text{El problema: cuándo } f \simeq g} 
+    \]
+
+    \item $f \simeq g$ relación de equivalencia:
+    \begin{itemize}
+        \item $f \simeq f$ vía $H_s \equiv f$.
+        \item $H_s : f \simeq g \Rightarrow H_{1 - s} : g \simeq f$.
+        \item $\begin{rcases}
+            F_s : f \simeq g\\
+            G_s: g \simeq h
+        \end{rcases} \Rightarrow H_s = \begin{cases}
+            F_{2s},\ 0 \le s \le 1/2\\
+            G_{2s - 1}\ 1/2 \le s \le 1
+        \end{cases}: f \simeq h$
+        \begin{demo}
+            Continuidad: $\begin{cases}
+            F_{2(1/2)} = F_1 = g\\
+            G_{2(1/2) - 1} = G_0 = g
+            \end{cases}$
+        \end{demo}
+    \end{itemize}
+\end{enumerate}
+\end{defi}
+
+\begin{prop}
+$X$ conexo por caminos, $f, g: Y \rightarrow X$ constantes $\Rightarrow f \simeq g$.
+\end{prop}
+\begin{demo}
+$\exists \sigma: \left[ 0, 1 \right] \rightarrow X,\ \sigma\left( 0 \right) = f\left( y_0 \right)$ y $\sigma\left( 1 \right) = g\left( y_0 \right) \Rightarrow H_s \equiv \sigma\left( s \right) : \begin{cases}
+    H_0 \equiv \sigma\left( 0 \right) = f\left( y_0 \right) \equiv f\\
+    H_1 \equiv \sigma\left( 1 \right) = g\left( y_0 \right) \equiv g
+\end{cases}$
+\end{demo}
+
+\begin{defi}
+$f: Y \rightarrow X$ es \underline{nulhomótopa} si $f \simeq $ constante, \underline{esencial} en caso contrario.
+\end{defi}
+
+\begin{theo}[Problema esencial. Hopf.]
+(1932) $\exists f : \mathbb{S}^3 \rightarrow \mathbb{S}^2$ esencial con $\mathbb{S}^3 \subset \mathbb{R}^4 = \mathbb{C}^2$ y $\mathbb{S}^2 \subset \mathbb{R}^3 = \mathbb{R} \times \mathbb{C}: \left( z, z' \right) \mapsto \left( \lVert z \rVert^2 - \lVert z' \rVert^2, 2 z z'\right) $ 
+\end{theo}
+
+\section{Concepto relativo}%
+\label{sec:concepto_relativo}
+\begin{defi}
+$H: Y \times \left[ 0, 1 \right] \rightarrow X$ es relativa a $A \subset Y$ si $H_s\left( a \right) = H_0\left( a \right),\ \forall a \in A,\ \forall s$.
+\end{defi}
+
+\begin{prop}
+$H$ relativa a $A,\ f = H_0,\ g = H_1 \Rightarrow f|_A = g|_A$. Notación: $H_s = f \stackrel{A}{\simeq} g$ (Relación de equivalencia).
+\end{prop}
+
+\begin{ej}[Fundamentales. Interpolación]
+\begin{enumerate}
+    \item $f, g: Y \rightarrow X \subset \mathbb{R}^n$ convexo $\Rightarrow\exists H_s = \left( 1 - s \right) f + sg: f \simeq g$.
+    \begin{demo}
+        Pues por convexidad $H_s\left( y \right) \in \underbrace{\left[ f\left( y \right), g\left( y \right) \right] \subset X}_{\text{\textbf{cond. crucial!}}}$.
+    \end{demo}
+    $f\left( a \right) = g\left( a \right) \Rightarrow H_s\left( a \right) = f\left( a \right) = g\left( a \right) \Rightarrow H_s$ es relativa a $A = \{f = g\}$.
+
+    \item $f: Y \rightarrow X \subset \mathbb{R}^n$ estrellado verp?, $x_0,\ \left[ x, x_0 \right] \subset X,\ \forall x \in X \Rightarrow H_s = \left( 1 - s \right)f + sx_0: f \simeq x_0$ (relativa a $A = f^{-1}\left( x_0 \right)$).
+
+    \item Variante en $\mathbb{S}^n$:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/ej_fund_interp_3} 
+    \end{center}
+\end{enumerate} 
+\end{ej}
+
+\section{Contractibilidad}%
+\label{sec:contractibilidad}
+\begin{defi}
+$X$ es \underline{contráctil} si $id: X \rightarrow X$ es nulhomótopa: $\exists H_s : id \simeq x_0$.
+
+Y \underline{fuertemente contrátil} si $\exists H_s : id \stackrel{x_0}{\simeq} x_0$ (homótopa relativa a $\{x_0\}$)
+\end{defi}
+
+\begin{obs}
+Los ejemplos son difíciles, pero son cosas distintas.
+\end{obs}
+
+\begin{ej}
+    $X \subset \mathbb{R}^n$ estrellado verp? $x_0 \Rightarrow$ fuertemente contráctil
+    \begin{demo}
+        $H_s = \left( 1 - s \right) id + sx_0$.
+    \end{demo}
+\end{ej}
+
+\begin{prop}
+\begin{enumerate}
+    \item Si $X$ es contrátil $\Rightarrow$ es conexo por caminos.
+    \item Si $X$ es contráctil $\Rightarrow \begin{cases}
+        \forall f: Y \rightarrow X \text{ nulhomótopa.}\\
+        \forall g: X \rightarrow Z \text{ nulhomótopa.} 
+    \end{cases} $
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $H_s: id \simeq x_0 \Rightarrow S \mapsto H_s\left( x_0 \right)$ camino de $x$ a $x_0$.
+    \item $H_s: id \simeq x_0 \begin{cases}
+        H_s \circ f: f \simeq x_0\\
+        g \circ H_s: g \simeq g\left( x_0 \right) 
+    \end{cases} $
+\end{enumerate}
+\end{demo}
+\begin{obs}
+Pocos espacios son contráctiles, pero no es inmediato verlo.
+\end{obs}
+
+\chapter{Homotopía de caminos}%
+\label{cha:homotopia_de_caminos}
+\section{El concepto básico}%
+\label{sec:el_concepto_basico}
+\begin{defi}
+$\sigma, \tau: \left[ a, b \right] \rightarrow X$ son homótopos \underline{con extremos fijos} si $\exists H_s: \sigma \simeq \tau$ relativa a $\{a, b\}$: 
+\[
+\begin{cases}
+    H_s\left( a \right) = \sigma\left( a \right) = \tau\left( a \right)\\
+    H_s\left( b \right) = \sigma\left( b \right) = \tau\left( b \right) 
+\end{cases}\forall s
+\]
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/def_homp_ext_fijos} 
+\end{center}
+\end{defi}
+
+\begin{obs}
+Es un problema de \underline{extensión}: 
+
+Definir $H$ en el cuadrado $\left[ a, b \right] \times \left[ 0, 1 \right]$ con valor determinado en su borde.
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/obs_problema_ext} 
+\end{center}
+\end{obs}
+
+\section{Simple-conexión}%
+\label{sec:simple_conexion}
+\begin{defi}
+$X$ es \underline{simplemente conexo} si cumple las siguientes condiciones equivalentes:
+\begin{enumerate}
+    \item $\forall \sigma, \tau: \left[ a, b \right] \rightarrow X$ con iguales extremos son homótopos con extremos fijos.
+    \item $\forall f: \mathbb{S}' \rightarrow X$ se extiende al disco interior de la circunferencia.
+\end{enumerate}
+\end{defi}
+\begin{demo}
+    Colapsando dos lados de un cuadrado $\xrightarrow{\pi}$ disco con dos puntos en la circunferencia unidos por dos ceros $\alpha, \beta$.
+
+    \item 1. $\Rightarrow$ 2.) 
+    \begin{align*}
+        f: \mathbb{S}^1 \rightarrow X &\Rightarrow f \circ \pi \begin{cases}
+            \alpha \rightarrow \text{ camino } \sigma\\
+            \beta \rightarrow \text{ camino } \tau
+        \end{cases}\\
+        &\Rightarrow \exists H \text{ con extremos fijos } \Rightarrow \text{ compatible con } \pi \\
+        &\Rightarrow H \text{ pasa al cociente por } \pi \text{, dando } F.
+    .\end{align*}
+
+    \item 2. $\Rightarrow$ 1.) Dos caminos $\sigma, \tau$ con extremos $p, q$ definen $f$ en la circunferencia y su extensión $F$ al disco define la homotopía $H = F \circ \pi$.
+\end{demo}
+
+\begin{ej}
+Los conjuntos convexos son simplemente conexos. ¿Los estrellados?
+\end{ej}
+
+\section{Esferas \texorpdfstring{$\mathbb{S}^n,\ n \ge 2$}{Sn, n >= 2}}%
+\label{sec:esferas_s_n}
+\begin{prop}
+$\mathbb{S}^n : \{x_1^2 + \ldots + x_{n + 1}^2 = 1\} \subset \mathbb{R}^{n + 1}$ es simplemente conexo ($n \ge 2$).
+\end{prop}
+\begin{demo}
+$\sigma, \tau: \left[ a, b \right] \rightarrow \mathbb{S}^n,\ \sigma\left( a \right) = \tau\left( a \right) = p,\ \sigma\left( b \right) = \tau\left( b \right) = q$.
+\[
+\exists c, -c \in \mathbb{S}^n\setminus \{p, 1\}\; \land \;\begin{rcases}
+   U = \mathbb{S}^n \setminus \{c\} \stackrel{\text{homeo.}}{\approx} \mathbb{R}^n\\
+   V = \mathbb{S}^n \setminus \{-c\} \stackrel{\text{homeo.}}{\approx} \mathbb{R}^n
+\end{rcases} \text{proyección estéreo.}  
+\]
+\begin{enumerate}
+    \item $\left[ a, b \right] \subset \sigma^{-1}U \cup \sigma^{-1}V \xRightarrow{\text{comp.}} \exists a = t_0 < t_1 < \ldots < t_r = 1: \sigma\left[ t_{i - 1}, t_1 \right] \begin{cases}
+        \subset U\\
+        \subset V
+    \end{cases}$ dónde $\sigma\left[ t_{i - 1}, t_i \right]$ es la traza de $\sigma_i = \sigma|_{\left[ t_{i - 1}, t_i \right]}$.
+
+    \item Si dos consecutivos están en el mismo $U$ ó $V$, eliminamos la juntura común $\Rightarrow$ al atravesar una juntura $t_k$ cambiamos de $U$ a $V$ ó viceversa, en particular, $x_k = \sigma\left( t_k \right) \in U \cap V \approx \mathbb{R}^n \setminus \{\text{punto}\}$, que es conexo por caminos, o bien, nos quedamos sin junturas y $\sigma\left[ a, b \right] \subset U$ ó $V$.
+
+    \item Consideramos los trozos en $V$ (incluido que $\sigma\left[ a, b \right] \subset V$ porque no hay ya junturas)
+    \begin{center}
+        \includegraphics[scale=0.3]{images/esferas_sn_3} 
+    \end{center}
+    \begin{itemize}
+        \item[(*)]
+        \begin{align*}
+            \sigma\left( t_{i - 1} \right), \sigma\left( t_i \right) \in U \cap V &\approx \mathbb{R}^n \setminus \{\text{punto}\} \text{ conexo por caminos}\\
+            &\Rightarrow \exists \sigma_i^*: \left[ t_{i - 1}, t_i \right] \rightarrow U\cap V \subset V \text{ mismos extremos que } \sigma_i
+        .\end{align*}
+
+        \item[(**)] $V \approx \mathbb{R}^n$ convexo $\Rightarrow \exists H_s^i: \sigma_i \simeq \sigma_i^*$ en $V$ con extremos fijos. ¡Ojo! $\boxed{\sigma_i^*: \left[ t_{i - 1}, t_i \right] \rightarrow U}$.
+    \end{itemize}
+
+    \item Pegando a trozos homotopías en $\mathbb{S}^n$:
+    \[
+    \begin{cases}
+        \sigma\left[ t_{i_1}, t_i \right] \subset U \Rightarrow H_s^i \equiv \sigma_i = \sigma_i^*: \left[ t_{i - 1}, t_i \right] \rightarrow U \subset \mathbb{S}^n\\
+        \sigma\left[ t_{i_1}, t_i \right] \subset V \xRightarrow{3} H_s^i : \sigma_i \simeq \sigma_i^*: \left[ t_{i - 1}, t_i \right] \rightarrow V \subset \mathbb{S}^n
+    \end{cases} \Rightarrow \sigma \simeq \sigma^* 
+    \]
+    Homótopos en $\mathbb{S}^n$ con extremos fijos, pero $\sigma^*\left[ a, b \right] \subset U$.
+
+    \item Igual, $\exists H_s: \tau \simeq \tau^*$ homotopía en $\mathbb{S}^n$ con extremos fijos, pero $\tau^*\left[ a, b \right] \subset U$.
+\end{enumerate}
+En conclusión: $\sigma^* \simeq \tau^*$ en $U \left( \approx \mathbb{R}^n \right)$ con extremos fijos $\Rightarrow \sigma \simeq \sigma^* \simeq \tau^* \simeq \tau$ con extremos fijos.
+\end{demo}
+
+\chapter{El grupo fundamental}%
+\label{cha:el_grupo_fundamental}
+\section{Operaciones con caminos}%
+\label{sec:operaciones_con_caminos}
+Sea $X$ es conexo por caminos.
+\begin{defi}[Producto]
+$\sigma, \tau: \left[ 0, 1 \right] \rightarrow X, \sigma\left( 1 \right) = \tau\left( 0 \right) \Rightarrow \sigma * \tau\left( t \right) = \begin{cases}
+    \sigma\left( 2 t \right),\ 0 \le t \le 1/2\\
+    \tau\left( 2t - 1 \right),\ 1/2 \le t \le 1
+\end{cases}$
+
+[Reescalando $\begin{cases}
+    \sigma \text{ de } \left[ 0, 1 \right] \text{ a } \left[ 0, 1/2 \right]\\
+    \tau \text{ de } \left[ 0, 1 \right] \text{ a } \left[ 1/2, 1 \right] 
+\end{cases}$]
+
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/prod_grupo_fundamental} 
+\end{center}
+\end{defi}
+
+Las propiedades algebraicas son TODAS SALVO HOMOTOPÍA \underline{CON EXTREMOS FIJOS}.
+%TODO: Fix
+\begin{prop}
+\underline{Propiedades} de grupo:
+\begin{enumerate}
+    \item \underline{Asociativa}: $\left( \alpha * \beta \right) * \gamma \simeq \alpha * \left( \beta * \gamma \right)$.
+
+    En cada altura $s$ se reescalan los caminos con junturas.
+    \begin{center}
+        \includegraphics[scale=0.3]{images/asoc_gr_fund} 
+    \end{center}
+    \item \underline{Neutros}: 
+    \begin{center}
+        \includegraphics[scale=0.3]{images/neutro_gr_fund} 
+    \end{center}
+    \item \underline{Inverso}: $\sigma'\left( t \right) = \sigma\left( 1 - t \right) \Rightarrow \sigma * \sigma' \simeq e_0$ y $\sigma'' = \sigma \Rightarrow \sigma' * \sigma \simeq e_1$.
+
+    No se reescala: $0 \le \frac{1 - s}{2} \le \frac{1 + s}{2} \le 1$. 
+
+    Las junturas dicen dónde parar $\sigma$ y empezar $\sigma'$ en cada altura:
+    \begin{center}
+        \includegraphics[scale=0.3]{images/inv_gr_fund} 
+    \end{center}
+
+    \item \underline{Invarianza por homotopía}: 
+    \begin{gather*}
+        \begin{cases}
+            F_s: \sigma_1 \simeq \sigma_2\\
+            G_s: \tau_1 \simeq \tau_2
+        \end{cases} \xRightarrow{\text{Trans.}} F_s * G_s: \sigma_1 * \tau_1 \simeq \sigma_2 * \tau_2\\
+        F_s * G_s\left( t \right) = \begin{cases}
+            F_s\left( 2t \right),\ 0 \le t \le \frac{1}{2},\\
+            G_s\left( 2t - 1 \right),\ \frac{1}{2} \le t \le 1
+        \end{cases} 
+    .\end{gather*}
+
+\end{enumerate}
+\end{prop}
+
+\section{El grupo fundamental}%
+\label{sec:el_grupo_fundamental}
+Sea $X$ conexo por caminos, $x_0 \in X$ \underline{punto base} fijo.
+\begin{defi}
+\begin{enumerate}
+    \item \underline{Lazo de base $x_0$}, $\sigma: \left[ 0, 1 \right] \rightarrow X,\ \underbrace{\sigma\left( 0 \right) = \sigma\left( 1 \right)}_{\text{lazo}} = x_0$, punto fijo.
+
+    \item \begin{itemize}
+        \item $\sigma, \tau: \left[ 0, 1 \right] \rightarrow X$ lazos de base $x_0$.
+        \item $H_s: \sigma \simeq \tau$ \underline{de lazos}: $H_s\left( 0 \right) = H_s\left( 1 \right),\ \forall s$.
+        \item $H_s = \sigma \stackrel{x_0}{\simeq} \tau$ de lazos \underline{con punto base fijo}: $H_s\left( 0 \right) = H_s\left( 1 \right) = x_0,\ \forall s$. [Relativa a $\{0, 1\}$]
+    \end{itemize}
+\end{enumerate}
+\end{defi}
+\begin{defi}[Grupo fundamental]
+\begin{itemize}
+    \item $\pi\left( X, x_0 \right) = \{\text{lazos de base } x_0\} / \stackrel{x_0}{\simeq}$. [``Lazos / homotopía'']
+    \item $\left[ \sigma \right] * \left[ \tau \right] = \left[ \sigma * \tau \right]$ define bien un grupo por \ref{sec:operaciones_con_caminos}.
+\end{itemize}
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item $X$ simplemente conexo $\Leftrightarrow \pi\left( X, x_0 \right) = \{1\},\ \forall x_0$. [$\Leftarrow)$ ejercicio]
+    \item $\pi\left( \mathbb{S}^n, x_0 \right) = \{1\},\ n \ge 2$.
+    \begin{demo}
+    Por $1)$ y ser $\mathbb{S^n},\ n \ge 2$ simplemente conexa.
+    \end{demo}
+    \item $\pi\left( \mathbb{R}\mathrm{P}^n, x_0 \right) = \mathbb{Z}_2,\ n \ge 2$.
+    \item $\pi\left( \mathbb{S}^1, x_0 \right) = \mathbb{Z},\ \pi\left( \text{banda Möbius} \right) = \mathbb{Z}$.
+    \item $\pi\left( \infty, x_0 \right) = \mathbb{Z} \cdot \mathbb{Z}$ que es una lemniscata y un grupo libre \underline{no conmutativo}.
+\end{enumerate}
+\end{ej}
+El cálculo de grupos fundamentales no es una tarea trivial, pero muy útil.
+
+El punto base no es muy importante.
+\begin{prop}
+Sea $\alpha: \left[ 0, 1 \right] \rightarrow X$ de $\alpha\left( 0 \right) = x_0$ a $\alpha\left( 1 \right) = x_1$. La conjugación:
+\begin{align*}
+    \pi\left( X, x_0 \right) &\rightarrow \pi\left( X, x_1 \right)\\
+    \left\lceil \sigma \right\rceil &\mapsto \left[ \sigma' * \sigma * \sigma \right] 
+.\end{align*}
+es isomorfismo de grupos.
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/conj_iso_grupos} 
+\end{center}
+\end{prop}
+\begin{demo}
+Fácil con las propiedades de \ref{sec:operaciones_con_caminos}.
+\end{demo}
+
+\section{Funtorialidad}%
+\label{sec:funtorialidad}
+\begin{defi}    
+Definimos $h_*$ como:
+\begin{align*}
+    h: X \rightarrow Y &\text{ homeo, } h\left( x_0 \right) = y_0 \Rightarrow\\
+    h_*: \pi\left( X, x_0 \right) &\rightarrow \pi\left( Y, y_0 \right) \text{ iso.}\\
+    \left[ \sigma \right] &\mapsto \left[ h \circ \sigma \right] 
+.\end{align*}
+\end{defi}
+Es fácil y útil: espacios homeomorfos deben tener grupos fundamentales isomorfos.
+
+Por ejemplo, $\mathbb{S}^2$ y $\mathbb{R}P^2$ no son homeomorfos. Pero la construcción es mucho más general.
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/const_functorialidad} 
+\end{center}
+
+\begin{defi}[Funtorialidad]
+$\left( g \circ f \right)_* = g_* \circ f_*$ y $\left( id_X \right)_* = id_{\pi\left( X, x_0 \right)}$. 
+\end{defi}
+
+\begin{ej}
+    Si $h: X \rightarrow Y,\ x_0 \mapsto y_0$ es homeomorfismo $\Rightarrow \left( h_* \right)^{-1} = \left( h^{-1} \right)_*$. [Más preciso que $h_*$ isomorfismo]
+\end{ej}
+
+\begin{prop}[Producto de espacios]
+Tenemos que si:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/prod_espacios_funt} 
+\end{center} 
+entonces:
+\begin{align*}
+    \pi\left( X \times Y, \left( x_0, y_0 \right) \right) &\xrightarrow{p_*, q_*} \pi\left( X, x_0 \right) \times \pi \left( Y, y_0 \right)\\
+    \left[ \gamma \right] = \left[ \left( \sigma; \tau \right) \right] &\mapsto \left( \left[ \sigma \right], \left[ \tau \right] \right)
+.\end{align*}
+es un isomorfismo.
+\end{prop}
+\begin{demo}
+Sean:
+\[
+\begin{rcases}
+    F_s: \sigma_1 \stackrel{x_0}{\simeq} \sigma_2\\
+    G_s: \tau_1 \stackrel{y_0}{\simeq} \tau_2
+\end{rcases} \Rightarrow \left( F_s, G_s \right): \left( \sigma_1, \tau_1 \right) = \gamma_1 \mapsto \gamma_2 = \left( \sigma_2, \tau_2 \right) \text{ y nada más...} 
+\]
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\pi\left( \mathbb{S} \times \mathbb{S} \right) = \pi\left( \mathbb{S} \right) \times \pi\left( \mathbb{S} \right) = \mathbb{Z}^2$.
+    \item $\pi\left( \mathbb{S}^1 \times \left[ 0, 1 \right] \right) = \pi\left( \mathbb{S} \right) \times \pi\left( \left[ 0, 1 \right] \right)$.
+\end{enumerate}
+\end{ej}
+
+\chapter{Retractos}%
+\label{cha:retractos}
+\section{Retractos y deformaciones}%
+\label{sec:retractos_y_deformaciones}
+\begin{defi}
+Una aplicación $\rho: X \rightarrow A \subset X$ es:
+\begin{enumerate}
+    \item Un \underline{retracto} si $\rho|_A = id_A$ (y $A = \rho\left( A \right)$ es un \underline{retracto de $X$})
+    \item Una \underline{deformación} (fuerte) si: $\exists H_s: id_X \stackrel{A}{\simeq} \rho$, homotopía relativa a $A$.
+\end{enumerate}
+\end{defi}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\forall$ cte $: X \rightarrow \{x_0\} \subset X$ es retracto.
+    \item El retracto \underline{radial} $\rho: \mathbb{R}^{n + 1} \setminus \{0\} \rightarrow \mathbb{S}^n: x \mapsto x / \lVert x \rVert$ es una deformación. $H_s\left( x \right) = \left( 1 - s \right) x + s\rho\left( x \right)$.
+    \item $\begin{rcases}
+        \rho: X \rightarrow A \subset X \subset \mathbb{R}^n \text{ retracto}\\
+        \left[ x, \rho\left( x \right) \right] \subset X,\ \forall x
+    \end{rcases} \Rightarrow \rho$ deformación: $H_s = \left( 1 - s \right) id_X + s\rho$ (interpolación).
+    \item Cilindros: 
+    \begin{align*}
+        \rho: X \times \left[ 0, 1 \right] &\rightarrow X \times \{0\}\\
+        \left( x, t \right) &\mapsto \left( x, 0 \right) = \rho \left( x, t \right) 
+    .\end{align*}
+    con $\rho$ deformación sobre $X : H_s\left( x, t \right) = \left( x, \underbrace{\left( 1 - s \right) t}_{\left( 1 - s \right) t + s \cdot 0} \right)$.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/deformacion_cilindros} 
+    \end{center}
+    \item Banda de Möbius: $\mathbb{S}^1 \subset M = \bigcup_{p \in \mathbb{S}^1} \left[ a_p, b_p \right]$.
+
+    Deformación sobre $\mathbb{S}^1: \begin{cases}
+        \rho: M \rightarrow \mathbb{S}^1: x \mapsto \rho\left( x \right)\\
+        H_s\left( x, s \right) = \left( 1 - s \right) x + s\rho\left( x \right) 
+    \end{cases}$
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/deformacion_moebius} 
+    \end{center}
+\end{enumerate}
+\end{ej}
+
+\begin{prop}
+Sea $\rho: X \rightarrow A \subset X,\ a_0 \in A;\ \rho_*: \pi\left( X, a_0 \right) \rightarrow \pi\left( A, a_0 \right)$.
+\begin{enumerate}
+    \item $\rho$ retracto $\Rightarrow \rho_*$ suprayectivo.
+    \item $\rho$ deformación $\Rightarrow \rho_*$ isomorfismo.
+\end{enumerate}
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item $\rho$ retracto:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/dem_retracto_sobre} 
+    \end{center}
+
+    \item $\rho$ deformación:
+    \[
+    H_s: id_X \stackrel{A}{\simeq} \rho \Rightarrow j_* \text{ sobre.} : \begin{cases}
+        \left[ \sigma \right] \in \pi\left( X, a_0 \right) &\Rightarrow H_s \circ \sigma: \sigma \stackrel{A}{\simeq} \rho \circ \sigma = j \circ \rho \circ \sigma\\
+           &\Rightarrow \left[ \sigma \right] = \left[ j \circ \rho \circ \sigma \right] = j_*\left[ \rho \circ \sigma \right] 
+    \end{cases} 
+    \]
+    y por ser $j_*$ sobre $\Rightarrow \rho_*$ inyectiva.
+\end{enumerate}
+\end{demo}
+
+\begin{ej}
+\begin{enumerate}
+    \item $\pi\left( \mathbb{R}^{n + 1?} \setminus \{0\} \right) = \pi\left( \mathbb{S}^n \right) = \begin{cases}
+        \{1\},\ n\ge 2\\
+        \mathbb{Z},\ n = 1
+    \end{cases}$
+    \item $\pi$(cilindro) = $\pi$(banda de Möbius) $= \pi \left( \mathbb{S}^1 \right) = \mathbb{Z}$.
+\end{enumerate}
+\begin{demo}
+    Veremos $\mathbb{S}^1$...
+\end{demo}
+\end{ej}
+
+\section{Cocientes}%
+\label{sec:cocientes}
+Muchos espacios son cocientes y las deformaciones se pueden hacer compatibles para facilitar las construcciones.
+
+\begin{ej}
+Cilindro $C = \mathbb{S}^1 \times \left[ 0, 1 \right]$ y banda de Möbius $M$.
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/coc_cilindro_moebius} 
+\end{center}
+Tenemos $C, M = R / $ identificaciones adecuadas de lados opuestos y, por otro lado, la deformación de $R$ sobre $A = \left[ a, b \right],\ H_s\left( z \right) = \left( 1 - s \right) z + s \rho\left( z \right) \xRightarrow{(*)}$ deformación de $R / \sim$ sobre $\left[ a, b \right] / \sim = \mathbb{S}^1$. 
+
+Es decir, \fbox{$\mathbb{S}^1$ es deformación de $C$ y de $M$, luego todos tienen $\pi = \mathbb{Z}$.} 
+
+$(*)$: porque $p$ y $H_s$ son \underline{compatibles con las relaciones}: $z \sim z' \Rightarrow H_s\left( z \right) \simeq H_s\left( z' \right)$, luego inducen aplicaciones continuas $\overline{\rho}$ y $\overline{H_s}: R / \sim\ \rightarrow A / \sim$. 
+
+Normalmente se hacen las deformaciones pensando en que cumplan $H_s\left( z \right) \simeq H_s\left( z' \right)$.
+\end{ej}
+
+\section{Agujeros}%
+\label{sec:agujeros}
+Conviene insistir en un ejemplo importante de deformación y sus variantes.
+%TODO: No sé que entorno usar aquí
+\begin{enumerate}
+    \item $\rho: \underbrace{\mathbb{R}^{n + 1} \setminus \{0\}}_{\text{esp. con ``agujero''}}  \rightarrow \mathbb{S}^n$ deformación $\Rightarrow \pi\left( \mathbb{R}^{n + 1} \setminus \{0\}, x_0 \right) =$ \[
+    = \begin{cases}
+        \mathbb{Z},\ n = 1 \text{ (se verá...)}\\
+        \{1\},\ n \ge 2\ (\mathbb{S}^n,\ n \ge 2 \text{ simple-conexa}) 
+    \end{cases} 
+    \]
+
+    \item Dibujos en $\mathbb{R}^2 \setminus \{c\}$ de retracciones sobre curvas ``alrededor'' del ``agujero'' $c$:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/curvas_R2_agujero_c} 
+    \end{center}
+
+    \item Dos agujeros $\mathbb{R}^2 \setminus \{a, b\}$.
+
+    Se trocea el espacio en cerrados, en cada uno de los cuáles se hace una deformación, de manera que en las fronteras coincidan. En el dibujo se sombrean diferentes las zonas en las que se usan deformaciones diferentes. Las deformaciones más cómodas son las interpolaciones de $id$ y una retracción geométrica.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/curvas_R2_dos_agujeros} 
+    \end{center}
+    En este caso, $\rho: \mathbb{R}^2 \setminus \{a, b\} \rightarrow \infty?$ es deformación y $\pi\left( \mathbb{R}^2 \setminus \{a, b\}, x_0 \right) = \pi\left( \infty? \right) = \mathbb{Z} * \mathbb{Z}$ (grupo fundamental de una lemniscata).
+
+    \item Otra variante:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/variante_4_agujeros} 
+    \end{center}
+    %TODO
+    $\mathbb{R}^2 \setminus \{a, b\} \rightarrow dibujo$ deformación dice que:
+    \[
+    \pi\left( dibujo \right) = \pi\left( \mathbb{R}^2 \setminus \{a, b\}, x_0 \right) = \pi \underbrace{\left( \infty? \right)}_{= \mathbb{Z} * \mathbb{Z}}  
+    \]
+    que es igual al grupo fundamental, pero \underline{no} homeomorfismo.
+
+    \item Aún más ejemplos así (ya sin especificar el punto base):
+    \[
+    \pi\left( \mathbb{R}^2 \setminus \{a, b, c\} \right) = \pi\left( dibujo \right) = \pi\left( dibujo \right) = \pi \left( dibujo \right) = \mathbb{Z} * \mathbb{Z} * \mathbb{Z}
+    \]
+    \begin{demo}[creo]
+    Cualesquiera tres puntos en $\mathbb{R}^2$ se pueden recolocar con homeomorfismos para hacer, a partir de ellos, retracciones sobre las curvas dibujadas, \underline{no homeomorfas}. (?) 
+    \end{demo}
+\end{enumerate}
+
+\underline{Ejercicio}: Deformar $\mathbb{R}\mathrm{P}^2 \setminus \{a\}$ sobre una circunferencia, para obtener $\pi\left( \mathbb{R}\mathrm{P}^2 \setminus \{a\} \right) = \mathbb{Z}$.
+
+\chapter{Recubridores}%
+\label{cha:recubridores}
+\section{El problema de elevación}%
+\label{sec:el_problema_de_elevacion}
+Fijada $p$, qué $f$'s tienen \underline{elevación} $\tilde{f}$. i.e: $p \circ \tilde{f} = f$ 
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/problema_elevacion} 
+\end{center}
+\begin{defi}
+$p$ es un \underline{recubridor} si $\forall x \in X,\ \underbrace{\exists U^x}_{\text{ab. \underline{trivializante}}} : p^{-1}\left( U^x \right) = \bigsqcup_{\lambda} U_{\lambda}$ y $\forall \lambda, p|: U_{\lambda} \rightarrow U^x$ homeomorfismo.
+\end{defi}
+Es un tipo especial de homeomorfismo local sobreyectivo y, por eso, identificación abierta.
+
+\begin{ej}[¡Importantes!]
+\begin{enumerate}
+    \item La identificación \underline{antipodal}, $\pi: \mathbb{S} \rightarrow \mathbb{R}\mathrm{P}^n$,
+    \[
+    \forall x \in \mathbb{R}\mathrm{P}^n \underbrace{\exists U^x}_{\text{trivializante}} = \mathbb{R}\mathrm{P}^n \setminus \underbrace{H}_{\text{hiperplano}}\; \land \;\pi^{-1}\left( U^x \right) = \mathbb{S}^n\setminus \pi^{-1}H = S_+ \sqcup S_-  
+    \]
+    hemisferios abiertos.
+
+    Ya se ilustró convenientemente en su lección. ¿Qué se tiene para $n = 1$?
+
+    \item La identificación \underline{exponencial}, $p: \mathbb{R} \rightarrow \mathbb{S}^1: \theta \mapsto e^{2ni\theta} = \left( \cos 2\pi\theta, \sin 2\pi\theta \right)$.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.2]{images/identificacion_exponencial} 
+    \end{center}
+\end{enumerate} 
+\end{ej}
+
+\section{Unicidad de elevación}%
+\label{sec:unicidad_de_elevacion}
+\begin{prop}
+Si $Z$ es conexo, dos elevaciones que coinciden en algún puntos son iguales.
+\end{prop}
+\begin{demo}
+    $A = \{z \in Z: \tilde{f}_1 \left( z \right) = \tilde{f}_2\left( z \right)\}, p \circ \tilde{f}_1 = f$.
+    \begin{align*}
+        \underbrace{x}_{f\left( z \right)} \in U^x,\ p^{-1} U^x &= \bigsqcup_{\lambda} U_{\lambda} \text{ (trivialización)} \Rightarrow \tilde{f}_i\left( z \right) \in p ^{-1}U^x\; \land \;\exists!\lambda_i: \tilde{f}_i\left( z \right) \in U_{\lambda_i}\\
+        &\Rightarrow \forall \eta \in W^z = \tilde{f}_1^{-1}\left( U_{\lambda_1} \right) \cap \tilde{f}_2^{-1} \left( U_{\lambda_2} \right): \hat{f}_1\left( \eta \right) = \hat{f}_2\left( \eta \right) \stackrel{(*)}{\Leftrightarrow} \lambda_1 = \lambda_2 (**)
+    .\end{align*}
+    $(*)$ debido a: 
+    \begin{itemize}
+        \item $\Rightarrow) U_{\lambda}$'s disjuntos. 
+        \item $\Leftarrow) p \tilde{f}_1 = p \tilde{f}_2$ y $p|_{U_\lambda}$ 1-1.
+    \end{itemize}
+
+    Por tanto, 
+    \begin{align*}
+        \underbrace{\text{Ab.}}_{A} W^z \subset A \text{ si } z \in A: \tilde{f}_1\left( z \right) = \tilde{f}_2\left( z \right) &\stackrel{(**)}{\Rightarrow} \lambda_1 = \lambda_2 \Rightarrow \tilde{f}_1\left( W^z \right)\ \land \ \tilde{f}_2\left( W^z \right) \subset U_{\lambda_1} = U_{\lambda_2} \xrightarrow{p|} \underbrace{U^x }_{\text{iny.}}\\
+        &\Rightarrow \forall \eta \in W^z: \tilde{f}_1\left( \eta \right),\ \tilde{f}_2\left( \eta \right) \mapsto \tau?\left( z \right) \Rightarrow \tilde{f}_1\left( \eta \right) = \tilde{f}_2\left( \eta \right)
+    .\end{align*}
+    y, 
+    \begin{align*}
+        \underbrace{\text{Cerr.}}_{A} W^z \subset Z \setminus A \text{ si } z \not\in A: \tilde{f}_1\left( z \right) \neq \tilde{f}_2\left( z \right) &\stackrel{(**)}{\Rightarrow} \lambda_1 \neq \lambda_2 \Rightarrow \tilde{f}_1\left( W^z \right) \cap \tilde{f}_2\left( W^z \right) \subset U_{\lambda_1} \cap U_{\lambda_2} = \emptyset\\
+        &\Rightarrow \forall \eta \in W^z: \tilde{f}_1\left( \eta \right) \neq \tilde{f}_2\left( \eta \right) 
+    .\end{align*}
+    Por tanto, 
+    \[
+        \exists \tilde{f}_1\left( z \right) = \tilde{f}_2\left( z \right) \Rightarrow \emptyset \neq A \stackrel[\text{cerr.}]{\text{ab.}}{\subset} Z \text{ conx.} \Rightarrow A = Z\; \land \;\tilde{f}_1 = \tilde{f}_2
+    \]
+\end{demo}
+
+\section{Lema de elevacción}%
+\label{sec:lema_de_elevaccion}
+\begin{prop}
+Tenemos que:
+\[
+\begin{cases}
+    f = H: Y \times \left[ 0, 1 \right] \rightarrow X \text{ (homotopía)} \\
+    \exists \tilde{H}_0 \text{ elevación de } H_0: Y \rightarrow X
+\end{cases} \Rightarrow \exists \tilde{H} \text{ elevación, } \left( \tilde{H} \right)_0 = \tilde{H}_0
+\]
+\end{prop}
+\begin{demo}
+\begin{enumerate}
+    \item \underline{Elevación semilocal}: $\forall y \in Y,\ \tilde{H}^y: V^y \times \left[ 0, 1 \right] \rightarrow \tilde{X}$ elevación de $H|_{V^y \times \left[ 0, 1 \right]}$.
+    \begin{enumerate}
+        \item $\{y\} \times \left[ 0, 1 \right] \subset \bigcup_{x} H^{-1}\left( U^x \right),\ p ^{-1} U^x = \bigsqcup_{\lambda} U_{\lambda}$ (trivialización en $x$) $\Rightarrow$
+        \begin{align*}
+            &\xRightarrow{\text{comp.}} \exists 0 = t_0 < t_1 < \ldots < t_r = 1: \{y\} \times \left[ t_{i - 1}, t_i \right] \subset H^{-1}\left( U^{x_i} \right)\\
+            &\xRightarrow{\text{comp.}} \forall i,\ \exists V_i^y \times \left[ t_{i-1}, t_i \right] \subset H^{-1}\left( U^{x_i} \right)\\
+            &\Rightarrow \exists V^y = V_1^y \cap \ldots \cap V_r^y: V^y \times \left[ t_{i - 1}, t_i \right] \stackrel{(*)}{\subset} H^{-1}\left( U^{x_i} \right)
+        .\end{align*}
+
+        \item Inducción, $i > 0: \exists \tilde{H}_0: V^y \times \{t_0\} \rightarrow \tilde{X}$ por hipótesis. 
+        \begin{align*}
+            \underline{i - 1 \rightarrow i}:\ &\exists H_{i - 1}^y \text{ en } V^y \times \left[ t_0, t_{i - 1?} \right] \Rightarrow \text{se puede extender a } V^y \times \left[ t_{i - 1}, t_i \right] \\
+            (*) &\Rightarrow \begin{cases}
+                H\left( y, t_{i - 1} \right) \in U^{x_i} \xRightarrow{\exists \lambda} \tilde{H}_{i - 1}^y \left( y, t_{i - 1} \right) \in U_{\lambda} \xRightarrow{\text{red. } V^y}\\
+                \qquad \hat{H}_{i - 1}^y \left( V^y \times \left( t_{i - 1} \right) \right) \subset U_{\lambda} \rightarrow U^{x_i}\\
+                \exists \left( p|_{U_{\lambda}}^{-1}\right) \circ H: V^y \times \left[ t_{i - 1}, t_i \right] \rightarrow U_{\lambda} \text{ elevación (de } H)
+            \end{cases}\\
+                &\Rightarrow p\circ\tilde{H}_{i - 1}^y = p \circ \left[ \left( p|_{U_{\lambda}}^{-1} \circ H \right) \right]: V^y \times \{t_{i - 1}\} \rightarrow U^{x_i}\\
+                &\quad \xRightarrow{p|_{U_\lambda} \text{ iny.}} \tilde{H}_{i - 1}^y = \left( p|_{U_{\lambda}} \right)^{-1} \circ H \text{ en } V^y \times \{t_{i - 1}\}\\
+                &\Rightarrow \left( p|_{U_{\lambda}}^{-1} \right) \circ H \text{ extiende } \tilde{H}_{i - 1}^y \text{ a } V^y \times \left[ t_{i - 1}, t_i \right] 
+        .\end{align*}
+    \end{enumerate}
+
+    \item \underline{Elevación global}. Las locales $\{\tilde{H}^y: V^y \times \left[ 0, 1 \right] \rightarrow \tilde{X}\}_{y \in Y}$ encolan bien, pues coinciden en las intersecciones: $\forall y \in V^{y_1} \cap V^{y_2}$:
+\end{enumerate}
+\end{demo}
+
+\begin{obs}
+\begin{enumerate}
+    \item La elevación de una aplicación $Y \rightarrow X$ sólo depende de su clase de homotopía.
+    \item Todo camino $\sigma: \left[ 0, 1 \right] \rightarrow X$ tiene uan única elevación $\tilde{\sigma}$ con origen $\tilde{\sigma}\left( 0 \right) \in p^{-1}\left( \sigma\left( 0 \right) \right)$.
+    \[
+    \begin{rcases}
+    \begin{rcases}
+        \tilde{H}^{y_1} \left( y, \bullet \right)\\
+        \tilde{H}^{y_2} \left( y, \bullet \right) 
+    \end{rcases} \text{elevan } H\left( y, \bullet \right) : \{y\} \times \left[ 0, 1 \right] \\  
+    \tilde{H}^{y_1} \left( y, 0 \right) = \tilde{H}_0\left( y \right) = \tilde{H}^{y_2} \left( y, 0 \right) \text{ 1\textsuperscript{er} paso ind.} 
+    \end{rcases} \xRightarrow{\text{Uni. elevaccón.}} 
+    \tilde{H}^{y_1} \left( y, t \right) = \tilde{H}^{y_2} \left( y, t \right),\ \forall z
+    \]
+\end{enumerate}
+\end{obs}
+
+
+\chapter{Cálculos mediante recubridores}%
+\label{cha:calculos_mediante_recubridores}
+Hemos visto ya que:
+\begin{itemize}
+    \item $\pi$(estrellado) $= \{1\},\ \pi\left( \mathbb{S}^n \right) = \{1\},\ n \ge 2 \Rightarrow \pi\left( \mathbb{R}^{n + 1} \setminus \{0\} \right) = \{1\}$.
+    \item $\pi\left( \mathbb{P}^{n} \right) = \mathbb{Z}_2,\ n \ge  2$ (no demostrado)
+    \item $\pi\left( \mathbb{S}^1 \right) = \mathbb{Z}$ (no demostrado).
+    \begin{itemize}
+        \item $\pi$(toro) $= \mathbb{Z} \times \mathbb{Z},\ \pi$(cilindro) $= \mathbb{Z}$.
+        \item $\pi$(banda de Möbius) $= \mathbb{Z},\ \pi\left( \mathbb{R}^2 \setminus \{a\} \right) = \mathbb{Z}$.
+    \end{itemize}
+    Ahora toca demostrar $\pi\left( \mathbb{P}^{n} \right)$ y $\pi\left( \mathbb{S}^1 \right)$.
+\end{itemize}
+
+\section{Espacios proyectivos reales}%
+\label{sec:espacios_proyectivos_reales_rec}
+\begin{theo}
+$\pi\left( \mathbb{P}^{n} \right) = \mathbb{Z}_2,\ n \ge 2$
+\end{theo}
+\begin{demo}
+Usamos el recubridor antipodal $p : \mathbb{S}^n \rightarrow \mathbb{P}^{n}: \tilde{x}, -\tilde{x} \mapsto x = \left[ \tilde{x} \right] = \left[ - \tilde{x} \right]$. Punto base en $\mathbb{P}^{n}: x_0 = \left( 0 : \ldots : 1 \right);\ \sigma: \left[ 0, 1 \right] \rightarrow \mathbb{P}^{n},\ \sigma\left( 0 \right) = \sigma\left( 1 \right) = x_0,\ \tilde{x}_0 = \left( 0, \ldots, 1 \right)$. Ahora, por el lema de elevación:
+\[
+    \Rightarrow \exists! \tilde{\sigma}: \left[ 0, 1 \right] \rightarrow \mathbb{S}^{n},\ p\tilde{\sigma} = \sigma,\ \tilde{\sigma} = \tilde{x}_0\; \land \;\tilde{\sigma}\left( 1 \right) \in p^{-1}\left( x_0 \right) = \{\tilde{x}_0, -\tilde{x}_0\}  
+\]
+No veces? lazo.
+\begin{enumerate}
+    \item $\tilde{\sigma}\left( 1 \right) = \tilde{x}_0 \xRightarrow{\mathbb{S}^{n} \text{ simple conx.}} \exists \tilde{H}_s: \tilde{\sigma} \stackrel{x_0}{\simeq} \tilde{x}_0 \Rightarrow \exists p \circ \tilde{H}_s: \sigma \stackrel{x_0}{\simeq} x_0 \Rightarrow \left[ \sigma \right] = 1 \in \pi\left( \mathbb{P}^{n}, x_0 \right)$. 
+
+    \item $\tilde{\sigma} \left( 1 \right) = -\tilde{x}_0 \xRightarrow{\mathbb{S}^{n} \text{ simple conx.}} \exists \tilde{H}_s: \tilde{\sigma} \stackrel{\tilde{x}_0,-\tilde{x}_0}{\simeq} \tilde{\alpha} = \left( 0, \ldots, 0, \sin \pi t, \cos \pi t \right) \Rightarrow \exists p \circ H_s: \sigma \stackrel{x_0}{\simeq} \alpha = p \circ \tilde{\alpha}$, lazo de base $x_0,\ \alpha\left( 0 \right) = \alpha\left( 1 \right) = x_0$. 
+
+    \item Tenemos:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/rec_esp_proy_r} 
+    \end{center}
+
+    \item[1. 2. 3.] $\Rightarrow \pi\left( \mathbb{P}^{n}, x_0 \right)$ tiene dos elementos distintos dependiendo del extremo de la elevación $\Rightarrow$ 
+        \[
+        \boxed{\pi\left( \mathbb{P}^{n}, x_0 \right) = \mathbb{Z}_2}.
+        \]
+\end{enumerate}
+\end{demo}
+
+\section{La circunferencia}%
+\label{sec:la_circunferencia}
+\begin{theo}
+$\pi\left( \mathbb{S}^{1} \right) = \mathbb{Z}$.
+\end{theo}
+\begin{obs}
+$\mathbb{S}^{1} = \mathbb{P}^{1}$.
+\end{obs}
+\begin{demo}
+    Usamos el recubridor exponencial $p: \mathbb{R} \rightarrow \mathbb{S}^{1}: \theta \mapsto \left( \cos 2 \pi \theta, \sin 2 \pi \theta \right)$. Punto base $x_0 \in \mathbb{S}^{1},\ \forall \sigma: \left[ 0, 1 \right] \rightarrow \mathbb{S}^{1},\ s\left( 0 \right) = \sigma\left( 1 \right) = x_0$. Por el lema de elevación:
+    \[
+    \Rightarrow \exists \tilde{\sigma} : \left[ 0, 1 \right] \rightarrow \mathbb{R}^{}, p \tilde{\sigma} = \sigma \Rightarrow p \tilde{\sigma} \left( 1 \right) = \sigma\left( 1 \right) = \sigma\left( 0 \right) = p \tilde{\sigma} \left( 0 \right) \Rightarrow \tilde{\sigma} \left( 1 \right) = \tilde{\sigma} \left( 0 \right) + k,\ k \in \mathbb{Z}
+    \]
+
+\begin{theo}
+    El \underline{nº de vueltas}:
+    \begin{align*}
+        \#: \pi\left( \mathbb{S}^{1}, x_0 \right) &\rightarrow \mathbb{Z}\\
+        \left[ \sigma \right] &\mapsto \# \sigma = \tilde{\sigma}\left( 1 \right) - \tilde{\sigma}\left( 0 \right) 
+    .\end{align*}
+    es isomorfismo de grupos bien definido.
+\end{theo}
+\begin{demo}
+    \begin{enumerate}
+        \item $k = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right)$ no depende de $\tilde{\sigma}$. 
+        \begin{align*}
+            p \tilde{\tau} = \sigma = p \tilde{\sigma} &\Rightarrow \tilde{\tau} \left( 0 \right) = \tilde{\sigma} \left( 0 \right) + l \Rightarrow \begin{cases}
+                \tilde{\tau}\\
+                \tilde{\sigma} + l
+            \end{cases} \parbox{5em}{elevan $\sigma$\\ coinciden\\ en $t = 0$} \xRightarrow{\text{uni. elev.}} \tilde{\tau} = \tilde{\sigma} + l\\
+            &\Rightarrow k = \tilde{\sigma}\left( 1 \right) - \tilde{\sigma} \left( 0 \right) = \left( \tilde{\tau} \left( 1 \right) - l \right) - \left( \tilde{\tau} \left( 0 \right) - l \right) = \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right) 
+        .\end{align*}
+
+        \item $k$ no depende de homotopía de lazos, luego $\#$ está bien definido. Sea $H_s: \sigma \simeq \tau$ y $H_s\left( 1 \right) = H_s\left( 0 \right),\ \forall s$:
+        \begin{align*}
+            &\Rightarrow \exists \tilde{H}_s: \tilde{\sigma} \simeq \tilde{\tau} \text{ entre elevaciones de } \sigma\; \land \;\tau\\
+            &\Rightarrow s \mapsto \underbrace{\tilde{H}_s\left( 1 \right)}_{\xrightarrow{p} H_s\left( 1 \right) }  \setminus \underbrace{\tilde{H}_s\left( 0 \right)}_{\xrightarrow{p} H_s\left( 0 \right)} \in \mathbb{Z} \xRightarrow{\text{cont.}} \tilde{H}_s\left( 1 \right) - \tilde{H}_s\left( 0 \right) \equiv cte.\\
+            &\Rightarrow k = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) = \tilde{H}_0\left( 1 \right) - \tilde{H}_0\left( 0 \right) \stackrel{cte.}{=} \tilde{H}_1\left( 1 \right) - \tilde{H}_1\left( 0 \right) = \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right)  
+        .\end{align*}
+
+        \item $\#$ es isomorfismo. Sea $\# \sigma = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right)$ y $\# \tau = \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right)$ y:
+        \begin{align*}
+            \tau\left( 0 \right) = \tau\left( 1 \right) = p \tilde{\sigma} \left( 1 \right) &\Rightarrow \tilde{\sigma} \left( 1 \right) \text{ cond. inicial elev.} \\
+            &\Rightarrow \exists \tilde{\tau} : \underline{\tilde{\tau} \left( 0 \right) = \tilde{\sigma} \left( 1 \right)} \Rightarrow \tilde{\sigma} * \tilde{\tau} = \tilde{\sigma * \tau} 
+        .\end{align*}
+        Entonces:
+        \begin{align*}
+            \# \left( \sigma * \tau \right) &= \tilde{\sigma * \tau} \left( 1 \right) - \tilde{\sigma * \tau} \left( 0 \right) = \tilde{\sigma} * \tilde{\tau} \left( 1 \right) - \tilde{\sigma} * \tilde{\tau} \left( 0 \right) = \tilde{\tau} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) =\\
+            &= \left( \tilde{\tau} \left( 1 \right) - \tilde{\tau} \left( 0 \right) \right) + \left( \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) \right) = \# \tau + \# \sigma
+        .\end{align*}
+
+        \item $\#$ es suprayectiva: 
+        \[
+        \# \left( \cos 2 \pi k t, \sin 2 \pi k t \right) = k t|_0^1 = k 
+        \]
+        (Recorrer $\mathbb{S}^{1}\ k$ veces)
+
+        \item $\#$ es 1-1:
+        \[
+        0 = \# \sigma = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) \Rightarrow \begin{cases}
+            \tilde{\sigma\left( 1 \right)} = \tilde{\sigma} \left( 0 \right) \Rightarrow \begin{rcases}
+                H_s\left( 0 \right) = p \tilde{\sigma} \left( 0 \right) = \sigma\left( 0 \right) = \sigma\left( 0 \right) = x_0\\
+                H_s\left( 1 \right) = p \tilde{\sigma} \left( 1 \right) = \sigma\left( 1 \right) = x_0
+            \end{rcases}(*)\\\\
+
+            \underbrace{p\left( \left( 1 - s \right) \tilde{\sigma} \left( t \right) + s \tilde{\sigma} \left( 0 \right) \right)}_{H_s\left( t \right)} : \sigma \stackrel[(*)]{x_0}{\simeq} x_0 
+        \end{cases} 
+        \]
+        [$\Rightarrow \left( \sigma \right) = 1 \in \pi \left( \mathbb{S}^{1}, x_0 \right)$]
+    \end{enumerate}
+\end{demo}
+\end{demo}
+
+
+\chapter{Aplicaciones en dimensión 2}%
+\label{cha:aplicaciones_en_dimension_2_}
+Veamos tres teoremas importantes que se pueden demostrar en dimensión $2$ con lo que ya hemos visto del grupo fundamental.
+
+\section{Teorema fundamental del Álgebra}%
+\label{sec:teorema_fundamental_del_algebra}
+\begin{theo}[Fundamental del Álgebra]
+Todo polinomio $P\left( z \right) \in \mathbb{C}\left[ z \right]$ tiene raíces complejas. 
+\end{theo}
+\begin{demo}
+Sea $P\left( z \right) = z^d + a_1z^{d - 1} + \ldots + \overbrace{a_d}^{\neq 0}$ (mónico después de dividir por el cof. director)
+\begin{enumerate}
+    \item Tendremos:
+    \begin{gather*}
+        P_s\left( z \right) = z^d + sa_1z^{d - 1} + \ldots + sa_d = 0 \xRightarrow{0 \le s \le 1} \lvert z \rvert < 1 + \lvert a_1 \rvert + \ldots + \lvert a_d \rvert = r\\
+        P_s \neq 0 \xRightarrow{z\neq 0} \text{entre } z^{d - 1}: -z = s\left( a_1 + \ldots + s \frac{a_d}{z^{d - 1}} \right) \Rightarrow \lvert z \rvert \le \begin{cases}
+            1,\ \lvert z \rvert \le 1\\
+            \lvert a_1 \rvert + \ldots + \lvert a_d \rvert,\ \lvert z \rvert \ge 1
+        \end{cases} 
+    .\end{gather*}
+
+    \item $z\left( t \right) = r\left( \cos 2 \pi t, \sin 2 \pi t \right) \Rightarrow \lvert z \left( t \right)\rvert  = r \Rightarrow \exists H_s\left( t \right) = \frac{P_s\left( z\left( t \right) \right)}{\underbrace{\lvert P_s\left( z\left( t \right) \right) \rvert}_{\neq 0} }$ por 1.
+    \begin{align*}
+        \Rightarrow \left( \cos 2 \pi dt, \sin 2 \pi dt \right) &= \frac{z\left( t \right)^d}{\lvert z\left( t \right)^d \rvert} = H_0\left( t \right) \stackrel{\text{lazos: } z\left( 0 \right)= z\left( 1 \right)}{\simeq} H_1\left( t \right)\\
+        &= \frac{P\left( z\left( t \right) \right)}{\lvert P\left( z \left( t \right) \right) \rvert} = \sigma\left( t \right) \Rightarrow d = \# \left( \ldots \right) = \# \sigma 
+    .\end{align*}
+
+    \item $P\left( z \right) \neq 0,\ \forall z \Rightarrow \exists G_s\left( t \right) = \frac{P\left( sz\left( t \right) \right)}{\lvert P\left( sz\left( t \right) \right) \rvert} : G_0 \equiv \frac{a_d}{\lvert a_d \rvert} \stackrel{\text{lazos}}{\simeq} G_1 = \sigma \Rightarrow 0 = \# \left( cte. \right) = \# \sigma$.
+\end{enumerate}
+\end{demo}
+
+\section{Teorema del punto fijo de Brouwer}%
+\label{sec:teorema_del_punto_fijo_de_brouwer}
+
+\begin{theo}[de no retracto]
+$\not \exists $ retracto $\rho: \mathbb{D}^2 = \{x^2 + y^2 \le 1\} \rightarrow \mathbb{S}^{1}$. 
+\end{theo}
+\begin{demo}
+    Tenemos:
+    \[
+    \exists \rho \Rightarrow \rho_*: \overbrace{\underbrace{\pi\left( \mathbb{D}^2 \right) }_{\text{convexo}}}^{= \{0\}} \rightarrow \underbrace{\pi\left( \mathbb{S}^{1} \right)}_{\stackrel{\#}{=} \mathbb{Z}} \text{sobre (\ref{sec:retractos_y_deformaciones})
+}   \]
+\end{demo}
+
+\begin{theo}[del punto fijo]
+$\forall f: \mathbb{D}^2 \rightarrow \mathbb{D}^2$ continua, $\exists p$ punto fijo $x = f\left( x\right)$.
+\end{theo}
+\begin{demo}
+Al absurdo?: $x \neq f\left( x \right), \forall x \Rightarrow \exists \rho: \mathbb{D}^2 \rightarrow \mathbb{S}^{1}$ retracto.
+
+Construcción de $\rho$:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/construccion_rho_punto_fijo} 
+\end{center}
+La recta ($x \neq f\left( x \right)$), $r\left( x, f\left( x \right) \right) \cap \mathbb{S}^{1} = \{a, b\} \Rightarrow \rho\left( x \right) = a = x + \overbrace{\lambda \left( x \right)}^{> 0} \left( x - f\left( x \right) \right)$. 
+
+\underline{Ejercicio}: Ecuación de $\lambda$ y continuidad.
+\end{demo}
+
+\section{Teorema de la esfera de Brouwer}%
+\label{sec:teorema_de_la_esfera_de_brouwer}
+\begin{theo}[de la esfera de Brouwer]
+$\nexists \eta: \mathbb{S}^{2} \rightarrow \mathbb{R}^{3}$ campo tangente continuo sin ceros. (Tangente $\equiv \eta\left( x \right) \perp x,\ \forall x \in \mathbb{S}^{2}$)
+\end{theo}
+\begin{demo}
+Con una ilustración:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_esfera_brouwer} 
+\end{center}
+Sea $\exists \eta$ sin ceros $\Rightarrow \exists \frac{\eta}{\lVert \eta \rVert}$ unitario $\Rightarrow$ podemos suponer $\lVert \eta \rVert = 1$:
+\begin{enumerate}
+    \item $h: \mathbb{S}^{1} \times \mathbb{S}^{2} \xrightarrow{\approx \text{ hom.}} SO\left( 3 \right) = $ \{matrices $3x3$ ortogonales, $\det > 0$\}
+    \[
+        \left( \alpha, \beta; x \right) \xmapsto{h} A = \left( u, v, u \times v \right) \begin{cases}
+            u = x\\
+            v = \alpha \eta\left( x \right) + \beta\left( x \times \eta\left( x \right) \right)
+        \end{cases} 
+    \]
+    Con $\alpha^2 + \beta^2 = 1,\ \lVert x \rVert = 1$. Bien definida, continua y biyectiva $\xRightarrow{\text{compacto a } T_2}$ homeo.
+
+    \item $h_*: \underbrace{\pi\left( \mathbb{S}^{1} \times \mathbb{S}^{2} \right)}_{= \mathbb{Z} \times \{1\}} \rightarrow \pi\left( SO\left( 3 \right) \right)$ isomorfismo $\Rightarrow \pi\left( SO\left( 3 \right) \right) = \mathbb{Z}$.
+
+    %TODO: xd
+    \item Abracadabra?: $SO\left( 3 \right) \stackrel{\text{homeo.}}{\approx} \mathbb{P}^{3} \Rightarrow \mathbb{Z} = \pi\left( SO\left( 3 \right) \right) = \pi \left( \mathbb{P}^{3} \right)$.
+\end{enumerate}
+\end{demo}
+
+
+\chapter{Más aplicaciones por el mismo precio}%
+\label{cha:mas_aplicaciones_por_el_mismo_precio}
+Unos cuantos teoremas profundos más en $\dim = 2$.
+\section{Borsuk-Ulam}%
+\label{sec:borsuk_ulam}
+\begin{theo}[de Borsuk]
+Sea $f: \mathbb{S}^{1} \rightarrow \mathbb{S}^{1}$ impar $\left( f\left( -x \right) = -f\left( x \right) \right): \# f\left( \cos 2 \pi t, \sin 2 \pi t \right)$ impar ($\Rightarrow \# \neq 0$) 
+\end{theo}
+\begin{demo}
+Tenemos que:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/th_borsuk} 
+\end{center}
+$\tilde{\sigma}$ elevación de $\sigma\left( t \right) = f\left( \cos 2 \pi t, \sin 2 \pi t \right)$. $\begin{cases}
+    x = \left( \cos 2 \pi t, \sin 2 \pi t \right)\\
+    0 \le t \le 1/2
+\end{cases} (*)$.
+
+$f\left( -x \right) = -f\left( x \right) \xRightarrow{(*)} \sigma\left( t + \frac{1}{2} \right) = -\sigma\left( t \right) \Rightarrow \tilde{\sigma} \left( t + \frac{1}{2} \right) = \tilde{\sigma} \left( t \right) + k_t + \frac{1}{2}$. Como $k_t \equiv cte.$ es continua:
+\[
+    \# \sigma = \tilde{\sigma} \left( 1 \right) - \tilde{\sigma} \left( 0 \right) = \left( \tilde{\sigma} \left( 1 \right) - \tilde{\sigma}{\left( \frac{1}{2} \right)} + \tilde{\sigma} \left( \frac{1}{2} \right) - \tilde{\sigma} \left( 0 \right) \right) = \left( \underbrace{k_{1/2}}_{k_0} + \frac{1}{2} \right) + \left( k_0 + \frac{1}{2} \right) = 2k_0 + 1
+\]
+\end{demo}
+
+Análogamente, 
+\begin{theo}[de Hirsch]
+Sea $f: \mathbb{S}^{1} \rightarrow \mathbb{S}^{1}$ par $\left( f\left( -x \right) = f\left( x \right) \right): \# f\left( \cos 2 \pi t, \sin 2 \pi t \right)$ par. 
+\end{theo}
+\begin{coro}[Teorema de Borsuk-Ulam]
+$f: \mathbb{S}^{1} \rightarrow \mathbb{S}^{1}$ impar $\Rightarrow$ esencial.
+\end{coro}
+\begin{demo}
+$\exists H_s : f \simeq cte. \Rightarrow H_s\left( \cos 2 \pi t, \sin 2 \pi t \right) : \sigma \simeq x_0 \Rightarrow \# \sigma = 0$, con $\sigma$ rotación anterior y la homotopía de lazos.
+\end{demo}
+\begin{coro}[2]
+$\nexists g: \mathbb{S}^{2} \rightarrow \mathbb{S}^{1}$ impar. 
+\end{coro}
+\begin{demo}
+Tenemos:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/cor_2_borsuk_ulam} 
+\end{center}
+\begin{itemize}
+    \item $g$ impar $\Rightarrow f$ impar $\Rightarrow \# \sigma \neq 0$.
+
+    \item $\mathbb{S}^{2}$ simple conexo $\exists H_s : \left( \cos 2 \pi t, \sin 2\pi t, 0 \right) \stackrel{\text{base } \left( 1, 0, 0 \right) \text{ fijo}}{\simeq} \left( 1, 0, 0 \right)$. Como $f = g\_{z = 0} \Rightarrow$
+    \[
+    g \circ H_s : f\underbrace{\left( \cos 2 \pi t, \sin 2 \pi t \right)}_{\sigma} \simeq f\left( 1, 0, 0 \right) cte. \Rightarrow \# \sigma = 0
+    \]
+\end{itemize}
+\end{demo}
+\begin{coro}[3]
+$\forall h: \mathbb{S}^{2} \rightarrow \mathbb{R}^{2},\ \exists h\left( x \right) = h\left( -x \right) (\Rightarrow h$ no es 1-1).  
+\end{coro}
+\begin{demo}
+$h\left( x \right) \neq h\left( -x \right),\ \forall x \Rightarrow \exists g \left( x \right) = \frac{h\left( x \right) - h\left( -x \right)}{\lVert h\left( x \right) - h\left( -x \right) \rVert}: \mathbb{S}^{2} \rightarrow \mathbb{S}^{1}$ impar.
+\end{demo}
+
+\section{Invarianza del dominio}%
+\label{sec:invarianza_del_dominio}
+\begin{theo}
+Sea $f: U_{\text{ab.}} \rightarrow \mathbb{R}^{2}$ continua y 1-1 $\Rightarrow f\left( U \right)$ es abierto.
+\end{theo}
+\begin{demo}
+$\forall a \in U,\ \exists V^{\text{ab.}} \subset \mathbb{R}^{2} : f\left( a \right) \in V \subset f\left( U \right)$. Por traslaciones: $a = f\left( a \right) = 0$. Con esto, $\exists \varepsilon > 0: $
+\begin{align*}
+    B\left( 0, \varepsilon \right) \subset B\left[ 0, \varepsilon \right] \subset U;\ &0 \not\in S = S\left[ 0, \varepsilon \right] \xRightarrow{\text{1-1}} 0 = f\left( 0 \right) \in f\left( S \right) \Rightarrow \exists V = C\left( 0 \right) \stackrel{\text{c.c}}{\subset} \mathbb{R}^{2} \setminus f\left( S \right) \\
+    &S \text{ comp.} \Rightarrow f\left( S \right) \text{comp.} \Rightarrow \text{cerr. en } \mathbb{R}^{2} \\
+    &\Rightarrow \mathbb{R}^{2} \text{loc. conx.} \Rightarrow V \stackrel[\text{conx.}]{\text{ab.}}{\subset} \mathbb{R}^{2} \Rightarrow \text{c. caminos}(*) 
+.\end{align*}
+Este $V$ es la solución: $V \subset f\left( B \right) \subset f\left( U \right)$.
+
+Al absurdo: $\exists c \in V \setminus f\left( B \right) \xRightarrow{(*)} \exists \sigma: \left[ 0, 1 \right] \rightarrow V,\ \sigma\left( 0 \right) = c,\ \sigma\left( 1 \right) = 0$.
+
+Denotamos, 
+\[
+g: \mathbb{S}^{1} \rightarrow\mathbb{R}^{2}: x \mapsto f\left( \varepsilon x \right);\ h: \mathbb{S}^{1} \rightarrow \mathbb{R}^{2}: x \mapsto g\left( x \right) - g\left( -x \right)
+\]
+y tenemos las homotopías: $\mathbb{S}^{1} \times \left[ 0, 1 \right] \rightarrow \mathbb{S}^{1}$.
+\begin{itemize}
+    \item $\frac{f\left( \varepsilon s x \right) - c}{\lVert \quad \rVert}: \frac{-c}{\lVert \ \rVert} \simeq \frac{g - c}{\lVert \ \rVert}$.
+    \item $\frac{f\left( \varepsilon x \right) - \sigma\left( s \right)}{\lVert \quad \rVert}: \frac{g - c}{\lVert \ \rVert} \simeq \frac{g}{\lVert \ \rVert}$.
+    \item $\frac{f\left( \varepsilon x \right) - f\left( -\varepsilon s x \right)}{\lVert \quad \rVert}: \frac{g}{\lVert \ \rVert} \simeq \frac{h}{\lVert \ \rVert}$
+\end{itemize}
+Con esto, $\frac{h}{\lVert \ \rVert} \simeq cte.$! por Borsuk-Ulam.
+
+Que los denominadores no se anulan es una comprobación rutinaria.
+\end{demo}
+
+\section{Divarianza del borde y de la dimensión}%
+\label{sec:divarianza_del_borde_y_de_la_dimension}
+\begin{theo}
+$S, T \subset \mathbb{R}^{2},\ h: S \stackrel{\text{homeo.}}{\approx} T \Rightarrow h\left( S \setminus \mathring{S} \right) = T \setminus \mathring{T}$.
+\end{theo}
+\begin{demo}
+    $h: \mathring{S} \rightarrow \mathbb{R}^{2}$ inyectiva $\Rightarrow h\left( \mathring{S} \right) \stackrel[\ref{sec:invarianza_del_dominio}]{\text{ab.}}{\subset} \mathbb{R}^{2} \Rightarrow h\left( \mathring{S} \right) \subset \mathring{T}$. (el otro $\supset$ con $h^{-1}$)
+\end{demo}
+
+\begin{ej}
+$S = T = \{x \ge 0\} \subset \mathbb{R}^{2} \Rightarrow h\left( x = 0 \right) = \left( x = 0 \right)$.    
+\end{ej}
+
+\begin{theo}
+$U \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n},\ V \stackrel{\text{ab.}}{\subset} \mathbb{R}^{2},\ h : U \stackrel{\text{homeo.}}{\approx} V \Rightarrow n = 2$.
+\end{theo}
+\begin{demo}
+    $\exists H \subset \mathbb{R}^{n}$ [plano afín interior vacío en $\mathbb{R}^{n}$ salvo si $n = 2$](*) : $U \cap H \neq \emptyset \Rightarrow h| : \underbrace{U\cap H}_{\approx \text{ab.}} \xrightarrow{\text{1-1}} V \subset \mathbb{R}^{2} \xRightarrow{\ref{sec:invarianza_del_dominio}} h\left( U \cap H \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{2} \xRightarrow{h \text{ homeo.}} U \cap H = h^{-1}h\left( U \cap H \right) \stackrel{\text{ab.}}{\subset } U \xRightarrow{(*)}
+    n = 2$
+\end{demo}
+
+
+\chapter{Superficies}%
+\label{cha:superficies}
+\section{Concepto}%
+\label{sec:concepto_sup}
+\begin{defi}
+Una \underline{superficie} es un espacio localmente homeomorfo a $\mathbb{R}^{2}$. Supondremos siempre que es $T_2$ y el II Ax., lo que implica que se puede sumergir en $\mathbb{R}^{n}$ para $n$ grande.
+\end{defi}
+Nos interesan las superficies \underline{compactas}. Las tres primeras son cocientes:
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/primeras_superficies} 
+\end{center}
+\underline{Ejercicio}: $\mathbb{P}^{2} \xhookrightarrow{} \mathbb{R}^{4}: \left( x_0 : x_1 : x_2 \right) \mapsto \frac{\left( x_1^2 - x_2^2, x_0x_1, x_0x_2, x_1x_2 \right)}{x_0^2 + x_1^2 + x_2^2}$.
+
+\begin{obs}
+$P^2 \rightarrow \mathbb{R}^{3}$ tiene siempre identificaciones adicionales (como el cros-cap?)
+\end{obs}
+
+\section{Sumas conexas}%
+\label{sec:sumas_conexas}
+El método genérico para construir superficies requiere el concepto un poco más general siguiente:
+\begin{defi}
+Una superficie \underline{con borde} es un espacio local homeomorfo a $\{x \ge 0\} \subset \mathbb{R}^{2}$ y los puntos del borde se corresponden con $\{x = 0\}$ (es una definición consistente por la inversa? del borde)
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/def_con_borde} 
+\end{center}
+\end{defi}
+\begin{obs}
+Sin los puntos del borde se tiene una superficie ordinaria.
+\end{obs}
+
+\begin{ej}
+\begin{enumerate}
+    \item Un disco cerrado, que tiene por borde la circunferencia.
+    \item Una corona circular, una banda entre rectas paralelas, un tronco de cilindro. 
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/ej_con_borde} 
+    \end{center}
+\end{enumerate}
+\end{ej}
+
+Con este concepto podemos ``hacer agujeros'' en superficies y, con ellos, definir:
+\begin{defi}
+La \underline{suma conexa} $M \# M'$ de dos superficies $M$ y $M'$ se construye haciendo un agujero en cada una y pegando las superficies agujereadas por sus bordes:
+\begin{enumerate}
+    \item Agujeros: $B \subset M$ y $B \subset M'$ (discos abiertos) con bordes $S = \overline{B} \setminus B$ y $S' = \overline{B'} \setminus B'$ (circunferencias).
+    \item Superficies agujereadas: $M\setminus B$ y $M'\setminus B$ con los mismos bordes $S$ y $S'$.
+    \item Pegando por los bordes: $M \# M' = \left( \left( M \setminus B \right) + \left( M' \setminus B' \right) \right) / \left( S \equiv S' \right)$.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/def_suma_conexa} 
+    \end{center}
+\end{enumerate}
+\end{defi}
+
+\begin{prop}
+La suma conexa está bien definida y no depende de los agujeros elegidos (salvo homeomorfismos).
+\end{prop}
+\begin{demo}
+Que efectivamente es una superficie ordinaria (sin borde) es fácil si elegimos los agujeros en abiertos de las superficies homeomorfas a $\mathbb{R}^{2}$. Luego, hay que ver que si cambiamos los agujeros obtenemos el mismo resultado (salvo homeomorfismo) y esto ya requiere resultados profundos como el teorema de Jordan-Schoenflies.
+\end{demo}
+
+\begin{prop}
+La suma conexa es una operación asociativa conmutativa con elemento neutro la esfera.
+\end{prop}
+\begin{demo}
+Que $\left( M \# M' \right) \# M'' \approx M \# \left( M' \# M'' \right)$ es fácil tomando agujeros bien separados. También es obvio que $M \# M' \approx M' \# M$. Finalmente:
+\[
+M \# \mathbb{S}^{2} = \left( \left( M \setminus B \right) + \left( \mathbb{S}^{2} \setminus B' \right) \right) / \left( S \equiv S' \right) = \left( \left( M \setminus B \right) + B \right) / \left( S \equiv S' \right) = M
+\]
+pues $\mathbb{S}^{2} \setminus B'$ es un disco cerrado que restituimos a $M$.
+\end{demo}
+
+\section{Cocientes}%
+\label{sec:cocientes_sum_conx}
+Las sumas conexas se visualizan muy bien mediante identificaciones.
+\begin{enumerate}
+    \item \underline{Suma conexa de toros}: 
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/sum_conx_toros} 
+    \end{center}
+
+    \item \underline{Suma conexa de planos proyectivos}:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/sum_conx_planos_proy} 
+    \end{center}
+\end{enumerate}
+
+
+\chapter{Clasificación de superficies}%
+\label{cha:clasificacion_de_superficies}
+\section{El teorema}%
+\label{sec:el_teorema}
+\begin{theo}
+Toda superficie compacta es homeomorfa a una y sólo una entre:
+\[
+\mathbb{S}^{2};\ \Pi^2 \# \stackrel{k}{\cdots} \Pi^2, k\ge 1;\ \mathbb{P}^{2} \# \stackrel{k}{\cdots} \# \mathbb{P}^{2}, k\ge 1 
+\]
+\end{theo}
+Las podemos dibujar:
+\begin{itemize}
+    \item En $\mathbb{R}^{3}$:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/superficies_r3} 
+    \end{center}
+    \item En $\mathbb{R}^{4}$ (modelo en $\mathbb{R}^{3}$):
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/superficies_r4} 
+    \end{center}
+\end{itemize}
+El ``solo una'' del enunciado nos dice que estas superficies son \underline{todas distintas} (no homeomorfismo): el grupo fundamental las distingue. Ya sabemos que $\pi\left( \mathbb{S}^{2} \right) = \{1\},\ \pi\left( \Pi^2 \right) = \mathbb{Z}^2,\ \pi\left( \mathbb{P}^{2} \right) = \mathbb{Z}_2$ y los demás $H_0?$ son desiguales (aunque no sepamos calcularlos).
+
+\section{La relación fundamental}%
+\label{sec:la_relacion_fundamental}
+En la lista del teorema de clasificación no hay sumas ``mixtas'': $\Pi^2 \# \mathbb{P}^{2},\ldots$, pero el mismo teorema nos dice que están en la lista. Es claro que, por las propiedades de $\#$, cualquier suma conexa de $\mathbb{S}^{2}, \Pi^2$ y $\mathbb{P}^{2}$ estará en la lista en cuanto esté $\Pi^2 \# \mathbb{P}^{2}$. En efecto:
+
+\begin{prop}
+$\mathbb{P}^{2} \# \Pi^2 = \mathbb{P}^{2} \# \mathbb{P}^{2} \# \mathbb{P}^{2}$.
+\end{prop}
+\begin{demo}
+    ``Cut \& paste'' típico de identificaciones. Como $\mathbb{P}^{2} \# \mathbb{P}^{2} = \mathbb{K}^2$ (\ref{sec:cocientes_sum_conx}) es la botella de Klein, el homeomorfismo que partiremos? es $\mathbb{P}^{2} \# \Pi^2 = \mathbb{P}^{2} \# \mathbb{K}^2$ con:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/rel_fund_1} 
+    \end{center}
+
+    \begin{enumerate}
+        \item Agujeros:
+        %TODO: Imagen
+        \begin{center}
+            \includegraphics[scale=0.3]{images/rel_fund_agujeros} 
+        \end{center}
+
+        \item Pegados:
+        %TODO: Imagen
+        \begin{center}
+            \includegraphics[scale=0.3]{images/rel_fund_pegados} 
+        \end{center}
+
+        \item \textit{Cut \& paste}:
+        %TODO: Imagen
+        \begin{center}
+            \includegraphics[scale=0.3]{images/rel_fund_c&p} 
+        \end{center}
+    \end{enumerate}
+    Obtenemos dos representaciones nuevas de $\mathbb{P}^{2} \# \Pi^2$ y $\mathbb{P}^{2} \# \mathbb{K}^2$, con apariencias desiguales, pero topologías iguales: dos hexágonos con las mismas identificaciones de lados:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/rel_fund_hex} 
+    \end{center}
+    No dejarse engañar por los colores ni los sentidos de las flechas.
+\end{demo}
+
+\section{Grupos fundamentales con un agujero}%
+\label{sec:grupos_fundamentales_con_un_agujero}
+Aunque no podamos distinguir todas las superficies unas de otras porque no conocemos todos los grupos fundamentales, si podemos hacer algunas distinciones ``haciendo agujeros''.
+
+\begin{prop}
+Distinguimos:
+\begin{enumerate}
+    \item $\pi\left( \mathbb{S}^{2} \setminus \{a\} \right) = \pi\left( \mathbb{R}^{2} \right) = \{1\}$.
+    \item $\pi\left( \Pi^2 \# \stackrel{k}{\cdots} \# \Pi^2 \setminus \{a\} \right) = \pi\left( dibujo^{2k}  \right) = \mathbb{Z}^{*^{2k}}$.
+    \item $\pi\left( \mathbb{P}^{2} \# \stackrel{k}{\cdots} \# \mathbb{P}^{2} \setminus \{a\} \right) = \pi\left( dibujo^{k} \right) = \mathbb{Z}^{*^{k}}$.
+\end{enumerate}
+\end{prop}
+\begin{demo}
+Tenemos
+%TODO: Imagen. Ni idea de como hacerlo
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_grupos_fund_agujeros} 
+\end{center}
+\end{demo}
+
+Con $k$ arbitrario es lo mismo: $4k$ lados identificados por pares, $4k$ vértices todos identificados. Por retracción radical desde un punto interior (el agujero), obtenemos la poligonal con esas mismas identificaciones. Al identificar los vértices se tiene un bouquet de $4k$ pétalos y, al identificar pétalos por pares, un bouquet de $2k$ pétalos.
+\begin{demo}
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_grupo_fund_agujeros_2} 
+\end{center}    
+$k = 3$. Por \textit{cut \& paste}, los lados, pueden? sumar un proyectivo aporta? $2$ lados identificados entre sí con tres vértices identificados todos (\ref{sec:la_relacion_fundamental}).
+%TODO: Imagen
+\begin{center}
+    \includegraphics[scale=0.3]{images/dem_grupo_fund_agujeros_3} 
+\end{center}
+\end{demo}
+Con $k$ arbitrario es lo mismo: se empieza con un polígono de $2k$ lados, que se retrae a una poligonal de $2k$ lados, en la que se identifican los vértices para obtener un bouquet de $2k$ pétalos, que se identifican por pares para tener un bouquet de $k$.
+
+\underline{Conclusión}:
+
+Todas las superficies se distinguen por el grupo fundamental después de quitar un punto, salvo los pares:
+\[
+\Pi^2 \# \stackrel{k}{\cdots} \# \Pi^2\; \land \;\mathbb{P}^{2} \# \stackrel{2k}{\cdots} \# \mathbb{P}^{2} = \mathbb{K}^2 \# \stackrel{k}{\cdots} \# \mathbb{K}^2
+\]
+para cada $k \ge 1$. El primer caso (y el esencial) es que el toro y la botella de Klein no son homeomorfos: La razón de fondo es la orientabilidad, que no hemos estudiado aquí.
+
+En general:
+\begin{itemize}
+    \item Cualquier $\mathbb{P}^{n} \# \cdots \# \mathbb{P}^{2}$ contiene una banda de Möbius (de hecho, tantas como sumandos) y la banda es no orientable.
+    \item Cualquier $\Pi^2 \# \cdots \# \Pi^2$ es orientable, luego cualquier abierto suyo lo es, luego no puede contener una banda de Möbius.
+\end{itemize}
+
+
+\chapter{Grande finale}%
+\label{cha:grande_finale}
+Vamos a probar que la esfera \underline{no} es contrátil, utilizando el teorema de la esfera de Brouwer (\ref{sec:teorema_de_la_esfera_de_brouwer}) y las ideas sobre vectores tangentes allí vistas:
+\begin{prop}
+$\mathbb{S}^{2}$ \underline{no} es contráctil: $\nexists H_t: cte. \simeq id_{\mathbb{S}^{2}}$.
+\end{prop}
+\begin{demo}
+Absurdo: sea que $\exists H_t: \mathbb{S}^{2} \rightarrow \mathbb{S}^{2},\ H_0\left( x \right) = x_0,\ H_1\left( x \right) = x$.
+\begin{enumerate}
+    \item \underline{Problema de elevación}:
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/prob_elevacion} 
+    \end{center}
+
+    %TODO: Fix subrayado
+    \item \underline{Estructura de }$\tilde{\mathbb{S}}^1$: 
+
+    Como esquema tenemos,
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/esquema_estr_s2} 
+    \end{center}
+    Así,
+        $c = \left( 0, 0, 1 \right),\ U = \mathbb{S}^{2} \setminus \{c\} = \{x_3 \neq 1\},\ -U : \mathbb{S}^{2} \setminus \{-c\} = \{x_3 \neq -1\}$.
+
+    En $U: x_3 \neq 1,\ \{\eta\left( x \right) = \left( 1 - x_3 - x_1^2, -x_1x_2, x_1\left( 1- x_3 \right) \right),\ \eta\left( x \right) = x \times \eta\left( x \right)\}$ base de $T_x\mathbb{S}^{2}$ ortogonal. $\Rightarrow \forall \underbrace{u}_{\neq 0} \perp x: u = \lambda\left( u, x \right) \eta\left( x \right) + \mu\left( u, x \right) \eta\left( x \right)$.
+    \[
+    \begin{cases}
+        \lambda\left( u, x \right) = \langle u, \eta\left( x \right) \rangle / \lVert \eta\left( x \right) \rVert^2\\
+        \mu\left( u, x \right) = \langle u, \eta\left( x \right) \rangle / \lVert \eta\left( x \right) \rVert^2
+    \end{cases} \text{ cond's ?? continuas.} 
+    \]
+
+    En $-U : x_3\neq -1$ igual con $\eta\left( x \right) = \left( 1 + x_3 - x_1^2, -x_1x_2, -x_1\left( 1 + x_3 \right) \right)$.
+
+    \item \underline{Preparación local}: Igual que en $\ref{sec:unicidad_de_elevacion}$ para la elevación de recubridores:
+    \begin{align*}
+        \forall x \in \mathbb{S}^{2},\ \exists W^x \stackrel{\text{ab.}}{\subset} \mathbb{S}^{2},\ \exists 0 = t_0 < \ldots < t_r = 1 : &W^x \times \left[ t_{i - 1}, t_i \right] \subset H^{-1}\left( U \right) \text{ ó } H^{-1}\left( -U \right)\\
+        &\text{reducción } W^x \supset \overline{V^x} \supset V^x
+    .\end{align*}
+    ¡La partición depende de $x$! $\Rightarrow{\mathbb{S}^{2}\text{ comp.}} \mathbb{S}^{2} = V^{x_1} \cup \ldots \cup V^{x_v}$ y juntamos las $v$ particiones.
+    \[
+    \Rightarrow \mathbb{S}^{2} = V_1 \cup \ldots \cup V_v\; \land \;\exists 0 = t_0 < \ldots < t_r = 1: H\left( \overbrace{W_k}^{\supset \overline{V}_k \supset V_k} \times \left[ t_{i - 1}, _i \right] \right) \subset U \text{ ó } -U.
+    \]
+
+    \underline{Objetivo}: construir la elevación $\tilde{H}$ en pasos sucesivos: 
+    \begin{itemize}
+        \item dada $\tilde{H}_t$ para $0 \le t \le t_{i-1}$ extenderla a $t_{i - 1} \le t \le t_i$, es decir, 
+        \item dada $\tilde{H}_{t_{i - 1}}$ extenderla a $t_{i - 1} \le t \le t_i$.
+    \end{itemize}
+    Para empezar en $i = 1$: 
+    \[
+    \tilde{H}_{t_0} \left( x \right) = \tilde{H}_0\left( x \right) = \left( H_0\left( x \right), u_0\left( x \right) \right) = \left( x_0, u_0 \right),\ \text{cualquier } \overbrace{u_0}^{\neq 0} \perp x_0
+    \]
+    El paso inductivo da más trabajo y para simplificar un escalamiento permite suponer $\left[ t_{i - 1}, t_i \right]\\ = \left[ 0, 1 \right]$ y $H\left( W_k \times \left[ 0, 1 \right] \right) \subset U$ ó $-U\ \forall k$(*). Queremos:
+    \begin{itemize}
+        \item dada $\tilde{H}_0$ extenderla a $0 \le t \le 1$
+        \begin{demo}
+            $\tilde{H}_0 = \tilde{H}_{t_i - 1}$ \underline{no} es la elevación de $i = 1$. 
+        \end{demo}
+    \end{itemize}
+
+    \item \underline{Descomposición de la extensión en varios pasos}: Tomamos $C_k = \mathbb{S}^{2} \setminus V_k$ y,
+    \begin{enumerate}
+        \item $\varphi_k\left( x \right) = \frac{\mathrm{dist} \left( x, C_k \right)}{\sum_{l} \mathrm{dist} \left( x, C_k \right)} \Rightarrow \begin{cases}
+            0 \le \varphi_k \le 1\\
+            \{\varphi_k = 0\} = C_k\\
+            \sum_{l} \varphi_l = 1 
+        \end{cases}$ por ser los $C_k$ cerrados.
+
+        \item $\psi_k = \varphi_1 + \cdots + \varphi_k \Rightarrow \begin{cases}
+            0 \equiv \psi_0 \le \psi_1 \le \ldots \le \psi_k \equiv 1\\
+            \{\psi_{k - 1} < \psi_k\} = \{\varphi \neq 0\} = X \setminus C_k = V_k (**)\\
+            \overline{\{\psi_{k - 1} < \psi_k\}} = \overline{V_k} \subset W_k
+        \end{cases}$
+    \end{enumerate}
+    Las $\psi_k$ son los límites superiores de la siguiente cadena de cerrados:
+    \[
+    \mathbb{S}^{2} \times \{0\} = \Gamma_0 \subset \Gamma_1 \subset \ldots \subset \Gamma_k = \{t \le \psi_k\left( x \right) : x \in \mathbb{S}^{2}\} \subset  \ldots \subset \Gamma_v = \mathbb{S}^{2} \times \left[ 0, 1 \right] 
+    \]
+    y, empezando con $\tilde{H}_0$ para $k = 1$, la cosa es:
+    \begin{itemize}
+        \item dada $\tilde{H}^{k - 1} = \left( r, u^{k - 1} \right)$ elevación de $H|_{\Gamma_{k - 1}}$, extenderla a $\Gamma_k \setminus \Gamma_{k - 1}$. Como:
+        \[
+        \begin{cases}
+            \Gamma_{k - 1} \setminus \overline{V}_k \times \left[ 0, 1 \right] \stackrel{(**)}{=} \Gamma_k \setminus \overline{V}_k \times \left[ 0, 1 \right] = A \stackrel{\text{ab.}}{\subset} \Gamma_k\\
+            \Gamma_{k - 1} \cap \left( W_k \times \left[ 0, 1 \right] \right) = B \stackrel{\text{ab.}}{\subset} \Gamma_k
+        \end{cases}\land\ \Gamma_k = \underbrace{A}_{\subset \Gamma_{k - 1}} \cup B
+        \]
+        definiremos,
+        \item $\tilde{H}^k$ en $B$ tal que, $\tilde{H}^k = \tilde{H}^{k - 1}$ en $A \cap B \subset \mathbb{S}^{2} \setminus V_k \times \left[ 0, 1 \right]$.
+    \end{itemize}
+
+    \item $\left( x, t \right) \in B \xRightarrow{(*)} \begin{cases}
+        H_t\left( x \right) \in U\\
+        H_{\psi_{k - 1} \left( x \right)} \left( x \right) \in U
+    \end{cases} \Rightarrow \exists \eta$ y $S$ en $\begin{cases}
+        H_t\left( x \right).\ (ii)\\
+        H_{\psi_{k - 1} \left( x \right)} \left( x \right).\ (i)
+    \end{cases}$.
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/finale_5} 
+    \end{center}
+    \begin{enumerate}
+        \item $t \le \psi_{k - 1} \left( x \right) : \left( x, t \right) \in \Gamma_{k - 1} \Rightarrow \tilde{H}_t^k \left( x \right) = \tilde{H}_t^{k - 1} \left( x \right)$.
+        \item $t \ge \psi_{k - 1} \left( x \right) : \tilde{H}^{k - 1} = \left( H, u^{k - 1} \right)$.
+        \begin{enumerate}
+            \item[(i)] $\Rightarrow$
+            %TODO: Subíndice sin pareja
+            \begin{align*}
+            \underbrace{u_{\psi_{k-1} \left( x \right)^{k - 1} \left( x \right)}}_{\neq 0} = \lambda_{\psi_{k - 1} \left( x \right)} \left( x \right) \eta\left( H_{\psi_{k - 1}\left( x \right)} \left( x \right) \right) + _{\psi_{k - 1} \left( x \right)} \left( x \right) \zeta\left( H_{\psi_{k - 1}\left( x \right)} \left( x \right) \right) 
+            .\end{align*}
+            \item[(ii)] $\Rightarrow$
+            \begin{align*}
+                \exists u_t^k\left( x \right) &= \lambda_{\psi_{k-1}\left( x \right)} \left( x \right) \eta\left( H_t\left( x \right) \right) + \mu_{\psi_{k - 1} \left( x \right)} \left( x \right) \zeta\left( H_t\left( x \right) \right) \\
+                &\Rightarrow \exists \tilde{H}_t^k\left( x \right) = \left( H_t\left( x \right), u_t^k\left( x \right) \right)
+            .\end{align*}
+            y por la construcción es continua.
+        \end{enumerate}
+
+    \item[a) y b)] coinciden en $t = \psi_{k - 1} \left( x \right)$.
+    \end{enumerate}
+
+    \item $\psi_{k - 1} \stackrel{(**)}{=} \psi_k$ fuera de $V_k \Rightarrow \tilde{H}^k$ de 5. $= \tilde{H}^{k - 1}$ en $A \cap B$.
+\end{enumerate}
+
+Esto completa la propuesta de que $\exists \tilde{H}$ elevación de $H$ y, con ello, se completa la contradicción buscada. Acaba aquí la demostración de que $\mathbb{S}^{2}$ no es contráctil.
+\end{demo}
+
+
+
+\end{document}
