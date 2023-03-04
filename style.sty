@@ -46,11 +46,12 @@
 
 %% Paquete para la edición y el formateo de capítulos, secciones...
 \usepackage[explicit]{titlesec}
-    %% Definición del estilo de los capítulos, secciones, etc...
-    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge #1}[\titlerule]
-    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{#1}
+	%% Definición del estilo de los capítulos, secciones, etc...
+    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge \uppercase{#1}}[\titlerule]
+    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{\uppercase{#1}}
     \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{}{0pt}{\uline{#1}}
     \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{}{0pt}{#1}
+
 
 %% Paquete para el formateo de entornos del proyecto
 \usepackage{ntheorem}[thmmarks]
