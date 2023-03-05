@@ -49,8 +49,8 @@ h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^
 Sea $f:X\rightarrow Y$ una función entre espacios topológicos, entonces son equivalentes:
 \begin{enumerate}
     \item $f$ es continua.
-    \item $\forall U \stackrel{\text{ab.}}{\subset} Y : f^{-1}\left( U \right) \stackrel{\text{ab.}}{\subset} X$.
-    \item $\forall F \stackrel{\text{cerr.}}{\subset} Y : f^{-1}\left( F \right) \stackrel{\text{cerr.}}{\subset} X$.
+    \item $\forall U \ab Y : f^{-1}\left( U \right) \ab X$.
+    \item $\forall F \cerr Y : f^{-1}\left( F \right) \cerr X$.
     \item $\forall A \subset Y : f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}\left( A \right) \right)$.
     \item $\forall A \subset X : f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
 \end{enumerate}
@@ -59,16 +59,16 @@ Sea $f:X\rightarrow Y$ una función entre espacios topológicos, entonces son eq
 \begin{itemize}
     \item $1 \Rightarrow 2)$
     
-    Escojamos un abierto cualquiera $W \stackrel{\text{ab.}}{\subset} Y$. Por ser abierto, es entorno de todos sus puntos y, en particular, es entorno de las imágenes que puedan caer dentro de dicho abierto, es decir, $\forall x \in f^{-1} (W) : W = V^{f(x)}$. Por continuidad, las preimágenes de entornos de las imágenes son entornos de las preimágenes, luego $\forall x \in f^{-1} W : f^{-1}W = V^x$ y como es entorno de todos sus puntos, entonces $f^{-1} W \stackrel{\text{ab.}}{\subset} X$.
+    Escojamos un abierto cualquiera $W \ab Y$. Por ser abierto, es entorno de todos sus puntos y, en particular, es entorno de las imágenes que puedan caer dentro de dicho abierto, es decir, $\forall x \in f^{-1} (W) : W = V^{f(x)}$. Por continuidad, las preimágenes de entornos de las imágenes son entornos de las preimágenes, luego $\forall x \in f^{-1} W : f^{-1}W = V^x$ y como es entorno de todos sus puntos, entonces $f^{-1} W \ab X$.
     \item $2 \Rightarrow 3)$
     
     Como lo que sabemos es que las preimágenes de abiertos son abiertas y los cerrados se definen en términos de abiertos, no nos queda otra estrategia que intentar demostrarlo pasando los cerrados a sus complementarios: los abiertos.
     
-    Escojamos un cerrado cualquiera $C \stackrel{\text{cerr.}}{\subset} Y$ de modo que conocemos que $Y \setminus C \stackrel{\text{ab.}}{\subset} Y$. Como conocemos el resultado para abiertos, podemos decir que $f^{-1}\left( Y\setminus C \right) \stackrel{\text{ab.}}{\subset} X$ y, conjuntistamente, $X \setminus f^{-1}C = f^{-1}\left( Y\setminus C \right)$, luego directamente tenemos que $f^{-1}C \stackrel{\text{cerr.}}{\subset} X$. 
+    Escojamos un cerrado cualquiera $C \cerr Y$ de modo que conocemos que $Y \setminus C \ab Y$. Como conocemos el resultado para abiertos, podemos decir que $f^{-1}\left( Y\setminus C \right) \ab X$ y, conjuntistamente, $X \setminus f^{-1}C = f^{-1}\left( Y\setminus C \right)$, luego directamente tenemos que $f^{-1}C \cerr X$. 
     \item $3 \Rightarrow 5)$
 
     \[
-        \overline{f\left( A \right)} \stackrel{\text{cerr.}}{\subset} Y \xRightarrow{3)} \underbrace{f^{-1}\overline{f\left( A \right)}}_{\subset f^{-1}f\left( A \right) \supset A} \subset X \Rightarrow \overline{A} \subset f^{-1}\overline{f\left( A \right)} \Rightarrow f\left( \overline{A} \right) \subset \overline{f\left( A \right)} 
+        \overline{f\left( A \right)} \cerr Y \xRightarrow{3)} \underbrace{f^{-1}\overline{f\left( A \right)}}_{\subset f^{-1}f\left( A \right) \supset A} \subset X \Rightarrow \overline{A} \subset f^{-1}\overline{f\left( A \right)} \Rightarrow f\left( \overline{A} \right) \subset \overline{f\left( A \right)} 
     \]
     \item $5 \Rightarrow 4)$
     \begin{gather*}
@@ -102,7 +102,7 @@ Sea $f: X \rightarrow Y$ una función continua y $Z \subset X$ un subespacio top
 \begin{demo}
 Aplicando la caracterización de continuidad a través de las preimágenes de abiertos, tenemos que:
 \[
-\forall A \stackrel{ab}{\subset} Y : \left( f|_Z \right)^{-1} \left( A \right) = Z \cap f^{-1} A \stackrel{ab}{\subset} Z
+\forall A \ab Y : \left( f|_Z \right)^{-1} \left( A \right) = Z \cap f^{-1} A \ab Z
 \]
 donde este último conjunto es abierto por ser un abierto ambiente cortado con el subespacio (que es como son los abiertos de la topología relativa).
 \end{demo}
@@ -114,7 +114,7 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
     \begin{demo}
         \begin{itemize}
             \item $z \in Z: \forall V^{j\left( z \right)} : \underbrace{j^{-1}\left( V^{j\left( z \right) } \right)}_{= V^{j\left( z \right)} \cap Z}$ entorno de $z$ en $Z$.
-            \item $\forall U \stackrel{\text{ab.}}{\subset } X: \underbrace{j^{-1}\left( U \right)}_{U \cap Z} \stackrel{\text{ab.}}{\subset} Z$
+            \item $\forall U \stackrel{\text{ab.}}{\subset } X: \underbrace{j^{-1}\left( U \right)}_{U \cap Z} \ab Z$
         \end{itemize}
     \end{demo}
 
@@ -132,13 +132,13 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
         Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X \Rightarrow W^x \stackrel{\text{ent.}}{\subset}X$ (entorno en entorno es entorno). Porque, 
         \[
         \begin{rcases}
-            x \in W^x: \exists G \stackrel{\text{ab.}}{\subset} W^x \subset E^x: G = A \cap E^x \subset X\\ 
-            x \in E^x: \exists B \stackrel{\text{ab.}}{\subset} E^x \subset X 
+            x \in W^x: \exists G \ab W^x \subset E^x: G = A \cap E^x \subset X\\ 
+            x \in E^x: \exists B \ab E^x \subset X 
         \end{rcases} \Rightarrow x \in \underbrace{A \cap B}_{\stackrel[\text{ab.}]{}{\subset} X} \subset \underbrace{A \cap E^x}_{= G}  \subset W^x
         \]
     \end{demo}
 
-    \item Si $f|_{U \stackrel{\text{ab.}}{\subset} X}$ es continua $\Rightarrow f$ continua $\forall x \in U$.
+    \item Si $f|_{U \ab X}$ es continua $\Rightarrow f$ continua $\forall x \in U$.
 
     \item $x$ es aislado $\Rightarrow f$ continua en $x$. 
     \begin{demo}
@@ -163,12 +163,12 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
 Sea $f: X \rightarrow Y$ una función entre espacios topológicos, si se da alguna de las siguientes condiciones: 
 \begin{align*}
 \begin{cases}
-X = \bigcup_{i \in  I} U_i \mbox{ donde } U_i \stackrel{\text{ab.}}{\subset} X \\
+X = \bigcup_{i \in  I} U_i \mbox{ donde } U_i \ab X \\
 \forall f|_{U_i} : U_i \rightarrow Y \mbox{ cont.}
 \end{cases}
 & &
 \begin{cases}
-X = \bigcup_{i =0}^n F_i \mbox{ donde } F_i \stackrel{\text{cerr.}}{\subset} X \\
+X = \bigcup_{i =0}^n F_i \mbox{ donde } F_i \cerr X \\
 \forall f|_{F_i} : F_i \rightarrow Y \mbox{ cont.}
 \end{cases}
 \end{align*}
@@ -176,13 +176,13 @@ entonces la función $f$ del inicio es continua.
 \end{prop}
 \begin{demo}
 	\begin{itemize}
-	\item Escojamos un abierto cualquiera $W \stackrel{\text{ab.}}{\subset} Y$ y veamos si su preimagen $f^{-1}W$ es un abierto en $X$.
+	\item Escojamos un abierto cualquiera $W \ab Y$ y veamos si su preimagen $f^{-1}W$ es un abierto en $X$.
 
-    En primer lugar, por ser $X = \bigcup_{i \in  I} U_i$ podemos escribir que $f^{-1}W = X\cap f^{-1}W = \bigcup_{i \in  I} U_i \cap f^{-1} W = \bigcup_{i \in  I} \left( U_i \cap f^{-1} W\right) = \bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W$. Como $\left( f|_{U_i} \right)^{-1}W \stackrel[\text{(cont.)}]{\text{ab.}}{\subset} U_i \stackrel{\text{ab.}}{\subset} X$, entonces $\left( f|_{U_i} \right)^{-1} W \stackrel{\text{ab.}}{\subset} X$ y de esta manera podemos escribir $f^{-1}W$ como unión de abiertos $\bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W$ de $X$, es decir, que $f^{-1}W \stackrel{\text{ab.}}{\subset} X$.
+    En primer lugar, por ser $X = \bigcup_{i \in  I} U_i$ podemos escribir que $f^{-1}W = X\cap f^{-1}W = \bigcup_{i \in  I} U_i \cap f^{-1} W = \bigcup_{i \in  I} \left( U_i \cap f^{-1} W\right) = \bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W$. Como $\left( f|_{U_i} \right)^{-1}W \stackrel[\text{(cont.)}]{\text{ab.}}{\subset} U_i \ab X$, entonces $\left( f|_{U_i} \right)^{-1} W \ab X$ y de esta manera podemos escribir $f^{-1}W$ como unión de abiertos $\bigcup_{i \in  I} \left( f|_{U_i} \right)^{-1} W$ de $X$, es decir, que $f^{-1}W \ab X$.
 	
-	\item Escojamos un cerrado cualquiera $C \stackrel{\text{cerr.}}{\subset} Y$ y veamos si su preimagen $f^{-1}C$ es cerrada en $X$.
+	\item Escojamos un cerrado cualquiera $C \cerr Y$ y veamos si su preimagen $f^{-1}C$ es cerrada en $X$.
 
-    En primer lugar, por ser $X = \bigcup_{i=0}^n F_i$ podemos escribir que $f^{-1}C = X\cap f^{-1}C = \bigcup_{i = 0}^n F_i \cap f^{-1} C = \bigcup_{i = 0}^n \left( F_i \cap f^{-1} C\right) = \bigcup_{i = 0}^n \left( f|_{F_i} \right)^{-1} C$. Como $\left( f|_{F_i} \right)^{-1}C \stackrel[\text{(cont.)}]{\text{cerr.}}{\subset} F_i \stackrel{\text{cerr.}}{\subset} X$, entonces $\left( f|_{U_i} \right)^{-1} C \stackrel{\text{cerr.}}{\subset} X$ y de esta manera podemos escribir $f^{-1}C$ como unión finita de cerrados $\bigcup_{i = 0}^n \left( f|_{F_i} \right)^{-1} C$ de $X$, es decir, que $f^{-1}C \stackrel{\text{cerr.}}{\subset} X$.
+    En primer lugar, por ser $X = \bigcup_{i=0}^n F_i$ podemos escribir que $f^{-1}C = X\cap f^{-1}C = \bigcup_{i = 0}^n F_i \cap f^{-1} C = \bigcup_{i = 0}^n \left( F_i \cap f^{-1} C\right) = \bigcup_{i = 0}^n \left( f|_{F_i} \right)^{-1} C$. Como $\left( f|_{F_i} \right)^{-1}C \stackrel[\text{(cont.)}]{\text{cerr.}}{\subset} F_i \cerr X$, entonces $\left( f|_{U_i} \right)^{-1} C \cerr X$ y de esta manera podemos escribir $f^{-1}C$ como unión finita de cerrados $\bigcup_{i = 0}^n \left( f|_{F_i} \right)^{-1} C$ de $X$, es decir, que $f^{-1}C \cerr X$.
     \end{itemize}
 \end{demo}
 
@@ -286,11 +286,11 @@ Si $V^a \subset X$ y $V^{f\left( a \right)} \subset Y$, tenemos:
 \[
     f: V^a \rightarrow V^{f\left( a \right)}
 \]
-Sabemos que $\exists U^a (\stackrel{\text{ab.}}{\subset} V^a) \mapsto f\left( U^a \right) (\stackrel{\text{ab.}}{\subset} V^{f\left( a \right)})$ al ser homeomorfismo. 
+Sabemos que $\exists U^a (\ab V^a) \mapsto f\left( U^a \right) (\ab V^{f\left( a \right)})$ al ser homeomorfismo. 
 
 Además, como $f$ es abierto, local en $V^{f\left( a \right)}$ (homeomorfismo local), $f\left( U^a \right)$ es entorno de $f\left( a \right)$, pero no abierto (tal vez sí). 
 
-Por tanto, tiene un abierto ($W^{f\left( a \right)} \subset f\left( U \right)$) que es imagen de un abierto, $G$, en $X \rightarrow f\left( G \right) = W^{f\left( a \right)} \stackrel{\text{ab.}}{\subset} Y$, con $G \stackrel{\text{ab.}}{\subset} X$.
+Por tanto, tiene un abierto ($W^{f\left( a \right)} \subset f\left( U \right)$) que es imagen de un abierto, $G$, en $X \rightarrow f\left( G \right) = W^{f\left( a \right)} \ab Y$, con $G \ab X$.
 \end{demo}
 \end{obs}
 
@@ -310,11 +310,11 @@ Sean $f: X \rightarrow Y$ y $g: Y \rightarrow Z$ homeomorfismos $\Rightarrow h =
 Un homeomorfismo local es abierto.
 \end{prop}
 \begin{demo}
-    $U \stackrel{\text{ab.}}{\subset} X \xRightarrow{?} f\left( U \right)$ entorno $\forall y_0 = f\overbrace{\left( x_0 \right)}^{\in U} \in f\left( U \right)$.
+    $U \ab X \xRightarrow{?} f\left( U \right)$ entorno $\forall y_0 = f\overbrace{\left( x_0 \right)}^{\in U} \in f\left( U \right)$.
 
-    Como $f$ homeomorfismo local $\Rightarrow \forall x_0 \in U,\ \exists f| : V^{x_0} \rightarrow V^{y_0}$, homeomorfismo $\Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\ni y_0 = f\left( x_0 \right)} \stackrel{\text{ab.}}{\subset} V^{y_0} \Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\subset f\left( U \right)}$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
+    Como $f$ homeomorfismo local $\Rightarrow \forall x_0 \in U,\ \exists f| : V^{x_0} \rightarrow V^{y_0}$, homeomorfismo $\Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\ni y_0 = f\left( x_0 \right)} \ab V^{y_0} \Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\subset f\left( U \right)}$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
 
-    Se puede ver también porque, como $U = \bigcup_{x \in U} W^x (\stackrel{\text{ab.}}{\subset} V^{x}) \Rightarrow f\left( U \right) = f\left( \bigcup_{x} W^{x} \right) = \bigcup_{x} f\left( W^x \right)$ es abierto por unión de abiertos.
+    Se puede ver también porque, como $U = \bigcup_{x \in U} W^x (\ab V^{x}) \Rightarrow f\left( U \right) = f\left( \bigcup_{x} W^{x} \right) = \bigcup_{x} f\left( W^x \right)$ es abierto por unión de abiertos.
 \end{demo}
 
 \begin{ej}[¡Importantes!]

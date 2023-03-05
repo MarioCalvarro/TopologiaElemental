@@ -126,7 +126,7 @@ Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( f\left( Y \right), \ma
         que es abierto en $f^{-1}\mathcal{T}$.
         \item \underline{Abierta}: Sea $U \in f^{-1}\mathcal{T} \Rightarrow \exists W \in \mathcal{T}: f^{-1}W = U$. Aplicando $f$:
         \[
-        fU = ff^{-1}W = W \cap f\left( Y \right) \stackrel{\text{ab.}}{\subset} f\left( Y \right)
+        fU = ff^{-1}W = W \cap f\left( Y \right) \ab f\left( Y \right)
         \]
         es decir que $fU$ es abierto en $f\left( Y \right)$.
     \end{itemize}
@@ -162,9 +162,9 @@ Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( f\left( Y \right), \ma
     \begin{demo}
     \begin{itemize}
         \item 
-        $f\left( Y \right) \stackrel{\text{ab.}}{\subset} X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
+        $f\left( Y \right) \ab X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
         \item 
-        $f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X: C \stackrel{\text{cerr.}}{\subset}  f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) = \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \stackrel{\text{cerr.}}{\subset} X$ 
+        $f\left( Y \right) \cerr X: C \cerr  f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) = \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \cerr X$ 
     \end{itemize} 
     \end{demo}
 
@@ -434,7 +434,7 @@ Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \le
         \end{demo}
         \item Cerrada.
         \begin{demo}
-            $f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \stackrel{\text{cerr.}}{\subset} Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
+            $f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \cerr Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
         \end{demo}
     \end{itemize}
 
@@ -911,14 +911,14 @@ Ya sabemos que es biyección por lo que queda ver que es continua y abierta/cerr
 %    \label{}
 %\end{figure}
 %Tomemos $W \subset U \begin{cases}
-%    \text{cociente: } \pi^{-1} \left( W \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}\\
-%    \text{homeo: } \pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\} \stackrel{\text{ab.}}{\subset} \left\{ h=1 \right\}
+%    \text{cociente: } \pi^{-1} \left( W \right) \ab \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}\\
+%    \text{homeo: } \pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\} \ab \left\{ h=1 \right\}
 %\end{cases}$.    
 %Cociente $\Rightarrow$ homeomorfismo es trivial y significa que $\pi|_{\left\{ h=1 \right\}}$ es continua. Homeomorfismo $\Rightarrow$ cociente porque:
 %\[
 %\pi^{-1}\left( W \right) = \text{cono de } \underbrace{\pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\}}_{A}
 %\]
-%Como $\left\{ h=1 \right\} \supset A$ abierto $\Leftrightarrow \text{cono}\left( A \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ donde cono$\left( A \right) = \left\{ \lambda a: a \in A, \lambda \in \mathbb{R} \setminus \left\{ 0 \right\} \right\}$
+%Como $\left\{ h=1 \right\} \supset A$ abierto $\Leftrightarrow \text{cono}\left( A \right) \ab \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ donde cono$\left( A \right) = \left\{ \lambda a: a \in A, \lambda \in \mathbb{R} \setminus \left\{ 0 \right\} \right\}$
 %\end{demo}
 
 \begin{prop}
@@ -961,7 +961,7 @@ Estas dos topologías coinciden.
 
             \draw[-{implies},double] (0,0) -- (0,-2);
 
-            \node(bottom) at (0.7,-2.2) {$\pi^{-1}W \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \Leftrightarrow \left( \pi|_{\left\{ h=1 \right\}}^{-1} \right)W \stackrel{\text{ab.}}{\subset}\left\{ h=1 \right\}$};
+            \node(bottom) at (0.7,-2.2) {$\pi^{-1}W \ab \mathbb{R}^{n+1} \Leftrightarrow \left( \pi|_{\left\{ h=1 \right\}}^{-1} \right)W \ab\left\{ h=1 \right\}$};
 
             %Izquieda
             \draw[implies-implies,double] (-1.35,-2.4) -- (-1.35,-3);
@@ -980,7 +980,7 @@ Estas dos topologías coinciden.
 
 %TODO: Fix orden
 \begin{prop}
-    En este caso, la $\mathcal{T}_{\text{cociente}}$ tendrá como base: $\left\{ \pi\left( B \right) \subset U : B \stackrel{\text{ab.}}{\subset} \left\{ h = 1 \right\},\ h \in \mathbb{P}\left[ x_0, \ldots, x_n \right] \right\}$ homogéneo de grado $1: G = \bigcup_{U} G \cap U$ abierto en $\mathbb{P}^n$ y abierto en $U$.
+    En este caso, la $\mathcal{T}_{\text{cociente}}$ tendrá como base: $\left\{ \pi\left( B \right) \subset U : B \ab \left\{ h = 1 \right\},\ h \in \mathbb{P}\left[ x_0, \ldots, x_n \right] \right\}$ homogéneo de grado $1: G = \bigcup_{U} G \cap U$ abierto en $\mathbb{P}^n$ y abierto en $U$.
 \end{prop}
 
 \begin{obs}
@@ -995,7 +995,7 @@ De lo anterior deducimos:
     \[
         \text{Cartas afines: } U_i = \{h_1 \neq 0\} \begin{cases}
                 \pi|: \{h_1 = 1\} \rightarrow U_1 \text{homeo.}\\
-                \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \stackrel{\text{ab.}}{\subset} \{h_1 = 1\}  
+                \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \ab \{h_1 = 1\}  
         \end{cases}  
     \]
     \end{demo}
