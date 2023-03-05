@@ -78,7 +78,7 @@ Por definición de entornos, existen dos abiertos $U_1^x\subset V_1^x$ y $U_2^x\
 \begin{defi}[Punto interior]
 Sea $(X,\mathcal{T})$ un espacio topológico y $A \subset X$ un subconjunto de puntos, decimos que un punto $x\in X$ es \textbf{punto interior de $A$} si y sólo si $A$ es entorno de $x$.
 $$
-x\in \inter_X(A) \Leftrightarrow \exists U^x \stackrel{\text{ab}}{\subset} A
+x\in \inter_X(A) \Leftrightarrow \exists U \ab A : x \in U
 $$
 Al conjunto de puntos interiores, que denotamos por $\mathring{A}$ o $\inter(A)$, lo llamamos \textbf{interior de $A$}.
 \end{defi}
@@ -487,10 +487,10 @@ Además, decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio
 \begin{enumerate}
     \item Los cerrados de la topología relativa $\mathcal{T}|_Y$ son la intersección $F\cap Y$ de $Y$ con cerrados $F$ en $\mathcal{T}$.
     \begin{demo}
-    Sea $F \stackrel{\text{cerr.}}{\subset} Y \Rightarrow$
+    Sea $F \cerr Y \Rightarrow$
     \begin{align*}
-    F &= Y\setminus W : W \stackrel{ab}{\subset} Y \Rightarrow \exists U \stackrel{ab}{\subset}X : Y\cap U = W\\    
-    &\Rightarrow F = Y \setminus (Y \cap U) = Y \cap  (X\setminus U) = Y \cap F_x : F_x \stackrel{cerr}{\subset} X
+    F &= Y\setminus W : W \ab Y \Rightarrow \exists U \ab X : Y\cap U = W\\    
+    &\Rightarrow F = Y \setminus (Y \cap U) = Y \cap  (X\setminus U) = Y \cap F_x : F_x \cerr X
     \end{align*}
     \end{demo}
 
@@ -532,13 +532,13 @@ Además, decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio
 
 \begin{obs}
 \begin{enumerate}
-    \item Los abiertos $W$ de un subespacio abierto $Y \stackrel{\text{ab.}}{\subset} X$ son abiertos en el espacio ambiente $X$.
+    \item Los abiertos $W$ de un subespacio abierto $Y \ab X$ son abiertos en el espacio ambiente $X$.
    	$$
-    W = U \cap Y : U,\ Y\stackrel{\text{ab.}}{\subset} X \Rightarrow W \stackrel{\text{ab.}}{\subset} X 
+    W = U \cap Y : U,\ Y\ab X \Rightarrow W \ab X 
     $$
-    \item Los cerrados $F$ de un subespacio cerrado $Y \stackrel{\text{cerr.}}{\subset} X$ son cerrados en el espacio ambiente $X$.
+    \item Los cerrados $F$ de un subespacio cerrado $Y \cerr X$ son cerrados en el espacio ambiente $X$.
     $$
-    F = C \cap Y : Y,\ C\stackrel{\text{cerr.}}{\subset} X \Rightarrow F \stackrel{\text{cerr.}}{\subset} X
+    F = C \cap Y : Y,\ C\cerr X \Rightarrow F \cerr X
     $$
 \end{enumerate}
 \end{obs}
