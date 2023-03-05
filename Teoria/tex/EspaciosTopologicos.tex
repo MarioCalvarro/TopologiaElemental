@@ -1,23 +1,33 @@
 \chapter{Espacios topológicos}
 \label{cha:espacios_topologicos}
+La primera parte de este manual pretende hacer un estudio formal de la definición de la estructura de espacio topológico. Uno de los objetivos de esta noción es, por ejemplo, desvincular los conceptos topológicos como son abiertos, cerrados, fronteras, etc. de las propiedades métricas en $\mathbb{R}^n$. Fundamentalmente, esto servirá para poder estudiar características como continuidad, convergencia, conexión... en espacios más enrevesados y, como añadido, estudiar estas propiedades en espacios ya conocidos, pero con una estructura asociada distinta.
 
 \section{Conjuntos abiertos}
 \label{sec:conjuntos_abiertos}
+Al igual que en el Álgebra Lineal la parte más básica y fundamental eran los vectores, vamos a ver que en la topología las piezas claves son los abiertos. Estos son los que nos permiten dar forma y definir el resto nociones del capítulo. Además, el conjunto de abiertos en un conjunto es el que caracteriza y diferencia las topologías con las que pueda ser equipado este entre sí.
+
 \begin{defi}[Espacio Topológico]
-Sea $X$ un conjunto y $\mathcal{T} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos del mismo, decimos que $\mathcal{T}$ es una \textbf{topología} de $X$ si y sólo si:
+Sea $X$ un conjunto de elementos que denotaremos por \textbf{puntos} y $\mathcal{T} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos que denotaremos \textbf{abiertos}, decimos que $\mathcal{T}$ es una \textbf{topología} de $X$ si y sólo si:
 \begin{enumerate}
     \item $\emptyset, X \in \mathcal{T}$ 
     \item $\bigcup_{i \in I} U_i \in \mathcal{T}$ donde $U_i \in \mathcal{T}$
     \item $\bigcap_{i=1}^n U_i \in \mathcal{T}$ donde $U_i \in \mathcal{T}$
 \end{enumerate}
-y denotamos por \textbf{espacio topológico} al par $\left( X, \mathcal{T} \right)$. A los elementos de $X$ los llamaremos \textbf{puntos} y a los de $\mathcal{T}$, \textbf{abiertos}.
+y, ese caso, la dupla $\left( X, \mathcal{T} \right)$ se denomina \textbf{espacio topológico}.
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item \label{ejemplos_topologia:first} $\mathcal{T} = \{\emptyset, X\}$ es la topología \textbf{trivial}, que está contenida en cualquier otra topología.
-    \item $\mathcal{T} = P\left( X \right)$ es la topología \textbf{discreta}, que contiene a cualquier\footnote{Porque si los puntos $\{x\} \in X$ son abiertos, entonces cualquier conjunto $A = \bigcup_{x \in A} \{x\}$ es abierto.} otra topología.
-    \item $\mathbb{R}^n$ junto con las bolas euclídeas es la topología habitual que utilizamos.
+    \item \textbf{Topología trivial}: \label{ejemplos_topologia:first}
+    
+    La topología es $\mathcal{T} = \{\emptyset, X\}$ para cualquier conjunto $X$ sobre el que se equipe. Es la topología con menos abiertos posibles y esto hace que esté contenida en cualquier otra topología.
+    \item \textbf{Topología discreta}:
+    
+    La topología es $\mathcal{T} = P\left( X \right)$ para cualquier conjunto $X$ sobre el que se equipe. Es la topología con más\footnote{Porque si los puntos $\{x\} \in X$ son abiertos, entonces cualquier conjunto $A = \bigcup_{x \in A} \{x\}$ es abierto.} abiertos posibles y esto hace que cualquier otra esté contenida en ella.
+    \item \textbf{Topología usual}:
+    
+    Si al conjunto $\mathbb{R}^n$ le equipamos la topología en las que los abiertos son los conjuntos formados por unión de bolas euclídeas, obtenemos la topología habitual que utilizamos en $\mathbb{R}^n$.
+    
     \item Cualquier distancia $d(x,y)$ define una topología a través de sus bolas abiertas, igual que definíamos la usual en $\mathbb{R}^n$, de hecho, se puede demostrar sin mayor dificultad (y tal y como se ve en el dibujo) que todas las normas $p$ en $\mathbb{R}^n$ definen bolas que contienen y están contenidas en las restantes. En consecuencia, si la definición de abierto usual se hacía a través de bolas redondas y hemos visto que estas contienen a bolas cuadradas o romboidales, también se tiene que es abierto cuadrado o romboidal y el recíproco por los contenidos en ambos lados.
     \begin{figure}[H]
         \centering
@@ -28,18 +38,16 @@ y denotamos por \textbf{espacio topológico} al par $\left( X, \mathcal{T} \righ
 
     Es decir, cambiar de norma igual cambia la noción de distancia en $\mathbb{R}^n$, ¡pero no la topología asociada! Sigue siendo la topología usual de $\mathbb{R}^n$.
     
-    \item En general, cuando queramos ver resultados que no son ciertos pondremos un contraejemplo donde no se cumpla. Para poder hacer esto, tenemos que disponer de muchos y muy variados ejemplos de topologías poco usuales, como por ejemplo, la topología ``del punto'':
-    $$
-    \mbox{Fijado } a \in X : \mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\} 
-    $$
-    En esta topología, el punto $\{a\}$ y todos los pares $\{a, x\}$ son abiertos y, aunque puede parecer igual a la discreta, no lo es. Hay que fijarse en que los abiertos de esta topología son los que contienen al punto, no todos los puntos en general. De este modo, $\{x\}\notin \mathcal{T}$, pero $\{a,x_1, x_2, \ldots\}\in \mathcal{T}$.
+    \item \textbf{Topología del punto}:
+    
+    La topología es $\mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\}$ para un $a\in X$ fijado previamente. Lo curioso de esta topología es que todos los abiertos son los conjuntos que contienen a $a\in X$, es decir, que la topología queda caracterizada como $\mathcal{T}_a := \{{a, W} \text{ donde }W\subset X\}$.
 \end{enumerate}
 \end{ej}
 
 \begin{defi}[Entorno]
-Sea $(X, \mathcal{T})$ un espacio topológico y $x\in X$ un punto del mismo, definimos un \textbf{entorno\footnote{Cuando el abierto que contiene al punto es el propio entorno o, dicho de otra manera, el entorno de $x$ es un abierto de la topología, decimos que es un entorno \textit{abierto} de $x$.} de $x$} como un conjunto $V^x$ que contiene un abierto $U$ que contiene al punto:
+Sea $(X, \mathcal{T})$ un espacio topológico y $x\in X$ un punto del mismo, definimos un \textbf{entorno\footnote{Cuando el abierto que contiene al punto es el propio entorno o, dicho de otra manera, el entorno de $x$ es un abierto de la topología, decimos que es un entorno \textit{abierto} de $x$.} del punto $x$} como un conjunto $V^x$ que contiene un abierto $U$ que contiene al punto:
 \[
-x \in U : U \subset V^x
+V^x := V\subset X : \exists U \subset V \text{ donde }x\in U
 \]
 \end{defi}
 
@@ -70,9 +78,9 @@ Por definición de entornos, existen dos abiertos $U_1^x\subset V_1^x$ y $U_2^x\
 \begin{defi}[Punto interior]
 Sea $(X,\mathcal{T})$ un espacio topológico y $A \subset X$ un subconjunto de puntos, decimos que un punto $x\in X$ es \textbf{punto interior de $A$} si y sólo si $A$ es entorno de $x$.
 $$
-x\in \inter_X(A) \Leftrightarrow \exists U \stackrel{\text{ab.}}{\subset} A : x \in U
+x\in \inter_X(A) \Leftrightarrow \exists U^x \stackrel{\text{ab}}{\subset} A
 $$
-Al conjunto de puntos interiores lo llamamos \textbf{interior de $A$} y se denota por $\inter_X \left( A \right)$ o $\mathring{A}$.
+Al conjunto de puntos interiores, que denotamos por $\mathring{A}$ o $\inter(A)$, lo llamamos \textbf{interior de $A$}.
 \end{defi}
 
 %TODO: Mejorar bordes
@@ -86,9 +94,8 @@ Al conjunto de puntos interiores lo llamamos \textbf{interior de $A$} y se denot
 \begin{prop}
 Sea $A\subset X$ un subconjunto de puntos, entonces:
 \begin{itemize}
-\item $\mathring{A}$ es el mayor abierto en $A$ o lo que es lo mismo $ \mathring{A} = \bigcup_{U \subset A} U$.
+\item $\mathring{A}$ es el mayor abierto en $A$ o, lo que es lo mismo, $ \mathring{A} = \bigcup_{U \subset A} U$.
 \item $A$ abierto si y sólo si todos sus puntos son interiores, es decir, $A = \mathring{A}$
-\item $A$ es abierto si y sólo si es entorno de todos sus puntos.
 \end{itemize}
 \end{prop}
 \begin{demo}
@@ -99,22 +106,16 @@ Sea $A\subset X$ un subconjunto de puntos, entonces:
    \item El contenido $\mathring{A}\subset A$ se tiene siempre, puesto que $x\in \mathring{A}\Leftrightarrow \exists U \subset A : x\in U \subset A \Rightarrow x\in A$ (dicho de otra forma, los puntos interiores de $A$ son aquellos para los cuales $A$ es entorno y como un entorno contiene al punto se tiene trivialmente).
    
    De esta manera, si $A$ es abierto, como $\mathring{A}$ es el mayor abierto de $A$, tiene que ser $\mathring{A} = A$ y si $\mathring{A} = A$, como $\mathring{A}$ es abierto, pues lo es $A$.
-    
-   \item Se tiene trivialmente de la implicación anterior. Cuando $A$ es abierto sabemos que todos los puntos son interiores y un punto es interior si y sólo si $A$ es entorno para él, luego es entorno para todos sus puntos.
-   
-   Recíprocamente, $A$ es entorno de todos sus puntos, entonces todos sus puntos están en el interior y $A = \mathring{A}$, lo que indica que es abierto.
 \end{enumerate}
 \end{demo}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\left( X, \mathcal{T}_{\text{trivial}} \right): A \neq X \Rightarrow A \not \supset X \Rightarrow \emptyset$ es el único abierto $\subset A \Rightarrow \mathring{A} = \emptyset$.
+    \item Si consideramos un espacio topológico $\left( X, \mathcal{T}_{\text{trivial}} \right)$ con la discreta, vemos que cualquier subconjunto $A\subset X$ puede contener únicamente a $\emptyset$ como abierto, luego su interior es el vacío $\mathring{A} = \emptyset$.
 
-    \item En $\mathbb{R}^n$ con $\mathcal{T}_{\text{trivial}}$ ya lo sabemos bien:
-    \[
-    \inter\left( B\left[ a, \varepsilon \right] \right)  = B\left( a, \varepsilon \right);\ \mathring{\mathbb{Q}}^n = \emptyset;\ \mathring{\mathbb{Z}}^n = \emptyset
-    \]
-    \item Si $a \in X,\ \mathcal{T}_a : \mathring{\{a\}} = \{a\};\ x \neq a,\ \mathring{\{x\}} = \emptyset$.
+    \item Si consideramos $(\mathbb{R}^n, \mathcal{T}_{\text{usual}})$ algunos de los interiores usuales son $\inter\left( B\left[ a, \varepsilon \right] \right)  = B\left( a, \varepsilon \right)$, $\mathring{\mathbb{Q}}^n = \emptyset$ y $\mathring{\mathbb{Z}}^n = \emptyset$.
+    
+    \item Si consideramos la topología del punto $\mathcal{T}_a$, entonces $\mathring{\{a\}} = \{a\}$ y, en general, ocurre lo mismo para cualquier conjunto que contenga a $a$ (porque son abiertos). Sin embargo, cualquier $x \neq a$ verifica que $\mathring{\{x\}} = \emptyset$.
 \end{enumerate}
 \end{ej}
 
@@ -135,19 +136,21 @@ Sea $A\subset X$ un subconjunto de puntos, entonces:
 
 \section{Conjuntos cerrados}%
 \label{sec:conjuntos_cerrados}
+Los conjuntos cerrados por definición están íntimamente relacionados con los conjuntos abiertos. Revisten gran importancia por la relación que tienen con dos conjuntos de puntos importantes: la acumulación y la adherencia. Estas dos últimas nociones permiten caracterizar conceptos como la convergencia de sucesiones o la densidad de un conjunto.
 
 \begin{defi}[Conjunto cerrado]
-Sea $\left( X, \mathcal{T} \right)$ un espacio topológico, definimos un \textbf{conjunto cerrado} como $F \subset X : U = X \setminus F$ es abierto.
+Sea $\left( X, \mathcal{T} \right)$ un espacio topológico y $F\subset X$ un subconjunto de puntos, decimos que es un \textbf{conjunto cerrado} si y sólo si su complementario es un abierto, es decir, $U = X \setminus F$ es abierto.
 \end{defi}
+
 \begin{obs}
-A pesar de lo que pueda sugerir el lenguaje habitual, la definición cerrado NO significa ``no abierto'', hay conjuntos que no son ni abiertos ni cerrados.
+En muchas ocasiones el lenguaje natural confunde las definiciones precisas que se dan en matemáticas. Este caso es un ejemplo de ello: uno podría pensar que la definición de cerrado desprende el hecho de que un cerrado es un ``no abierto''. Sin embargo, podemos encontrar multitud de conjuntos que no ni abiertos ni cerrados
 \begin{figure}[H]
     \centering
     \incfig[0.5]{observación-abiertos-y-cerrados.}
     \caption{\textit{Ejemplo de conjunto que no es ni abierto ni cerrado.}}
     \label{fig:observación-abiertos-y-cerrados.}
 \end{figure}
-y otros que son abiertos y cerrados simultáneamente, como el vacío y el total.
+e incluso otros que son abiertos y cerrados simultáneamente, como el vacío y el total.
 \end{obs}
 
 \begin{prop}
@@ -170,18 +173,24 @@ Sea $(X,\mathcal{T})$ un espacio topológico y denotando por $\mathcal{F}$ al co
 
 \begin{ej}
 \begin{enumerate}
-    \item En la topología trivial solo son cerrados $\emptyset$ y $X$. En la discreta, todos los subconjuntos son cerrados.
-    \item En $\mathbb{R}^n$ con la topología usual ya sabemos todos los ejemplos: $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
-    \item Si $\mathcal{T}_1 \subset \mathcal{T}_2$, todo cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$, pues es cerrado por ser el complementario de un abierto y los abiertos de $\mathcal{T}_1$ también lo son el $\mathcal{T}_2$.
+    \item \textbf{Topología trivial}:
+    
+    En este caso, como $\emptyset$ y $X$ son los únicos abiertos, únicamente pueden ser cerrados sus complementarios, es decir, ellos mismos.
+    
+    \item \textbf{Topología usual}:
+    
+	Habitualmente los conjuntos que conocemos como cerrados son aquellos que pueden ser escritos en términos de bolas cerradas $B\left[ a, \varepsilon \right] : \lVert x - a \rVert \le \varepsilon$.
+	
+    \item Si tenemos dos topologías $\mathcal{T}_1 \subset \mathcal{T}_2$, entonces cualquier cerrado de $\mathcal{T}_1$ es cerrado de $\mathcal{T}_2$, pues es cerrado por ser el complementario de un abierto y los abiertos de $\mathcal{T}_1$ también lo son el $\mathcal{T}_2$.
 \end{enumerate}
 \end{ej}
 
 \begin{defi}[Adherencia]
-Sea $A \subset X$ y $x\in X$ un punto, decimos que es \textbf{adherente a $A$} si y sólo si todos sus entornos intersecan con $A$.
+Sea $A \subset X$ y $x\in X$ un punto, decimos que es \textbf{adherente a $A$} si y sólo si todos sus entornos $V^x$ intersecan con $A$, esto es:
 $$
 \adh_X\left( A \right) = \overline{A} := \{x \in X: \forall V^x \cap A \neq \emptyset\} \supset A
 $$
-al conjunto de puntos adherentes a $A$ lo llamamos su \textbf{adherencia}.
+Al conjunto de puntos adherentes a $A$ lo llamamos \textbf{adherencia} de $A$.
 \end{defi}
 
 \begin{obs}
@@ -201,11 +210,9 @@ $$
 \begin{prop}
 Sea $A\subset X$ un subconjunto de puntos y denotando por $\overline{A}$ a su adherencia, entonces:
 \begin{itemize}
-\item $\overline{A}$ es el menor cerrado que contiene a $A$, en otras palabras:
-$$
-\overline{A} = \bigcap_{F \supset A} F \mbox{ donde }F \mbox{ cerrado}
-$$
-que, en particular, caracteriza que $A$ es cerrado si y sólo si $\overline{A} = A$.
+\item $\overline{A}$ es el menor cerrado que contiene a $A$ o, lo que es lo mismo, $\overline{A} = \bigcap_{F \supset A} F$ donde los $F$ son cerrados.
+
+\item El conjunto $A$ es cerrado si y sólo si coincide con su adherencia, es decir, $\overline{A} = A$.
 
 \item $B \subset A \Rightarrow \overline{B} \subset \overline{A}$.
 \item $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
@@ -217,6 +224,7 @@ que, en particular, caracteriza que $A$ es cerrado si y sólo si $\overline{A} =
 $$
 \overline{A} = X \setminus \inter\left( X \setminus A \right) = X \setminus \left(\bigcup_{U \subset X \setminus A} U \right) \stackrel{F = X \setminus U}{=} X \setminus \left(\bigcup_{F \supset A} \left( X \setminus F \right) \right) = \bigcap_{F \supset A} F
 $$
+\item Se deduce inmediatamente de la primera, pues si el conjunto es cerrado él mismo debe ser el menor cerrado que lo contiene.
 \item Si $B \subset A \Rightarrow$
 $$
 B \subset A \subset \overline{A} \Rightarrow \overline{B} \subset \overline{A}
@@ -258,7 +266,7 @@ Sea $A\subset X$ un subconjunto de puntos y $x\in A$ un punto del mismo, decimos
 $$
 \exists V^x \subset X : V^x \cap A = \{x\}
 $$
-\item \textbf{punto de acumulación de $A$} si y sólo si cualquier entorno interseca a $A$ en más puntos, es decir:
+\item \textbf{punto de acumulación de $A$} si y sólo si en cualquier entorno del punto encontramos puntos de $A$ que no sean el propio punto, es decir:
 $$
 \forall V^x \subset X : V^x \cap A \setminus \{x\} \neq \emptyset
 $$
@@ -286,10 +294,10 @@ al conjunto de puntos de la frontera de $A$ lo llamamos \textbf{frontera} de $A$
 
 \begin{ej}
 \begin{enumerate}
-    \item En $\mathbb{R}$, con la topología usual $\mathcal{T}_u$, todos los puntos de $\mathbb{Z}$ son aislados, $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
-    \item En $\mathbb{R}^n$, con la topología usual $\mathcal{T}_u$: $\fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$.
-    \item En la topología $\mathcal{T}_{\text{discreta}}$ todos los puntos son aislados y todas las fronteras, vacías.
-    \item Para un punto cualquiera $a \in X$ podemos escoger la topología del punto $\mathcal{T}_a$ y entonces:
+    \item En $\mathbb{R}$, con la topología usual $\mathcal{T}_u$, todos los puntos de $\mathbb{Z}$ son aislados. Por tanto, la frontera de los enteros es $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
+    \item En $\mathbb{R}^n$, con la topología usual $\mathcal{T}_u$, la frontera de las bolas $\fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$ son los discos exteriores de las mismas.
+    \item En la topología $\mathcal{T}_{\text{discreta}}$, sobre cualquier conjunto que se equipe, todos los puntos son aislados y, en consecuencia, todas las fronteras, vacías.
+    \item En la topología del punto $\mathcal{T}_a$ sobre un punto $a \in X$ concreto vemos que:
 $$
 \begin{cases}
 	\fr\left( \{a\} \right) = \overline{\{a\}} \setminus \mathring{\{a\}} = X \setminus \{a\} \\
@@ -305,24 +313,26 @@ Sea $X$ un conjunto de puntos y $A \subset X$ un subconjunto suyo, decimos que $
 
 \begin{ej}
 \begin{enumerate}
-    \item El conjunto de los números racionales $\mathbb{Q} \subset \mathbb{R}$ es denso en $\mathbb{R}$ con la topología usual $\mathcal{T}_{\text{usual}}$.
-    \item $\{a\}$ es denso en $\left( X, \mathcal{T}_a \right)$.
+    \item En $\mathbb{R}$, con la topología usual $\mathcal{T}_u$, el conjunto de los números racionales $\mathbb{Q} \subset \mathbb{R}$ es denso en $\mathbb{R}$.
+    \item En la topología del punto $\mathcal{T}_a$, el conjunto $\{a\}$ es denso, pues cualquier abierto corta con él (lo contiene).
 \end{enumerate}
 \end{ej}
 
 \section{Bases}%
 \label{sec:bases}
+En general, probar una cierta propiedad para una topología hace necesario verificar dicha propiedad en todos los abiertos de la misma. Esto, ya de por sí complicado, puede serlo mucho más cuando la definición de abierto es compleja y poco intuitiva. Por esto, del mismo modo que en el Álgebra Lineal surgían las bases para trabajar con un espacio vectorial completo observando únicamente un conjunto pequeño de vectores, en Topología tendremos las bases de entornos y de abiertos que jugaran un papel similar en los espacios topológicos.
+
 \begin{defi}[Base de entornos]
-Sea $(X, \mathcal{T})$ un espacio topológico y $a\in X$ un punto, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier otro entorno de $a$ tenga que contener a alguno de los entornos de la colección $\mathcal{V}^a$:
+Sea $(X, \mathcal{T})$ un espacio topológico y $a\in X$ un punto, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier otro entorno de $a$ tenga que contener a alguno de los entornos de la colección $\mathcal{V}^a$, esto es:
 \[
-\forall W^a,\ \exists V \in \mathcal{V}^a : W^a \supset V 
+\forall W^a, \ \exists V \in \mathcal{V}^a : V \subset W^a
 \]
 \end{defi}
 
 \begin{obs}
 La definición no ha hecho ninguna diferenciación especial en cuanto a si son cerrados, abiertos, etc. Precisamente esta ``variedad'' es la que permite que, escogiendo una base de entornos con las características adecuadas en cada caso, sea más sencillo estudiar la topología que tengamos entre manos.
 
-En Topología, las bases de entornos tendrán propiedades parecidas a las bases de los espacios vectoriales en Álgebra: comprobar propiedades en una base de entornos extenderá automáticamente dichas propiedades a cualquier entorno arbitrario.
+Tal y como hemos comentado al inicio, comprobar propiedades en una base de entornos extenderá automáticamente dichas propiedades a cualquier entorno arbitrario, haciendo el estudio de estos conjuntos más sencillos en función de la topología y la base escogida.
 \end{obs}
 
 \begin{prop}
@@ -360,27 +370,28 @@ luego si escogemos una base de entornos $\mathcal{V}^a$ adecuada sobre la que se
 \end{ej}
 
 \begin{defi}[Base de abiertos]
-Sea $\mathcal{T}$ una topología y $\mathcal{B} :=\{U_i\}_{i\in I}\subset \mathcal{T}$ una colección de abiertos, decimos que es una \textbf{base de abiertos de $\mathcal{T}$} si y sólo si todo abierto de $\mathcal{T}$ es unión de abiertos de $\mathcal{B}$.
+Sea $(X, \mathcal{T})$ un espacio topológico y $\mathcal{B} :=\{U_i\}_{i\in I}\subset \mathcal{T}$ una colección de abiertos, decimos que es una \textbf{base de abiertos de $\mathcal{T}$} si y sólo si todo abierto de $\mathcal{T}$ es unión de abiertos de $\mathcal{B}$.
 \end{defi}
 
-\begin{prop}
-Los siguientes enunciados son equivalentes:
+\begin{prop}[Caracterización de base de abiertos]
+Sea $(X, \mathcal{T})$ un espacio topológico y $\mathcal{B} :=\{U_i\}_{i\in I}\subset \mathcal{T}$ una colección de abiertos, los siguientes enunciados son equivalentes:
 \begin{enumerate}
 \item $\mathcal{B}$ es base de abiertos. 
-\item $\forall x \in X,\ \mathcal{B}^x = \left\{ B \in \mathcal{B},\ x \in B \right\}$ es base de entornos (abiertos) de $x$.
-\item $\forall x \in U,\ \exists B \in \mathcal{B} : x \in B \subset U$.
+\item $\forall x \in X, \ \mathcal{B}^x = \left\{ B \in \mathcal{B} : x \in B \right\}$ es base de entornos de $x$.
+\item $\forall x \in U \stackrel{ab}{\subset} X, \ \exists B \in \mathcal{B} : x \in B \subset U$.
 \end{enumerate}
-$\mathcal{B}$ base de abiertos $\Leftrightarrow \forall x \in X,\ \mathcal{B}^x = \{B \in \mathcal{B} : x \in B\}$ es base de entornos (abiertos) de $x \Leftrightarrow \forall x \in U,\ \exists B \in \mathcal{B} : x \in B \subset U$.
 \end{prop}
-%TODO: No se si es trivial la verdad.
+
 \begin{demo}
-Demostraremos $1. \Rightarrow 2.$ y $3. \Rightarrow 1.$ por ser $2. \Rightarrow 3.$ trivial:
+La implicación $2. \Rightarrow 3.$ es trivial, pues si $U$ es abierto y contiene al punto es un entorno del mismo, luego por $2.$ debe contener a alguna $B\in \mathcal{B}$. Por tanto, demostraremos $1. \Rightarrow 2.$ y $3. \Rightarrow 1.$ para completar las equivalencias.
 \begin{itemize}
-\item[$\Rightarrow)$] $\forall V^x,\ \exists U \ni x: U \subset V^x \Rightarrow$
-\[
-    \mathcal{B} \text{ base: } U = \bigcup_{i \in  I} B_i: B_i \in \mathcal{B} \xRightarrow{x \in U} \exists B_i \ni x: B_i \subset U \subset V^x
-\]
-\item[$\Leftarrow)$] Sea $U \in \mathcal{T} \Rightarrow \forall x \in U,\ \exists B^x \in \mathcal{B}: B^x \subset U \Rightarrow U = \bigcup_{x \in U} B^x$ unión de abiertos de $\mathcal{B}$.
+\item $1. \Rightarrow 2.$
+
+Si $V^x$ es entorno, entonces $\exists U \subset V^x$ abierto que contiene al punto $x$. Como por $1.$ el conjunto $B$ es base de abiertos, $U = \bigcup_{B_i \in \mathcal{B}} B_i$ y como $x\in U$, entonces $\exists B_i \ni x$. De esta manera, tenemos $B_i \subset U \subset V^x$, es decir, que cualquier entorno debe contener algún elemento de la base que contenga al punto.
+
+\item $3. \Rightarrow 1.$
+
+Por darse $3.$, escogido cualquier abierto $U$ necesariamente contiene a una $B^x\in \mathcal{B}$ para cada $x\in U$, es decir, que podemos escribir $U = \bigcup_{x \in U} B^x$ unión de abiertos de $\mathcal{B}$.
 \end{itemize}
 \end{demo}
 
@@ -400,13 +411,10 @@ Demostraremos $1. \Rightarrow 2.$ y $3. \Rightarrow 1.$ por ser $2. \Rightarrow 
     \caption{\textit{Bases alternativas en $\mathbb{R}^n$}}
     \label{fig:bases-alternativas-en-rn}
 \end{figure}
-    %TODO: Fix imágenes 
-    \begin{center}
-        \includegraphics[scale=0.3]{images/base_rn} 
-    \end{center}
 \end{enumerate}
 \end{ej}
 
+% TODO: no me convencen estos entornos y el de ilustración habría que cambiarlo por proposición.
 \begin{pg}
     Como antes, a menudo basta considerar los abiertos de $\mathcal{B}$. 
 \end{pg}
@@ -458,6 +466,8 @@ Veamos que se verifican las condiciones sobre la topología:
 
 \section{Topología relativa}%
 \label{sec:topologia_relativa}
+De la misma manera que en Álgebra, una vez definida la estructura de espacio vectorial, estudiábamos como se comportaba esta estructura con los subconjuntos del conjunto inicial, tiene sentido preocuparnos por cómo cambia la topología cuando nos restringimos a un subconjunto de puntos del total. A esta topología ``restringida'' la conocemos como topología relativa y, a diferencia de lo que ocurría en espacios vectoriales, puede tener un comportamiento muy distinto a la topología ambiente de la que proviene.
+
 \begin{defi}[Topología Relativa]
 Sea $\left( X, \mathcal{T} \right)$ un espacio topológico e $Y \subset X$ un subconjunto de puntos, definimos la \textbf{topología relativa\footnote{La comprobación de que efectivamente se trata de una topología es completamente trivial.} en $Y$} como
 $$
