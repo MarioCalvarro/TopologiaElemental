@@ -234,30 +234,29 @@ Sea $f:X\rightarrow Y$ una función biyectiva, entonces las siguientes afirmacio
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $F_{\text{cerr}} \subset X \Rightarrow X\setminus F_{\text{ab}} \subset X \Rightarrow^{ f\text{ ab}} \underbrace{f\left( X\setminus F \right)}_{= Y\setminus f\left( F \right) \text{(biy.)}} \subset_{\text{ab}} X \Rightarrow f\left( F \right) \subset_{\text{cerr}} Y \Rightarrow f$ cerr.
+    \item Sea $F \cerr X \Rightarrow X\setminus F \ab X \xRightarrow{ f\text{ ab.}} \underbrace{f\left( X\setminus F \right)}_{= Y\setminus f\left( F \right) \text{(biy.)}} \ab X \Rightarrow f\left( F \right) \cerr Y \Rightarrow f$ cerrada.
 
-    \item $F_{cerr} \subset X \Rightarrow^{f \text{cerr}} \underbrace{f\left( F \right)}_{= \left( f^{-1} \right)^{-1} \left( F \right) \text{(biy)}} \subset_{\text{cerr}} Y \Rightarrow f^{-1}$ cont.
+    \item Sea $F \cerr X \xRightarrow{f \text{cerr.}} \underbrace{f\left( F \right)}_{\stackrel[\text{biy.}]{}{=} \left( f^{-1} \right)^{-1} \left( F \right)} \cerr Y \Rightarrow f^{-1}$ continua.
 
-    \item $U_{\text{ab}} \subset X \Rightarrow^{f^{-1} \text{cont}} \underbrace{\left( f^{-1} \right) ^{-1} \left( U \right) }_{f\left( U \right) \text{(biy.)}} \subset Y \Rightarrow f$ ab.
+    \item Sea $U \ab X \xRightarrow{f^{-1} \text{cont.}} \underbrace{\left( f^{-1} \right) ^{-1} \left( U \right) }_{\stackrel[\text{biy.}]{}{=}f\left( U \right)} \subset Y \Rightarrow f$ abierta.
 \end{enumerate}
 \end{demo}
 
 \begin{defi}[Homeomorfismo]
 Sea $f: X \rightarrow Y$ una aplicación biyectiva, decimos que es un \textbf{homeomorfismo} si y sólo si $f$ y $f^{-1}$ son continuas, o equivalentemente si:
     \[
-    \begin{cases}
-        f \text{ biy.}\\
-        \text{cont.}\\
-        \text{ab.} 
-    \end{cases} \Leftrightarrow \begin{cases}
-        f \text{ biy.}\\
-        \text{cont.}\\
-        \text{cerr.}
+    f \begin{cases}
+        \text{biyectiva}\\
+        \text{continua}\\
+        \text{abierta} 
+    \end{cases} \Leftrightarrow f \begin{cases}
+        \text{biyectiva}\\
+        \text{continua}\\
+        \text{cerrada}
     \end{cases} 
     \]
 \end{defi}
 
-%TODO: Arreglar mix
 \begin{obs}
 \begin{itemize}
     \item Cuando $f$ es homeomorfismo establecemos una biyección entre las topologías:
@@ -282,15 +281,18 @@ Será \textbf{homeomorfismo local} si lo es en todo el dominio.
 Se pueden tomar $V^{x_0}, V^{f\left( x_0 \right)}$ entornos abiertos.
 %TODO: Corregir
 \begin{demo}
-Si $V^a \subset X$ y $V^{f\left( a \right)} \subset Y$, tenemos: 
+Si $f$ es homeomorfismo local, entonces $\exists V^a \subset X$ y $V^{f\left( a \right)} \subset Y$, tal que: 
 \[
     f: V^a \rightarrow V^{f\left( a \right)}
 \]
-Sabemos que $\exists U^a (\ab V^a) \mapsto f\left( U^a \right) (\ab V^{f\left( a \right)})$ al ser homeomorfismo. 
+Es homeomorfismo. Por esta razón, sabemos que $\exists U^a (\ab V^a) \mapsto f\left( U^a \right) (\ab V^{f\left( a \right)})$. 
 
-Además, como $f$ es abierto, local en $V^{f\left( a \right)}$ (homeomorfismo local), $f\left( U^a \right)$ es entorno de $f\left( a \right)$, pero no abierto (tal vez sí). 
+Además, como $f$ es abierto local en $V^{f\left( a \right)}$ (homeomorfismo local), $f\left( U^a \right)$ es entorno de $f\left( a \right)$ (no tiene porque ser abierto ya que no sabemos si $f\left( U^a \right) \subset V^{f\left( a \right)}$). 
 
-Por tanto, tiene un abierto ($W^{f\left( a \right)} \subset f\left( U \right)$) que es imagen de un abierto, $G$, en $X \rightarrow f\left( G \right) = W^{f\left( a \right)} \ab Y$, con $G \ab X$.
+Por tanto, tiene un abierto ($W^{f\left( a \right)} \subset f\left( U \right)$) que es imagen de un abierto, $G \ab X$:
+\[
+X \stackrel{\text{ab.}}{\supset} G = W^a \rightarrow f\left( G \right) = W^{f\left( a \right)} \ab Y
+\]
 \end{demo}
 \end{obs}
 
