@@ -127,9 +127,9 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
 
     Si $f|_{E^x}$ continua en $x \Rightarrow f$ continua en $x$.
     \begin{demo}
-        $\forall V^{f\left( x \right)} \Rightarrow \left( f|_{E} \right)^{-1}\overbrace{\left( V^{f\left( x \right)} \right)}^{= W^x}$ entorno de $x$ en $E^x$.
+        $\forall V^{f\left( x \right)} \Rightarrow \left( f|_{E} \right)^{-1} \left( V^{f\left( x \right)} \right) = W^x$ entorno de $x$ en $E^x$.
 
-        Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X$ (entorno en entorno es entorno). Porque, 
+        Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X \Rightarrow W^x \stackrel{\text{ent.}}{\subset}X$ (entorno en entorno es entorno). Porque, 
         \[
         \begin{rcases}
             x \in W^x: \exists G \stackrel{\text{ab.}}{\subset} W^x \subset E^x: G = A \cap E^x \subset X\\ 
@@ -150,7 +150,7 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
     Entonces, $f$ a $Y$ es continua $\Leftrightarrow f$ a $Z$ es continua.
     \begin{demo}
         \begin{itemize}
-            \item $f$ cont. en $Z \xRightarrow{j \circ f} f$ cont. en $Y$.
+            \item $f$ cont. en $Z \xRightarrow{j \circ f} f$ cont. en $Y$. %TODO: Seguro?
             \item $f$ cont. en $Y \xRightarrow{?} f$ cont. en $Z$. 
 
             Sea $U_z$ ab. en $Z$. Este será $U_y \cap Z = U_z$ que cumple, $f_z^{-1}\left( U_y \cap Z \right) \stackrel{f\left( X \right) \subset Z}{=}  f_y^{-1}\left( U_y \right)$ que es abierto en $X$ (por ser $f_y$ continua).
@@ -158,24 +158,6 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
     \end{demo}
 \end{enumerate}
 \end{obs}
-
-\begin{prop}[Criterios de continuidad por recubrimientos]
-   \begin{itemize}
-        \item \textbf{Por cerrados:} $\exists \bigcup_{i = 0}^{n} F_i^{\text{cerr.}} = X: \forall f|_{F_i} : F_i \rightarrow Y$ es continua. 
-   \end{itemize} 
-\end{prop}
-\begin{demo}
-\begin{itemize}
-    \item $C \stackrel{\text{cerr.}}{\subset} Y \Rightarrow$
-    \[
-    \begin{cases}
-        f^{-1}C = \bigcup_{i = 0}^{n}  F_i \cap f^{-1} C = \bigcup_{i = 0}^{n} \left( f|_{F_i} \right)^{-1} C\\
-        \left( f|_{F_i} \right)^{-1}C \stackrel[\text{(cont.)}]{\text{cerr.}}{\subset} F_i \stackrel{\text{cerr.}}{\subset} X \Rightarrow \left( f|_{F_i} \right)^{-1} C \stackrel{\text{cerr.}}{\subset} X
-    \end{cases}\Rightarrow f^{-1}C \stackrel{\text{cerr.}}{\subset} X  
-    \]
-    Por unión finita de cerrados.
-\end{itemize}
-\end{demo}
 
 \begin{prop}[Criterios de continuidad por recubrimientos]
 Sea $f: X \rightarrow Y$ una función entre espacios topológicos, si se da alguna de las siguientes condiciones: 
