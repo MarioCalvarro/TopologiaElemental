@@ -49,43 +49,6 @@ $X$ es \textbf{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \math
 \end{enumerate}
 \end{ej}
 
-\begin{defi}[Límites]
-Decimos que $\lim_{k \rightarrow \infty} x_k = x \Leftrightarrow$ 
-\[
-\forall U^x,\ \exists k_0 : k \ge k_0 \Rightarrow x_k \in U^x
-\]
-\end{defi}
-\begin{obs}
-\begin{enumerate}
-    \item $X$ es Hausdorff $\Rightarrow \exists! $ límite. 
-    \begin{demo}    
-    $x_k \rightarrow x \neq y,\ \exists U^x \cap U^y = \emptyset \Rightarrow \{x_k : k \ge k_0\} \subset U^x$ y $x_k \not \rightarrow y$.
-    \end{demo}
-
-    \item El I Axioma permite describir la topología con sucesiones:
-    \[
-     x \in \overline{A} \Leftrightarrow \exists \{x_k\} \subset A: x_k \rightarrow x
-    \]
-
-    \begin{demo}
-    \begin{itemize}
-        \item[$\Rightarrow)$] Supongamos que $x \in \overline{A} \Rightarrow$
-        \[
-        \begin{rcases}
-            \exists \mathcal{W}^x = \{W_k\}_{k \ge 1} \text{ encajados} \Rightarrow \exists x_k \in W_k \cap A\\
-            \forall U^x \stackrel{\text{base ent.}}{\supset} W_{k_0} \supset W_{k + 1} \supset \ldots \Rightarrow x_k \in U^x,\ \forall k \ge k_0  
-        \end{rcases} \Rightarrow x_k \rightarrow x
-        \]
-        \item[$\Leftarrow)$] Supongamos que $\exists \left\{ x_k \right\} \subset A: x_k \rightarrow x$:
-        \[
-        A \ni x_k \rightarrow x \Rightarrow \forall U^x,\ \exists x_{k_0} \in U^x \cap A
-        \]
-    \end{itemize}
-    \end{demo}
-\end{enumerate}
-En general, los límites de sucesiones son poco útiles.
-\end{obs}
-
 \subsection{II Axioma}%
 \label{sub:iiax}
 \begin{defi}[II Ax.]
@@ -171,13 +134,13 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-    I Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
+    I Ax. & \checkmark & \begin{tabular}{@{}c@{}}\ding{55}\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
     \hline
-    II Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
+    II Ax. & \checkmark & \begin{tabular}{@{}c@{}}\ding{55}\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
     \hline
-    Separable & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
+    Separable & \begin{tabular}{@{}c@{}}\ding{55}\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
     \hline
-    Lindelöf & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & $\times$ & \checkmark\\
+    Lindelöf & \begin{tabular}{@{}c@{}}\ding{55}\\ cerrados \checkmark \end{tabular} & \checkmark & \ding{55} & \checkmark\\
     \hline
 \end{tabular}
 \caption{\textit{Tabla que nos indica como se comportan las propiedades que hemos visto en la anterior sección con las distintas construcciones. Las sumas y productos son finitos.}}
@@ -196,11 +159,11 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
 
     \item \underline{Cocientes}:
     \begin{itemize}
-        \item $X = \mathbb{R}_u$ es I y II Axiomas, $Y = \mathbb{R}/\mathbb{Z}$ no es I.
+        \item $X = \mathbb{R}_u$ es I y II Axiomas, $Y = \faktor{\mathbb{R}}{\mathbb{Z}}$ no es I.
         \begin{demo}
             $\alpha = \mathbb{Z} \in Y,\ \exists \mathcal{W}^{\alpha} = \{W_k : k \ge 1\}$ abiertos \underline{saturados}, $W_k \supset \mathbb{Z},\ \forall k$
 
-            (Figura \ref{fig:I_ax_II_ax_cocientes}) $\Rightarrow U = \mathbb{R} \setminus \{\varepsilon_k : k \ge 1\}$ entorno abierto saturado de $\mathbb{Z},\ U \not \supset W_k,\ \forall k$.
+            (Figura \ref{fig:I_ax_II_ax_cocientes}) $\Rightarrow U = \mathbb{R} \setminus \underbrace{\{\varepsilon_k : k \ge 1\}}_{\text{cerr.}}$ entorno abierto saturado de $\mathbb{Z},\ U \not \supset W_k,\ \forall k$. Esto último porque $\varepsilon_k \in W_k$, pero $\varepsilon_k \not\in \mathbb{R} \setminus \left\{ \varepsilon_k : k \ge 1 \right\}$.
 
         \begin{figure}[H]
             \centering
@@ -231,7 +194,7 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
         \end{demo}
         \item Las aplicaciones continuas conservan la separabilidad 
         \begin{demo}
-            $f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
+            $(p\left( X \right) =) f\left( \overline{A} \right) \stackrel{\text{cont.}}{\subset} \overline{f\left( A \right)} (= \faktor{X}{\sim})$.
         \end{demo}
         %TODO: Ya se sabe xd
         \item Las aplicaciones continuas conservan Lindelöf. 
@@ -242,14 +205,64 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
 
     \item \underline{Productos/sumas} (finitos):
     \begin{itemize}
-        \item Para productos: producto \underline{finito} de numerables es numerable.
-        \item Para sumas: suma \underline{finita} de numerables es numerable.
+        \item Para productos: producto \underline{finito} de familias numerables es numerable.
+        \item Para sumas: suma \underline{finita} de familias numerables es numerable.
+        \item La separabilidad se mantiene porque: $\overline{A_1 \times A_2} = \overline{A}_1 \times \overline{A}_2$.
         \item Solo falla Lindelöf:
         \begin{itemize}
             \item $\left( \mathbb{R}, \mathcal{T}_{[, )} \right)$ es Lindelöf (ejercicio no banal).
+            %TODO: Dibujo.
             \item $\left( \mathbb{R}^2, \mathcal{T}_{[, )}^2 \right)$ no es Lindelöf: si lo fuera, $L = \{x + y = 0\} \subset \mathbb{R}^2$ heredaría la propiedad, pero es \underline{discreto} no numerable. ($\bot$)
         \end{itemize}
     \end{itemize}
 \end{itemize} 
 \end{demo}
+
+
+\section{Sucesiones}
+\label{sub:sucesiones}
+\begin{defi}[Límites]
+Decimos que $\lim_{k \rightarrow \infty} x_k = x \Leftrightarrow$ 
+\[
+\forall U^x,\ \exists k_0 \in \mathbb{N}: k \ge k_0 \Rightarrow x_k \in U^x
+\]
+\end{defi}
+\begin{obs}
+\begin{enumerate}
+    \item $X$ es Hausdorff $\Rightarrow \exists! $ límite. 
+    \begin{demo}    
+    $x_k \rightarrow x \neq y,\ \exists U^x \cap U^y = \emptyset \Rightarrow \{x_k : k \ge k_0\} \subset U^x$, por tanto, $x_k \not\in U^y \Rightarrow \lim_{n \rightarrow \infty} x_n \neq y$.
+    \end{demo}
+    En las hojas de ejercicios hay ejemplos en los que el límite no es único.
+
+    \item El I Axioma permite describir la topología con sucesiones:
+    \[
+     x \in \overline{A} \Leftrightarrow \exists \{x_k\} \subset A: x_k \rightarrow x
+    \]
+
+    \begin{demo}
+    \begin{itemize}
+        \item[$\Rightarrow)$] Supongamos que $x \in \overline{A} \Rightarrow$
+        \[
+        \begin{rcases}
+            \exists \mathcal{W}^x = \{W_k^x\}_{k \ge 1} \text{ base ent. encajados} \xRightarrow{x \in \overline{A}} \exists x_k \in W_k \cap A\\
+            \forall U^x \stackrel{\text{base}}{\supset} W_{k_0}^x \stackrel{\text{enc.}}{\supset} W_{k_0 + 1}^x \supset \ldots \Rightarrow x_k \in U^x,\ \forall k \ge k_0  
+        \end{rcases} \Rightarrow x_k \rightarrow x
+        \]
+        \item[$\Leftarrow)$] Supongamos que $\exists \left\{ x_k \right\} \subset A: x_k \rightarrow x$:
+        \[
+        A \ni x_k \rightarrow x \Rightarrow \forall U^x,\ \exists x_{k_0} \in U^x \cap A
+        \]
+    \end{itemize}
+    \end{demo}
+\end{enumerate}
+En general, los límites de sucesiones son poco útiles.
+\end{obs}
+
+\begin{enun}
+Caracterizar la continuidad por sucesiones, si es posible:
+\[
+f: X \rightarrow Y
+\]
+\end{enun}
 
