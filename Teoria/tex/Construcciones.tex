@@ -1078,10 +1078,25 @@ Consideremos un disco:
         D^n = \{h = 0, x_0^2 + \cdots + x_n^2 \le 1\} \text{ disco.} 
     \end{cases} 
 \]
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/cociente_disco} 
-\end{center}
+\begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+        \node(X) {$\overline{S}_+$};
+        \node(Y) [right of=X] {$D^n$};
+        \node(Z) [below of=X] {$\mathbb{R}^n$};
+        \draw[->](X) to node {$\alpha$}(Y);
+        \draw[->](X) to node [left] {$\pi$}(Z);
+        \draw[->](Y) to node {$\pi \circ \alpha^{-1}$}(Z);
+        \node(E1) [above=0.4 of X] {E};
+        \node(S1) at (-0.15,0.5) [rotate=90] {$\stackrel{\partial}{\subset}$};
+        \node(E2) [above=0.4 of Y] {E};
+        \node(S2) at (2.15,0.5) [rotate=90] {$\stackrel[\partial]{}{\subset}$};
+        \draw[-, double] (0.5, 0.9) -- (1.5, 0.9);
+        \end{tikzpicture}
+    \incfig[0.4]{proyectivo_disco}
+    \caption{\textit{$\mathbb{R}^n$ se obtiene identificando puntos antipodales del borde de un disco.}} 
+    \label{fig:proyectivo_disco}
+\end{figure}
 \end{prop}
 
 \begin{ej}
