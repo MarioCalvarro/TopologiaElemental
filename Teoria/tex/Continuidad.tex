@@ -1,22 +1,21 @@
 \chapter{Aplicaciones continuas}%
 \label{cha:aplicaciones_continuas}
+Una vez vista la estructura de espacio topológico, nos encaminamos a estudiar los morfismos entre estructuras de este tipo. El primer paso para realizar este estudio es una característica clave, no sólo para el Análisis, sino  también para la Topología: la continuidad.
+
+A partir de este capítulo, vamos a estudiar las buenas propiedades que adquieren las aplicaciones continuas por la forma en que transforman los abiertos entre espacios y relacionan las topologías de cada uno.
 
 \section{Continuidad}%
 \label{sec:continuidad}
-Recordemos el famoso $\varepsilon-\delta$ en $\left( \mathbb{R}^n, \mathcal{T}_u \right)$, sea $x_0 \in X$ y $f : X \rightarrow Y$, será continua si y solamente si: 
-\begin{gather*}        
-\forall \varepsilon > 0, \exists \delta > 0: 
-\begin{cases}
-    \lVert x - x_0 \rVert < \delta \Rightarrow \lVert f\left( x \right) - f\left( x_0 \right) \rVert < \varepsilon \\
-    x \in B\left( x_0, \delta \right) \Rightarrow f\left( x \right) \in B\left( f\left( x_0 \right), \varepsilon \right) \\
-    f\left( B\left( x_0, \delta \right) \right) \subset B\left( f\left( x_0 \right), \varepsilon \right) 
-\end{cases}
-.\end{gather*}
-Todas estas equivalencias se pueden traducir a:
+
+Si hacemos memoria, recordaremos la famosa definición $\varepsilon-\delta$ para la continuidad que nos dieron para $\left( \mathbb{R}^n, \mathcal{T}_u \right)$. Esta venía decir que una función $f : X \rightarrow Y$ era continua en un punto $x_0\in X$ si y sólo si:
 \[
-\boxed{\forall B\left( f\left( x_0 \right), \varepsilon \right),\ \exists B\left( x_0, \delta \right) \subset f^{-1}\left( B\left( f\left( x_0 \right), \varepsilon \right) \right)} 
+\forall \varepsilon > 0, \ \exists \delta > 0 : \left(\lVert x - x_0 \rVert < \delta \Rightarrow \lVert f(x) - f(x_0) \rVert \right)
 \]
-que es similar a la definición que nos interesa.
+y podemos reescribir esto último como $x \in B\left( x_0, \delta \right) \Rightarrow f\left( x \right) \in B\left( f\left( x_0 \right), \varepsilon \right)$ o también como $f\left( B\left( x_0, \delta \right) \right) \subset B\left( f\left( x_0 \right), \varepsilon \right) $. Lo anterior sugiere que la definición más ajena a las propiedades métricas y topológicas de $\mathbb{R}^n$ sería:
+\[
+\forall B\left( f\left( x_0 \right), \varepsilon \right),\ \exists B\left( x_0, \delta \right) \subset f^{-1}\left( B\left( f\left( x_0 \right), \varepsilon \right) \right)
+\]
+Sin embargo, esta definición sólo es válida para los espacios con la topología usual, pues el concepto de bola puede ser (y significar) cosas muy distintas es función de la topología empleada (sin ir más lejos puede no ser un abierto). Por ello, la siguiente definición pretende desligar el concepto de continuidad de la topología usual de $\mathbb{R}^n$ para que pueda ser aplicable a cualquier espacio topológico.
 
 \begin{defi}[Continuidad]
 Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es \textbf{continua en $x_0$ $\in X$} si y sólo si:
@@ -66,10 +65,8 @@ Sea $f:X\rightarrow Y$ una función entre espacios topológicos, entonces son eq
     
     Escojamos un cerrado cualquiera $C \cerr Y$ de modo que conocemos que $Y \setminus C \ab Y$. Como conocemos el resultado para abiertos, podemos decir que $f^{-1}\left( Y\setminus C \right) \ab X$ y, conjuntistamente, $X \setminus f^{-1}C = f^{-1}\left( Y\setminus C \right)$, luego directamente tenemos que $f^{-1}C \cerr X$. 
     \item $3 \Rightarrow 5)$
-
-    \[
-        \overline{f\left( A \right)} \cerr Y \xRightarrow{3)} \underbrace{f^{-1}\overline{f\left( A \right)}}_{\subset f^{-1}f\left( A \right) \supset A} \subset X \Rightarrow \overline{A} \subset f^{-1}\overline{f\left( A \right)} \Rightarrow f\left( \overline{A} \right) \subset \overline{f\left( A \right)} 
-    \]
+    
+    Como $\overline{f\left( A \right)} \cerr Y$ sabemos que $f^{-1}\overline{f\left( A \right)} \cerr X$. Como $A\subset f^{-1}f(A) \subset f^{-1}\overline{f\left( A \right)}$ y este último es cerrado en $X$, entonces $\overline{A}\subset f^{-1}\overline{f\left( A \right)}$ y, por tanto, $f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
     \item $5 \Rightarrow 4)$
     \begin{gather*}
         Y \setminus \mathring{A}\Rightarrow \overline{Y\setminus A} \supset \overline{f\left( X \setminus f^{-1}A \right)} \stackrel{5)}{\supset} f\left( \overline{X \setminus f^{-1}\left( A \right)} \right) = f\left( X \setminus \inter\left( f^{-1}A \right) \right) \Rightarrow\\
@@ -85,17 +82,13 @@ Sea $f:X\rightarrow Y$ una función entre espacios topológicos, entonces son eq
 \end{demo}
 
 \begin{obs}
-\begin{enumerate}
-    \item Los cuatros primeros enunciados tratan sobre ``imágenes inversas''. Por ejemplo, la segunda dice que $f^{-1}\mathcal{T}_Y \subset \mathcal{T}_X$.
-    \item Pensando que un punto adherente es un ``punto límite'', $5$ nos dice que ``la imagen del límite es el límite de la imagen''.
-    \item $id: \left( X, \mathcal{T}_1 \right) \rightarrow \left( X, \mathcal{T}_2 \right)$ es continua $\Leftrightarrow \mathcal{T}_2 \subset \mathcal{T}_1$ (por 1). 
-\end{enumerate}
-Y no mencionamos todos los ejemplos conocidos en espacios afines $\mathbb{R}^n$ con $\mathcal{T}_u$.
+La definición y posterior caracterización nos permiten recuperar las propiedades de continuidad a las que estamos habituados, como por ejemplo el quinto apartado del que se desprende que la imagen del límite es el límite de la imagen, pero también nos da la posibilidad de utilizar dicha continuidad con fines meramente topológicos, como por ejemplo $id: \left( X, \mathcal{T}_1 \right) \rightarrow \left( X, \mathcal{T}_2 \right)$ es continua si y sólo si $\mathcal{T}_2 \subset \mathcal{T}_1$ (por 1).
 \end{obs}
-
 
 \section{Continuidad y subespacios}%
 \label{sec:continuidad_y_subespacios}
+En muchas ocasiones tiene interés estudiar el comportamiento de una función, no en el conjunto total, sino en un subconjunto de puntos concreto. Como hemos definido anteriormente los subespacios topológicos, tiene sentido querer ver cómo se comportan las aplicaciones y, sobre todo, la continuidad cuando trabajamos con estos subconjuntos.
+
 \begin{prop}
 Sea $f: X \rightarrow Y$ una función continua y $Z \subset X$ un subespacio topológico, entonces la restricción $f|_Z : Z \rightarrow Y$ también es continua.
 \end{prop}
@@ -110,31 +103,27 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
 %TODO: Diagramas composición
 \begin{obs}
 \begin{enumerate}
-    \item $Z \stackrel{j}{\subset} X$ es continua.
+    \item La aplicación inclusión $Z \stackrel{j}{\subset} X$ es continua.
     \begin{demo}
-        \begin{itemize}
-            \item $z \in Z: \forall V^{j\left( z \right)} : \underbrace{j^{-1}\left( V^{j\left( z \right) } \right)}_{= V^{j\left( z \right)} \cap Z}$ entorno de $z$ en $Z$.
-            \item $\forall U \stackrel{\text{ab.}}{\subset } X: \underbrace{j^{-1}\left( U \right)}_{U \cap Z} \ab Z$
-        \end{itemize}
+     Para cualquier abierto $U \ab X$ la preeimagen $j^{-1}\left( U \right)$ corresponde a los puntos de $U \cap Z$, y este último conjunto es abierto en $Z$.
     \end{demo}
 
-    \item $Z \stackrel{j}{\subset} X \xrightarrow{f} Y$. Si $f$ es cont. $\Rightarrow f|_Z$ continua. (No a la inversa).
+    \item La continuidad se hereda en la restricción a un subespacio, es decir, si consideramos la aplicación $Z \stackrel{j}{\subset} X \xrightarrow{f} Y$, entonces la continuidad de $f$ implica\footnote{Pero el recíproco no es cierto, la continuidad en un subespacio no extiende la continuidad a todo el espacio.} la continuidad de $f|_Z$.
     \begin{demo}
     Como $f|_Z = f \circ j$ y ambas son continuas, por composición, $f|_Z$ es continua.
     \end{demo}
 
-    \item La continuidad es \underline{local}. 
-
-    Si $f|_{E^x}$ continua en $x \Rightarrow f$ continua en $x$.
+    \item La continuidad es una propiedad local, es decir, que si $f|_{E^x}$ continua en $x$, entonces $f$ continua en $x$.
     \begin{demo}
-        $\forall V^{f\left( x \right)} \Rightarrow \left( f|_{E} \right)^{-1} \left( V^{f\left( x \right)} \right) = W^x$ entorno de $x$ en $E^x$.
-
-        Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X \Rightarrow W^x \stackrel{\text{ent.}}{\subset}X$ (entorno en entorno es entorno). Porque, 
+	La preeimagen de cualquier entorno $V^{f\left( x \right)}$ es $\left( f|_{E} \right)^{-1} \left( V^{f\left( x \right)} \right) = W^x$ un entorno de $x$ en $E^x$, pero tenemos que ver que lo es en $X$ para poder afirmar que es continua.
+	Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X$, entonces $W^x \stackrel{\text{ent.}}{\subset}X$, ya que entorno de entorno es entorno.
+	
+	Esta última afirmación es cierta porque 
         \[
         \begin{rcases}
-            x \in W^x: \exists G \ab W^x \subset E^x: G = A \cap E^x \subset X\\ 
-            x \in E^x: \exists B \ab E^x \subset X 
-        \end{rcases} \Rightarrow x \in \underbrace{A \cap B}_{\stackrel[\text{ab.}]{}{\subset} X} \subset \underbrace{A \cap E^x}_{= G}  \subset W^x
+           	W^x \stackrel{ent}{\subset} E^x \Rightarrow \exists G \ab E^x \mbox{ tal que }G \subset W^x, \ G = A \cap E^x \subset X\\ 
+            E^x \stackrel{ent}{\subset} X \Rightarrow \exists B \ab X \mbox{ tal que } B \subset E^x
+        \end{rcases} \Rightarrow x \in \underbrace{A \cap B}_{\cerr X} \subset \underbrace{A \cap E^x}_{= G}  \subset W^x
         \]
     \end{demo}
 
@@ -189,11 +178,9 @@ entonces la función $f$ del inicio es continua.
 
 \section{Homeomorfismos}%
 \label{sec:homeomorfismos}
-Recordemos las definiciones de continuidad que hemos visto:
-\[
-f \text{ continua} \Leftrightarrow f^{-1}\left( \text{abierto} \right) = \text{abierto} \Leftrightarrow f^{-1}\left( \text{cerrado} \right) = \text{cerrado} 
-\]
-Ahora veamos que ocurre al invertir la relación.
+Supongamos que tenemos una función $f$ biyectiva y continua. Con las definiciones de continuidad anteriores hemos caracterizado la topología de las imágenes por $f^{-1}$, pero no sabemos nada de cómo se comporta la función $f$ con respecto a abiertos, cerrados, etc.
+Nos gustaría poder destacar en qué condiciones una función establece una biyección entre abiertos de dos espacios, pues de esa forma existiría un ``isomorfismo'' entre ambas topologías a la hora de trabajar con ellas. Esta idea es precisamente la que hay detrás de la definición de homeomorfismo.
+
 \begin{defi}[Aplicaciones abiertas y cerradas]
 Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es:
 \begin{itemize}
@@ -226,99 +213,85 @@ $j: \left( 0, 1 \right) \subset \mathbb{R}_u$ & \checkmark & \checkmark & \ding{
 
 \begin{prop}[Trivialidades esenciales]
 Sea $f:X\rightarrow Y$ una función biyectiva, entonces las siguientes afirmaciones son equivalentes:
-\begin{itemize}
+\begin{enumerate}
     \item $f$ es abierta
     \item $f$ es cerrada
     \item $f^{-1}$ es continua.
-\end{itemize}
+\end{enumerate}
 \end{prop}
 \begin{demo}
-\begin{enumerate}
-    \item Sea $F \cerr X \Rightarrow X\setminus F \ab X \xRightarrow{ f\text{ ab.}} \underbrace{f\left( X\setminus F \right)}_{= Y\setminus f\left( F \right) \text{(biy.)}} \ab X \Rightarrow f\left( F \right) \cerr Y \Rightarrow f$ cerrada.
+\begin{itemize}
+    \item $1. \Rightarrow 2.$
+    
+    Sea $F \cerr X$, por la definición de cerrado su complementario $X\setminus F$ es abierto en $X$. De esta manera, como $f$ es abierta, entonces $f\left( X\setminus F \right) \ab X$. Por la biyectividad, $f\left( X\setminus F \right) = Y\setminus f\left( F \right)$, es decir, que $f\left( F \right) \cerr Y$, lo que demuestra que $f$ es cerrada.
 
-    \item Sea $F \cerr X \xRightarrow{f \text{cerr.}} \underbrace{f\left( F \right)}_{\stackrel[\text{biy.}]{}{=} \left( f^{-1} \right)^{-1} \left( F \right)} \cerr Y \Rightarrow f^{-1}$ continua.
+    \item $2. \Rightarrow 3.$
+    
+    Sea $F \cerr X$, como $f$ es cerrada, $f\left( F \right) \cerr Y$. Pero $f(F)= \left( f^{-1} \right)^{-1} \left( F \right)$ por la biyectividad de $f$, luego hemos demostrado que $f^{-1}$ continua porque las preimagenes de cerrados son cerrados.
 
-    \item Sea $U \ab X \xRightarrow{f^{-1} \text{cont.}} \underbrace{\left( f^{-1} \right) ^{-1} \left( U \right) }_{\stackrel[\text{biy.}]{}{=}f\left( U \right)} \subset Y \Rightarrow f$ abierta.
-\end{enumerate}
+    \item $3. \Rightarrow 1.$
+    
+    Sea $U \ab X$, por la continuidad de $f^{-1}$, la preeimagen $\left( f^{-1} \right)^{-1} \left( U \right) \ab Y$. Por tanto, como $f\left( U \right) =  \left( f^{-1} \right)^{-1} \left( U \right)$, hemos demostrado que $f$ es abierta.
+\end{itemize}
 \end{demo}
 
 \begin{defi}[Homeomorfismo]
-Sea $f: X \rightarrow Y$ una aplicación biyectiva, decimos que es un \textbf{homeomorfismo} si y sólo si $f$ y $f^{-1}$ son continuas, o equivalentemente si:
-    \[
-    f \begin{cases}
-        \text{biyectiva}\\
-        \text{continua}\\
-        \text{abierta} 
-    \end{cases} \Leftrightarrow f \begin{cases}
-        \text{biyectiva}\\
-        \text{continua}\\
-        \text{cerrada}
-    \end{cases} 
-    \]
+Sea $f: X \rightarrow Y$ una aplicación biyectiva, decimos que es un \textbf{homeomorfismo} si y sólo si $f$ y $f^{-1}$ son continuas o, equivalentemente, si $f$ es continua y abierta o cerrada.
 \end{defi}
 
 \begin{obs}
-\begin{itemize}
-    \item Cuando $f$ es homeomorfismo establecemos una biyección entre las topologías:
-    \begin{align*}
-        f: \mathcal{T}_X &\rightarrow \mathcal{T}_Y\\
-        U &\mapsto f\left( U \right)\\
-        f^{-1}\left( W \right) &\mapsfrom W 
-    .\end{align*}
-
-    %TODO: Tal vez, eliminar?
-    \item Se conserva por rotación, por composición.
-\end{itemize}
+La definición de homeomorfismo es importante porque no establece simples biyecciones entre conjuntos, establece biyecciones sobre topologías:
+\begin{align*}
+	f: \mathcal{T}_X &\rightarrow \mathcal{T}_Y\\
+	U &\mapsto f\left( U \right)\\
+	f^{-1}\left( W \right) &\mapsfrom W 
+\end{align*}
+Esto permite trabajar con los abiertos de un lado y trasladar el mismo trabajo a los del otro de forma canónica.
 \end{obs}
 
 \begin{defi}[Homeomorfismo Local]
-Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es un \textbf{homeomorfismo local en $x_0 \in X$} si y sólo si $f: V^{x_0} \rightarrow V^{f\left( x_0 \right)}$ restringida a algunos entornos de $x_0$ y $f\left( x_0 \right)$ es homeomorfismo.
-
-Será \textbf{homeomorfismo local} si lo es en todo el dominio.
+Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es un \textbf{homeomorfismo local en $x_0 \in X$} si y sólo si existen algunos entornos $V^{x_0}$ y $V^{f\left( x_0 \right)}$ tales que la restricción $f: V^{x_0} \rightarrow V^{f\left( x_0 \right)}$ es un homeomorfismo.
 \end{defi}
 
 \begin{obs}
-Se pueden tomar $V^{x_0}, V^{f\left( x_0 \right)}$ entornos abiertos.
-%TODO: Corregir
+En general, cuando decimos que una aplicación $f:X\rightarrow Y$ es un homeomorfismo local sin especificar en qué punto, estamos diciendo que es homeomorfismo local para cualquier punto $x\in X$.
+\end{obs}
+
+\begin{obs}
+En la definición de homeomorfismo local anterior, podemos tomar $V^{x_0}$ y $V^{f\left( x_0 \right)}$ como entornos abiertos.
+%TODO: Habría que meter un diagrama de flechas como el que hizo en clase (preguntar a JD por él si no lo encontramos)
 \begin{demo}
-Si $f$ es homeomorfismo local, entonces $\exists V^a \subset X$ y $V^{f\left( a \right)} \subset Y$, tal que: 
-\[
-    f: V^a \rightarrow V^{f\left( a \right)}
-\]
-Es homeomorfismo. Por esta razón, sabemos que $\exists U^a (\ab V^a) \mapsto f\left( U^a \right) (\ab V^{f\left( a \right)})$. 
+Si $f$ es homeomorfismo local, entonces $\exists V^a \subset X$ y $V^{f\left( a \right)} \subset Y$ tal que $f: V^a \rightarrow V^{f\left( a \right)}$ es homeomorfismo y, por esta razón, sabemos que $\exists U^a \ab V^a$ tal que $f\left( U^a \right) \ab V^{f\left( a \right)}$. 
 
-Además, como $f$ es abierto local en $V^{f\left( a \right)}$ (homeomorfismo local), $f\left( U^a \right)$ es entorno de $f\left( a \right)$ (no tiene porque ser abierto ya que no sabemos si $f\left( U^a \right) \subset V^{f\left( a \right)}$). 
+Además, como $f(U^a)$ es abierto en $V^{f\left( a \right)}$, sabemos que $f(U^a)$ es entorno\footnote{En este punto no podemos parar y decir que es abierto porque lo que sabemos es que $f(U^a)$ es abierto en $V^{f(a)}$, pero no sabemos nada sobre si es abierto en $Y$, que es lo que necesitamos.} de $f(a)$ en $V^{f(a)}$. Como tenemos la secuencia $f(U^a) \stackrel{ent.}{\subset} V^{f(a)} \stackrel{ent.}{\subset} Y$, sabemos que $f(U^a) \stackrel{ent.}{\subset} Y$ de $f(a)$ y, por tanto, podemos encontrar un abierto $W \ab Y$ tal que $W\subset f(U^a)$.
 
-Por tanto, tiene un abierto ($W^{f\left( a \right)} \subset f\left( U \right)$) que es imagen de un abierto, $G \ab X$:
-\[
-X \stackrel{\text{ab.}}{\supset} G = W^a \rightarrow f\left( G \right) = W^{f\left( a \right)} \ab Y
-\]
+Por tanto, como se trata de un homeomorfismo local, existirá algún $G \ab U^a$ de forma que $f(G) = W$. Pero como $U^a$ es abierto global, entonces tenemos que $G\ab X$ y hemos acabado, pues tenemos el homeomorfismo local definido en $f: G \rightarrow W$.
 \end{demo}
 \end{obs}
 
 \begin{prop}[Restricción de homeomorfismos]
-Sea $f: X \rightarrow Y$, la restricción a $Z \subset X$ también es homeomorfismo: $f: Z \rightarrow f\left( Z \right)$.
+Sea $f: X \rightarrow Y$ un homeomorfismo, la restricción $f: Z \rightarrow f\left( Z \right)$ a cualquier subespacio $Z \subset X$ también es homeomorfismo.
 \end{prop}
 \begin{demo}
-%TODO: No sé si está bien, me lo he inventado yo.
-La restricción será biyectiva por serlo $f$ (y por estar restringida la llegada $Y$). Una biyección es homeomorfismo si son continuas ellas y su inversa, pero como ya vimos la restricción de una continua es continua, por lo tanto, la restricción de $f$ y $f^{-1}$ a $Z$ y $f\left( Z \right)$ son también continuas. Es decir, $f|_Z$ es homeomorfismo.
+La restricción será biyectiva por serlo $f$ y ser el conjunto de llegada $f(Z)$. Una biyección es homeomorfismo si tanto $f$ como $f^{-1}$ son continuas y como ya vimos que la restricción de una continua es continua, sabemos que la restricción de $f$ y $f^{-1}$ a $Z$ y $f\left( Z \right)$ son también continuas, es decir, $f|_Z$ es homeomorfismo.
 \end{demo}
 
 \begin{prop}[Composición de homeomorfismos]
-Sean $f: X \rightarrow Y$ y $g: Y \rightarrow Z$ homeomorfismos $\Rightarrow h = f \circ g$ es homeomorfismo.
+Sean $f: X \rightarrow Y$ y $g: Y \rightarrow Z$ dos homeomorfismos, su composición $h = f \circ g$ también es homeomorfismo.
 \end{prop}
 
 \begin{prop}
-Un homeomorfismo local es abierto.
+Sea $f:X\rightarrow Y$ un homeomorfismo local, entonces es abierto.
 \end{prop}
 \begin{demo}
-    $U \ab X \xRightarrow{?} f\left( U \right)$ entorno $\forall y_0 = f\overbrace{\left( x_0 \right)}^{\in U} \in f\left( U \right)$.
+Hay dos formas de demostrarlo, la primera es intentando ver que para cualquier $U \ab X$ ocurre que $f\left( U \right)$ es entorno de los puntos de $U$.
 
-    Como $f$ homeomorfismo local $\Rightarrow \forall x_0 \in U,\ \exists f| : V^{x_0} \rightarrow V^{y_0}$, homeomorfismo $\Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\ni y_0 = f\left( x_0 \right)} \ab V^{y_0} \Rightarrow f\overbrace{\left( U \cap V^{x_0} \right)}^{\subset f\left( U \right)}$ entorno de $y_0 \Rightarrow f\left( U \right)$ entorno de $y_0$.
+Con este objetivo, sabemos que por ser $f$ homeomorfismo local existe una restricción $\exists f| : V^{x_0} \rightarrow V^{y_0}$ para cada punto $x_0\in U$ y usando la notación $y_0 = f(x_0)$. Como esta restricción es homeomorfismo, $f\left( U \cap V^{x_0} \right) \ab V^{y_0}$ y, por tanto, $ f \left( U \cap V^{x_0} \right)$ es entorno en $Y$ de $y_0$. Al ocurrir esto para todos los puntos y teniendo en cuenta que $f \left( U \cap V^{x_0} \right)\subset f(U)$, sabemos que $f(U)$ es entorno de todos los puntos de $U$.
 
-    Se puede ver también porque, como $U = \bigcup_{x \in U} W^x (\ab V^{x}) \Rightarrow f\left( U \right) = f\left( \bigcup_{x} W^{x} \right) = \bigcup_{x} f\left( W^x \right)$ es abierto por unión de abiertos.
+La otra forma de verlo es que, por ser homeomorfismo local, para cualquier punto $x\in X$ existe un entorno abierto $W^x \ab X$ de forma que $f(W^x)\ab Y$ es abierto. De esta manera y abusando de la notación escribiendo $W^x = W^x \cap U$, $U$ puede expresarse como $U = \bigcup_{x\in U} W^x$. Por tanto, $f(U) = f(\bigcup_{x\in U} W^x) = \bigcup_{x\in U} f(W^x)$ que es unión de abiertos, luego es abierto.
 \end{demo}
 
+% TODO: estos ejemplos hay que mirarlos despacio y corrregirlos
 \begin{ej}[¡Importantes!]
 \begin{enumerate}
     \item Proyección estereográfica: $\mathbb{S}^{m} \setminus \{\text{punto}\} \rightarrow \mathbb{R}^m$ homeomorfismo. ($\mathbb{R}^{m}$ es en realidad un hiperplano de $\mathbb{R}^{m+1}$ en el que se encuentra contenida la ``esfera'')
