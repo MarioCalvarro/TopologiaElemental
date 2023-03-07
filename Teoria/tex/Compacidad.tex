@@ -156,9 +156,9 @@ Sea la $f$ de la anterior proposición entonces si además es:
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-    Compacidad & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
+    Compacidad & \begin{tabular}{@{}c@{}}\ding{55}\\ cerrados \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
 \hline
-    & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
+    Demostración: & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
 \hline
 \end{tabular}
 \caption{\textit{La tabla nos indica como se mantiene (o no) la compacidad con las distintas construcciones que hemos visto. La última fila nos indica la demostración, o contraejemplo, de cada una.}}
@@ -209,23 +209,23 @@ Sea $Y \subset X$, es \underline{localmente cerrado} si cumple las condiciones e
 \end{enumerate}
 \end{defi}
 \begin{demo}
-\begin{enumerate}
-    \item[1. $\Rightarrow$ 2.)] $Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$:
+\begin{itemize}
+    \item 1. $\Rightarrow$ 2) $Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$:
     \begin{align*}
         x \in \overline{Y} \cap U^y &\Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) = Y \cap U^y \subset Y\\
         U^x \subset U^y &\Rightarrow \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
     .\end{align*}
-    \item[2. $\Rightarrow$ 3.)] Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
+    \item 2. $\Rightarrow$ 3) Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
     \[
     F \cap U = Y \Rightarrow F \supset \overline{Y} \Rightarrow F \cap U = \overline{Y} \cap U.
     \]
-    \item[3. $\Rightarrow$ 1.)] $Y = F \cap U \cerr U \left( = U^y,\ \forall y \right)$.
-\end{enumerate}
+    \item 3. $\Rightarrow$ 1) $Y = F \cap U \cerr U \left( = U^y,\ \forall y \right)$.
+\end{itemize}
 \end{demo}
 
 Esto es un ejemplo de \underline{localización} de una propiedad topológica $\mathcal{P}$ (aquí es ser cerrado). Se puede entender como:
 \begin{align*}
-    &\forall x,\ \exists V^x \text{ que cumple } \mathcal{P} \text{ o } \\
+    &\forall x,\ \exists V^x \text{ que cumple } \mathcal{P} \text{ ó } \\
     &\forall x,\ \exists \mathcal{V}^x \text{ base de entornos que cumplen } \mathcal{P} 
 .\end{align*}
 A veces son equivalentes (como en este caso), a veces no. El concepto adecuado de localización es mediante \underline{bases de entornos}.
@@ -233,28 +233,30 @@ A veces son equivalentes (como en este caso), a veces no. El concepto adecuado d
 \section{Compacidad local y mantras}%
 \label{sec:compacidad_local_y_mantras}
 \begin{defi}
-$X$ es \underline{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$ base de entornos compactos.
+$X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$ base de entornos compactos.
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
     \item $\mathbb{R}_u^n$ es localmente compactos: $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$
 
-    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es compacto:
+    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es compacto.
+    \begin{demo}
+    Veamos un conjunto infinito sin acumulación en $T$:
     \begin{align*}
         \exists V^p \stackrel{\text{comp.}}{\subset} T &\Rightarrow \exists B\left( 0, \varepsilon \right) \cap T \subset V^p \Rightarrow \exists \overbrace{x_k}^{\in V^p} \rightarrow x_0 \in S\left( 0, 1 \right) \setminus T\\
        &\Rightarrow \{x_k : k \ge 1\} \subset V^p \subset T 
     .\end{align*}
-    que es un conjunto infinito sin acumulación en $T$.
+    \end{demo}
     %TODO: Imagen
     \begin{center}
         \includegraphics[scale=0.3]{images/loc_comp_ej_2} 
     \end{center}
 
-    \item En general \underline{no} basta que exista un entorno compacto.
+    \item En general NO basta que exista un entorno compacto.
 
     %TODO: no sé que pone
-    En $S = T \cup \{q\}?$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$).
+    En $S = T \sqcup \{q\}$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$).
 
     Pero este caso es un ejemplo con un espacio \underline{no separado}.
 \end{enumerate}
@@ -264,18 +266,18 @@ $X$ es \underline{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}
 Si $X$ es $T_2$ y $x \in X$ tiene un entorno compacto, entonces tiene una base de entornos compactos.
 \end{prop}
 \begin{demo}
-    $\exists \underbrace{V^x}_{\supset W^x \text{ab.}}$ compacto $\Rightarrow \mathcal{V}^x =$ { entornos compactos $K^x$} \underline{base de entornos}: $\forall U^x,\ \exists?K^x \subset U^x$.
+    $\exists V^x (\stackrel{\text{ab.}}{\supset} W^x)$ compacto $\Rightarrow \mathcal{V}^x =$ \{entornos compactos $K^x$\} \underline{base de entornos}: $\forall U^x,\ \exists?K^x \subset U^x$.
 
     $\exists_{\text{ab.}} U_1^x \subset \overline{U_1^x} \subset U^x$:
-    \begin{gather*}
-        V^x\setminus U^x \cerr V_{\text{comp.}}^x \Rightarrow \overbrace{V \setminus U}^{\not\ni x} \text{comp. en } T_2 \Rightarrow \exists \overbrace{U_1^x\ \&\ A}^{\text{ab. disjuntos}} \supset V^x \setminus U^x\\
-        K^x = \overline{W^x \cap U_1^x} \begin{cases}
-            %TODO: Anotación
-            \overline{V^x} \cap \overline{U_1^x} = V^x \cap \overline{U_1^x} \subset V^x \cap \overline{X \setminus A} = V^x \cap \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \subset U^x\\
-            \text{interdos ent.?} \Rightarrow \text{entorno}\\
-            W^x \cap U_1^x \subset V^x \stackrel{\text{comp. en } T_2}{=} \overline{V^x} \subset X \Rightarrow \underbrace{K^x}_{\text{cerr.}} \subset \underbrace{V^x}_{\text{comp.}} \Rightarrow K^x \text{ comp.} 
-        \end{cases}  
-    \end{gather*}
+    \[ 
+        V^x\setminus U^x \cerr V_{\text{comp.}}^x \Rightarrow \overbrace{V \setminus U}^{\not\ni x} \text{comp. en } T_2 \Rightarrow \exists \overbrace{U_1^x\ \&\ A}^{\text{ab. disjuntos}} \supset V^x \setminus U^x
+    \]
+    Y tenemos que: $K^x = \overline{W^x \cap U^x} \Rightarrow$
+    \begin{itemize}
+        \item $\overline{V^x}_{\text{comp.}} \cap \overline{U_1^x} = V^x_{\text{comp.}} \cap \overline{U_1^x} \subset V^x \cap \overline{X \setminus A} = V^x \cap \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \subset U^x$.
+        \item Intersección de dos entornos es entorno.
+        \item $W^x \cap U_1^x \subset V^x \stackrel{\text{comp. en } T_2}{=} \overline{V^x} \subset X \Rightarrow \underbrace{K^x}_{\text{cerr.}} \subset \underbrace{V^x}_{\text{comp.}} \Rightarrow K^x \text{ comp.}$
+    \end{itemize}
 \end{demo}
 
 Y tenemos dos mantras:
