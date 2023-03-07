@@ -12,14 +12,25 @@ X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} 
 \begin{obs}[Propiedad de la intersección finita]
 Complementando lo anterior tenemos:
 \begin{gather*}
-    \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Rightarrow\\
-    \boxed{    \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset}
+    \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Leftrightarrow\\
+    \boxed{\forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset}
 .\end{gather*}
 \end{obs}
+\begin{ej}
+Sea $\left( 0, \frac{1}{n} \right)_{n \ge 1}$. Una cantidad finita tiene intersección no vacía, pero si $n \rightarrow \infty$, la intersección es vacía.
+Es decir, no cumple la propiedad.
+\end{ej}
 
-\begin{prop}[Subespacios]
-Sea $K \subset X$ (compacto) $\Rightarrow K \subset \bigcup_{i \in  I} U_i$ con $U_i \ab X \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K$
-\end{prop}
+\begin{defi}[Subespacios compactos]
+Sea $K \subset X$ (compacto) $\Rightarrow K$ es compacto si y sólo si: 
+\[
+K \subset \bigcup_{i \in  I} U_i \text{ con } U_i \ab X \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K
+\]
+\end{defi}
+\begin{obs}
+Esta definición es equivalente a decir que $K$ es compacto en la topología relativa.
+%TODO: Demostrar?
+\end{obs}
 
 \begin{ej}
 \begin{enumerate}
@@ -31,12 +42,14 @@ Sea $K \subset X$ (compacto) $\Rightarrow K \subset \bigcup_{i \in  I} U_i$ con 
     \end{demo}
     \item $x_k \rightarrow x \Rightarrow K = \{x, x_k: k \ge 1\}$ es compacto.
     \begin{demo}
+        Sea $\left\{ U_i \right\}_{i \in I}$ tal que, $\bigcup_{i \in I} U_i = K \Rightarrow$
         \[
             \exists U_{i_0}^x \ni x \xRightarrow{\lim} \begin{rcases}
                 x_k \in U_{i_0},\ \forall k > k_0\\
                 x_k \in U_{i_k},\ \forall k \le k_0
             \end{rcases} \Rightarrow K \subset U_{i_0} \cup U_{i_1} \cup \ldots \cup U_{i_{k_0}} 
         \]
+        Por ser $k_0$ finito.
     \end{demo}
 
     \item $K \subset \mathbb{R}_u^n$ compacto $\Leftrightarrow \forall A^{\infty} \subset K, A' \cap K \neq \emptyset$ (Bolzano-Weierstrass)
@@ -44,28 +57,35 @@ Sea $K \subset X$ (compacto) $\Rightarrow K \subset \bigcup_{i \in  I} U_i$ con 
 \end{ej}
 
 \begin{prop}[Mantra 1]
-Cerrado en compacto es compacto. 
+Cerrado en compacto es compacto: 
+\[
+F \cerr X \text{ (compacto)}\Rightarrow F \text{ compacto.}
+\]
 \end{prop}
 \begin{demo}
-Sea $K \cerr X = \bigcup U_i$,
+Sea $K \cerr X \Rightarrow$
 \begin{align*}
-    K \subset \bigcup U_i &\Rightarrow X = \left( X \setminus K \right) \cup \bigcup U_i\\
+    \text{Sea } K \subset \bigcup U_i &\Rightarrow X = \overbrace{\left( X \setminus K \right)}^{\text{ab.}} \cup \bigcup U_i\\
     X \text{ compacto} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
-    &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K
+    &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K\\ 
+    &\Leftrightarrow \left( U_{i_1} \cap K \right) \cup \ldots \cup \left( U_{i_r} \cap K \right) = K
 .\end{align*}
 
 (Alternativa: Usar la propiedad de las intersecciones finitas)
+%Hecho en clase
 \end{demo}
 
 \begin{prop}[Mantra 2]
 Infinito en compacto tiene puntos de acumulación.
 \end{prop}
 \begin{demo}
-Sea $A \subset X$ (compacto) con $A' = \emptyset$ veamos que es finito:
+Sea $A \subset X$ (compacto) con $A' = \emptyset$. Veamos que es finito:
 \begin{align*}
     \overline{A} &= \overbrace{\{\text{puntos aislados}\}}^{\subset A} \cup \cancelto{\emptyset}{A'} = \{\text{puntos aislados}\} = A\\
      &\Rightarrow A \cerr X \text{ comp.} \Rightarrow A \text{ es compacto y discreto} \Rightarrow \#A < +\infty   
 .\end{align*}
+$A$ es discreto al ser todos sus puntos aislados. 
+
 El resultado del enunciado lo podemos sacar por el contrarrecíproco.
 \end{demo}
 
@@ -79,8 +99,8 @@ La imagen continua de un compacto es compacta.
 \begin{demo}
 Sea $f: X \rightarrow Y$ con $f$ continua y $X$ compacto $\Rightarrow$
 \begin{align*}
-    f\left( X \right) \subset \bigcup_{i} V_i &\Rightarrow X = \bigcup_{i} f^{-1} V_i \Rightarrow \exists f^{-1}V_{i_1} \cup \ldots \cup f^{-1}V_{i_r} = X\\
-     &\Rightarrow V_{i_1} \cup \ldots \cup V_{i_r} \supset f\left( X \right) 
+    f\left( X \right) \subset \bigcup_{i} U_i &\Rightarrow X = \bigcup_{i} f^{-1} U_i \Rightarrow \exists f^{-1}U_{i_1} \cup \ldots \cup f^{-1}U_{i_r} = X\\
+     &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset f\left( X \right) 
 .\end{align*}
 \end{demo}
 
@@ -93,22 +113,25 @@ Un compacto en $T_2$ es cerrado.
 \end{prop}
 %TODO: No estoy seguro que es cada cosa.
 \begin{demo}
-Vamos a ver que $X \setminus K$ es abierto al ser entorno de todos sus puntos.
+Vamos a ver que $X \setminus K$ es abierto al ser entorno de todos sus puntos. Es decir, que $\exists U^x \cap K = \emptyset$. 
+En realidad, veremos que, siendo $W^K \supset K \Rightarrow \exists U^x \cap W^K = \emptyset$.
 
 Sea $K \subset X$ con $K$ compacto y $X$ Hausdorff $\Rightarrow$
 \begin{equation} \label{eq:mantra_4_1}
     \forall x \in X \setminus K,\ \exists U^x \cap U^K = \emptyset
 \end{equation}
 
-Porque $\forall y \in K,\ \exists U_y^x \cap U^y = \emptyset$ por $T_2 \Rightarrow$
+% TODO: la "*" no se utiliza exactamente en esa implicación sino que para ver que la 
+% intersección entre U^k y U^x es vacía.
+Porque, $\forall y \in K,\ \exists U_y^x \cap U^y \stackrel{*}{=} \emptyset$ por $T_2 \Rightarrow$
 \begin{align*}
     %TODO: Fix flecha
-    K \subset \bigcup_{y} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^K\\
-    &\xRightarrow{\text{comp.}} x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x
+    K \subset \bigcup_{y \in K} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^K \land x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x\\
+    &\xRightarrow{*} U^x \cap U^K = \emptyset
 .\end{align*}
 Finalmente, utilizando \ref{eq:mantra_4_1} $\Rightarrow$
 \[
-    U^x \subset X \setminus K\; \land \;X\setminus K \text{ es entorno de } x \Rightarrow X \setminus K \text{ abierto.} 
+    x \in U^x \ab X \setminus K \Rightarrow X\setminus K \text{ es entorno de } x \xRightarrow{\forall x} X \setminus K \text{ abierto.} 
 \]
 %TODO: Imagen
 \begin{center}
