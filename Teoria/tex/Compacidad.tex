@@ -184,7 +184,8 @@ Sea la $f$ de la anterior proposición entonces si además es:
     Demostración: & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
 \hline
 \end{tabular}
-\caption{\textit{La tabla nos indica como se mantiene (o no) la compacidad con las distintas construcciones que hemos visto. La última fila nos indica la demostración, o contraejemplo, de cada una.}}
+\caption{\textit{La tabla nos indica como se mantiene (o no) la compacidad con las distintas construcciones que hemos visto. La última fila nos indica la demostración, o contraejemplo, de cada una.
+Las sumas y productos son finitos.}}
 \end{table}
 
 \begin{theo}[de Tychonoff]
@@ -193,14 +194,20 @@ Si $X$ e $Y$ son dos compactos $\Rightarrow X \times Y$ es compacto.
 \begin{demo}
 Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal{T}_Y$.
 \begin{enumerate}
-    \item $\forall x\ \forall y,\ \exists U_y^x \times V_x^y \subset W_i$, $i$ depende de $\left( x, y \right)$.
-    \item $\forall x\ Y = \bigcup_{y} V_x^y \xRightarrow{Y \text{comp.}} Y = V_x^{y_1} \cup \ldots \cup V_x^{y_r}$, los $y_k$ y su nº dependen de $x$.
-    \item $U^x = U_{y_1}^x \cap \ldots \cap U_{y_r}^x,\ U^x \times V_x^{y_k} \subset W_{i_k}$, $i_k$ depende de $x$.
-    \item $X = \bigcup_{x} U^x \xRightarrow{X \text{comp.}} X = U^{x_1} \cup \ldots \cup U^{x_s}$.
-    \item 
+    \item $\forall \left( x, y \right) \in X \times Y,\ \exists U_y^x \times V_x^y \subset W_i$, $i$ depende de $\left( x, y \right)$. Por la definición de la topología producto por base de abiertos.
+    \item $\forall x \in X,\ Y = \bigcup_{y \in Y} V_x^y \xRightarrow{Y \text{comp.}} Y = V_x^{y_1} \cup \ldots \cup V_x^{y_r}$, los $y_k$ y su número, $r$, dependen de $x$.
+    \item $U^x = U_{y_1}^x \cap \ldots \cap U_{y_r}^x,\ U^x \times V_x^{y_k} \subset U_{y_k}^x \times V_x^{y_k} \subset W_{i_k}$, $i_k$ depende de $x$.
+    \item $X = \bigcup_{x \in X} U^x \xRightarrow{X \text{comp.}} X = U^{x_1} \cup \ldots \cup U^{x_s}$.
+    \item Veamos que:
     \[
-        X \times Y = \bigcup_{\substack{l, k\\ \text{fin.}}} U^{x_l} \times V_{x_l}^{y_k} \subset \bigcup_{\substack{l, k\\ \text{fin.}}} W_{i_k} \text{, los } i_k \text{ dependen de los } x_l. 
+        X \times Y = \bigcup_{\substack{1 \le l \le s\\ 1 \le k \le r}} U^{x_l} \times V_{x_l}^{y_k} \subset \bigcup_{\substack{1 \le l \le s\\ 1 \le k \le r}} W_{i_k} \text{, los } i_k \text{ dependen de los } x_l. 
     \]
+    Ya que:
+    \begin{itemize}
+        \item $x \in X \Rightarrow \exists U^{x_l} \ni x$.
+        \item $y \in Y = V_{x_l}^{y_{l_1}} \cup \ldots \cup V_{x_l}^{l_r} \Rightarrow \exists V_{x_l}^{y_{l_k}} \ni y$
+    \end{itemize}
+    Con lo que tenemos un subrecubrimiento finito a partir de un recubrimiento cualquiera.
 \end{enumerate}
 \end{demo}
 
@@ -211,7 +218,7 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
     \end{demo} 
     \item Heine-Borel: $K \subset \mathbb{R}_u^n$ cerrado y acotado $\Rightarrow$ compacto.
     \begin{demo}
-    Ya que sabemos que $\left[ a, b \right]$ es compacto en $\mathbb{R}_u$, sabemos que:
+    Ya que sabemos que $\left[ a, b \right]$ es compacto en $\mathbb{R}_u$ y si $K$ es compacto es porque: $K \subset \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]$. Entonces: 
     \[
         \exists a_i, b_i: K \cerr \underbrace{\left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]}_{\text{Compacto por Tych.}}  
     \]
@@ -224,20 +231,24 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 \chapter{Compacidad local}%
 \label{cha:compacidad_local}
 \begin{defi}
-Sea $Y \subset X$, es \underline{localmente cerrado} si cumple las condiciones equivalentes siguientes:
+Sea $Y \subset X$, es \textbf{localmente cerrado} si cumple las condiciones equivalentes siguientes:
 \begin{enumerate}
-    \item $\forall y \in Y,\ \exists U^y \subset X: Y \cap U^y \cerr U^y$. ($\Rightarrow$ lo mismo $\forall V^y \subset U^y$)
-    \item $Y$ es abierto en su adherencia.
-    \item $Y = F \cap U,\ F \cerr X,\ U \ab X$. ($\Rightarrow$ vale $F = \overline{Y}$)
+    \item $\forall y \in Y,\ \exists V^y \ent X: Y \cap V^y \cerr V^y$. ($\Rightarrow$ lo mismo $\forall U^y \subset V^y$)
+    \item $Y$ es abierto en su adherencia $\Leftrightarrow Y = \overline{Y} \cap U$ con $U \ab X$.
+    \item $Y$ es cerrado en un abierto: $Y = F \cap U,\ F \cerr X,\ U \ab X$. ($\Rightarrow$ vale $F = \overline{Y}$)
 \end{enumerate}
 \end{defi}
 \begin{demo}
 \begin{itemize}
-    \item 1. $\Rightarrow$ 2) $Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$:
-    \begin{align*}
-        x \in \overline{Y} \cap U^y &\Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) = Y \cap U^y \subset Y\\
-        U^x \subset U^y &\Rightarrow \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
-    .\end{align*}
+    \item 1. $\Rightarrow$ 2) ¿$Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$?
+    \begin{itemize}
+        \item[$\subset)$] Trivial.
+        \item[$\supset)$] Tomamos un elemento $x$:
+            \begin{align*}
+                x \in \overline{Y} \cap U^y &\Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) = Y \cap U^y \subset Y\\
+                U^x \subset U^y &\Rightarrow \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
+            .\end{align*}
+    \end{itemize}
     \item 2. $\Rightarrow$ 3) Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
     \[
     F \cap U = Y \Rightarrow F \supset \overline{Y} \Rightarrow F \cap U = \overline{Y} \cap U.
