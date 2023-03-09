@@ -37,7 +37,7 @@ h^{-1} V^{h\left( x_0 \right)} = f^{-1}g^{-1}V^{g\left( y_0 \right)} = f^{-1} V^
 \begin{enumerate}
     \item Sea $f: X_{\text{discreta}} \rightarrow Y$, entonces es continua sean cuales sean los conjuntos de partida y de llegada, pues todo es abierto y, en consecuencia, todo es entorno en $\mathcal{T}_{\text{disc}}$.
     \item Sea $f: X \rightarrow Y_{\text{trivial}}$, entonces es continua sean cuales sean los conjuntos de partida y de llegada, pues como $Y$ es el único abierto, entonces es el único entorno $V^{f\left( x \right)}$ para cualquier $f(x)$ y $f^{-1}V^{f\left( x \right)} = f^{-1}Y = X$, que es abierto.
-    \item Si una función $f: X \rightarrow Y_{\text{discreta}}$ es continua, entonces $f$ es localmente constante, pues como en la trivial los puntos son abiertos, entonces el punto $\{f\left( x_0 \right)\}$ es entorno $V^{f\left( x_0 \right)}$ de sí mismo. Por tanto, por la continuidad de $f$, $f^{-1}f\left( x_0 \right) = V^{x_0}$, luego $f \equiv f\left( x_0 \right)$ en ese entorno $V^{x_0}$.
+    \item Si una función $f: X \rightarrow Y_{\text{discreta}}$ es continua, entonces $f$ es localmente constante, pues como en la discreta los puntos son abiertos, entonces el punto $\{f\left( x_0 \right)\}$ es entorno $V^{f\left( x_0 \right)}$ de sí mismo. Por tanto, por la continuidad de $f$, $f^{-1}f\left( x_0 \right) = V^{x_0}$, luego $f \equiv f\left( x_0 \right)$ en ese entorno $V^{x_0}$.
     \item Si una función $f: X \rightarrow Y$ es localmente constante, entonces es continua, puesto que si es localmente constante para cualquier $x_0 \in X$ existe un entorno $U^{x_0} : f\mid_{U^{x_0}} \equiv f\left( x_0 \right)$. De este modo, cualquier entorno $V^{f\left( x_0 \right)}$ de la imagen $f(x_0)$ cumple que $f^{-1}V^{f\left( x_0 \right)} \supset U^{x_0}$ y llamando $V^{x_0} = f^{-1} V^{f\left( x_0 \right)}$ entonces vemos que es entorno de $x_0$.
 \end{enumerate}
 \end{ej}
@@ -303,7 +303,7 @@ Sea $f: X \rightarrow Y$,
 \begin{itemize}
     \item Es \underline{homeomorfismo local en} $x_0 \in X$ si $f: V^{x_0} \rightarrow V^{f\left( x_0 \right)}$ es homeomorfismo para entornos de $x_0$ y $f\left( x_0 \right)$. Se suele decir para entornos ``suficientemente pequeños''.
 
-    \item Es \underline{homeomorfismo local} si lo es en todo el dominio. 
+    \item Es \underline{homeomorfismo global} si lo es en todo el dominio. 
 \end{itemize}
 \end{defi}
 
