@@ -14,11 +14,11 @@ $X$ es \textbf{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \math
     \item $\mathcal{B}^x = \{U_k = \mathring{V}_k \}_{k \ge 1}$, base numerable de entornos de abiertos.
     \item $\mathcal{W}^x = \{W_k = U_1 \cap \ldots \cap U_k\}_{k \ge 1}$, base numerable de entornos abiertos encajados.
     \begin{demo}
-        Sea $\left\{ V_k^x, k \ge 1 \right\}$ base de entornos abiertos. Hacemos que: $W_1^x = V_1^x,\ W_2^x = V_1^x \cap V_2^x \ldots W_k^x = \bigcap_{i = 1}^{\infty} V_i^x$ y tenemos que:
+        Sea $\left\{ V_k^x, k \ge 1 \right\}$ base de entornos abiertos. Hacemos que: $W_1^x = V_1^x,\ W_2^x = V_1^x \cap V_2^x, \ldots,\\ W_k^x = \bigcap_{i = 1}^{k} V_i^x$ y tenemos que:
         \[
         W_{k+1}^x \subset W_{k}^x
         \]
-        que mantiene el ser base de entornos abiertos ($x \in \bigcap_{i = 1}^{\infty} V_i^x$).
+        que mantiene el ser base de entornos abiertos.
     \end{demo}
 \end{enumerate}
 \end{obs}
@@ -32,17 +32,20 @@ $X$ es \textbf{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \math
     \item $\left( X, \mathcal{T}_a \right), \left( X, \mathcal{T}_{\text{discreta}} \right)$ cumplen el I Axioma.
     \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right)$ no es I Axioma.
     \begin{demo}
-    Sabemos que $\left\{ W_k \right\}$ no es base de entornos de $x$ si $\exists U^x \not \supset W_k,\ \forall k \ge 1$, $\forall k \exists \underbrace{x_k}_{\neq x} \in W_k \setminus U^x$.
+    Sabemos que $\left\{ W_k \right\}$ no es base de entornos de $x$ si $\exists U^x \not \supset W_k\ \forall k \Leftrightarrow \forall k \ge 1,\ \exists \underbrace{x_k}_{\neq x} \in W_k \setminus U^x$.
 
     Veámoslo por reducción al absurdo. Supongamos que $\exists V^x$ numerable $\Rightarrow$
 
-    $\exists \mathcal{W}^x = \{W_k\}_{k \ge 1}$ abiertos encajados, $W_k = \mathbb{R} \setminus F_k$ finito $\Rightarrow \bigcap_{k \in \mathbb{N}} W_k = \mathbb{R} \setminus \bigcup_{k \in \mathbb{N}} F_k \neq \emptyset \Rightarrow \exists y \in \bigcap_{k \in \mathbb{N}} W_k \Rightarrow U^x = \mathbb{R}\setminus \{y\} \not \supset W_k,\ \forall k \in \mathbb{N}$ (porque $y$ pertenece a todos los $W_k$). Por tanto, tenemos un entorno que no contiene a ningún $W_k$.
+    %TODO: Creo que no es necesario que sean encajados
+    $\exists \mathcal{W}^x = \{W_k\}_{k \ge 1}$ abiertos encajados, $W_k = \mathbb{R} \setminus F_k$ (finito) $\Rightarrow \bigcap_{k \in \mathbb{N}} W_k = \mathbb{R} \setminus \bigcup_{k \in \mathbb{N}} F_k \neq \emptyset \Rightarrow \exists y \in \bigcap_{k \in \mathbb{N}} W_k \Rightarrow U^x = \mathbb{R}\setminus \{y\} \not \supset W_k,\ \forall k \in \mathbb{N}$ (porque $y$ pertenece a todos los $W_k$). Por tanto, tenemos un entorno que no contiene a ningún $W_k$.
     \end{demo}
 
     \item $\left( \mathbb{R}, \mathcal{T}_{\text{rad}} \right)$ no es I axioma.
     \begin{demo}
     %TODO: Dibujo 
-    Sea $\left\{ \underbrace{W_k}_{\ni x_0} : k \ge 1 \right\}$ y sea $L_k: $ recta de pendiente $\frac{1}{k}$. Si hacemos $W_k \cap L_k \supset \left( x_0 - \varepsilon, x_0 + \varepsilon \right) \ni x_k$ 
+    Sea $\left\{ W_k : W_k \ni x_0 \right\}_{k \ge 1}$ y $L_k:$ recta de pendiente $\frac{1}{k}$ por $x_0$. %TODO: Creo?
+
+    Si hacemos $W_k \cap L_k \supset \left( x_0 - \varepsilon, x_0 + \varepsilon \right) \ni x_k$ 
     tal que $0 < \lVert x_k - x_0 \rVert < \frac{1}{k}$. Ya vimos que $U^{x_0} = \mathbb{R}^2 \setminus \left\{ x_k: k \ge 1 \right\}$ es abierto radial que 
     no contiene ningún $W_k$ ya que a estos pertenecen los $x_k$.
     \end{demo}
@@ -59,10 +62,10 @@ $X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
 \begin{itemize}
     \item $\mathcal{T}_a, \mathcal{T}_{\text{discr.}}$ en $X$ no numerable no es II axioma.
     \begin{demo}
-        En $\mathcal{T}_a$ la base de abiertos es $\mathcal{B}_a = \left\{ \left\{ a, x \right\}: x \in X \right\}$, por tanto, si $X$ no es numerable
+        En $\mathcal{T}_a$ la base de abiertos mínima es $\mathcal{B}_a = \left\{ \left\{ a, x \right\}: x \in X \right\}$, por tanto, si $X$ no es numerable
         tampoco lo será esta base.
 
-        Por otro lado, en $\mathcal{T}_{\text{discr.}}$ tenemos como base $X$ que no es numerable.
+        Por otro lado, en $\mathcal{T}_{\text{discr.}}$ tenemos como base mínima $\mathcal{P}\left( X \right)$ que no es numerable.
     \end{demo}
     \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es II Axioma ya que tenemos como base a: $\mathcal{B} = \{B \left( q, \frac{1}{k}\right) : q \in \mathbb{Q}^n, k \ge 1 \}$.
     \begin{demo}
@@ -79,7 +82,7 @@ $X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item Sea la base de abiertos: $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow \mathcal{B}^x = \{B_k : x \in B_k\}$ es base de entornos $\forall x \in X$.
+    \item Sea la base de abiertos: $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow \mathcal{B}^x = \{B_k : x \in B_k\}$ es base de entornos $\forall x \in X$. Si $\mathcal{B}$ es numerable, también lo será $\mathcal{B}^x$.
     \item Tenemos como contraejemplo $\mathcal{T}_{\text{discr.}}$ en $X$ no numerable.
 \end{enumerate}
 \end{demo}
@@ -110,7 +113,7 @@ $X$ es \textbf{separable} si $\exists A \subset X$, numerable denso.
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow A = \{a_k : a_k \in B_k\}_{k \ge 1}$ corta a todo abierto (y, por tanto, denso).
+    \item $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow A = \{a_k : a_k \in B_k\}_{k \ge 1}$ corta a todo abierto (y, por tanto, es denso).
     \item Contraejemplo: $\left( X, \mathcal{T}_a \right), X$ no numerable.
     \item Contraejemplo: Topología discreta en un espacio no numerable.
     \item Contraejemplo: $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right) : \overline{\mathbb{Z}} = \mathbb{R}$.
@@ -152,6 +155,8 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
     \begin{itemize}
         \item I Ax. y II Ax. se \underline{heredan} a subespacios intersecando bases.
         \item Separable se hereda a subespacios abiertos intersecando el conjunto denso.
+
+        No en general: Sea $\left( X, \mathcal{T}_a \right)$ con $X$ no numerable $\Rightarrow X \setminus \left\{ a \right\}$ discreto y no Lindelöf.
         \item Lindelöf se hereda a subespacios cerrados como la compacidad. 
 
         No en general: Sea $Y$ no Lindelöf, $X = Y \cup \{w\}$ compacto, $\mathcal{B}^w = \{X \setminus F: F \subset Y\}$ con $F$ finito.    
@@ -193,20 +198,24 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
             La imagen de una base es una base.
         \end{demo}
         \item Las aplicaciones continuas conservan la separabilidad 
+        %TODO: Asumo que es suprayectiva, ¿necesario?
         \begin{demo}
-            $(p\left( X \right) =) f\left( \overline{A} \right) \stackrel{\text{cont.}}{\subset} \overline{f\left( A \right)} (= \faktor{X}{\sim})$.
+            Sabemos que $f\left( \overline{A} \right) \stackrel{\text{cont.}}{\subset} \overline{f\left( A \right)}$. Entonces, si $\overline{A} = X$, $Y = f\left( X \right) = f\left( \overline{A} \right) \subset \overline{f\left( A \right)} \Rightarrow \overline{f\left( A \right)} = Y$.
         \end{demo}
         %TODO: Ya se sabe xd
         \item Las aplicaciones continuas conservan Lindelöf. 
         \begin{demo}
             Como la compacidad, ya se sabe...
         \end{demo}
+
+        Estas tres últimas propiedades se pueden aplicar al cociente porque la proyección es una aplicación continua.
     \end{itemize}
 
     \item \underline{Productos/sumas} (finitos):
     \begin{itemize}
         \item Para productos: producto \underline{finito} de familias numerables es numerable.
         \item Para sumas: suma \underline{finita} de familias numerables es numerable.
+        %TODO: Se asume de nuevo suprayectividad?
         \item La separabilidad se mantiene porque: $\overline{A_1 \times A_2} = \overline{A}_1 \times \overline{A}_2$.
         \item Solo falla Lindelöf:
         \begin{itemize}

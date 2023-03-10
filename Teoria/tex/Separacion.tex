@@ -23,19 +23,22 @@ Hay otras formas de separación, más débiles o más fuertes, pero nos contenta
     \[
     \forall y \in X \setminus \left\{ x \right\},\ \exists U^y \not\ni x \Rightarrow X \setminus \{x\} = \bigcup_{y \neq x} U^y  \text{ es abierto.} 
     \]
+    También lo podemos ver como entorno de todos sus puntos.
     \end{demo}
     \item $\left( X, \mathcal{T}_{\text{CF}} \right)$ no es Hausdorff. Sin embargo, tiene puntos cerrados.
-    %TODO: Corregir
     \begin{demo}
         No es Hausdorff porque, si $X$ es infinito, dos abiertos cualesquiera se cortan.
         Sean $U_1, U_2 \in \mathcal{T}_{\text{CF}} \Rightarrow X \setminus U_1, X \setminus U_2$ son finitos y como $X$ es infinito $\Rightarrow \exists x \not\in X \setminus U_1 \cup X \setminus U_2 \Rightarrow x \in U_1 \cap U_2$.
     \end{demo}
 
-    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff: $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon \le \lVert x - y \rVert / 2$. Como $\mathcal{T}_{u} \subset \mathcal{T}_{\text{rad}}$, esta última también es Hausdorff.
+    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff. Como $\mathcal{T}_{u} \subset \mathcal{T}_{\text{rad}}$, esta última también es Hausdorff.
+    \begin{demo}    
+    Sean $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon < \frac{\lVert x - y \rVert}{2}$.
+    \end{demo}
 
-    \item En $\left( X, \mathcal{T}_a \right)$ el punto $a$ no es cerrado. Por lo tanto, no es Hausdorff. 
+    \item En $\left( X, \mathcal{T}_a \right)$ el punto $a$ no es cerrado. Por lo tanto no es Hausdorff. 
     \begin{demo}
-    Veamos que $a$ no es cerrado: $a \not\in X \setminus \{a\} \Rightarrow X \setminus \{a\}$ no es abierto. $\forall x \neq a, U^x \supset \{a, x\} \ni a$.   
+    Veamos que $a$ no es cerrado: $a \not\in X \setminus \{a\} \Rightarrow X \setminus \{a\}$ no es abierto: $\forall x \neq a, U^x \supset \{a, x\} \ni a$.   
     \end{demo}
 \end{enumerate}
 \end{obs}
@@ -58,7 +61,7 @@ En primer lugar, veamos que si un punto cumple $f\left( x \right) \neq g\left( x
 \end{demo}
 
 \begin{coro}
-Si $\left\{ f = g \right\}$ es un subconjunto denso, es decir, $\exists A \subset X: \overline{A} = X$ y $\left\{ f = g \right\}_A$, entonces $f \equiv g$
+Si $\left\{ f = g \right\}$ es un subconjunto denso, es decir, $\exists A \subset X: \overline{A} = X$ y $\left\{ f = g \right\}_A$, entonces $f \equiv g$.
 \end{coro}
 \begin{demo}
 $f|_A = g|_A \Rightarrow \{f = g\} \supset A \xRightarrow{\text{prop.}} \overline{\left\{ f = g \right\}} = \{f = g\} \supset \overline{A} = X \Rightarrow \boxed{X = \left\{ f = g \right\}}$.
@@ -168,9 +171,7 @@ Se tiene que:
         \caption{\textit{Siendo $x_1 \neq x_2$ vemos que es posible separar los puntos $\left( x_1, y_1 \right)$ y $\left( x_2, y_2 \right)$ simplemente separando en el factor $X$ del producto.}}
     \end{figure}
 
-    \item[$\Leftarrow)$] Sabemos que $X \approx 
-    %TODO: Por qué?
-    X \times \left\{ y_0 \right\} \subset X \times Y$ que es $T_2 \xRightarrow{\ref{it:subespacio_hausdorff}.} X \times \left\{ y_0 \right\}$ es $T_2$ y, por homeomorfismo, $X$ también.
+    \item[$\Leftarrow)$] Sabemos que $X \approx X \times \left\{ y_0 \right\} \subset X \times Y$ que es $T_2 \xRightarrow{\ref{it:subespacio_hausdorff}.} X \times \left\{ y_0 \right\}$ es $T_2$ y, por homeomorfismo, $X$ también.
     \end{itemize} 
 
     \item Veamos que la suma conserva la propiedad:
@@ -178,5 +179,7 @@ Se tiene que:
     $X$ y $Y$ son ambos $T_2 \Leftrightarrow X + Y$ es Hausdorff.
 
     Único comentario: $x \in X$ e $y \in Y \Rightarrow X = V^x, Y = V^y$ y $X \cap Y = \emptyset$ (recordemos que hemos definido la suma como unión disjunta).
+
+    Si $x$ e $y$ pertenecen ambos a $X$ ó a $Y$ simplemente aplicamos que son $T_2$.
 \end{enumerate}    
 \end{demo}
