@@ -345,17 +345,19 @@ Sea $Y \subset X$ con $Y$ loc. compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_loc_comp}
-%TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
-    Compacidad local & \begin{tabular}{@{}c@{}}$\times$\\ Loc. cerrados \checkmark \end{tabular} & \begin{tabular}{@{}c@{}}$\times$\\ ab. \checkmark \end{tabular} & \checkmark & \checkmark\\
-    \hline\\
-           & Mantra $1$ & $f\left( \text{ent.} \right) = $ ent & Tychonoff & Loc. suma es como sum's\\
-    \hline\\
+\hline
+    Compacidad local & \begin{tabular}{@{}c@{}}\ding{55}\\ Loc. cerrados \checkmark \end{tabular} & \begin{tabular}{@{}c@{}}\ding{55}\\ Abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
+    \hline
+    Demostración: & Mantra $1$ & $f\left( \text{ent.} \right) = $ ent & Tychonoff & Loc. suma es como sum's\\
+    \hline
 \end{tabular}
-\end{center}
+\caption{\textit{La tabla nos indica como se conserva la compacidad local en las distintas construcciones que hemos visto. Las sumas y los productos son finitos.}}
+\end{table}
 
 \begin{ej}
 $Y = \mathbb{R} / \mathbb{Z}$ no es localmente compacto.
@@ -438,7 +440,7 @@ El espacio $X^*$ se denomina \underline{compactificación por un punto} de $X$.
 
 También, \underline{compactificación de Alexandroff}.
 \end{defi}
-Por ejemplo, $\mathbb{S}^n$ es la compactificación por un puntoo de $\mathbb{R}^n$ (vía proyección estéreo como dijimos antes).
+Por ejemplo, $\mathbb{S}^n$ es la compactificación por un punto de $\mathbb{R}^n$ (vía proyección estéreo como dijimos antes).
 
 \begin{obs}[¡Importante!]
 \begin{enumerate}
