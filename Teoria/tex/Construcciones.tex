@@ -4,44 +4,44 @@ En este capítulo buscaremos topologías en base a unas aplicaciones con el obje
 
 \section{Imágenes inversas}%
 \label{sec:imagenes_inversas}
-Supongamos que tenemos $f: Y \rightarrow \left( X, \mathcal{T} \right)$ y buscamos hacerla continua. Trivialmente, podemos hacer que la topología en $Y$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{menos fina} que haga $f$ continua. 
-\begin{defi}    
-Llamamos \textbf{topología de la imagen inversa} a: $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$.
+El objetivo de esta construcción es crear una topología que, al ser equipada en el conjunto de partida, haga la aplicación $f: (Y, ?) \rightarrow \left( X, \mathcal{T} \right)$ continua. Recordemos que, para poder cumplir con la definición de continuidad, las preimágenes de abiertos deben ser abiertos, luego cuantos más abiertos ``metamos'' en dicha topología más ``fácil'' será que las imágenes inversas caigan en abiertos.
+
+Con dicha observación lo que se nos viene a la cabeza es tomar como topología la discreta, sin embargo, esto carece de interés: lo que realmente nos gustaría es la topología con menos abiertos posibles que haga la función continua.
+
+\begin{defi}[Topología Imagen Inversa]
+Sea $f: Y \rightarrow (X,\mathcal{T})$ una aplicación, definimos la \textbf{topología de la imagen inversa} como la topología menos fina que podemos equipar a $Y$ para que la aplicación $f$ sea continua, que es la topología:
+$$
+f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}
+$$
+donde los abiertos son exactamente las preimágenes de los abiertos la topología de llegada.
 \end{defi}
-\begin{prop}    
-La topología de la imagen inversa cumple:
+
+\begin{obs}
+Tras la introducción de la sección, la topología de la definición parece la más razonable para ser candidata a menos fina posible, puesto que de ser topología (hay que probarlo) hemos ``metido'' los abiertos indispensables para la continuidad que son precisamente las imágenes inversas.
+\end{obs}
+
+\begin{prop}
+Sea $f: (Y, f^{-1}\mathcal{T}) \rightarrow (X,\mathcal{T})$ donde $f^{-1}\mathcal{T}$ es la topología de la imagen inversa, entonces:
 \begin{enumerate}
-    \item Es topología. 
-    \item Es mínima. 
+    \item $f^{-1}\mathcal{T}$ es topología. 
+    \item $f^{-1}\mathcal{T}$ es la menos fina posible.
 \end{enumerate}
 \end{prop}
-%TODO: Acabar
 \begin{demo}
 \begin{enumerate}
-    \item Trivial.
-    \item Sea $\mathcal{T}'$ otra topología en $Y$ que haga $f$ continua. 
-
-    Tomamos $U \in f^{-1}\mathcal{T} \Rightarrow \exists V \in \mathcal{T}: f^{-1}V = U$. Como $f$ en $\mathcal{T}'$ es también continua tenemos que $U = f^{-1}V$ es abierto en $\mathcal{T}'$. Es decir, todo abierto en $f\mathcal{T}$ es también abierto en $\mathcal{T}' \Rightarrow \boxed{f \mathcal{T} \subset \mathcal{T}'}$.
+    \item Las imágenes inversas funcionan muy bien con uniones, intersecciones, etc. Por tanto, la demostración de que es topología es trivial.
+    
+    \item Consideremos cualquier otra topología $\mathcal{T}'$ en $Y$ que haga la función $f$ continua. Si tomamos un abierto $U \in f^{-1}\mathcal{T}$ en la topología inversa, entonces $\exists V \in \mathcal{T}: f^{-1}V = U$. Asimismo, como $f$ también es continua en $\mathcal{T}'$ sabemos que $U = f^{-1}V$ también es abierto en $\mathcal{T}'$, es decir, todo abierto en $f^{-1}\mathcal{T}$ es también abierto en $\mathcal{T}'$ y, por tanto, $f^{-1}\mathcal{T} \subset \mathcal{T}'$.
 \end{enumerate}
 \end{demo}
 
-\begin{obs}
-    Con esta definición, $f$ será continua.
-\end{obs}
-
 \subsection{Caracterización de la imagen inversa}
 \label{sub:caracterizacion_de_la_imagen_inversa}
-Veamos ahora una caracterización de la topología que acabamos de introducir.
-\begin{theo}[Propiedad universal de las inmersiones]
-Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T} \right)$. Entonces:
-    \[
-    \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow  
-    \]
-    \begin{equation}\label{ec:prop_universal_inm}
-        \left[\forall g: g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.} \right]  
-    \end{equation}
+En muchas ocasiones, tendremos diagramas con varias aplicaciones entre varios espacios topológicos. En estas situaciones, es de utilidad tener algún teorema para poder identificar unas topologías con otras, ya que entender y manejar bien unas pueden tener buenas ``traslaciones'' en las otras. Es por ello que tiene gran utilidad el siguiente teorema de caracterización de la topología inversa en circunstancias como las descritas.
 
-    \begin{figure}[H]
+\begin{theo}[Propiedad universal de las inmersiones]
+Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T} \right)$ dos funciones entre espacios topológicos:
+\begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(Y) {$\left( Y, \mathcal{T}' \right)$};
@@ -54,16 +54,25 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_inmersiones}
     \end{figure}
+entonces $\mathcal{T}' = f^{-1}\mathcal{T}$ si y sólo si:
+\[
+\forall g: g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.}
+\]    
 \end{theo}
 \begin{demo}
 \begin{itemize}
     \item $\Rightarrow)$ $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
     \begin{itemize}
-        \item $g$ cont. $\Rightarrow f \circ g$ cont. (Composición de continuas)
-        \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ g \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
+        \item $g$ cont. $\Rightarrow f \circ g$ cont. es trivial por composición de continuas.
+        \item $f \circ g$ cont. $\Rightarrow g$ cont.
+        
+        Para probarlo, basta ver para cualquier abierto $V \in \mathcal{T}'$, $g^{-1}V$ es abierto en $\mathcal{T}''$. Por ser $\mathcal{T}'=f^{-1}\mathcal{T}$, entonces $g^{-1}V = g^{-1} f^{-1} U$ para algún abierto $U\in \mathcal{T}$, pero es que precisamente $g^{-1} f^{-1} U = \left( f \circ g \right)^{-1} U \in \mathcal{T}''$ por ser $f\circ g$ continua.
     \end{itemize}
 
-    \item $\Leftarrow)$ Por otro lado, veamos la unicidad:
+    \item $\Leftarrow)$
+	Para demostrarla vamos a ver el doble contenido de $\mathcal{T}'$ en $f^{-1}\mathcal{T} $ y viceversa.
+	
+	Como la propiedad de caracterización se cumple para cualquier $g$ que escojamos, podemos escoger como $g$ la aplicación identidad. De esta manera, $g \text{ cont.} \Leftrightarrow f\circ g \text{ cont.}$ implica que $id \text{ cont.} \Leftrightarrow f\circ id = f \text{ cont.}$, luego hemos demostrado que $f$ es continua.
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -75,9 +84,9 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
             \draw[->](Z) to node [right=0.2ex] {$f$}(X);
             \end{tikzpicture}
     \end{figure}
-    Como esta $id$ es continua, por (\ref{prop_universal_inmersiones}), $f\circ id = f$ es también continua. Al ser $f^{-1}\mathcal{T}$ la menos fina, $\mathcal{T}' \supset f^{-1}\mathcal{T}$.
-
-    Además, 
+    Y como precisamente $f^{-1}\mathcal{T}$ es la topología menos fina que posibilita la continuidad de $f$, sabemos que $\mathcal{T}' \supset f^{-1}\mathcal{T}$. 
+   
+   Si ahora utilizamos como $g$ la identidad puramente conjuntista (las topologías no se conservan, pero los puntos van a ellos mismos), entonces:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -89,42 +98,40 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
             \draw[->](Z) to node [right=0.2ex] {$f$ cont.}(X);
             \end{tikzpicture}
     \end{figure}
-    Como la $f$ es continua, por (\ref{prop_universal_inmersiones}), esta nueva $id$ es también continua $\Rightarrow f^{-1}\mathcal{T} \supset \mathcal{T}'$.
+    de nuevo, por la propiedad de caracterización sabemos que esta nueva ``identidad'' es una función continua. Como la aplicación es entre el mismo conjunto de puntos es biyectiva, entonces cualquier abierto $U\in \mathcal{T}'$ coincide con su preimagen $f^{-1}U$. Al demostrar que la ``identidad'' es continua, entonces $\forall U \in \mathcal{T}', \ U = f^{-1}U\in f^{-1}\mathcal{T}$, es decir, que $\mathcal{T}'\subset f^{-1}\mathcal{T}$.
 \end{itemize}
 \end{demo}
 
-\begin{enun}
-Demostrar $\Leftarrow$) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización). Hecho en clase.
-\end{enun}
-
 \subsection{Inmersiones}
 \label{sub:inmersiones}
-Veamos ahora un caso de especial relevancia:
-\[
-\boxed{f: Y \rightarrow X \text{ inyectiva}} 
-\]
-\begin{defi}
-Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \textbf{inmersión}.
+La construcción anterior cobra especial relevancia cuando la aplicación $f: Y \rightarrow X$ que hemos hecho continua con la topología imagen inversa es inyectiva porque de alguna forma permite ``sumergir'' el espacio de salida en el de llegada.
+
+\begin{defi}[Inmersión]
+Sea $f:\left( Y, f^{-1}\mathcal{T} \right) \rightarrow \left( X, \mathcal{T} \right)$ una aplicación continua gracias a la topología de la imagen inversa, decimos que es una \textbf{inmersión} si y sólo si es inyectiva.
 \end{defi}
 
-\begin{prop}
-Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( f\left( Y \right), \mathcal{T} \right)$. Entonces:
+\begin{prop}[Caracterización de Inmersiones]
+Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ una aplicación entre espacios topológicos, entonces:
 \[
-    \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow f: \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeo.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)
+    f\text{ es inmersión} \Leftrightarrow f: \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeo.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)
 \]
 \end{prop}
 \begin{demo}
 \begin{itemize}
     \item $\Rightarrow)$ Tenemos que $f: \left( Y, f^{-1}\mathcal{T} \right) \rightarrow \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$. 
 
-    Al ser $f$ inyectiva, también será biyectiva. Veamos que es continua y abierta:
+    Como $f$ es inmersión sabemos que es inyectiva, lo que sumado a que el espacio de llegada es $f(Y)$, nos permite saber que es sobreyectiva y, por tanto, biyectiva. De los requisitos para ver que es un homeomorfismo, bastaría con ver que es abierta y continua:
     \begin{itemize}
-        \item \underline{Continua}: Sea $U \in \mathcal{T}|_{f\left( Y \right)} \Rightarrow \exists W \in \mathcal{T}: U = f\left( Y \right) \cap W \Rightarrow$ 
+        \item Continua:
+        
+        Si escogemos un abierto cualquier $U\in \mathcal{T}\mid_{f(Y)}$, por ser abierto de la topología relativa, sabemos que $\exists W \in \mathcal{T}: U = f\left( Y \right) \cap W $ y entonces su imagen inversa
         \[
-        f^{-1}\left( U \right) = f^{-1}\left( W \cap f\left( Y \right) \right) = Y \cap f^{-1}\left( W \right) = f^{-1}\left( W \right)
+        f^{-1}\left( U \right) = f^{-1}\left( W \cap f\left( Y \right) \right) = Y \cap f^{-1}\left( W \right) = f^{-1}\left( W \right) \in f^{-1}\mathcal{T}
         \]
-        que es abierto en $f^{-1}\mathcal{T}$.
-        \item \underline{Abierta}: Sea $U \in f^{-1}\mathcal{T} \Rightarrow \exists W \in \mathcal{T}: f^{-1}W = U$. Aplicando $f$:
+
+        \item Abierta:
+        
+        Observamos que cualquier abierto $U \in f^{-1}\mathcal{T}$ de la topología imagen inversa es preeimagen de un abierto de la topología de llegada, es decir, $\exists W \in \mathcal{T}: f^{-1}W = U$. Por tanto, si calculamos la imagen de $U$ por $f$, tenemos que:
         \[
         fU = ff^{-1}W = W \cap f\left( Y \right) \ab f\left( Y \right)
         \]
@@ -132,94 +139,90 @@ Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( f\left( Y \right), \ma
     \end{itemize}
 
     %TODO: Posiblemente mal. Algo de la relativa 
-    \item $\Leftarrow)$ Veamos la doble contención:
+    \item $\Leftarrow)$ Veamos por el doble contenido que $\mathcal{T}' = f^{-1}\mathcal{T}$
     \begin{itemize}
-        \item $\subset)$ Sea $U \in \mathcal{T}' \xRightarrow{\text{ab.}} fU \in \mathcal{T}|_{f\left( Y \right)}$, es decir, $\exists W \in \mathcal{T}'|_{f\left( Y \right)}: f^{-1}W = U$. Por tanto, $U \in f^{-1}\mathcal{T}$. 
-        \item $\supset)$ Sea $U \in f^{-1}\mathcal{T} \xRightarrow{\text{def.}} \exists W \in \mathcal{T}|_{f\left( Y \right)}: f^{-1}W = U$. Como $f$ es continua en $\mathcal{T}'$, $U = f^{-1} W \in \mathcal{T}'$.
+        \item $\subset)$
+        
+        Sea $U \in \mathcal{T}'$, como es homeomorfismo es abierto, luego $fU\in \mathcal{T}|_{f\left( Y \right)}$, es decir, $\exists W \in \mathcal{T}'|_{f\left( Y \right)}: f^{-1}W = U$, luego podemos decir que $U \in f^{-1}\mathcal{T}$. 
+        \item $\supset)$
+        
+        Sea $U \in f^{-1}\mathcal{T}$, por definición, $\exists W \in \mathcal{T}|_{f\left( Y \right)}: f^{-1}W = U$ y, como $f$ es continua en $\mathcal{T}'$, $U = f^{-1} W \in \mathcal{T}'$.
     \end{itemize}
 \end{itemize} 
 \end{demo}
 
 %TODO: No se si es necesario
 \begin{obs}
+Podemos extraer de la definición, pero sobre todo de la caracterización anterior de inmersión las siguientes conclusiones:
 \begin{enumerate}
-    %TODO: Igual al anterior?
-    \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
-        \text{abierto} \Rightarrow \text{inmersión }\\
-        \text{cerrado} \Rightarrow \text{inmersión } 
-    \end{cases}$
+    \item Si una función $f: Y \rightarrow X$ es inyectiva, continua y abierta o cerrada, entonces es inmersión.
     \begin{demo}
-        \begin{itemize}
-            \item Abierto en $X \Rightarrow$ abierto en $f\left( Y \right)$.
-            \item Cerrado en $X \Rightarrow$ cerrado en $f\left( Y \right)$.
-        \end{itemize}
+    La caracterización de imagen inversa exige continuidad, biyectividad y apertura o cierre (es decir, que sea homeomorfismo) de la aplicación $g: Y \rightarrow f(Y)$. Como $f$ es inyectiva y coincide con $g$ en la imagen $f(Y)$, ésta última también es inyectiva, luego por ser sobreyectiva es biyectiva. La continuidad también se extiende a $g$ naturalmente y falta solo ver que es abierta o cerrada respectivamente. Si $f$ lo es, entonces para cualquier abierto o cerrado $W\subset Y$ su imagen $f(W)$ será abierta o cerrada en $X$. Del mismo modo, para cualquier abierto o cerrado $W\subset Y$ su imagen $g(W)$ se puede escribir como $g(W) = f(W)\cap f(Y)$ que es abierto o cerrado por ser un corte de un abierto o cerrado ambiente con el subespacio $f(Y)$.
     \end{demo}
 
-    \item $f: Y \rightarrow X$ inmersión: $\begin{cases}
-        \text{abierto } \Leftrightarrow f\left( Y \right) \text{abierto en } X\\
-        \text{cerrado } \Leftrightarrow f\left( Y \right) \text{cerrado en } X\\
-    \end{cases}$
+    \item Si $f: Y \rightarrow X$ es una inmersión, entonces:
+	\begin{itemize}
+		\item es una aplicación abierta si y sólo si 	$f(Y)$ es abierto en $X$.
+		\item es una aplicación cerrada si y sólo si $f(Y)$ es cerrado en $X$.
+	\end{itemize}	    
+    
     \begin{demo}
+    En ambos casos, la implicación de izquierda a derecha es trivial, luego sólo es necesaria la de derecha a izquierda:
     \begin{itemize}
         \item 
-        $f\left( Y \right) \ab X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
+        $\forall V = f^{-1}U \in f^{-1}\mathcal{T}, \ fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
         \item 
-        $f\left( Y \right) \cerr X: C \cerr  f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) = \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \cerr X$ 
+        $\forall C \cerr  f^{-1}\mathcal{T}, \ Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) = \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \cerr X$ 
     \end{itemize} 
     \end{demo}
 
-    \item Tenemos como posibilidades: 
-    \begin{itemize}
-        \item Inmersión $ + \not$ ab. $+ \not$ cerr.
-        \item Inmersión $+$ ab. $+ \not $ cerr.
-        \item Inmersión $+ \not$ ab. $+$ cerr.
-    \end{itemize}
+    \item Las inmersiones y la apertura o cierre de la aplicación no están relacionadas. Esto quiere decir que existen inmersiones que no son abiertas ni cerradas, que sólo son abiertas, que sólo son cerradas y ambas cosas simultáneamente.
 \end{enumerate}
 \end{obs}
 
 \begin{obs}
-Las inmersiones permiten considerar unos espacios como subespacios de otros. Las frases ``el plano proyectivo real no es un subespacio de $\mathbb{R}^3$'', ``la esfera no es un subespacio de $\mathbb{R}^2$'', ``el plano proyectivo real es un subespacio de $\mathbb{R}^4$'' se refieren a esto: \underline{cuándo hay o no hay} una inmersión del primer espacio en el segundo, es decir, un subespacio del segundo homeomorfismo al primero. Es un problema fundamental de la topología
-y de la geometría.
+Las inmersiones son las que justifican la idea de considerar unos espacios como subespacios de otros. Las frases ``el plano proyectivo real no es un subespacio de $\mathbb{R}^3$'', ``la esfera no es un subespacio de $\mathbb{R}^2$'' o ``el plano proyectivo real es un subespacio de $\mathbb{R}^4$'' se refieren a esto mismo: cuándo hay o no hay una inmersión del primer espacio en el segundo, es decir, un subespacio del segundo homeomorfo al primero.
 \end{obs}
-
 
 \section{Imágenes directas}%
 \label{sec:imagenes_directas}
-Supongamos que tenemos $f: \left( X, \mathcal{T} \right) \rightarrow Y$ y buscamos hacerla continua. Trivialmente, podemos hacer que la topología en $X$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
+El objetivo de esta construcción es crear una topología que, al ser equipada en el conjunto de llegada, haga la aplicación $f: (X, \mathcal{T}) \rightarrow \left( Y, ? \right)$ continua. De nuevo, recordemos que, para poder cumplir con la definición de continuidad, las preimágenes de abiertos deben ser abiertos, luego cuantos menos abiertos ``metamos'' en dicha topología menos posibilidades habrá de que sus preimágenes no caigan en abiertos.
 
-\begin{defi}
-Llamamos \textbf{topología de la imagen directa} a: $f\mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}$.
+Con dicha observación, en este caso lo que se nos viene a la cabeza es tomar como topología la trivial, sin embargo, esto vuelve a carecer de interés: lo que realmente nos gustaría es la topología con más abiertos posibles que haga la función continua.
+
+\begin{defi}[Topología Imagen Directa]
+Sea $f: (X,\mathcal{T}) \rightarrow Y$ una aplicación, definimos la \textbf{topología de la imagen directa} como la topología más fina que podemos equipar a $Y$ para que la aplicación $f$ sea continua, que es la topología:
+$$
+f \mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}
+$$
+donde los abiertos son exactamente aquellos cuyas preimágenes son abiertos de la topología de salida.
 \end{defi}
-\begin{prop}    
+
+\begin{obs}
+Tras la introducción de la sección, de nuevo, parece que la topología de la definición es la más razonable para ser candidata a más fina posible, puesto que de ser topología (hay que probarlo) hemos ``metido'' todo lo que podemos meter como abierto conservando el requisito de la continuidad.
+\end{obs}
+
+\begin{prop}
+Sea $f: (X,\mathcal{T}) \rightarrow (Y, f\mathcal{T})$ donde $f\mathcal{T}$ es la topología de la imagen directa, entonces:
 \begin{enumerate}
-    \item Es topología.
-    \item Máxima. 
+    \item $f\mathcal{T}$ es topología. 
+    \item $f\mathcal{T}$ es la más fina posible.
 \end{enumerate}
 \end{prop}
+
 \begin{demo}
 \begin{enumerate}
     \item Trivial.
-    \item Sea $\mathcal{T}'$ tal que haga $f$ continua. Veamos que $\mathcal{T}' \subset f\mathcal{T}$.
-
-    Tomamos $U \in \mathcal{T}' \Rightarrow \exists W \in \mathcal{T}': f^{-1} U = W$. Por definición de $f \mathcal{T}$, ya tenemos que $U \in f \mathcal{T}$ (porque $W \in Y$).
+    \item Consideremos cualquier otra topología $\mathcal{T}'$ en $Y$ tal que haga $f$ continua. Si tomamos un abierto $U \in \mathcal{T}'$, como conserva la continuidad , $f^{-1} U = W \in \mathcal{T}$. Sin embargo, tal y como hemos definido $f \mathcal{T}$, sabemos que $U \in f \mathcal{T}$ porque $W \ab X$, luego $\mathcal{T}'\subset f\mathcal{T}$.
 \end{enumerate}
 \end{demo}
-\begin{obs}
-Con esta definición, $f$ será continua.
-\end{obs}
 
 \subsection{Caracterización de la imagen directa}
 \label{sub:caracterizacion_de_la_imagen_directa}
-Veamos ahora una caracterización de la topología que acabamos de introducir.
-\begin{theo}[Propiedad universal de las identificaciones]
-Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
-    \[
-    \mathcal{T}' = f\mathcal{T} \Leftrightarrow  
-    \]
-    \begin{equation}\label{eq:prop_universal_directa}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow g \circ f \text{ cont.} \right]
-    \end{equation}
+De nuevo, en las situaciones en las que haya diagramas con varias aplicaciones entre varios espacios topológicos, es de utilidad tener algún teorema para poder identificar unas topologías con otras, ya que entender y manejar bien unas pueden tener buenas ``traslaciones'' en las otras. Por ello, tiene gran utilidad el teorema de caracterización de la topología directa en circunstancias como las descritas.
 
+\begin{theo}[Propiedad universal de las identificaciones]
+Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ dos funciones entre espacio topológicos
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -233,16 +236,25 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_directas}
     \end{figure}
+entonces $\mathcal{T}' = f\mathcal{T}$ si y sólo si:
+	\[
+        \forall g, \ g \text{ cont.} \Leftrightarrow g \circ f \text{ cont.}
+	\]
 \end{theo}
 \begin{demo}
-\begin{enumerate}
-    \item $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
+\begin{itemize}
+    \item $\Rightarrow)$ $\mathcal{T}' = f\mathcal{T}: $ 
     \begin{itemize}
-        \item $g$ cont. $\Rightarrow g \circ f$ cont. (Composición de continuas)
-        \item $g \circ f$ cont. $\Rightarrow g$ cont. ($W \in \mathcal{T}'' \Rightarrow f^{-1}\left( g^{-1} W \right) = \underbrace{\left( g \circ f \right)^{-1}}_{\text{cont.}} W \in \mathcal{T} \stackrel{\mathcal{T}' = f\mathcal{T}}{\Rightarrow} g^{-1}W \in \mathcal{T}'$)
+        \item $g$ cont. $\Rightarrow g \circ f$ cont. es trivial por composición de continuas.
+        \item $g \circ f$ cont. $\Rightarrow g$ cont.
+        
+        Si escogemos un $W \in \mathcal{T}''$ sabemos que $f^{-1}\left( g^{-1} W \right) = \left( g \circ f \right)^{-1} W \in \mathcal{T}$ porque la aplicación $g\circ f$ es continua. Sin embargo, que $f^{-1} V \in \mathcal{T}$ implica que $V\in \mathcal{T}'$ porque $\mathcal{T}' = f\mathcal{T}$, luego $g^{-1}W \in \mathcal{T}'$, es decir, es continua.
     \end{itemize}
 
-    \item Por otro lado, veamos la unicidad:
+    \item $\Leftarrow)$
+    Para demostrarla vamos a ver el doble contenido de $\mathcal{T}'$ en $f^{-1}\mathcal{T} $ y viceversa.
+    
+    Como la caracterización se cumple para cualquier $g$, en particular podemos seleccionar como $g$ la identidad. Como la identidad es continua, por la caracterización, $id \circ f = f$ es continua y, como $f\mathcal{T}$ es la topología más fina que hace $f$ continua, entonces $\mathcal{T}'\subset f\mathcal{T}$.
 
     \begin{figure}[H]
         \centering    
@@ -255,8 +267,8 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
             \draw[->](Y) to node [right=0.2ex] {$id$}(Z);
             \end{tikzpicture}
     \end{figure}
-    Como $id$ será continua, aplicamos \ref{eq:prop_universal_directa} y tenemos que $g \circ f = f$es continua. Al ser $f \mathcal{T}$ la más fina $\Rightarrow \mathcal{T}' \subset f \mathcal{T}$.
-
+    
+    De la misma manera que antes, podemos seleccionar como $g$ la identidad meramente conjuntista (donde cada punto va a sí mismo, pero no se conserva la topología porque son distintas la de salida y la de llegada). 
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -268,13 +280,9 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
             \draw[->](Y) to node [right=0.2ex] {$id$}(Z);
             \end{tikzpicture}
     \end{figure}
-    Como $f$ es continua por definición de $f \mathcal{T}$, aplicamos \ref{eq:prop_universal_directa} y tenemos que esta $id$ es continua. Por esta razón, $f \mathcal{T} \subset \mathcal{T}'$.
-\end{enumerate}
+	En este caso, como $f$ va de $(X,\mathcal{T})$ a $(Y, f\mathcal{T})$ es continua por definición de $f\mathcal{T}$ y, por la caracterización, sabemos que la ``identidad'' que hemos seleccionado también lo es. Esto quiere decir que $\forall W \in f\mathcal{T}, id^{-1} W = W \in \mathcal{T}'$, por tanto, $f\mathcal{T}\subset \mathcal{T}'$.
+\end{itemize}
 \end{demo}
-
-\begin{enun}    
-Demostrar (ii) sin usar que $f\mathcal{T}$ es la más fina (usar que cumple la caracterización)
-\end{enun}
 
 \begin{obs}
 $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
@@ -286,21 +294,18 @@ $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
 %TODO: En sus apuntes el orden es distinto a como lo dio en clase. De momento, lo dejo como en los apuntes.
 \subsection{Identificaciones}
 \label{sub:identificaciones}
-Veamos ahora un caso de especial relevancia:
-\[
-\boxed{f: X \rightarrow Y \text{ sobreyectiva}.} 
-\]
-%TODO: No sé de donde viene esto. Explicar el interés de este caso. f(X) nos dirá todo lo necesario.
+La construcción anterior cobra especial relevancia cuando la aplicación $f: Y \rightarrow X$ que hemos hecho continua con la topología imagen directa es sobreyectiva porque de alguna forma permite ``identificar'' el espacio de llegada en el de salida.
+
 Para entender los abiertos de una imagen directa es conveniente representarlos en el dominio. El concepto es conjuntista en realidad:
 
-\subsubsection*{Conjuntos saturados}
-Conjuntos saturados\begin{defi}
-Un conjunto $A \subset X$ es \textbf{saturado} (respecto de $f$) si $f^{-1}f\left( A \right) = A$.
+\begin{defi}[Conjunto Saturado]
+Sea $A \subset X$ un subconjunto de puntos, decimos que es \textbf{saturado respecto de $f$} si y sólo si $f^{-1}f\left( A \right) = A$.
 \end{defi}
-\begin{prop}
-Los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$:
+
+\begin{prop}[Caracterización de abiertos de $f\mathcal{T}$]
+Sea $f : (X, \mathcal{T}) \rightarrow (Y, f\mathcal{T})$ donde $f\mathcal{T}$ es la topología imagen directa, los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$, es decir:
 \[
-U \in f \mathcal{T} \Leftrightarrow \exists W \in \mathcal{T}\text{, saturado}: fW = U.
+f\mathcal{T} := \{fU \mbox{ donde } U \in \mathcal{T} f^{-1}fU = U\}
 \]
 \end{prop}
 \begin{demo}
@@ -416,8 +421,8 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 \end{ej}
 
 \subsubsection*{Identificaciones}
-\begin{defi}
-Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ tal que $\mathcal{T}' = f\mathcal{T}$ se llama \textbf{identificación} 
+\begin{defi}[Identificación]
+Sea $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ una aplicación sobreyectiva, decimos que es una \textbf{identificación} si y sólo si $\mathcal{T}' = f\mathcal{T}$.
 \end{defi}
 
 \begin{obs}
