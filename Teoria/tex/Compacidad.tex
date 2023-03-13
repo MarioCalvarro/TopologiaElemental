@@ -228,6 +228,7 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 \end{obs}
 
 
+%TODO: Fix
 \chapter{Compacidad local}%
 \label{cha:compacidad_local}
 \begin{defi}
@@ -245,9 +246,10 @@ Sea $Y \subset X$, es \textbf{localmente cerrado} si cumple las condiciones equi
         \item[$\subset)$] Trivial.
         \item[$\supset)$] Tomamos un elemento $x$:
             \begin{align*}
-                x \in \overline{Y} \cap U^y &\Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) = Y \cap U^y \subset Y\\
-                U^x \subset U^y &\Rightarrow \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
+                x \in \overline{Y} \cap U^y &\xRightarrow{?} x \in \adh_{U^y} \left( Y \cap U^y \right) \stackrel{Y \cap U^y \cerr U^y}{=} Y \cap U^y \subset Y\\
+                U^x \subset U^y &\xRightarrow{*} \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
             .\end{align*}
+            Por tanto, gracias a $*$ demostramos $?$.
     \end{itemize}
     \item 2. $\Rightarrow$ 3) Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
     \[
@@ -264,6 +266,10 @@ Esto es un ejemplo de \underline{localización} de una propiedad topológica $\m
 .\end{align*}
 A veces son equivalentes (como en este caso), a veces no. El concepto adecuado de localización es mediante \underline{bases de entornos}.
 
+\begin{ej}
+%TODO: Dibujo
+\end{ej}
+
 \section{Compacidad local y mantras}%
 \label{sec:compacidad_local_y_mantras}
 \begin{defi}
@@ -274,7 +280,7 @@ $X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$
 \begin{enumerate}
     \item $\mathbb{R}_u^n$ es localmente compactos: $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$
 
-    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es compacto.
+    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es localmente compacto.
     \begin{demo}
     Veamos un conjunto infinito sin acumulación en $T$:
     \begin{align*}
@@ -289,8 +295,9 @@ $X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$
 
     \item En general NO basta que exista un entorno compacto.
 
-    %TODO: no sé que pone
-    En $S = T \sqcup \{q\}$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$).
+    En $S = T \sqcup \{q\}$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$). 
+    Es decir, para $q$ tenemos la topología de los complementarios finitos mientras que para el resto de puntos tenemos la topología usual.
+    En este caso, $S$ es compacto, pero sus puntos no son localmente compactos (por lo menos, $q$)
 
     Pero este caso es un ejemplo con un espacio \underline{no separado}.
 \end{enumerate}
@@ -300,7 +307,9 @@ $X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$
 Si $X$ es $T_2$ y $x \in X$ tiene un entorno compacto, entonces tiene una base de entornos compactos.
 \end{prop}
 \begin{demo}
-    $\exists V^x (\stackrel{\text{ab.}}{\supset} W^x)$ compacto $\Rightarrow \mathcal{V}^x =$ \{entornos compactos $K^x$\} \underline{base de entornos}: $\forall U^x,\ \exists?K^x \subset U^x$.
+    Queremos ver que $\forall U^x$ abierto, $\exists K^x \ent U^x$ compactos.
+
+    $\exists V^x (\stackrel{\text{ab.}}{\supset} W^x)$ compacto $\xRightarrow{?} \mathcal{V}^x =$ \{entornos compactos $K^x$\} \underline{base de entornos}.
 
     $\exists_{\text{ab.}} U_1^x \subset \overline{U_1^x} \subset U^x$:
     \[ 
@@ -320,28 +329,32 @@ Localmente cerrado en localmente compacto es localmente compacto.
 \end{prop}
 %TODO: Arreglar formato
 \begin{demo}
-    Sea $Y \subset X$ con $Y$ loc. cerrado y $X$ loc. compacto e $y \in Y$.
+    Sea $Y \subset X$ con $Y$ localmente cerrado y $X$ localmente compacto e $y \in Y$.
 
     Tenemos:
     \[
     \overline{U_1^x} \cap V^x \subset \overline{X \setminus A} \cap V^x = \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \cap V^x \subset U^x
     \]
 
-    Y como $Y$ es loc. cerrado, $\exists W^y \cap Y \cerr W^y$ ent. en $X$. Por ser $X$ loc. compacto $\exists K^y$ compacto tal que, $K^y \subset W^y \Rightarrow K^y \cap W^y \cap Y \cerr K^y \Rightarrow$
+    Y como $Y$ es localmente cerrado, $\exists W^y \cap Y \cerr W^y$ ent. en $X$. Por ser $X$ localmente compacto $\exists K^y$ compacto tal que, $K^y \subset W^y \Rightarrow K^y \cap W^y \cap Y \cerr K^y \Rightarrow$
     \[
     L^y = \underbrace{K^y \cap W^y}_{\text{ent. en } X} \cap Y \cerr K^y \Rightarrow L^y \text{ ent. en } Y \text{ compacto.}  
     \]
 \end{demo}
 
 \begin{prop}[Mantra 2]
-Localmente compacto en $T_2$ es localmente compacto.
+Localmente compacto en $T_2$ es localmente cerrado.
 \end{prop}
 \begin{demo}
-Sea $Y \subset X$ con $Y$ loc. compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow$
+Sea $Y \subset X$ con $Y$ localmente compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow$
 \[
-\underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V \cap Y}_{\text{ent. en } Y} \subset \underbrace{V}_{\text{ent. en } X} \xRightarrow{T_2} V \cap Y = L^y \cerr V.
+\underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V^y \cap Y}_{\text{ent. en } Y} \subset \underbrace{V^y}_{\text{ent. en } X} \xRightarrow{T_2} V^y \cap Y = L^y \cerr V^y.
 \]
 \end{demo}
+
+\begin{coro}
+En un $T_2$ localmente compacto, ser localmente cerrado es equivalente a localmente compacto.
+\end{coro}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_loc_comp}
