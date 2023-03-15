@@ -621,30 +621,28 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
 \end{ej}
 
 
-\section{Productos (finitos)}%
+\section{Productos finitos}%
 \label{sec:productos_finitos_}
-Supongamos que tenemos $p_i: X_1 \times \ldots X_r = Y \rightarrow \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $X_i$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos las topologías \underline{menos finas} que hagan $p_i$ continuas. 
+El objetivo de esta construcción es, dado un producto cartesiano $Y := X_1 \times \cdots \times X_r$, generar una topología que garantice la continuidad de las aplicaciones $p_i: Y \rightarrow \left( X_i, \mathcal{T}_i \right)$ al ser equipada sobre el mismo, es decir, que haga continuas las proyecciones sobre cada factor. Inmediatamente uno repara en que la discreta sobre $Y$ cumple los requisitos. Sin embargo, el interés está en saber cuál es la topología menos fina que hace las $p_i$ continuas.
 
-Que $p_i$ sea continua quiere decir que $\forall U_i \in \mathcal{T}_i : p^{-1}U_i = X_1 \times \ldots U_i \times \ldots \times X_r$ debe ser abierto, es decir, que todos lo sean. Por tanto, $\bigcap_{i=1}^{r} p_i^{-1}U_i = U_1 \times \ldots \times U_r$ debe ser abierto, pero no es topología (la unión de productos no tiene porque ser producto). Por tanto, definimos:
-\begin{defi}
-Llamamos \textbf{topología producto}, $\mathcal{T}_1 \times \ldots \times \mathcal{T}_r$, a aquella que viene determinada por la siguiente base:
+Tal y como venimos haciendo en las construcciones anteriores, vamos a tratar de introducir lo mínimo indispensable para verificar la continuidad. En primer lugar, como las preimágenes de abiertos deben ser abiertos, entonces $\forall U_i \in \mathcal{T}_i : p_i^{-1}U_i = X_1 \times \ldots U_i \times \ldots \times X_r $ debe ser un abierto. Como para que pueda ser topología la intersección finita de abiertos tiene que ser abierto, sabemos que $\bigcap_{i=1}^{r} p_i^{-1}U_i = U_1 \times \ldots \times U_r$ debe ser abierto, pero a diferencia de como venía ocurriendo en las construcciones anteriores no podemos decir aún que sea topología porque las uniones arbitrarias no funcionan bien (las uniones de productos no tienen por qué ser producto). 
+
+Sin embargo, se puede demostrar sin demasiada dificultad que el conjunto  $\{U_1 \times \cdots \times U_r \mbox{ donde } U_i \in \mathcal{T}_i\}$ caracteriza una topología en $Y$ de la que es base de abiertos y, de esta manera, ahora sí tenemos determinada de modo único la topología buscada.
+
+\begin{defi}[Topología Producto]
+Sea $Y := X_1\times \cdots \times X_n$ un producto cartesiano de espacios topológicos y $p_i : Y \rightarrow (X_i, \mathcal{T}_i)$ las proyecciones sobre cada uno de sus factores, definimos la \textbf{topología producto} como aquella determinada por la base de abiertos:
 \[
 \mathcal{B} = \left\{ U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \right\}
 \]
+y la denotamos por $\mathcal{T}_1 \times \ldots \times \mathcal{T}_r$.
 \end{defi}
 
 \begin{ej}
-La $\mathcal{T}_u$ en $\mathbb{R}^n$ es el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas'', que son productos de intervalos.
+Si consideramos $\mathcal{T}_u$ en $\mathbb{R}^n$ es automático ver el resultado anterior. Una base de abiertos de la topología son las ``bolas cuadradas'' y estas son productos cartesianos de intervalos de $\mathbb{R}$ con la $\mathcal{T}_u$.
 \end{ej}
 
 \begin{theo}[Propiedad universal de la topología producto]
-Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $p_i: \left( Y, \mathcal{T}' \right) \rightarrow \left( X_i, \mathcal{T}_i \right)$. Entonces:
-    \[
-    \mathcal{T}' = \prod_{i} \mathcal{T} \Leftrightarrow  
-    \]
-    \begin{equation}\label{eq:prop_universal_prod}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
-    \end{equation}
+Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $p_i: \left( Y, \mathcal{T}' \right) \rightarrow \left( X_i, \mathcal{T}_i \right)$:
 
     \begin{figure}[H]
         \centering    
@@ -659,17 +657,23 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_prod_finitos}
     \end{figure}
+
+entonces $\mathcal{T}' = \prod_{i} \mathcal{T}$ si y sólo si
+$$
+g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.}
+$$
 \end{theo}
 \begin{demo}
 \begin{enumerate}
     \item $\mathcal{T}' = \prod_{i} \mathcal{T}: $ 
     \begin{itemize}
-        \item $g$ cont. $\Rightarrow g_i$ cont. (Todas sus componentes son continuas o composición de continuas)
-        \item $g_i$ cont. $\Rightarrow g^{-1}\left( U_1 \times \ldots \times U_r \right) = \underbrace{g_1^{-1}\left( U_1 \right)}_{\mathcal{T}''} \cap \ldots \cap \underbrace{g_r^{-1}\left( U_i \right)}_{\mathcal{T}''} \in \mathcal{T}''$. (Intersección finita de abiertos) 
+        \item $g$ cont. implica que $g_i$ cont. porque $g_i = p_i \circ g$ y $p_i$ es continua si la topología es la producto.
+        \item $g_i$ cont. implica que $g^{-1}\left( U_1 \times \ldots \times U_r \right) = \overbrace{g_1^{-1}\left( U_1 \right)}^{\in \mathcal{T}''} \cap \ldots \cap \overbrace{g_r^{-1}\left( U_i \right)}^{\in \mathcal{T}''} \in \mathcal{T}''$ y como esto es una intersección finita de abiertos, es abierto.
     \end{itemize}
 
-    \item Por otro lado, veamos la unicidad:
-
+    \item Para demostrarlo, vamos a ver el doble contenido de ambas.
+    
+    Como la propiedad de caracterización se cumple para cualquier función $g$ que escojamos, podemos elegir la identidad de modo que:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -677,12 +681,13 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
             \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
             \node(Z) [below of=Y] {$\left( Y, \mathcal{T}' \right)$};
             \draw[->](Y) to node {$p_i$}(X);
-            \draw[->](Z) to node [right=0.1cm] {$pr_i$}(X);
+            \draw[->](Z) to node [right=0.1cm] {$p_i \circ id = p_i$}(X);
             \draw[->](Z) to node [left] {$id$ cont.}(Y);
             \end{tikzpicture}
     \end{figure}
-    Como $id$ será continua, aplicamos \ref{eq:prop_universal_prod} y tenemos que $g \circ p_i = pr_i$ es continua. Al ser $\prod_{i} \mathcal{T}_i $ la menos fina $\Rightarrow \mathcal{T}' \supset \prod_{i} \mathcal{T}_i$.
-
+    la continuidad de $id$ nos asegura la continuidad de $g_i = p_i \circ id = p_i$. Como tenemos que $p_i$ es continua y $\prod \mathcal{T}_i$ es la topología menos fina que verifica esto, entonces $\prod \mathcal{T}_i \subset \mathcal{T}'$.
+    
+    Para ver el otro contenido, elegimos de nuevo la identidad, pero esta vez la identidad meramente conjuntista:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -690,17 +695,13 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
             \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
             \node(Z) [below of=Y] {$\left( Y, \prod_{i} \mathcal{T}_i \right)$};
             \draw[->](Y) to node {$p_i$}(X);
-            \draw[->](Z) to node [right=0.1cm] {$pr_i$ cont.}(X);
+            \draw[->](Z) to node [right=0.1cm] {$p_i \circ id = p_i$ cont.}(X);
             \draw[->](Z) to node [left] {$id$}(Y);
             \end{tikzpicture}
     \end{figure}
-    Como $pr_i$ es continua por definición de $\prod_{i} \mathcal{T}_i$, aplicamos \ref{eq:prop_universal_prod} y tenemos que esta $id$ es continua. Por esta razón, $\prod_{i=1} \mathcal{T}_i \supset \mathcal{T}'$.
+   En este caso, sabemos que $g_i = p_i \circ id = p_i$ es continua porque $p_i$ lo es por construcción. Esto quiere decir que la identidad conjuntista $id$ es continua, es decir, $\forall U \in \mathcal{T}' : id^{-1} U = U \in \prod \mathcal{T}_i$. Por tanto, tenemos que $\mathcal{T}' \subset \prod \mathcal{T}_i$.
 \end{enumerate}
 \end{demo}
-
-\begin{enun}
-Demostrar (ii) sin usar que $\prod_{i} \mathcal{T}_i$ es la menos fina (usar que cumple la caracterización)
-\end{enun}
 
 %TODO: Hacer bien
 \begin{ej}
@@ -718,8 +719,13 @@ La $\mathcal{T}_{\text{rad}}$ no es producto.
 
 \begin{prop}
 \begin{enumerate}
-    \item $p_i: Y \rightarrow X_i$ es abierta. 
-    \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados). La llamamos \textbf{aplicación parcial}.
+    \item Las proyecciones $p_i: Y \rightarrow X_i$ sobre los factores del producto son aplicaciones abiertas. 
+    \item La aplicación natural\footnote{Obviamente, con los $a_i$ fijados.} que sumerge un factor en el producto 
+	\begin{align*}
+	 \alpha_j : X_j &\longrightarrow Y \\
+	 x_j &\longmapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)	
+	\end{align*}	    
+     es una inmersión que llamamos aplicación parcial.
 \end{enumerate}
 \end{prop}
 \begin{demo}
