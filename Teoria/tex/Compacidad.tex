@@ -28,8 +28,7 @@ K \subset \bigcup_{i \in  I} U_i \text{ con } U_i \ab X \Rightarrow \exists U_{i
 \]
 \end{defi}
 \begin{obs}
-Esta definición es equivalente a decir que $K$ es compacto en la topología relativa.
-%TODO: Demostrar?
+Esta definición es trivialmente equivalente a decir que $K$ es compacto en la topología relativa.
 \end{obs}
 
 \begin{ej}
@@ -65,7 +64,7 @@ F \cerr X \text{ (compacto)}\Rightarrow F \text{ compacto.}
 \begin{demo}
 Sea $K \cerr X \Rightarrow$
 \begin{align*}
-    \text{Sea } K \subset \bigcup U_i &\Rightarrow X = \overbrace{\left( X \setminus K \right)}^{\text{ab.}} \cup \bigcup U_i\\
+    \text{Sea } K \subset \bigcup_{i \in I} U_i &\Rightarrow X = \overbrace{\left( X \setminus K \right)}^{\text{ab.}} \cup \bigcup_{i \in I} U_i\\
     X \text{ compacto} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
     &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K\\ 
     &\Leftrightarrow \left( U_{i_1} \cap K \right) \cup \ldots \cup \left( U_{i_r} \cap K \right) = K
@@ -77,6 +76,9 @@ Sea $K \cerr X \Rightarrow$
 
 \begin{prop}[Mantra 2]
 Infinito en compacto tiene puntos de acumulación.
+\[
+A \subset X \text{ (compacto)}: \lvert A \rvert = \infty \Rightarrow A' \neq \emptyset
+\]
 \end{prop}
 \begin{demo}
 Sea $A \subset X$ (compacto) con $A' = \emptyset$. Veamos que es finito:
@@ -95,6 +97,9 @@ Este mantra es como ``la mitad'' del teorema de Bolzano-Weierstrass.
 
 \begin{prop}[Mantra 3]
 La imagen continua de un compacto es compacta. 
+\[
+X \text{ compacto, } f \text{ continua } \Rightarrow f\left( X \right) \text{ compacta.}
+\]
 \end{prop}
 \begin{demo}
 Sea $f: X \rightarrow Y$ con $f$ continua y $X$ compacto $\Rightarrow$
@@ -110,6 +115,9 @@ $\mathbb{R} \mathrm{P}^n$ es compacto al ser la imagen continua de $\mathbb{S}^n
 
 \begin{prop}[Mantra 4]
 Un compacto en $T_2$ es cerrado. 
+\[
+Y \subset X,\ Y \text{ compacto, } X \text{ Hausdorff} \Rightarrow Y \text{ cerrado.}
+\]
 \end{prop}
 %TODO: No estoy seguro que es cada cosa.
 \begin{demo}
@@ -247,11 +255,11 @@ Sea $Y \subset X$, es \textbf{localmente cerrado} si cumple las condiciones equi
         \item[$\supset)$] Tomamos un elemento $x$:
             \begin{align*}
                 x \in \overline{Y} \cap U^y &\xRightarrow{?} x \in \adh_{U^y} \left( Y \cap U^y \right) \stackrel{Y \cap U^y \cerr U^y}{=} Y \cap U^y \subset Y\\
-                U^x \subset U^y &\xRightarrow{*} \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
+                \forall U^x,\ U^x \subset U^y &\xRightarrow{*} \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
             .\end{align*}
             Por tanto, gracias a $*$ demostramos $?$.
     \end{itemize}
-    \item 2. $\Rightarrow$ 3) Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
+    \item 2. $\Rightarrow$ 3) $Y$ abierto en $\overline{Y} \Leftrightarrow \underbrace{\overline{Y}}_{= F} \cap U$.
     \[
     F \cap U = Y \Rightarrow F \supset \overline{Y} \Rightarrow F \cap U = \overline{Y} \cap U.
     \]
@@ -259,16 +267,16 @@ Sea $Y \subset X$, es \textbf{localmente cerrado} si cumple las condiciones equi
 \end{itemize}
 \end{demo}
 
-Esto es un ejemplo de \underline{localización} de una propiedad topológica $\mathcal{P}$ (aquí es ser cerrado). Se puede entender como:
+Esto es un ejemplo de \underline{localización} de una propiedad topológica $\mathcal{P}$ (en este caso es ser cerrado). Se puede entender como:
 \begin{align*}
     &\forall x,\ \exists V^x \text{ que cumple } \mathcal{P} \text{ ó } \\
     &\forall x,\ \exists \mathcal{V}^x \text{ base de entornos que cumplen } \mathcal{P} 
 .\end{align*}
 A veces son equivalentes (como en este caso), a veces no. El concepto adecuado de localización es mediante \underline{bases de entornos}.
 
-\begin{ej}
+%\begin{ej}
 %TODO: Dibujo
-\end{ej}
+%\end{ej}
 
 \section{Compacidad local y mantras}%
 \label{sec:compacidad_local_y_mantras}
