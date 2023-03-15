@@ -151,7 +151,6 @@ Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)
 \end{itemize} 
 \end{demo}
 
-%TODO: No se si es necesario
 \begin{obs}
 Podemos extraer de la definición, pero sobre todo de la caracterización anterior de inmersión las siguientes conclusiones:
 \begin{enumerate}
@@ -296,6 +295,35 @@ $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
 \label{sub:identificaciones}
 La construcción anterior cobra especial relevancia cuando la aplicación $f: Y \rightarrow X$ que hemos hecho continua con la topología imagen directa es sobreyectiva porque de alguna forma permite ``identificar'' el espacio de llegada en el de salida.
 
+\begin{defi}[Identificación]
+Sea $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ una aplicación sobreyectiva, decimos que es una \textbf{identificación} si y sólo si $\mathcal{T}' = f\mathcal{T}$.
+\end{defi}
+
+\begin{obs}
+\begin{enumerate}
+    \item Las identificaciones verifican $V \stackrel{\text{ab}}{\subset} Y \Leftrightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$ y la continuidad $V \stackrel{\text{ab}}{\subset } Y \Rightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$.
+
+	\item Si una función $f: X \rightarrow Y$ es sobreyectiva, continua y abierta o cerrada, entonces es identificación.
+	\begin{demo}
+	Las hipótesis ya nos otorgan la continuidad y la sobreyectividad, hay que demostrar pues que $\mathcal{T}' = f\mathcal{T}$ utilizando que es abierta o cerrada.
+	\begin{itemize}
+		\item Abierta:
+	
+		Hay que ver que $\forall V \subset Y : f^{-1} V \ab X, \ V \ab Y$. Por ser $f$ sobreyectiva, $f^{-1}V$ está bien definido y, por tanto, podemos escribir $V=f(f^{-1}V)$. Como $f$ es abierta, $\forall W \ab X : f(W) \ab Y$ y como $f^{-1}V$ es abierto por la continuidad de $f$, entonces $V \ab Y$.
+		
+		\item Cerrada:
+		
+		$f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \cerr Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$		
+	\end{itemize}
+	\end{demo}
+	
+	 \item Las identificaciones y la apertura o cierre de la aplicación no están relacionadas. Esto quiere decir que existen identificaciones que no son abiertas ni cerradas, que sólo son abiertas, que sólo son cerradas y ambas cosas simultáneamente.
+\end{enumerate}
+\end{obs}
+
+
+\subsection{Espacio Cociente}
+\label{sub:cocientes}
 Para entender los abiertos de una imagen directa es conveniente representarlos en el dominio. El concepto es conjuntista en realidad:
 
 \begin{defi}[Conjunto Saturado]
@@ -325,10 +353,10 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 \begin{ej}
 \begin{enumerate}
     %TODO: Hacer la circunferencia con todo R
-    \item Sea:
+    \item Consideremos la aplicación que transforma el intervalo $[0,1]$ en la circunferencia unidad de $\mathbb{R}^2$ definida como:
     \begin{align*}
-        f: \left[ 0, 1 \right] &\rightarrow \mathbb{S}^1 = Y\\ 
-        t &\mapsto \underbrace{\left( \cos 2\pi t, \sin 2\pi t \right)}_{\exp\left( 2 \pi it \right)}
+        f: \left[ 0, 1 \right] &\longrightarrow \mathbb{S}^1 \\
+        t &\longmapsto \left( \cos 2\pi t, \sin 2\pi t \right)
     \end{align*}
     que geométricamente es:
     \begin{figure}[H]
@@ -420,40 +448,6 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
 \end{enumerate}
 \end{ej}
 
-\subsubsection*{Identificaciones}
-\begin{defi}[Identificación]
-Sea $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ una aplicación sobreyectiva, decimos que es una \textbf{identificación} si y sólo si $\mathcal{T}' = f\mathcal{T}$.
-\end{defi}
-
-\begin{obs}
-\begin{enumerate}
-    \item Identificación: $V \stackrel{\text{ab}}{\subset} Y \Leftrightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
-
-    Continua: $V \stackrel{\text{ab}}{\subset } Y \Rightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
-
-    \item Sea $f: X \rightarrow Y$ sobreyectiva continua. Será identificación si además es:
-    \begin{itemize}
-        \item Abierta. 
-        \begin{demo}
-            Por (1).
-        \end{demo}
-        \item Cerrada.
-        \begin{demo}
-            $f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \cerr Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
-        \end{demo}
-    \end{itemize}
-
-    \item Tenemos como posibilidades:
-    \begin{itemize}
-        \item Identificación $+ \not$ ab. $+ \not$ cerr.
-        \item Identificación $+$ ab. $+ \not$ cerr.
-        \item Identificación $+ \not$ ab. $+$ cerr.
-    \end{itemize}
-\end{enumerate}
-\end{obs}
-
-\subsection{Cocientes}
-\label{sub:cocientes}
 \begin{defi}[Relación de inyectividad]
 Llamamos \textbf{relación de inyectividad} a aquella relación de equivalencia que viene dada por una función $f$ tal que dos elementos están relacionados si comparten imagen:
 \[
