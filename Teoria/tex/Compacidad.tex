@@ -228,6 +228,7 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 \end{obs}
 
 
+%TODO: Fix
 \chapter{Compacidad local}%
 \label{cha:compacidad_local}
 \begin{defi}
@@ -245,9 +246,10 @@ Sea $Y \subset X$, es \textbf{localmente cerrado} si cumple las condiciones equi
         \item[$\subset)$] Trivial.
         \item[$\supset)$] Tomamos un elemento $x$:
             \begin{align*}
-                x \in \overline{Y} \cap U^y &\Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) = Y \cap U^y \subset Y\\
-                U^x \subset U^y &\Rightarrow \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
+                x \in \overline{Y} \cap U^y &\xRightarrow{?} x \in \adh_{U^y} \left( Y \cap U^y \right) \stackrel{Y \cap U^y \cerr U^y}{=} Y \cap U^y \subset Y\\
+                U^x \subset U^y &\xRightarrow{*} \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
             .\end{align*}
+            Por tanto, gracias a $*$ demostramos $?$.
     \end{itemize}
     \item 2. $\Rightarrow$ 3) Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
     \[
@@ -264,6 +266,10 @@ Esto es un ejemplo de \underline{localización} de una propiedad topológica $\m
 .\end{align*}
 A veces son equivalentes (como en este caso), a veces no. El concepto adecuado de localización es mediante \underline{bases de entornos}.
 
+\begin{ej}
+%TODO: Dibujo
+\end{ej}
+
 \section{Compacidad local y mantras}%
 \label{sec:compacidad_local_y_mantras}
 \begin{defi}
@@ -274,7 +280,7 @@ $X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$
 \begin{enumerate}
     \item $\mathbb{R}_u^n$ es localmente compactos: $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$
 
-    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es compacto.
+    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es localmente compacto.
     \begin{demo}
     Veamos un conjunto infinito sin acumulación en $T$:
     \begin{align*}
@@ -289,8 +295,9 @@ $X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$
 
     \item En general NO basta que exista un entorno compacto.
 
-    %TODO: no sé que pone
-    En $S = T \sqcup \{q\}$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$).
+    En $S = T \sqcup \{q\}$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$). 
+    Es decir, para $q$ tenemos la topología de los complementarios finitos mientras que para el resto de puntos tenemos la topología usual.
+    En este caso, $S$ es compacto, pero sus puntos no son localmente compactos (por lo menos, $q$)
 
     Pero este caso es un ejemplo con un espacio \underline{no separado}.
 \end{enumerate}
@@ -300,7 +307,9 @@ $X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$
 Si $X$ es $T_2$ y $x \in X$ tiene un entorno compacto, entonces tiene una base de entornos compactos.
 \end{prop}
 \begin{demo}
-    $\exists V^x (\stackrel{\text{ab.}}{\supset} W^x)$ compacto $\Rightarrow \mathcal{V}^x =$ \{entornos compactos $K^x$\} \underline{base de entornos}: $\forall U^x,\ \exists?K^x \subset U^x$.
+    Queremos ver que $\forall U^x$ abierto, $\exists K^x \ent U^x$ compactos.
+
+    $\exists V^x (\stackrel{\text{ab.}}{\supset} W^x)$ compacto $\xRightarrow{?} \mathcal{V}^x =$ \{entornos compactos $K^x$\} \underline{base de entornos}.
 
     $\exists_{\text{ab.}} U_1^x \subset \overline{U_1^x} \subset U^x$:
     \[ 
@@ -320,42 +329,48 @@ Localmente cerrado en localmente compacto es localmente compacto.
 \end{prop}
 %TODO: Arreglar formato
 \begin{demo}
-    Sea $Y \subset X$ con $Y$ loc. cerrado y $X$ loc. compacto e $y \in Y$.
+    Sea $Y \subset X$ con $Y$ localmente cerrado y $X$ localmente compacto e $y \in Y$.
 
     Tenemos:
     \[
     \overline{U_1^x} \cap V^x \subset \overline{X \setminus A} \cap V^x = \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \cap V^x \subset U^x
     \]
 
-    Y como $Y$ es loc. cerrado, $\exists W^y \cap Y \cerr W^y$ ent. en $X$. Por ser $X$ loc. compacto $\exists K^y$ compacto tal que, $K^y \subset W^y \Rightarrow K^y \cap W^y \cap Y \cerr K^y \Rightarrow$
+    Y como $Y$ es localmente cerrado, $\exists W^y \cap Y \cerr W^y$ ent. en $X$. Por ser $X$ localmente compacto $\exists K^y$ compacto tal que, $K^y \subset W^y \Rightarrow K^y \cap W^y \cap Y \cerr K^y \Rightarrow$
     \[
     L^y = \underbrace{K^y \cap W^y}_{\text{ent. en } X} \cap Y \cerr K^y \Rightarrow L^y \text{ ent. en } Y \text{ compacto.}  
     \]
 \end{demo}
 
 \begin{prop}[Mantra 2]
-Localmente compacto en $T_2$ es localmente compacto.
+Localmente compacto en $T_2$ es localmente cerrado.
 \end{prop}
 \begin{demo}
-Sea $Y \subset X$ con $Y$ loc. compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow$
+Sea $Y \subset X$ con $Y$ localmente compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow$
 \[
-\underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V \cap Y}_{\text{ent. en } Y} \subset \underbrace{V}_{\text{ent. en } X} \xRightarrow{T_2} V \cap Y = L^y \cerr V.
+\underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V^y \cap Y}_{\text{ent. en } Y} \subset \underbrace{V^y}_{\text{ent. en } X} \xRightarrow{T_2} V^y \cap Y = L^y \cerr V^y.
 \]
 \end{demo}
 
+\begin{coro}
+En un $T_2$ localmente compacto, ser localmente cerrado es equivalente a localmente compacto.
+\end{coro}
+
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_loc_comp}
-%TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
-    Compacidad local & \begin{tabular}{@{}c@{}}$\times$\\ Loc. cerrados \checkmark \end{tabular} & \begin{tabular}{@{}c@{}}$\times$\\ ab. \checkmark \end{tabular} & \checkmark & \checkmark\\
-    \hline\\
-           & Mantra $1$ & $f\left( \text{ent.} \right) = $ ent & Tychonoff & Loc. suma es como sum's\\
-    \hline\\
+\hline
+    Compacidad local & \begin{tabular}{@{}c@{}}\ding{55}\\ Loc. cerrados \checkmark \end{tabular} & \begin{tabular}{@{}c@{}}\ding{55}\\ Abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
+    \hline
+    Demostración: & Mantra $1$ & $f\left( \text{ent.} \right) = $ ent & Tychonoff & Loc. suma es como sum's\\
+    \hline
 \end{tabular}
-\end{center}
+\caption{\textit{La tabla nos indica como se conserva la compacidad local en las distintas construcciones que hemos visto. Las sumas y los productos son finitos.}}
+\end{table}
 
 \begin{ej}
 $Y = \mathbb{R} / \mathbb{Z}$ no es localmente compacto.
@@ -374,32 +389,54 @@ $Y = \mathbb{R} / \mathbb{Z}$ no es localmente compacto.
 
 \section{Compactificación por un punto}%
 \label{sec:compactificacion_por_un_punto}
-Este es otro problema importante: \underline{sumergir un espacio} como subespacio abierto denso de un espacio compacto.
+Este es otro problema importante: \underline{sumergir un espacio} como subespacio abierto denso de un espacio compacto. Con ``sumergir'' nos referimos a una inmersión.
+\[
+    X \xhookrightarrow[\text{denso}]{\text{ab.}} X^*
+\]
+donde $X$ es no compacto y $X^*$ es compacto y Hausdorff, es decir, es localmente compacto y, por ende, la imagen de $X$ es localmente compacta.
 
 Intuitivamente se trata de añadir los límites que el espacio no tiene (por no ser compacto).
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{R}^n \equiv B^n \setminus \{a\} \subset \mathbb{S}^n$ vía proyección estéreo desde $a$.
+    \item $\mathbb{R}^n \equiv B^n \setminus \{a\} \subset \mathbb{S}^n$ vía proyección estereográfica desde $a$.
     \item $\mathbb{R}^n \equiv \mathbb{R}P^n \setminus H \subset \mathbb{R}P^n$ vía cartas afines.
 \end{enumerate}
 \end{ej}
 
+%TODO: No sé como ponerlo
+\begin{defi}
+Llamamos \textbf{residuo} a la diferencia entre el espacio desde el que surge la inmersión y el de llegada.
+\end{defi}
+
 \begin{prop}
-$X$ localmente compacto $T_2$.
+$X$ (no compacto) localmente compacto y $T_2$. Entonces:
 \begin{enumerate}
-    \item $\exists j : X \xhookrightarrow{} X^*$ comp. $T_2,\ j$ inmersión abierta $X^* \setminus j\left( X \right) = \{w\}$.
+    \item $\exists j : X \xhookrightarrow{} X^*$ compacto $T_2,\ j$ inmersión abierta $X^* \setminus j\left( X \right) = \{\omega\}$.
     \item Unicidad: 
-    \begin{center}
-        \includegraphics[scale=0.3]{images/comp_pto_prop_1} 
-    \end{center}
+    \begin{figure}[H]
+        \centering
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$X$};
+            \node(Y) [above right of=X] {$X_1^*$};
+            \node(Z) [below right of=X] {$X_2^*$};
+            \draw[right hook->](X) to node {$j_1$}(Y);
+            \draw[right hook->](X) to node [below] {$j_2$}(Z);
+            \draw[->](Y) to node [right] {$h$}(Z);
+
+            \node(w1) [right=0.5 of Y] {$\omega_1$};
+            \node(w2) [right=0.5 of Z] {$\omega_2$};
+            \draw[|->](w1) to node [right] {homeo.}(w2);
+            \end{tikzpicture}
+        \caption{\textit{Con esto vemos que la unicidad es por homeomorfismo.}}
+    \end{figure}
 \end{enumerate}
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $X^* = X \cup \{0\},\ \mathcal{T}^* = \mathcal{T} \cup \{X^* \setminus K: \overbrace{K}^{\subset X} \text{comp.}\}$.
+    \item $X^* = X \sqcup \{0\},\ \mathcal{T}^* = \mathcal{T} \cup \{X^* \setminus K: K \subset X \text{ comp.}\}$.
     \begin{itemize}
-        \item $\mathcal{T}^*$ es top: fácil por las hipótesis sobre $X$.
+        \item $\mathcal{T}^*$ es topología: fácil por las hipótesis sobre $X$.
         \begin{itemize}
             \item $K_i \stackrel{\text{comp.}}{\subset} X \xRightarrow{T_2} K_i \cerr X \Rightarrow \overbrace{\bigcap_{i} K_i}^{\text{cerr.}} \subset \overbrace{K_{i_0}}^{\text{comp.}} \Rightarrow \bigcap_{i} K_i$ comp.
             \item $U \ab X,\ X \stackrel{\text{comp.}}{\subset} X \Rightarrow U \setminus K =$ ab. $\setminus$ cerr. $ = $ ab.
@@ -408,12 +445,18 @@ $X$ localmente compacto $T_2$.
         \item $X \subset X^*$ inmersión abierta: $\left( X^* \setminus K \right) \cap X = X \setminus K \in \mathcal{T}$ pues $X$ es $T_2$.
         \item $X^*$ es compacto: $X^* = \bigcup_{i} W_i$.
         \[
-        \exists W_{i_0} \ni w \Rightarrow W_{i_0} = \underbrace{X^* \setminus K}_{\text{comp.}} \Rightarrow K \subset W_{i_1} \cup \ldots \cup W_{i_r} \Rightarrow X^* = W_{i_0} \cup W_{i_1} \cup \ldots \cup W_{i_r}  
+        \exists W_{i_0} \ni w \Rightarrow W_{i_0} = X^* \setminus \underbrace{K}_{\text{comp.}} \Rightarrow K \subset W_{i_1} \cup \ldots \cup W_{i_r} \Rightarrow X^* = W_{i_0} \cup W_{i_1} \cup \ldots \cup W_{i_r}  
         \]
-        \item $X^*$ es $T_2:$
+        \item $X^*$ es $T_2:$. Si tomamos dos puntos de $X$ simplemente utilizamos que es $T_2$. Por tanto, lo interesante es separar $x \in X$ de $\omega$:
         \[
-        x \in X \text{ loc. comp.} \Rightarrow \exists K^x \text{ ent. comp.} \Rightarrow X^* \setminus K^* = U^w \text{ ent. de } w
+        x \in X \text{ loc. comp.} \Rightarrow \exists K^x \text{ ent. comp.} \Rightarrow X^* \setminus K^x = U^{\omega} \text{ ent. de } \omega
         \]
+
+        \item $X$ es denso: %TODO
+        \[
+        \overline{X} = X^*,\ \forall \overbrace{W^x}^{= X \setminus K} \cap X = X \setminus K \neq \emptyset
+        \]
+        porque $X$ no es compacto, pero $K$ sí.
     \end{itemize}
 
     \item Unicidad:
@@ -423,9 +466,9 @@ $X$ localmente compacto $T_2$.
            j_i \text{ inmersiones} 
         \end{rcases} \Rightarrow h|: j_1\left( X \right) \rightarrow j_2 \left( X \right)$ homeomorfismo.
 
-        \item $h$ continua en $w_1$ (análogamente $h^{-1}$ continua en $w_2$)
+        \item $h$ continua en $\omega_1$ (análogamente $h^{-1}$ continua en $\omega_2$)
         \begin{align*}
-            h\left( w_1 \right) = w_2 \in W \ab X_2^* &\Rightarrow X_2^* \setminus W \cerr X_2^* \Rightarrow X_2^* \setminus W \stackrel{\text{comp.}}{\subset} j_2\left( X \right)\\
+            h\left( \omega_1 \right) = \omega_2 \in W \ab X_2^* &\Rightarrow X_2^* \setminus W \cerr X_2^* \Rightarrow X_2^* \setminus W \stackrel{\text{comp.}}{\subset} j_2\left( X \right)\\
             &\Rightarrow K = h^{-1}\left( X_2^* \setminus W \right) \stackrel{\text{comp.}}{\subset} j_1\left( X \right) \subset X_1^*\\
             \left[ X_1^* \text{ es } T_2 \right] &\Rightarrow K \cerr X_1^* \Rightarrow h^{-1}\left( W \right) = X_1^* \setminus K \ab X_1^*
         .\end{align*}
@@ -434,11 +477,11 @@ $X$ localmente compacto $T_2$.
 \end{demo}
 
 \begin{defi}
-El espacio $X^*$ se denomina \underline{compactificación por un punto} de $X$. 
+El espacio $X^*$ se denomina \textbf{compactificación por un punto} de $X$. 
 
-También, \underline{compactificación de Alexandroff}.
+También, \textbf{compactificación de Alexandroff}.
 \end{defi}
-Por ejemplo, $\mathbb{S}^n$ es la compactificación por un puntoo de $\mathbb{R}^n$ (vía proyección estéreo como dijimos antes).
+Por ejemplo, $\mathbb{S}^n$ es la compactificación por un punto de $\mathbb{R}^n$ (vía proyección estéreo como dijimos antes).
 
 \begin{obs}[¡Importante!]
 \begin{enumerate}
@@ -454,7 +497,9 @@ Por ejemplo, $\mathbb{S}^n$ es la compactificación por un puntoo de $\mathbb{R}
     \begin{center}
         \includegraphics[scale=0.3]{images/obs_comp_pto} 
     \end{center}
+    No son homeomorfos porque %TODO: En clase 
+    ningún punto de $X_1$ desconecta sus entornos. Por otro lado, el punto del vértice superior de $X_2$ si que desconecta TODOS sus entornos suficientemente pequeños. 
+    Es decir, $X_1$ tiene distintas características topológicas de $X_2$.
 \end{enumerate} 
 \end{obs}
 
-[\underline{Ejercicio}: $\mathbb{R}_u^2$: ¿Por qué $X_1 \not \approx X_2$?]
