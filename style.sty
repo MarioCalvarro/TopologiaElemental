@@ -26,6 +26,7 @@
 \usepackage{faktor} %Paquete para cocientes complicados
 \usepackage{caption} %Cambiar el color de las caption
 \usepackage{pifont} %Cruzes
+\usepackage{stmaryrd} %Evitar warning de negrita en símbolos
 
 %% Ruta de las fotos e inclusion de las mismas
 \usepackage{graphicx}
@@ -160,3 +161,4 @@
     \import{./figures/}{#2.pdf_tex}
 }
 \DeclareMathAlphabet{\matheuler}{U}{eus}{m}{n}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
