@@ -15,7 +15,7 @@ y podemos reescribir esto último como $x \in B\left( x_0, \delta \right) \Right
 \[
 \forall B\left( f\left( x_0 \right), \varepsilon \right),\ \exists B\left( x_0, \delta \right) \subset f^{-1}\left( B\left( f\left( x_0 \right), \varepsilon \right) \right)
 \]
-Sin embargo, esta definición sólo es válida para los espacios con la topología usual, pues el concepto de bola puede ser (y significar) cosas muy distintas es función de la topología empleada (sin ir más lejos puede no ser un abierto). Por ello, la siguiente definición pretende desligar el concepto de continuidad de la topología usual de $\mathbb{R}^n$ para que pueda ser aplicable a cualquier espacio topológico.
+Sin embargo, esta definición sólo es válida para los espacios con la topología usual, pues el concepto de bola puede ser (y significar) cosas muy distintas en función de la topología empleada (sin ir más lejos puede no ser un abierto). Por ello, la siguiente definición pretende desligar el concepto de continuidad de la topología usual de $\mathbb{R}^n$ para que pueda ser aplicable a cualquier espacio topológico.
 
 \begin{defi}[Continuidad]
 Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es \textbf{continua en $x_0$ $\in X$} si y sólo si:
@@ -56,18 +56,18 @@ Sea $f:X\rightarrow Y$ una función entre espacios topológicos, entonces son eq
 \end{prop}
 \begin{demo}
 \begin{itemize}
-    \item $1 \Rightarrow 2)$
+    \item $1. \Rightarrow 2.$
     
-    Escojamos un abierto cualquiera $W \ab Y$. Por ser abierto, es entorno de todos sus puntos y, en particular, es entorno de las imágenes que puedan caer dentro de dicho abierto, es decir, $\forall x \in f^{-1} (W) : W = V^{f(x)}$. Por continuidad, las preimágenes de entornos de las imágenes son entornos de las preimágenes, luego $\forall x \in f^{-1} W : f^{-1}W = V^x$ y como es entorno de todos sus puntos, entonces $f^{-1} W \ab X$.
-    \item $2 \Rightarrow 3)$
+    Escojamos un abierto cualquiera $W \ab Y$. Por ser abierto, es entorno de todos sus puntos y, en particular, es entorno de las imágenes que puedan caer dentro de dicho abierto, es decir, $\forall x \in f^{-1} (W) : W = V^{f(x)}$. Por continuidad, las preimágenes de entornos de las imágenes son entornos de las preimágenes, luego $\forall x \in f^{-1} W : f^{-1}W = V^x$ y, como es entorno de todos sus puntos, entonces $f^{-1} W \ab X$.
+    \item $2. \Rightarrow 3.$
     
     Como lo que sabemos es que las preimágenes de abiertos son abiertas y los cerrados se definen en términos de abiertos, no nos queda otra estrategia que intentar demostrarlo pasando los cerrados a sus complementarios: los abiertos.
     
     Escojamos un cerrado cualquiera $C \cerr Y$ de modo que conocemos que $Y \setminus C \ab Y$. Como conocemos el resultado para abiertos, podemos decir que $f^{-1}\left( Y\setminus C \right) \ab X$ y, conjuntistamente, $X \setminus f^{-1}C = f^{-1}\left( Y\setminus C \right)$, luego directamente tenemos que $f^{-1}C \cerr X$. 
-    \item $3 \Rightarrow 5)$
+    \item $3. \Rightarrow 5.$
     
     Como $\overline{f\left( A \right)} \cerr Y$ sabemos que $f^{-1}\overline{f\left( A \right)} \cerr X$. Como $A\subset f^{-1}f(A) \subset f^{-1}\overline{f\left( A \right)}$ y este último es cerrado en $X$, entonces $\overline{A}\subset f^{-1}\overline{f\left( A \right)}$ y, por tanto, $f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
-    \item $5 \Rightarrow 4)$
+    \item $5. \Rightarrow 4.$
     \begin{gather*}
         Y \setminus \mathring{A}\Rightarrow \overline{Y\setminus A} \supset \overline{f\left( X \setminus f^{-1}A \right)} \stackrel{5)}{\supset} f\left( \overline{X \setminus f^{-1}\left( A \right)} \right) = f\left( X \setminus \inter\left( f^{-1}A \right) \right) \Rightarrow\\
         X \setminus \inter\left( f^{-1}A \right) \subset f^{-1}\left( Y\setminus \mathring{A} \right) = X \setminus f^{-1}\left( \mathring{A} \right)\Rightarrow f^{-1}\left( \mathring{A} \right) \subset \inter\left( f^{-1}A \right) 
@@ -97,7 +97,7 @@ Aplicando la caracterización de continuidad a través de las preimágenes de ab
 \[
 \forall A \ab Y : \left( f|_Z \right)^{-1} \left( A \right) = Z \cap f^{-1} A \ab Z
 \]
-donde este último conjunto es abierto por ser un abierto ambiente cortado con el subespacio (que es como son los abiertos de la topología relativa).
+donde este último conjunto es abierto por la definición de topología relativa.
 \end{demo}
 
 %TODO: Diagramas composición
@@ -105,7 +105,7 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
 \begin{enumerate}
     \item La aplicación inclusión $Z \stackrel{j}{\subset} X$ es continua.
     \begin{demo}
-     Para cualquier abierto $U \ab X$ la preeimagen $j^{-1}\left( U \right)$ corresponde a los puntos de $U \cap Z$, y este último conjunto es abierto en $Z$.
+     Para cualquier abierto $U \ab X$ la preimagen $j^{-1}\left( U \right)$ corresponde a los puntos de $U \cap Z$, y este último conjunto es abierto en $Z$ por definición.
     \end{demo}
 
     \item La continuidad se hereda en la restricción a un subespacio, es decir, si consideramos la aplicación $Z \stackrel{j}{\subset} X \xrightarrow{f} Y$, entonces la continuidad de $f$ implica\footnote{Pero el recíproco no es cierto, la continuidad en un subespacio no extiende la continuidad a todo el espacio.} la continuidad de $f|_Z$.
@@ -115,7 +115,7 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
 
     \item La continuidad es una propiedad local, es decir, que si $f|_{E^x}$ continua en $x$, entonces $f$ continua en $x$.
     \begin{demo}
-	La preeimagen de cualquier entorno $V^{f\left( x \right)}$ es $\left( f|_{E} \right)^{-1} \left( V^{f\left( x \right)} \right) = W^x$ un entorno de $x$ en $E^x$, pero tenemos que ver que lo es en $X$ para poder afirmar que es continua.
+	La preimagen de cualquier entorno $V^{f\left( x \right)}$ es $\left( f|_{E} \right)^{-1} \left( V^{f\left( x \right)} \right) = W^x$ un entorno de $x$ en $E^x$, pero tenemos que ver que lo es en $X$ para poder afirmar que es continua.
 	Como $W^x \stackrel{\text{ent.}}{\subset} E^x \stackrel{\text{ent.}}{\subset} X$, entonces $W^x \stackrel{\text{ent.}}{\subset}X$, ya que entorno de entorno es entorno.
 	
 	Esta última afirmación es cierta porque:
@@ -124,7 +124,7 @@ donde este último conjunto es abierto por ser un abierto ambiente cortado con e
            	W^x \stackrel{\text{ent.}}{\subset} E^x \Rightarrow \exists G \ab E^x \mbox{ tal que }G \subset W^x, \ G = A \cap E^x \subset X\\ 
             E^x \stackrel{\text{ent.}}{\subset} X \Rightarrow \exists B \ab X \mbox{ tal que } B \subset E^x
         \end{rcases}\Rightarrow\\
-        x \in \underbrace{A \cap B}_{\cerr X} \subset \underbrace{A \cap E^x}_{= G}  \subset W^x
+        x \in \underbrace{A \cap B}_{\ab X} \subset \underbrace{A \cap E^x}_{= G}  \subset W^x
         \end{gather*}
     \end{demo}
 
@@ -196,7 +196,8 @@ La caracterización que dimos de la continuidad hacía referencia a las preimág
 
 \begin{ej}
 En la siguiente tabla podemos ver distintos ejemplos de funciones que verifican algunas de las condiciones que hemos definido, pero no otras simultáneamente:
-\begin{center}
+\begin{table}[H]
+\centering
 \begin{tabular}{c|c|c|c}
 Función & continua & abierta & cerrada \\
 \hline
@@ -209,7 +210,8 @@ $j: \left[ 0, 1 \right] \subset \mathbb{R}_{u}$ & \checkmark & \ding{55} & \chec
 $j: \left( 0, 1 \right) \subset \mathbb{R}_u$ & \checkmark & \checkmark & \ding{55} \\
 \hline
 \end{tabular}
-\end{center}
+\caption{\textit{En la tabla anterior podemos ver ejemplos de funciones que son continuas, abiertas o cerradas de distintas formas.}}
+\end{table}
 \end{ej}
 
 \begin{prop}[Trivialidades esenciales]
@@ -228,11 +230,11 @@ Sea $f:X\rightarrow Y$ una función biyectiva, entonces las siguientes afirmacio
 
     \item $2. \Rightarrow 3.$
     
-    Sea $F \cerr X$, como $f$ es cerrada, $f\left( F \right) \cerr Y$. Pero $f(F)= \left( f^{-1} \right)^{-1} \left( F \right)$ por la biyectividad de $f$, luego hemos demostrado que $f^{-1}$ continua porque las preimagenes de cerrados son cerrados.
+    Sea $F \cerr X$, como $f$ es cerrada, $f\left( F \right) \cerr Y$. Pero $f(F)= \left( f^{-1} \right)^{-1} \left( F \right)$ por la biyectividad de $f$, luego hemos demostrado que $f^{-1}$ continua porque las preimágenes de cerrados son cerrados.
 
     \item $3. \Rightarrow 1.$
     
-    Sea $U \ab X$, por la continuidad de $f^{-1}$, la preeimagen $\left( f^{-1} \right)^{-1} \left( U \right) \ab Y$. Por tanto, como $f\left( U \right) =  \left( f^{-1} \right)^{-1} \left( U \right)$, hemos demostrado que $f$ es abierta.
+    Sea $U \ab X$, por la continuidad de $f^{-1}$, la preimagen $\left( f^{-1} \right)^{-1} \left( U \right) \ab Y$. Por tanto, como $f\left( U \right) =  \left( f^{-1} \right)^{-1} \left( U \right)$, hemos demostrado que $f$ es abierta.
 \end{itemize}
 \end{demo}
 
@@ -264,7 +266,7 @@ En la definición de homeomorfismo local anterior, podemos tomar $V^{x_0}$ y $V^
 \begin{demo}
 Si $f$ es homeomorfismo local, entonces $\exists V^a \subset X$ y $V^{f\left( a \right)} \subset Y$ tal que $f: V^a \rightarrow V^{f\left( a \right)}$ es homeomorfismo y, por esta razón, sabemos que $\exists U^a \ab V^a$ tal que $f\left( U^a \right) \ab V^{f\left( a \right)}$. 
 
-Además, como $f(U^a)$ es abierto en $V^{f\left( a \right)}$, sabemos que $f(U^a)$ es entorno\footnote{En este punto no podemos parar y decir que es abierto porque lo que sabemos es que $f(U^a)$ es abierto en $V^{f(a)}$, pero no sabemos nada sobre si es abierto en $Y$, que es lo que necesitamos.} de $f(a)$ en $V^{f(a)}$. Como tenemos la secuencia $f(U^a) \stackrel{ent.}{\subset} V^{f(a)} \stackrel{ent.}{\subset} Y$, sabemos que $f(U^a) \stackrel{ent.}{\subset} Y$ de $f(a)$ y, por tanto, podemos encontrar un abierto $W \ab Y$ tal que $W\subset f(U^a)$.
+Además, como $f(U^a)$ es abierto en $V^{f\left( a \right)}$, sabemos que $f(U^a)$ es entorno\footnote{En este punto no podemos parar y decir que es abierto porque lo que sabemos es que $f(U^a)$ es abierto en $V^{f(a)}$, pero no sabemos nada sobre si es abierto en $Y$, que es lo que necesitamos.} de $f(a)$ en $V^{f(a)}$. Como tenemos la secuencia $f(U^a) \ent V^{f(a)} \ent Y$, sabemos que $f(U^a) \ent Y$ de $f(a)$ y, por tanto, podemos encontrar un abierto $W \ab Y$ tal que $W\subset f(U^a)$.
 
 Por tanto, como se trata de un homeomorfismo local, existirá algún $G \ab U^a$ de forma que $f(G) = W$. Pero como $U^a$ es abierto global, entonces tenemos que $G\ab X$ y hemos acabado, pues tenemos el homeomorfismo local definido en $f: G \rightarrow W$.
 \end{demo}
@@ -285,28 +287,35 @@ Sean $f: X \rightarrow Y$ y $g: Y \rightarrow Z$ dos homeomorfismos, su composic
 Sea $f:X\rightarrow Y$ un homeomorfismo local, entonces es abierto.
 \end{prop}
 \begin{demo}
-Hay dos formas de demostrarlo, la primera es intentando ver que para cualquier $U \ab X$ ocurre que $f\left( U \right)$ es entorno de los puntos de $U$.
+Hay dos formas de demostrarlo, la primera es intentando ver que para cualquier $U \ab X$ ocurre que $f\left( U \right)$ es entorno de las imágenes de todos los puntos de $U$.
 
-Con este objetivo, sabemos que por ser $f$ homeomorfismo local existe una restricción $\exists f| : V^{x_0} \rightarrow V^{y_0}$ para cada punto $x_0\in U$ y usando la notación $y_0 = f(x_0)$. Como esta restricción es homeomorfismo, $f\left( U \cap V^{x_0} \right) \ab V^{y_0}$ y, por tanto, $ f \left( U \cap V^{x_0} \right)$ es entorno en $Y$ de $y_0$. Al ocurrir esto para todos los puntos y teniendo en cuenta que $f \left( U \cap V^{x_0} \right)\subset f(U)$, sabemos que $f(U)$ es entorno de todos los puntos de $U$.
+Con este objetivo, sabemos que por ser $f$ homeomorfismo local existe una restricción $\exists f| : V^{x_0} \rightarrow V^{y_0}$ para cada punto $x_0\in U$ y usando la notación $y_0 = f(x_0)$. Como esta restricción es homeomorfismo, $f\left( U \cap V^{x_0} \right) \ab V^{y_0}$ y, por tanto, $ f \left( U \cap V^{x_0} \right)$ es entorno en $Y$ de $y_0$. Al ocurrir esto para todos los puntos y, teniendo en cuenta que $f \left( U \cap V^{x_0} \right)\subset f(U)$, sabemos que $f(U)$ es entorno de las imágenes de todos los puntos de $U$.
 
-La otra forma de verlo es que, por ser homeomorfismo local, para cualquier punto $x\in X$ existe un entorno abierto $W^x \ab X$ de forma que $f(W^x)\ab Y$ es abierto. De esta manera y abusando de la notación escribiendo $W^x = W^x \cap U$, $U$ puede expresarse como $U = \bigcup_{x\in U} W^x$. Por tanto, $f(U) = f(\bigcup_{x\in U} W^x) = \bigcup_{x\in U} f(W^x)$ que es unión de abiertos, luego es abierto.
+La otra forma de verlo es que, por ser homeomorfismo local, para cualquier punto $x\in X$ existe un entorno abierto $W^x \ab X$ de forma que $f(W^x)\ab Y$ es abierto. De esta manera, y abusando de la notación, escribiendo $W^x = W^x \cap U$, $U$ puede expresarse como $U = \bigcup_{x\in U} W^x$. Por tanto, $f(U) = f(\bigcup_{x\in U} W^x) = \bigcup_{x\in U} f(W^x)$ que es unión de abiertos, luego es abierto.
 \end{demo}
 
-% TODO: estos ejemplos hay que mirarlos despacio y corrregirlos
+% TODO: estos ejemplos hay que mirarlos despacio y corregirlos
 \begin{ej}[¡Importantes!]
 \begin{enumerate}
-    \item Proyección estereográfica: $\mathbb{S}^{m} \setminus \{\text{punto}\} \rightarrow \mathbb{R}^m$ homeomorfismo. ($\mathbb{R}^{m}$ es en realidad un hiperplano de $\mathbb{R}^{m+1}$ en el que se encuentra contenida la ``esfera'')
+    \item \textbf{Proyección estereográfica}:
 
-    \item Proyección exponencial $\mathbb{R} \rightarrow \mathbb{S}^1: \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$, homeomorfismo local, pero no es inyectiva (periódica).
+    Sea $\mathbb{S}^m$ y $a \in \mathbb{S}^m \Rightarrow \mathbb{S}^{m} \setminus \{a\} \rightarrow \mathbb{R}^m$ homeomorfismo. ($\mathbb{R}^{m}$ es en realidad un hiperplano de $\mathbb{R}^{m+1}$ en el que se encuentra contenida la ``esfera'')
 
-    \item Proyección antipodal: $\mathbb{R}^{m+1}\setminus \{0\} \supset \mathbb{S}^m \rightarrow \mathbb{R}\mathrm{P}^{m}: x \mapsto \left[ x \right]$ homeomorfismo local. Es 2-1 por llevar las antípodas al mismo $\left[ x \right]$. 
+    \item \textbf{Proyección exponencial}: 
+
+    $\mathbb{R} \rightarrow \mathbb{S}^1: \theta \mapsto e^{2\pi i\theta} = \left( \cos 2\pi \theta, \sin 2\pi \theta \right)$ es homeomorfismo local, pero no es inyectiva al ser periódica.
+
+    \item \textbf{Proyección antipodal}:
+
+    $\mathbb{R}^{m+1}\setminus \{0\} \supset \mathbb{S}^m \rightarrow \mathbb{R}\mathrm{P}^{m}: x \mapsto \left[ x \right]$ es homeomorfismo local. Es 2-1 por llevar las antípodas al mismo $\left[ x \right]$. 
 
     Podemos dividir $\mathbb{S}^{m}$ tal que: $\mathbb{S}^{m} = S_{+} \cup S_{-} \cup E$ (ecuador). Llamando $U_p$ a todas las rectas no contenidas en el plano ortogonal a la recta formada por el punto que se quita y su antípoda. Con esto tenemos $U_p \simeq \mathbb{R}^{m}$. Uniéndolo con el hiperplano del infinito $H_p^{\infty}$ tenemos que los polos van a $U_p$ y $E$ a $H_p^{\infty}$. Esta correspondencia es homeomorfa por lo que se puede trasladar la topología.
 
     Con esto, esta proyección será un recubrimiento doble de $\mathbb{R}\mathrm{P}^m,\ m \ge 2$.
 
-    \item Lemniscata: $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t^4} \right)$ es biyectiva continua, pero \underline{no} homeomorfismo local.
+    \item \textbf{Lemniscata}:
 
+    $f: \mathbb{R} \rightarrow X \subset \mathbb{R}^2: t \mapsto \left( \frac{t}{1 + t^4}, \frac{t^3}{1 + t^4} \right)$ es biyectiva y continua, pero NO homeomorfismo local.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -334,9 +343,9 @@ La otra forma de verlo es que, por ser homeomorfismo local, para cualquier punto
     \]
     es homeomorfismo.
 
-    En $t = 0, f\left( I_{\varepsilon} \right)$ \underline{no} es entorno de $f\left( 0 \right) = \left( 0, 0 \right)$, porque se tienen que tomar elementos de la rama ``vertical''.
+    En $t = 0,\ f\left( I_{\varepsilon} \right)$ NO es entorno de $f\left( 0 \right) = \left( 0, 0 \right)$, porque se tienen que tomar elementos de la rama ``vertical''.
 
-    \item Las coordenadas polares $\left( 0, \rightarrow \right) \times \mathbb{R}^{} \rightarrow \mathbb{R}^{2},\ \left( r, \theta \right) \mapsto \left( r\cos \theta, r \sin \theta \right)$ es homeomorfismo local con $\theta_0 \in \left( \theta_0 - \pi, \theta_0 + \pi \right)$ hasta $\mathbb{R}^{2} \setminus L$ con $L$ la recta entre $O$ y $\theta_0$.
+    \item Las \textbf{coordenadas polares} $\left( 0, \rightarrow \right) \times \mathbb{R}^{} \rightarrow \mathbb{R}^{2},\ \left( r, \theta \right) \mapsto \left( r\cos \theta, r \sin \theta \right)$ son homeomorfismo local con $\theta_0 \in \left( \theta_0 - \pi, \theta_0 + \pi \right)$ hasta $\mathbb{R}^{2} \setminus L$ con $L$ la recta entre $O$ y $\theta_0$.
 \end{enumerate} 
 \end{ej}
 
