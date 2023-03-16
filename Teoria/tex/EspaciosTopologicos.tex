@@ -4,7 +4,7 @@ La primera parte de este manual pretende hacer un estudio formal de la definici�
 
 \section{Conjuntos abiertos}
 \label{sec:conjuntos_abiertos}
-Al igual que en el Álgebra Lineal la parte más básica y fundamental eran los vectores, vamos a ver que en la topología las piezas claves son los abiertos. Estos son los que nos permiten dar forma y definir el resto nociones del capítulo. Además, el conjunto de abiertos en un conjunto es el que caracteriza y diferencia las topologías con las que pueda ser equipado este entre sí.
+Al igual que en el Álgebra Lineal la parte más básica y fundamental eran los vectores, vamos a ver que en la topología las piezas claves son los abiertos. Estos nos permiten dar forma y definir el resto de nociones del capítulo. Además, la familia de abiertos en un conjunto caracteriza y diferencia las topologías con las que pueda ser equipado este.
 
 \begin{defi}[Espacio Topológico]
 Sea $X$ un conjunto de elementos que denotaremos por \textbf{puntos} y $\mathcal{T} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos que denotaremos \textbf{abiertos}, decimos que $\mathcal{T}$ es una \textbf{topología} de $X$ si y sólo si:
@@ -23,12 +23,12 @@ y, ese caso, la dupla $\left( X, \mathcal{T} \right)$ se denomina \textbf{espaci
     La topología es $\mathcal{T} = \{\emptyset, X\}$ para cualquier conjunto $X$ sobre el que se equipe. Es la topología con menos abiertos posibles y esto hace que esté contenida en cualquier otra topología.
     \item \textbf{Topología discreta}:
     
-    La topología es $\mathcal{T} = P\left( X \right)$ para cualquier conjunto $X$ sobre el que se equipe. Es la topología con más\footnote{Porque si los puntos $\{x\} \in X$ son abiertos, entonces cualquier conjunto $A = \bigcup_{x \in A} \{x\}$ es abierto.} abiertos posibles y esto hace que cualquier otra esté contenida en ella.
+    La topología es $\mathcal{T} = \mathcal{P}\left( X \right)$ para cualquier conjunto $X$ sobre el que se equipe. Es la topología con más\footnote{Porque si los puntos $\{x\} \in X$ son abiertos, entonces cualquier conjunto $A = \bigcup_{x \in A} \{x\}$ es abierto.} abiertos posibles y esto hace que cualquier otra esté contenida en ella.
     \item \textbf{Topología usual}:
     
     Si al conjunto $\mathbb{R}^n$ le equipamos la topología en las que los abiertos son los conjuntos formados por unión de bolas euclídeas, obtenemos la topología habitual que utilizamos en $\mathbb{R}^n$.
     
-    \item Cualquier distancia $d(x,y)$ define una topología a través de sus bolas abiertas, igual que definíamos la usual en $\mathbb{R}^n$, de hecho, se puede demostrar sin mayor dificultad (y tal y como se ve en el dibujo) que todas las normas $p$ en $\mathbb{R}^n$ definen bolas que contienen y están contenidas en las restantes. En consecuencia, si la definición de abierto usual se hacía a través de bolas redondas y hemos visto que estas contienen a bolas cuadradas o romboidales, también se tiene que es abierto cuadrado o romboidal y el recíproco por los contenidos en ambos lados.
+    \item Cualquier distancia $d(x,y)$ define una topología a través de sus bolas abiertas, igual que definíamos la usual en $\mathbb{R}^n$, de hecho, se puede demostrar sin mayor dificultad (tal y como se ve en el dibujo) que todas las normas $p$ en $\mathbb{R}^n$ definen bolas que contienen y están contenidas en las restantes. En consecuencia, si la definición de abierto usual se hacía a través de bolas redondas y hemos visto que estas contienen a bolas cuadradas o romboidales, también se tiene que es abierto cuadrado o romboidal y el recíproco por los contenidos en ambos lados.
     \begin{figure}[H]
         \centering
         \incfig[0.7]{normas-topología}
@@ -40,7 +40,7 @@ y, ese caso, la dupla $\left( X, \mathcal{T} \right)$ se denomina \textbf{espaci
     
     \item \textbf{Topología del punto}:
     
-    La topología es $\mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\}$ para un $a\in X$ fijado previamente. Lo curioso de esta topología es que todos los abiertos son los conjuntos que contienen a $a\in X$, es decir, que la topología queda caracterizada como $\mathcal{T}_a := \{{a, W} \text{ donde }W\subset X\}$.
+    La topología es $\mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\}$ para un $a\in X$ fijado previamente. Lo curioso de esta topología es que todos los abiertos son los conjuntos que contienen a $a\in X$, es decir, que la topología queda caracterizada como $\mathcal{T}_a := \{\{a, W\} \text{: donde }W\subset X\}$.
 \end{enumerate}
 \end{ej}
 
@@ -65,11 +65,11 @@ Sea $(X, \mathcal{T})$ un espacio topológico y $W \subset X$ un subconjunto de 
 \begin{demo}
 La implicación de izquierda a derecha es trivial, pues todo conjunto se contiene a sí mismo y, como el conjunto es abierto, contiene a un abierto que contiene al punto, es decir, es entorno de cualquiera de sus puntos.
 
-Para probar el recíproco, si un subconjunto $W\subset X$ es entorno de todos sus puntos, entonces para cada $x$ del conjunto existe un $U^x\subset W$ que contiene a $x$. Por tanto, podemos expresar $W$ como unión arbitraria de todos estos abiertos, es decir, $W = \bigcup_{x\in W} U^x$ y, por ser topología, la unión arbitraria de abiertos es abierta.
+Para probar el recíproco, si un subconjunto $W\subset X$ es entorno de todos sus puntos, entonces para cada $x$ del conjunto existe un abierto $U^x\subset W$ que contiene a $x$. Por tanto, podemos expresar $W$ como unión arbitraria de todos estos abiertos, es decir, $W = \bigcup_{x\in W} U^x$ y, por ser topología, la unión arbitraria de abiertos es abierta.
 \end{demo}
 
 \begin{prop}
-Sea $(X,\mathcal{T})$ un espacio topológico y $V_1^x$ y $V_2^x$ dos entornos de un punto $x\in X$, entonces la intersección $V^x := V_1^x\cap V_2^x$ es entorno de $x$.
+Sea $(X,\mathcal{T})$ un espacio topológico y $V_1^x, V_2^x$ dos entornos de un punto $x\in X$, entonces la intersección $V^x := V_1^x\cap V_2^x$ es entorno de $x$.
 \end{prop}
 \begin{demo}
 Por definición de entornos, existen dos abiertos $U_1^x\subset V_1^x$ y $U_2^x\subset V_2^x$ que contienen a $x$. Por la definición de topología, la intersección finita $U^x := U_1^x\cap U_2^x$ es un abierto de la topología y vemos que $U^x \subset V^x$, luego $V^x$ contiene a un abierto que contiene al punto, es decir, es entorno.
@@ -111,9 +111,9 @@ Sea $A\subset X$ un subconjunto de puntos, entonces:
 
 \begin{ej}
 \begin{enumerate}
-    \item Si consideramos un espacio topológico $\left( X, \mathcal{T}_{\text{trivial}} \right)$ con la discreta, vemos que cualquier subconjunto $A\subset X$ puede contener únicamente a $\emptyset$ como abierto, luego su interior es el vacío $\mathring{A} = \emptyset$.
+    \item Si consideramos un espacio topológico $\left( X, \mathcal{T}_{\text{trivial}} \right)$, vemos que cualquier subconjunto $A \subsetneq X$ puede contener únicamente a $\emptyset$ como abierto, luego su interior es el vacío $\mathring{A} = \emptyset$.
 
-    \item Si consideramos $(\mathbb{R}^n, \mathcal{T}_{\text{usual}})$ algunos de los interiores usuales son $\inter\left( B\left[ a, \varepsilon \right] \right)  = B\left( a, \varepsilon \right)$, $\mathring{\mathbb{Q}}^n = \emptyset$ y $\mathring{\mathbb{Z}}^n = \emptyset$.
+    \item Si consideramos $(\mathbb{R}^n, \mathcal{T}_{\text{usual}})$ algunos de los interiores comunes son $\inter\left( B\left[ a, \varepsilon \right] \right)  = B\left( a, \varepsilon \right)$, $\mathring{\mathbb{Q}}^n = \emptyset$ y $\mathring{\mathbb{Z}}^n = \emptyset$.
     
     \item Si consideramos la topología del punto $\mathcal{T}_a$, entonces $\mathring{\{a\}} = \{a\}$ y, en general, ocurre lo mismo para cualquier conjunto que contenga a $a$ (porque son abiertos). Sin embargo, cualquier $x \neq a$ verifica que $\mathring{\{x\}} = \emptyset$.
 \end{enumerate}
@@ -127,7 +127,7 @@ Sea $A\subset X$ un subconjunto de puntos, entonces:
 \end{coro}
 \begin{demo}
 \begin{enumerate}
-    \item La relación $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ implica que, como $\mathring{A}$ es abierto y $\mathring{B}$ es la unión de todos los abiertos de $B$, $\mathring{A} \subset \mathring{B}$.
+    \item La relación $A \subset B \Rightarrow \mathring{A} \subset A \subset B$ implica que, como $\mathring{A}$ es abierto, contenido en $B$, y $\mathring{B}$ es la unión de todos los abiertos de $B$, $\mathring{A} \subset \mathring{B}$.
     \item En primer lugar, como $\mathring{A}\cap \mathring{B}$ es intersección de abiertos, entonces es abierto y está contenido en $A\cap B$, luego por ser $\inter(A\cap B) = \bigcup_{U\in A\cap B}U$ sabemos que $\mathring{A}\cap \mathring{B} \subset \inter(A\cap B)$.
     
 	Recíprocamente, si $x\in \inter(A\cap B)$ existe un abierto $U \in A\cap B$ tal que $x\in U$. Por ser de la intersección, en particular también es abierto de cada conjunto, luego $x\in \mathring{A}$ y $x\in \mathring{B}$, es decir, $x\in \mathring{A}\cap \mathring{B}$.
@@ -244,16 +244,16 @@ $$
 
 \begin{ej}
 \begin{enumerate}
-    \item En $\mathbb{R}^n, \mathcal{T}_{\text{usual}}: B\left[ a, \varepsilon \right] = \overline{B \left( a, \varepsilon \right)};\ \overline{\mathbb{Q}^n} = \mathbb{R}^n$.
-    \item Sea $a \in X$ con $\mathcal{T}_a \Rightarrow$
+    \item Si consideramos $\left( \mathbb{R}^n, \mathcal{T}_{\text{usual}} \right)$ algunas adherencias comunes son $\overline{B \left( a, \varepsilon \right)} = B\left[ a, \varepsilon \right]$ y $\overline{\mathbb{Q}^n} = \mathbb{R}^n$.
+    \item Sea $a \in X$ y $\left( X, \mathcal{T}_a \right) \Rightarrow$
     \begin{itemize}
         \item $\overline{\{a\}} = X $
         \begin{demo}
-            $\forall x, \forall U^x \supset \{a, x\} \ni a \Rightarrow x \in \overline{\{a\}}$
+            Sea $x \in X,\ \forall U^x \ent X: U^x \supset \{a, x\} \ni a \Rightarrow x \in \overline{\{a\}}$
         \end{demo}
         \item $\forall x \neq a, \overline{\{x\}} = \{x\}$
         \begin{demo}
-            $y \neq x \Rightarrow U^y = \{a, y\} \cap \{x\} = \emptyset$ 
+            Sea $y \neq x \Rightarrow U^y = \{a, y\} \cap \{x\} = \emptyset$ 
         \end{demo}
     \end{itemize}
 \end{enumerate}
@@ -274,7 +274,7 @@ $$
 \end{defi}
 
 \begin{obs}
-La definición anterior para puntos aislados hace evidente el hecho de que los puntos aislados solo pueden ser de $A$. Por contra, los puntos de acumulación no tienen por qué y, de hecho, su definición en términos de entornos prescinde de ellos mismos para analizar su intersección con $A$. De esta manera, obtenemos el siguiente resultado:
+La definición anterior para puntos aislados hace evidente el hecho de que los puntos aislados solo pueden ser de $A$. Por contra, los puntos de acumulación no tienen por qué serlo y, de hecho, su definición en términos de entornos prescinde de ellos mismos para analizar su intersección con $A$. De esta manera, obtenemos el siguiente resultado:
 $$
 \overline{A} = \{\underbrace{\text{puntos aislados}}_{\subset A}\} \sqcup \{\underbrace{\text{puntos de acumulación}}_{\supset \overline{A} \setminus A}\}
 $$
@@ -297,7 +297,7 @@ al conjunto de puntos de la frontera de $A$ lo llamamos \textbf{frontera} de $A$
     \item En $\mathbb{R}$, con la topología usual $\mathcal{T}_u$, todos los puntos de $\mathbb{Z}$ son aislados. Por tanto, la frontera de los enteros es $\fr\left( \mathbb{Z} \right) = \mathbb{Z}$.
     \item En $\mathbb{R}^n$, con la topología usual $\mathcal{T}_u$, la frontera de las bolas $\fr\left( B\left( a, \varepsilon \right) \right) = \fr\left( B\left[ a, \varepsilon \right] \right) = S\left[ a, \varepsilon \right] : \lVert x - a \rVert = \varepsilon$ son los discos exteriores de las mismas.
     \item En la topología $\mathcal{T}_{\text{discreta}}$, sobre cualquier conjunto que se equipe, todos los puntos son aislados y, en consecuencia, todas las fronteras, vacías.
-    \item En la topología del punto $\mathcal{T}_a$ sobre un punto $a \in X$ concreto vemos que:
+    \item En la topología del punto, $\mathcal{T}_a$, sobre un punto $a \in X$ concreto vemos que:
 $$
 \begin{cases}
 	\fr\left( \{a\} \right) = \overline{\{a\}} \setminus \mathring{\{a\}} = X \setminus \{a\} \\
@@ -320,7 +320,7 @@ Sea $X$ un conjunto de puntos y $A \subset X$ un subconjunto suyo, decimos que $
 
 \section{Bases}%
 \label{sec:bases}
-En general, probar una cierta propiedad para una topología hace necesario verificar dicha propiedad en todos los abiertos de la misma. Esto, ya de por sí complicado, puede serlo mucho más cuando la definición de abierto es compleja y poco intuitiva. Por esto, del mismo modo que en el Álgebra Lineal surgían las bases para trabajar con un espacio vectorial completo observando únicamente un conjunto pequeño de vectores, en Topología tendremos las bases de entornos y de abiertos que jugaran un papel similar en los espacios topológicos.
+En general, probar una cierta propiedad para una topología hace necesario verificar dicha propiedad en todos los abiertos de la misma. Esto, ya de por sí complicado, puede serlo mucho más cuando la definición de abierto es compleja y poco intuitiva. Por esto, del mismo modo que en el Álgebra Lineal surgían las bases para trabajar con un espacio vectorial al completo observando únicamente un conjunto pequeño de vectores, en Topología tendremos las bases de entornos y de abiertos que jugaran un papel similar en los espacios topológicos.
 
 \begin{defi}[Base de entornos]
 Sea $(X, \mathcal{T})$ un espacio topológico y $a\in X$ un punto, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier otro entorno de $a$ tenga que contener a alguno de los entornos de la colección $\mathcal{V}^a$, esto es:
@@ -352,7 +352,7 @@ luego si escogemos una base de entornos $\mathcal{V}^a$ adecuada sobre la que se
 
 \begin{ej}
 \begin{enumerate}
-    \item Sea el espacio real usual $(\mathbb{R}^n, \mathcal{T}_{\text{usual}})$ el espacio topológico a estudiar, entonces:
+    \item Sea el espacio real usual, $(\mathbb{R}^n, \mathcal{T}_{\text{usual}})$, el espacio topológico a estudiar, entonces:
     $$
     \begin{cases}
     \mathcal{B}^a = \{B\left( a, \varepsilon \right): \varepsilon > 0\} \text{ base de entornos abiertos.}  \\
@@ -397,13 +397,14 @@ Por darse $3.$, escogido cualquier abierto $U$ necesariamente contiene a una $B^
 
 \begin{ej}
 \begin{enumerate}
-    \item Si tomamos la topología discreta $\mathcal{T}_{\text{discreta}}$ entonces una base de abiertos sería $\mathcal{B} = \{\{x\} : x \in X\}$. Además, esta base es mínima pues cualquier otra base $B' := \{B_i\}_{i\in I}$ de abiertos cumpliría que $\forall x  : \{x\} = \bigcup_{i \in  I} B_i \Rightarrow \exists i \in I : B_i = \{x\}$.
+    \item Si tomamos la topología discreta, $\mathcal{T}_{\text{discreta}}$, entonces una base de abiertos sería $\mathcal{B} = \{\{x\} : x \in X\}$. Además, esta base es mínima pues cualquier otra base $B' := \{B_i\}_{i\in I}$ de abiertos cumpliría que $\forall x \in X : \{x\} = \bigcup_{i \in  I} B_i \Rightarrow \exists i \in I : B_i = \{x\}$.
     \item Si tomamos la topología del punto $\mathcal{T}_a$, entonces una base de abiertos es $\mathcal{B} = \{\{a, x\} : x \in X\}$.
-    \item Si tomamos la topología usual $\mathbb{R}^n, \mathcal{T}_{\text{usual}}$ en $\mathbb{R}^n$, entonces una base de abiertos es el conjunto de bolas abiertas $\mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0 \mbox{ y } x \in \mathbb{R}^n\}$ porque recordemos que un abierto se caracterizaba en $\mathbb{R}^n$ por el hecho de que todos sus puntos tenían una bola alrededor contenida en el conjunto, luego la unión de dichas bolas es el abierto inicial.
-    Sin embargo, la base de abiertos lo sigue siendo si escogemos otra norma en $\mathbb{R}^n$ distinta de la euclídea, puesto que estas normas eran equivalentes en $\mathbb{R}^n$ (o, visto geométricamente, cada bola de una norma contiene otra más pequeña de otra norma distinta y viceversa)
-    porque
+    \item Si tomamos la topología usual en $\mathbb{R}^n$, $\left( \mathbb{R}^n, \mathcal{T}_{\text{usual}} \right)$, entonces una base de abiertos es el conjunto de bolas abiertas $\mathcal{B} = \{B\left( x, \varepsilon \right) : \varepsilon > 0 \mbox{ y } x \in \mathbb{R}^n\}$ porque recordemos que un abierto se caracterizaba en $\mathbb{R}^n$ por el hecho de que todos sus puntos tenían una bola alrededor contenida en el conjunto, luego la unión de dichas bolas es el abierto inicial.
+
+    Sin embargo, la base de abiertos sigue siéndolo si escogemos otra norma en $\mathbb{R}^n$ distinta de la euclídea, puesto que estas normas son equivalentes en $\mathbb{R}^n$ (o, visto geométricamente, cada bola de una norma contiene otra más pequeña de otra norma distinta y viceversa)
+    porque:
     \[
-    B\left( x, \varepsilon \right) = \bigcup_{i \in  I} \ooalign{$\sqsubset\mkern3mu$\cr$\mkern3mu\sqsupset$\cr}_i = \bigcup_{j \in J} \diamond_i
+    B\left( x, \varepsilon \right) = \bigcup_{i \in  I} \ooalign{$\sqsubset\mkern3mu$\cr$\mkern3mu\sqsupset$\cr}_i = \bigcup_{j \in J} \diamond_j
     \]
 \begin{figure}[H]
     \centering
@@ -414,14 +415,16 @@ Por darse $3.$, escogido cualquier abierto $U$ necesariamente contiene a una $B^
 \end{enumerate}
 \end{ej}
 
-% TODO: no me convencen estos entornos y el de ilustración habría que cambiarlo por proposición.
-\begin{pg}
-    Como antes, a menudo basta considerar los abiertos de $\mathcal{B}$. 
-\end{pg}
-
-\begin{il}
-$A \subset X$ denso $\Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset$.
-\end{il}
+\begin{obs}[Política general]
+Como antes, a menudo basta considerar los abiertos de $\mathcal{B}$. Por ejemplo,
+\end{obs} 
+\begin{prop}    
+Sea $A \subset X$ y $\mathcal{B}$ una base de abierto de $X \Rightarrow$
+\[
+A \subset X \text{ denso} \Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset
+\]
+\end{prop}
+%TODO: Probar?
 
 \begin{prop}
 Sea $X$ un conjunto de puntos y $\mathcal{B} := \left\{ B_i \right\}_{i \in I} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos, esta colección define una topología $\mathcal{T}$ única en $X$ si y sólo si: 
@@ -448,14 +451,14 @@ Trivial por las propiedades vistas sobre topología.
 
 Veamos que se verifican las condiciones sobre la topología:
 \begin{itemize}
-    \item \textbf{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\} \subset \mathcal{B}\}$.
+    \item \textbf{Unicidad}: $\mathcal{T} = \{\bigcup_{i \in  I} B_i: \{B_i\}_{i \in I} \subset \mathcal{B}\}$.
     \item \textbf{Existencia}: Esa $\mathcal{T}$ es efectivamente topología. 
         \begin{itemize}
             \item $\emptyset \in \mathcal{T}$, $X = \bigcup_{i\in I} B_i \in \mathcal{T}$.
             \item Uniones: $\bigcup_{j\in J} \left(\bigcup_{i\in I} B_{i}\right) = \bigcup_{j\in J} B_{ij} \in \mathcal{T}$. 
             \item Intersecciones finitas: $B_1, B_2 \in \mathcal{B} \Rightarrow B_1 \cap B_2 = \bigcup_{x \in B_1 \cap B_2} B^x \in \mathcal{T}$.
             $$
-            x \in \left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) \Rightarrow x \in B_{i_0} \cap B_{k_0} \Rightarrow \exists B^x \in \mathcal{B} : x\in B^x \subset B_{i_0} \cap B_{k_0}
+            x \in \left( \bigcup_{i \in I} B_i \right) \cap \left( \bigcup_{k \in K} B_k \right) \Rightarrow x \in B_{i_0} \cap B_{k_0} \Rightarrow \exists B^x \in \mathcal{B} : x\in B^x \subset B_{i_0} \cap B_{k_0}
             $$
             Por tanto, podemos decir que $\left( \bigcup_{i} B_i \right) \cap \left( \bigcup_{k} B_k \right) = \bigcup_{x} B^x \in \mathcal{T}
             $ y se tiene el resultado.
@@ -490,7 +493,7 @@ Además, decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio
     Sea $F \cerr Y \Rightarrow$
     \begin{align*}
     F &= Y\setminus W : W \ab Y \Rightarrow \exists U \ab X : Y\cap U = W\\    
-    &\Rightarrow F = Y \setminus (Y \cap U) = Y \cap  (X\setminus U) = Y \cap F_x : F_x \cerr X
+    &\Rightarrow F = Y \setminus (Y \cap U) = Y \cap  (X\setminus U) = Y \cap F_X : F_X \cerr X
     \end{align*}
     \end{demo}
 
@@ -526,7 +529,7 @@ Además, decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio
     \label{fig:enteros-en-los-reales-como-subespacio-discreto.}
 \end{figure}
 
-    \item Si tomamos la topología del punto $(a \in X, \mathcal{T}_a|_{X \setminus \{a\}})$ vemos que se trata de la discreta.
+    \item Si tomamos la topología del punto relativa a $X \setminus \left\{ a \right\}$, $\mathcal{T}_a|_{X \setminus \{a\}}$, vemos que se trata de la discreta.
 \end{enumerate}
 \end{ej}
 
