@@ -3,7 +3,7 @@
 \section{Concepto y mantras}%
 \label{sec:concepto_y_mantras_conx}
 \begin{defi}
-$X$ es \underline{conexo} si cumple las siguientes condiciones equivalentes:
+$X$ es \textbf{conexo} si cumple las siguientes condiciones equivalentes:
 \begin{enumerate}
     %TODO: union rara
     \item $\nexists X = U \sqcup Y$ abiertos $\neq \emptyset$.
@@ -27,22 +27,33 @@ $Y \subset X$ subespacio conexo: $\nexists Y \subset U \cup V$ abierto de $X$,
 \end{obs}
 
 \begin{ej}[Fundamental]
-$\left( 0, 1 \right) \subset \mathbb{R}_u$ es conexo. 
+\begin{itemize}
+    \item $\mathbb{R}$ es conexo.
+    \item $\mathbb{Q}$ no es conexo. De hecho, es \textbf{totalmente disconexo}.
+    \begin{demo}
+        %TODO: Dibujo y el hace algo con Y \subset Q
+        Si dividimos $\mathbb{R}$ en dos segmentos disjuntos separados por $\alpha \in \mathbb{R} \setminus \mathbb{Q}$ tenemos que $\mathbb{Q} = \mathbb{Q} \cap \left[ -\infty, \alpha \right) \sqcup \left[ \alpha, +\infty \right] \cap \mathbb{Q}$ que son abiertos en $\mathbb{Q}$ y disjuntos.
+    \end{demo}
+
+    \item Sorgenfrey: Solo son conexos los puntos.
+    \item $\left( 0, 1 \right) \subset \mathbb{R}_u$ es conexo. 
+\end{itemize}
 
 Mantras generales $\Rightarrow$ segmentos en $\mathbb{R}^n$, estrellados? y conexos son conexos.
 \end{ej}
 
 \begin{theo}[del pivote. Mantra 1] 
-Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq 0,\ \forall A_i$ conexos $\Rightarrow X$ conexos.
+Sea $X = \bigcup_{i \in I} A_i$. Si $\bigcap_{i} A_i \neq 0$ y $A_i$ conexos $\forall i \in I \Rightarrow X$ conexo.
 \end{theo}
 \begin{demo}
+Tenemos que ver que $E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X$ es el total:
 \begin{align*}
-    \emptyset \neq E \stackrel{\text{ab. cerr.}}{\subset} X &\Rightarrow \forall i,\ E \cap A_i \stackrel{\text{ab. cerr.}}{\subset} A_i \Rightarrow \forall i,\ \begin{cases}
-        E \cap A_i = \emptyset\\
-        E \supset A_i
+    \emptyset \neq E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X &\Rightarrow E \cap A_i \stackrel[\text{cerr.}]{\text{ab.}}{\subset} A_i \xRightarrow{\text{conx.}} \begin{cases}
+        E \cap A_i = \emptyset \text{, ó}\\
+        E \stackrel{*}{\supset} A_i
     \end{cases}\\
-    &\xRightarrow{E \neq \emptyset} \exists i_0: E \supset A_{i_0} \supset \bigcap_{i} A_i \neq \emptyset \Rightarrow \forall i,\ E \cap A_i \neq \emptyset \Rightarrow \forall i,\ E \supset A_i\\
-    &\Rightarrow E \supset \bigcup_{i} A_i \Rightarrow E = X
+    &\xRightarrow[E \neq \emptyset]{*} \exists i_0: E \supset A_{i_0} \supset \bigcap_{i \in I} A_i \neq \emptyset \Rightarrow \forall i \in I,\ E \cap A_i \neq \emptyset \xRightarrow{*} E \supset A_i\\
+    &\Rightarrow E \supset \bigcup_{i \in I} A_i \Rightarrow E = X
 .\end{align*}
 \end{demo}
 
@@ -57,7 +68,7 @@ Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq 0,\ \forall A_i$ conexos $\Right
         Se usa el mantra $1$ dos veces:
         \[
         \begin{cases}
-            X_k = \left( \ldots \left( \left( A_1 \cup A_2 \right) \cup A_3 \right) \cup \ldots \cup \right) A_k\\
+            X_k = \left(\left(\left(\left( \left( A_1 \cup A_2 \right) \cup A_3 \right) \ldots \right) \cup \right) A_{k-1}\right) \cup A_k\\
             X = \bigcup_{k} \left( X_1 \cup \ldots \cup X_k \right) 
         \end{cases} 
         \]
@@ -69,14 +80,13 @@ Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq 0,\ \forall A_i$ conexos $\Right
 \end{enumerate} 
 \end{coro}
 
-El ``recíproco'' es ``fácil'' pero útil.
 \begin{prop}[Construcción de cadenas]
-$X$ conexo, $X = \bigcup_{i} U_i$ recubrimiento abierto, $p, q \in X \Rightarrow \exists$ cadena finita $U_{i_k}$ de $p$ a $q: p \in U_{i_0}, U_{i_{k - 1}} \cap U_{i_k} \neq \emptyset,\ q \in U_{i_r}$. 
+$X$ conexo, $X = \bigcup_{i \in I} U_i$ recubrimiento abierto, $p, q \in X \Rightarrow \exists U_{i_0} \cup \ldots \cup U_{i_k}$ de $p$ a $q: p \in U_{i_0}, U_{i_{k - 1}} \cap U_{i_k} \neq \emptyset,\ q \in U_{i_r}$. 
 \end{prop}
 \begin{demo}
-$A = \{x \in X: \exists U_{i_k} \text{ de } p \text{ a } x\} \neq \emptyset$ abierto y cerrado $\Rightarrow A = X$ y $q \in A$. Por ser:
+Veamos que $A = \{x \in X: \exists U_{i_k} \text{ de } p \text{ a } x\} \neq \emptyset$ abierto y cerrado $\Rightarrow A = X$ y $q \in A$. Esto se debe a que: 
 \begin{itemize}
-    \item $\neq \emptyset: \exists U_{i_0} \in? p$ y $U_{i_0}$ va de $p$ a $p$ !
+    \item No vacío: $\exists U_{i_0} \ni p$ y $U_{i_0}$ va de $p$ a $p$.
     \item Abierto: $\exists U_{i_0}, \ldots, U_{i_r}$ de $p$ a $x \Rightarrow U_{i_r} \subset A$.
     \item Cerrado: 
     \begin{align*}
@@ -89,79 +99,91 @@ $A = \{x \in X: \exists U_{i_k} \text{ de } p \text{ a } x\} \neq \emptyset$ abi
 \begin{center}
     \includegraphics[scale=0.3]{images/dem_const_cadenas} 
 \end{center}
+Con esto es un subconjunto de uno conexo, no vacío, abierto y cerrado, es decir, es el total.
 \end{demo}
+
+\begin{obs}
+Esto es el recíproco de pivote.
+\end{obs}
 
 \begin{prop}[Mantra 2]
 Imagen continua de conexo es conexo. 
 \end{prop}
 \begin{demo}
-    $f: X \rightarrow Y$ continua, $\emptyset \neq E \stackrel{\text{ab. cerr.}}{\subset} f\left( X \right) \xRightarrow{\text{cont.}} \emptyset \neq f^{-1}\left( E \right) \stackrel{\text{ab. cerr.}}{\subset} X \Rightarrow f^{-1}\left( E \right) = X \Rightarrow E = f\left( X \right)$.
+    $f: X \rightarrow Y$ continua, $\emptyset \neq E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} f\left( X \right) \xRightarrow{\text{cont.}} \emptyset \neq f^{-1}\left( E \right) \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X \Rightarrow f^{-1}\left( E \right) = X \Rightarrow E = f\left( X \right)$.
 \end{demo}
 
 \begin{prop}[Mantra 3]
 Adherencia de conexo es conexo: $Y \subset X$ con $Y$ conexo y denso $\Rightarrow X$ conexo. 
 \end{prop}
 \begin{demo}
-    $\emptyset \neq E \stackrel{\text{ab. cerr.}}{\subset} X \Rightarrow E \cap Y \stackrel{\text{ab. cerr.}}{\subset} Y \Rightarrow \begin{cases}
-        E \cap Y = \emptyset\ \times \text{densidad.} \\
+    $\emptyset \neq E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X \Rightarrow E \cap Y \stackrel[\text{cerr.}]{\text{ab.}}{\subset} Y \Rightarrow \begin{cases}
+        E \cap Y \neq \emptyset\ \text{ por la densidad.} \\
         E \cap Y = Y \Rightarrow Y \subset E \cerr X = \overline{Y} \Rightarrow E = X.
     \end{cases}$
 \end{demo}
 
 \begin{ej}
    %TODO: Ejemplos complicados
-    \begin{enumerate}
-        \item $\left( 0, 1 \right) \stackrel{\text{denso}}{\subset} \left[ 0, 1 \right] \xRightarrow{\mathrm{M}1} \Rightarrow \left[ 0, 1 \right]$ conexo. Con una interpolación?: $\sigma\left( t \right) = \left( 1 - t \right) a + tb$ es homeomorfismo con $\left[ a, b \right] \subset \mathbb{R}^n \xRightarrow{\mathrm{M}2} \left[ a, b \right]$ es conexo. Aplicando ahora:
-        \begin{itemize}
-            \item Pivote: $E = \bigcup_{\substack{x \in E\\ \text{conx.}}} \left[ a, x \right]$ \underline{estrellado} (resp. de $a$): convexos, bolas abiertas y cerradas, rectángulos... 
-            \item Mantra $2$: Trazas de curvas continuas $\sigma: \left[ 0, 1 \right] \rightarrow \mathbb{R}^n$.
-        \end{itemize}
-        \item \underline{Seno del topólogo} (polaco):
+\begin{enumerate}
+    %TODO: Ejemplo de la esfera y del proyectivo.
 
-        Conexos: $\begin{cases}
-            \Gamma = \text{imagen} : t \mapsto \left( t, \sin \frac{1}{t} \right),\ t > 0\\
-            J = \{0\} \times \left[ 0, 1 \right]\\
-            \overline{\Gamma} = \Gamma \cup J \text{ (adh.)} 
-        \end{cases}$
-        \begin{center}
-            \includegraphics[scale=0.3]{images/seno_topologo} 
-        \end{center}
-    \end{enumerate}
+    \item $\left( 0, 1 \right) \stackrel{\text{denso}}{\subset} \left[ 0, 1 \right] \xRightarrow{\mathrm{M}3} \left[ 0, 1 \right]$ conexo. Con una interpolación: $\sigma\left( t \right) = \left( 1 - t \right) a + tb$ es homeomorfismo con $\left[ a, b \right] \subset \mathbb{R}^n \xRightarrow{\mathrm{M}2} \left[ a, b \right]$ es conexo. Aplicando ahora:
+    \begin{itemize}
+        \item Pivote: $E = \bigcup_{\substack{x \in E\\ \text{conx.}}} \left[ a, x \right]$ \underline{estrellado} (resp. de $a$): convexos, bolas abiertas y cerradas, rectángulos... 
+        \item Mantra $2$: Trazas de curvas continuas $\sigma: \left[ 0, 1 \right] \rightarrow \mathbb{R}^n$.
+    \end{itemize}
+    \item \underline{Seno del topólogo} (polaco):
+
+    Son conexos: $\begin{cases}
+        \Gamma = \text{imagen} : t \mapsto \left( t, \sin \frac{1}{t} \right),\ t > 0 \text{ por ser imagen de una función continua}\\
+        J = \{0\} \times \left[ 0, 1 \right]\\
+        \overline{\Gamma} = \Gamma \cup J \text{ por ser adherencia.} 
+    \end{cases}$
+    \begin{center}
+        \includegraphics[scale=0.3]{images/seno_topologo} 
+    \end{center}
+\end{enumerate}
 \end{ej}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_conx}
 %TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
-    Conexión & $\times$ & \checkmark & \checkmark & $\times$\\
-    \hline\\
-               & $\{0, 1\} \subset \left[ 0, 1 \right]$ & Mantra $3$ & Pivote & Cada sum. ab. y cerr.\\
-    \hline\\
+\hline
+    Conexión & \ding{55} & \checkmark & \checkmark & \ding{55} \\
+    \hline
+    Demostración: & $\{0, 1\} \subset \left[ 0, 1 \right]$ & Mantra $3$ & Pivote & Cada sum. es ab. y cerr.\\
+    \hline
 \end{tabular}
-\end{center}
+\caption{\textit{La tabla nos indica como se conserva la conexión con las propiedades que hemos visto. Las sumas y los productos son finitos.}}
+\end{table}
 
 \begin{prop}
 $X \times Y$ conexo $\Leftrightarrow X$ y $Y$ conexo.
 \end{prop} 
 \begin{demo}
-$\Rightarrow)$ Mantra $3$ para las proyecciones.
+\begin{itemize}
+    \item[$\Rightarrow)$] Mantra $3$ para las proyecciones.
 
-$\Leftarrow)$ Fijamos $a \in X$.
-\begin{gather*}    
-\forall y \in Y,
-\begin{rcases}
-    Z_y = \underbrace{\left( X \times \{y\} \right)}_{\approx X}\cup \underbrace{\left( \{a\} \times Y \right)}_{\approx Y} \text{ dos conx. se cortan en } \left( a, y \right) \xRightarrow{\text{Piv.}} Z_y \text{ conx.}\\
-    \bigcap_{y \in Y} Z_y = \{a\} \times Y \neq \emptyset
-\end{rcases} \xRightarrow{\text{Piv.}} \\
-\bigcup_{y \in Y} Z_y = X \times Y \text{ conx.} 
-\end{gather*}
-%TODO: Imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/dem_conx2_conx} 
-\end{center}
+    \item[$\Leftarrow)$] Fijamos $a \in X$.
+    \begin{gather*}    
+    \forall y \in Y,
+    \begin{rcases}
+        Z_y = \underbrace{\left( X \times \{y\} \right)}_{\approx X}\cup \underbrace{\left( \{a\} \times Y \right)}_{\approx Y} \text{ dos conx. se cortan en } \left( a, y \right) \xRightarrow{\text{Piv.}} Z_y \text{ conx.}\\
+        \bigcap_{y \in Y} Z_y = \{a\} \times Y \neq \emptyset
+    \end{rcases} \xRightarrow{\text{Piv.}} \\
+    \bigcup_{y \in Y} Z_y = X \times Y \text{ conx.} 
+    \end{gather*}
+    %TODO: Imagen
+    \begin{center}
+        \includegraphics[scale=0.3]{images/dem_conx2_conx} 
+    \end{center}
+\end{itemize}
 \end{demo}
 
 
