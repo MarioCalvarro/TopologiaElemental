@@ -661,20 +661,20 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
         \label{prop_universal_prod_finitos}
     \end{figure}
 
-entonces $\mathcal{T}' = \prod_{i} \mathcal{T}$ si y sólo si
+entonces $\mathcal{T}' = \prod_{i = 1}^{r} \mathcal{T}_i$ si y sólo si:
 $$
 g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.}
 $$
 \end{theo}
 \begin{demo}
 \begin{enumerate}
-    \item $\mathcal{T}' = \prod_{i} \mathcal{T}: $ 
+    \item[$\Rightarrow)$] $\mathcal{T}' = \prod_{i = 1}^{r} \mathcal{T}_i: $ 
     \begin{itemize}
         \item $g$ cont. implica que $g_i$ cont. porque $g_i = p_i \circ g$ y $p_i$ es continua si la topología es la producto.
         \item $g_i$ cont. implica que $g^{-1}\left( U_1 \times \ldots \times U_r \right) = \overbrace{g_1^{-1}\left( U_1 \right)}^{\in \mathcal{T}''} \cap \ldots \cap \overbrace{g_r^{-1}\left( U_i \right)}^{\in \mathcal{T}''} \in \mathcal{T}''$ y como esto es una intersección finita de abiertos, es abierto.
     \end{itemize}
 
-    \item Para demostrarlo, vamos a ver el doble contenido de ambas.
+    \item[$\Leftarrow)$] Para demostrarlo, vamos a ver el doble contenido de $\mathcal{T}' = \prod_{i=1}^{r} \mathcal{T}$:
     
     Como la propiedad de caracterización se cumple para cualquier función $g$ que escojamos, podemos elegir la identidad de modo que:
     \begin{figure}[H]
@@ -688,7 +688,7 @@ $$
             \draw[->](Z) to node [left] {$id$ cont.}(Y);
             \end{tikzpicture}
     \end{figure}
-    la continuidad de $id$ nos asegura la continuidad de $g_i = p_i \circ id = p_i$. Como tenemos que $p_i$ es continua y $\prod \mathcal{T}_i$ es la topología menos fina que verifica esto, entonces $\prod \mathcal{T}_i \subset \mathcal{T}'$.
+    La continuidad de $id$ nos asegura la continuidad de $g_i = p_i \circ id = p_i$. Como tenemos que $p_i$ es continua y $\prod \mathcal{T}_i$ es la topología menos fina que verifica esto, entonces $\prod \mathcal{T}_i \subset \mathcal{T}'$.
     
     Para ver el otro contenido, elegimos de nuevo la identidad, pero esta vez la identidad meramente conjuntista:
     \begin{figure}[H]
@@ -696,7 +696,7 @@ $$
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(Y) {$\left( Y, \mathcal{T}' \right)$};
             \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
-            \node(Z) [below of=Y] {$\left( Y, \prod_{i} \mathcal{T}_i \right)$};
+            \node(Z) [below of=Y] {$\left( Y, \prod \mathcal{T}_i \right)$};
             \draw[->](Y) to node {$p_i$}(X);
             \draw[->](Z) to node [right=0.1cm] {$p_i \circ id = p_i$ cont.}(X);
             \draw[->](Z) to node [left] {$id$}(Y);
@@ -709,6 +709,9 @@ $$
 %TODO: Hacer bien
 \begin{ej}
 La $\mathcal{T}_{\text{rad}}$ no es producto.
+\begin{demo}
+    Tomamos un abierto y veamos que no es producto. 
+    %TODO: Dibujo
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -813,9 +816,6 @@ La $\mathcal{T}_{\text{rad}}$ no es producto.
     \end{tikzpicture}
     \caption{\textit{La topología radial no es producto de topologías.}}
 \end{figure}
-\begin{demo}
-    Tomamos un abierto y veamos que no es producto. 
-    %TODO: Dibujo
 
     Supongamos que sí:
     $U = \mathbb{R}^2 \setminus $ arco $\ni \left( 0, 0 \right) \Rightarrow U_1 \times U_2 \subset U$ y $\left( 0, 0 \right) \in U_1 \times U_2 \subset \mathcal{T}_{\text{rad}}$. Tomando $x_1 \in U_1$ y vemos $x = x_1 \cap r$ con $r$ línea vertical por $x_1$ con esto $y_1 = x \cap l$ con $l$ línea horizontal por $x$ no pertenece a $U$ (de lo contrario el producto $y_1$ con $x_1 = x$ pertenecería). Por tanto, $I_k = \left[ \left( 0, y_k \right), \left( x_k, y_k \right) \right]$ no tiene ningún punto en $U_1 \times U_2$. Haciendo converger $I_k$ hacía $0$ para cualquier recta por $0$ tendremos un $I_k$ que tenga intersección con la recta, es decir, la recta tendrá un punto que no pertenezca al abierto y $U$ no sería abierto ¡!
@@ -850,18 +850,18 @@ La $\mathcal{T}_{\text{rad}}$ no es producto.
 \end{demo}
 
 \begin{ej}
-El ejemplo ahora de $\mathcal{T}_{\text{rad}}$ simplemente es porque si fuese producto sus elementos deberían ser la usual y el producto de usuales es usual que es distinta de la radial.
+Ahora el ejemplo de $\mathcal{T}_{\text{rad}}$ simplemente es porque si fuese producto, sus elementos deberían ser la usual y el producto de usuales es usual que es distinta de la radial.
 \end{ej}
 
-\begin{pg}
+\begin{obs}[Política general]
 En una topología producto todo ``se genera en productos''.
+\end{obs}
 \begin{ej}
 \begin{itemize}
     \item Bases de entornos: $\mathcal{V}^a = \mathcal{V}^{a_1} \times \ldots \times \mathcal{V}^{a_r} \stackrel{mut??}{=} \{V_1 \times \ldots \times V_r: V_i \in \mathcal{V}^{a_i}\} \left( a \in Y \right)$.
     \item Base de abiertos: $\mathcal{B} = \mathcal{B}_1 \times \ldots \times \mathcal{B}_r = \{B_1 \times \ldots \times B_r: B_i \in \mathcal{B}_i\}$ (esto repite la construcción de $\prod_{i} \mathcal{T}_i$)
 \end{itemize}
 \end{ej}
-\end{pg}
 
 
 %TODO: Cambiar e_i por j_i?
