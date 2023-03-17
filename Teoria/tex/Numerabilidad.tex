@@ -65,7 +65,7 @@ $X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
         En $\mathcal{T}_a$ la base de abiertos mínima es $\mathcal{B}_a = \left\{ \left\{ a, x \right\}: x \in X \right\}$, por tanto, si $X$ no es numerable
         tampoco lo será esta base.
 
-        Por otro lado, en $\mathcal{T}_{\text{discr.}}$ tenemos como base mínima $\mathcal{P}\left( X \right)$ que no es numerable.
+        Por otro lado, en $\mathcal{T}_{\text{discr.}}$ tenemos como base mínima $\left\{ \left\{ x \right\}: x \in X \right\}$ que no es numerable.
     \end{demo}
     \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es II Axioma ya que tenemos como base a: $\mathcal{B} = \{B \left( q, \frac{1}{k}\right) : q \in \mathbb{Q}^n, k \ge 1 \}$.
     \begin{demo}
@@ -230,6 +230,13 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
 
 \section{Sucesiones}
 \label{sub:sucesiones}
+\begin{defi}[Sucesiones]
+Llamamos \textbf{sucesión} en un espacio $X$ a una aplicación $f: \mathbb{N} \rightarrow X$. La denotamos por:
+\[
+\left\{ x_n \right\}_{n \in \mathbb{N}}
+\]
+Con esta notación queremos decir que $x_n = f\left( n \right)$.
+\end{defi}
 \begin{defi}[Límites]
 Decimos que $\lim_{k \rightarrow \infty} x_k = x \Leftrightarrow$ 
 \[
