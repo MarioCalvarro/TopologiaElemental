@@ -5,18 +5,17 @@
 \begin{defi}
 $X$ es \textbf{conexo} si cumple las siguientes condiciones equivalentes:
 \begin{enumerate}
-    %TODO: union rara
-    \item $\nexists X = U \sqcup Y$ abiertos $\neq \emptyset$.
-    \item $\nexists X = F \sqcup C$ cerrados $\neq \emptyset$.
+    \item $\nexists U \sqcup V = X$, abiertos $\neq \emptyset$.
+    \item $\nexists F \sqcup C = X$, cerrados $\neq \emptyset$.
     \item $\nexists E \subsetneq X$ abierto y cerrado $\neq \emptyset$.
 \end{enumerate}
 \end{defi}
 \begin{demo}
-Equivalencia: $F = X \setminus V,\ C = X \setminus U,\ E = U = X \setminus V.$
+Equivalencia: $F = \underbrace{X \setminus V}_{= U},\ C = \underbrace{X \setminus U}_{= V},\ E = U = X \setminus V.$
 \end{demo}
 
 \begin{obs}
-$Y \subset X$ subespacio conexo: $\nexists Y \subset U \cup V$ abierto de $X$, 
+$Y \subset X$ \textbf{subespacio conexo}: $\nexists U \cup V \supset Y$ abierto de $X$, 
 \[
 \begin{cases}
     U \cap Y \neq \emptyset\\
@@ -24,6 +23,7 @@ $Y \subset X$ subespacio conexo: $\nexists Y \subset U \cup V$ abierto de $X$,
     U \cap V \cap Y = \emptyset
 \end{cases} 
 \]
+Esta definición es equivalente a comprobar que $Y$ es conexo en su topología relativa.
 \end{obs}
 
 \begin{ej}[Fundamental]
@@ -32,23 +32,24 @@ $Y \subset X$ subespacio conexo: $\nexists Y \subset U \cup V$ abierto de $X$,
     \item $\mathbb{Q}$ no es conexo. De hecho, es \textbf{totalmente disconexo}.
     \begin{demo}
         %TODO: Dibujo y el hace algo con Y \subset Q
-        Si dividimos $\mathbb{R}$ en dos segmentos disjuntos separados por $\alpha \in \mathbb{R} \setminus \mathbb{Q}$ tenemos que $\mathbb{Q} = \mathbb{Q} \cap \left[ -\infty, \alpha \right) \sqcup \left[ \alpha, +\infty \right] \cap \mathbb{Q}$ que son abiertos en $\mathbb{Q}$ y disjuntos.
+        %Hay que ver que el único subespacio conexo es {q} q in Q
+        Si dividimos $\mathbb{R}$ en dos segmentos disjuntos separados por $\alpha \in \mathbb{R} \setminus \mathbb{Q}$ tenemos que $\mathbb{Q} = \mathbb{Q} \cap \left( \left[ -\infty, \alpha \right) \sqcup \left( \alpha, +\infty \right] \right)$ que son abiertos en $\mathbb{Q}$ y disjuntos.
     \end{demo}
 
     \item Sorgenfrey: Solo son conexos los puntos.
     \item $\left( 0, 1 \right) \subset \mathbb{R}_u$ es conexo. 
+    \item\label{prop:conexos_rn} Mantras generales $\Rightarrow$ segmentos en $\mathbb{R}^n$, estrellados y convexos son conexos.
 \end{itemize}
 
-Mantras generales $\Rightarrow$ segmentos en $\mathbb{R}^n$, estrellados? y conexos son conexos.
 \end{ej}
 
 \begin{theo}[del pivote. Mantra 1] 
-Sea $X = \bigcup_{i \in I} A_i$. Si $\bigcap_{i} A_i \neq 0$ y $A_i$ conexos $\forall i \in I \Rightarrow X$ conexo.
+Sea $X = \bigcup_{i \in I} A_i$. Si $\bigcap_{i \in I} A_i \neq 0$ y $A_i$ conexos $\forall i \in I \Rightarrow X$ conexo.
 \end{theo}
 \begin{demo}
-Tenemos que ver que $E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X$ es el total:
+Tenemos que ver que $\emptyset \neq E \ac X$ es el total:
 \begin{align*}
-    \emptyset \neq E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X &\Rightarrow E \cap A_i \stackrel[\text{cerr.}]{\text{ab.}}{\subset} A_i \xRightarrow{\text{conx.}} \begin{cases}
+    \emptyset \neq E \ac X &\Rightarrow E \cap A_i \ac A_i \xRightarrow{\text{conx.}} \begin{cases}
         E \cap A_i = \emptyset \text{, ó}\\
         E \stackrel{*}{\supset} A_i
     \end{cases}\\
@@ -59,17 +60,17 @@ Tenemos que ver que $E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X$ es el tot
 
 \begin{coro}[Variantes]
 \begin{enumerate}
-    \item $X = \bigcup_{i \in  I} A_i,\ \exists A_{i_0} \cap A_i \neq \emptyset$.
+    \item $X = \bigcup_{i \in  I} A_i,\ \exists A_{i_0} \cap A_i \neq \emptyset,\ \forall i \in I$.
     \begin{demo}
         $X = \bigcup_{i \in  I}\left( A_{i_0} \cup A_i \right)$ conexo por mantra $1$ y se aplica el mantra $1$.
     \end{demo}
-    \item Cadenas: $X = \underbrace{A_1 \cup \ldots \cup A_k \cup \ldots}_{\text{conexos}}\quad A_k \cap A_{k + 1} \neq \emptyset \Rightarrow X$ conexo.
+    \item \underline{Cadenas}: $X = \underbrace{A_1 \cup \ldots \cup A_k \cup \ldots}_{\text{todos conexos}}$ y $A_k \cap A_{k + 1} \neq \emptyset \Rightarrow X$ conexo.
     \begin{demo}
         Se usa el mantra $1$ dos veces:
         \[
         \begin{cases}
             X_k = \left(\left(\left(\left( \left( A_1 \cup A_2 \right) \cup A_3 \right) \ldots \right) \cup \right) A_{k-1}\right) \cup A_k\\
-            X = \bigcup_{k} \left( X_1 \cup \ldots \cup X_k \right) 
+            X = \bigcup_{k \in K} \left( X_1 \cup \ldots \cup X_k \right) 
         \end{cases} 
         \]
         %TODO: Imagen
@@ -80,20 +81,22 @@ Tenemos que ver que $E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X$ es el tot
 \end{enumerate} 
 \end{coro}
 
+Ahora vemos el contrarrecíproco del anterior resultado que es de vital importancia.
 \begin{prop}[Construcción de cadenas]
-$X$ conexo, $X = \bigcup_{i \in I} U_i$ recubrimiento abierto, $p, q \in X \Rightarrow \exists U_{i_0} \cup \ldots \cup U_{i_k}$ de $p$ a $q: p \in U_{i_0}, U_{i_{k - 1}} \cap U_{i_k} \neq \emptyset,\ q \in U_{i_r}$. 
+Sea $X$ conexo tal que $X = \bigcup_{i \in I} U_i$, recubrimiento abierto y $p, q \in X \Rightarrow \exists U_{i_0} \cup \ldots \cup U_{i_k}$ de $p$ a $q: p \in U_{i_0}, U_{i_{k - 1}} \cap U_{i_k} \neq \emptyset,\ q \in U_{i_r}$. 
 \end{prop}
 \begin{demo}
-Veamos que $A = \{x \in X: \exists U_{i_k} \text{ de } p \text{ a } x\} \neq \emptyset$ abierto y cerrado $\Rightarrow A = X$ y $q \in A$. Esto se debe a que: 
+Veamos que $A = \{x \in X: \exists U_{i_k} \text{, cadena, de } p \text{ a } x\} \neq \emptyset$ abierto y cerrado $\Rightarrow A = X$ y $q \in A$, es decir, para cualquier elemento de $X$ existe una cadena desde $p$ que es lo que buscamos. Esto se debe a que: 
 \begin{itemize}
-    \item No vacío: $\exists U_{i_0} \ni p$ y $U_{i_0}$ va de $p$ a $p$.
-    \item Abierto: $\exists U_{i_0}, \ldots, U_{i_r}$ de $p$ a $x \Rightarrow U_{i_r} \subset A$.
-    \item Cerrado: 
+    \item \underline{No vacío}: $\exists U_{i_0} \ni p$ y $U_{i_0}$ va de $p$ a $p$.
+    \item \underline{Abierto}: $\exists U_{i_0}, \ldots, U_{i_r}$ de $p$ a $x \Rightarrow U_{i_r} \subset A$, es decir, es entorno de todos sus puntos.
+    \item \underline{Cerrado}: 
     \begin{align*}
         y \in \overline{A} \text{ e } y \in U_{i\left( y \right)} &\Rightarrow A \cap U_{i\left( y \right)} \neq \emptyset\\
         &\Rightarrow \exists U_{i_0}, \ldots, U_{i_r} \text{ de } p \text{ a } x\in U_{i\left( y \right)}\\
         &\Rightarrow U_{i_0}, \ldots, U_{i_r}, U_{i\left( y \right)} \text{ de } p \text{ a } y
     .\end{align*}
+    Por tanto, $y \in A$, es decir, $A = \overline{A}$.
 \end{itemize}
 %TODO: Imagen
 \begin{center}
@@ -102,19 +105,18 @@ Veamos que $A = \{x \in X: \exists U_{i_k} \text{ de } p \text{ a } x\} \neq \em
 Con esto es un subconjunto de uno conexo, no vacío, abierto y cerrado, es decir, es el total.
 \end{demo}
 
-\begin{obs}
-Esto es el recíproco de pivote.
-\end{obs}
-
 \begin{prop}[Mantra 2]
-Imagen continua de conexo es conexo. 
+Imagen continua de un conexo es conexo. 
 \end{prop}
 \begin{demo}
-    $f: X \rightarrow Y$ continua, $\emptyset \neq E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} f\left( X \right) \xRightarrow{\text{cont.}} \emptyset \neq f^{-1}\left( E \right) \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X \Rightarrow f^{-1}\left( E \right) = X \Rightarrow E = f\left( X \right)$.
+Sea $f: X \rightarrow Y$ continua y $\emptyset \neq E \ac f\left( X \right) \xRightarrow{\text{cont.}} \emptyset \neq f^{-1}\left( E \right) \ac X \Rightarrow f^{-1}\left( E \right) = X \Rightarrow E = f\left( X \right)$.
 \end{demo}
 
 \begin{prop}[Mantra 3]
-Adherencia de conexo es conexo: $Y \subset X$ con $Y$ conexo y denso $\Rightarrow X$ conexo. 
+La adherencia de un conexo es conexo, es decir,
+\[
+Y \subset X \text{ con } Y \text{ conexo y denso} \Rightarrow X \text{ conexo.}
+\]
 \end{prop}
 \begin{demo}
     $\emptyset \neq E \stackrel[\text{cerr.}]{\text{ab.}}{\subset} X \Rightarrow E \cap Y \stackrel[\text{cerr.}]{\text{ab.}}{\subset} Y \Rightarrow \begin{cases}
@@ -128,7 +130,7 @@ Adherencia de conexo es conexo: $Y \subset X$ con $Y$ conexo y denso $\Rightarro
 \begin{enumerate}
     %TODO: Ejemplo de la esfera y del proyectivo.
 
-    \item $\left( 0, 1 \right) \stackrel{\text{denso}}{\subset} \left[ 0, 1 \right] \xRightarrow{\mathrm{M}3} \left[ 0, 1 \right]$ conexo. Con una interpolación: $\sigma\left( t \right) = \left( 1 - t \right) a + tb$ es homeomorfismo con $\left[ a, b \right] \subset \mathbb{R}^n \xRightarrow{\mathrm{M}2} \left[ a, b \right]$ es conexo. Aplicando ahora:
+    \item Por \ref{prop:conexos_rn}) tenemos que: $\left( 0, 1 \right) \stackrel{\text{denso}}{\subset} \left[ 0, 1 \right] \xRightarrow{\mathrm{M}3} \left[ 0, 1 \right]$ conexo. Con una interpolación: $\sigma\left( t \right) = \left( 1 - t \right) a + tb$ es homeomorfismo con $\left[ a, b \right] \subset \mathbb{R}^n \xRightarrow{\mathrm{M}2} \left[ a, b \right]$ es conexo. Aplicando ahora:
     \begin{itemize}
         \item Pivote: $E = \bigcup_{\substack{x \in E\\ \text{conx.}}} \left[ a, x \right]$ \underline{estrellado} (resp. de $a$): convexos, bolas abiertas y cerradas, rectángulos... 
         \item Mantra $2$: Trazas de curvas continuas $\sigma: \left[ 0, 1 \right] \rightarrow \mathbb{R}^n$.
@@ -179,10 +181,29 @@ $X \times Y$ conexo $\Leftrightarrow X$ y $Y$ conexo.
     \end{rcases} \xRightarrow{\text{Piv.}} \\
     \bigcup_{y \in Y} Z_y = X \times Y \text{ conx.} 
     \end{gather*}
-    %TODO: Imagen
-    \begin{center}
-        \includegraphics[scale=0.3]{images/dem_conx2_conx} 
-    \end{center}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \draw[gray] (0,0) rectangle (2,2);
+            \foreach \y in {0.1, 0.2, ..., 2}
+                {
+                    \draw[gray,-] (0,\y) -- (2,\y);
+                }
+            \node at (0,1.4) {\tiny\textbullet};
+            \node at (0,1.4) [left] {\tiny $y$};
+
+            \node[red] at (1.4,0) {\tiny\textbullet};
+            \node at (1.4,0) [below] {\tiny $a$};
+
+            \draw[red,-] (1.4,0) -- (1.4,2);
+            \node[red] at (1.4,2) {\tiny\textbullet};
+            \node[red] at (1.4,2) [above] {\scriptsize $\left\{ x \right\} \times Y$};
+
+            \node at (-0.1,2) [above] {$Y$};
+            \node at (2,-0.1) [right] {$X$};
+        \end{tikzpicture}
+        \caption{\textit{La figura nos representa como el producto de dos conexos, es conexo. Cada línea del cuadrado es un $X \times \left\{ y \right\}.$}}
+    \end{figure}
 \end{itemize}
 \end{demo}
 
