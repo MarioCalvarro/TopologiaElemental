@@ -3,72 +3,78 @@
 
 \section{Concepto}%
 \label{sec:concepto}
-\begin{defi}
-Un espacio $X$ es \textbf{Hausdorff} o $T_2$ si para cada par de puntos distintos $x, y \in X$ existen entornos disjuntos:
-\[
-\forall x, y \in X,\ \exists V^x, V^y: V^x \cap V^y = \emptyset
-\]
+En este apartado vamos a estudiar la noción de separación en profundidad. Veremos que propiedades tienen los espacios que poseen esta característica y qué consecuencias tiene tenerla sobre el resto de la topología del mismo.
+
+\begin{defi}[Espacio Hausdoff o $T_2$]
+Sea $X$ un espacio topológico, decimos que es \textbf{Hausdorff o $T_2$} si y sólo si para todo par de puntos distintos $x, y \in X$ existen algunos entornos de cada uno disjuntos entre sí.
 \end{defi}
+
 Hay otras formas de separación, más débiles o más fuertes, pero nos contentaremos con ésta al ser la más intuitiva.
+
+\begin{prop}
+Sea $X$ un espacio topológico, si es Hausdorff podemos encontrar dichos entornos abiertos y disjuntos.
+\end{prop}
+\begin{demo}
+Para cada entorno $V \ent X$, por ser entorno, existe $U\ab X$ y $U\subset V$ que también es entorno. Escogiendo a esos dos abiertos (uno en cada entorno) siguen siendo disjuntos y cumplen la definición de $T_2$.
+\end{demo}
+
+\begin{prop}
+Sea $X$ un espacio topológico Hausdorff, entonces los puntos son cerrados.
+\end{prop}
+\begin{demo}    
+Para cualquier $x \in X$ y cualquier $y \in X \setminus \left\{ x \right\}$, por ser Hausdorff, existe un entorno abierto $U^y \not\ni x$. Por tanto, podemos escribir el complementario de $\{x\}$ como la unión de todos esos entornos para los puntos que no son $x$, es decir, $X \setminus \{x\} = \bigcup_{y \neq x} U^y$ y como el complementario es unión de abiertos, $\{x\}$ es cerrado.
+\end{demo}
 
 \begin{obs}
 \begin{enumerate}
-    \item Si existen entornos disjuntos, existen entornos abiertos disjuntos.
-    \begin{demo}
-        $\forall V^{\text{ent.}},\ \exists U^{\text{ent. ab.}}: V \supset U$
-    \end{demo}
-    \item Si $X$ es Hausdorff, los puntos son cerrados.
-    \begin{demo}    
-    Sea $x \in X$
-    \[
-    \forall y \in X \setminus \left\{ x \right\},\ \exists U^y \not\ni x \Rightarrow X \setminus \{x\} = \bigcup_{y \neq x} U^y  \text{ es abierto.} 
-    \]
-    También lo podemos ver como entorno de todos sus puntos.
-    \end{demo}
-    \item $\left( X, \mathcal{T}_{\text{CF}} \right)$ no es Hausdorff. Sin embargo, tiene puntos cerrados.
-    \begin{demo}
-        No es Hausdorff porque, si $X$ es infinito, dos abiertos cualesquiera se cortan.
-        Sean $U_1, U_2 \in \mathcal{T}_{\text{CF}} \Rightarrow X \setminus U_1, X \setminus U_2$ son finitos y como $X$ es infinito $\Rightarrow \exists x \not\in X \setminus U_1 \cup X \setminus U_2 \Rightarrow x \in U_1 \cap U_2$.
-    \end{demo}
+    \item Un espacio topológico con la topología de los complementarios finitos $\left( X, \mathcal{T}_{\text{CF}} \right)$ no es Hausdorff y, sin embargo, tiene puntos cerrados.
+    
+    No es Hausdorff porque, si $X$ es infinito, dos abiertos cualesquiera se cortan ya que si cogemos dos abiertos $U_1, U_2 \in \mathcal{T}_{\text{CF}}$, como sus complementarios $X \setminus U_1$ y $X \setminus U_2$ son finitos y $X$ es infinito, entonces siempre podremos encontrar un $x \not\in X \setminus U_1 \cup X \setminus U_2$, es decir, que $x \in U_1 \cap U_2$. 
 
-    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es Hausdorff. Como $\mathcal{T}_{u} \subset \mathcal{T}_{\text{rad}}$, esta última también es Hausdorff.
-    \begin{demo}    
-    Sean $x \neq y \Rightarrow B\left( x, \varepsilon \right) \cap B\left( y, \varepsilon \right) = \emptyset$ si $\varepsilon < \frac{\lVert x - y \rVert}{2}$.
-    \end{demo}
+    \item Si una topología contiene a una topología Hausdorff, entonces también es Hausdorff.
+    
+    Este es precisamente el caso de la radial $\mathcal{T}_{\text{rad}}$ que contiene a la usual $\mathcal{T}_{u}$, que es Hausdorff.
+	Que la usual es Hausdorff es sencillo, pues para dos puntos $x$ e $y$ distintos basta con escoger $B\left( x, \varepsilon \right)$ y $B\left( y, \varepsilon \right)$ que son disjuntos si tomamos $\varepsilon < \frac{\lVert x - y \rVert}{2}$. Ahora ver que la radial es Hausdorff es trivial, pues como los abiertos usuales son abiertos radiales podemos coger las mismas bolas como entornos.
 
-    \item En $\left( X, \mathcal{T}_a \right)$ el punto $a$ no es cerrado. Por lo tanto no es Hausdorff. 
-    \begin{demo}
-    Veamos que $a$ no es cerrado: $a \not\in X \setminus \{a\} \Rightarrow X \setminus \{a\}$ no es abierto: $\forall x \neq a, U^x \supset \{a, x\} \ni a$.   
-    \end{demo}
+    \item En la topología del punto $\left( X, \mathcal{T}_a \right)$ el punto clave $a$ no es cerrado, lo que impide que sea Hausdorff. 
+    
+    Si el punto $a$ fuera cerrado, el conjunto $X\setminus\{a\}$ sería abierto, pero en esta topología la definición de abierto es contener al punto $a$ y precisamente $X\setminus\{a\}$ no lo contiene por definición.
 \end{enumerate}
 \end{obs}
 
 \begin{prop}
-Sean $f, g: X \rightarrow Y$ continuas con $Y$ Hausdorff $\Rightarrow \{f = g\} = \{x \in X : f\left( x \right) = g\left( x \right)\}$ es cerrado.
+Sean $f, g: X \rightarrow Y$ dos funciones continuas e $Y$ un espacio topológico Hausdorff, entonces el conjunto de puntos donde coinciden:
+\[
+\{f = g\} = \{x \in X : f\left( x \right) = g\left( x \right)\}
+\]
+es un conjunto cerrado.
 \end{prop}
 \begin{demo}
-En primer lugar, veamos que si un punto cumple $f\left( x \right) \neq g\left( x \right) \Rightarrow$ tiene un entorno cuyos puntos cumplen todos que $f\left( y \right) \neq g\left( y \right)$. Con esto, tendremos que $\left\{ f \neq g \right\}$ es entorno de todos sus puntos y, por tanto, abierto.
-\begin{enumerate}
-    \item $f\left( x \right) \neq g\left( x \right) \xRightarrow{T_2} \exists V^{f\left( x \right)} \cap V^{g\left( x \right)} \stackrel{*}{=} \emptyset \xRightarrow{\text{cont.}} f^{-1}V^{f\left( x \right)} \cap g^{-1}V^{g\left( x \right)} = W^x$ entorno de $x$ (cada uno es entorno de $x$ y no son vacíos porque $x$ pertenece a ellos).
+Para demostrar que nuestro conjunto es cerrado habrá que demostrar que el complementario es abierto, es decir, que si un punto cumple $f\left( x \right) \neq g\left( x \right)$ entonces habrá un entorno suyo cuyos puntos también verificarán $f\left( y \right) \neq g\left( y \right)$. Con esto, tendremos que $\left\{ f \neq g \right\}$ es entorno de todos sus puntos y, por tanto, abierto.
 
-    \item Vemos que $W^x \cap \{f = g\} = \emptyset: y \in V^x \Rightarrow \begin{cases}
+Si $f\left( x \right) \neq g\left( x \right)$, entonces por ser $T_2$, $\exists V^{f\left( x \right)} \cap V^{g\left( x \right)} = \emptyset$. Como la aplicación $f$ es continua, entonces $f^{-1}V^{f\left( x \right)}$ y $g^{-1}V^{g\left( x \right)}$ son entornos de $x$ y, por tanto, su intersección $f^{-1}V^{f\left( x \right)} \cap g^{-1}V^{g\left( x \right)} = W^x$ es también entorno de $x$ (y es no vacío porque $x$ pertenece a él).
+
+Si observamos ahora la intersección de $W^x$ con el complementario $\{f=g\}$, entonces vemos que:
+\[
+\forall y \in V^x \Rightarrow
+\begin{cases}
         f\left( y \right) \in V^{f\left( x \right)} \\
         g\left( y \right) \in V^{g\left( x \right)} 
-    \end{cases} \xRightarrow{*} f\left( y \right) \neq g\left( y \right)$
-
-    \item[1. + 2.] $X\setminus \{f = g\} = \{f \neq g\}$ es entorno de todos sus puntos, luego abierto, es decir, $\{f = g\}$ es cerrado.
-\end{enumerate}
+\end{cases}
+\stackrel{V^{f(x)}\cap V^{g(x)} = \emptyset}{\Rightarrow} f \left( y \right) \neq g\left( y \right)
+\]
+es decir, que $W^x\cap \{f=g\} = \emptyset$, luego $W^x\subset \{f\neq g\}$.
 \end{demo}
 
-\begin{coro}
-Si $\left\{ f = g \right\}$ es un subconjunto denso, es decir, $\exists A \subset X: \overline{A} = X$ y $\left\{ f = g \right\}_A$, entonces $f \equiv g$.
+\begin{coro}[Extensión por continuidad a la adherencia]
+Sean $f, g: X \rightarrow Y$ dos funciones continuas, $Y$ un espacio topológico Hausdorff y $\left\{ f = g \right\}$ es denso\footnote{Esto quiere decir que existe un subconjunto $A\subset X$ denso donde las funciones coinciden.}, entonces $f \equiv g$.
 \end{coro}
 \begin{demo}
-$f|_A = g|_A \Rightarrow \{f = g\} \supset A \xRightarrow{\text{prop.}} \overline{\left\{ f = g \right\}} = \{f = g\} \supset \overline{A} = X \Rightarrow \boxed{X = \left\{ f = g \right\}}$.
+Si $f$ y $g$ coinciden en un subconjunto $A$, entonces $\{f = g\} \supset A$ y como $\{f = g\}$ es cerrado, entonces $\{f = g\} \supset \overline{A}$. Como $A$ es denso, entonces $\overline{A} = X$ y esto implica que $\{f=g\}\supset X$, es decir, que $\{f=g\} = X$.
 \end{demo}
 
 \begin{obs}
-Este último resultado nos permite extender de forma única una función continua $f$ a su adherencia.
+Este último resultado es importante, pues nos permite extender con continuidad (y de forma única) una función a su adherencia.
 \end{obs}
 
 \begin{ej}[Importante]
@@ -87,9 +93,8 @@ Porque los puntos de $Y$ son cerrados y la preimagen de cerrados por continuidad
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento}
-Se trata de saber si la propiedad se conserva por las construcciones que hemos visto.
+En este apartado estudiamos como comporta la propiedad definida con respecto a las construcciones del tema \nameref{cha:construcciones}. Se trata de ver cuándo se conserva, cuándo no y qué hipótesis podemos añadir para que se conserve en los casos que no.
 
-Se tiene que:
 \begin{table}[H]
 \centering
 \begin{tabular}{| c | c | c | c | c |}
@@ -99,24 +104,29 @@ Se tiene que:
     $T_2$ & $\Rightarrow$ & \ding{55} & $\Leftrightarrow$ & $\Leftrightarrow$\\
     \hline
 \end{tabular}
-\caption{\textit{Tabla que nos indica como se conserva la propiedad Hausdorff en distintas construcciones. Las sumas y los productos son finitos.}}
+\caption{Tabla de comportamiento de la separación.}
 \end{table}
+
 \begin{demo}
 \begin{enumerate}
-    \item\label{it:subespacio_hausdorff} Veamos como los subespacios conservan la propiedad: 
+    \item \textbf{Subespacios}:
+    
+    Consideremos un subespacio $Y\subset X$ de un espacio $X$ que es Hausdorff. Por ser $X$ Hausdorff, cualesquiera dos puntos $y_1, y_2 \in Y$ verifican que $\exists V^{y_1} \cap V^{y_2} = \emptyset$ donde $V^{y_1}$ y $V^{y_2}$ son entornos en $X$. Pues si tomamos los correspondientes entornos, pero en la topología relativa a $Y$, entonces $\left( V^{y_1} \cap Y \right) \cap \left( V^{y_2} \cap Y \right) = \emptyset$ vemos que siguen sin cortarse.
 
-    Sea $Y \subset X = T_2: y_1, y_2 \in Y \Rightarrow \exists \underbrace{V^{y_1}}_{\text{En } X}  \cap \underbrace{V^{y_2}}_{\text{En } X} = \emptyset \Rightarrow \underbrace{\left( V^{y_1} \cap Y \right)}_{\text{En } Y}  \cap \underbrace{\left( V^{y_2} \cap Y \right)}_{\text{En } Y} = \emptyset$.
-
-    \item Veamos un contraejemplo de un cociente que no conserva Hausdorff: 
-
-    Sea $Y = \faktor{\mathbb{R}}{\mathbb{Q}}: \begin{rcases}
+    \item \textbf{Cociente}:
+    
+    Para demostrar que no se cumple basta con dar un contraejemplo: consideremos el cociente y los respectivos puntos
+\[
+Y = \faktor{\mathbb{R}}{\mathbb{Q}}: \begin{rcases}
         y_1 = \mathbb{Q} \in Y\\
         y_2 = \sqrt{2} \in Y
-    \end{rcases} \nexists V^{y_1} \cap V^{y_2} = \emptyset: $ todo entorno abierto de $\sqrt{2}$ contiene racionales, luego al saturar, contiene $\mathbb{Q}$. Con esto, todo abierto en el cociente (recordemos que en el cociente los abiertos son imágenes por proyección de los saturados) contiene este punto y, por tanto, la intersección nunca es disjunta.
+    \end{rcases}
+\]
+y veamos que $\nexists V^{y_1} \cap V^{y_2} = \emptyset$. Cualquier entorno abierto de $\sqrt{2}$ contiene racionales (por su densidad en $\mathbb{R}$), por tanto al saturar contiene $\mathbb{Q}$. Como todo abierto en el cociente es proyección de un saturado, cualquier abierto contiene al punto gordo $\mathbb{Q}$ y, en consecuencia, la intersección nunca es disjunta.
 
-    \item Veamos que el producto conserva la propiedad: 
-
-    $X$ y $Y$ son ambos $T_2 \Leftrightarrow X \times Y$ Hausdorff.
+    \item \textbf{Producto}
+    
+    Veamos que se da la doble implicación, es decir, que $X$ e $Y$ son ambos $T_2$ si y sólo si $X \times Y$ es $T_2$.
     \begin{itemize}
         \item[$\Rightarrow)$] Tomamos $\left( x_1, y_1 \right) \neq \left( x_2, y_2 \right) \in X \times Y$. Esto es posible en dos casos:
         \begin{itemize}
@@ -168,18 +178,16 @@ Se tiene que:
             \draw[-, gray, dashed] (y2) -- (1.4,0.5);
         \end{tikzpicture}
         \captionsetup{font={color=gray}}
-        \caption{\textit{Siendo $x_1 \neq x_2$ vemos que es posible separar los puntos $\left( x_1, y_1 \right)$ y $\left( x_2, y_2 \right)$ simplemente separando en el factor $X$ del producto.}}
+        \caption{Separación en el producto gracias a la separación en el factor.}
     \end{figure}
 
-    \item[$\Leftarrow)$] Sabemos que $X \approx X \times \left\{ y_0 \right\} \subset X \times Y$ que es $T_2 \xRightarrow{\ref{it:subespacio_hausdorff}.} X \times \left\{ y_0 \right\}$ es $T_2$ y, por homeomorfismo, $X$ también.
+    \item[$\Leftarrow)$] Sabemos que $X \approx X \times \left\{ y_0 \right\} \subset X \times Y$. Como $X\times Y$ es $T_2$ y hemos visto que esta propiedad se hereda por subespacios, entonces $X_0\times \left\{ y_0 \right\}$ es $T_2$ y, por homeomorfismo, $X$ también.
     \end{itemize} 
 
-    \item Veamos que la suma conserva la propiedad:
-
-    $X$ y $Y$ son ambos $T_2 \Leftrightarrow X + Y$ es Hausdorff.
-
-    Único comentario: $x \in X$ e $y \in Y \Rightarrow X = V^x, Y = V^y$ y $X \cap Y = \emptyset$ (recordemos que hemos definido la suma como unión disjunta).
-
-    Si $x$ e $y$ pertenecen ambos a $X$ ó a $Y$ simplemente aplicamos que son $T_2$.
+    \item \textbf{Suma}:
+    
+    Recordemos que se ha definido la suma como la unión disjunta de los sumandos. Esto quiere decir que para cualquier $x\in X$ el propio $X$ es entorno de $x$ y lo mismo ocurre con $Y$ para sus puntos. Esto quiere decir que $X=V^x$, $Y=V^y$ y $V^x \cap V^y = X\cap Y = \emptyset$. Por tanto, los puntos de distintos conjuntos lo verifican.
+    
+    Si $X$ y $Y$ son ambos $T_2$, entonces la suma lo es porque hemos visto que entre conjuntos se cumple y si son $T_2$ dentro del propio conjunto se cumple también. Pero es que además el recíproco es cierto, pues si se cumple en la suma se debe cumplir en cada uno de los conjuntos.
 \end{enumerate}    
 \end{demo}

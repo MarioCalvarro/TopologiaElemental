@@ -633,11 +633,10 @@ Tal y como venimos haciendo en las construcciones anteriores, vamos a tratar de 
 Sin embargo, se puede demostrar sin demasiada dificultad que el conjunto  $\{U_1 \times \cdots \times U_r \mbox{ donde } U_i \in \mathcal{T}_i\}$ caracteriza una topología en $Y$ de la que es base de abiertos y, de esta manera, ahora sí tenemos determinada de modo único la topología buscada.
 
 \begin{defi}[Topología Producto]
-Sea $Y := X_1\times \cdots \times X_n$ un producto cartesiano de espacios topológicos y $p_i : Y \rightarrow (X_i, \mathcal{T}_i)$ las proyecciones sobre cada uno de sus factores, definimos la \textbf{topología producto} como aquella determinada por la base de abiertos:
+Sea $Y := X_1\times \cdots \times X_n$ un producto cartesiano de espacios topológicos y $p_i : Y \rightarrow (X_i, \mathcal{T}_i)$ las proyecciones sobre cada uno de sus factores, definimos la \textbf{topología producto} $\prod_{i=1}^n \mathcal{T}_i$ como aquella determinada por la base de abiertos:
 \[
 \mathcal{B} = \left\{ U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \right\}
 \]
-y la denotamos por $\mathcal{T}_1 \times \ldots \times \mathcal{T}_r$.
 \end{defi}
 
 \begin{ej}
@@ -865,59 +864,59 @@ En una topología producto todo ``se genera en productos''.
 
 
 %TODO: Cambiar e_i por j_i?
-\section{Sumas (finitas)}%
+\section{Sumas finitas}%
 \label{sec:sumas_finitas}
-Supongamos que tenemos $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow Y = X_1 + \ldots + X_r = \left( X_1 \times \left\{ 1 \right\} \right) \cup \ldots \cup \left( X_r \times \left\{ r \right\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ (ponemos los índices para hacerlos disjuntos) y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $Y$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
+El objetivo de esta construcción es, dada una unión\footnote{Los índices $i$ de las expresiones $X_i\times\{i\}$ se utilizan para poder utilizar el mismo conjunto como dos sumandos distintos y diferenciarlos entre sí (pues de otra manera la unión de ambos sería solo uno de ellos).} $Y := X_1 + \cdots + X_r := X_1 \times \{1\} \cup \cdots \cup X_n\times\{n\}$, generar una topología que garantice la continuidad de las aplicaciones $j_i: \left( X_i, \mathcal{T}_i \right) \rightarrow Y$ al ser equipada sobre el mismo, es decir, que haga continua la suma desde cada sumando. Inmediatamente uno repara en que la trivial sobre $Y$ cumple los requisitos. Sin embargo, el interés está en saber cuál es la topología más fina que hace las $j_i$ continuas.
 
-Debido a que, $\forall U_i \in \mathcal{T}_i,\ e_i^{-1}\left( U_i \times \left\{ i \right\} \right)$ debe ser abierto, podemos definir lo siguiente:
-\begin{defi}
-Llamamos \textbf{topología suma}, $\sum_{i=1}^{k} \mathcal{T}_i$, a aquella que viene determinada por la siguiente base:
+De nuevo, vamos a tratar de introducir todo lo posible sin violar la condición de continuidad como abierto en la topología. En primer lugar, nos damos cuenta de que cualquier abierto $U_i \in \mathcal{T}_i$ de una de las topologías concretas es preimagen $j_i^{-1}\left( U_i \times \left\{ i \right\} \right)$, luego si estos son abiertos respetan la definición de continuidad. Como son los únicos sobre los manejamos algo que podamos utilizar, la idea es proponer como base de la topología suma $\mathcal{T}_1 + \cdots + \mathcal{T}_n$ el conjunto $B := \{U_1\times\{1\}, \cdots, U_n\times\{n\} : U_i \in \mathcal{T}_i\}$.
+
+\begin{defi}[Topología Suma]
+Sea $Y := X_1 + \cdots + X_r := X_1 \times \{1\} \cup \cdots \cup X_n\times\{n\}$ la unión de espacios topológicos $(X_i, \mathcal{T}_i)$ y $j_i: \left( X_i, \mathcal{T}_i \right) \rightarrow Y$ la inclusión de cada sumando en el total, definimos la \textbf{topología suma} $\sum_{i=1}^{k} \mathcal{T}_i$ como aquella determinada por base de abiertos:
 \[
-\mathcal{B} = \left\{ U_1 \times \left\{ 1 \right\}, \ldots, U_r \times \left\{ r \right\}: U_i \in \mathcal{T}_i, 1 \le i \le r \right\}
+\mathcal{B} = \left\{ U_1 \times \left\{ 1 \right\}, \ldots, U_r \times \left\{ r \right\}: U_i \in \mathcal{T}_i \right\}
 \]
 \end{defi}
 
 \begin{obs}
-Tenemos que los $\left\{ i \right\} \times X_i \in \sum_{i=1}^{r} \mathcal{T}_i$ son sumandos abiertos y cerrados (porque el complementario es la intersección del resto de sumandos que son abiertos?).
+Por como se ha definido la topología, es trivial ver que cada sumando $X_i \times \left\{ i \right\}$  es abierto en la topología suma $\sum_{i=1}^{r} \mathcal{T}_i$. Pero es que además también son cerrados, pues su complementario $Y \setminus (X_i \times \{i\}) = \bigcup_{j \neq i} (X_j \times\{j\})$ es unión de abiertos, es decir, abierto.
 \end{obs}
 
 \begin{prop}
 Con la anterior definición sabemos que 
 \[
-e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right),\ \forall i \in \left\{ 1, \ldots, r \right\}
+j_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right),\ \forall i \in \left\{ 1, \ldots, r \right\}
 \]
 es inmersión abierta y cerrada.
 \end{prop}
 \begin{demo}
+Para probar que es inmersión hay que probar que la aplicación anterior es un homeomorfismo. Para empezar, por construcción, la aplicación es continua y además biyectiva, pues manda el conjunto a sí mismo conjuntistamente hablando. Ahora basta probar que es abierta y cerrada:
 \begin{itemize}
-    \item Inmersión abierta: $e_i\left( U_i \right) = U_i \times \{i\} \in \mathcal{T}$
-    \item Cerrada: $Y\setminus e_i\left( X_i \right) = Y \setminus X_i \times \{i\} = \bigcup_{j \neq i} X_j \times \{j\} \in \mathcal{T}$
+    \item Abierta: $j_i\left( U_i \right) = U_i \times \{i\} \in \mathcal{T}$
+    \item Cerrada: $Y\setminus j_i\left( U_i \right) = Y \setminus U_i$ que es cerrado en $\sum \mathcal{T}_i$.
 \end{itemize}
 \end{demo}
 
 %TODO: Fix teorema
 \begin{theo}[Caracterización topología suma]
-Sea $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
-    \[
-    \mathcal{T}' = \mathcal{T}_1 + \ldots + \mathcal{T}_r \Leftrightarrow  
-    \]
-    \begin{equation}\label{eq:prop_universal_sum}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
-    \end{equation}
-
+Sea $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $j_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( Y, \mathcal{T}' \right)$:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(X) {$\left( X_i, \mathcal{T}_i \right)$};
             \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
             \node(Z) [below of=Y] {$\left( Z, \mathcal{T}'' \right)$};
-            \draw[->](X) to node {$e_i$}(Y);
-            \draw[->](X) to node [left] {$g|_{X_i} = g \circ e_i$}(Z);
+            \draw[->](X) to node {$j_i$}(Y);
+            \draw[->](X) to node [left] {$g|_{X_i} = g \circ j_i$}(Z);
             \draw[->](Y) to node {$g$}(Z);
             \end{tikzpicture}
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_sum_finitas}
     \end{figure}
+
+entonces $\mathcal{T}' = \mathcal{T}_1 + \ldots + \mathcal{T}_r$ si y sólo si:
+\[
+g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.}
+\]
 \end{theo}
 %TODO: Tal vez hacerlo bien?
 \begin{demo}
