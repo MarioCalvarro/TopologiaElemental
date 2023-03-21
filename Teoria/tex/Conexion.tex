@@ -183,7 +183,6 @@ Y \subset X \text{ con } Y \text{ conexo y denso} \Rightarrow X \text{ conexo.}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_conx}
-%TODO: Fix tabla
 \begin{table}[H]
 \centering
 \begin{tabular}{| c | c | c | c | c |}
@@ -246,25 +245,25 @@ $X \times Y$ conexo $\Leftrightarrow X$ y $Y$ conexo.
 \section{Componentes}%
 \label{sec:componentes}
 \begin{defi}
-Una \underline{componente conexa} (c.c) de $X$ es un subespacio conexo maximal.
+Una \textbf{componente conexa} (c.c) de $X$ es un subespacio conexo maximal.
 \end{defi}
 
-\begin{prop}
+\begin{prop}[Construcción]
 \begin{enumerate}
-    \item $\forall a \in X.\ C\left( a \right) = \bigcup_{a \in A \text{conx.}} A$ es conexo (pivote), $a \in C\left( a \right)$.
-    \item $E \subset X$ conexo: 
+    \item $\forall a \in X$ definimos: $C\left( a \right) = \bigcup_{a \in A \text{conx.}} A$ es conexo (por t. pivote), $a \in C\left( a \right)$.
+    \item $E \subset X$ conexo tal que $C\left( a \right) \cap E \neq \emptyset \Rightarrow$
     \[
-    C\left( a \right) \cap E \neq \emptyset \Rightarrow C\left( a \right) \cup E \text{ conx. (pivote)} \Rightarrow C\left( a \right) \cup E \text{ es uno de los } A \text{ de } C\left( a \right) \Rightarrow E \subset C\left( a \right) 
+    C\left( a \right) \cup E \text{ conx. (pivote)} \Rightarrow C\left( a \right) \cup E \text{ es uno de los } A \text{ de } C\left( a \right) \Rightarrow E \subset C\left( a \right) 
     \]
     Luego, 
     \begin{itemize}
         \item $C\left( a \right)$ maximal $\Rightarrow$ componente conexa.
-        \item $a \neq b: C\left( a \right) = C\left( b \right)$ ó $C\left( a \right) \cap C\left( b \right) = \emptyset$ [Usar $E = C\left( b \right)$]
+        \item $a \neq b: C\left( a \right) = C\left( b \right)$ ó $C\left( a \right) \cap C\left( b \right) = \emptyset$. Usamos $E = C\left( b \right)$.
     \end{itemize}
 
     \item $\overline{C\left( a \right)}$ conexo (mantra adh.) $\Rightarrow \overline{C\left( a \right)} = \underbrace{C\left( a \right)}_{\text{cerr.}}$ (maximalidad)
     %TODO: Fix
-    \item[1. + 2. + 3.] $\Rightarrow X = \bigsqcup_{C \stackrel{\text{c.c}}{\subset}  X} C$ es una \underline{partición} en cerrados disjuntos.
+    \item[1. + 2. + 3.] $\Rightarrow X = \bigsqcup_{C \stackrel{\text{c.c}}{\subset}  X} C$ es una \underline{partición} de cerrados disjuntos.
 \end{enumerate} 
 \end{prop}
 
@@ -281,36 +280,41 @@ Una \underline{componente conexa} (c.c) de $X$ es un subespacio conexo maximal.
 \end{ej}
 
 \begin{defi}
-Un espacio cuyas componentes son los puntos se llama \underline{totalmente disconexo}. 
+Un espacio cuyas componentes son los puntos se llama \textbf{totalmente disconexo}. 
 \end{defi}
 
 \begin{prop}
-Las componentes conexas de $X \times Y$ son los puntos de componentes conexas.
+Las componentes conexas de $X \times Y$ son los productos de componentes conexas.
 \end{prop}
 \begin{demo}
-$C \subset \underbrace{X}_{\xrightarrow{p} X} \times \underbrace{Y}_{\xrightarrow{q} Y} \Rightarrow p\left( C \right)$ y $q\left( C \right)$ conexos (imagen continua) $\Rightarrow \begin{cases}
+$C \stackrel{\text{c.c}}{\subset} \underbrace{X}_{\xrightarrow{p} X} \times \underbrace{Y}_{\xrightarrow{q} Y} \Rightarrow p\left( C \right)$ y $q\left( C \right)$ conexos en $X$ e $Y$, respectivamente, (imagen continua) $\Rightarrow \begin{cases}
     p\left( C \right) \subset E \stackrel{\text{c.c}}{\subset}  X\\
     q\left( C \right) \subset F \stackrel{\text{c.c}}{\subset}  Y
-\end{cases} \Rightarrow C \subset E \times F \xRightarrow{\text{Max. de} C} C = E\times F$.
+\end{cases} \Rightarrow C \subset E \times F \xRightarrow{\text{Max. de } C} C = E\times F$.
 \end{demo}
 
 \section{Conexión local}%
 \label{sec:conexion_local}
 \begin{defi}
-$X$ es \underline{localmente conexo}  si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos.
+$X$ es \textbf{localmente conexo}  si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos.
 \end{defi}
 
 \begin{prop}
-$X$ es localmente conexo $\Leftrightarrow$ la componente conexa de un abierto es abierta.
+$X$ es localmente conexo $\Leftrightarrow$ las componentes conexas de un abierto son abiertas:
+\[
+U \ab X \text{ y } C \stackrel{\text{c.c}}{\subset} U \Rightarrow C \ab X.
+\]
 \end{prop}
 \begin{demo}
 \begin{itemize}
-    \item $\Rightarrow)$ Si $x \in C \cerr U \ab X \Rightarrow \exists \underbrace{U^x}_{\text{ab. conx.}} \subset U \Rightarrow U^x \subset C \Rightarrow C \stackrel{\text{ab.}}{X}$.
-    \item $\Leftarrow)\ \mathcal{B}^x = \{C\left( x \right) \stackrel{\text{c.c}}{\subset} U \ab X : x \in U\}$. Con $C\left( x \right)$ abierto por ser c.c de abierto.
+    \item[$\Rightarrow)$] Si $x \in C \stackrel{\text{c.c}}{\subset} U \ab X \Rightarrow \exists \underbrace{U^x}_{\text{ab. conx.}} \subset U \Rightarrow U^x \subset C \Rightarrow C \ab X$. Es decir, $U$ es entorno de todos sus puntos.
+    \item[$\Leftarrow)$] $ \mathcal{B}^x = \{C\left( x \right) \stackrel{\text{c.c}}{\subset} U \ab X : x \in U\}$. Con $C\left( x \right)$ abierto por ser c.c de abierto.
 \end{itemize}
 \end{demo}
 
-\underline{Ejercicio}: $X$ es localmente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos.
+\begin{enun}
+$X$ es localmente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos.
+\end{enun}
 
 \begin{ej}[Esencial]
 $\{0, \frac{1}{k} : k \ge 1\} = Y \subset \mathbb{R}_u$ \underline{no} es localmente conexo. 
@@ -323,28 +327,36 @@ $\{0, \frac{1}{k} : k \ge 1\} = Y \subset \mathbb{R}_u$ \underline{no} es localm
 \end{demo}
 \end{ej}
 
-\underline{Ejercicio}:
+\begin{enun}
 \begin{enumerate}
     \item Analizar una sucesión de segmentos que convergen a otro:
-    \begin{center}
-        \includegraphics[scale=0.3]{images/suc_conv_otro} 
-    \end{center}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \foreach \x in {0, 0.005, 0.01, 0.02, 0.035, 0.1, 0.25, 0.5, 0.8, 1.5, 3, 6}
+                \draw[-, gray] (\x, 0) -- (\x, 2);
+        \end{tikzpicture}
+        \caption{\textit{Ejemplo}}
+    \end{figure}
     \item ¿Y el seno del topólogo?
 \end{enumerate}
+\end{enun}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_loc_conx}
-%TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+%TODO: Fix tabla. En subespacios los abiertos sí heredan
+\begin{table}[H]
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
-    Conexión local & $\times$ & \checkmark & \checkmark & $\times$\\
-    \hline\\
-               & Ejemplo esencial & No banal & Prod. ent. conx. & Suma como sum's\\
-    \hline\\
+\hline
+Conexión local & \ding{55} & \checkmark & \checkmark & \ding{55}\\
+\hline
+Demostración: & Ejemplo esencial & No banal & Prod. ent. conx. & Suma como sum's\\
+\hline
 \end{tabular}
-\end{center}
+\caption{\textit{La tabla nos indica como se conserva la compacidad local en las construcciones que hemos visto. Las sumas y los productos son finitos.}}
+\end{table}
 
 
 \begin{prop}
