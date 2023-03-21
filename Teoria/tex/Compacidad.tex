@@ -2,33 +2,33 @@
 \label{cha:compacidad}
 \section{Concepto y mantras}%
 \label{sec:concepto_y_mantras_comp}
-\begin{defi}
-$X$ es \textbf{compacto} si todo recubrimiento abierto tiene un subrecubrimiento finito:
+\begin{defi}[Compacidad]
+Un espacio topológico $X$ decimos que es \textbf{compacto} si y sólo si se cumplen las siguientes condiciones equivalentes:
+\begin{itemize}
+\item De todo recubrimiento abierto se puede extraer un subrecubrimiento finito:
 \[
 X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} = X
 \]
+\item Dada una familia de cerrados, si la intersección finita de algunos de ellos es no vacía, entones la intersección no finita del total es no vacía:
+\[
+\forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset
+\]
+\end{itemize}
 \end{defi}
 
-\begin{obs}[Propiedad de la intersección finita]
-Complementando lo anterior tenemos:
-\begin{gather*}
-    \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Leftrightarrow\\
-    \boxed{\forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset}
-.\end{gather*}
-\end{obs}
 \begin{ej}
-Sea $\left( 0, \frac{1}{n} \right)_{n \ge 1}$. Una cantidad finita tiene intersección no vacía, pero si $n \rightarrow \infty$, la intersección es vacía.
-Es decir, no cumple la propiedad.
+Como estamos más acostumbrados a la primera de las definiciones que se ha dado, vamos a ejemplificar que la 2ª no se cumple si, por ejemplo, los conjuntos no son cerrados. Para ello, podemos considerar la familia de conjuntos $\{\left( 0, \frac{1}{n} \right)\}_{n = 1}^\infty$. De dicha familia, cualquier cantidad finita tiene intersección no vacía, pero cuando hacemos la intersección arbitraria ésta es vacía.
 \end{ej}
 
 \begin{defi}[Subespacios compactos]
-Sea $K \subset X$ (compacto) $\Rightarrow K$ es compacto si y sólo si: 
+Sea $X$ un espacio topológico y $K \subset X$ un subconjunto suyo, decimos que $K$ es \textbf{compacto en $X$} si y sólo si
 \[
 K \subset \bigcup_{i \in  I} U_i \text{ con } U_i \ab X \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K
 \]
 \end{defi}
+
 \begin{obs}
-Esta definición es trivialmente equivalente a decir que $K$ es compacto en la topología relativa.
+La definición anterior es trivialmente equivalente a dar la definición de compacidad del inicio del capítulo, pero considerando $K$ como espacio topológico con su topología relativa.
 \end{obs}
 
 \begin{ej}
@@ -56,117 +56,68 @@ Esta definición es trivialmente equivalente a decir que $K$ es compacto en la t
 \end{ej}
 
 \begin{prop}[Mantra 1]
-Cerrado en compacto es compacto: 
+Sea $X$ un espacio topológico compacto y $K$ un subespacio cerrado suyo, entonces es compacto.
 \[
-F \cerr X \text{ (compacto)}\Rightarrow F \text{ compacto.}
+F \cerr X _{compacto} \Rightarrow F \text{ compacto.}
 \]
 \end{prop}
 \begin{demo}
-Sea $K \cerr X \Rightarrow$
-\begin{align*}
-    \text{Sea } K \subset \bigcup_{i \in I} U_i &\Rightarrow X = \overbrace{\left( X \setminus K \right)}^{\text{ab.}} \cup \bigcup_{i \in I} U_i\\
-    X \text{ compacto} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
-    &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K\\ 
-    &\Leftrightarrow \left( U_{i_1} \cap K \right) \cup \ldots \cup \left( U_{i_r} \cap K \right) = K
-.\end{align*}
-
-(Alternativa: Usar la propiedad de las intersecciones finitas)
-%Hecho en clase
+Dado un recubrimiento $K \subset \bigcup_{i \in I} U_i$ podemos escribir el total en términos de unión de abiertos como $X = \left( X \setminus K \right) \cup \bigcup_{i \in I} U_i$. Como $X$ es compacto, de este recubrimiento podemos extraer otro finito, es decir, $\exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X$. Por ser subespacio $K \subset X = \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r}$ y como no puede estar contenido en su complementario, entonces está $K\subset U_{i_1} \cup \ldots \cup U_{i_r}$, es decir, es compacto.
 \end{demo}
 
 \begin{prop}[Mantra 2]
-Infinito en compacto tiene puntos de acumulación.
+Sea $X$ un espacio topológico compacto y $A\subset X$ un subconjunto con infinitos puntos, entonces tiene puntos de acumulación en $X$.
 \[
-A \subset X \text{ (compacto)}: \lvert A \rvert = \infty \Rightarrow A' \neq \emptyset
+A_\infty \subset X_{compacto} \Rightarrow A' \neq \emptyset
 \]
 \end{prop}
 \begin{demo}
-Sea $A \subset X$ (compacto) con $A' = \emptyset$. Veamos que es finito:
-\begin{align*}
-    \overline{A} &= \overbrace{\{\text{puntos aislados}\}}^{\subset A} \cup \cancelto{\emptyset}{A'} = \{\text{puntos aislados}\} = A\\
-     &\Rightarrow A \cerr X \text{ comp.} \Rightarrow A \text{ es compacto y discreto} \Rightarrow \#A < +\infty   
-.\end{align*}
-$A$ es discreto al ser todos sus puntos aislados. 
+Vimos en su momento que la adherencia puede expresarse como $\overline{A} = A \cup A'$ y , si $A' = \emptyset$, entonces $\overline{A} = A$ y esto indica que $A$ es cerrado. Cerrado en compacto hemos visto que es compacto luego $A$ es compacto.
 
-El resultado del enunciado lo podemos sacar por el contrarrecíproco.
+Pero recordemos también que al adherencia se podía escribir como
+\[
+\overline{A} = \{\text{puntos aislados}\} \sqcup A'
+\]
+es decir, que $A$ está compuesto únicamente por puntos aislados. Como hemos visto que $A$ es compacto y sus puntos son aislados, si proponemos como recubrimiento de abiertos los entornos abiertos disjuntos de cada punto (que existen porque son aislados) tiene que existir un subrecubrimiento finito y, como cada punto sólo pertenece a uno de los conjuntos, no se puede prescindir de ninguno, luego el recubrimiento inicial era finito. Esto indica que existe un número finito de puntos aislados, es decir, que $A$ es finito \#.
 \end{demo}
-
-\begin{obs}
-Este mantra es como ``la mitad'' del teorema de Bolzano-Weierstrass.
-\end{obs}
 
 \begin{prop}[Mantra 3]
-La imagen continua de un compacto es compacta. 
-\[
-X \text{ compacto, } f \text{ continua } \Rightarrow f\left( X \right) \text{ compacta.}
-\]
+Sea $f:X\rightarrow Y$ una aplicación continua y $K\subset X$ un subespacio compacto, entonces $f(K)$ es compacto en $Y$.
 \end{prop}
 \begin{demo}
-Sea $f: X \rightarrow Y$ con $f$ continua y $X$ compacto $\Rightarrow$
-\begin{align*}
-    f\left( X \right) \subset \bigcup_{i} U_i &\Rightarrow X = \bigcup_{i} f^{-1} U_i \Rightarrow \exists f^{-1}U_{i_1} \cup \ldots \cup f^{-1}U_{i_r} = X\\
-     &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset f\left( X \right) 
-.\end{align*}
+\[
+f\left( X \right) \subset \bigcup_{i} U_i \Rightarrow X = \bigcup_{i} f^{-1} U_i \Rightarrow \exists f^{-1}U_{i_1} \cup \ldots \cup f^{-1}U_{i_r} = X \Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset f\left( X \right)
+\]
 \end{demo}
 
-\begin{ej}[¡Muy importante!]
-$\mathbb{R} \mathrm{P}^n$ es compacto al ser la imagen continua de $\mathbb{S}^n$ por la \underline{proyección antipodal}. 
+\begin{ej}
+La propiedad de conservación de la compacidad a través de aplicaciones continuas es muy importante porque permite demostrar la compacidad de espacios muy complicados a través de una aplicación continua desde espacios más sencillos. Por ejemplo, el proyectivo real $\mathbb{R} \mathrm{P}^n$ es compacto porque es imagen continua de la esfera $\mathbb{S}^n$ por la aplicación de la proyección antipodal y la esfera es compacta.
 \end{ej}
 
 \begin{prop}[Mantra 4]
-Un compacto en $T_2$ es cerrado. 
-\[
-Y \subset X,\ Y \text{ compacto, } X \text{ Hausdorff} \Rightarrow Y \text{ cerrado.}
-\]
+Sea $X$ un espacio topológico $T_2$ y $K\subset X$ un subespacio compacto, entonces $K$ es cerrado.
 \end{prop}
-%TODO: No estoy seguro que es cada cosa.
 \begin{demo}
-Vamos a ver que $X \setminus K$ es abierto al ser entorno de todos sus puntos. Es decir, que $\exists U^x \cap K = \emptyset$. 
-En realidad, veremos que, siendo $W^K \supset K \Rightarrow \exists U^x \cap W^K = \emptyset$.
+Vamos a ver que $X \setminus K$ es abierto probando que es entorno de todos sus puntos, es decir, vamos a probar que $\forall x\in X\setminus K : \exists U^x \cap K = \emptyset$ (que es lo mismo que $U^x \subset X\setminus K$). 
 
-Sea $K \subset X$ con $K$ compacto y $X$ Hausdorff $\Rightarrow$
-\begin{equation} \label{eq:mantra_4_1}
-    \forall x \in X \setminus K,\ \exists U^x \cap U^K = \emptyset
-\end{equation}
+Dado cualquier punto $x\in X\setminus K$, para cualquier $y\in K$ que escojamos se verifica que existen entornos de ambos $V^x_y$ y $W^y$ disjuntos, por ser el espacio $T_2$. De esta manera, podemos escribir $K := \bigcup_{y\in K} W^y$ y, como es compacto, $K := W^{y_1} \cup \cdots \cup W^{y_r}$.
 
-% TODO: la "*" no se utiliza exactamente en esa implicación sino que para ver que la 
-% intersección entre U^k y U^x es vacía.
-Porque, $\forall y \in K,\ \exists U_y^x \cap U^y \stackrel{*}{=} \emptyset$ por $T_2 \Rightarrow$
-\begin{align*}
-    %TODO: Fix flecha
-    K \subset \bigcup_{y \in K} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^K \land x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x\\
-    &\xRightarrow{*} U^x \cap U^K = \emptyset
-.\end{align*}
-Finalmente, utilizando \ref{eq:mantra_4_1} $\Rightarrow$
-\[
-    x \in U^x \ab X \setminus K \Rightarrow X\setminus K \text{ es entorno de } x \xRightarrow{\forall x} X \setminus K \text{ abierto.} 
-\]
-
-\begin{figure}[H]
-    \centering
-    \incfig[0.6]{compacto-en-t2}
-    \caption{\textit{Un compacto en $T_2$ es cerrado.}}
-    \label{fig:compacto-en-t2}
-\end{figure}
+Como buscamos un abierto $U^x$ que no corte con $K$ y tenemos definido este en términos de unos entornos finitos (de los que hemos calculado otros homólogos que no cortan con ellos), lo único que es posible hacer es considerar el abierto $U^x := V^x_{y_1} \cap \cdots \cap V^{x}_{y_r}$ que es disjunto a cualquier $W^{y_i}$, es decir, a $K$.
 \end{demo}
-\begin{coro}
-Dos compactos disjuntos en un $T_2$ se separan como puntos.
-\end{coro}
-\begin{demo}
-    Ejercicio usando \ref{eq:mantra_4_1}.
-\end{demo}
+
+\begin{obs}
+En un espacio topológico $T_2$, los resultados que se aplican a puntos se suelen poder aplicar a compactos. Es sencillo, utilizando el Mantra 4, demostrar que dos compactos disjuntos en un $T_2$ se separan como puntos.
+\end{obs}
 
 \begin{prop}
-Si $f : X \rightarrow Y$ es continua, $X$ compacto e $Y$ Hausdorff $\Rightarrow f$ es cerrada.
+Sea $f : X \rightarrow Y$ una función continua, $X$ compacto e $Y$ Hausdorff, entonces $f$ es cerrada.
 \end{prop}
 \begin{demo}
-Sea $F \cerr X \xRightarrow{\text{M1}}$
-\[
-    F \text{ comp.} \xRightarrow{\mathrm{M}3} f\left( F \right) \text{ comp.} \xRightarrow{\mathrm{M}4} f\left( F \right) \text{ cerr.} 
-\]
+Si escogemos un cerrado $F \cerr X$, entonces por ser $X$ compacto, $F$ es compacto. Como la aplicación es continua $f(F)$ es compacto en $Y$ y, por ser $T_2$, es cerrado en $Y$. Por tanto, hemos demostrado que la aplicación es cerrada.
 \end{demo}
+
 \begin{coro}
-Sea la $f$ de la anterior proposición entonces si además es:
+Sea $f : X \rightarrow Y$ una función continua, $X$ compacto e $Y$ Hausdorff, si añadimos las siguientes hipótesis:
 \[
 \begin{cases}
     \text{inyectiva}\\
@@ -179,12 +130,20 @@ Sea la $f$ de la anterior proposición entonces si además es:
     \text{homeomorfismo}
 \end{cases} 
 \]
+se tienen los anteriores resultados.
 \end{coro}
+\begin{demo}
+Por las caracterizaciones que hicimos en el tema de \nameref{cha:construcciones}.
+\end{demo}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_comp}
+En este apartado estudiamos como se comporta la compacidad con respecto a las construcciones del tema \nameref{cha:construcciones} para ver cuándo se conservan, cuándo se pierden y qué podemos añadir para no perderlas.
+
 %TODO: Fix tabla
 \begin{table}[H]
+\begin{center}
+\begin{minipage}{0.9\linewidth}
 \centering
 \begin{tabular}{| c | c | c | c | c |}
 \hline
@@ -195,8 +154,9 @@ Sea la $f$ de la anterior proposición entonces si además es:
     Demostración: & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
 \hline
 \end{tabular}
-\caption{\textit{La tabla nos indica como se mantiene (o no) la compacidad con las distintas construcciones que hemos visto. La última fila nos indica la demostración, o contraejemplo, de cada una.
-Las sumas y productos son finitos.}}
+\caption{Tabla de comportamiento de la compacidad respecto a las construcciones, con demostración incluida.}
+\end{minipage}
+\end{center}
 \end{table}
 
 \begin{theo}[de Tychonoff]
@@ -229,11 +189,11 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
     \end{demo} 
     \item Heine-Borel: $K \subset \mathbb{R}_u^n$ cerrado y acotado $\Rightarrow$ compacto.
     \begin{demo}
-    Ya que sabemos que $\left[ a, b \right]$ es compacto en $\mathbb{R}_u$ y si $K$ es compacto es porque: $K \subset \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]$. Entonces: 
+    Si $K$ es acotado, pertenece al producto cartesiano de intervalos acotados y si además es cerrado, entonces pertenece a un producto cartesiano de intervalos cerrados y acotados de la forma
     \[
-        \exists a_i, b_i: K \cerr \underbrace{\left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]}_{\text{Compacto por Tych.}}  
+	K \subset \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]
     \]
-    y aplicamos el Mantra $1$.
+    Como sabemos que el intervalo $[0,1]$ es compacto, por homeomorfismo, los intervalos $[a,b]$ son compactos. Además, por Tychonov, el producto de ellos también lo es, luego tenemos $K$ cerrado contenido en un compacto, es decir, compacto.
     \end{demo}
 \end{enumerate}
 \end{obs}
