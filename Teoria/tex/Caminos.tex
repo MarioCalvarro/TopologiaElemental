@@ -197,7 +197,7 @@ Locamente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base 
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-Conexión local por caminos & $\times$ & \checkmark & \checkmark & \checkmark\\
+Conexión local por caminos & \ding{55} & \checkmark & \checkmark & \checkmark\\
 \hline
 \end{tabular}
 \caption{\textit{También vale que las c.c.c del producto son los productos de las c.c.c de los factores.}}
@@ -212,7 +212,7 @@ Conexo y localmente conexo por caminos $\Rightarrow$ Conexo por caminos.
 \begin{demo}
 \begin{itemize}
     \item Conexo $\Rightarrow \forall x, y,\ \exists \text{ cadenas de } x \text{ a } y$.
-    \item Localmente conexo por caminos $\Rightarrow$ cadenas de abiertos conexos por caminos $\Rightarrow{\text{Var. pivote}}$ Estas cadenas son conexas por caminos.
+    \item Localmente conexo por caminos $\Rightarrow$ cadenas de abiertos conexos por caminos $\xRightarrow{\text{Variante del pivote}}$ Estas cadenas son conexas por caminos.
 \end{itemize}
 Por tanto, $\exists$ camino de $x$ a $y$.
 \end{demo}
@@ -228,4 +228,36 @@ Por especificar todas las posibilidades:
 \end{center}
 \end{obs}
 
-\underline{Ejercicio}: Contraejemplos. Los menos fáciles son $*$ y $**$ 
+\begin{enun}
+Contraejemplos. Los menos fáciles son $*$ y $**$ 
+\end{enun}
+
+\begin{ej}
+\begin{itemize}
+    \item Sea $\left( \mathbb{R}^2, \mathcal{T}_{\text{rad}} \right)$. Veamos si es conexo por caminos porque entonces será conexo.
+
+    %TODO: Dibujo
+    Primero intentamos parametrizar por interpolación: $\left( 1 - t \right)a + tb$. Como $\mathcal{T}_{\text{rad}}|_r = \mathcal{T}_{u}|_r$ es correcto el camino ($r$ es una recta).
+    En cambio si el camino es una curva cualquiera, la topología relativa es la discreta, es decir, la preimagen de un punto es todo $\left[ 0, 1 \right]$ al ser 
+    un abierto y cerrado en un conexo. Por tanto, $f$ será constante (contradicción).
+
+    En definitiva, tomamos como caminos entre dos puntos, la recta que los une. Con esto, el espacio es conexo por caminos $\Rightarrow$ conexo.
+
+    La usual es localmente conexa por caminos. Si en la radial es localmente conexa por caminos tenemos que si $x_0 \in U$ entonces $\exists U \supset V_{\text{ab}} = C_{\text{cam.}} \left( x_0 \right)$es el candidato a entorno abierto conexo por caminos de la base buscada. 
+
+    Usaremos $V = \left\{ x \in U : \exists P \supset U: x_0 \rightarrow x\right\}$ con $P$ poligonal %TODO: Dibujo
+    que será conexo por caminos radiales. Veamos que es abierto (radial).
+
+    Esto quiere decir que $\forall x \in V$ se cumple ``la condición radial''.
+    %TODO: Dibujo
+    $\exists \underbrace{\left( x - \varepsilon, x + \varepsilon \right)}_{\ni y} \subset U \cap L$. Formamos $P_y = P_x \cup \left[ x, y \right] \subset U \Rightarrow \left( x - \varepsilon, x + \varepsilon \right) \subset V \cap L$.
+
+    %TODO: Cambiar de lugar
+    \item Veamos ahora la compacidad tenemos que $\mathcal{T}_u \subset \mathcal{T}_r \Rightarrow$ si $K$ compacto en la radial $\Rightarrow$ también lo será en la usual. Por tanto, al no ser $\mathbb{R}^2$ con la usual compacto, tampoco lo será con la radial.
+
+    En cambio como con la usual, $\mathbb{R}^2$ sí es Lindelöf no podemos decidir directamente si con la radial lo es o no. Pero no es así porque las curvas son cerradas pero su topología relativa es la 
+    discreta y, por tanto, no son Lindelöf. Como se hereda, la radial no puede ser Lindelöf.
+
+    \item Veamos la compacidad local. No lo es. %TODO: Imagen.
+\end{itemize}
+\end{ej}
