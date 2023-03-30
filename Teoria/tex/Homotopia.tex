@@ -145,12 +145,12 @@ Pocos espacios son contráctiles, pero no es inmediato verlo.
 \section{El concepto básico}%
 \label{sec:el_concepto_basico}
 \begin{defi}
-$\sigma, \tau: \left[ a, b \right] \rightarrow X$ son homótopos \underline{con extremos fijos} si $\exists H_s: \sigma \simeq \tau$ relativa a $\{a, b\}$: 
+Sean $\sigma, \tau: \left[ a, b \right] \rightarrow X$, decimos que son homótopos \textbf{con extremos fijos} si $\exists H_s: \sigma \simeq \tau$ relativa a $\{a, b\}$: 
 \[
 \begin{cases}
     H_s\left( a \right) = \sigma\left( a \right) = \tau\left( a \right)\\
     H_s\left( b \right) = \sigma\left( b \right) = \tau\left( b \right) 
-\end{cases}\forall s
+\end{cases}\forall s \in \left[ 0, 1 \right]
 \]
 %TODO: Imagen
 \begin{center}
@@ -161,7 +161,7 @@ $\sigma, \tau: \left[ a, b \right] \rightarrow X$ son homótopos \underline{con 
 \begin{obs}
 Es un problema de \underline{extensión}: 
 
-Definir $H$ en el cuadrado $\left[ a, b \right] \times \left[ 0, 1 \right]$ con valor determinado en su borde.
+Definir $H$ en el cuadrado $\left[ a, b \right] \times \left[ 0, 1 \right]$ con valor determinado en sus bordes.
 %TODO: Imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/obs_problema_ext} 
@@ -171,14 +171,19 @@ Definir $H$ en el cuadrado $\left[ a, b \right] \times \left[ 0, 1 \right]$ con 
 \section{Simple-conexión}%
 \label{sec:simple_conexion}
 \begin{defi}
-$X$ es \underline{simplemente conexo} si cumple las siguientes condiciones equivalentes:
+$X$ es \textbf{simplemente conexo} si cumple las siguientes condiciones equivalentes:
 \begin{enumerate}
     \item $\forall \sigma, \tau: \left[ a, b \right] \rightarrow X$ con iguales extremos son homótopos con extremos fijos.
-    \item $\forall f: \mathbb{S}' \rightarrow X$ se extiende al disco interior de la circunferencia.
+    \item $\forall f: \mathbb{S}^1 \rightarrow X$ se extiende al disco interior de la circunferencia:
+    \[
+    \exists \overline{f}: D^2 \rightarrow X
+    \]
 \end{enumerate}
 \end{defi}
 \begin{demo}
     Colapsando dos lados de un cuadrado $\xrightarrow{\pi}$ disco con dos puntos en la circunferencia unidos por dos ceros $\alpha, \beta$.
+
+    $\pi$ es un cociente del cuadrado que hemos visto antes a $\mathbb{S}^1$.
 
     \item 1. $\Rightarrow$ 2.) 
     \begin{align*}
@@ -186,11 +191,16 @@ $X$ es \underline{simplemente conexo} si cumple las siguientes condiciones equiv
             \alpha \rightarrow \text{ camino } \sigma\\
             \beta \rightarrow \text{ camino } \tau
         \end{cases}\\
-        &\Rightarrow \exists H \text{ con extremos fijos } \Rightarrow \text{ compatible con } \pi \\
-        &\Rightarrow H \text{ pasa al cociente por } \pi \text{, dando } F.
+        &\Rightarrow \exists H \text{ con extremos fijos} \Rightarrow \text{compatible con } \pi \\
+        &\Rightarrow H \text{ pasa al cociente por } \pi \text{, dando } \overline{f}
     .\end{align*}
 
-    \item 2. $\Rightarrow$ 1.) Dos caminos $\sigma, \tau$ con extremos $p, q$ definen $f$ en la circunferencia y su extensión $F$ al disco define la homotopía $H = F \circ \pi$.
+    \item 2. $\Rightarrow$ 1.) Dos caminos $\sigma, \tau$ con extremos $p, q$ definen $f$ en la circunferencia y su extensión $\overline{f}$ al disco define la homotopía $H = \overline{f} \circ \pi$.
+
+    %TODO Image
+    \begin{center}
+    \includegraphics[scale=0.3]{images/def_simple_conx}
+    \end{center}
 \end{demo}
 
 \begin{ej}
