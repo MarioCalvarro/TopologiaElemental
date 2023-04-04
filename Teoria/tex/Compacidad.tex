@@ -17,14 +17,15 @@ X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} 
 \end{defi}
 
 \begin{ej}
-Como estamos más acostumbrados a la primera de las definiciones que se ha dado, vamos a ejemplificar que la 2ª no se cumple si, por ejemplo, los conjuntos no son cerrados. Para ello, podemos considerar la familia de conjuntos $\{\left( 0, \frac{1}{n} \right)\}_{n = 1}^\infty$. De dicha familia, cualquier cantidad finita tiene intersección no vacía, pero cuando hacemos la intersección arbitraria ésta es vacía.
+Como estamos más acostumbrados a la primera de las definiciones que se ha dado, vamos a ejemplificar que la 2ª no se cumple si, por ejemplo, los conjuntos no son cerrados. Para ello, podemos considerar la familia de conjuntos $\{\left( 0, \frac{1}{n} \right)\}_{n = 1}^\infty$. De dicha familia, cualquier cantidad finita tiene intersección no vacía, pero cuando hacemos la intersección arbitraria ésta sí es vacía.
 \end{ej}
 
 \begin{defi}[Subespacios compactos]
-Sea $X$ un espacio topológico y $K \subset X$ un subconjunto suyo, decimos que $K$ es \textbf{compacto en $X$} si y sólo si
+Sea $X$ un espacio topológico y $K \subset X$ un subconjunto, decimos que $K$ es \textbf{compacto en $X$} si y sólo si para cualquier recubrimiento suyo por abiertos de $X$
 \[
 K \subset \bigcup_{i \in  I} U_i \text{ con } U_i \ab X \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K
 \]
+existe un subrecubrimiento finito.
 \end{defi}
 
 \begin{obs}
@@ -90,9 +91,9 @@ f\left( X \right) \subset \bigcup_{i} U_i \Rightarrow X = \bigcup_{i} f^{-1} U_i
 \]
 \end{demo}
 
-\begin{ej}
-La propiedad de conservación de la compacidad a través de aplicaciones continuas es muy importante porque permite demostrar la compacidad de espacios muy complicados a través de una aplicación continua desde espacios más sencillos. Por ejemplo, el proyectivo real $\mathbb{R} \mathrm{P}^n$ es compacto porque es imagen continua de la esfera $\mathbb{S}^n$ por la aplicación de la proyección antipodal y la esfera es compacta.
-\end{ej}
+\begin{obs}
+La propiedad de conservación de la compacidad a través de aplicaciones continuas es muy importante porque permite demostrar la compacidad de espacios muy complicados a través de una aplicación continua desde espacios más sencillos. Por ejemplo, el proyectivo real $\mathbb{P}^n$ es compacto porque es imagen continua de la esfera $\mathbb{S}^n$ por la aplicación de la proyección antipodal y la esfera es compacta.
+\end{obs}
 
 \begin{prop}[Mantra 4]
 Sea $X$ un espacio topológico $T_2$ y $K\subset X$ un subespacio compacto, entonces $K$ es cerrado.
@@ -110,7 +111,7 @@ En un espacio topológico $T_2$, los resultados que se aplican a puntos se suele
 \end{obs}
 
 \begin{prop}
-Sea $f : X \rightarrow Y$ una función continua, $X$ compacto e $Y$ Hausdorff, entonces $f$ es cerrada.
+Sea $X$ un espacio compacto, $Y$ un espacio Haussdorff y $f : X \rightarrow Y$ una función continua entre ambos, entonces $f$ es cerrada.
 \end{prop}
 \begin{demo}
 Si escogemos un cerrado $F \cerr X$, entonces por ser $X$ compacto, $F$ es compacto. Como la aplicación es continua $f(F)$ es compacto en $Y$ y, por ser $T_2$, es cerrado en $Y$. Por tanto, hemos demostrado que la aplicación es cerrada.
