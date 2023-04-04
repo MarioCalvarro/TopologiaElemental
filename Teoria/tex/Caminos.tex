@@ -1,17 +1,17 @@
 \chapter{Conexión por caminos}%
 \label{cha:conexion_por_caminos}
 \begin{defi}
-Un \underline{camino} en un espacio $X$ es una aplicación continua $\alpha: \left[ a, b \right] \subset \mathbb{R}_u \rightarrow X$. Decimos:
+Un \textbf{camino} en un espacio $X$ es una aplicación continua $\alpha: \left[ a, b \right] \subset \mathbb{R}_u \rightarrow X$. Decimos:
 \begin{itemize}
-    \item $\alpha$ \underline{va de} $\alpha\left( a \right)$ a $\alpha\left( b \right)$, \underline{conecta} $\alpha\left( a \right)$ con $\alpha\left( b \right)$, que son \underline{extremos}.
-    \item La imagen $\alpha\left[ a, b \right] \subset X$ es la \underline{traza}, conexa por imagen continua.
+    \item $\alpha$ \textbf{va de} $\alpha\left( a \right)$ a $\alpha\left( b \right)$, \textbf{conecta} $\alpha\left( a \right)$ con $\alpha\left( b \right)$, que son \textbf{extremos}.
+    \item La imagen $\alpha\left[ a, b \right] \subset X$ es la \textbf{traza}, conexa por imagen continua.
 \end{itemize}
 \end{defi}
 
 \begin{prop}[Cambios de parámetros]
 $\forall \varphi: \left[ c, d \right] \rightarrow \left[ a, b \right]$ continua $\Rightarrow \beta = \alpha \circ \varphi$ es otro camino con igual traza.    
 
-$\varphi$ es un \underline{cambio de parámetro} cuando es homeomorfismo (creciente o decreciente).
+$\varphi$ es un \textbf{cambio de parámetro} cuando es homeomorfismo (creciente o decreciente).
 %TODO: Imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/camb_par_caminos} 
@@ -32,24 +32,26 @@ Topológicamente:
 \end{prop}
 
 \begin{ej}
-Si hacemos el producto de segmentos consecutivos obtenemos \underline{caminos poligonales}. 
+Si hacemos el producto de segmentos consecutivos obtenemos \textbf{caminos poligonales}. 
 \end{ej}
 
 \section{Conexión por caminos}%
 \label{sec:conexion_por_caminos}
 \begin{defi}
-Un espacio $X$ es \underline{conexo por caminos} si sus puntos se pueden conectar con un camino:
+Un espacio $X$ es \textbf{conexo por caminos} si sus puntos se pueden conectar con un camino:
 \[
 \forall x \forall y \in X,\ \exists \sigma_y: \left[ a, b \right] \rightarrow X,\ \sigma_y\left( a \right) = x\; \land \;\sigma_y\left( b \right) = y
 \]
-En particular, $X = \bigcup_{y} \sigma_y\left[ a, b \right]$ es \underline{conexo} (pivote, $\alpha_y\left( a \right) = x,\ \forall y$)
 \end{defi}
+\begin{obs}
+En particular, $X = \bigcup_{y \in X} \sigma_y\left[ a, b \right]$ es \underline{conexo} (pivote, $\alpha_y\left( a \right) = x,\ \forall y$)
+\end{obs}
 
 \begin{ej}
 \begin{enumerate}
     \item La mayor parte de los conexos conocidos son conexos por caminos:
     \begin{itemize}
-        \item Los abiertos conexos (top. Usual) son conexos por poligonales, que son caminos.
+        \item Los abiertos conexos (top. usual) son conexos por poligonales, que son caminos.
         \item Los conjuntos convexos y los estrellados también.
     \end{itemize}
     \item El seno del topólogo $\Gamma$ es la traza de $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right),\ t > 0$, es conexo y lo es su adherencia $\overline{\Gamma} = J \cup \Gamma,\ J = \{0\} \times \left[ 0, 1 \right]$. Pero $\overline{\Gamma}$ \underline{no} es conexo por caminos.
@@ -68,7 +70,7 @@ En particular, $X = \bigcup_{y} \sigma_y\left[ a, b \right]$ es \underline{conex
                 t > a': \alpha\left( t \right) > 0 \Rightarrow \sigma\left( t \right) \in \Gamma \Rightarrow \beta\left( t \right) = \sin \frac{1}{\alpha\left( t \right)} 
             \end{cases} $
 
-            \item Supongamos $p' = \sigma\left( a' \right) \neq \left( 0, 1 \right)$ y $\exists \delta: B\left( p', \delta \right) \cap \{y = 1\} = \emptyset$. $\sigma$ continua $\Rightarrow \exists \sigma\left[ a', \varepsilon \right] \subset B\left( p', \delta \right) \Rightarrow \sigma\left[ a', \varepsilon \right] \cap \{y = 1\} = \emptyset$. (si $p' = \left( 0, 1 \right)$ evitariamos? $\{y = -1\}$)
+            \item Supongamos $p' = \sigma\left( a' \right) \neq \left( 0, 1 \right)$ (punto) y $\exists \delta: B\left( p', \delta \right) \cap \{y = 1\} = \emptyset$. $\sigma$ continua $\Rightarrow \exists \sigma\left[ a', \varepsilon \right] \subset B\left( p', \delta \right) \Rightarrow \sigma\left[ a', \varepsilon \right] \cap \{y = 1\} = \emptyset$. (si $p' = \left( 0, 1 \right)$ evitaríamos $\{y = -1\}$)
 
             \item $\alpha$ continua $\Rightarrow \alpha\left[ a', \varepsilon \right] \subset \mathbb{R}$ conexo compacto $=$ intervalo: $\alpha\left[ a', \varepsilon \right] = \left[ 0, c \right]$.
 
@@ -76,8 +78,7 @@ En particular, $X = \bigcup_{y} \sigma_y\left[ a, b \right]$ es \underline{conex
             \begin{align*}
             k \gg 0 &\Rightarrow \frac{2}{\left( 1 + 4k \right) \pi} \in \left[ 0, c \right] = \alpha\left[ a', \varepsilon \right] \Rightarrow \exists a' < t_k < \varepsilon: \alpha\left( t_k \right) = \frac{2}{\left( 1 + 4k \right) \pi}\\ 
                 &\Rightarrow \sigma\left( t_k \right) = \left( \alpha\left( t_k \right), \sin\left( \frac{1}{\alpha\left( t_k \right)} \right) \right) = \left( x_k, 1 \right) 
-            !?\end{align*}
-            %TODO: red. abs?
+            \bot \end{align*}
         \end{enumerate}
     \end{demo}
 \end{enumerate}
@@ -85,9 +86,9 @@ En particular, $X = \bigcup_{y} \sigma_y\left[ a, b \right]$ es \underline{conex
 
 \section{Mantras}%
 \label{sec:mantras_conx_caminos}
-Todo (casi) lo que dijimos sobre la conexión nos vale:
+Casi todo lo que dijimos sobre la conexión nos vale:
 \begin{prop}[Mantra del pivote]
-    (Igual) Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq \emptyset,\ \forall A_i$ conexos por caminos $\Rightarrow X$ conexo por caminos. 
+Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq \emptyset,\ \forall A_i$ conexos por caminos $\Rightarrow X$ conexo por caminos. 
 \end{prop}
 \begin{demo}
 \begin{center}
@@ -105,20 +106,23 @@ Sea $f: X \rightarrow Y$ continua con $X$ conexo por caminos $\Rightarrow f\left
 \end{demo}
 
 \begin{prop}[Mantra de la adherencia (¡NO!)]
-El seno del topólogo $\Gamma$ = grafo de $\sin \frac{1}{t}$ es conexo por caminos: $\left( a, \sin\frac{1}{a} \right)$ y $\left( b, \sin\frac{1}{b} \right)$ se conectan por el camino evidente, $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right),\ a \le t \le b$. Pero, como hemos visto, la adherencia $\overline{\Gamma}$ no es conexa por caminos. 
+El seno del topólogo $\Gamma$ es conexo por caminos: $\left( a, \sin\frac{1}{a} \right)$ y $\left( b, \sin\frac{1}{b} \right)$ se conectan por el camino evidente, $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right),\ a \le t \le b$. Pero, como hemos visto, la adherencia $\overline{\Gamma}$ no es conexa por caminos. 
 \end{prop}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_conx_caminos}
 %TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
-    Conexión por caminos & $\times$ & \checkmark & \checkmark & $\times$\\
-    \hline\\
+\hline
+Conexión por caminos & \ding{55} & \checkmark & \checkmark & \ding{55}\\
+\hline
 \end{tabular}
-\end{center}
+\caption{\textit{La tabla nos indica como se conserva la conexión por caminos en las construcciones que hemos visto. Las sumas y los productos son finitos.}}
+\end{table}
 
 \begin{prop}[Productos]
 Sean $\left( x_1, y_1 \right),\ \left( x_2, y_2 \right) \in X \times Y$: 
@@ -133,7 +137,7 @@ Sean $\left( x_1, y_1 \right),\ \left( x_2, y_2 \right) \in X \times Y$:
         \tau\left( b \right) = y_2
     \end{cases}
 \end{rcases} 
-    \Rightarrow \gamma = \left( \sigma, \tau \right) : \left[ a, b \right] \rightarrow X \times Y \begin{cases}
+    \Rightarrow \gamma = \left( \sigma, \tau \right) : \left[ a, b \right] \rightarrow X \times Y: \begin{cases}
         \gamma\left( a \right) = \left( x_1, y_1 \right)\\
         \gamma\left( b \right) = \left( x_2, y_2 \right)
     \end{cases}  
@@ -147,14 +151,14 @@ Sean $\left( x_1, y_1 \right),\ \left( x_2, y_2 \right) \in X \times Y$:
 \label{sec:componentes_conexas_por_caminos}
 Todo análogo a las componentes conexas (casi). Sea $X$ espacio topológico.
 \begin{defi}
-Una componente conexa por caminos (c.c.c) es un subconjunto conexo por caminos maximal.
+Una \textbf{componente conexa por caminos} (c.c.c) es un subconjunto conexo por caminos maximal.
 \end{defi}
 \begin{prop}[Descripción]
 \begin{enumerate}
     \item La c.c.c de $x \in X$ es $\bigcup_{x \in A} A$ con $A$ conexa por caminos.
     \item Las c.c.c forman una partición de $X$, más fina que la de las c.c.
     \begin{demo}
-        Porque conexo por caminos $\Rightarrow$ conexo pero no la inversa.
+        Porque conexo por caminos $\Rightarrow$ conexo, pero no a la inversa.
 
         \textbf{¡OJO!} Las c.c.c no son necesariamente cerradas. 
 
@@ -164,35 +168,40 @@ Una componente conexa por caminos (c.c.c) es un subconjunto conexo por caminos m
 \end{prop}
 
 \begin{ej}
-    $\Gamma$ seno del topólogo y $\overline{\Gamma} = J \cup \Gamma$ son conexos. Tenemos que $\overline{\Gamma}$ es una c.c, mientras que $J$ y $\Gamma$ son dos c.c.c, una cerrada ($J$) y la otra no ($\Gamma$). [Porque $\overline{\Gamma}$ \underline{no} es conexa por caminos]
+    $\Gamma$ seno del topólogo y $\overline{\Gamma} = J \cup \Gamma$ son conexos. Tenemos que $\overline{\Gamma}$ es una c.c, mientras que $J$ y $\Gamma$ son dos c.c.c, una cerrada ($J$) y la otra no ($\Gamma$). 
+    \begin{demo}
+    Porque $\overline{\Gamma}$ \underline{no} es conexa por caminos.
+    \end{demo}
 \end{ej}
 
 \section{Conexión local por caminos}%
 \label{sec:conexion_local_por_caminos}
 Imitamos sin sorpresa las demostraciones de la conexión local y tenemos:
 \begin{defi}
-$X$ es \underline{localmente conexo por caminos} si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos por caminos.
+$X$ es \textbf{localmente conexo por caminos} si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos por caminos.
 \end{defi}
 \begin{prop}
-$X$ es localmente conexo por caminos $\Leftrightarrow$ c.c.c de un abierto es abierto.
+$X$ es localmente conexo por caminos $\Leftrightarrow$ las c.c.c de un abierto son abiertas.
 \end{prop}
 
-\underline{Ejercicio}:
+\begin{enun}
 Locamente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos por caminos. 
+\end{enun}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_conx_local_caminos}
 %TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
-    Conexión local por caminos & $\times$ & \checkmark & \checkmark & \checkmark\\
-    \hline\\
+\hline
+Conexión local por caminos & \ding{55} & \checkmark & \checkmark & \checkmark\\
+\hline
 \end{tabular}
-
-También vale que las c.c.c del producto son los productos de las c.c.c de los factores.
-\end{center}
+\caption{\textit{También vale que las c.c.c del producto son los productos de las c.c.c de los factores.}}
+\end{table}
 
 \section{Relaciones entre las propiedades de conexión}%
 \label{sec:relaciones_entre_las_propiedades_de_conexion}
@@ -203,7 +212,7 @@ Conexo y localmente conexo por caminos $\Rightarrow$ Conexo por caminos.
 \begin{demo}
 \begin{itemize}
     \item Conexo $\Rightarrow \forall x, y,\ \exists \text{ cadenas de } x \text{ a } y$.
-    \item Localmente conexo por caminos $\Rightarrow$ cadenas de abiertos conexos por caminos $\Rightarrow{\text{Var. pivote}}$ Estas cadenas son conexas por caminos.
+    \item Localmente conexo por caminos $\Rightarrow$ cadenas de abiertos conexos por caminos $\xRightarrow{\text{Variante del pivote}}$ Estas cadenas son conexas por caminos.
 \end{itemize}
 Por tanto, $\exists$ camino de $x$ a $y$.
 \end{demo}
@@ -219,4 +228,36 @@ Por especificar todas las posibilidades:
 \end{center}
 \end{obs}
 
-\underline{Ejercicio}: Contraejemplos. Los menos fáciles son $*$ y $**$ 
+\begin{enun}
+Contraejemplos. Los menos fáciles son $*$ y $**$ 
+\end{enun}
+
+\begin{ej}
+\begin{itemize}
+    \item Sea $\left( \mathbb{R}^2, \mathcal{T}_{\text{rad}} \right)$. Veamos si es conexo por caminos porque entonces será conexo.
+
+    %TODO: Dibujo
+    Primero intentamos parametrizar por interpolación: $\left( 1 - t \right)a + tb$. Como $\mathcal{T}_{\text{rad}}|_r = \mathcal{T}_{u}|_r$ es correcto el camino ($r$ es una recta).
+    En cambio si el camino es una curva cualquiera, la topología relativa es la discreta, es decir, la preimagen de un punto es todo $\left[ 0, 1 \right]$ al ser 
+    un abierto y cerrado en un conexo. Por tanto, $f$ será constante (contradicción).
+
+    En definitiva, tomamos como caminos entre dos puntos, la recta que los une. Con esto, el espacio es conexo por caminos $\Rightarrow$ conexo.
+
+    La usual es localmente conexa por caminos. Si en la radial es localmente conexa por caminos tenemos que si $x_0 \in U$ entonces $\exists U \supset V_{\text{ab}} = C_{\text{cam.}} \left( x_0 \right)$es el candidato a entorno abierto conexo por caminos de la base buscada. 
+
+    Usaremos $V = \left\{ x \in U : \exists P \supset U: x_0 \rightarrow x\right\}$ con $P$ poligonal %TODO: Dibujo
+    que será conexo por caminos radiales. Veamos que es abierto (radial).
+
+    Esto quiere decir que $\forall x \in V$ se cumple ``la condición radial''.
+    %TODO: Dibujo
+    $\exists \underbrace{\left( x - \varepsilon, x + \varepsilon \right)}_{\ni y} \subset U \cap L$. Formamos $P_y = P_x \cup \left[ x, y \right] \subset U \Rightarrow \left( x - \varepsilon, x + \varepsilon \right) \subset V \cap L$.
+
+    %TODO: Cambiar de lugar
+    \item Veamos ahora la compacidad tenemos que $\mathcal{T}_u \subset \mathcal{T}_r \Rightarrow$ si $K$ compacto en la radial $\Rightarrow$ también lo será en la usual. Por tanto, al no ser $\mathbb{R}^2$ con la usual compacto, tampoco lo será con la radial.
+
+    En cambio como con la usual, $\mathbb{R}^2$ sí es Lindelöf no podemos decidir directamente si con la radial lo es o no. Pero no es así porque las curvas son cerradas pero su topología relativa es la 
+    discreta y, por tanto, no son Lindelöf. Como se hereda, la radial no puede ser Lindelöf.
+
+    \item Veamos la compacidad local. No lo es. %TODO: Imagen.
+\end{itemize}
+\end{ej}
