@@ -202,14 +202,33 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 %TODO: Fix
 \chapter{Compacidad local}%
 \label{cha:compacidad_local}
-\begin{defi}
-Sea $Y \subset X$, es \textbf{localmente cerrado} si cumple las condiciones equivalentes siguientes:
+
+\begin{defi}[Localmente cerrado]
+Sea $X$ un espacio topológico, decimos que un subconjunto $Y \subset X$, es \textbf{localmente cerrado} si y sólo si:
 \begin{enumerate}
-    \item $\forall y \in Y,\ \exists V^y \ent X: Y \cap V^y \cerr V^y$. ($\Rightarrow$ lo mismo $\forall U^y \subset V^y$)
-    \item $Y$ es abierto en su adherencia $\Leftrightarrow Y = \overline{Y} \cap U$ con $U \ab X$.
-    \item $Y$ es cerrado en un abierto: $Y = F \cap U,\ F \cerr X,\ U \ab X$. ($\Rightarrow$ vale $F = \overline{Y}$)
+    \item $\forall y \in Y,\ \exists V^y \ent X: Y \cap V^y \cerr V^y$.
+    \item $Y \ab \overline{Y}$.
+    \item $\exists U \ab X : Y \cerr U$
 \end{enumerate}
+donde las condiciones anteriores son equivalentes.
 \end{defi}
+
+\begin{obs}
+En realidad, podemos reescribir las condiciones anteriores de otra forma para ver más claro lo que estamos queriendo decir:
+\begin{enumerate}
+\item Si se cumple la propiedad, se cumple para una base de entornos.
+
+Para cualquier entorno $U^y \subset V^y$ también se cumple la propiedad, pues $Y\cap U^y \cerr U^y$ si y sólo si $Y\cap U^y = F \cap U^y$ donde $F$ es un cerrado ambiente, es decir, de $V^y$. Tomamos como $F = V^y \cap Y$ y hemos terminado. 
+
+\item Escrito de otra forma, los abiertos de $\overline{Y}$ son abiertos ambiente cortados con $\overline{Y}$, es decir, $Y = \overline{Y} \cap U$ donde $U \ab X$.
+
+\item De nuevo, los cerrados en $U$ son cerrados ambientes cortados con $U$, es decir que podemos reescribir lo anterior como:
+\[
+\exists U \ab X \mbox{ y } F\cerr X : Y = F \cap U
+\]
+\end{enumerate}
+\end{obs}
+
 \begin{demo}
 \begin{itemize}
     \item 1. $\Rightarrow$ 2) ¿$Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$?
@@ -222,11 +241,13 @@ Sea $Y \subset X$, es \textbf{localmente cerrado} si cumple las condiciones equi
             .\end{align*}
             Por tanto, gracias a $*$ demostramos $?$.
     \end{itemize}
-    \item 2. $\Rightarrow$ 3) $Y$ abierto en $\overline{Y} \Leftrightarrow \underbrace{\overline{Y}}_{= F} \cap U$.
-    \[
-    F \cap U = Y \Rightarrow F \supset \overline{Y} \Rightarrow F \cap U = \overline{Y} \cap U.
-    \]
-    \item 3. $\Rightarrow$ 1) $Y = F \cap U \cerr U \left( = U^y,\ \forall y \right)$.
+    \item 2. $\Rightarrow$ 3) 
+	
+	Con la observación posterior a la definición la demostración es inmediata, pues que se cumpla dos implica que existe un $U \ab X$ tal que $Y = \overline{Y} \cap U$. Luego si tomamos ese $U$ como el abierto de 3. y $\overline{Y}$ como el cerrado $F$ hemos acabado.
+	
+    \item 3. $\Rightarrow$ 1)
+    
+    De nuevo, vuelve a ser trivial por la definición, pues basta con tomar como $V^y$ el abierto $U$ de 3.
 \end{itemize}
 \end{demo}
 
