@@ -205,7 +205,7 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 \label{cha:compacidad_local}
 
 \begin{defi}[Localmente cerrado]
-Sea $X$ un espacio topológico, decimos que un subconjunto $Y \subset X$, es \textbf{localmente cerrado} si y sólo si:
+Sea $X$ un espacio topológico y $Y \subset X$ un subconjunto, decimos que $Y$ es \textbf{localmente cerrado} si y sólo si:
 \begin{enumerate}
     \item $\forall y \in Y,\ \exists V^y \ent X: Y \cap V^y \cerr V^y$.
     \item $Y \ab \overline{Y}$.
@@ -221,58 +221,61 @@ En realidad, podemos reescribir las condiciones anteriores de otra forma para ve
 
 Para cualquier entorno $U^y \subset V^y$ también se cumple la propiedad, pues $Y\cap U^y \cerr U^y$ si y sólo si $Y\cap U^y = F \cap U^y$ donde $F$ es un cerrado ambiente, es decir, de $V^y$. Tomamos como $F = V^y \cap Y$ y hemos terminado. 
 
-\item Escrito de otra forma, los abiertos de $\overline{Y}$ son abiertos ambiente cortados con $\overline{Y}$, es decir, $Y = \overline{Y} \cap U$ donde $U \ab X$.
+\item Escrito de otra forma, como los abiertos de $\overline{Y}$ son abiertos ambiente cortados con $\overline{Y}$, estamos diciendo que $Y = \overline{Y} \cap U$ donde $U \ab X$.
 
-\item De nuevo, los cerrados en $U$ son cerrados ambientes cortados con $U$, es decir que podemos reescribir lo anterior como:
-\[
-\exists U \ab X \mbox{ y } F\cerr X : Y = F \cap U
-\]
+\item De nuevo, los cerrados en $U$ son cerrados ambientes cortados con $U$, es decir que podemos reescribir lo anterior como $\exists U \ab X \mbox{ y } F\cerr X : Y = F \cap U$.
 \end{enumerate}
 \end{obs}
 
 \begin{demo}
 \begin{itemize}
-    \item 1. $\Rightarrow$ 2) ¿$Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$?
+    \item 1. $\Rightarrow$ 2.
+    
+    Vamos a ver, por el doble contenido, que $Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$.
     \begin{itemize}
         \item[$\subset)$] Trivial.
-        \item[$\supset)$] Tomamos un elemento $x$:
-            \begin{align*}
-                x \in \overline{Y} \cap U^y &\xRightarrow{?} x \in \adh_{U^y} \left( Y \cap U^y \right) \stackrel{Y \cap U^y \cerr U^y}{=} Y \cap U^y \subset Y\\
-                \forall U^x,\ U^x \subset U^y &\xRightarrow{*} \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
-            .\end{align*}
-            Por tanto, gracias a $*$ demostramos $?$.
+        \item[$\supset)$]
+        \[
+       	x\in \overline{Y} \cap U^y \Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) \stackrel{Y \cap U^y \cerr U^y}{=} Y \cap U^y \subset Y
+       	\]
     \end{itemize}
-    \item 2. $\Rightarrow$ 3) 
+    \item 2. $\Rightarrow$ 3.
 	
-	Con la observación posterior a la definición la demostración es inmediata, pues que se cumpla dos implica que existe un $U \ab X$ tal que $Y = \overline{Y} \cap U$. Luego si tomamos ese $U$ como el abierto de 3. y $\overline{Y}$ como el cerrado $F$ hemos acabado.
+	Con la observación posterior a la definición, la demostración es inmediata, pues que se cumpla dos implica que existe un $U \ab X$ tal que $Y = \overline{Y} \cap U$. Luego si tomamos ese $U$ como el abierto de 3. y $\overline{Y}$ como el cerrado $F$ hemos acabado.
 	
-    \item 3. $\Rightarrow$ 1)
+    \item 3. $\Rightarrow$ 1.
     
     De nuevo, vuelve a ser trivial por la definición, pues basta con tomar como $V^y$ el abierto $U$ de 3.
 \end{itemize}
 \end{demo}
 
-Esto es un ejemplo de \underline{localización} de una propiedad topológica $\mathcal{P}$ (en este caso es ser cerrado). Se puede entender como:
-\begin{align*}
-    &\forall x,\ \exists V^x \text{ que cumple } \mathcal{P} \text{ ó } \\
-    &\forall x,\ \exists \mathcal{V}^x \text{ base de entornos que cumplen } \mathcal{P} 
-.\end{align*}
-A veces son equivalentes (como en este caso), a veces no. El concepto adecuado de localización es mediante \underline{bases de entornos}.
+\begin{obs}
+La definición anterior es un buen ejemplo de localización de una cierta propiedad topológica y es una técnica habitual para otras muchas propiedades: se trata de hacer la siguiente construcción $\forall x,\ \exists \mathcal{V}^x \text{ base de entornos que cumplen } \mathcal{P}$.
 
-%\begin{ej}
-%TODO: Dibujo
-%\end{ej}
+En ocasiones, se utiliza otro enunciado similar: $\forall x,\ \exists V^x \text{ que cumple } \mathcal{P}$, pero porque en dicho contexto es equivalente al anterior. Como en general, no son enunciados equivalentes, la construcción adecuada es mediante bases de entornos.
+\end{obs}
+
+\begin{ej}
+El conjunto del dibujo, en la topología usual de $\mathbb{R}^n$ no es localmente cerrado.
+%TODO Dibujo
+puesto que cualquier entorno de un punto del margen derecho mantiene la apertura que da el margen discontinuo derecho.
+\end{ej}
 
 \section{Compacidad local y mantras}%
 \label{sec:compacidad_local_y_mantras}
-\begin{defi}
-$X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$ base de entornos compactos.
+\begin{defi}[Compacidad Local]
+Sea $X$ un espacio topológico, decimos que es \textbf{localmente compacto} si y sólo si para todo punto, existe una base de entornos formada por entornos compactos.
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{R}_u^n$ es localmente compactos: $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$
+    \item El espacio $\mathbb{R}^n$ con la topología usual es localmente compactos porque para cualquier punto $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$ es una base de entornos compactos.
+    
+    \item Utilizando el mismo ejemplo visto para localmente cerrado, podemos añadir un punto $q$ y considerar la topología usual en todos los puntos menos en $q$, donde consideramos únicamente como entornos los conjuntos cuyo complementario es finito
+    %TODO Dibujo%
+    Esta definición hace el conjunto $X$ compacto (pues si consideramos $X=\bigcup_{i\in I} U_i$ alguno recubrirá a $q$ y el complementario de ese es un conjunto finito), pero no podremos encontrar para $p$ ninguna base de entornos compactos, pues no existe dicha base de cerrados (y en $\mathbb{R}$ usual están caracterizados así).
 
+	%TODO no entiendo este contraejemplo
     \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es localmente compacto.
     \begin{demo}
     Veamos un conjunto infinito sin acumulación en $T$:
@@ -300,7 +303,7 @@ $X$ es \textbf{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$
 \end{ej}
 
 \begin{prop}
-Si $X$ es $T_2$ y $x \in X$ tiene un entorno compacto, entonces tiene una base de entornos compactos.
+Sea $X$ un espacio topológico $T_2$ y $x \in X$ un punto con un entorno compacto, entonces existe una base de entornos compactos para dicho punto.
 \end{prop}
 \begin{demo}
     Queremos ver que $\forall U^x$ abierto, $\exists K^x \ent U^x$ compactos.
@@ -319,14 +322,10 @@ Si $X$ es $T_2$ y $x \in X$ tiene un entorno compacto, entonces tiene una base d
     \end{itemize}
 \end{demo}
 
-Y tenemos dos mantras:
 \begin{prop}[Mantra 1]
-Localmente cerrado en localmente compacto es localmente compacto. 
+Sea $X$ un espacio topológico localmente compacto y $Y\subset X$ un subespacio localmente cerrado, entonces es localmente compacto.
 \end{prop}
-%TODO: Arreglar formato
 \begin{demo}
-    Sea $Y \subset X$ con $Y$ localmente cerrado y $X$ localmente compacto e $y \in Y$.
-
     Tenemos:
     \[
     \overline{U_1^x} \cap V^x \subset \overline{X \setminus A} \cap V^x = \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \cap V^x \subset U^x
@@ -339,10 +338,9 @@ Localmente cerrado en localmente compacto es localmente compacto.
 \end{demo}
 
 \begin{prop}[Mantra 2]
-Localmente compacto en $T_2$ es localmente cerrado.
+Sea $X$ un espacio topológico $T_2$ y $Y\subset X$ un espacio localmente compacto, entonces es localmente cerrado.
 \end{prop}
 \begin{demo}
-Sea $Y \subset X$ con $Y$ localmente compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow$
 \[
 \underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V^y \cap Y}_{\text{ent. en } Y} \subset \underbrace{V^y}_{\text{ent. en } X} \xRightarrow{T_2} V^y \cap Y = L^y \cerr V^y.
 \]
