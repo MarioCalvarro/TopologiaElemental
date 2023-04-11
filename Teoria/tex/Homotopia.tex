@@ -221,9 +221,9 @@ $\sigma, \tau: \left[ a, b \right] \rightarrow \mathbb{S}^n,\ \sigma\left( a \ri
 \end{rcases} \text{proyección estéreo.}  
 \]
 \begin{enumerate}
-    \item $\left[ a, b \right] \subset \sigma^{-1}U \cup \sigma^{-1}V \xRightarrow{\text{comp.}} \exists a = t_0 < t_1 < \ldots < t_r = 1: \sigma\left[ t_{i - 1}, t_1 \right] \begin{cases}
-        \subset U\\
-        \subset V
+    \item $\left[ a, b \right] \subset \sigma^{-1}U \cup \sigma^{-1}V \xRightarrow{\text{comp.}} \exists a = t_0 < t_1 < \ldots < t_r = 1: \sigma\left[ t_{i - 1}, t_1 \right] \subset \begin{cases}
+        U \text{, ó}\\
+        V
     \end{cases}$ dónde $\sigma\left[ t_{i - 1}, t_i \right]$ es la traza de $\sigma_i = \sigma|_{\left[ t_{i - 1}, t_i \right]}$.
 
     \item Si dos consecutivos están en el mismo $U$ ó $V$, eliminamos la juntura común $\Rightarrow$ al atravesar una juntura $t_k$ cambiamos de $U$ a $V$ ó viceversa, en particular, $x_k = \sigma\left( t_k \right) \in U \cap V \approx \mathbb{R}^n \setminus \{\text{punto}\}$, que es conexo por caminos, o bien, nos quedamos sin junturas y $\sigma\left[ a, b \right] \subset U$ ó $V$.

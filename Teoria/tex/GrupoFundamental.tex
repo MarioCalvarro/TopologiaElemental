@@ -2,25 +2,28 @@
 \label{cha:el_grupo_fundamental}
 \section{Operaciones con caminos}%
 \label{sec:operaciones_con_caminos}
-Sea $X$ es conexo por caminos.
-\begin{defi}[Producto]
-$\sigma, \tau: \left[ 0, 1 \right] \rightarrow X, \sigma\left( 1 \right) = \tau\left( 0 \right) \Rightarrow \sigma * \tau\left( t \right) = \begin{cases}
-    \sigma\left( 2 t \right),\ 0 \le t \le 1/2\\
-    \tau\left( 2t - 1 \right),\ 1/2 \le t \le 1
-\end{cases}$
+Sea $X$ es conexo por caminos y localmente conexo por caminos.
+\begin{defi}[Producto de caminos]
+Sean $\sigma, \tau: \left[ 0, 1 \right] \rightarrow X$ tal que $\sigma\left( 1 \right) = \tau\left( 0 \right) \Rightarrow$
+\[
+\left( \sigma * \tau \right)\left( t \right) = \begin{cases}
+    \sigma\left( 2 t \right), &0 \le t \le \frac{1}{2}\\
+    \tau\left( 2t - 1 \right), &\frac{1}{2} \le t \le 1
+\end{cases}
+\]
 
-[Reescalando $\begin{cases}
-    \sigma \text{ de } \left[ 0, 1 \right] \text{ a } \left[ 0, 1/2 \right]\\
-    \tau \text{ de } \left[ 0, 1 \right] \text{ a } \left[ 1/2, 1 \right] 
-\end{cases}$]
+Que consiste en reescalar $\begin{cases}
+    \sigma \text{ de } \left[ 0, 1 \right] \text{ a } \left[ 0, \frac{1}{2} \right]\\
+    \tau \text{ de } \left[ 0, 1 \right] \text{ a } \left[ \frac{1}{2}, 1 \right] 
+\end{cases}$
+\end{defi}
 
 %TODO: Imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/prod_grupo_fundamental} 
 \end{center}
-\end{defi}
 
-Las propiedades algebraicas son TODAS SALVO HOMOTOPÍA \underline{CON EXTREMOS FIJOS}.
+Las propiedades algebraicas son todas salvo \textit{homotopía con extremos fijos}\footnote{Es decir, la asociatividad, el elemento neutro y el inverso no tienen porque darse en el sentido tradicional de igualdad sino por homotopías.}.
 %TODO: Fix
 \begin{prop}
 \underline{Propiedades} de grupo:
