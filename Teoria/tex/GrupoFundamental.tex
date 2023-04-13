@@ -34,7 +34,7 @@ Las propiedades algebraicas son todas salvo \textit{homotopía con extremos fijo
     \begin{center}
         \includegraphics[scale=0.3]{images/asoc_gr_fund} 
     \end{center}
-    \item \underline{Neutros}: 
+    \item \underline{Neutro}: 
     \begin{center}
         \includegraphics[scale=0.3]{images/neutro_gr_fund} 
     \end{center}
@@ -67,21 +67,31 @@ Las propiedades algebraicas son todas salvo \textit{homotopía con extremos fijo
 Sea $X$ conexo por caminos, $x_0 \in X$ \underline{punto base} fijo.
 \begin{defi}
 \begin{enumerate}
-    \item \underline{Lazo de base $x_0$}, $\sigma: \left[ 0, 1 \right] \rightarrow X,\ \underbrace{\sigma\left( 0 \right) = \sigma\left( 1 \right)}_{\text{lazo}} = x_0$, punto fijo.
+    \item \textbf{Lazo de base $x_0$}:
+    \[
+        \sigma: \left[ 0, 1 \right] \rightarrow X,\ \underbrace{\sigma\left( 0 \right) = \sigma\left( 1 \right)}_{\text{lazo}} = x_0 \text{, punto fijo.}
+    \]
 
-    \item \begin{itemize}
-        \item $\sigma, \tau: \left[ 0, 1 \right] \rightarrow X$ lazos de base $x_0$.
-        \item $H_s: \sigma \simeq \tau$ \underline{de lazos}: $H_s\left( 0 \right) = H_s\left( 1 \right),\ \forall s$.
-        \item $H_s = \sigma \stackrel{x_0}{\simeq} \tau$ de lazos \underline{con punto base fijo}: $H_s\left( 0 \right) = H_s\left( 1 \right) = x_0,\ \forall s$. [Relativa a $\{0, 1\}$]
+    \item Sean $\sigma, \tau: \left[ 0, 1 \right] \rightarrow X$ lazos de base $x_0$:
+    \begin{itemize}
+        \item \textbf{Homotopía de lazos}: $H_s: \sigma \simeq \tau$ tal que $H_s\left( 0 \right) = H_s\left( 1 \right),\ \forall s$.
+        \item \textbf{Homotopía de lazos con punto base fijo}: $H_s = \sigma \stackrel{x_0}{\simeq} \tau$ tal que $H_s\left( 0 \right) = H_s\left( 1 \right) = x_0,\ \forall s$. (Relativa a $\{0, 1\}$)
     \end{itemize}
 \end{enumerate}
 \end{defi}
 \begin{defi}[Grupo fundamental]
 \begin{itemize}
-    \item $\pi\left( X, x_0 \right) = \{\text{lazos de base } x_0\} / \stackrel{x_0}{\simeq}$. [``Lazos / homotopía'']
-    \item $\left[ \sigma \right] * \left[ \tau \right] = \left[ \sigma * \tau \right]$ define bien un grupo por \ref{sec:operaciones_con_caminos}.
+    Llamamos \textbf{grupo fundamental de $X$ con base $x_0$} a:
+    \[
+    \boxed{\pi\left( X, x_0 \right) = \faktor{\left\{ \text{lazos de base } x_0 \right\}}{\stackrel[x_0]{}{\simeq}}}
+    \] (``Lazos'' / ``Homotopía")
+
 \end{itemize}
 \end{defi}
+
+\begin{obs}
+$\left[ \sigma \right] * \left[ \tau \right] = \left[ \sigma * \tau \right]$ define bien un grupo por \ref{sec:operaciones_con_caminos}.
+\end{obs}
 
 \begin{ej}
 \begin{enumerate}
@@ -98,13 +108,13 @@ Sea $X$ conexo por caminos, $x_0 \in X$ \underline{punto base} fijo.
 El cálculo de grupos fundamentales no es una tarea trivial, pero muy útil.
 
 El punto base no es muy importante.
-\begin{prop}
-Sea $\alpha: \left[ 0, 1 \right] \rightarrow X$ de $\alpha\left( 0 \right) = x_0$ a $\alpha\left( 1 \right) = x_1$. La conjugación:
+\begin{prop}[Isomorfismo por punto base]
+Sea $\alpha: \left[ 0, 1 \right] \rightarrow X$ de $\alpha\left( 0 \right) = x_0$ a $\alpha\left( 1 \right) = x_1$. La \textbf{conjugación por $\alpha$}:
 \begin{align*}
     \pi\left( X, x_0 \right) &\rightarrow \pi\left( X, x_1 \right)\\
-    \left\lceil \sigma \right\rceil &\mapsto \left[ \sigma' * \sigma * \sigma \right] 
+    \left[ \sigma \right] &\mapsto \left[ \alpha' * \sigma * \alpha \right] 
 .\end{align*}
-es isomorfismo de grupos.
+es isomorfismo de grupos (por homotopía).
 %TODO: Imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/conj_iso_grupos} 
