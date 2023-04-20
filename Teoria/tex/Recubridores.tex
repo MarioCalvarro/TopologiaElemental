@@ -8,7 +8,7 @@ Fijada $p$, qué $f$'s tienen \underline{elevación} $\tilde{f}$. i.e: $p \circ 
     \includegraphics[scale=0.3]{images/problema_elevacion} 
 \end{center}
 \begin{defi}
-$p$ es un \underline{recubridor} si $\forall x \in X,\ \underbrace{\exists U^x}_{\text{ab. \underline{trivializante}}} : p^{-1}\left( U^x \right) = \bigsqcup_{\lambda} U_{\lambda}$ y $\forall \lambda, p|: U_{\lambda} \rightarrow U^x$ homeomorfismo.
+$p$ es un \textbf{recubridor} si $\forall x \in X,\ \exists U^x \text{, abierto \textbf{trivializante}} : p^{-1}\left( U^x \right) = \bigsqcup_{\lambda} U_{\lambda}$ y $\forall \lambda, p|: U_{\lambda} \rightarrow U^x$ homeomorfismo.
 \end{defi}
 Es un tipo especial de homeomorfismo local sobreyectivo y, por eso, identificación abierta.
 
@@ -39,7 +39,7 @@ Si $Z$ es conexo, dos elevaciones que coinciden en algún puntos son iguales.
     $A = \{z \in Z: \tilde{f}_1 \left( z \right) = \tilde{f}_2\left( z \right)\}, p \circ \tilde{f}_1 = f$.
     \begin{align*}
         \underbrace{x}_{f\left( z \right)} \in U^x,\ p^{-1} U^x &= \bigsqcup_{\lambda} U_{\lambda} \text{ (trivialización)} \Rightarrow \tilde{f}_i\left( z \right) \in p ^{-1}U^x\; \land \;\exists!\lambda_i: \tilde{f}_i\left( z \right) \in U_{\lambda_i}\\
-        &\Rightarrow \forall \eta \in W^z = \tilde{f}_1^{-1}\left( U_{\lambda_1} \right) \cap \tilde{f}_2^{-1} \left( U_{\lambda_2} \right): \hat{f}_1\left( \eta \right) = \hat{f}_2\left( \eta \right) \stackrel{(*)}{\Leftrightarrow} \lambda_1 = \lambda_2 (**)
+        &\Rightarrow \forall \xi \in W^z = \tilde{f}_1^{-1}\left( U_{\lambda_1} \right) \cap \tilde{f}_2^{-1} \left( U_{\lambda_2} \right): \hat{f}_1\left( \xi \right) = \hat{f}_2\left( \xi \right) \stackrel{(*)}{\Leftrightarrow} \lambda_1 = \lambda_2 (**)
     .\end{align*}
     $(*)$ debido a: 
     \begin{itemize}
@@ -48,22 +48,26 @@ Si $Z$ es conexo, dos elevaciones que coinciden en algún puntos son iguales.
     \end{itemize}
 
     Por tanto, 
-    \begin{align*}
-        \underbrace{\text{Ab.}}_{A} W^z \subset A \text{ si } z \in A: \tilde{f}_1\left( z \right) = \tilde{f}_2\left( z \right) &\stackrel{(**)}{\Rightarrow} \lambda_1 = \lambda_2 \Rightarrow \tilde{f}_1\left( W^z \right)\ \land \ \tilde{f}_2\left( W^z \right) \subset U_{\lambda_1} = U_{\lambda_2} \xrightarrow{p|} \underbrace{U^x }_{\text{iny.}}\\
-        &\Rightarrow \forall \eta \in W^z: \tilde{f}_1\left( \eta \right),\ \tilde{f}_2\left( \eta \right) \mapsto \tau?\left( z \right) \Rightarrow \tilde{f}_1\left( \eta \right) = \tilde{f}_2\left( \eta \right)
-    .\end{align*}
-    y, 
-    \begin{align*}
-        \underbrace{\text{Cerr.}}_{A} W^z \subset Z \setminus A \text{ si } z \not\in A: \tilde{f}_1\left( z \right) \neq \tilde{f}_2\left( z \right) &\stackrel{(**)}{\Rightarrow} \lambda_1 \neq \lambda_2 \Rightarrow \tilde{f}_1\left( W^z \right) \cap \tilde{f}_2\left( W^z \right) \subset U_{\lambda_1} \cap U_{\lambda_2} = \emptyset\\
-        &\Rightarrow \forall \eta \in W^z: \tilde{f}_1\left( \eta \right) \neq \tilde{f}_2\left( \eta \right) 
-    .\end{align*}
+    \begin{itemize}
+        \item \underline{Abierto}:
+        \begin{align*}
+            W^z \subset A \text{ si } z \in A: \tilde{f}_1\left( z \right) = \tilde{f}_2\left( z \right) &\stackrel{(**)}{\Rightarrow} \lambda_1 = \lambda_2 \Rightarrow \tilde{f}_1\left( W^z \right)\ \land \ \tilde{f}_2\left( W^z \right) \subset U_{\lambda_1} = U_{\lambda_2} \xrightarrow{p|} \underbrace{U^x }_{\text{iny.}}\\
+            &\Rightarrow \forall \xi \in W^z: \tilde{f}_1\left( \xi \right),\ \tilde{f}_2\left( \xi \right) \mapsto f\left( z \right) \Rightarrow \tilde{f}_1\left( \xi \right) = \tilde{f}_2\left( \xi \right)
+        .\end{align*}
+
+        \item \underline{Cerrado}:
+        \begin{align*}
+            W^z \subset Z \setminus A \text{ si } z \not\in A: \tilde{f}_1\left( z \right) \neq \tilde{f}_2\left( z \right) &\stackrel{(**)}{\Rightarrow} \lambda_1 \neq \lambda_2 \Rightarrow \tilde{f}_1\left( W^z \right) \cap \tilde{f}_2\left( W^z \right) \subset U_{\lambda_1} \cap U_{\lambda_2} = \emptyset\\
+            &\Rightarrow \forall \xi \in W^z: \tilde{f}_1\left( \xi \right) \neq \tilde{f}_2\left( \xi \right) 
+        .\end{align*}
+    \end{itemize}
     Por tanto, 
     \[
         \exists \tilde{f}_1\left( z \right) = \tilde{f}_2\left( z \right) \Rightarrow \emptyset \neq A \stackrel[\text{cerr.}]{\text{ab.}}{\subset} Z \text{ conx.} \Rightarrow A = Z\; \land \;\tilde{f}_1 = \tilde{f}_2
     \]
 \end{demo}
 
-\section{Lema de elevacción}%
+\section{Lema de elevación}%
 \label{sec:lema_de_elevaccion}
 \begin{prop}
 Tenemos que:
