@@ -324,14 +324,39 @@ Sea $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)
 \end{enumerate}
 \end{obs}
 
-
-\subsection{Espacio Cociente}
-\label{sub:cocientes}
-Para entender los abiertos de una imagen directa es conveniente representarlos en el dominio. El concepto es conjuntista en realidad:
+Tal y como hemos dicho, una identificación nos va a permitir, valga la redundancia, identificar los espacios que relaciona. En general, el espacio que conoceremos bien será el del dominio y, por ello, para entender y manejar los abiertos del espacio de llegada con la topología imagen directa es conveniente representarlos en el de partida.
 
 \begin{defi}[Conjunto Saturado]
 Sea $A \subset X$ un subconjunto de puntos, decimos que es \textbf{saturado respecto de $\boldsymbol{f}$} si y sólo si $f^{-1}f\left( A \right) = A$.
 \end{defi}
+
+Los conjuntos saturados nos van a permitir caracterizar los abiertos de la topología imagen directa. Sin embargo y de forma preeliminar, vamos a detenernos un instante a analizar qué significa que un conjunto sea saturado.
+
+Un conjunto no es saturado cuando existe otro conjunto que tenga la misma imagen que él, es decir, en cierta manera el concepto está relacionado con la inyectividad. Para justificar la afirmación previa veamos que si $f^{-1}f (A) \neq A$, entonces existen más pregimágenes de $f(A)$ a parte de $A$, es decir, existe otro conjunto $B$ tal que $f(B) = f(A)$.
+
+\begin{defi}[Relación de inyectividad]
+Sea $f$ una función, definimos la \textbf{relación de inyectividad} como la relación de equivalencia inducida por
+\[
+x \sim_f y \Leftrightarrow f\left( x \right) = f\left( y \right)
+\]
+es decir, dos elementos están relacionados si comparten la misma imagen.
+\end{defi}
+
+De esta manera, un conjunto saturado es aquel que aglutina, a través de la relación de inyectividad previamente definida, a todos los conjuntos que comparten la misma imagen.
+
+\begin{defi}[Conjunto Saturado]
+Sea $A \subset X$ un subconjunto de puntos, decimos que es \textbf{saturado respecto de $\boldsymbol{f}$} si y sólo si:
+\[
+\forall x \in A, [x]\subset A \mbox{ donde } [x] := \{y \in A: y \sim_f x\}
+\]
+donde $\sim_f$ denota la relación inyectividad inducida por $f$.
+\end{defi}
+
+\begin{obs}
+Esto quiere decir que para saturar un conjunto $A$ no tengo más que añadir los puntos del espacio cuya imagen está contenida en $f(A)$. Es por esto que el nombre es ``saturado'', porque añadimos todos los puntos con la misma imagen hasta que ya no quedan más.
+\end{obs}
+
+Estudiado un poco más en profundidad el concepto, la proposición siguiente va a permitiri caracterizar los abiertos de $f\mathcal{T}$ a través de abiertos de $\mathcal{T}$, lo que es útil para poder estudiar abiertos del espacio de llegada conociendo abiertos (saturados) del espacio de salida.
 
 \begin{prop}[Caracterización de abiertos de \texorpdfstring{$\boldsymbol{f\mathcal{T}}$}{ft}]
 Sea $f : (X, \mathcal{T}) \rightarrow (Y, f\mathcal{T})$ donde $f\mathcal{T}$ es la topología imagen directa, los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$, es decir:
@@ -340,28 +365,30 @@ f\mathcal{T} := \{fU \mbox{ donde } U \in \mathcal{T} \text{ y } f^{-1}fU = U\}
 \]
 \end{prop}
 \begin{demo}
+Hay que probar que $V\in f \mathcal{T}$ si y sólo si $\exists A \in \mathcal{T} : f^{-1}fA=A$ y $f(A) = V$.
 \begin{itemize}
-    %TODO: No sé si está del todo bien.
-    \item[$\Rightarrow)$] $V \in f\mathcal{T} \Rightarrow f^{-1}V \in \mathcal{T}$ y $V \stackrel{f \text{ sobre}}{=} f^{-1}fV$, es decir, que $f^{-1} V$ es saturado.
-    \item[$\Leftarrow)$]  Sea $V \in Y: \exists U \in \mathcal{T}$, saturado tal que: $fU = V$. Debemos ver que $f^{-1}V \in \mathcal{T}$.
-
-    Como $f^{-1}V = f^{-1}fU \stackrel{\text{sat.}}{=} U \in \mathcal{T}$ ya lo tenemos.
+   	\item[$\Rightarrow)$]
+   	
+   	Escogido un $V \in f\mathcal{T}$ cualquiera, entonces $f^{-1}V \in \mathcal{T}$ y precisamente conjunto es al que vamos a llamar $A$. En general, $f(A) = ff^{1}V \subset V$, pero como $f$ es sobreyectiva, entonces $f(A)=ff^{-1}V=V$. En consecuencia, $f^{-1}fA=f^{-1}V = A$, es decir, $A$ es abierto saturado.
+   	   	
+    \item[$\Leftarrow)$] 
+    
+	Escogido un conjunto $A$ cualquiera que sea abierto saturado de $\mathcal{T}$ hay que ver que su imagen $V := f(A)$ es abierto de $f\mathcal{T}$. Que $V$ sea abierto de $f\mathcal{T}$ quiere decir que $f^{-1}V$ es abierto de $\mathcal{T}$, pero como $f^{-1}V=f^{-1}f(A) = A$ por ser saturado, se tiene trivialmente que $f^{-1}V$ es abierto de $\mathcal{T}$.
 \end{itemize}
 \end{demo}
 
 \begin{obs}
-Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{no} abiertas de $Y$. 
+Sin embargo, no hemos afirmado nada acerca de los abiertos \textbf{no saturados} de $X$, que pueden tener imágenes no abiertas de $Y$ (y también abiertas sin ser saturados).
 \end{obs}
 
 \begin{ej}
 \begin{enumerate}
-    %TODO: Hacer la circunferencia con todo R
-    \item Consideremos la aplicación que transforma el intervalo $[0,1]$ en la circunferencia unidad de $\mathbb{R}^2$ definida como:
+    \item Consideremos la aplicación que transforma el intervalo $[0,1]$ en la circunferencia unidad de $\mathbb{R}^2$ y que viene definida por la expresión:
     \begin{align*}
         f: \left[ 0, 1 \right] &\longrightarrow \mathbb{S}^1 \\
         t &\longmapsto \left( \cos 2\pi t, \sin 2\pi t \right)
     \end{align*}
-    que geométricamente es:
+    La transformación que realiza entre el intervalo y la circunferencia está representada en la figura \ref{fig:proyeccion_exponencial_img_directa}:
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -435,42 +462,41 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
         \caption{\textit{La topología imagen directa es la usual en $\mathbb{S}^1$}}
         \label{fig:proyeccion_exponencial_img_directa}
     \end{figure}
-
-    \item Tenemos:
+    donde podemos observar dos comportamientos distintos: cualquier punto del intervalo $(0,1)$ tiene asignado un único punto de la circunferencia $\mathcal{S}^1$ y los puntos $0$ y $1$ tienen asignado el mismo punto $f(0) = f(1) = (1,0)$.
+    
+    De esta manera, podemos ver que los entornos que no contienen a ninguno de estos dos puntos especiales son entornos abiertos en la circunferencia. Sin embargo, en cuanto tocamos el $0$ o el $1$, la imagen de ese entorno ya no es un abierto de la circunferencia: necesitamos incluir al $0$ o al $1$ (el que nos hayamos dejado sin coger) para que la imagen sí sea abierta. Esto es porque, de no coger ambos puntos, la preimagen de la imagen del entorno siempre contendría a uno de los dos puntos no escogidos, es decir, que tenemos que saturar el conjunto.
+    \item Consideremos la aplicación que transforma el cuadrado unidad en el cilindro de la figura \ref{fig:rect-a-cilindro-por-imagen-directa.}.
     \begin{align*}
         f: R = \left[ 0, 1 \right] \times \left[ 0, 1 \right] &\rightarrow C \subset \mathbb{R}^3: x^2 + y^2 = 1,\ 0 \le z \le 1\\
         \left( s, t \right) &\mapsto \left( \cos 2\pi s, \sin 2\pi s, t \right) 
     .\end{align*}
-    que geométricamente es:
+    De nuevo, vemos en este ejemplo que los puntos problemáticos son los que comparten la misma imagen por la aplicación mencionada. Los abiertos en el cilindro imagen que involucran a estos puntos son imagen de abiertos saturados del cuadrado, es decir, de conjuntos que aglutinan los lados izquierdo y derecho en sí mismos para cumplir la relación de inyectividad descrita en el apartado anterior.  
     \begin{figure}[H]
         \centering
         \incfig[0.9]{rectángulo-a-cilindro-por-imagen-directa.}
-        \caption{\textit{Analizando los abiertos saturados y no saturados se concluye que la topología imagen directa es la usual en el tronco del cilindro.}}
-        \label{fig:rectángulo-a-cilindro-por-imagen-directa.}
+        \caption{\textit{Representación visual de los abiertos saturados y usuales de la transformación.}}
+        \label{fig:rect-a-cilindro-por-imagen-directa.}
     \end{figure}
+    Analizando los abiertos saturados y no saturados podemos concluir que la topología imagen directa por la aplicación definida es la usual en el tronco del cilindro.
 \end{enumerate}
 \end{ej}
 
-\begin{defi}[Relación de inyectividad]
-Llamamos \textbf{relación de inyectividad} a aquella relación de equivalencia que viene dada por una función $f$ tal que dos elementos están relacionados si comparten imagen:
-\[
-x \sim y \Leftrightarrow f\left( x \right) = f\left( y \right)
-\]
-\end{defi}
+\subsection{Espacio Cociente}
+\label{sub:cocientes}
+
+Habiendo hablado previamente sobre una relación de equivalencia, surge de forma natural la necesidad de estudiar la topología que induce generar un cociente en un espacio topológico. La topología del cociente va a ser la misma que la de imagen directa, pero esta vez la función $f$ de la definición sí es una función concreta y específica.
 
 \begin{defi}[Proyección canónica]
-Llamamos \textbf{proyección canónica} respecto de una relación de equivalencia a la aplicación:
+Sea $X$ un espacio topológico y $\sim$ una relación de equivalencia en dicho espacio, llamamos \textbf{proyección canónica} a la aplicación:
 \begin{align*}
     p: X &\rightarrow \faktor{X}{\sim}\\ 
     x &\mapsto \left[ x \right]
 \end{align*}
-donde $\left[ x \right]$ es la clase de equivalencia de $x$.
+que a cada elemento $x$ le asigna su clase de equivalencia $\left[ x \right]$.
 \end{defi}
-Con esto vemos que dentro de las identificaciones tenemos el caso particular del cociente:
-\[
-p: \left( X, \mathcal{T} \right) \rightarrow \faktor{X}{\sim}.
-\]
-Con esto definimos:
+
+Tal y como hemos dicho, la topología que va a tener el espacio cociente y que llamaremos topología cociente es la que induce la proyección canónica como imagen directa de la misma.
+
 \begin{defi}[Topología cociente]
 Llamamos \textbf{topología cociente} a: 
 \[
@@ -478,6 +504,8 @@ Llamamos \textbf{topología cociente} a:
 \]
 que viene a ser la topología imagen directa por $p$.
 \end{defi}
+
+Llegados a este punto y suponiendo que tenemos una identificación concreta de $X$ en otro espacio $Y$, tiene sentido preguntarnos qué ocurre si formamos un cociente con la relación de inyectividad asociada a la identificación $f$. ¿Existirá alguna relación entre la identificación correspondiente y el cociente del espacio? La respuesta es sí y dicha relación será de gran utilidad para tener un modelo algebraico (cociente) del modelo geométrico (identificación) del espacio $X$.
 
 \begin{figure}[H]
     \centering    
@@ -497,69 +525,85 @@ que viene a ser la topología imagen directa por $p$.
         \draw[|->](x) to (z);
         \draw[|->](z) to (y);
         \end{tikzpicture}
-        \caption{\textit{Representación de la composición del cociente}}
+        \caption{\textit{Construcción del homeomorfismo entre el cociente y la identificación.}}
+        \label{fig:coci}
 \end{figure}
 
-\begin{obs}
-La relación de equivalencia que vamos a usar es la que viene dada por la relación de \underline{inyectividad} respecto de $f$. Por esta razón, $\overline{f}$ será una biyección.
-\end{obs}
-\begin{demo}
-Sea $z \in Y$ como $f$ es suprayectiva $\exists x \in X: f\left( x \right) = z$. A su vez, $y \in \left[ x \right] \Leftrightarrow f\left( x \right) = f\left( y \right) \Rightarrow \overline{f}\left( \left[ x \right] \right) = z$. Con esto, $\overline{f}$ es sobreyectiva y bien definida.
+El resultado fundamental que vamos a ver es que si tenemos una construcción como la del triángulo de la figura \ref{fig:coci}, entonces podemos construir una aplicación entre el conjunto con la topología imagen y el cociente de manera que ésta sea homeomorfismo. Para ello, a continuación vamos a ver una serie de resultados que justifican las propiedades de la aplicación mencionada a través de las dos aplicaciones fundamentales de la construcción: la identificación $f$ y la proyección $p$.
 
-Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\overline{f}\left[ x \right] = \overline{f}\left[ y \right] \Rightarrow f\left( x \right) = f\left( y \right) \Rightarrow \left[ x \right] = \left[ y \right]$. Por tanto, también es inyectiva.
-\end{demo}
-
-%TODO: No estoy seguro de como es esta proposición
 \begin{prop}
-\begin{enumerate}
-    \item $\exists \overline{f} \Leftrightarrow x \sim y \Rightarrow f\left( x \right) \sim f\left( y \right)$
-    \item $\exists \overline{f} : \overline{f}$ continua $\Leftrightarrow f$ continua.
-    \item $\exists \overline{f}: \overline{f} \begin{cases}
-        \text{sobre. }\\ 
-        \text{iny. 1-1}\\ 
-    \end{cases} \Leftrightarrow f \begin{cases}
-        \text{sobre.}\\ 
-        x \sim y \Leftarrow f \left( x \right) \sim f \left( y \right)
-    \end{cases}$
-
-    \item $\overline{f}$ homeomorfa $\Leftrightarrow f$ identificación.
-    %TODO: Fix 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[node distance=2cm, auto]
-        \node(X) {$\left( X, \mathcal{T} \right)$};
-        \node(Y) [right=2cm of X] {$\left( Y, \mathcal{T}' \right)$};
-        \node(Z) [below=1.5cm of X] {$\left( \faktor{X}{\sim}, \overline{\mathcal{T}} \right)$};
-        \draw[->](X) to node {$f$} node [below] {ident.}(Y);
-        \draw[->](X) to node [left] {$p$} (Z);
-        \draw[->](Z) to node [left=0.2] {$\overline{f}$} node [below=0.3] {homeo.} (Y);
-        \end{tikzpicture}  
-        \caption{\textit{Relación entre el cociente y una identificación.}}
-        \label{fig:relacion_cociente_identificacion}
-    \end{figure}
-\end{enumerate} 
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+existe y está bien definida si y sólo si la relación de equivalencia es $x\sim_f y$.
 \end{prop}
 \begin{demo}
-\begin{enumerate}
-    \item Por la definición de $\sim$ y de $\overline{f}$.
-    %TODO: Corregir. Creo que se puede usar la propiedad universal
-    \item Sea $\overline{f}$ continua. Tomemos $U \in \mathcal{T}' \Rightarrow \overline{f}^{-1}U \in \overline{\mathcal{T}}$. Como $p$ es continua por definición de $\overline{\mathcal{T}}$, $f^{-1} U = p^{-1} \overline{f}^{-1} U \in \mathcal{T}$. Por lo que $f$ es continua.
+La implicación de izquierda a derecha es natural porque, como la aplicación $\overline{f}$ asigna a cada elemento de la clase su imagen por $f$, para que una misma clase sea consistente y tenga una única imagen todos los elementos de dicha clase deben tener la misma, es decir, que si $x\sim y$ entonces $f(x) = f(y)$.
 
-    Sea ahora $f$ continua. Tomemos $U \in \mathcal{T}' \Rightarrow W = f^{-1}U \in \mathcal{T}$. Al ser $p$ sobreyectiva $W = p^{-1}pW$, es decir, que $pW \in \overline{\mathcal{T}}$ (ya que $p^{-1}\left( p W \right) \in \mathcal{T}$ y la definición de $\overline{\mathcal{T}}$).
-
-    \item (Anterior observación) Si $\overline{f}$ es inyectiva 1-1 $\Rightarrow \underbrace{\overline{f}\left[ x \right] = \overline{f}\left[ y \right]}_{\Leftrightarrow f\left( x \right) \sim f\left( y \right)} \Rightarrow \underbrace{\left[ x \right] = \left[ y \right]}_{\Leftrightarrow x \sim y}$
-\end{enumerate}
+Recíprocamente, si ocurre que $x\sim y$ implica que $f(x) = f(y)$ hemos conseguido que la imagen que asigna $\overline{f}$ a una clase de equivalencia concreta no dependa del representante escogido, pues todos tienen la misma imagen.
 \end{demo}
 
-\begin{pg}
-    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior (\ref{fig:relacion_cociente_identificacion}). 
+\begin{prop}
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica del cociente inducido por $\sim_f$, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+es una biyección entre espacios topológicos.
+\end{prop}
+\begin{demo}
+La suprayectividad de $f$ nos asegura que para cualquier $y \in Y$ existe un $x\in X$ tal que $f(x) = y$ y, como $[x]$ viaja a $f(x)=y$ por la aplicación $\overline{f}$, ya tenemos un elemento en el cociente del que es imagen $y$.
 
-    Se puede contemplar $Y$ como un modelo del cociente. Es decir, utilizamos la identificación como ``modelo teórico'' y el cociente como ``modelo geométrico''. Esto no siempre será posible ya que dependerá de ciertas propiedades geométricas que veremos.
-\end{pg}
+Para probar la inyectividad basta con escoger dos clases $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ cuyas imágenes $\overline{f}\left[ x \right]$ y $\overline{f}\left[ y \right]$ coincidan y ver que deben ser la misma clase:
+\[
+\overline{f}\left[ x \right]=\overline{f}\left[ y \right] \Rightarrow f(x) = f(y) \Rightarrow x \sim_f y \Rightarrow [x] = [y]
+\]
+\end{demo}
 
-\begin{ej}[Anteriores]
+\begin{prop}
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica del cociente inducido por $\sim_f$, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+es continua si y sólo si $f$ es continua.
+\end{prop}
+\begin{demo}
+Supongamos que la función $\overline{f}$ es continua, entonces dado un abierto $U\in f\mathcal{T}$ el conjunto $\overline{f}^{-1} U$ es abierto en $\overline{\mathcal{T}}$. Como la proyección $p$ es una aplicación continua, entonces $p^{-1}\overline{f}^{-1} U$ es un abierto de $\mathcal{T}$, pero como $f^{-1} U = p^{-1}\overline{f}^{-1}$ hemos demostrado que la imagen inversa por $f$ de abiertos de $f\mathcal{T}$ es abierta en $\mathcal{T}$.
+
+Recíprocamente, supongamos que la función $f$ es continua y tengamos en cuenta que $\overline{f}^{-1} U = p \circ f^{-1} U$. Si tomamos un abierto $U$ de $f\mathcal{T}$, entonces $f^{-1}U$ es abierto de $\mathcal{T}$. Es más, $f^{-1} U$ es abierto saturado de $\mathcal{T}$, lo que quiere decir que $\forall y \in X : \exists x \in U \mbox{ tal que } f(y) = f(x) \Rightarrow y \in U$. Este último razonamiento hace evidente que también es un abierto saturado para la aplicación $p$ y, como los abiertos del cociente son las imágenes de los abiertos saturados del conjunto inicial (pues la topología del cociente es la topología imagen directa de la aplicación $p$), entonces $p f^{-1} U$ es abierto de $\overline{\mathcal{T}}$. Y se tiene el resultado de observar que $\overline{f}^{-1} U = p \circ f^{-1} U$.
+\end{demo}
+
+Los resultados anteriores prueban que si $f$ es identificación, entonces la aplicación $\overline{f}$ está bien definida, es biyectiva y es continua. Vamos a ver para terminar que también la inversa es continua, es decir, $\overline{f}$ es homeomorfismo. Pero además, se va a verificar que se obtiene el recíproco, esto es, que si $\overline{f}$ es homeomorfismo podemos afirmar que $f$ es una identificación.
+
+\begin{prop}
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica del cociente inducido por $\sim_f$, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+es homeomorfismo si y sólo si $f$ es identificación.
+\end{prop}
+\begin{demo}
+Para probar la implicación de izquierda a derecha falta solo probar que la aplicación inversa de $\overline{f}$ es continua. Para ello, escojamos un abierto $U \in \overline{\mathcal{T}}$ y veamos que ocurre con $\overline{f}U$. Por la definición de $\overline{f}$, sabemos que $\overline{f}U = f \circ p^{-1} U$ y el conjunto $p^{-1} U$ es abierto saturado (por la continuidad y la relación de equivalencia) de $\mathcal{T}$. Por último, como sabemos que los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$, entonces $f\circ p^{-1} U$ es abierto de la topología imagen directa.
+
+La implicación de izquierda a derecha cumple trivialmente la parte de la sobreyectividad para que sea identificación porque hemos visto que para que el cociente esté bien definido y sea una aplicación biyectiva es indispensable, luego sólo hay que probar que la topología tiene que ser la topología imagen directa. Sin embargo, este último punto es muy sencillo. Escogido un abierto cualquiera $V\in \mathcal{T}'$, vemos que $f^{-1}V = p^{-1}\overline{f}^{-1} V$. Como $\overline{f}$ es homeomorfismo, $ W := \overline{f}^{-1} V$ es abierto de $p\mathcal{T}$ y, como $p$ es continua, $p^{-1} W$ es abierto de $\mathcal{T}$. Por tanto, hemos demostrado que si eres abierto de la topología $\mathcal{T}'$, entonces tu preimagen es abierta en $\mathcal{T}$, es decir, que $\mathcal{T}' \subset f\mathcal{T}$. Como $f\mathcal{T}$ es la más fina que hace $f$ continua, tenemos que $\mathcal{T}' = f\mathcal{T}$.
+\end{demo}
+
+\begin{obs}
+Este último resultado acerca del homeomorfismo existente cuando $f$ es una identificación permite considerar, tal y como hemos comentado, el cociente $\faktor{X}{\sim}$ como la definición algebraica del modelo geométrico $Y$. En general, los cocientes son cómodos para definir los espacios algebraicamente y las identificaciones son mejores para estudiar las propiedades que tiene dicho espacio y es por ello por lo que es útil tener construcciones como la mencionada en la figura \ref{fig:coci}.
+\end{obs}
+
+\begin{ej}
+Podemos retomar los ejemplos que vimos para identificaciones y añadir el cociente del que son modelo las identificaciones.
+
 \begin{itemize}
-    \item Circunferencia y el cilindro como cocientes:
+    \item Circunferencia $\mathcal{S}^1$:
+    
+    Si recordamos habíamos definido la aplicación $f(t) = \left( \cos 2\pi t, \sin 2\pi t \right)$ que asigna a cada punto del intervalo $[0,1]$ su correspondiente punto de la circunferencia y seguimos los pasos descritos en este último apartado, tenemos que asociar en la misma clase de equivalencia los puntos con la misma imagen, es decir, todos los puntos forman una clase de equivalencia distinta excepto el $0$ y el $1$ que forman la misma.
+        
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[node distance=2cm, auto]
@@ -570,6 +614,16 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
             \draw[->](X) to node [left] {$p$} (Z);
             \draw[<->](Z) to node [right] {cont.}(Y);
         \end{tikzpicture}
+        \caption{\textit{Triángulo de relaciones entre el segmento $[0,1]$, el cociente que asocia el $0$ y el $1$ y la circunferencia unidad.}}
+	\end{figure}
+
+	De esta manera, el conjunto cociente que genera la relación de inyectividad de la aplicación $f$ es $\faktor{X}{\sim} = \left\{ \left\{ t \right\} : 0 < t < 1, \left\{ 0, 1 \right\} \right\}$ y, como habíamos visto que la aplicación $f$ era una identificación, la aplicación $\overline{f}$ del cociente al modelo es un homeomorfismo.
+
+	\item Cilindro:
+	
+	Recuperando la aplicación del ejemplo del cilindro, aplicamos el mismo razonamiento de agrupar en la misma clase de equivalencia a los puntos que tengan la misma imagen, es decir, que todos los puntos tendrán su propia clase individual salvo los puntos de los lados izquierdo y derecho que tendrán asociado su homólogo del lado contrario.
+	\begin{figure}[H]
+        \centering
         %TODO: arreglar distancia X a Y
         \begin{tikzpicture}[node distance=2cm, auto]
             \node(X) {$\left[ 0, 1 \right] \times \left[ 0, 1 \right]$};
@@ -579,17 +633,10 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
             \draw[->](X) to (Z);
             \draw[<->](Z) to (Y);
         \end{tikzpicture}
-        \caption{\textit{En el primero tomamos un segmento de longitud $1$ y ``pegamos'' los extremos, lo que nos da una figura equivalente a un circunferencia. En el segundo, tomamos un rectángulo de área $1$ y ``pegamos'' el lado izquierdo con el derecho directamente.}}
+        \caption{\textit{Triángulo de relaciones entre el cuadrado unidad, el cociente que asocia el lado izquierdo con el derecho y el cilindro del ejemplo.}}
     \end{figure}
-
-    Para la circunferencia tenemos:
-    \[
-        \faktor{X}{\sim} = \left\{ \left\{ t \right\} : 0 < t < 1, \left\{ 0, 1 \right\} \right\}
-    \]
-    %TODO: Posiblemente mal
-    la biyección entre el cociente y la esfera se da por el punto (3) de la anterior proposición y la continuidad por (2). Por último, la identificación se da por el anterior ejemplo.
-
-    \item Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
+    De nuevo y para terminar, como la aplicación $f$ que habíamos definido era una identificación, la función que asocia el modelo con el cociente $\faktor{X}{\sim} := \{(x,y) \in (0,1) \times [0,1] \mbox{ y } (0,y) \sim (1,y)\}$ es un homeomorfismo.	
+	
     \begin{figure}[H]
         \centering
         \hspace{2cm}
