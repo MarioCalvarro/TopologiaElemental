@@ -9,7 +9,7 @@ Un espacio topológico $X$ decimos que es \textbf{compacto} si y sólo si se cum
 \[
 X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} = X
 \]
-\item Dada una familia de cerrados, si la intersección finita de algunos de ellos es no vacía, entones la intersección no finita del total es no vacía:
+\item Dada una familia de cerrados, si la intersección finita de algunos de ellos es no vacía, entonces la intersección no finita del total es no vacía:
 \[
 \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset
 \]
@@ -256,8 +256,9 @@ En ocasiones, se utiliza otro enunciado similar: $\forall x,\ \exists V^x \text{
 \end{obs}
 
 \begin{ej}
-El conjunto del dibujo, en la topología usual de $\mathbb{R}^n$ no es localmente cerrado.
+El conjunto del dibujo, en la topología usual de $\mathbb{R}^n$ no es localmente cerrado,
 %TODO Dibujo
+
 puesto que cualquier entorno de un punto del margen derecho mantiene la apertura que da el margen discontinuo derecho.
 \end{ej}
 
@@ -271,8 +272,9 @@ Sea $X$ un espacio topológico, decimos que es \textbf{localmente compacto} si y
 \begin{enumerate}
     \item El espacio $\mathbb{R}^n$ con la topología usual es localmente compactos porque para cualquier punto $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$ es una base de entornos compactos.
     
-    \item Utilizando el mismo ejemplo visto para localmente cerrado, podemos añadir un punto $q$ y considerar la topología usual en todos los puntos menos en $q$, donde consideramos únicamente como entornos los conjuntos cuyo complementario es finito
+    \item Utilizando el mismo ejemplo visto para localmente cerrado, podemos añadir un punto $q$ y considerar la topología usual en todos los puntos menos en $q$, donde consideramos únicamente como entornos los conjuntos cuyo complementario es finito.
     %TODO Dibujo%
+
     Esta definición hace el conjunto $X$ compacto (pues si consideramos $X=\bigcup_{i\in I} U_i$ alguno recubrirá a $q$ y el complementario de ese es un conjunto finito), pero no podremos encontrar para $p$ ninguna base de entornos compactos, pues no existe dicha base de cerrados (y en $\mathbb{R}$ usual están caracterizados así).
 
 	%TODO no entiendo este contraejemplo
