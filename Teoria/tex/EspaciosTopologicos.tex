@@ -4,7 +4,7 @@ La primera parte de este manual pretende hacer un estudio formal de la definici�
 
 \section{Conjuntos abiertos}
 \label{sec:conjuntos_abiertos}
-Al igual que en el Álgebra Lineal la parte más básica y fundamental eran los vectores, vamos a ver que en la topología las piezas claves son los abiertos. Estos nos permiten dar forma y definir el resto de nociones del capítulo. Además, la familia de abiertos en un conjunto caracteriza y diferencia las topologías con las que pueda ser equipado este.
+Al igual que en el Álgebra Lineal la parte más básica y fundamental eran los vectores, vamos a ver que en la topología las piezas claves son los abiertos. Estos nos permiten dar forma y definir el resto de nociones del capítulo y del manual. Además, la familia de abiertos en un conjunto caracteriza y diferencia las topologías equipadas sobre el mismo entre sí.
 
 \begin{defi}[Espacio Topológico]
 Sea $X$ un conjunto de elementos que denotaremos por \textbf{puntos} y $\mathcal{T} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos que denotaremos \textbf{abiertos}, decimos que $\mathcal{T}$ es una \textbf{topología} de $X$ si y sólo si:
@@ -41,6 +41,14 @@ y, ese caso, la dupla $\left( X, \mathcal{T} \right)$ se denomina \textbf{espaci
     \item \textbf{Topología del punto}:
     
     La topología es $\mathcal{T}_a := \{U \subset X: a \in U\} \cup \{\emptyset\}$ para un $a\in X$ fijado previamente. Lo curioso de esta topología es que todos los abiertos son los conjuntos que contienen a $a\in X$, es decir, que la topología queda caracterizada como $\mathcal{T}_a := \{\{a, W\} \text{: donde }W\subset X\}$.
+    
+    \item \textbf{Topología radial}
+    
+    Los abiertos de la topología son los conjuntos que verifican la siguiente propiedad:
+    \[
+		\forall x \in A \mbox{ y }\forall L \mbox{ recta }, \ \exists \varepsilon_L > 0: B(x, \varepsilon_L) \cap L \subset A    
+    \]
+    Para entender mejor quiénes son estos abiertos vamos dar la siguiente ilustración: mientras que en la topología usual los abiertos son los que en cada punto hay una bola de radio $\varepsilon$ contenida en el conjunto, estos abiertos son los mismos pero el $\varepsilon$ de la bola puede ser distinto en cada dirección posible. Esto quiere decir que lo relevante es que para cada recta que pase por el punto exista un intervalo en dicha recta contenido en el conjunto (en la usual la longitud de dicho intervalo tendría que ser la misma en todas las rectas, pero aquí puede variar).
 \end{enumerate}
 \end{ej}
 
@@ -136,21 +144,21 @@ Sea $A\subset X$ un subconjunto de puntos, entonces:
 
 \section{Conjuntos cerrados}%
 \label{sec:conjuntos_cerrados}
-Los conjuntos cerrados por definición están íntimamente relacionados con los conjuntos abiertos. Revisten gran importancia por la relación que tienen con dos conjuntos de puntos importantes: la acumulación y la adherencia. Estas dos últimas nociones permiten caracterizar conceptos como la convergencia de sucesiones o la densidad de un conjunto.
+Los conjuntos cerrados, como veremos en esta sección, están íntimamente relacionados con los conjuntos abiertos y revisten gran importancia por la relación que tienen con dos conjuntos de puntos importantes: la acumulación y la adherencia. Estas dos últimas nociones permiten caracterizar conceptos como la convergencia de sucesiones o la densidad de un conjunto.
 
 \begin{defi}[Conjunto cerrado]
 Sea $\left( X, \mathcal{T} \right)$ un espacio topológico y $F\subset X$ un subconjunto de puntos, decimos que es un \textbf{conjunto cerrado} si y sólo si su complementario es un abierto, es decir, $U = X \setminus F$ es abierto.
 \end{defi}
 
 \begin{obs}
-En muchas ocasiones el lenguaje natural confunde las definiciones precisas que se dan en matemáticas. Este caso es un ejemplo de ello: uno podría pensar que la definición de cerrado desprende el hecho de que un cerrado es un ``no abierto''. Sin embargo, podemos encontrar multitud de conjuntos que no ni abiertos ni cerrados
+En muchas ocasiones el lenguaje natural confunde las definiciones precisas que se dan en matemáticas. Este caso es un ejemplo de ello: uno podría pensar que la definición de cerrado desprende el hecho de que un cerrado es un ``no abierto''.
 \begin{figure}[H]
     \centering
     \incfig[0.5]{observación-abiertos-y-cerrados.}
     \caption{\textit{Ejemplo de conjunto que no es ni abierto ni cerrado.}}
     \label{fig:observación-abiertos-y-cerrados.}
 \end{figure}
-e incluso otros que son abiertos y cerrados simultáneamente, como el vacío y el total.
+Sin embargo, podemos encontrar multitud de conjuntos que no son ni abiertos ni cerrados e incluso otros que son abiertos y cerrados simultáneamente, como el vacío y el total.
 \end{obs}
 
 \begin{prop}
@@ -318,15 +326,12 @@ Sea $X$ un conjunto de puntos y $A \subset X$ un subconjunto suyo, decimos que $
 \end{enumerate}
 \end{ej}
 
-\section{Bases}%
+\section{Bases de entornos y abiertos}%
 \label{sec:bases}
-En general, probar una cierta propiedad para una topología hace necesario verificar dicha propiedad en todos los abiertos de la misma. Esto, ya de por sí complicado, puede serlo mucho más cuando la definición de abierto es compleja y poco intuitiva. Por esto, del mismo modo que en el Álgebra Lineal surgían las bases para trabajar con un espacio vectorial al completo observando únicamente un conjunto pequeño de vectores, en Topología tendremos las bases de entornos y de abiertos que jugaran un papel similar en los espacios topológicos.
+En general, probar una cierta propiedad para una topología hace necesario verificar dicha propiedad en todos los abiertos de la misma. Esto, ya de por sí complicado, puede serlo mucho más cuando la definición de abierto es compleja y poco intuitiva. Para solventar este problema, es útil definir un conjunto que representa las ``piezas elementales'' de las que se componen los abiertos (como las bases en espacios vectoriales para los vectores).
 
 \begin{defi}[Base de entornos]
-Sea $(X, \mathcal{T})$ un espacio topológico y $a\in X$ un punto, definimos una \textbf{base de entornos de $a \in X$} como una colección $\mathcal{V}^a$ de entornos de $a$ tales que cualquier otro entorno de $a$ tenga que contener a alguno de los entornos de la colección $\mathcal{V}^a$, esto es:
-\[
-\forall W^a, \ \exists V \in \mathcal{V}^a : V \subset W^a
-\]
+Sea $(X, \mathcal{T})$ un espacio topológico, $a\in X$ un punto y $\mathcal{V}^a := \{V_i^a\}_{i\in I}$ una familia de entornos de $a$, decimos que es una \textbf{base de entornos de $a \in X$} si y sólo si cualquier otro entorno $W^a$ contiene a algún elemento de $\mathcal{V}^a$.
 \end{defi}
 
 \begin{obs}
@@ -415,16 +420,11 @@ Por darse $3.$, escogido cualquier abierto $U$ necesariamente contiene a una $B^
 \end{enumerate}
 \end{ej}
 
-\begin{obs}[Política general]
-Como antes, a menudo basta considerar los abiertos de $\mathcal{B}$. Por ejemplo,
-\end{obs} 
-\begin{prop}    
-Sea $A \subset X$ y $\mathcal{B}$ una base de abierto de $X \Rightarrow$
-\[
-A \subset X \text{ denso} \Leftrightarrow \forall B \in \mathcal{B}, B \cap A \neq \emptyset
-\]
+\begin{prop}
+Sea $X$ un espacio topológico, $A \subset X$ un subconjunto y $\mathcal{B}$ una base de abiertos de $X$, entonces $A$ es denso en $X$ si y sólo si $\forall B \in \mathcal{B} : B \cap A \neq \emptyset$.
 \end{prop}
-%TODO: Probar?
+
+Aunque hemos comentado que la utilidad de las bases es reducir la complejidad de los conjuntos sobre los que hay que probar los resultados para los abiertos, la caracterización de los abiertos gracias a las bases de entornos permiten también caracterizar topologías a través de subconjuntos de un conjunto.
 
 \begin{prop}
 Sea $X$ un conjunto de puntos y $\mathcal{B} := \left\{ B_i \right\}_{i \in I} \subset \mathcal{P}\left( X \right)$ una colección de subconjuntos, esta colección define una topología $\mathcal{T}$ única en $X$ si y sólo si: 
@@ -469,16 +469,16 @@ Veamos que se verifican las condiciones sobre la topología:
 
 \section{Topología relativa}%
 \label{sec:topologia_relativa}
-De la misma manera que en Álgebra, una vez definida la estructura de espacio vectorial, estudiábamos como se comportaba esta estructura con los subconjuntos del conjunto inicial, tiene sentido preocuparnos por cómo cambia la topología cuando nos restringimos a un subconjunto de puntos del total. A esta topología ``restringida'' la conocemos como topología relativa y, a diferencia de lo que ocurría en espacios vectoriales, puede tener un comportamiento muy distinto a la topología ambiente de la que proviene.
+Habiendo definido y estudiado la estructura de espacio topológico, tiene sentido preguntarse acerca del comportamiento de dicha estructura con los subconjuntos del espacio ambiente. Esto quiere decir, ¿qué ocurre con la topología restringida a un subconjunto de puntos del espacio total? Esto es lo que conocemos como topología relativa y, contra la primera intuición que pueda uno tener, puede ser completamente distinta a la topología ambiente que rige el espacio.
 
 \begin{defi}[Topología Relativa]
 Sea $\left( X, \mathcal{T} \right)$ un espacio topológico e $Y \subset X$ un subconjunto de puntos, definimos la \textbf{topología relativa\footnote{La comprobación de que efectivamente se trata de una topología es completamente trivial.} en $Y$} como
 $$
 \mathcal{T}|_Y = \{U \cap Y: U \in \mathcal{T}\}
 $$
-Además, decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio} de $\left( X, \mathcal{T} \right)$ y que $\left( X, \mathcal{T} \right)$ es el espacio \textbf{ambiente}. 
+y decimos que $\left( Y, \mathcal{T}|_Y \right)$ es un \textbf{subespacio} del espacio $\left( X, \mathcal{T} \right)$ \textbf{ambiente}. 
 \end{defi}
-%TODO: Mejorar
+
 \begin{figure}[H]
     \centering
     \incfig[0.6]{definición-topología-relativa.}

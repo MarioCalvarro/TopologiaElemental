@@ -1,10 +1,10 @@
 \chapter{Aplicaciones continuas}%
 \label{cha:aplicaciones_continuas}
-Una vez vista la estructura de espacio topológico, nos encaminamos a estudiar los morfismos entre estructuras de este tipo. El primer paso para realizar este estudio es una característica clave, no sólo para el Análisis, sino  también para la Topología: la continuidad.
+En general en Matemáticas, cuando se estudia una estructura y sus propiedades, el paso inmediatamente posterior es estudiar los morfismos (las transformaciones) entre estas estructuras. En nuestro caso, el estudio de las aplicaciones entre espacios topológicos estará fundamentado en una característica clave, no sólo para el Análisis, sino también para la Topología: la continuidad.
 
 A partir de este capítulo, vamos a estudiar las buenas propiedades que adquieren las aplicaciones continuas por la forma en que transforman los abiertos entre espacios y relacionan las topologías de cada uno.
 
-\section{Continuidad}%
+\section{Definición de continuidad}%
 \label{sec:continuidad}
 
 Si hacemos memoria, recordaremos la famosa definición $\varepsilon-\delta$ para la continuidad que nos dieron para $\left( \mathbb{R}^n, \mathcal{T}_u \right)$. Esta venía decir que una función $f : X \rightarrow Y$ era continua en un punto $x_0\in X$ si y sólo si:
@@ -18,7 +18,7 @@ y podemos reescribir esto último como $x \in B\left( x_0, \delta \right) \Right
 Sin embargo, esta definición sólo es válida para los espacios con la topología usual, pues el concepto de bola puede ser (y significar) cosas muy distintas en función de la topología empleada (sin ir más lejos puede no ser un abierto). Por ello, la siguiente definición pretende desligar el concepto de continuidad de la topología usual de $\mathbb{R}^n$ para que pueda ser aplicable a cualquier espacio topológico.
 
 \begin{defi}[Continuidad]
-Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es \textbf{continua en $x_0$ $\in X$} si y sólo si:
+Sean $X$ e $Y$ dos espacios topológicos y $f: X \rightarrow Y$ una aplicación entre ambos, decimos que $f$ es \textbf{continua en $x_0$ $\in X$} si y sólo si:
 \[
 \forall V^{f\left( x_0 \right)} :  f^{-1}\left( V^{f\left( x_0 \right)} \right) = V^{x_0} 
 \]
@@ -26,7 +26,7 @@ es decir, la preimagen de cualquier entorno de $f(x_0)$ es entorno de $x_0$.
 \end{defi}
 
 \begin{prop}[Composición de continuidades]
-Sean $f:X \rightarrow Y$ y $g: Y \rightarrow Z$ funciones continuas en $x_0\in X$ e $y_0\in Y$ tales que $f(x_0) = y_0$, entonces la composición $h = g \circ f$ es una función continua en $x_0$.
+Sean $f:X \rightarrow Y$ y $g: Y \rightarrow Z$ funciones continuas en $x_0\in X$ e $y_0\in Y$ tales que $f(x_0) = y_0$, la composición $h = g \circ f$ es una función continua en $x_0$.
 \end{prop}
 \begin{demo}
 Escojamos un entorno $V^{h\left( x_0 \right)}$ de la imagen por $h$ de $x_0$, entonces
@@ -87,7 +87,7 @@ La definición y posterior caracterización nos permiten recuperar las propiedad
 
 \section{Continuidad y subespacios}%
 \label{sec:continuidad_y_subespacios}
-En muchas ocasiones tiene interés estudiar el comportamiento de una función, no en el conjunto total, sino en un subconjunto de puntos concreto. Como hemos definido anteriormente los subespacios topológicos, tiene sentido querer ver cómo se comportan las aplicaciones y, sobre todo, la continuidad cuando trabajamos con estos subconjuntos.
+En muchas ocasiones tiene interés estudiar el comportamiento de una función, no en el conjunto total, sino en un subconjunto de puntos concreto. Como hemos definido anteriormente los subespacios topológicos, tiene sentido querer ver cómo se comportan las aplicaciones y sobre todo la continuidad, cuando trabajamos con estos subconjuntos.
 
 \begin{prop}
 Sea $f: X \rightarrow Y$ una función continua y $Z \subset X$ un subespacio topológico, entonces la restricción $f|_Z : Z \rightarrow Y$ también es continua.
@@ -180,7 +180,7 @@ entonces la función $f$ del inicio es continua.
 \section{Homeomorfismos}%
 \label{sec:homeomorfismos}
 Supongamos que tenemos una función $f$ biyectiva y continua. Con las definiciones de continuidad anteriores hemos caracterizado la topología de las imágenes por $f^{-1}$, pero no sabemos nada de cómo se comporta la función $f$ con respecto a abiertos, cerrados, etc.
-Nos gustaría poder destacar en qué condiciones una función establece una biyección entre abiertos de dos espacios, pues de esa forma existiría un ``isomorfismo'' entre ambas topologías a la hora de trabajar con ellas. Esta idea es precisamente la que hay detrás de la definición de homeomorfismo.
+Nos gustaría poder destacar en qué condiciones una función establece una biyección entre abiertos de dos espacios, pues de esa forma existiría un ``isomorfismo'' entre ambas topologías a la hora de trabajar con ellas. 
 
 \begin{defi}[Aplicaciones abiertas y cerradas]
 Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que es:
@@ -215,12 +215,13 @@ $j: \left( 0, 1 \right) \subset \mathbb{R}_u$ & \checkmark & \checkmark & \ding{
 \end{ej}
 
 \begin{prop}[Trivialidades esenciales]
-Sea $f:X\rightarrow Y$ una función biyectiva, entonces las siguientes afirmaciones son equivalentes:
+Sea $f:X\rightarrow Y$ una función biyectiva, entonces las siguientes afirmaciones:
 \begin{enumerate}
     \item $f$ es abierta
     \item $f$ es cerrada
     \item $f^{-1}$ es continua.
 \end{enumerate}
+son equivalentes.
 \end{prop}
 \begin{demo}
 \begin{itemize}
@@ -249,7 +250,7 @@ La definición de homeomorfismo es importante porque no establece simples biyecc
 	U &\mapsto f\left( U \right)\\
 	f^{-1}\left( W \right) &\mapsfrom W 
 \end{align*}
-Esto permite trabajar con los abiertos de un lado y trasladar el mismo trabajo a los del otro de forma canónica.
+lo que permite trabajar con los abiertos de un lado y trasladar el mismo trabajo a los del otro de forma canónica.
 \end{obs}
 
 \begin{defi}[Homeomorfismo Local]
@@ -258,10 +259,8 @@ Sea $f: X \rightarrow Y$ una función entre espacios topológicos, decimos que e
 
 \begin{obs}
 En general, cuando decimos que una aplicación $f:X\rightarrow Y$ es un homeomorfismo local sin especificar en qué punto, estamos diciendo que es homeomorfismo local para cualquier punto $x\in X$.
-\end{obs}
 
-\begin{obs}
-En la definición de homeomorfismo local anterior, podemos tomar $V^{x_0}$ y $V^{f\left( x_0 \right)}$ como entornos abiertos.
+Además, en la definición de homeomorfismo local anterior, podemos tomar $V^{x_0}$ y $V^{f\left( x_0 \right)}$ como entornos abiertos.
 %TODO: Habría que meter un diagrama de flechas como el que hizo en clase (preguntar a JD por él si no lo encontramos)
 \begin{demo}
 Si $f$ es homeomorfismo local, entonces $\exists V^a \subset X$ y $V^{f\left( a \right)} \subset Y$ tal que $f: V^a \rightarrow V^{f\left( a \right)}$ es homeomorfismo y, por esta razón, sabemos que $\exists U^a \ab V^a$ tal que $f\left( U^a \right) \ab V^{f\left( a \right)}$. 
@@ -272,14 +271,14 @@ Por tanto, como se trata de un homeomorfismo local, existirá algún $G \ab U^a$
 \end{demo}
 \end{obs}
 
-\begin{prop}[Restricción de homeomorfismos]
+\begin{prop}[Conservación por restricción]
 Sea $f: X \rightarrow Y$ un homeomorfismo, la restricción $f: Z \rightarrow f\left( Z \right)$ a cualquier subespacio $Z \subset X$ también es homeomorfismo.
 \end{prop}
 \begin{demo}
 La restricción será biyectiva por serlo $f$ y ser el conjunto de llegada $f(Z)$. Una biyección es homeomorfismo si tanto $f$ como $f^{-1}$ son continuas y como ya vimos que la restricción de una continua es continua, sabemos que la restricción de $f$ y $f^{-1}$ a $Z$ y $f\left( Z \right)$ son también continuas, es decir, $f|_Z$ es homeomorfismo.
 \end{demo}
 
-\begin{prop}[Composición de homeomorfismos]
+\begin{prop}[Conservación por composición]
 Sean $f: X \rightarrow Y$ y $g: Y \rightarrow Z$ dos homeomorfismos, su composición $h = f \circ g$ también es homeomorfismo.
 \end{prop}
 

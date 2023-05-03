@@ -1,7 +1,11 @@
 \chapter{Compacidad}%
 \label{cha:compacidad}
+La compacidad es una característica esencial para un montón de proposiciones y aplicaciones útiles de la topología. No es una noción intuitiva y, en general, cuesta bastante caracterizar los compactos de un espacio dado. En este capítulo vamos a estudiar el concepto y las propiedades y consecuencias que la definición del mismo tiene.
+
 \section{Concepto y mantras}%
 \label{sec:concepto_y_mantras_comp}
+La definición de compacidad no nos va a revelar nada, pero en cuanto comencemos a ver propiedades de dicha definición vamos a ver la relación que tiene con los conjuntos cerrados y las buenas propiedades que asumíamos por defecto en $\mathbb{R}^n$ con anterioridad.
+
 \begin{defi}[Compacidad]
 Un espacio topológico $X$ decimos que es \textbf{compacto} si y sólo si se cumplen las siguientes condiciones equivalentes:
 \begin{itemize}
@@ -37,20 +41,9 @@ La definición anterior es trivialmente equivalente a dar la definición de comp
     \item $K \subset \mathbb{R}_u^n$ es compacto $\Leftrightarrow K$ es cerrado y acotado (Heine-Borel). 
     \item $\left[ a, b \right] \subset \mathbb{R}_u$ compacto. ($\Rightarrow$ Heine-Borel por resultados generales).
     \item Si $X$ es compacto con $\mathcal{T}_{\text{discr.}} \Rightarrow$ es finito 
-    \begin{demo}
-        $X = \bigcup_{x \in X} \{x\}$ es recubrimiento abierto en $\mathcal{T}_{\text{discreta}}$ y como es compacto $\exists \bigcup_{i=1}^n \left\{ x_i \right\} = X$.
-    \end{demo}
-    \item $x_k \rightarrow x \Rightarrow K = \{x, x_k: k \ge 1\}$ es compacto.
-    \begin{demo}
-        Sea $\left\{ U_i \right\}_{i \in I}$ tal que, $\bigcup_{i \in I} U_i = K \Rightarrow$
-        \[
-            \exists U_{i_0}^x \ni x \xRightarrow{\lim} \begin{rcases}
-                x_k \in U_{i_0},\ \forall k > k_0\\
-                x_k \in U_{i_k},\ \forall k \le k_0
-            \end{rcases} \Rightarrow K \subset U_{i_0} \cup U_{i_1} \cup \ldots \cup U_{i_{k_0}} 
-        \]
-        Por ser $k_0$ finito.
-    \end{demo}
+    \item Dada una sucesión $x_k \rightarrow x$ el conjunto de los términos más el límite $K = \{x, x_k: k \ge 1\}$ es compacto.
+    
+   	Para ello, basta ver que si $K = \bigcup_{i \in I} U_i = K$ entonces $x$ debe pertenecer a un $U_{i_0}$. Por la convergencia, $\forall k \geq k_0 : x_k \in U_{i_0}$ y los que no estén en dicho entorno son un conjunto finito, luego escogiendo los $U_i$ a los que pertenezcan ya tenemos un subrecubrimiento finito.
 
     \item $K \subset \mathbb{R}_u^n$ compacto $\Leftrightarrow \forall A^{\infty} \subset K, A' \cap K \neq \emptyset$ (Bolzano-Weierstrass)
 \end{enumerate}
@@ -200,9 +193,9 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 \end{obs}
 
 
-%TODO: Fix
 \chapter{Compacidad local}%
 \label{cha:compacidad_local}
+En ocasiones, es útil saber que trabajar localmente en un punto tiene ciertas propiedades favorables. Nos gustaría poder definir qué es esto de trabajar localmente en un punto y qué condiciones han de satisfacer los entornos de dicho punto para poder trabajar cerca de él como si el espacio fuese compacto, lo que es precisamente la compacidad local.
 
 \begin{defi}[Localmente cerrado]
 Sea $X$ un espacio topológico y $Y \subset X$ un subconjunto, decimos que $Y$ es \textbf{localmente cerrado} si y sólo si:

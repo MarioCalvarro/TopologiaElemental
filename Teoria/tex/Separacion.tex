@@ -1,15 +1,15 @@
 \chapter{Separación}%
 \label{cha:separacion}
-
-\section{Concepto}%
-\label{sec:concepto}
 En este apartado vamos a estudiar la noción de separación en profundidad. Veremos que propiedades tienen los espacios que poseen esta característica y qué consecuencias tiene tenerla sobre el resto de la topología del mismo.
+
+\section{Definición y propiedades}%
+\label{sec:concepto}
+
+En primer lugar, vamos a tratar de definir el concepto de separación. Al principio, es un poco complicado asumir que esta propiedad no tiene que cumplirse trivialmente porque estamos muy mal acostumbrados con $\mathbb{R}^n$, pero es importante distinguir aquellos espacios donde no podemos separar claramente dos puntos.
 
 \begin{defi}[Espacio Hausdoff o $T_2$]
 Sea $X$ un espacio topológico, decimos que es \textbf{Hausdorff o $T_2$} si y sólo si para todo par de puntos distintos $x, y \in X$ existen algunos entornos de cada uno disjuntos entre sí.
 \end{defi}
-
-Hay otras formas de separación, más débiles o más fuertes, pero nos contentaremos con ésta al ser la más intuitiva.
 
 \begin{prop}
 Sea $X$ un espacio topológico, si es Hausdorff podemos encontrar dichos entornos abiertos y disjuntos.
@@ -42,6 +42,8 @@ Para cualquier $x \in X$ y cualquier $y \in X \setminus \left\{ x \right\}$, por
 \end{enumerate}
 \end{obs}
 
+A continuación, lo que vamos a ver es uno de los teoremas más habituales y útiles que hemos venido utilizando en el Análisis en general. En primer lugar, el conjunto de puntos donde dos funciones coinciden es cerrado (o donde una toma un cierto valor también porque se puede considerar dicho valor como la aplicación constante ese valor) y, en segundo lugar, si dos funciones coinciden en un conjunto denso, entonces coinciden en todos sus puntos.
+
 \begin{prop}
 Sean $f, g: X \rightarrow Y$ dos funciones continuas e $Y$ un espacio topológico Hausdorff, entonces el conjunto de puntos donde coinciden:
 \[
@@ -73,22 +75,12 @@ Sean $f, g: X \rightarrow Y$ dos funciones continuas, $Y$ un espacio topológico
 Si $f$ y $g$ coinciden en un subconjunto $A$, entonces $\{f = g\} \supset A$ y como $\{f = g\}$ es cerrado, entonces $\{f = g\} \supset \overline{A}$. Como $A$ es denso, entonces $\overline{A} = X$ y esto implica que $\{f=g\}\supset X$, es decir, que $\{f=g\} = X$.
 \end{demo}
 
-\begin{obs}
-Este último resultado es importante, pues nos permite extender con continuidad (y de forma única) una función a su adherencia.
-\end{obs}
-
-\begin{ej}[Importante]
-Un caso importante en el que $Y$ es Hausdorff es: 
-\[
-f: X \rightarrow Y = \mathbb{R}
-\]
-\end{ej}
+Con este último corolario, reafirmamos lo comentado al inicio. Cuando se dan las condiciones adecuadas en un espacio Hausdorff, podemos extender una función en un conjunto a su adherencia.
 
 \begin{obs}
-$f: X \rightarrow Y$ continua con $Y$ Hausdorff $\Rightarrow f^{-1}\left( y \right)$ cerrado $\forall y \in Y$.
-\begin{demo}
-Porque los puntos de $Y$ son cerrados y la preimagen de cerrados por continuidad es cerrada.
-\end{demo}
+Tiene especial relevancia que el espacio real usual $\mathbb{R}$ sea Hausdorff y vamos a ver por qué. Si tenemos una función $f: X \rightarrow Y$ continua donde $Y$ es Hausdorff, entonces la preimagen $f^{-1}\left( y \right)$ de cualquier $y\in Y$ es un cerrado de $X$ porque hemos visto que en estas condiciones los puntos de $Y$ son cerrados y la preimagen de cerrados por continuidad es cerrada.
+
+¿Por qué es entonces relevante que $\mathbb{R}$ sea Hausdorff? Porque este último resultado implica que cualquier conjunto del estilo $\{x\in X : f(x) = \alpha \mbox{ donde } \alpha \in \mathbb{R}\}$ es un conjunto cerrado, puesto que dicho conjunto en realidad es $f^{-1}(\alpha)$ y $\alpha$ es cerrado.
 \end{obs}
 
 \section{Tabla de comportamiento}%

@@ -1,116 +1,146 @@
 \chapter{Conexión por caminos}%
 \label{cha:conexion_por_caminos}
-\begin{defi}
-Un \textbf{camino} en un espacio $X$ es una aplicación continua $\alpha: \left[ a, b \right] \subset \mathbb{R}_u \rightarrow X$. Decimos:
+La conexión por caminos va a ser un elemento central sobre todo en la parte de topología algebraica posterior. Es similar al concepto de conexión que hemos visto, pero la diferencia es que introducimos un elemento ``conector'': los caminos.
+
+\begin{defi}[Camino]
+Sea $X$ un espacio topológico, definimos un \textbf{camino en $X$} como una aplicación continua $\alpha: \left[ a, b \right] \subset \mathbb{R}_u \rightarrow X$ y decimos que:
 \begin{itemize}
-    \item $\alpha$ \textbf{va de} $\alpha\left( a \right)$ a $\alpha\left( b \right)$, \textbf{conecta} $\alpha\left( a \right)$ con $\alpha\left( b \right)$, que son \textbf{extremos}.
-    \item La imagen $\alpha\left[ a, b \right] \subset X$ es la \textbf{traza}, conexa por imagen continua.
+    \item Los puntos $\alpha\left( a \right)$ y $\alpha\left( b \right)$ son los extremos inicial y final del camino.
+    \item La imagen $\alpha\left[ a, b \right] \subset X$ es\footnote{Nótese que la traza es un conexo, pues es imagen continua del conexo $[a,b]$.} la \textbf{traza}.
 \end{itemize}
 \end{defi}
 
 \begin{prop}[Cambios de parámetros]
-$\forall \varphi: \left[ c, d \right] \rightarrow \left[ a, b \right]$ continua $\Rightarrow \beta = \alpha \circ \varphi$ es otro camino con igual traza.    
-
-$\varphi$ es un \textbf{cambio de parámetro} cuando es homeomorfismo (creciente o decreciente).
-%TODO: Imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/camb_par_caminos} 
-\end{center}
+Sea $X$ un espacio topológico, $\alpha :[a,b] \rightarrow X$ un camino en él y $\varphi
+ : [c,d]\rightarrow [a,b]$ una aplicación, entonces:
+\begin{itemize}
+\item Si $\varphi$ es continua, la aplicación $\alpha \circ \varphi :[c,d]\rightarrow X$ es otro camino sobre $X$ con la misma traza que $\alpha$.
+\item Si $\varphi$ es un homeomorfismo\footnote{En funciones de un variable, la equivalencia a ser homeomorfismo (biyectiva, continua y continua la inversa) es ser una función continua y monótona.}, la aplicación $\alpha \circ \varphi:[c,d]\rightarrow X$ es exactamente el mismo camino que $\alpha$, pero con parametrización distinta.
+\end{itemize}
+al último resultado se le conoce como \textbf{cambio de parámetro}. 
 \end{prop}
 
-\begin{ej}[Interpolación lineal]
-Dados $p, q \in \mathbb{R}^n,\ \alpha : \left[ 0, 1 \right] \rightarrow \left[ p, q \right]: t \mapsto \left( 1 - t \right) p + tq$ es un camino bien conocido y útil. También sirve para reparametrizar si $\left[ p, q \right] = \left[ a, b \right] \subset \mathbb{R}$. Vemos, por ejemplo, que siempre podemos reducirnos a caminos con dominio $\left[ 0, 1 \right]$. Esto será fundamental más adelante. 
+\begin{obs}
+Es importante tener en cuenta que sólo se trata del mismo camino cuando $\varphi$ es homeomorfismo. La principal diferencia está en que cuando $\varphi$ es sólo continua, se conserva la traza, pero no la velocidad a la que se recorre.
+\end{obs}
+
+\begin{ej}
+Un cambio de parámetro muy útil en lo que queda de documento va a ser la interpolación lineal, que consiste en la parametrización de cualquier segmento en términos del segmento $[0,1]$. El cambio, considerando $p, q\in \mathbb{R}^n$, viene dado por la siguiente aplicación:
+\begin{align*}
+\varphi : [0, 1] &\longrightarrow [p, q] \\
+			t & \longmapsto (1-t)p + tq
+\end{align*}
+Este resultado es muy potente porque permite reducir cualquier camino a uno parametrizado en $[0,1]$, lo que será de gran utilidad en los capítulos posteriores.
 \end{ej}
 
-\begin{prop}[Producto de caminos]
-Topológicamente: 
+\begin{defi}[Producto de caminos]
+Sea $X$ un espacio topológico y $\alpha : [a,b]\rightarrow X$ y $\beta:[c,d]\rightarrow X$ dos caminos tales que $\alpha(b) = \beta(c)$, entonces la aplicación:
+\begin{align*}
+\alpha \ast \beta : [a,b] \cup [c,d] &\longrightarrow X \\
+						t &\longmapsto \begin{cases}
+										\alpha(t) & t \in [a,b] \\
+										\beta(t) & t\in [c,d]
+										\end{cases}	
+\end{align*}
+es el camino que resulta de unir los caminos $\alpha$ y $\beta$.
 %TODO: Imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/prod_caminos} 
 \end{center}
-(Alternativa: Reparametrizar $\beta$ con dominio $\left[ b, b + \left( d - c \right) \right]$)
-\end{prop}
+\end{defi}
+
+\begin{obs}
+Una alternativa para ver mejor que se trata de un camino es reparametrizar el camino $\beta$ al intervalo $[b,b+(d-c)]$. Como $\beta(b) = \alpha(b)$, el camino $\alpha \ast b$ definido en $[a,b+(d-c)]$ ahora ya tiene un aspecto más uniforme que el de la definición.
+\end{obs}
 
 \begin{ej}
 Si hacemos el producto de segmentos consecutivos obtenemos \textbf{caminos poligonales}. 
 \end{ej}
 
-\section{Conexión por caminos}%
+\section{Mantras y propiedades}%
 \label{sec:conexion_por_caminos}
-\begin{defi}
-Un espacio $X$ es \textbf{conexo por caminos} si sus puntos se pueden conectar con un camino:
+Una vez definidos los conectores fundamentales que serán los caminos, ahora sí podemos estudiar qué significa estár conectado por caminos y qué consecuencias tiene con respecto a la conexión y las propiedades del espacio.
+
+\begin{defi}[Conexión por caminos]
+Sea $X$ un espacio topológico, decimos que es \textbf{conexo por caminos} si y sólo si 
 \[
-\forall x \forall y \in X,\ \exists \sigma_y: \left[ a, b \right] \rightarrow X,\ \sigma_y\left( a \right) = x\; \land \;\sigma_y\left( b \right) = y
+\forall x, y \in X,\ \exists \sigma: \left[ a, b \right] \rightarrow X,\ \sigma\left( a \right) = x\; \land \;\sigma\left( b \right) = y
 \]
+cualesquiera dos de sus puntos se pueden conectar con un camino.
 \end{defi}
+
 \begin{obs}
-En particular, $X = \bigcup_{y \in X} \sigma_y\left[ a, b \right]$ es \underline{conexo} (pivote, $\alpha_y\left( a \right) = x,\ \forall y$)
+Fijemos un $x_0\in X$ y consideremos $\sigma_x : [a,b]\rightarrow X$ tal que $\sigma_x(a) = x_0$ y $\sigma_x(b) = x$. Como la traza de $\sigma_x$ hemos comentado que es conexa y podemos escribir\footnote{En este caso, $\sigma_x$ es un abuso de notación para escribir que es la traza de $\sigma_x$.} $X = \bigcup_{x\in X} \sigma_x$, el conjunto $X$ es conexo por el teorema del pivote (pues todos los $\sigma_x$ intersecan en $x_0$).
 \end{obs}
 
 \begin{ej}
 \begin{enumerate}
     \item La mayor parte de los conexos conocidos son conexos por caminos:
     \begin{itemize}
-        \item Los abiertos conexos (top. usual) son conexos por poligonales, que son caminos.
-        \item Los conjuntos convexos y los estrellados también.
+        \item Los abiertos conexos de la topología usual son conexos por poligonales, que son caminos.
+        \item Los conjuntos convexos y los estrellados también son conexos (casi por definición se prueba).
     \end{itemize}
-    \item El seno del topólogo $\Gamma$ es la traza de $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right),\ t > 0$, es conexo y lo es su adherencia $\overline{\Gamma} = J \cup \Gamma,\ J = \{0\} \times \left[ 0, 1 \right]$. Pero $\overline{\Gamma}$ \underline{no} es conexo por caminos.
+    \item El seno del topólogo $\Gamma$ es la traza de $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right) : t > 0$ y es conexo tanto él como su adherencia $\overline{\Gamma} = J \cup \Gamma$ donde $J = \{0\} \times \left[ 0, 1 \right]$. Sin embargo, la adherencia $\overline{\Gamma}$ sirve como contraejemplo para ver un conjunto conexo que no es conexo por caminos.
     \begin{demo}
-        No existen caminos $\sigma: \left[ a, b \right] \rightarrow \overline{\Gamma} \begin{cases}
-            \sigma\left( a \right) = p \in J\\
-            \sigma\left( b \right) = q \in \Gamma
-        \end{cases}$:
-        \begin{center}
+    Fundamentalmente hay que demostrar que no todos los puntos están conectados por caminos. En particular, vamos a demostrar que no existen caminos que $\sigma: \left[ a, b \right] \rightarrow \overline{\Gamma}$ donde $\sigma\left( a \right) = p \in J$ y $\sigma\left( b \right) = q \in \Gamma$, es decir, al intentar buscar un camino de $J$ a $\Gamma$ la cosa se estropea.
+    	\begin{center}
             \includegraphics[scale=0.3]{images/dem_sin_top_no_conx_caminos} 
         \end{center}
-        \begin{enumerate}
-            \item $\sigma\left( t \right) = \left( \alpha\left( t \right), \beta\left( t \right) \right),\ \alpha, \beta$ continuas. $\exists a' = \max \{t \in \left[ a, b \right] : \alpha\left( t \right) = 0\} \Rightarrow (\alpha$ continua en un compacto) %TODO: Fix orden 
-            $\Rightarrow \begin{cases}
+	Supongamos que sí, que existe un camino con $\sigma(0) = p \in J$ y $\sigma(1) = q \in \Gamma$ definido como:
+	\begin{align*}
+		\sigma : [0, 1] &\longrightarrow \overline{J} \\
+					t &\longmapsto (\alpha(t), \beta(t))
+	\end{align*}
+	entonces el valor $t_0 = \max \{t \in \left[ a, b \right] : \alpha\left( t \right) = 0\}$ existe porque (falta explicación) y es menor estricto que $1$, pues $\sigma(1) = (\alpha(1), \beta(1)) = q \in J \Rightarrow \alpha(1) \neq 0$. Al valor $\sigma(t_0) = (0, \beta(t_0))$ lo denotaremos por $p'$ en lo sucesivo.
+	
+	   $\Rightarrow \begin{cases}
                 \alpha\left( a' \right) = 0,\ \sigma\left( a' \right) = p' \in J\\
                 t > a': \alpha\left( t \right) > 0 \Rightarrow \sigma\left( t \right) \in \Gamma \Rightarrow \beta\left( t \right) = \sin \frac{1}{\alpha\left( t \right)} 
             \end{cases} $
 
-            \item Supongamos $p' = \sigma\left( a' \right) \neq \left( 0, 1 \right)$ (punto) y $\exists \delta: B\left( p', \delta \right) \cap \{y = 1\} = \emptyset$. $\sigma$ continua $\Rightarrow \exists \sigma\left[ a', \varepsilon \right] \subset B\left( p', \delta \right) \Rightarrow \sigma\left[ a', \varepsilon \right] \cap \{y = 1\} = \emptyset$. (si $p' = \left( 0, 1 \right)$ evitaríamos $\{y = -1\}$)
+            Supongamos $p' = \sigma\left( a' \right) \neq \left( 0, 1 \right)$ (punto) y $\exists \delta: B\left( p', \delta \right) \cap \{y = 1\} = \emptyset$. $\sigma$ continua $\Rightarrow \exists \sigma\left[ a', \varepsilon \right] \subset B\left( p', \delta \right) \Rightarrow \sigma\left[ a', \varepsilon \right] \cap \{y = 1\} = \emptyset$. (si $p' = \left( 0, 1 \right)$ evitaríamos $\{y = -1\}$)
 
-            \item $\alpha$ continua $\Rightarrow \alpha\left[ a', \varepsilon \right] \subset \mathbb{R}$ conexo compacto $=$ intervalo: $\alpha\left[ a', \varepsilon \right] = \left[ 0, c \right]$.
+            $\alpha$ continua $\Rightarrow \alpha\left[ a', \varepsilon \right] \subset \mathbb{R}$ conexo compacto $=$ intervalo: $\alpha\left[ a', \varepsilon \right] = \left[ 0, c \right]$.
 
-            \item La oscilación de $\sin \frac{1}{x}$ lleva $\sigma$ a $\{y = 1\}$, fuera de la bola elegida:
+            La oscilación de $\sin \frac{1}{x}$ lleva $\sigma$ a $\{y = 1\}$, fuera de la bola elegida:
             \begin{align*}
             k \gg 0 &\Rightarrow \frac{2}{\left( 1 + 4k \right) \pi} \in \left[ 0, c \right] = \alpha\left[ a', \varepsilon \right] \Rightarrow \exists a' < t_k < \varepsilon: \alpha\left( t_k \right) = \frac{2}{\left( 1 + 4k \right) \pi}\\ 
                 &\Rightarrow \sigma\left( t_k \right) = \left( \alpha\left( t_k \right), \sin\left( \frac{1}{\alpha\left( t_k \right)} \right) \right) = \left( x_k, 1 \right) 
             \bot \end{align*}
-        \end{enumerate}
     \end{demo}
 \end{enumerate}
 \end{ej}
 
-\section{Mantras}%
-\label{sec:mantras_conx_caminos}
-Casi todo lo que dijimos sobre la conexión nos vale:
-\begin{prop}[Mantra del pivote]
-Sea $X = \bigcup_{i} A_i,\ \bigcap_{i} A_i \neq \emptyset,\ \forall A_i$ conexos por caminos $\Rightarrow X$ conexo por caminos. 
-\end{prop}
+Como el concepto también tiene que ver con la conexión de un conjunto y parece muy similar al que hemos comentado, parece razonable que casi todo lo que dijimos acerca de conexión sea válido en este caso.
+
+\begin{theo}[del pivote]
+Sea $X$ un espacio topológico, $A$ un subespacio definido como $A = \bigcup_{i} A_i$ donde los $A_i$ son una familia de conexos por caminos de $X$, si $\bigcap_{i} A_i \neq \emptyset$, entonces $A$ es conexo por caminos. 
+\end{theo}
 \begin{demo}
 \begin{center}
     \includegraphics[scale=0.3]{images/dem_pivote_caminos} 
 \end{center}
 \end{demo}
 
-\begin{prop}[Mantra de la imagen]
-Sea $f: X \rightarrow Y$ continua con $X$ conexo por caminos $\Rightarrow f\left( X \right)$ es conexo por caminos. 
-\end{prop}
+\begin{theo}[Conservación por continuidad]
+Sean $X$ e $Y$ espacios topológicos, $f: X \rightarrow Y$ una función continua y $A \subset X$ un conjunto conexo por caminos, entonces $f\left( A \right)$ es conexo por caminos.
+\end{theo}
 \begin{demo}
 \begin{center}
     \includegraphics[scale=0.3]{images/dem_imagen_caminos} 
 \end{center}
 \end{demo}
 
-\begin{prop}[Mantra de la adherencia (¡NO!)]
+\begin{obs}
+Uno podría pensar, por la similitud que estamos viendo con la conexión del capítulo anterior, que el teorema sobre la conexión de la adherencia es extensible a la conexión por caminos. Sin embargo ¡Esto no es cierto!
+
 El seno del topólogo $\Gamma$ es conexo por caminos: $\left( a, \sin\frac{1}{a} \right)$ y $\left( b, \sin\frac{1}{b} \right)$ se conectan por el camino evidente, $\alpha\left( t \right) = \left( t, \sin\frac{1}{t} \right),\ a \le t \le b$. Pero, como hemos visto, la adherencia $\overline{\Gamma}$ no es conexa por caminos. 
-\end{prop}
+\end{obs}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_conx_caminos}
+En este apartado estudiamos como se comportan la conexión por caminos con respecto a las construcciones del tema \nameref{cha:construcciones} para ver cuándo se conservan, cuándo se pierden y qué podemos añadir para no perderlas.
+
 %TODO: Fix tabla
 \begin{table}[H]
 \centering
@@ -118,75 +148,98 @@ El seno del topólogo $\Gamma$ es conexo por caminos: $\left( a, \sin\frac{1}{a}
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-Conexión por caminos & \ding{55} & \checkmark & \checkmark & \ding{55}\\
+Conexión por caminos & \ding{55} & \checkmark & \begin{tabular}{cc} \checkmark & \checkmark \end{tabular} & \ding{55} \\
+\hline
+Demostración: Conexo & Continuidad & Prop & ??? \\
 \hline
 \end{tabular}
 \caption{\textit{La tabla nos indica como se conserva la conexión por caminos en las construcciones que hemos visto. Las sumas y los productos son finitos.}}
 \end{table}
 
-\begin{prop}[Productos]
-Sean $\left( x_1, y_1 \right),\ \left( x_2, y_2 \right) \in X \times Y$: 
+\begin{prop}[Conservación por producto]
+Sean $X$ e $Y$ dos espacios topológicos, el producto $X\times Y$ es conexo por caminos si y sólo si $X$ e $Y$ son conexos por caminos.
+\end{prop}
+\begin{demo}
+\begin{itemize}
+\item $\Leftarrow$
+
+Escojamos dos puntos cuales quiera $\left( x_1, y_1 \right),\ \left( x_2, y_2 \right) \in X \times Y$ y veamos que existe un camino que los une. Por la conexión por caminos de cada componente del producto, sabemos que ocurre lo siguiente: 
 \[
-\begin{rcases}
+\begin{cases}
     \sigma: \left[ a, b \right] \rightarrow X: \begin{cases}
-        \sigma\left( a \right) = x_1\\
+        \sigma\left( a \right) = x_1 \\
         \sigma\left( b \right) = x_2
-    \end{cases}\\
+    \end{cases} \\
     \tau: \left[ a, b \right] \rightarrow Y: \begin{cases}
-        \tau\left( a \right) = y_1\\
+        \tau\left( a \right) = y_1 \\
         \tau\left( b \right) = y_2
     \end{cases}
-\end{rcases} 
-    \Rightarrow \gamma = \left( \sigma, \tau \right) : \left[ a, b \right] \rightarrow X \times Y: \begin{cases}
+\end{cases} 
+\]
+Luego la composición de ambos caminos sobre cada componente como componentes de un camino en el producto necesariamente será un camino que unirá los puntos del inicio.
+\[
+\gamma = \left( \sigma, \tau \right) : \left[ a, b \right] \rightarrow X \times Y: \begin{cases}
         \gamma\left( a \right) = \left( x_1, y_1 \right)\\
         \gamma\left( b \right) = \left( x_2, y_2 \right)
     \end{cases}  
 \]
-\end{prop}
+
+\item $\Rightarrow$
+
+Como para que una función con varias componentes sea continua cada componente debe ser continua, el proceso de la implicación anterior es completamente reversible porque la existencia de un camino en el producto implica la existencia de un camino en cada componente considerando dicha componente como camino en el factor.
+\end{itemize}
+\end{demo}
 
 
 \chapter{Componentes conexas\texorpdfstring{\\}{} por caminos y conexión\texorpdfstring{\\}{} local por caminos}%
 \label{cha:componentes_conexas_por_caminos_y_conexion_local_por_caminos}
+Del mismo modo que estudiamos en el capítulo de conexión las ``piezas conexas'' en las que se podían dividir los conjuntos que no eran conexos y localizamos la noción de conexión, tiene sentido definir los mismos conceptos para conexión local.
+
 \section{Componentes conexas por caminos}%
 \label{sec:componentes_conexas_por_caminos}
-Todo análogo a las componentes conexas (casi). Sea $X$ espacio topológico.
-\begin{defi}
-Una \textbf{componente conexa por caminos} (c.c.c) es un subconjunto conexo por caminos maximal.
+La definición y las propiedades de las componentes conexas por caminos serán prácticamente iguales a las de conexión salvo por algún detalle menor. El fundamento de la idea, que es la de subconjunto conexo maximal, sigue siendo el componente básico de la teoría.
+
+\begin{defi}[Componente conexa por caminos]
+Sea $X$ un espacio topológico, definimos una \textbf{componente conexa por caminos} como un subconjunto conexo por caminos maximal.
 \end{defi}
-\begin{prop}[Descripción]
-\begin{enumerate}
-    \item La c.c.c de $x \in X$ es $\bigcup_{x \in A} A$ con $A$ conexa por caminos.
-    \item Las c.c.c forman una partición de $X$, más fina que la de las c.c.
-    \begin{demo}
-        Porque conexo por caminos $\Rightarrow$ conexo, pero no a la inversa.
 
-        \textbf{¡OJO!} Las c.c.c no son necesariamente cerradas. 
-
-        Como contraejemplo de ambas cosas dichas tenemos la adherencia del seno topólogo. 
-    \end{demo}
-\end{enumerate} 
+\begin{prop}[Caracterización de componentes conexas por caminos]
+Sea $X$ un espacio topológico y $a\in X$ un punto del mismo, el conjunto:
+\[
+C_c(a) := \bigcup_{A \ni a} A \mbox{ donde }A \mbox{ es conexo por caminos}
+\]
+verifica las siguientes propiedades:
+\begin{itemize}
+\item Es conexo por caminos
+\item Para cualquier $E\subset X$ conexo por caminos tal que $E\cap C_c(a) \neq \emptyset$, se cumple que $E\subset C_c(a)$.
+\end{itemize}
 \end{prop}
+\begin{demo}
+Si uno se fija en la demostración de la misma proposición para componentes conexas, se dará cuenta que principalmente la herramienta que utiliza es el teorema del pivote y, como hemos demostrado dicho teorema para la conexión por caminos, la demostración es completamente análoga.
+\end{demo}
 
-\begin{ej}
-    $\Gamma$ seno del topólogo y $\overline{\Gamma} = J \cup \Gamma$ son conexos. Tenemos que $\overline{\Gamma}$ es una c.c, mientras que $J$ y $\Gamma$ son dos c.c.c, una cerrada ($J$) y la otra no ($\Gamma$). 
-    \begin{demo}
-    Porque $\overline{\Gamma}$ \underline{no} es conexa por caminos.
-    \end{demo}
-\end{ej}
+\begin{obs}
+De la misma forma que las componentes conexas formaban una partición de $X$, las componentes conexas por caminos formarán una partición de $X$ ¡pero más fina y no necesariamente de cerrados! De nuevo, el seno del topólogo es un buen contraejemplo: si consideramos el espacio $X = \overline{\Gamma}$, los conjuntos $J$ y $\Gamma$ son dos componentes conexas por caminos donde la primera es cerrada y la otra no. Además, $\overline{\Gamma}$ sólo tiene una componente conexa (ella misma), pero acabamos de ver que tiene dos componentes conexas por caminos, luego la partición es más fina.
+\end{obs}
 
 \section{Conexión local por caminos}%
 \label{sec:conexion_local_por_caminos}
-Imitamos sin sorpresa las demostraciones de la conexión local y tenemos:
-\begin{defi}
-$X$ es \textbf{localmente conexo por caminos} si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos por caminos.
-\end{defi}
-\begin{prop}
-$X$ es localmente conexo por caminos $\Leftrightarrow$ las c.c.c de un abierto son abiertas.
-\end{prop}
+En este caso, también es útil conocer cuándo podemos trabajar de forma local a un punto asumiendo que dicha localización es conexa por caminos y a esto es lo que llamamos conexión local por caminos.
 
-\begin{enun}
-Locamente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos por caminos. 
-\end{enun}
+\begin{defi}[Conexión local por caminos]
+Sea $X$ un espacio topológico, decimos que es \textbf{localmente conexo por caminos} si y sólo si para todo punto $x\in X$ existe una base de entornos $\mathcal{B}^x$ formada por abiertos conexos por caminos.
+\end{defi}
+
+\begin{prop}[Caracterización de la conexión local]
+Sea $X$ un espacio topológico, $X$ es localmente conexo por caminos si y sólo si las componentes conexas por caminos de un abierto son abiertas.
+\end{prop}
+\begin{demo}
+De nuevo, las demostraciones son completamente análogas a sus homólogas del capítulo de conexión.
+\end{demo}
+
+\begin{obs}
+Sin excesiva dificultad, es sencillo demostrar que la definición de conexión local puede prescindir de la apertura de los conexos que forman la base de entornos, esto es, que la definición dada es equivalente a ``$X$ es localmente conexo por caminos si y sólo si $\forall x \in X, \ \exists \mathcal{V}^x$ base de entornos formada por conexos por caminos''
+\end{obs}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_conx_local_caminos}
@@ -205,7 +258,8 @@ Conexión local por caminos & \ding{55} & \checkmark & \checkmark & \checkmark\\
 
 \section{Relaciones entre las propiedades de conexión}%
 \label{sec:relaciones_entre_las_propiedades_de_conexion}
-Lo principal es que:
+Por las similitudes entre ambos tipos de conexión definidos, no está demás estudiar qué condiciones han de darse para obtener unas a partir de otras y viceversa.
+
 \begin{prop}
 Conexo y localmente conexo por caminos $\Rightarrow$ Conexo por caminos.
 \end{prop}
@@ -216,9 +270,6 @@ Conexo y localmente conexo por caminos $\Rightarrow$ Conexo por caminos.
 \end{itemize}
 Por tanto, $\exists$ camino de $x$ a $y$.
 \end{demo}
-\begin{obs}
-    Esta es la demostración de que un abierto conexo de $\mathbb{R}_u^n$ lo es por poligonales (se usan cadenas de bolas).
-\end{obs}
 
 \begin{obs}[Resumen]
 Por especificar todas las posibilidades:

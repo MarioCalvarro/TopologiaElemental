@@ -1,7 +1,11 @@
 \chapter{Conexión}%
 \label{cha:conexion}
+En este capítulo vamos a estudiar cuándo podemos decir que un conjunto está ``conectado'', o dicho de otro modo, cuando no está dividido en trozos y qué significa esto. Además, al final vamos a estudiar cómo se comporta esta nueva propiedad con respecto a las construcciones que hemos estudiado.
+
 \section{Concepto y mantras}%
 \label{sec:concepto_y_mantras_conx}
+El concepto fundamental de conexión es que no estás dividido en trozos y precisamente esta es la idea intuitiva de la definición formal que viene a continuación. En esta sección vamos a ver no sólo la definición sino también algunas propiedades, como las técnicas que podemos emplear para ``conectar'' un conjunto conexo.
+
 \begin{defi}[Conexión]
 Sea $X$ un espacio topológico, decimos que es \textbf{conexo} si y sólo si cumple las siguientes condiciones equivalentes:
 \begin{enumerate}
@@ -11,7 +15,9 @@ Sea $X$ un espacio topológico, decimos que es \textbf{conexo} si y sólo si cum
 \end{enumerate}
 \end{defi}
 \begin{demo}
-Equivalencia: $F = \underbrace{X \setminus V}_{= U},\ C = \underbrace{X \setminus U}_{= V},\ E = U = X \setminus V.$
+Veamos que 1. es equivalente a  2.: si suponemos que existen tales $U$ y $V$ y escogemos como cerrados $F = \underbrace{X \setminus V}$ y $C = \underbrace{X \setminus U}$, entonces tenemos dos cerrados no vacíos y disjuntos que no son el total y cuya unión es el total. Recíprocamente, para ver la implicación inversa basta con hacer una analogía a este último razonamiento.
+
+Veamos que 1. es equivalente a 3.: si existen los conjuntos $U$ y $V$ mencionados, entonces $X\setminus V = U$ y vemos que $U$ es cerrado también, luego hemos encontrado un conjunto abierto y cerrado en el total. Recíprocamente, si tenemos un conjunto $E$ abierto y cerrado en el total, quiere decir que $X \setminus E$ es abierto, luego $E$ y $X\setminus E$ son los conjuntos mencionados en 1.
 \end{demo}
 
 \begin{obs}
@@ -29,13 +35,13 @@ y esta sería equivalente a estudiar la conexión en $Y$ con su topología relat
 \begin{ej}
 \begin{itemize}
     \item El espacio real usual $\mathbb{R}$ es conexo.
-    \item El espacio de los racionales $\mathbb{Q}$ con la topología usual no es conexo y , de hecho, es \textbf{totalmente disconexo} porque los únicos conexos son los puntos.
+    \item El espacio de los racionales $\mathbb{Q}$ con la topología usual no es conexo y, de hecho, es \textbf{totalmente disconexo} porque los únicos conexos son los puntos.
     \begin{demo}
         %TODO: Dibujo y el hace algo con Y \subset Q
         %Hay que ver que el único subespacio conexo es {q} q in Q
         Si dividimos $\mathbb{R}$ en dos segmentos disjuntos separados por $\alpha \in \mathbb{R} \setminus \mathbb{Q}$ tenemos que $\mathbb{Q} = \mathbb{Q} \cap \left( \left[ -\infty, \alpha \right) \sqcup \left( \alpha, +\infty \right] \right)$ que son abiertos en $\mathbb{Q}$ y disjuntos.
     \end{demo}
-    \item En $\mathbb{R}$ con la topología \textit{Sorgenfrey} sólo son conexos los puntos, es decir, es totalmente disconexo.
+    \item En $\mathbb{R}$ con la topología \textit{Sorgenfrey}, sólo son conexos los puntos, es decir, es totalmente disconexo.
     \item El intervalo $\left( 0, 1 \right)$ con la topología usual es conexo. 
     \item En general, los segmentos en $\mathbb{R}^n$, los estrellados y los convexos son conexos.
 \end{itemize}
@@ -77,26 +83,24 @@ así que podemos decir que es conexo por la primera implicación.
 \end{demo}
 
 \begin{prop}[Construcción de cadenas]
-Sea $X$ conexo tal que $X = \bigcup_{i \in I} U_i$, recubrimiento abierto y $p, q \in X \Rightarrow \exists U_{i_0} \cup \ldots \cup U_{i_k}$ de $p$ a $q: p \in U_{i_0}, U_{i_{k - 1}} \cap U_{i_k} \neq \emptyset,\ q \in U_{i_r}$. 
+Sea $X$ un espacio topológico, $A\subset X$ un conexo tal que $A = \bigcup_{i \in I} U_i$ de abiertos y $p, q \in X$ dos puntos, existe una cadena $U_{i_0} \cup \ldots \cup U_{i_k}$ tal que $U_{i_{j}} \cap U_{i_{j+1}}\neq \emptyset$ y $p \in U_{i_0}$ y $q \in U_{i_r}$. 
 \end{prop}
 \begin{demo}
-Veamos que $A = \{x \in X: \exists U_{i_k} \text{, cadena, de } p \text{ a } x\} \neq \emptyset$ abierto y cerrado $\Rightarrow A = X$ y $q \in A$, es decir, para cualquier elemento de $X$ existe una cadena desde $p$ que es lo que buscamos. Esto se debe a que: 
+La demostración va a consistir fundamentalmente en ver que el conjunto $E = \{x \in X: \exists U_{i_k} \text{, cadena, de } p \text{ a } x\} \neq \emptyset$ es abierto y cerrado no vacío para ver que es el total y poder deducir que entonces existe una cadena hasta $q\in A$.
 \begin{itemize}
-    \item \underline{No vacío}: $\exists U_{i_0} \ni p$ y $U_{i_0}$ va de $p$ a $p$.
-    \item \underline{Abierto}: $\exists U_{i_0}, \ldots, U_{i_r}$ de $p$ a $x \Rightarrow U_{i_r} \subset A$, es decir, es entorno de todos sus puntos.
-    \item \underline{Cerrado}: 
-    \begin{align*}
-        y \in \overline{A} \text{ e } y \in U_{i\left( y \right)} &\Rightarrow A \cap U_{i\left( y \right)} \neq \emptyset\\
-        &\Rightarrow \exists U_{i_0}, \ldots, U_{i_r} \text{ de } p \text{ a } x\in U_{i\left( y \right)}\\
-        &\Rightarrow U_{i_0}, \ldots, U_{i_r}, U_{i\left( y \right)} \text{ de } p \text{ a } y
-    .\end{align*}
-    Por tanto, $y \in A$, es decir, $A = \overline{A}$.
+    \item No vacío: 
+   	
+   	Es no vacío porque como $\exists i_0 \in I : p\in U_{i_0}$ el propio $U_{i_0}$ ya forma la cadena hasta $p$ de la que es inicio y final, es decir, que podemos llegar de $p$ a $p$ y entonces $p\in E$.
+   	
+    \item Abierto: 
+    
+	Para verlo vamos a demostrar la caracterización: el conjunto $E$ es entorno de todos sus puntos. Para cualquier $x\in E$, existe una cadena $U_{i_0}, \cdots, U_{i_k}$ tal que $U_{i_{j}}\cap U_{i_{j+1}} \neq \emptyset$, pero para todos los puntos del último eslabón $U_{i_k}$ también ocurre que hay una cadena que llega hasta ellos, pues es la misma que para $x$. Es decir, hemos encontrado un abierto $U_{i_k}\subset E$, luego $E$ es entorno de $x$.
+	
+    \item Cerrado:
+    
+    Si escogemos cualquier valor $y\in \overline{E}$, entonces por pertenecer a la misma existe un entorno $U_y$ abierto que corta con $E$. Es decir, hay puntos $x\in E \cap U_y$ lo que implica que existe una cadena hasta dichos puntos. Basta entonces con añadir $U_y$ a la cadena de abiertos (también es abierto) para llegar hasta $y\in \overline{E}$, luego $E = \overline{E}$.
 \end{itemize}
-%TODO: Imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/dem_const_cadenas} 
-\end{center}
-Con esto es un subconjunto de uno conexo, no vacío, abierto y cerrado, es decir, es el total.
+Por tanto, como hemos demostrado que $E$ es no vacío, abierto y cerrado en un conexo $A$, entonces debe ocurrir que $A = E$.
 \end{demo}
 
 \begin{prop}[Mantra 2]
@@ -182,7 +186,7 @@ El resultado anterior es importante por el hecho de que permite demostrar que un
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_conx}
-En este apartado estudiamos como comporta la propiedad definida con respecto a las construcciones del tema \nameref{cha:construcciones}. Se trata de ver cuándo se conserva, cuándo no y qué hipótesis podemos añadir para que se conserve en los casos que no.
+En este apartado estudiamos como comporta conexión con respecto a las construcciones del tema \nameref{cha:construcciones}. Se trata de ver cuándo se conserva, cuándo no y qué hipótesis podemos añadir para que se conserve en los casos que no.
 
 \begin{table}[H]
 \centering
@@ -192,7 +196,7 @@ En este apartado estudiamos como comporta la propiedad definida con respecto a l
 \hline
     Conexión & \ding{55} & \checkmark & \checkmark & \ding{55} \\
     \hline
-    Demostración: & $\{0, 1\} \subset \left[ 0, 1 \right]$ & Mantra $3$ & Pivote & Cada sum. es ab. y cerr.\\
+    Demostración: & $\{0, 1\} \subset \left[ 0, 1 \right]$ & Mantra $2$ & Pivote & Cada sum. es ab. y cerr.\\
     \hline
 \end{tabular}
 \caption{\textit{Tabla de comportamiento de la conexión con respecto a las construcciones.}}
@@ -248,30 +252,48 @@ $X \times Y$ conexo $\Leftrightarrow X$ y $Y$ conexo.
 
 \chapter{Componentes conexas y\texorpdfstring{\\}{} conexión local}%
 \label{cha:componentes_conexas_y_conexion_local}
+Una vez estudiada la noción de conexión, vamos a repetir el procedimiento que venimos haciendo varios capítulos atrás y vamos a estudiar la versión local de la propiedad. Además, es de especial interés estudiar unos subespacios especiales en cuanto a conexión se refiere que son las componentes conexas y que permiten dividir el espacio en una partición de conjuntos conexos.
+
 \section{Componentes}%
 \label{sec:componentes}
-\begin{defi}
-Una \textbf{componente conexa} (c.c) de $X$ es un subespacio conexo maximal.
+Cuando un conjunto no es conexo, tiene sentido preguntarse en cada punto ¿cuál será el mayor subespacio que contiene al punto y que sí es conexo? Porque trabajar en dicho subespacio cuando estemos trabajando en entornos del punto permitirá trabajar como si de un conexo se tratara. Además, este mismo subespacio será el mayor conexo que contiene también a otros puntos distintos, luego en cierta manera podemos verlo como una ``clase de equivalencia'' que asocia puntos con el mismo subespacio conexo maximal.
+
+\begin{defi}[Componente Conexa]
+Sea $X$ un espacio topológico, definimos una \textbf{componente conexa} de dicho espacio como un subespacio conexo maximal.
 \end{defi}
 
-\begin{prop}[Construcción]
-\begin{enumerate}
-    \item $\forall a \in X$ definimos: $C\left( a \right) = \bigcup_{a \in A \text{conx.}} A$ es conexo (por t. pivote), $a \in C\left( a \right)$.
-    \item $E \subset X$ conexo tal que $C\left( a \right) \cap E \neq \emptyset \Rightarrow$
-    \[
-    C\left( a \right) \cup E \text{ conx. (pivote)} \Rightarrow C\left( a \right) \cup E \text{ es uno de los } A \text{ de } C\left( a \right) \Rightarrow E \subset C\left( a \right) 
-    \]
-    Luego, 
-    \begin{itemize}
-        \item $C\left( a \right)$ maximal $\Rightarrow$ componente conexa.
-        \item $a \neq b: C\left( a \right) = C\left( b \right)$ ó $C\left( a \right) \cap C\left( b \right) = \emptyset$. Usamos $E = C\left( b \right)$.
-    \end{itemize}
+Aunque la definición anterior es correcta y va en la línea de la intuición explicada al comienzo de la sección, necesitamos formalizar de alguna forma como se calculan dichas componentes conexas cuando nos dan un punto concreto. Esto nos va a permitir no sólo calcular la componente conexa a la que pertenece un punto, sino caracterizar las propiedades que éstas pueden tener dentro del espacio topológico.
 
-    \item $\overline{C\left( a \right)}$ conexo (mantra adh.) $\Rightarrow \overline{C\left( a \right)} = \underbrace{C\left( a \right)}_{\text{cerr.}}$ (maximalidad)
-    %TODO: Fix
-    \item[1. + 2. + 3.] $\Rightarrow X = \bigsqcup_{C \stackrel{\text{c.c}}{\subset}  X} C$ es una \underline{partición} de cerrados disjuntos.
-\end{enumerate} 
+\begin{prop}[Caracterización de componentes conexas]
+Sea $X$ un espacio topológico y $a\in X$ un punto del mismo, el conjunto:
+\[
+C(a) := \bigcup_{C \ni a} C \mbox{ donde }C \mbox{ es conexo}
+\]
+verifica las siguientes propiedades:
+\begin{itemize}
+\item Es conexo
+\item Para cualquier $E\subset X$ conexo tal que $C(a) \cap E \neq \emptyset$, se cumple que $E \subset C(a)$.
+\end{itemize}
+por tanto, podemos decir que $C(a)$ es la componente\footnote{Puesto que si verifica las dos propiedades mencionadas, entonces es un subespacio conexo maximal.} conexa a la que pertenece $a$.
 \end{prop}
+\begin{demo}
+En primer lugar, como la intersección de todos los conexos de la unión es no vacía (porque $a$ está contenido en la misma) y todos son conexos, por el teorema del pivote el conjunto $C(a)$ es conexo.
+
+Por otro lado, si escogemos un conexo $E\subset X$ tal que $C(a) \cap E \neq \emptyset$, por el teorema del pivote, el conjunto $W := C(a)\cup E$ es conexo y contiene a $a$. Precisamente por esto último, este conjunto es uno de los de la unión que definía $C(a)$, luego $W \subset C(a) \Rightarrow E\subset E \cup C(a) \subset C(a)$, es decir, $E\subset C(a)$.
+\end{demo}
+
+\begin{obs}
+Tras la caracterización anterior, hay un par de observaciones que son evidentes:
+\begin{itemize}
+\item Las componentes conexas de dos puntos distintos $a \neq b$ son la misma o son disjuntas, pues si la intersección es no vacía la una está contenida en la otra y viceversa, es decir, son la misma.
+\item Como se trata de un conjunto conexo, sabemos que la adherencia $\overline{C(a)}$ es un conjunto conexo. Sin embargo, como $\overline{C(a)}$ es un conjunto conexo que contiene a $a$, tiene que estar contenido en $C(a)$, luego $\overline{C(a)} \subset C(a) \Rightarrow C(a) = \overline{C(a)}$.
+\end{itemize}
+Las dos observaciones anteriores sumadas a la caracterización, permiten darse cuenta de que el espacio $X$ se puede escribir como unión disjunta
+\[
+X = \bigsqcup_{C\subset X} C \mbox{ donde }C \mbox{ es comp. conexa}
+\]
+es decir, que $X$ es una partición de cerrados conexos y disjuntos.
+\end{obs}
 
 \begin{ej}
 \begin{enumerate}
@@ -285,42 +307,61 @@ Una \textbf{componente conexa} (c.c) de $X$ es un subespacio conexo maximal.
 \end{enumerate}
 \end{ej}
 
-\begin{defi}
-Un espacio cuyas componentes son los puntos se llama \textbf{totalmente disconexo}. 
+\begin{defi}[Espacio totalmente disconexo]
+Sea $X$ un espacio topológico, decimos que es \textbf{totalmente disconexo} si y sólo si $\forall a \in X : C(a) = \{a\}$ o, lo que es lo mismo, las componentes conexas del conjunto son los puntos.
 \end{defi}
 
 \begin{prop}
-Las componentes conexas de $X \times Y$ son los productos de componentes conexas.
+Sean $X$ e $Y$ espacios topológicos y $X\times Y$ el espacio topológico producto, las componentes conexas de $X \times Y$ son los productos de componentes conexas de $X$ y de $Y$.
 \end{prop}
 \begin{demo}
-$C \stackrel{\text{c.c}}{\subset} \underbrace{X}_{\xrightarrow{p} X} \times \underbrace{Y}_{\xrightarrow{q} Y} \Rightarrow p\left( C \right)$ y $q\left( C \right)$ conexos en $X$ e $Y$, respectivamente, (imagen continua) $\Rightarrow \begin{cases}
+\begin{itemize}
+\item $\Rightarrow $ Las componentes conexas del producto son producto de componentes conexas.
+
+Sea $C \subset X \times Y$ una componente conexa del producto, si denotamos por $p$ y $q$ a las proyecciones sobre cada factor, entonces $p\left( C \right)$ y $q\left( C \right)$ son conexos en $X$ e $Y$ respectivamente (por ser imagen continua de conexo). Estos conexos estarán a su vez contenidos en alguna componente conexa del factor de forma que:
+\[
+\begin{cases}
     p\left( C \right) \subset E \stackrel{\text{c.c}}{\subset}  X\\
     q\left( C \right) \subset F \stackrel{\text{c.c}}{\subset}  Y
-\end{cases} \Rightarrow C \subset E \times F \xRightarrow{\text{Max. de } C} C = E\times F$.
+\end{cases} \Rightarrow C \subset E \times F \mbox{ donde } E \times F \mbox{ es conexo}
+\]
+y como $C$ es un subespacio conexo maximal, necesariamente debe ocurrir que $C = E\times F$.
+
+\item $\Leftarrow$ El producto de componentes conexas es una componente conexa
+
+Supongamos que tenemos dos componentes conexas $C_x$ y $C_y$ de $X$ e $Y$ respectivamente y que $\exists E \subset X$ conexo tal que $E\cap C_x \times C_y \neq \emptyset$, pero $E \not\subset C$. Como $E\cap C_x \times C_y \neq \emptyset$, por el teorema del pivote, $E\cup C_x \times C_y$ es conexo. La proyección $p(E\cup C_x \times C_y)$ es el conjunto conexo formado por los valores $x\in X : x\in E_x \ \vee \ x\in C_x$ y como $C_x \subset p(E\cup C_x \times C_y)$ y es conexo maximal, sabemos que $C_x = p(E\cup C_x \times C_y)$. Un razonamiento análogo para $q$ revela que $C_y = q(E\cup C_x\times C_y)$. Por tanto, hemos conseguido que $E\cup C_x\times C_y = C_x \times C_y$, es decir, que $E\subset C_x \times C_y$, luego absurdo.
+\end{itemize}
 \end{demo}
 
 \section{Conexión local}%
 \label{sec:conexion_local}
-\begin{defi}
-$X$ es \textbf{localmente conexo}  si $\forall x \in X,\ \exists \mathcal{B}^x$ base de entornos abiertos conexos.
+En ocasiones es muy útil poder tener la certeza de que puedo trabajar en cada punto de forma local sabiendo que se cumple cierta propiedad. Para ello, vamos a definir qué significa ser conexo localmente y cómo puede esta definición ayudar a satisfacer la cuestión mencionada.
+
+\begin{defi}[Localmente Conexo]
+Sea $X$ un espacio topológico, decimos que es \textbf{localmente conexo} si y sólo si para todo punto $x \in X$ existe una base de entornos $\mathcal{B}^x$ formada por entornos abiertos conexos.
 \end{defi}
 
-\begin{prop}
-$X$ es localmente conexo $\Leftrightarrow$ las componentes conexas de un abierto son abiertas:
-\[
-U \ab X \text{ y } C \stackrel{\text{c.c}}{\subset} U \Rightarrow C \ab X.
-\]
+\begin{prop}[Caracterización de conexión local]
+Sea $X$ un espacio topológico, este es localmente conexo si y sólo si las componentes conexas de un abierto son abiertas.
 \end{prop}
 \begin{demo}
 \begin{itemize}
-    \item[$\Rightarrow)$] Si $x \in C \stackrel{\text{c.c}}{\subset} U \ab X \Rightarrow \exists \underbrace{U^x}_{\text{ab. conx.}} \subset U \Rightarrow U^x \subset C \Rightarrow C \ab X$. Es decir, $U$ es entorno de todos sus puntos.
-    \item[$\Leftarrow)$] $ \mathcal{B}^x = \{C\left( x \right) \stackrel{\text{c.c}}{\subset} U \ab X : x \in U\}$. Con $C\left( x \right)$ abierto por ser c.c de abierto.
+    \item[$\Rightarrow)$] 
+    
+	Vamos a ver que las componentes conexas son entornos de todos sus puntos. Para ello, consideremos $x \in C \stackrel{\text{c.c}}{\subset} U \ab X$. Como $X$ es localmente conexo, con seguridad existirá un $U^x \ab X$ conexo y contenido en $U$ (porque como hay una base de entornos de abiertos conexos, $U$ debe contener alguno). La conexión de $U^x$ implica que $U^x \subset C$ por ser esta componente conexa, luego acabamos de demostrar que $C$ es entorno de todos sus puntos, es decir, abierto. 
+	
+    \item[$\Leftarrow)$]
+    
+    Dado un punto $x\in X$, basta con que escojamos como base de entornos las componentes conexas de los abiertos que contienen al punto
+    \[
+    \mathcal{B}^x := \{C\left( x \right) \stackrel{\text{c.c}}{\subset} U \ab X : x \in U\}			\]
+    Dicho conjunto es base de entornos porque cada $C(x)$ es entorno (por ser abierta) y cualquier otro entorno debe contener a alguna, puesto que por ser entorno contendrá algún abierto que contenga al punto y, en consecuencia, alguna de las componentes conexas del conjunto.
 \end{itemize}
 \end{demo}
 
-\begin{enun}
-$X$ es localmente conexo $\Leftrightarrow \forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos.
-\end{enun}
+\begin{obs}
+Sin muchísima dificultad, es sencillo demostrar que la definición de conexión local puede prescindir de la apertura de los conexos que forman la base de entornos, esto es, que la definición dada es equivalente a: ``$X$ es localmente conexo si y sólo si $\forall x \in X,\ \exists \mathcal{V}^x$ base de entornos conexos''.
+\end{obs}
 
 \begin{ej}[Esencial]
 $\{0, \frac{1}{k} : k \ge 1\} = Y \subset \mathbb{R}_u$ \underline{no} es localmente conexo. 
@@ -333,9 +374,8 @@ $\{0, \frac{1}{k} : k \ge 1\} = Y \subset \mathbb{R}_u$ \underline{no} es localm
 \end{demo}
 \end{ej}
 
-\begin{enun}
-\begin{enumerate}
-    \item Analizar una sucesión de segmentos que convergen a otro:
+\begin{ej}
+Supongamos que tenemos un conjunto de segmentos verticales que convergen al segmento de la izquierda del todo, que también incluimos en el conjunto, tal y como muestra la figura
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -344,19 +384,20 @@ $\{0, \frac{1}{k} : k \ge 1\} = Y \subset \mathbb{R}_u$ \underline{no} es localm
         \end{tikzpicture}
         \caption{\textit{Ejemplo}}
     \end{figure}
-    \item ¿Y el seno del topólogo?
-\end{enumerate}
-\end{enun}
+¿Es este conjunto localmente conexo? La respuesta es no. Para ver esto, tenemos que ver que para cada punto existe una base de entornos formada por abiertos conexos. En cualquier segmento que no sea el de la izquierda del todo, podemos encontrar una bola $B(x,\rho)$ con $\mathbb{\rho}$ real tal que dicha bola no interseque con ningún otro segmento del conjunto, luego la colección $\{B(x,\varepsilon) : 0 < \varepsilon < \rho\}$ es una base de entornos de cualquier punto de estos segmentos. El problema principal está en el segmento de la izquierda del todo, pues cualquier bola $B(x,\rho)$ centrada en dichos puntos necesariamente interseca con muchos otros segmentos (porque los segmentos convergen hacia la izquierda). Con esto hemos demostrado que cualquier entorno de uno de estos puntos, necesariamente contiene puntos de otros segmentos y entonces el entorno inicial siempre será disjunto.
+\end{ej}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_loc_conx}
+En este apartado estudiamos como se comportan la conexión local con respecto a las construcciones del tema \nameref{cha:construcciones} para ver cuándo se conservan, cuándo se pierden y qué podemos añadir para no perderlas.
+
 %TODO: Fix tabla. En subespacios los abiertos sí heredan
 \begin{table}[H]
 \begin{tabular}{| c | c | c | c | c |}
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-Conexión local & \ding{55} & \checkmark & \checkmark & \checkmark\\
+Conexión local & \begin{tabular}{cc} \ding{55} & $\checkmark_{abierto}$ \end{tabular} & \checkmark & \begin{tabular}{cc} \checkmark & \checkmark \end{tabular} & \begin{tabular}{cc} \checkmark & \checkmark \end{tabular} \\
 \hline
 Demostración: & Ejemplo esencial & No banal & Prod. ent. conx. & Suma como sum's\\
 \hline
@@ -366,11 +407,14 @@ Demostración: & Ejemplo esencial & No banal & Prod. ent. conx. & Suma como sum'
 
 
 \begin{prop}
-Sea $f : X \rightarrow Y$ identificación con $X$ localmente conexo $\Rightarrow Y$ es localmente conexo.
+Sea $X$ un espacio topológico localmente conexo y $f : X \rightarrow Y$ una identificación a un espacio $Y$, el espacio $Y$ es localmente conexo.
 \end{prop}
 \begin{demo}
-    El diagrama siguiente resume el argumento (si se lee en el orden adecuado).
-    \begin{center}
+Para demostrar la local conexión, vamos a demostrar que las componentes conexas de abiertos son abiertas. Para ello, tomemos un abierto $V\ab Y$ y una componente conexa suya $C \subset V$ y veamos que tiene que ser abierta.
+
+\begin{center}
         \includegraphics[scale=0.3]{images/dem_loc_conx_loc_conx} 
-    \end{center}
+\end{center}
+
+En primer lugar, por la continuidad de $f$, $f^{-1} V \ab X$ así que la local conexión de $X$ nos asegura que $\exists U^x \ab f^{-1}V$ pero además este es conexo. Como $f$ es continua, $f(U^x)$ es conexo y contiene a $x$, luego por la maximalidad de $C$ debe ocurrir que $f(U^x)\subset C$. Por tanto, ahora vemos con facilidad que $f^{-1} C \subset f^{-1}V$ contiene a $U^x$, es decir, hemos visto que la preimagen $f^{-1}C$ es abierta en $X$ y como es abierto saturado $C$ es abierto.
 \end{demo}

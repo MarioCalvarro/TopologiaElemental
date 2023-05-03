@@ -2,12 +2,14 @@
 \label{cha:numerabilidad}
 Los axiomas de numerabilidad son definiciones y resultados que describen las buenas propiedades que puede tener una topología si algunos elementos como las bases de entornos, las bases de abiertos, los conjuntos densos, etc. son numerables.
 
-\section{Axiomas}%
+\section{Axiomas de numerabilidad}%
 \label{sec:axiomas}
 En esta sección presentamos los cuatro principales resultados sobre numerabilidad: 1\textsuperscript{er} Axioma, 2º Axioma, separable y Lindelöf. Pretendemos desmigajar estos conceptos que muchas veces tomamos como ``naturales'' porque estamos acostumbrados a trabajar con ellos en $\mathbb{R}^n$, pero que de no aparecer dotan de propiedades muy distintas a los espacios topológicos.
 
 \subsection{I Axioma}%
 \label{sub:i_axioma}
+El primer axioma hace referencia a la numerabilidad de las bases de entornos de cualquier punto del conjunto $X$ que estemos estudiando.
+
 \begin{defi}[1\textsuperscript{er} Axioma]
 Sea $X$ un espacio topológico, decimos que es \textbf{1\textsuperscript{er} Axioma} si y sólo si para cualquier punto $x\in X$ existe una base $\mathcal{V}^x$ de entornos numerable.
 \end{defi}
@@ -51,6 +53,8 @@ entonces tenemos un conjunto de entornos abiertos y encajados, pues $W_{k+1}^x \
 
 \subsection{II Axioma}%
 \label{sub:iiax}
+El segundo axioma también hace referencia a numerabilidad de bases, pero esta vez son bases de abiertos. Además, a diferencia del primer axioma, el segundo no pide que todas las bases sean numerables sino que alguna lo sea.
+
 \begin{defi}[2º Axioma]
 Sea $X$ un espacio topológico, decimos que es \textbf{2º Axioma} si y sólo si existe una base numerable $\mathcal{B}$ de abiertos.
 \end{defi}
@@ -75,6 +79,8 @@ El recíproco no es cierto, pues tenemos como contraejemplo la topología discre
 
 \subsection{Separable}%
 \label{sub:separable}
+El tercer axioma, denominado separable, hace referencia a la numerabilidad de los conjuntos densos del conjunto ambiente y no debe confundirse con la noción de separación del capítulo anterior.
+
 \begin{defi}[Separable]
 Sea $X$ un espacio topológico, decimos que es \textbf{separable} si y sólo si existe un subconjunto $A\subset X$ numerable y denso.
 \end{defi}
@@ -113,7 +119,7 @@ Sin embargo, aquí mostramos algunas de las no propiedades que uno puede tener l
 
 \subsection{Lindelöf}%
 \label{sub:lindelof}
-La propiedad de Lindelöf es una forma más débil de compacidad que tiene resultados, si no los mismos, muy parecidos.
+El último de los axiomas de numerabilidad es la propiedad de Lindelöf. Ésta constituye una forma más débil de compacidad que tiene resultados, lo que resulta en multitud de resultados muy similares entre ambos conceptos.
 
 \begin{defi}[Lindelöf]
 Sea $X$ un espacio topológico, decimos que es \textbf{Lindelöf} si y sólo si para todo recubrimiento abierto $X = \bigcup_{i \in I} U_i$ existe un subrecubrimiento $X = \bigcup_{k=1}^{\infty} U_{i_k}$ numerable.
