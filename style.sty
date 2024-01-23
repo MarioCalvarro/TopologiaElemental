@@ -26,6 +26,7 @@
 \usepackage{faktor} %Paquete para cocientes complicados
 \usepackage{caption} %Cambiar el color de las caption
 \usepackage{pifont} %Cruzes
+\usepackage{stmaryrd} %Evitar warning de negrita en símbolos
 
 %% Ruta de las fotos e inclusion de las mismas
 \usepackage{graphicx}
@@ -46,11 +47,12 @@
 
 %% Paquete para la edición y el formateo de capítulos, secciones...
 \usepackage[explicit]{titlesec}
-    %% Definición del estilo de los capítulos, secciones, etc...
-    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge #1}[\titlerule]
-    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{#1}
+	%% Definición del estilo de los capítulos, secciones, etc...
+    \titleformat{\chapter}[display]{\normalfont\huge\bfseries\color{capitulos}}{}{0pt}{\Huge \uppercase{#1}}[\titlerule]
+    \titleformat{\section}{\normalfont\Large\bfseries\color{secciones}}{}{0pt}{\uppercase{#1}}
     \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{}{0pt}{\uline{#1}}
     \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{}{0pt}{#1}
+
 
 %% Paquete para el formateo de entornos del proyecto
 \usepackage{ntheorem}[thmmarks]
@@ -111,6 +113,11 @@
 \DeclareMathOperator{\adh}{Adh}
 \DeclareMathOperator{\fr}{Fr}
 \newcommand{\dif}[1]{\ d#1}
+\newcommand{\ab}{\stackrel{\text{ab.}}{\subset}}
+\newcommand{\cerr}{\stackrel{\text{cerr.}}{\subset}}
+\newcommand{\conx}{\stackrel{\text{conx.}}{\subset}}
+\newcommand{\ent}{\stackrel{\text{ent.}}{\subset}}
+\newcommand{\ac}{\stackrel[\text{cerr.}]{\text{ab.}}{\subset}}
 
 %% Paquete e instrucciones para la generacion de los dibujos
 \usepackage{pgfplots}
@@ -155,3 +162,4 @@
     \import{./figures/}{#2.pdf_tex}
 }
 \DeclareMathAlphabet{\matheuler}{U}{eus}{m}{n}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}

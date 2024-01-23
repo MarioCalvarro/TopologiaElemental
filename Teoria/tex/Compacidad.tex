@@ -1,138 +1,117 @@
 \chapter{Compacidad}%
 \label{cha:compacidad}
+La compacidad es una característica esencial para un montón de proposiciones y aplicaciones útiles de la topología. No es una noción intuitiva y, en general, cuesta bastante caracterizar los compactos de un espacio dado. En este capítulo vamos a estudiar el concepto y las propiedades y consecuencias que la definición del mismo tiene.
+
 \section{Concepto y mantras}%
 \label{sec:concepto_y_mantras_comp}
-\begin{defi}
-$X$ es \textbf{compacto} si todo recubrimiento abierto tiene un subrecubrimiento finito:
+La definición de compacidad no nos va a revelar nada, pero en cuanto comencemos a ver propiedades de dicha definición vamos a ver la relación que tiene con los conjuntos cerrados y las buenas propiedades que asumíamos por defecto en $\mathbb{R}^n$ con anterioridad.
+
+\begin{defi}[Compacidad]
+Un espacio topológico $X$ decimos que es \textbf{compacto} si y sólo si se cumplen las siguientes condiciones equivalentes:
+\begin{itemize}
+\item De todo recubrimiento abierto se puede extraer un subrecubrimiento finito:
 \[
 X = \bigcup_{i \in  I} U_i \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} = X
 \]
+\item Dada una familia de cerrados, si la intersección finita de algunos de ellos es no vacía, entonces la intersección no finita del total es no vacía:
+\[
+\forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset
+\]
+\end{itemize}
 \end{defi}
 
-\begin{obs}[Propiedad de la intersección finita]
-Complementando lo anterior tenemos:
-\begin{gather*}
-    \emptyset = \bigcap_{i \in I} F_i \Rightarrow \exists F_{i_1} \cap \ldots \cap F_{i_r} = \emptyset \Rightarrow\\
-    \boxed{    \forall F_{i_1} \cap \ldots \cap F_{i_r} \neq \emptyset \Rightarrow \bigcap_{i \in  I} F_i \neq \emptyset}
-.\end{gather*}
-\end{obs}
+\begin{ej}
+Como estamos más acostumbrados a la primera de las definiciones que se ha dado, vamos a ejemplificar que la 2ª no se cumple si, por ejemplo, los conjuntos no son cerrados. Para ello, podemos considerar la familia de conjuntos $\{\left( 0, \frac{1}{n} \right)\}_{n = 1}^\infty$. De dicha familia, cualquier cantidad finita tiene intersección no vacía, pero cuando hacemos la intersección arbitraria ésta sí es vacía.
+\end{ej}
 
-\begin{prop}[Subespacios]
-Sea $K \subset X$ (compacto) $\Rightarrow K \subset \bigcup_{i \in  I} U_i$ con $U_i \stackrel{\text{ab.}}{\subset} X \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K$
-\end{prop}
+\begin{defi}[Subespacios compactos]
+Sea $X$ un espacio topológico y $K \subset X$ un subconjunto, decimos que $K$ es \textbf{compacto en $X$} si y sólo si para cualquier recubrimiento suyo por abiertos de $X$
+\[
+K \subset \bigcup_{i \in  I} U_i \text{ con } U_i \ab X \Rightarrow \exists U_{i_1} \cup \ldots \cup U_{i_r} \supset K
+\]
+existe un subrecubrimiento finito.
+\end{defi}
+
+\begin{obs}
+La definición anterior es trivialmente equivalente a dar la definición de compacidad del inicio del capítulo, pero considerando $K$ como espacio topológico con su topología relativa.
+\end{obs}
 
 \begin{ej}
 \begin{enumerate}
     \item $K \subset \mathbb{R}_u^n$ es compacto $\Leftrightarrow K$ es cerrado y acotado (Heine-Borel). 
     \item $\left[ a, b \right] \subset \mathbb{R}_u$ compacto. ($\Rightarrow$ Heine-Borel por resultados generales).
     \item Si $X$ es compacto con $\mathcal{T}_{\text{discr.}} \Rightarrow$ es finito 
-    \begin{demo}
-        $X = \bigcup_{x \in X} \{x\}$ es recubrimiento abierto en $\mathcal{T}_{\text{discreta}}$ y como es compacto $\exists \bigcup_{i=1}^n \left\{ x_i \right\} = X$.
-    \end{demo}
-    \item $x_k \rightarrow x \Rightarrow K = \{x, x_k: k \ge 1\}$ es compacto.
-    \begin{demo}
-        \[
-            \exists U_{i_0}^x \ni x \xRightarrow{\lim} \begin{rcases}
-                x_k \in U_{i_0},\ \forall k > k_0\\
-                x_k \in U_{i_k},\ \forall k \le k_0
-            \end{rcases} \Rightarrow K \subset U_{i_0} \cup U_{i_1} \cup \ldots \cup U_{i_{k_0}} 
-        \]
-    \end{demo}
+    \item Dada una sucesión $x_k \rightarrow x$ el conjunto de los términos más el límite $K = \{x, x_k: k \ge 1\}$ es compacto.
+    
+   	Para ello, basta ver que si $K = \bigcup_{i \in I} U_i = K$ entonces $x$ debe pertenecer a un $U_{i_0}$. Por la convergencia, $\forall k \geq k_0 : x_k \in U_{i_0}$ y los que no estén en dicho entorno son un conjunto finito, luego escogiendo los $U_i$ a los que pertenezcan ya tenemos un subrecubrimiento finito.
 
     \item $K \subset \mathbb{R}_u^n$ compacto $\Leftrightarrow \forall A^{\infty} \subset K, A' \cap K \neq \emptyset$ (Bolzano-Weierstrass)
 \end{enumerate}
 \end{ej}
 
 \begin{prop}[Mantra 1]
-Cerrado en compacto es compacto. 
+Sea $X$ un espacio topológico compacto y $K$ un subespacio cerrado suyo, entonces es compacto.
+\[
+F \cerr X _{compacto} \Rightarrow F \text{ compacto.}
+\]
 \end{prop}
 \begin{demo}
-Sea $K \stackrel{\text{cerr.}}{\subset} X = \bigcup U_i$,
-\begin{align*}
-    K \subset \bigcup U_i &\Rightarrow X = \left( X \setminus K \right) \cup \bigcup U_i\\
-    X \text{ compacto} &\Rightarrow \exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X \supset K\\
-    &\Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset K
-.\end{align*}
-
-(Alternativa: Usar la propiedad de las intersecciones finitas)
+Dado un recubrimiento $K \subset \bigcup_{i \in I} U_i$ podemos escribir el total en términos de unión de abiertos como $X = \left( X \setminus K \right) \cup \bigcup_{i \in I} U_i$. Como $X$ es compacto, de este recubrimiento podemos extraer otro finito, es decir, $\exists \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r} = X$. Por ser subespacio $K \subset X = \left( X \setminus K \right) \cup U_{i_1} \cup \ldots \cup U_{i_r}$ y como no puede estar contenido en su complementario, entonces está $K\subset U_{i_1} \cup \ldots \cup U_{i_r}$, es decir, es compacto.
 \end{demo}
 
 \begin{prop}[Mantra 2]
-Infinito en compacto tiene puntos de acumulación.
+Sea $X$ un espacio topológico compacto y $A\subset X$ un subconjunto con infinitos puntos, entonces tiene puntos de acumulación en $X$.
+\[
+A_\infty \subset X_{compacto} \Rightarrow A' \neq \emptyset
+\]
 \end{prop}
 \begin{demo}
-Sea $A \subset X$ (compacto) con $A' = \emptyset$ veamos que es finito:
-\begin{align*}
-    \overline{A} &= \overbrace{\{\text{puntos aislados}\}}^{\subset A} \cup \cancelto{\emptyset}{A'} = \{\text{puntos aislados}\} = A\\
-     &\Rightarrow A \stackrel{\text{cerr.}}{\subset} X \text{ comp.} \Rightarrow A \text{ es compacto y discreto} \Rightarrow \#A < +\infty   
-.\end{align*}
-El resultado del enunciado lo podemos sacar por el contrarrecíproco.
+Vimos en su momento que la adherencia puede expresarse como $\overline{A} = A \cup A'$ y , si $A' = \emptyset$, entonces $\overline{A} = A$ y esto indica que $A$ es cerrado. Cerrado en compacto hemos visto que es compacto luego $A$ es compacto.
+
+Pero recordemos también que al adherencia se podía escribir como
+\[
+\overline{A} = \{\text{puntos aislados}\} \sqcup A'
+\]
+es decir, que $A$ está compuesto únicamente por puntos aislados. Como hemos visto que $A$ es compacto y sus puntos son aislados, si proponemos como recubrimiento de abiertos los entornos abiertos disjuntos de cada punto (que existen porque son aislados) tiene que existir un subrecubrimiento finito y, como cada punto sólo pertenece a uno de los conjuntos, no se puede prescindir de ninguno, luego el recubrimiento inicial era finito. Esto indica que existe un número finito de puntos aislados, es decir, que $A$ es finito \#.
+\end{demo}
+
+\begin{prop}[Mantra 3]
+Sea $f:X\rightarrow Y$ una aplicación continua y $K\subset X$ un subespacio compacto, entonces $f(K)$ es compacto en $Y$.
+\end{prop}
+\begin{demo}
+\[
+f\left( X \right) \subset \bigcup_{i} U_i \Rightarrow X = \bigcup_{i} f^{-1} U_i \Rightarrow \exists f^{-1}U_{i_1} \cup \ldots \cup f^{-1}U_{i_r} = X \Rightarrow U_{i_1} \cup \ldots \cup U_{i_r} \supset f\left( X \right)
+\]
 \end{demo}
 
 \begin{obs}
-Este mantra es como ``la mitad'' del teorema de Bolzano-Weierstrass.
+La propiedad de conservación de la compacidad a través de aplicaciones continuas es muy importante porque permite demostrar la compacidad de espacios muy complicados a través de una aplicación continua desde espacios más sencillos. Por ejemplo, el proyectivo real $\mathbb{P}^n$ es compacto porque es imagen continua de la esfera $\mathbb{S}^n$ por la aplicación de la proyección antipodal y la esfera es compacta.
 \end{obs}
 
-\begin{prop}[Mantra 3]
-La imagen continua de un compacto es compacta. 
-\end{prop}
-\begin{demo}
-Sea $f: X \rightarrow Y$ con $f$ continua y $X$ compacto $\Rightarrow$
-\begin{align*}
-    f\left( X \right) \subset \bigcup_{i} V_i &\Rightarrow X = \bigcup_{i} f^{-1} V_i \Rightarrow \exists f^{-1}V_{i_1} \cup \ldots \cup f^{-1}V_{i_r} = X\\
-     &\Rightarrow V_{i_1} \cup \ldots \cup V_{i_r} \supset f\left( X \right) 
-.\end{align*}
-\end{demo}
-
-\begin{ej}[¡Muy importante!]
-$\mathbb{R} \mathrm{P}^n$ es compacto al ser la imagen continua de $\mathbb{S}^n$ por la \underline{proyección antipodal}. 
-\end{ej}
-
 \begin{prop}[Mantra 4]
-Un compacto en $T_2$ es cerrado. 
+Sea $X$ un espacio topológico $T_2$ y $K\subset X$ un subespacio compacto, entonces $K$ es cerrado.
 \end{prop}
-%TODO: No estoy seguro que es cada cosa.
 \begin{demo}
-Vamos a ver que $X \setminus K$ es abierto al ser entorno de todos sus puntos.
+Vamos a ver que $X \setminus K$ es abierto probando que es entorno de todos sus puntos, es decir, vamos a probar que $\forall x\in X\setminus K : \exists U^x \cap K = \emptyset$ (que es lo mismo que $U^x \subset X\setminus K$). 
 
-Sea $K \subset X$ con $K$ compacto y $X$ Hausdorff $\Rightarrow$
-\begin{equation} \label{eq:mantra_4_1}
-    \forall x \in X \setminus K,\ \exists U^x \cap U^K = \emptyset
-\end{equation}
+Dado cualquier punto $x\in X\setminus K$, para cualquier $y\in K$ que escojamos se verifica que existen entornos de ambos $V^x_y$ y $W^y$ disjuntos, por ser el espacio $T_2$. De esta manera, podemos escribir $K := \bigcup_{y\in K} W^y$ y, como es compacto, $K := W^{y_1} \cup \cdots \cup W^{y_r}$.
 
-Porque $\forall y \in K,\ \exists U_y^x \cap U^y = \emptyset$ por $T_2 \Rightarrow$
-\begin{align*}
-    %TODO: Fix flecha
-    K \subset \bigcup_{y} U^y &\xRightarrow{\text{comp.}} K \subset U^{y_1} \cup \ldots \cup U^{y_r} = U^K\\
-    &\xRightarrow{\text{comp.}} x \in U_{y_1}^x \cap \ldots \cap U_{y_r}^x = U^x
-.\end{align*}
-Finalmente, utilizando \ref{eq:mantra_4_1} $\Rightarrow$
-\[
-    U^x \subset X \setminus K\; \land \;X\setminus K \text{ es entorno de } x \Rightarrow X \setminus K \text{ abierto.} 
-\]
-%TODO: Imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/mantra_4} 
-\end{center}
+Como buscamos un abierto $U^x$ que no corte con $K$ y tenemos definido este en términos de unos entornos finitos (de los que hemos calculado otros homólogos que no cortan con ellos), lo único que es posible hacer es considerar el abierto $U^x := V^x_{y_1} \cap \cdots \cap V^{x}_{y_r}$ que es disjunto a cualquier $W^{y_i}$, es decir, a $K$.
 \end{demo}
-\begin{coro}
-Dos compactos disjuntos en un $T_2$ se separan como puntos.
-\end{coro}
-\begin{demo}
-    Ejercicio usando \ref{eq:mantra_4_1}.
-\end{demo}
+
+\begin{obs}
+En un espacio topológico $T_2$, los resultados que se aplican a puntos se suelen poder aplicar a compactos. Es sencillo, utilizando el Mantra 4, demostrar que dos compactos disjuntos en un $T_2$ se separan como puntos.
+\end{obs}
 
 \begin{prop}
-Si $f : X \rightarrow Y$ es continua, $X$ compacto e $Y$ Hausdorff $\Rightarrow f$ es cerrada.
+Sea $X$ un espacio compacto, $Y$ un espacio Haussdorff y $f : X \rightarrow Y$ una función continua entre ambos, entonces $f$ es cerrada.
 \end{prop}
 \begin{demo}
-Sea $F \stackrel{\text{cerr.}}{\subset} X \xRightarrow{\text{M1}}$
-\[
-    F \text{ comp.} \xRightarrow{\mathrm{M}3} f\left( F \right) \text{ comp.} \xRightarrow{\mathrm{M}4} f\left( F \right) \text{ cerr.} 
-\]
+Si escogemos un cerrado $F \cerr X$, entonces por ser $X$ compacto, $F$ es compacto. Como la aplicación es continua $f(F)$ es compacto en $Y$ y, por ser $T_2$, es cerrado en $Y$. Por tanto, hemos demostrado que la aplicación es cerrada.
 \end{demo}
+
 \begin{coro}
-Sea la $f$ de la anterior proposición entonces si además es:
+Sea $f : X \rightarrow Y$ una función continua, $X$ compacto e $Y$ Hausdorff, si añadimos las siguientes hipótesis:
 \[
 \begin{cases}
     \text{inyectiva}\\
@@ -145,23 +124,33 @@ Sea la $f$ de la anterior proposición entonces si además es:
     \text{homeomorfismo}
 \end{cases} 
 \]
+se tienen los anteriores resultados.
 \end{coro}
+\begin{demo}
+Por las caracterizaciones que hicimos en el tema de \nameref{cha:construcciones}.
+\end{demo}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_comp}
+En este apartado estudiamos como se comporta la compacidad con respecto a las construcciones del tema \nameref{cha:construcciones} para ver cuándo se conservan, cuándo se pierden y qué podemos añadir para no perderlas.
+
 %TODO: Fix tabla
 \begin{table}[H]
+\begin{center}
+\begin{minipage}{0.9\linewidth}
 \centering
 \begin{tabular}{| c | c | c | c | c |}
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-    Compacidad & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
+    Compacidad & \begin{tabular}{@{}c@{}}\ding{55}\\ cerrados \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
 \hline
-    & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
+    Demostración: & Mantra $1$ & Mantra $3$ & Tychonoff & Unión finita\\
 \hline
 \end{tabular}
-\caption{\textit{La tabla nos indica como se mantiene (o no) la compacidad con las distintas construcciones que hemos visto. La última fila nos indica la demostración, o contraejemplo, de cada una.}}
+\caption{Tabla de comportamiento de la compacidad respecto a las construcciones, con demostración incluida.}
+\end{minipage}
+\end{center}
 \end{table}
 
 \begin{theo}[de Tychonoff]
@@ -170,14 +159,20 @@ Si $X$ e $Y$ son dos compactos $\Rightarrow X \times Y$ es compacto.
 \begin{demo}
 Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal{T}_Y$.
 \begin{enumerate}
-    \item $\forall x\ \forall y,\ \exists U_y^x \times V_x^y \subset W_i$, $i$ depende de $\left( x, y \right)$.
-    \item $\forall x\ Y = \bigcup_{y} V_x^y \xRightarrow{Y \text{comp.}} Y = V_x^{y_1} \cup \ldots \cup V_x^{y_r}$, los $y_k$ y su nº dependen de $x$.
-    \item $U^x = U_{y_1}^x \cap \ldots \cap U_{y_r}^x,\ U^x \times V_x^{y_k} \subset W_{i_k}$, $i_k$ depende de $x$.
-    \item $X = \bigcup_{x} U^x \xRightarrow{X \text{comp.}} X = U^{x_1} \cup \ldots \cup U^{x_s}$.
-    \item 
+    \item $\forall \left( x, y \right) \in X \times Y,\ \exists U_y^x \times V_x^y \subset W_i$, $i$ depende de $\left( x, y \right)$. Por la definición de la topología producto por base de abiertos.
+    \item $\forall x \in X,\ Y = \bigcup_{y \in Y} V_x^y \xRightarrow{Y \text{comp.}} Y = V_x^{y_1} \cup \ldots \cup V_x^{y_r}$, los $y_k$ y su número, $r$, dependen de $x$.
+    \item $U^x = U_{y_1}^x \cap \ldots \cap U_{y_r}^x,\ U^x \times V_x^{y_k} \subset U_{y_k}^x \times V_x^{y_k} \subset W_{i_k}$, $i_k$ depende de $x$.
+    \item $X = \bigcup_{x \in X} U^x \xRightarrow{X \text{comp.}} X = U^{x_1} \cup \ldots \cup U^{x_s}$.
+    \item Veamos que:
     \[
-        X \times Y = \bigcup_{\substack{l, k\\ \text{fin.}}} U^{x_l} \times V_{x_l}^{y_k} \subset \bigcup_{\substack{l, k\\ \text{fin.}}} W_{i_k} \text{, los } i_k \text{ dependen de los } x_l. 
+        X \times Y = \bigcup_{\substack{1 \le l \le s\\ 1 \le k \le r}} U^{x_l} \times V_{x_l}^{y_k} \subset \bigcup_{\substack{1 \le l \le s\\ 1 \le k \le r}} W_{i_k} \text{, los } i_k \text{ dependen de los } x_l. 
     \]
+    Ya que:
+    \begin{itemize}
+        \item $x \in X \Rightarrow \exists U^{x_l} \ni x$.
+        \item $y \in Y = V_{x_l}^{y_{l_1}} \cup \ldots \cup V_{x_l}^{l_r} \Rightarrow \exists V_{x_l}^{y_{l_k}} \ni y$
+    \end{itemize}
+    Con lo que tenemos un subrecubrimiento finito a partir de un recubrimiento cualquiera.
 \end{enumerate}
 \end{demo}
 
@@ -188,11 +183,11 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
     \end{demo} 
     \item Heine-Borel: $K \subset \mathbb{R}_u^n$ cerrado y acotado $\Rightarrow$ compacto.
     \begin{demo}
-    Ya que sabemos que $\left[ a, b \right]$ es compacto en $\mathbb{R}_u$, sabemos que:
+    Si $K$ es acotado, pertenece al producto cartesiano de intervalos acotados y si además es cerrado, entonces pertenece a un producto cartesiano de intervalos cerrados y acotados de la forma
     \[
-        \exists a_i, b_i: K \stackrel{\text{cerr.}}{\subset} \underbrace{\left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]}_{\text{Compacto por Tych.}}  
+	K \subset \left[ a_1, b_1 \right] \times \ldots \times \left[ a_n, b_n \right]
     \]
-    y aplicamos el Mantra $1$.
+    Como sabemos que el intervalo $[0,1]$ es compacto, por homeomorfismo, los intervalos $[a,b]$ son compactos. Además, por Tychonov, el producto de ellos también lo es, luego tenemos $K$ cerrado contenido en un compacto, es decir, compacto.
     \end{demo}
 \end{enumerate}
 \end{obs}
@@ -200,126 +195,171 @@ Sea $X \times Y = \bigcup_{i \in  I} W_i,\ W_i \in \mathcal{T}_X \times \mathcal
 
 \chapter{Compacidad local}%
 \label{cha:compacidad_local}
-\begin{defi}
-Sea $Y \subset X$, es \underline{localmente cerrado} si cumple las condiciones equivalentes siguientes:
+En ocasiones, es útil saber que trabajar localmente en un punto tiene ciertas propiedades favorables. Nos gustaría poder definir qué es esto de trabajar localmente en un punto y qué condiciones han de satisfacer los entornos de dicho punto para poder trabajar cerca de él como si el espacio fuese compacto, lo que es precisamente la compacidad local.
+
+\begin{defi}[Localmente cerrado]
+Sea $X$ un espacio topológico y $Y \subset X$ un subconjunto, decimos que $Y$ es \textbf{localmente cerrado} si y sólo si:
 \begin{enumerate}
-    \item $\forall y \in Y,\ \exists U^y \subset X: Y \cap U^y \stackrel{\text{cerr.}}{\subset} U^y$. ($\Rightarrow$ lo mismo $\forall V^y \subset U^y$)
-    \item $Y$ es abierto en su adherencia.
-    \item $Y = F \cap U,\ F \stackrel{\text{cerr.}}{\subset} X,\ U \stackrel{\text{ab.}}{\subset} X$. ($\Rightarrow$ vale $F = \overline{Y}$)
+    \item $\forall y \in Y,\ \exists V^y \ent X: Y \cap V^y \cerr V^y$.
+    \item $Y \ab \overline{Y}$.
+    \item $\exists U \ab X : Y \cerr U$
 \end{enumerate}
+donde las condiciones anteriores son equivalentes.
 \end{defi}
-\begin{demo}
+
+\begin{obs}
+En realidad, podemos reescribir las condiciones anteriores de otra forma para ver más claro lo que estamos queriendo decir:
 \begin{enumerate}
-    \item[1. $\Rightarrow$ 2.)] $Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$:
-    \begin{align*}
-        x \in \overline{Y} \cap U^y &\Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) = Y \cap U^y \subset Y\\
-        U^x \subset U^y &\Rightarrow \emptyset \neq Y \cap U^x = \left( Y \cap U^y \right) \cap U^x
-    .\end{align*}
-    \item[2. $\Rightarrow$ 3.)] Abierto en $\overline{Y} = \underbrace{\overline{Y}}_{= F} \cap U$.
-    \[
-    F \cap U = Y \Rightarrow F \supset \overline{Y} \Rightarrow F \cap U = \overline{Y} \cap U.
-    \]
-    \item[3. $\Rightarrow$ 1.)] $Y = F \cap U \stackrel{\text{cerr.}}{\subset} U \left( = U^y,\ \forall y \right)$.
+\item Si se cumple la propiedad, se cumple para una base de entornos.
+
+Para cualquier entorno $U^y \subset V^y$ también se cumple la propiedad, pues $Y\cap U^y \cerr U^y$ si y sólo si $Y\cap U^y = F \cap U^y$ donde $F$ es un cerrado ambiente, es decir, de $V^y$. Tomamos como $F = V^y \cap Y$ y hemos terminado. 
+
+\item Escrito de otra forma, como los abiertos de $\overline{Y}$ son abiertos ambiente cortados con $\overline{Y}$, estamos diciendo que $Y = \overline{Y} \cap U$ donde $U \ab X$.
+
+\item De nuevo, los cerrados en $U$ son cerrados ambientes cortados con $U$, es decir que podemos reescribir lo anterior como $\exists U \ab X \mbox{ y } F\cerr X : Y = F \cap U$.
 \end{enumerate}
+\end{obs}
+
+\begin{demo}
+\begin{itemize}
+    \item 1. $\Rightarrow$ 2.
+    
+    Vamos a ver, por el doble contenido, que $Y = \overline{Y} \cap \left( \bigcup_{y \in Y} U^y \right)$.
+    \begin{itemize}
+        \item[$\subset)$] Trivial.
+        \item[$\supset)$]
+        \[
+       	x\in \overline{Y} \cap U^y \Rightarrow x \in \adh_{U^y} \left( Y \cap U^y \right) \stackrel{Y \cap U^y \cerr U^y}{=} Y \cap U^y \subset Y
+       	\]
+    \end{itemize}
+    \item 2. $\Rightarrow$ 3.
+	
+	Con la observación posterior a la definición, la demostración es inmediata, pues que se cumpla dos implica que existe un $U \ab X$ tal que $Y = \overline{Y} \cap U$. Luego si tomamos ese $U$ como el abierto de 3. y $\overline{Y}$ como el cerrado $F$ hemos acabado.
+	
+    \item 3. $\Rightarrow$ 1.
+    
+    De nuevo, vuelve a ser trivial por la definición, pues basta con tomar como $V^y$ el abierto $U$ de 3.
+\end{itemize}
 \end{demo}
 
-Esto es un ejemplo de \underline{localización} de una propiedad topológica $\mathcal{P}$ (aquí es ser cerrado). Se puede entender como:
-\begin{align*}
-    &\forall x,\ \exists V^x \text{ que cumple } \mathcal{P} \text{ o } \\
-    &\forall x,\ \exists \mathcal{V}^x \text{ base de entornos que cumplen } \mathcal{P} 
-.\end{align*}
-A veces son equivalentes (como en este caso), a veces no. El concepto adecuado de localización es mediante \underline{bases de entornos}.
+\begin{obs}
+La definición anterior es un buen ejemplo de localización de una cierta propiedad topológica y es una técnica habitual para otras muchas propiedades: se trata de hacer la siguiente construcción $\forall x,\ \exists \mathcal{V}^x \text{ base de entornos que cumplen } \mathcal{P}$.
+
+En ocasiones, se utiliza otro enunciado similar: $\forall x,\ \exists V^x \text{ que cumple } \mathcal{P}$, pero porque en dicho contexto es equivalente al anterior. Como en general, no son enunciados equivalentes, la construcción adecuada es mediante bases de entornos.
+\end{obs}
+
+\begin{ej}
+El conjunto del dibujo, en la topología usual de $\mathbb{R}^n$ no es localmente cerrado,
+%TODO Dibujo
+
+puesto que cualquier entorno de un punto del margen derecho mantiene la apertura que da el margen discontinuo derecho.
+\end{ej}
 
 \section{Compacidad local y mantras}%
 \label{sec:compacidad_local_y_mantras}
-\begin{defi}
-$X$ es \underline{localmente compacto} si $\forall x \in X,\ \exists \mathcal{V}^x$ base de entornos compactos.
+\begin{defi}[Compacidad Local]
+Sea $X$ un espacio topológico, decimos que es \textbf{localmente compacto} si y sólo si para todo punto, existe una base de entornos formada por entornos compactos.
 \end{defi}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{R}_u^n$ es localmente compactos: $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$
+    \item El espacio $\mathbb{R}^n$ con la topología usual es localmente compactos porque para cualquier punto $\mathcal{V}^x = \{B\left[ x, \varepsilon \right] : \varepsilon > 0\}$ es una base de entornos compactos.
+    
+    \item Utilizando el mismo ejemplo visto para localmente cerrado, podemos añadir un punto $q$ y considerar la topología usual en todos los puntos menos en $q$, donde consideramos únicamente como entornos los conjuntos cuyo complementario es finito.
+    %TODO Dibujo%
 
-    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es compacto:
+    Esta definición hace el conjunto $X$ compacto (pues si consideramos $X=\bigcup_{i\in I} U_i$ alguno recubrirá a $q$ y el complementario de ese es un conjunto finito), pero no podremos encontrar para $p$ ninguna base de entornos compactos, pues no existe dicha base de cerrados (y en $\mathbb{R}$ usual están caracterizados así).
+
+	%TODO no entiendo este contraejemplo
+    \item $T = B\left( 0, 1 \right) \cup \{p\},\ T_u$ no es localmente compacto.
+    \begin{demo}
+    Veamos un conjunto infinito sin acumulación en $T$:
     \begin{align*}
         \exists V^p \stackrel{\text{comp.}}{\subset} T &\Rightarrow \exists B\left( 0, \varepsilon \right) \cap T \subset V^p \Rightarrow \exists \overbrace{x_k}^{\in V^p} \rightarrow x_0 \in S\left( 0, 1 \right) \setminus T\\
        &\Rightarrow \{x_k : k \ge 1\} \subset V^p \subset T 
     .\end{align*}
-    que es un conjunto infinito sin acumulación en $T$.
-    %TODO: Imagen
-    \begin{center}
-        \includegraphics[scale=0.3]{images/loc_comp_ej_2} 
-    \end{center}
+    \end{demo}
 
-    \item En general \underline{no} basta que exista un entorno compacto.
+    \begin{figure}[H]
+        \centering
+        \incfig[0.5]{usual-no-localmente-compacto}
+        \caption{\textit{Visualización de un conjunto que no es localmente compacto en la topología usual de $\mathbb{R}^2$.}}
+        \label{fig:usual-no-localmente-compacto}
+    \end{figure}
 
-    %TODO: no sé que pone
-    En $S = T \cup \{q\}?$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$).
+    \item En general NO basta que exista un entorno compacto.
+
+    En $S = T \sqcup \{q\}$ tomamos como entornos del punto añadido $q$ los $W \subset S$ que tienen complementario finito (y $q \in W$). 
+    Es decir, para $q$ tenemos la topología de los complementarios finitos mientras que para el resto de puntos tenemos la topología usual.
+    En este caso, $S$ es compacto, pero sus puntos no son localmente compactos (por lo menos, $q$)
 
     Pero este caso es un ejemplo con un espacio \underline{no separado}.
 \end{enumerate}
 \end{ej}
 
 \begin{prop}
-Si $X$ es $T_2$ y $x \in X$ tiene un entorno compacto, entonces tiene una base de entornos compactos.
+Sea $X$ un espacio topológico $T_2$ y $x \in X$ un punto con un entorno compacto, entonces existe una base de entornos compactos para dicho punto.
 \end{prop}
 \begin{demo}
-    $\exists \underbrace{V^x}_{\supset W^x \text{ab.}}$ compacto $\Rightarrow \mathcal{V}^x =$ { entornos compactos $K^x$} \underline{base de entornos}: $\forall U^x,\ \exists?K^x \subset U^x$.
+    Queremos ver que $\forall U^x$ abierto, $\exists K^x \ent U^x$ compactos.
+
+    $\exists V^x (\stackrel{\text{ab.}}{\supset} W^x)$ compacto $\xRightarrow{?} \mathcal{V}^x =$ \{entornos compactos $K^x$\} \underline{base de entornos}.
 
     $\exists_{\text{ab.}} U_1^x \subset \overline{U_1^x} \subset U^x$:
-    \begin{gather*}
-        V^x\setminus U^x \stackrel{\text{cerr.}}{\subset} V_{\text{comp.}}^x \Rightarrow \overbrace{V \setminus U}^{\not\ni x} \text{comp. en } T_2 \Rightarrow \exists \overbrace{U_1^x\ \&\ A}^{\text{ab. disjuntos}} \supset V^x \setminus U^x\\
-        K^x = \overline{W^x \cap U_1^x} \begin{cases}
-            %TODO: Anotación
-            \overline{V^x} \cap \overline{U_1^x} = V^x \cap \overline{U_1^x} \subset V^x \cap \overline{X \setminus A} = V^x \cap \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \subset U^x\\
-            \text{interdos ent.?} \Rightarrow \text{entorno}\\
-            W^x \cap U_1^x \subset V^x \stackrel{\text{comp. en } T_2}{=} \overline{V^x} \subset X \Rightarrow \underbrace{K^x}_{\text{cerr.}} \subset \underbrace{V^x}_{\text{comp.}} \Rightarrow K^x \text{ comp.} 
-        \end{cases}  
-    \end{gather*}
+    \[ 
+        V^x\setminus U^x \cerr V_{\text{comp.}}^x \Rightarrow \overbrace{V \setminus U}^{\not\ni x} \text{comp. en } T_2 \Rightarrow \exists \overbrace{U_1^x\ \&\ A}^{\text{ab. disjuntos}} \supset V^x \setminus U^x
+    \]
+    Y tenemos que: $K^x = \overline{W^x \cap U^x} \Rightarrow$
+    \begin{itemize}
+        \item $\overline{V^x}_{\text{comp.}} \cap \overline{U_1^x} = V^x_{\text{comp.}} \cap \overline{U_1^x} \subset V^x \cap \overline{X \setminus A} = V^x \cap \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \subset U^x$.
+        \item Intersección de dos entornos es entorno.
+        \item $W^x \cap U_1^x \subset V^x \stackrel{\text{comp. en } T_2}{=} \overline{V^x} \subset X \Rightarrow \underbrace{K^x}_{\text{cerr.}} \subset \underbrace{V^x}_{\text{comp.}} \Rightarrow K^x \text{ comp.}$
+    \end{itemize}
 \end{demo}
 
-Y tenemos dos mantras:
 \begin{prop}[Mantra 1]
-Localmente cerrado en localmente compacto es localmente compacto. 
+Sea $X$ un espacio topológico localmente compacto y $Y\subset X$ un subespacio localmente cerrado, entonces es localmente compacto.
 \end{prop}
-%TODO: Arreglar formato
 \begin{demo}
-    Sea $Y \subset X$ con $Y$ loc. cerrado y $X$ loc. compacto e $y \in Y$.
-
     Tenemos:
     \[
     \overline{U_1^x} \cap V^x \subset \overline{X \setminus A} \cap V^x = \overbrace{\left( X \setminus A \right)}^{\text{cerr.}} \cap V^x \subset U^x
     \]
 
-    Y como $Y$ es loc. cerrado, $\exists W^y \cap Y \stackrel{\text{cerr.}}{\subset} W^y$ ent. en $X$. Por ser $X$ loc. compacto $\exists K^y$ compacto tal que, $K^y \subset W^y \Rightarrow K^y \cap W^y \cap Y \stackrel{\text{cerr.}}{\subset} K^y \Rightarrow$
+    Y como $Y$ es localmente cerrado, $\exists W^y \cap Y \cerr W^y$ ent. en $X$. Por ser $X$ localmente compacto $\exists K^y$ compacto tal que, $K^y \subset W^y \Rightarrow K^y \cap W^y \cap Y \cerr K^y \Rightarrow$
     \[
-    L^y = \underbrace{K^y \cap W^y}_{\text{ent. en } X} \cap Y \stackrel{\text{cerr.}}{\subset} K^y \Rightarrow L^y \text{ ent. en } Y \text{ compacto.}  
+    L^y = \underbrace{K^y \cap W^y}_{\text{ent. en } X} \cap Y \cerr K^y \Rightarrow L^y \text{ ent. en } Y \text{ compacto.}  
     \]
 \end{demo}
 
 \begin{prop}[Mantra 2]
-Localmente compacto en $T_2$ es localmente compacto.
+Sea $X$ un espacio topológico $T_2$ y $Y\subset X$ un espacio localmente compacto, entonces es localmente cerrado.
 \end{prop}
 \begin{demo}
-Sea $Y \subset X$ con $Y$ loc. compacto, $X$ siendo $T_2$ e $y \in Y \Rightarrow$
 \[
-\underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V \cap Y}_{\text{ent. en } Y} \subset \underbrace{V}_{\text{ent. en } X} \xRightarrow{T_2} V \cap Y = L^y \stackrel{\text{cerr.}}{\subset} V.
+\underbrace{\exists L^y}_{\text{comp.}} = \underbrace{V^y \cap Y}_{\text{ent. en } Y} \subset \underbrace{V^y}_{\text{ent. en } X} \xRightarrow{T_2} V^y \cap Y = L^y \cerr V^y.
 \]
 \end{demo}
 
+\begin{coro}
+En un $T_2$ localmente compacto, ser localmente cerrado es equivalente a localmente compacto.
+\end{coro}
+
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_loc_comp}
-%TODO: Fix tabla
-\begin{center}    
-\begin{tabular}{c | c | c | c | c |}
+\begin{table}[H]
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+\hline
 & Subespacios & Cocientes & Productos & Sumas\\
-\hline\\
-    Compacidad local & \begin{tabular}{@{}c@{}}$\times$\\ Loc. cerrados \checkmark \end{tabular} & \begin{tabular}{@{}c@{}}$\times$\\ ab. \checkmark \end{tabular} & \checkmark & \checkmark\\
-    \hline\\
-           & Mantra $1$ & $f\left( \text{ent.} \right) = $ ent & Tychonoff & Loc. suma es como sum's\\
-    \hline\\
+\hline
+    Compacidad local & \begin{tabular}{@{}c@{}}\ding{55}\\ Loc. cerrados \checkmark \end{tabular} & \begin{tabular}{@{}c@{}}\ding{55}\\ Abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
+    \hline
+    Demostración: & Mantra $1$ & $f\left( \text{ent.} \right) = $ ent & Tychonoff & Loc. suma es como sum's\\
+    \hline
 \end{tabular}
-\end{center}
+\caption{\textit{La tabla nos indica como se conserva la compacidad local en las distintas construcciones que hemos visto. Las sumas y los productos son finitos.}}
+\end{table}
 
 \begin{ej}
 $Y = \mathbb{R} / \mathbb{Z}$ no es localmente compacto.
@@ -338,46 +378,74 @@ $Y = \mathbb{R} / \mathbb{Z}$ no es localmente compacto.
 
 \section{Compactificación por un punto}%
 \label{sec:compactificacion_por_un_punto}
-Este es otro problema importante: \underline{sumergir un espacio} como subespacio abierto denso de un espacio compacto.
+Este es otro problema importante: \underline{sumergir un espacio} como subespacio abierto denso de un espacio compacto. Con ``sumergir'' nos referimos a una inmersión.
+\[
+    X \xhookrightarrow[\text{denso}]{\text{ab.}} X^*
+\]
+donde $X$ es no compacto y $X^*$ es compacto y Hausdorff, es decir, es localmente compacto y, por ende, la imagen de $X$ es localmente compacta.
 
 Intuitivamente se trata de añadir los límites que el espacio no tiene (por no ser compacto).
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{R}^n \equiv B^n \setminus \{a\} \subset \mathbb{S}^n$ vía proyección estéreo desde $a$.
+    \item $\mathbb{R}^n \equiv B^n \setminus \{a\} \subset \mathbb{S}^n$ vía proyección estereográfica desde $a$.
     \item $\mathbb{R}^n \equiv \mathbb{R}P^n \setminus H \subset \mathbb{R}P^n$ vía cartas afines.
 \end{enumerate}
 \end{ej}
 
+%TODO: No sé como ponerlo
+\begin{defi}
+Llamamos \textbf{residuo} a la diferencia entre el espacio desde el que surge la inmersión y el de llegada.
+\end{defi}
+
 \begin{prop}
-$X$ localmente compacto $T_2$.
+$X$ (no compacto) localmente compacto y $T_2$. Entonces:
 \begin{enumerate}
-    \item $\exists j : X \xhookrightarrow{} X^*$ comp. $T_2,\ j$ inmersión abierta $X^* \setminus j\left( X \right) = \{w\}$.
+    \item $\exists j : X \xhookrightarrow{} X^*$ compacto $T_2,\ j$ inmersión abierta $X^* \setminus j\left( X \right) = \{\omega\}$.
     \item Unicidad: 
-    \begin{center}
-        \includegraphics[scale=0.3]{images/comp_pto_prop_1} 
-    \end{center}
+    \begin{figure}[H]
+        \centering
+            \begin{tikzpicture}[node distance=2cm, auto]
+            \node(X) {$X$};
+            \node(Y) [above right of=X] {$X_1^*$};
+            \node(Z) [below right of=X] {$X_2^*$};
+            \draw[right hook->](X) to node {$j_1$}(Y);
+            \draw[right hook->](X) to node [below] {$j_2$}(Z);
+            \draw[->](Y) to node [right] {$h$}(Z);
+
+            \node(w1) [right=0.5 of Y] {$\omega_1$};
+            \node(w2) [right=0.5 of Z] {$\omega_2$};
+            \draw[|->](w1) to node [right] {homeo.}(w2);
+            \end{tikzpicture}
+        \caption{\textit{Con esto vemos que la unicidad es por homeomorfismo.}}
+    \end{figure}
 \end{enumerate}
 \end{prop}
 \begin{demo}
 \begin{enumerate}
-    \item $X^* = X \cup \{0\},\ \mathcal{T}^* = \mathcal{T} \cup \{X^* \setminus K: \overbrace{K}^{\subset X} \text{comp.}\}$.
+    \item $X^* = X \sqcup \{0\},\ \mathcal{T}^* = \mathcal{T} \cup \{X^* \setminus K: K \subset X \text{ comp.}\}$.
     \begin{itemize}
-        \item $\mathcal{T}^*$ es top: fácil por las hipótesis sobre $X$.
+        \item $\mathcal{T}^*$ es topología: fácil por las hipótesis sobre $X$.
         \begin{itemize}
-            \item $K_i \stackrel{\text{comp.}}{\subset} X \xRightarrow{T_2} K_i \stackrel{\text{cerr.}}{\subset} X \Rightarrow \overbrace{\bigcap_{i} K_i}^{\text{cerr.}} \subset \overbrace{K_{i_0}}^{\text{comp.}} \Rightarrow \bigcap_{i} K_i$ comp.
-            \item $U \stackrel{\text{ab.}}{\subset} X,\ X \stackrel{\text{comp.}}{\subset} X \Rightarrow U \setminus K =$ ab. $\setminus$ cerr. $ = $ ab.
-            \item $U \stackrel{\text{ab.}}{\subset} X,\ K \stackrel{\text{comp.}}{\subset} X \Rightarrow U \cup \left( X^* \setminus K \right) = X^* \setminus \left( K \setminus U \right),\ K \setminus U \subset K$ cerrado $\Rightarrow$ compacto.
+            \item $K_i \stackrel{\text{comp.}}{\subset} X \xRightarrow{T_2} K_i \cerr X \Rightarrow \overbrace{\bigcap_{i} K_i}^{\text{cerr.}} \subset \overbrace{K_{i_0}}^{\text{comp.}} \Rightarrow \bigcap_{i} K_i$ comp.
+            \item $U \ab X,\ X \stackrel{\text{comp.}}{\subset} X \Rightarrow U \setminus K =$ ab. $\setminus$ cerr. $ = $ ab.
+            \item $U \ab X,\ K \stackrel{\text{comp.}}{\subset} X \Rightarrow U \cup \left( X^* \setminus K \right) = X^* \setminus \left( K \setminus U \right),\ K \setminus U \subset K$ cerrado $\Rightarrow$ compacto.
         \end{itemize}
         \item $X \subset X^*$ inmersión abierta: $\left( X^* \setminus K \right) \cap X = X \setminus K \in \mathcal{T}$ pues $X$ es $T_2$.
         \item $X^*$ es compacto: $X^* = \bigcup_{i} W_i$.
         \[
-        \exists W_{i_0} \ni w \Rightarrow W_{i_0} = \underbrace{X^* \setminus K}_{\text{comp.}} \Rightarrow K \subset W_{i_1} \cup \ldots \cup W_{i_r} \Rightarrow X^* = W_{i_0} \cup W_{i_1} \cup \ldots \cup W_{i_r}  
+        \exists W_{i_0} \ni w \Rightarrow W_{i_0} = X^* \setminus \underbrace{K}_{\text{comp.}} \Rightarrow K \subset W_{i_1} \cup \ldots \cup W_{i_r} \Rightarrow X^* = W_{i_0} \cup W_{i_1} \cup \ldots \cup W_{i_r}  
         \]
-        \item $X^*$ es $T_2:$
+        \item $X^*$ es $T_2:$. Si tomamos dos puntos de $X$ simplemente utilizamos que es $T_2$. Por tanto, lo interesante es separar $x \in X$ de $\omega$:
         \[
-        x \in X \text{ loc. comp.} \Rightarrow \exists K^x \text{ ent. comp.} \Rightarrow X^* \setminus K^* = U^w \text{ ent. de } w
+        x \in X \text{ loc. comp.} \Rightarrow \exists K^x \text{ ent. comp.} \Rightarrow X^* \setminus K^x = U^{\omega} \text{ ent. de } \omega
         \]
+
+        \item $X$ es denso: %TODO
+        \[
+        \overline{X} = X^*,\ \forall \overbrace{W^x}^{= X \setminus K} \cap X = X \setminus K \neq \emptyset
+        \]
+        porque $X$ no es compacto, pero $K$ sí.
     \end{itemize}
 
     \item Unicidad:
@@ -387,22 +455,22 @@ $X$ localmente compacto $T_2$.
            j_i \text{ inmersiones} 
         \end{rcases} \Rightarrow h|: j_1\left( X \right) \rightarrow j_2 \left( X \right)$ homeomorfismo.
 
-        \item $h$ continua en $w_1$ (análogamente $h^{-1}$ continua en $w_2$)
+        \item $h$ continua en $\omega_1$ (análogamente $h^{-1}$ continua en $\omega_2$)
         \begin{align*}
-            h\left( w_1 \right) = w_2 \in W \stackrel{\text{ab.}}{\subset} X_2^* &\Rightarrow X_2^* \setminus W \stackrel{\text{cerr.}}{\subset} X_2^* \Rightarrow X_2^* \setminus W \stackrel{\text{comp.}}{\subset} j_2\left( X \right)\\
+            h\left( \omega_1 \right) = \omega_2 \in W \ab X_2^* &\Rightarrow X_2^* \setminus W \cerr X_2^* \Rightarrow X_2^* \setminus W \stackrel{\text{comp.}}{\subset} j_2\left( X \right)\\
             &\Rightarrow K = h^{-1}\left( X_2^* \setminus W \right) \stackrel{\text{comp.}}{\subset} j_1\left( X \right) \subset X_1^*\\
-            \left[ X_1^* \text{ es } T_2 \right] &\Rightarrow K \stackrel{\text{cerr.}}{\subset} X_1^* \Rightarrow h^{-1}\left( W \right) = X_1^* \setminus K \stackrel{\text{ab.}}{\subset} X_1^*
+            \left[ X_1^* \text{ es } T_2 \right] &\Rightarrow K \cerr X_1^* \Rightarrow h^{-1}\left( W \right) = X_1^* \setminus K \ab X_1^*
         .\end{align*}
     \end{itemize}
 \end{enumerate}
 \end{demo}
 
 \begin{defi}
-El espacio $X^*$ se denomina \underline{compactificación por un punto} de $X$. 
+El espacio $X^*$ se denomina \textbf{compactificación por un punto} de $X$. 
 
-También, \underline{compactificación de Alexandroff}.
+También, \textbf{compactificación de Alexandroff}.
 \end{defi}
-Por ejemplo, $\mathbb{S}^n$ es la compactificación por un puntoo de $\mathbb{R}^n$ (vía proyección estéreo como dijimos antes).
+Por ejemplo, $\mathbb{S}^n$ es la compactificación por un punto de $\mathbb{R}^n$ (vía proyección estéreo como dijimos antes).
 
 \begin{obs}[¡Importante!]
 \begin{enumerate}
@@ -415,10 +483,15 @@ Por ejemplo, $\mathbb{S}^n$ es la compactificación por un puntoo de $\mathbb{R}
     que cumple las condiciones.
 
     \item Si dos espacios no son homeomorfos, pueden serlo sus compactos.
-    \begin{center}
-        \includegraphics[scale=0.3]{images/obs_comp_pto} 
-    \end{center}
+    \begin{figure}[H]
+        \centering
+        \incfig[0.6]{homeomorfismos-y-compactificación}
+        \caption{\textit{Caso en el que dos homeomorfismos no son compactos, pero su compactificación es igual.}}
+        \label{fig:homeomorfismos-y-compactificación}
+    \end{figure}
+    No son homeomorfos porque %TODO: En clase 
+    ningún punto de $X_1$ desconecta sus entornos. Por otro lado, el punto del vértice superior de $X_2$ si que desconecta TODOS sus entornos suficientemente pequeños. 
+    Es decir, $X_1$ tiene distintas características topológicas de $X_2$.
 \end{enumerate} 
 \end{obs}
 
-[\underline{Ejercicio}: $\mathbb{R}_u^2$: ¿Por qué $X_1 \not \approx X_2$?]

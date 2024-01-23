@@ -1,169 +1,134 @@
 \chapter{Numerabilidad}%
 \label{cha:numerabilidad}
+Los axiomas de numerabilidad son definiciones y resultados que describen las buenas propiedades que puede tener una topología si algunos elementos como las bases de entornos, las bases de abiertos, los conjuntos densos, etc. son numerables.
 
-\section{Axiomas}%
+\section{Axiomas de numerabilidad}%
 \label{sec:axiomas}
+En esta sección presentamos los cuatro principales resultados sobre numerabilidad: 1\textsuperscript{er} Axioma, 2º Axioma, separable y Lindelöf. Pretendemos desmigajar estos conceptos que muchas veces tomamos como ``naturales'' porque estamos acostumbrados a trabajar con ellos en $\mathbb{R}^n$, pero que de no aparecer dotan de propiedades muy distintas a los espacios topológicos.
+
 \subsection{I Axioma}%
 \label{sub:i_axioma}
-\begin{defi}[I Ax.]
-$X$ es \textbf{1\textsuperscript{er} axioma} si $\forall x \in X,\ \exists \mathcal{V}^x$ base numerable de entornos.  
+El primer axioma hace referencia a la numerabilidad de las bases de entornos de cualquier punto del conjunto $X$ que estemos estudiando.
+
+\begin{defi}[1\textsuperscript{er} Axioma]
+Sea $X$ un espacio topológico, decimos que es \textbf{1\textsuperscript{er} Axioma} si y sólo si para cualquier punto $x\in X$ existe una base $\mathcal{V}^x$ de entornos numerable.
 \end{defi}
 
 \begin{obs}
-\begin{enumerate}
-    \item $\mathcal{B}^x = \{U_k = \mathring{V}_k \}_{k \ge 1}$, base numerable de entornos de abiertos.
-    \item $\mathcal{W}^x = \{W_k = U_1 \cap \ldots \cap U_k\}_{k \ge 1}$, base numerable de entornos abiertos encajados.
-    \begin{demo}
-        Sea $\left\{ V_k^x, k \ge 1 \right\}$ base de entornos abiertos. Hacemos que: $W_1^x = V_1^x,\ W_2^x = V_1^x \cap V_2^x \ldots W_k^x = \bigcap_{i = 1}^{\infty} V_i^x$ y tenemos que:
-        \[
-        W_{k+1}^x \subset W_{k}^x
-        \]
-        que mantiene el ser base de entornos abiertos ($x \in \bigcap_{i = 1}^{\infty} V_i^x$).
-    \end{demo}
-\end{enumerate}
+Como hemos visto otras veces, de cualquier base de entornos se puede sacar una base de entornos abiertos. De esta manera, si existe una base como la de la definición existe una base $\mathcal{B}^x = \{U_k = \mathring{V}_k \}_{k = 1}^\infty$ numerable de entornos abiertos.
 \end{obs}
+
+\begin{prop}
+Sea $X$ un espacio topológico 1\textsuperscript{er} Axioma, entonces existe una base de entornos numerable  $\mathcal{W}^x := \{W_k\}_{k = 1}^\infty$, donde $W_k := U_1 \cap \ldots \cap U_k$, compuesta por entornos abiertos y encajados.
+\end{prop}
+\begin{demo}
+Como $X$ es 1\textsuperscript{er} Axioma, existe una base numerable de entornos $\left\{ V_k^x \right\}_{k=1}^\infty$ compuesta por entornos abiertos. Si tomamos el conjunto de los entornos definidos como:
+\[
+\begin{cases}
+W_1^x = V_1^x \\
+W_2^x = V_1^x \cap V_2^x \\
+\vdots \\
+W_k^x = \bigcap_{i = 1}^{k} V_i^x
+\end{cases}
+\]
+entonces tenemos un conjunto de entornos abiertos y encajados, pues $W_{k+1}^x \subset W_{k}^x$, y que conforma una base de entornos.
+\end{demo}
 
 \begin{ej}
 \begin{enumerate}
-    \item $\mathbb{R}^n, \mathcal{T}_u$ cumple el I Axioma
-    \begin{demo}    
-        Sea $x \in \mathbb{R}^n \Rightarrow \mathcal{W}^x = \{B\left( x, \frac{1}{k} \right): k \ge 1\}$ es base de entornos.
-    \end{demo}
-    \item $\left( X, \mathcal{T}_a \right), \left( X, \mathcal{T}_{\text{discreta}} \right)$ cumplen el I Axioma.
-    \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right)$ no es I Axioma.
-    \begin{demo}
-    Sabemos que $\left\{ W_k \right\}$ no es base de entornos de $x$ si $\exists U^x \not \supset W_k,\ \forall k \ge 1$, $\forall k \exists \underbrace{x_k}_{\neq x} \in W_k \setminus U^x$.
+    \item La topología usual $(\mathbb{R}^n, \mathcal{T}_u)$ es un ejemplo de topología 1\textsuperscript{er} Axioma, pues el conjunto $\mathcal{W}^x = \{B\left( x, \frac{1}{k} \right): k \ge 1\}$ es una base de entornos numerable.
+    
+    \item Las topologías del punto $\left( X, \mathcal{T}_a \right)$ y discreta $\left( X, \mathcal{T}_{\text{discreta}} \right)$ también son ejemplos de topologías 1\textsuperscript{er} Axioma.
 
-    Veámoslo por reducción al absurdo. Supongamos que $\exists V^x$ numerable $\Rightarrow$
-
-    $\exists \mathcal{W}^x = \{W_k\}_{k \ge 1}$ abiertos encajados, $W_k = \mathbb{R} \setminus F_k$ finito $\Rightarrow \bigcap_{k \in \mathbb{N}} W_k = \mathbb{R} \setminus \bigcup_{k \in \mathbb{N}} F_k \neq \emptyset \Rightarrow \exists y \in \bigcap_{k \in \mathbb{N}} W_k \Rightarrow U^x = \mathbb{R}\setminus \{y\} \not \supset W_k,\ \forall k \in \mathbb{N}$ (porque $y$ pertenece a todos los $W_k$). Por tanto, tenemos un entorno que no contiene a ningún $W_k$.
-    \end{demo}
-
-    \item $\left( \mathbb{R}, \mathcal{T}_{\text{rad}} \right)$ no es I axioma.
-    \begin{demo}
-    %TODO: Dibujo 
-    Sea $\left\{ \underbrace{W_k}_{\ni x_0} : k \ge 1 \right\}$ y sea $L_k: $ recta de pendiente $\frac{1}{k}$. Si hacemos $W_k \cap L_k \supset \left( x_0 - \varepsilon, x_0 + \varepsilon \right) \ni x_k$ 
-    tal que $0 < \lVert x_k - x_0 \rVert < \frac{1}{k}$. Ya vimos que $U^{x_0} = \mathbb{R}^2 \setminus \left\{ x_k: k \ge 1 \right\}$ es abierto radial que 
-    no contiene ningún $W_k$ ya que a estos pertenecen los $x_k$.
-    \end{demo}
+    \item La topología de los complementarios finitos $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right)$ es un ejemplo de las topologías que no son 1\textsuperscript{er} Axioma.
+    
+    Para verlo, supongamos que sí, que existe una base $\exists \mathcal{W}^x = \{W_k\}_{k \ge 1}$ de abiertos encajados. Como son abiertos, entonces $W_k = \mathbb{R} \setminus F_k$ donde $F_k$ es un conjunto finito. De esta manera, $\bigcap_{k \in \mathbb{N}} W_k = \mathbb{R} \setminus \bigcup_{k \in \mathbb{N}} F_k$ y es no vacía porque es una unión numerable de puntos (y $\mathbb{R}$ es una unión no numerable). Por tanto, si escogemos $y \in \bigcap_{k \in \mathbb{N}} W_k$, el abierto $U^x = \mathbb{R}\setminus \{y\}$ es un entorno de $x\in X$, pero no contiene a ningún $W_k$ pues el punto $y$ no pertenece al conjunto.
+    
+    \item La topología radial $\left( \mathbb{R}, \mathcal{T}_{\text{rad}} \right)$ tampoco es 1\textsuperscript{er} Axioma.
+    
+    % TODO dibujo
+    Para verlo, supongamos que sí, que existe una base numerable $\left\{ W_k : W_k \ni x_0 \right\}_{k \ge 1}$ de entornos abiertos de un punto $x_0$. Denotamos por $L_k$ a las rectas de pendiente $\frac{1}{k}$ que pasan por ese mismo $x_0$. La intersección $W_k \cap L_k$ contiene un intervalo $\left( x_0 - \varepsilon, x_0 + \varepsilon \right)$ tal que $0 < \lVert x_k - x_0 \rVert < \frac{1}{k}$ del que podemos tomar un $x_k$ cualquiera. Ya vimos que $U^{x_0} = \mathbb{R}^2 \setminus \left\{ x_k: k \ge 1 \right\}$ es abierto radial y no contiene ningún $W_k$ ya que a estos pertenecen los $x_k$.
 \end{enumerate}
 \end{ej}
-
-\begin{defi}[Límites]
-Decimos que $\lim_{k \rightarrow \infty} x_k = x \Leftrightarrow$ 
-\[
-\forall U^x,\ \exists k_0 : k \ge k_0 \Rightarrow x_k \in U^x
-\]
-\end{defi}
-\begin{obs}
-\begin{enumerate}
-    \item $X$ es Hausdorff $\Rightarrow \exists! $ límite. 
-    \begin{demo}    
-    $x_k \rightarrow x \neq y,\ \exists U^x \cap U^y = \emptyset \Rightarrow \{x_k : k \ge k_0\} \subset U^x$ y $x_k \not \rightarrow y$.
-    \end{demo}
-
-    \item El I Axioma permite describir la topología con sucesiones:
-    \[
-     x \in \overline{A} \Leftrightarrow \exists \{x_k\} \subset A: x_k \rightarrow x
-    \]
-
-    \begin{demo}
-    \begin{itemize}
-        \item[$\Rightarrow)$] Supongamos que $x \in \overline{A} \Rightarrow$
-        \[
-        \begin{rcases}
-            \exists \mathcal{W}^x = \{W_k\}_{k \ge 1} \text{ encajados} \Rightarrow \exists x_k \in W_k \cap A\\
-            \forall U^x \stackrel{\text{base ent.}}{\supset} W_{k_0} \supset W_{k + 1} \supset \ldots \Rightarrow x_k \in U^x,\ \forall k \ge k_0  
-        \end{rcases} \Rightarrow x_k \rightarrow x
-        \]
-        \item[$\Leftarrow)$] Supongamos que $\exists \left\{ x_k \right\} \subset A: x_k \rightarrow x$:
-        \[
-        A \ni x_k \rightarrow x \Rightarrow \forall U^x,\ \exists x_{k_0} \in U^x \cap A
-        \]
-    \end{itemize}
-    \end{demo}
-\end{enumerate}
-En general, los límites de sucesiones son poco útiles.
-\end{obs}
 
 \subsection{II Axioma}%
 \label{sub:iiax}
-\begin{defi}[II Ax.]
-$X$ es \textbf{2º axioma} si $\exists \mathcal{B}$, base numerable de abiertos
+El segundo axioma también hace referencia a numerabilidad de bases, pero esta vez son bases de abiertos. Además, a diferencia del primer axioma, el segundo no pide que todas las bases sean numerables sino que alguna lo sea.
+
+\begin{defi}[2º Axioma]
+Sea $X$ un espacio topológico, decimos que es \textbf{2º Axioma} si y sólo si existe una base numerable $\mathcal{B}$ de abiertos.
 \end{defi}
 
 \begin{ej}
 \begin{itemize}
-    \item $\mathcal{T}_a, \mathcal{T}_{\text{discr.}}$ en $X$ no numerable no es II axioma.
-    \begin{demo}
-        En $\mathcal{T}_a$ la base de abiertos es $\mathcal{B}_a = \left\{ \left\{ a, x \right\}: x \in X \right\}$, por tanto, si $X$ no es numerable
-        tampoco lo será esta base.
-
-        Por otro lado, en $\mathcal{T}_{\text{discr.}}$ tenemos como base $X$ que no es numerable.
-    \end{demo}
-    \item $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es II Axioma ya que tenemos como base a: $\mathcal{B} = \{B \left( q, \frac{1}{k}\right) : q \in \mathbb{Q}^n, k \ge 1 \}$.
-    \begin{demo}
-        Ejercicio.
-    \end{demo}
+    \item La topología del punto $\mathcal{T}_a$ y la discreta $\mathcal{T}_{\text{discr.}}$ equipadas sobre un conjunto $X$ no numerable no son 2º Axioma, pues para la del punto la base mínima de abiertos es $\mathcal{B}_a = \left\{ \left\{ a, x \right\}: x \in X \right\}$, que es no numerable si $X$ lo es. Por otro lado, en $\mathcal{T}_{\text{discr.}}$ tenemos como base mínima $\left\{ \left\{ x \right\}: x \in X \right\}$ que no es numerable cuando $X$ no lo es.
+    \item La topología usual $\left( \mathbb{R}^n, \mathcal{T}_{u} \right)$ es 2º Axioma, ya que tenemos como base de abiertos $\mathcal{B} = \{B \left( q, \frac{1}{k}\right) : q \in \mathbb{Q}^n, k \ge 1 \}$.
 \end{itemize}
 \end{ej}
 
 \begin{prop}
-\begin{enumerate}
-    \item II Ax. $\Rightarrow$ I Ax. 
-    \item I Ax $\not \Rightarrow$ II Ax. 
-\end{enumerate}
+Sea $X$ un espacio topológico, si es 2º Axioma es 1\textsuperscript{er} Axioma.
 \end{prop}
 \begin{demo}
-\begin{enumerate}
-    \item Sea la base de abiertos: $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow \mathcal{B}^x = \{B_k : x \in B_k\}$ es base de entornos $\forall x \in X$.
-    \item Tenemos como contraejemplo $\mathcal{T}_{\text{discr.}}$ en $X$ no numerable.
-\end{enumerate}
+Sea la base de abiertos que verifica el 2º Axioma $\mathcal{B} = \{B_k\}_{k \ge 1}$, entonces el conjunto $\mathcal{B}^x = \{B_k : x \in B_k\}$ es base de entornos $\forall x \in X$ y además, si $\mathcal{B}$ es numerable, también lo será $\mathcal{B}^x$.
 \end{demo}
+
+\begin{obs}
+El recíproco no es cierto, pues tenemos como contraejemplo la topología discreta cuando se equipa sobre un conjunto de puntos $X$ no numerable.
+\end{obs}
 
 \subsection{Separable}%
 \label{sub:separable}
+El tercer axioma, denominado separable, hace referencia a la numerabilidad de los conjuntos densos del conjunto ambiente y no debe confundirse con la noción de separación del capítulo anterior.
+
 \begin{defi}[Separable]
-$X$ es \textbf{separable} si $\exists A \subset X$, numerable denso.
+Sea $X$ un espacio topológico, decimos que es \textbf{separable} si y sólo si existe un subconjunto $A\subset X$ numerable y denso.
 \end{defi}
 
 \begin{ej}
 \begin{itemize}
-    \item $\left( \mathbb{R}^n, \mathcal{T}_u \right)$ es separable, porque $\mathbb{Q}^n$ es denso.
-    \item $\left( X, \mathcal{T}_{\text{discr.}} \right)$, si $X$ es no numerable, no es separable.
-    \item $\mathcal{T}_a$ sí es separable porque $\overline{\left\{ a \right\}} = X$.
-    \item $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right),\ \forall A \subset \mathbb{R}$, con $A$ numerable infinito, es denso y, por tanto, separable. 
-    \item $\left( \mathbb{R}^2, \mathcal{T}_{\text{rad}} \right)$ también lo es. %TODO: Dibujo para ver que Q2 es denso aquí también
+    \item El espacio usual $\left( \mathbb{R}^n, \mathcal{T}_u \right)$ es separable porque el subconjunto $\mathbb{Q}^n$ es numerable y denso.
+    \item Cualquier espacio $\left( X, \mathcal{T}_{\text{discr.}} \right)$ donde $X$ no sea numerable, no es separable. Ya que, en caso de serlo, habría un subconjunto $A\subset X$ tal que $\overline{A} = X$ y, como en la trivial todo es abierto y cerrado, en particular $A$ sería cerrado y $A = \overline{A} = X$.
+    \item La topología del punto $\mathcal{T}_a$ sí es separable porque el punto clave $\{a\}$ es denso y es un conjunto finito.
+    \item En la topología de los complementarios finitos $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right)$ cualquier subconjunto $A\subset \mathbb{R}$ numerable infinito es denso porque en cualquier entorno de un punto $x\in X$ hay un abierto $U^x$ que contiene a $x$ y, por ser abierto, le faltan un número finito de puntos, luego tiene que tener puntos de $A$. De esta manera, por numerable y denso sabemos que el conjunto $X$ es separable.
+    \item La topología radial $\left( \mathbb{R}^2, \mathcal{T}_{\text{rad}} \right)$ también es separable %TODO: Dibujo para ver que Q2 es denso aquí también
 \end{itemize}
 \end{ej}
 
 \begin{prop}
-\begin{enumerate}
-    \item II Ax. $\Rightarrow$ separable. 
-    \item I Ax. $+$ separable $\not \Rightarrow$ II Ax. 
-    \item I Ax. $\not \Rightarrow$ separable. 
-    \item Separable $\not \Rightarrow$ I Ax. 
-\end{enumerate}
+Sea $X$ un espacio topológico, si es 2º Axioma es separable.
 \end{prop}
 \begin{demo}
-\begin{enumerate}
-    \item $\mathcal{B} = \{B_k\}_{k \ge 1} \Rightarrow A = \{a_k : a_k \in B_k\}_{k \ge 1}$ corta a todo abierto (y, por tanto, denso).
-    \item Contraejemplo: $\left( X, \mathcal{T}_a \right), X$ no numerable.
-    \item Contraejemplo: Topología discreta en un espacio no numerable.
-    \item Contraejemplo: $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right) : \overline{\mathbb{Z}} = \mathbb{R}$.
-\end{enumerate}
+Sea $\mathcal{B} = \{B_k\}_{k \ge 1}$ la base de abiertos de la propiedad de ser 2º Axioma, entonces $A := \{a_k : a_k \in B_k\}_{k \ge 1}$ corta a todo abierto y, por tanto, es denso.
 \end{demo}
+
+\begin{obs}
+Sin embargo, aquí mostramos algunas de las no propiedades que uno puede tener la tentación de creer e intentar demostrar:
+\begin{enumerate}
+    \item I Ax. $+$ separable $\not \Rightarrow$ II Ax.
+    
+    			Contraejemplo: $\left( X, \mathcal{T}_a \right), X$ no numerable.
+    \item I Ax. $\not \Rightarrow$ separable.
+    
+    			Contraejemplo: Topología discreta en un espacio no numerable.
+    \item Separable $\not \Rightarrow$ I Ax.
+    
+    			Contraejemplo: $\left( \mathbb{R}, \mathcal{T}_{\text{CF}} \right) : \overline{\mathbb{Z}} = \mathbb{R}$.
+\end{enumerate}
+\end{obs}
 
 \subsection{Lindelöf}%
 \label{sub:lindelof}
-\begin{defi}[Lindelöf]
-$X$ es \textbf{Lindelöf} si $\forall X = \bigcup_{i \in I} U_i$ (recubrimiento abierto), $\exists X = \bigcup_{k=1}^{\infty} U_{i_k}$ (subrecubrimiento numerable). 
-\end{defi}
+El último de los axiomas de numerabilidad es la propiedad de Lindelöf. Ésta constituye una forma más débil de compacidad que tiene resultados, lo que resulta en multitud de resultados muy similares entre ambos conceptos.
 
-Esta forma débil de compacidad se menciona como complemento en los ejercicios.
+\begin{defi}[Lindelöf]
+Sea $X$ un espacio topológico, decimos que es \textbf{Lindelöf} si y sólo si para todo recubrimiento abierto $X = \bigcup_{i \in I} U_i$ existe un subrecubrimiento $X = \bigcup_{k=1}^{\infty} U_{i_k}$ numerable.
+\end{defi}
 
 \section{Tabla de comportamiento}%
 \label{sec:tabla_de_comportamiento_num}
+En este apartado estudiamos como se comportan los axiomas de numerabilidad con respecto a las construcciones del tema \nameref{cha:construcciones} para ver cuándo se conservan, cuándo se pierden y qué podemos añadir para no perderlas.
+
 %TODO: Fix table
 \begin{table}[H]
 \centering 
@@ -171,36 +136,40 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
 \hline
 & Subespacios & Cocientes & Productos & Sumas\\
 \hline
-    I Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
+    I Ax. & \checkmark & \begin{tabular}{@{}c@{}}\ding{55}\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
     \hline
-    II Ax. & \checkmark & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
+    II Ax. & \checkmark & \begin{tabular}{@{}c@{}}\ding{55}\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark\\
     \hline
-    Separable & \begin{tabular}{@{}c@{}}$\times$\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
+    Separable & \begin{tabular}{@{}c@{}}\ding{55}\\ abiertos \checkmark \end{tabular} & \checkmark & \checkmark & \checkmark\\
     \hline
-    Lindelöf & \begin{tabular}{@{}c@{}}$\times$\\ cerrados \checkmark \end{tabular} & \checkmark & $\times$ & \checkmark\\
+    Lindelöf & \begin{tabular}{@{}c@{}}\ding{55}\\ cerrados \checkmark \end{tabular} & \checkmark & \ding{55} & \checkmark\\
     \hline
 \end{tabular}
-\caption{\textit{Tabla que nos indica como se comportan las propiedades que hemos visto en la anterior sección con las distintas construcciones. Las sumas y productos son finitos.}}
+\caption{Tabla de comportamiento de la numerabilidad con respecto a las construcciones.}
 \end{table}
 %TODO
 \begin{demo}
 \begin{itemize}
-    \item \underline{Subespacios}:
+    \item \textbf{Subespacios}:
     \begin{itemize}
-        \item I Ax. y II Ax. se \underline{heredan} a subespacios intersecando bases.
-        \item Separable se hereda a subespacios abiertos intersecando el conjunto denso.
-        \item Lindelöf se hereda a subespacios cerrados como la compacidad. 
+        \item I Ax. y II Ax. se heredan a subespacios intersecando las bases ambientes que cumplen los axiomas con el subespacio.
+        \item Separable no se hereda en general, por ejemplo, la topología $\left( X, \mathcal{T}_a \right)$ sobre un $X$ no numerable hace que el subespacio $X\setminus \left\{ a \right\}$ tenga la topología discreta y hemos visto que en $X$ no numerable esta no es separable.
+        
+        Sin embargo, si el subespacio es abierto sí se hereda intersecando el conjunto denso con el subespacio.
 
-        No en general: Sea $Y$ no Lindelöf, $X = Y \cup \{w\}$ compacto, $\mathcal{B}^w = \{X \setminus F: F \subset Y\}$ con $F$ finito.    
+        
+        \item Lindelöf no se hereda en general, por ejemplo, tomamos $Y$ no Lindelöf y el conjunto $X = Y \cup \{w\}$ que es compacto, $\mathcal{B}^w = \{X \setminus F: F \subset Y\}$ con $F$ finito.   
+        
+         Sin embargo, a subespacios cerrados, como la compacidad, sí se hereda.         
     \end{itemize}
 
-    \item \underline{Cocientes}:
+    \item \textbf{Cocientes}:
     \begin{itemize}
-        \item $X = \mathbb{R}_u$ es I y II Axiomas, $Y = \mathbb{R}/\mathbb{Z}$ no es I.
+        \item $X = \mathbb{R}_u$ es I y II Axiomas, $Y = \faktor{\mathbb{R}}{\mathbb{Z}}$ no es I.
         \begin{demo}
             $\alpha = \mathbb{Z} \in Y,\ \exists \mathcal{W}^{\alpha} = \{W_k : k \ge 1\}$ abiertos \underline{saturados}, $W_k \supset \mathbb{Z},\ \forall k$
 
-            (Figura \ref{fig:I_ax_II_ax_cocientes}) $\Rightarrow U = \mathbb{R} \setminus \{\varepsilon_k : k \ge 1\}$ entorno abierto saturado de $\mathbb{Z},\ U \not \supset W_k,\ \forall k$.
+            (Figura \ref{fig:I_ax_II_ax_cocientes}) $\Rightarrow U = \mathbb{R} \setminus \underbrace{\{\varepsilon_k : k \ge 1\}}_{\text{cerr.}}$ entorno abierto saturado de $\mathbb{Z},\ U \not \supset W_k,\ \forall k$. Esto último porque $\varepsilon_k \in W_k$, pero $\varepsilon_k \not\in \mathbb{R} \setminus \left\{ \varepsilon_k : k \ge 1 \right\}$.
 
         \begin{figure}[H]
             \centering
@@ -230,26 +199,85 @@ Esta forma débil de compacidad se menciona como complemento en los ejercicios.
             La imagen de una base es una base.
         \end{demo}
         \item Las aplicaciones continuas conservan la separabilidad 
+        %TODO: Asumo que es suprayectiva, ¿necesario?
         \begin{demo}
-            $f\left( \overline{A} \right) \subset \overline{f\left( A \right)}$.
+            Sabemos que $f\left( \overline{A} \right) \stackrel{\text{cont.}}{\subset} \overline{f\left( A \right)}$. Entonces, si $\overline{A} = X$, $Y = f\left( X \right) = f\left( \overline{A} \right) \subset \overline{f\left( A \right)} \Rightarrow \overline{f\left( A \right)} = Y$.
         \end{demo}
         %TODO: Ya se sabe xd
-        \item Las aplicaciones continuas conservan Lindelöf. 
-        \begin{demo}
-            Como la compacidad, ya se sabe...
-        \end{demo}
+        \item Las aplicaciones continuas conservan Lindelöf, pues es un resultado más débil que el de compacidad y para compacidad se cumple.
+
+        Estas tres últimas propiedades se pueden aplicar al cociente porque la proyección es una aplicación continua.
     \end{itemize}
 
-    \item \underline{Productos/sumas} (finitos):
+    \item \textbf{Productos y Sumas}:
     \begin{itemize}
-        \item Para productos: producto \underline{finito} de numerables es numerable.
-        \item Para sumas: suma \underline{finita} de numerables es numerable.
+        \item Para productos: producto \underline{finito} de familias numerables es numerable.
+        \item Para sumas: suma \underline{finita} de familias numerables es numerable.
+        %TODO: Se asume de nuevo suprayectividad?
+        \item La separabilidad se mantiene porque: $\overline{A_1 \times A_2} = \overline{A}_1 \times \overline{A}_2$.
         \item Solo falla Lindelöf:
         \begin{itemize}
             \item $\left( \mathbb{R}, \mathcal{T}_{[, )} \right)$ es Lindelöf (ejercicio no banal).
+            %TODO: Dibujo.
             \item $\left( \mathbb{R}^2, \mathcal{T}_{[, )}^2 \right)$ no es Lindelöf: si lo fuera, $L = \{x + y = 0\} \subset \mathbb{R}^2$ heredaría la propiedad, pero es \underline{discreto} no numerable. ($\bot$)
         \end{itemize}
     \end{itemize}
 \end{itemize} 
 \end{demo}
+
+
+\section{Sucesiones}
+\label{sub:sucesiones}
+Cuando en $\mathbb{R}^n$ usábamos las sucesiones para describir elementos de la topología en realidad estábamos usando, de fondo, otros resultados topológicos que nos permitían hacer esas simplificaciones. Por ello, merece un comentario destacado (sobre todo al final de este capítulo que es el que habilita el poder usar sucesiones) para distinguir cuándo esto es posible y cuándo no.
+
+
+\begin{defi}[Sucesión y Límite]
+Sea $X$ un espacio topológico, definimos una \textbf{sucesión} como una aplicación $f: \mathbb{N} \rightarrow X$ que denotamos\footnote{Con esta notación queremos decir que $x_n = f\left( n \right)$.} por $\left\{ x_n \right\}_{n \in \mathbb{N}}$ y definimos su \textbf{límite} como un valor $x\in X$ que cumple:
+\[
+\forall U^x \subset X, \ \exists k_0 \in \mathbb{N}: k \ge k_0 \Rightarrow x_k \in U^x
+\]
+\end{defi}
+
+\begin{prop}
+Sea $X$ un espacio topológico Hausdorff y $\{x_n\}_{n\in \mathbb{N}}$ una sucesión convergente, entonces el límite de convergencia es único.
+\end{prop}
+\begin{demo}
+La clave de la demostración es que el ser $T_2$ nos permite considerar dos entornos disjuntos donde deben estar todos los términos de la sucesión a partir de uno concreto y, como son disjuntos, no pueden estar en ambos entornos simultáneamente. Supongamos que tenemos dos límites de la sucesión $x\neq y$, entonces:
+\[
+\exists U^x \cap U^y = \emptyset \Rightarrow \begin{cases}
+\{x_k : k \ge k_0\} \subset U^x \\
+\{x_k : k \ge k_1\} \subset U^x \\
+\end{cases}
+\Rightarrow \forall k \geq \max\{k_0,k_1\} : \{x_k : k \ge k_1\} \subset U^x \cap U^y = \emptyset \Rightarrow \#
+\]
+\end{demo}
+
+\begin{obs}
+Cuando en $\mathbb{R}^n$ utilizábamos sucesiones para describir elementos de la topología tales como la adherencia, la acumulación, etc. en realidad lo que estábamos utilizando es que $\mathbb{R}^n$ es 1\textsuperscript{er} Axioma. El 1\textsuperscript{er} Axioma es el elemento topológico que permite describir una la topología vía sucesiones, por ejemplo:
+    \[
+     x \in \overline{A} \Leftrightarrow \exists \{x_k\} \subset A: x_k \rightarrow x
+    \]
+    \begin{itemize}
+        \item[$\Rightarrow)$] Supongamos que $x \in \overline{A}$
+        \[
+        \begin{rcases}
+            \exists \mathcal{W}^x = \{W_k^x\}_{k \ge 1} \text{ base ent. encajados} \xRightarrow{x \in \overline{A}} \exists x_k \in W_k \cap A\\
+            \forall U^x \stackrel{\text{base}}{\supset} W_{k_0}^x \stackrel{\text{enc.}}{\supset} W_{k_0 + 1}^x \supset \ldots \Rightarrow x_k \in U^x,\ \forall k \ge k_0  
+        \end{rcases} \Rightarrow x_k \rightarrow x
+        \]
+        \item[$\Leftarrow)$] Supongamos que $\exists \left\{ x_k \right\} \subset A: x_k \rightarrow x$:
+        \[
+        A \ni x_k \rightarrow x \Rightarrow \forall U^x,\ \exists x_{k_0} \in U^x \cap A
+        \]
+    \end{itemize}
+Pero, salvo cuando podamos trabajar en un espacio 1\textsuperscript{er} Axioma, en general, los límites de sucesiones son poco útiles para trabajar con la topología.
+\end{obs}
+
+%TODO : esto habría que mirarlo despacio para poder ponerlo como proposicion con todas las hipótesis necesarias.
+\begin{enun}
+Caracterizar la continuidad por sucesiones, si es posible:
+\[
+f: X \rightarrow Y
+\]
+\end{enun}
 

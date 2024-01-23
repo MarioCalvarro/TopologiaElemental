@@ -1,47 +1,47 @@
 \chapter{Construcciones}%
 \label{cha:construcciones}
-En este capítulo buscaremos topologías en base a unas aplicaciones con el objetivo de hacer a dichas aplicaciones continuas. Tras esto, daremos una caracterización de la topología construida. Por último, exploraremos las propiedades de las construcciones.
+En ocasiones, será de gran utilidad que ciertas aplicaciones de un espacio topológico en un conjunto sean continuas. Para ello, vamos a estudiar qué topologías podemos ``construir'' artificialmente en estos conjuntos para forzar que dichas aplicaciones sean continuas. En general, la noción más importante será la del cociente y las identificaciones, pues nos permitirán hacer ``corta pega'' para transformar los conjuntos como deseemos.
 
 \section{Imágenes inversas}%
 \label{sec:imagenes_inversas}
-Supongamos que tenemos $f: Y \rightarrow \left( X, \mathcal{T} \right)$ y buscamos hacerla continua. Trivialmente, podemos hacer que la topología en $Y$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{menos fina} que haga $f$ continua. 
-\begin{defi}    
-Llamamos \textbf{topología de la imagen inversa} a: $f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}$.
+El objetivo de esta construcción es crear una topología que, al ser equipada en el conjunto de partida, haga la aplicación $f: (Y, ?) \rightarrow \left( X, \mathcal{T} \right)$ continua. Recordemos que, para poder cumplir con la definición de continuidad, las preimágenes de abiertos deben ser abiertos, luego cuantos más abiertos ``metamos'' en dicha topología más ``fácil'' será que las imágenes inversas caigan en abiertos.
+
+Con dicha observación lo que se nos viene a la cabeza es tomar como topología la discreta, sin embargo, esto carece de interés: lo que realmente nos gustaría es la topología con menos abiertos posibles que haga la función continua.
+
+\begin{defi}[Topología Imagen Inversa]
+Sea $f: Y \rightarrow (X,\mathcal{T})$ una aplicación, definimos la \textbf{topología de la imagen inversa} como la topología menos fina que podemos equipar a $Y$ para que la aplicación $f$ sea continua:
+$$
+f^{-1} \mathcal{T} = \{f^{-1}U: U \in \mathcal{T}\}
+$$
+donde los abiertos son exactamente las preimágenes de los abiertos la topología de llegada.
 \end{defi}
-\begin{prop}    
-La topología de la imagen inversa cumple:
+
+\begin{obs}
+Tras la introducción de la sección, la topología de la definición parece la más razonable para ser candidata a menos fina posible, puesto que de ser topología (hay que probarlo) hemos ``metido'' los abiertos indispensables para la continuidad que son precisamente las imágenes inversas.
+\end{obs}
+
+\begin{prop}
+Sea $f: (Y, f^{-1}\mathcal{T}) \rightarrow (X,\mathcal{T})$ donde $f^{-1}\mathcal{T}$ es la topología de la imagen inversa, entonces:
 \begin{enumerate}
-    \item Es topología. 
-    \item Es mínima. 
+    \item $f^{-1}\mathcal{T}$ es topología. 
+    \item $f^{-1}\mathcal{T}$ es la menos fina posible.
 \end{enumerate}
 \end{prop}
-%TODO: Acabar
 \begin{demo}
 \begin{enumerate}
-    \item Trivial.
-    \item Sea $\mathcal{T}'$ otra topología en $Y$ que haga $f$ continua. 
-
-    Tomamos $U \in f^{-1}\mathcal{T} \Rightarrow \exists V \in \mathcal{T}: f^{-1}V = U$. Como $f$ en $\mathcal{T}'$ es también continua tenemos que $U = f^{-1}V$ es abierto en $\mathcal{T}'$. Es decir, todo abierto en $f\mathcal{T}$ es también abierto en $\mathcal{T}' \Rightarrow \boxed{f \mathcal{T} \subset \mathcal{T}'}$.
+    \item Las imágenes inversas funcionan muy bien con uniones, intersecciones, etc. Por tanto, la demostración de que es topología es trivial.
+    
+    \item Consideremos cualquier otra topología $\mathcal{T}'$ en $Y$ que haga la función $f$ continua. Si tomamos un abierto $U \in f^{-1}\mathcal{T}$ en la topología inversa, entonces $\exists V \in \mathcal{T}: f^{-1}V = U$. Asimismo, como $f$ también es continua en $\mathcal{T}'$ sabemos que $U = f^{-1}V$ también es abierto en $\mathcal{T}'$, es decir, todo abierto en $f^{-1}\mathcal{T}$ es también abierto en $\mathcal{T}'$ y, por tanto, $f^{-1}\mathcal{T} \subset \mathcal{T}'$.
 \end{enumerate}
 \end{demo}
 
-\begin{obs}
-    Con esta definición, $f$ será continua.
-\end{obs}
-
 \subsection{Caracterización de la imagen inversa}
 \label{sub:caracterizacion_de_la_imagen_inversa}
-Veamos ahora una caracterización de la topología que acabamos de introducir.
-\begin{theo}[Propiedad universal de las inmersiones]
-Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T} \right)$. Entonces:
-    \[
-    \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow  
-    \]
-    \begin{equation}\label{ec:prop_universal_inm}
-        \left[\forall g: g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.} \right]  
-    \end{equation}
+En muchas ocasiones, tendremos diagramas con varias aplicaciones entre varios espacios topológicos. En estas situaciones, es de utilidad tener algún teorema para poder identificar unas topologías con otras, ya que entender y manejar bien unas puede tener buenas ``traslaciones'' en las otras. Es por ello que tiene gran utilidad el siguiente teorema de caracterización de la topología inversa en circunstancias como las descritas.
 
-    \begin{figure}[H]
+\begin{theo}[Propiedad universal de las inmersiones]
+Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T} \right)$ dos funciones entre espacios topológicos:
+\begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(Y) {$\left( Y, \mathcal{T}' \right)$};
@@ -54,16 +54,25 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_inmersiones}
     \end{figure}
+entonces $\mathcal{T}' = f^{-1}\mathcal{T}$ si y sólo si:
+\[
+\forall g: g \text{ cont.} \Leftrightarrow f \circ g \text{ cont.}
+\]    
 \end{theo}
 \begin{demo}
 \begin{itemize}
-    \item $\Rightarrow)$ $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
+    \item[$\Rightarrow)$] $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
     \begin{itemize}
-        \item $g$ cont. $\Rightarrow f \circ g$ cont. (Composición de continuas)
-        \item $f \circ g$ cont. $\Rightarrow g$ cont. ($V \in \mathcal{T}' \Rightarrow g^{-1}V \stackrel{\mathcal{T}' = f^{-1}\mathcal{T}}{=} g^{-1} f^{-1}U = \left( f \circ g \right)^{-1} U \stackrel{f \circ g \text{ cont.}}{\in} \mathcal{T}''$)
+        \item $g$ cont. $\Rightarrow f \circ g$ cont. es trivial por composición de continuas.
+        \item $f \circ g$ cont. $\Rightarrow g$ cont.
+        
+        Para probarlo, basta ver para cualquier abierto $V \in \mathcal{T}'$, $g^{-1}V$ es abierto en $\mathcal{T}''$. Por ser $\mathcal{T}'=f^{-1}\mathcal{T}$, entonces $g^{-1}V = g^{-1} f^{-1} U$ para algún abierto $U\in \mathcal{T}$, pero es que precisamente $g^{-1} f^{-1} U = \left( f \circ g \right)^{-1} U \in \mathcal{T}''$ por ser $f\circ g$ continua.
     \end{itemize}
 
-    \item $\Leftarrow)$ Por otro lado, veamos la unicidad:
+    \item[$\Leftarrow)$]
+	Para demostrarla vamos a ver el doble contenido de $\mathcal{T}'$ en $f^{-1}\mathcal{T} $ y viceversa.
+	
+	Como la propiedad de caracterización se cumple para cualquier $g$ que escojamos, podemos escoger como $g$ la aplicación identidad. De esta manera, $g \text{ cont.} \Leftrightarrow f\circ g \text{ cont.}$ implica que $id \text{ cont.} \Leftrightarrow f\circ id = f \text{ cont.}$, luego hemos demostrado que $f$ es continua.
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -75,9 +84,9 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
             \draw[->](Z) to node [right=0.2ex] {$f$}(X);
             \end{tikzpicture}
     \end{figure}
-    Como esta $id$ es continua, por (\ref{prop_universal_inmersiones}), $f\circ id = f$ es también continua. Al ser $f^{-1}\mathcal{T}$ la menos fina, $\mathcal{T}' \supset f^{-1}\mathcal{T}$.
-
-    Además, 
+    Y como precisamente $f^{-1}\mathcal{T}$ es la topología menos fina que posibilita la continuidad de $f$, sabemos que $\mathcal{T}' \supset f^{-1}\mathcal{T}$. 
+   
+   Si ahora utilizamos como $g$ la identidad puramente conjuntista (las topologías no se conservan, pero los puntos van a ellos mismos), entonces:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -89,137 +98,134 @@ Sean $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \rig
             \draw[->](Z) to node [right=0.2ex] {$f$ cont.}(X);
             \end{tikzpicture}
     \end{figure}
-    Como la $f$ es continua, por (\ref{prop_universal_inmersiones}), esta nueva $id$ es también continua $\Rightarrow f^{-1}\mathcal{T} \supset \mathcal{T}'$.
+    De nuevo, por la propiedad de caracterización sabemos que esta nueva ``identidad'' es una función continua. Por tanto, si tomamos $U \in \mathcal{T}'$ sabemos que $id^{-1}U \in f^{-1}\mathcal{T}$ y como es una identidad, $U = f^{-1}U$ (como conjunto), es decir, $U \in f^{-1}\mathcal{T}$.
 \end{itemize}
 \end{demo}
 
-\begin{enun}
-Demostrar $\Leftarrow$) sin usar que $f^{-1}\mathcal{T}$ es la menos fina (usar que cumple la caracterización). Hecho en clase.
-\end{enun}
-
 \subsection{Inmersiones}
 \label{sub:inmersiones}
-Veamos ahora un caso de especial relevancia:
-\[
-\boxed{f: Y \rightarrow X \text{ inyectiva}} 
-\]
-\begin{defi}
-Una aplicación continua \underline{inyectiva} $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ tal que $\mathcal{T}' = f^{-1} \mathcal{T}$ se llama \textbf{inmersión}.
+La construcción anterior cobra especial relevancia cuando la aplicación $f: Y \rightarrow X$ que hemos hecho continua con la topología imagen inversa es inyectiva porque de alguna forma permite ``sumergir'' el espacio de salida en el de llegada.
+
+\begin{defi}[Inmersión]
+Sea $f:\left( Y, f^{-1}\mathcal{T} \right) \rightarrow \left( X, \mathcal{T} \right)$ una aplicación continua gracias a la topología de la imagen inversa, decimos que es una \textbf{inmersión} si y sólo si es inyectiva.
 \end{defi}
 
-\begin{prop}
-Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( f\left( Y \right), \mathcal{T} \right)$. Entonces:
+\begin{prop}[Caracterización de Inmersiones]
+Sea $f: \left( Y, \mathcal{T}' \right) \rightarrow \left( X, \mathcal{T} \right)$ una aplicación entre espacios topológicos, entonces $f$ es una inmersión si y sólo si la aplicación:
 \[
-    \mathcal{T}' = f^{-1}\mathcal{T} \Leftrightarrow f: \left( Y, \mathcal{T}' \right) \xrightarrow{\text{homeo.}} \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)
+f: \left( Y, \mathcal{T}' \right) \longrightarrow \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)
 \]
+es un homeomorfismo.
 \end{prop}
 \begin{demo}
 \begin{itemize}
-    \item $\Rightarrow)$ Tenemos que $f: \left( Y, f^{-1}\mathcal{T} \right) \rightarrow \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$. 
+    \item[$\Rightarrow)$] Tenemos que $f: \left( Y, f^{-1}\mathcal{T} \right) \rightarrow \left( f\left( Y \right), \mathcal{T}|_{f\left( Y \right)} \right)$. 
 
-    Al ser $f$ inyectiva, también será biyectiva. Veamos que es continua y abierta:
+    Como $f$ es inmersión sabemos que es inyectiva, lo que sumado a que el espacio de llegada es $f(Y)$, nos permite saber que es sobreyectiva y, por tanto, biyectiva. De los requisitos para ver que es un homeomorfismo, nos quedaría confirmar que es continua y abierta :
     \begin{itemize}
-        \item \underline{Continua}: Sea $U \in \mathcal{T}|_{f\left( Y \right)} \Rightarrow \exists W \in \mathcal{T}: U = f\left( Y \right) \cap W \Rightarrow$ 
+        \item \underline{Continua}:
+        
+        Si escogemos un abierto cualquier $U\in \mathcal{T}|_{f(Y)}$, por ser abierto de la topología relativa, sabemos que $\exists W \in \mathcal{T}: U = f\left( Y \right) \cap W $ y entonces su imagen inversa
         \[
-        f^{-1}\left( U \right) = f^{-1}\left( W \cap f\left( Y \right) \right) = Y \cap f^{-1}\left( W \right) = f^{-1}\left( W \right)
+        f^{-1}\left( U \right) = f^{-1}\left( W \cap f\left( Y \right) \right) = Y \cap f^{-1}\left( W \right) = f^{-1}\left( W \right) \in f^{-1}\mathcal{T}
         \]
-        que es abierto en $f^{-1}\mathcal{T}$.
-        \item \underline{Abierta}: Sea $U \in f^{-1}\mathcal{T} \Rightarrow \exists W \in \mathcal{T}: f^{-1}W = U$. Aplicando $f$:
+
+        \item \underline{Abierta}:
+        
+        Observamos que cualquier abierto $U \in f^{-1}\mathcal{T}$ de la topología imagen inversa es preimagen de un abierto de la topología de llegada, es decir, $\exists W \in \mathcal{T}: f^{-1}W = U$. Por tanto, si calculamos la imagen de $U$ por $f$, tenemos que:
         \[
-        fU = ff^{-1}W = W \cap f\left( Y \right) \stackrel{\text{ab.}}{\subset} f\left( Y \right)
+        fU = ff^{-1}W = W \cap f\left( Y \right) \ab f\left( Y \right)
         \]
         es decir que $fU$ es abierto en $f\left( Y \right)$.
     \end{itemize}
 
     %TODO: Posiblemente mal. Algo de la relativa 
-    \item $\Leftarrow)$ Veamos la doble contención:
+    \item[$\Leftarrow)$] Veamos por el doble contenido de $\mathcal{T}' = f^{-1}\mathcal{T}$
     \begin{itemize}
-        \item $\subset)$ Sea $U \in \mathcal{T}' \xRightarrow{\text{ab.}} fU \in \mathcal{T}|_{f\left( Y \right)}$, es decir, $\exists W \in \mathcal{T}'|_{f\left( Y \right)}: f^{-1}W = U$. Por tanto, $U \in f^{-1}\mathcal{T}$. 
-        \item $\supset)$ Sea $U \in f^{-1}\mathcal{T} \xRightarrow{\text{def.}} \exists W \in \mathcal{T}|_{f\left( Y \right)}: f^{-1}W = U$. Como $f$ es continua en $\mathcal{T}'$, $U = f^{-1} W \in \mathcal{T}'$.
+        \item[$\subset)$]
+        
+        Sea $U \in \mathcal{T}'$, como es homeomorfismo, es abierto, luego $fU\in \mathcal{T}|_{f\left( Y \right)}$, es decir, $\exists W \in \mathcal{T}'|_{f\left( Y \right)}: f^{-1}W = U$, luego podemos decir que $U \in f^{-1}\mathcal{T}$. 
+        \item[$\supset)$]
+        
+        Sea $U \in f^{-1}\mathcal{T}$, por definición, $\exists W \in \mathcal{T}|_{f\left( Y \right)}: f^{-1}W = U$ y, como $f$ es continua en $\mathcal{T}'$, $U = f^{-1} W \in \mathcal{T}'$.
     \end{itemize}
 \end{itemize} 
 \end{demo}
 
-%TODO: No se si es necesario
 \begin{obs}
+Podemos extraer de la definición, pero sobre todo de la caracterización anterior de inmersión, las siguientes conclusiones:
 \begin{enumerate}
-    %TODO: Igual al anterior?
-    \item $f: Y \rightarrow X$ $1-1$ cont. $+ \begin{cases}
-        \text{abierto} \Rightarrow \text{inmersión }\\
-        \text{cerrado} \Rightarrow \text{inmersión } 
-    \end{cases}$
+    \item Si una función $f: Y \rightarrow X$ es inyectiva, continua y abierta o cerrada, entonces es inmersión.
+    %TODO: Creo que esto se puede hacer más facilmente
     \begin{demo}
-        \begin{itemize}
-            \item Abierto en $X \Rightarrow$ abierto en $f\left( Y \right)$.
-            \item Cerrado en $X \Rightarrow$ cerrado en $f\left( Y \right)$.
-        \end{itemize}
+    La caracterización de imagen inversa exige continuidad, biyectividad y apertura o cierre (es decir, que sea homeomorfismo) de la aplicación $g: Y \rightarrow f(Y)$. 
+
+    Como $f$ es inyectiva y coincide con $g$ en la imagen $f(Y)$, ésta última también es inyectiva, luego por ser sobreyectiva es biyectiva. La continuidad también se extiende a $g$ naturalmente y falta solo ver que es abierta o cerrada respectivamente. Si $f$ lo es, entonces para cualquier abierto o cerrado $W\subset Y$ su imagen $f(W)$ será abierta o cerrada en $X$. Del mismo modo, para cualquier abierto o cerrado $W\subset Y$ su imagen $g(W)$ se puede escribir como $g(W) = f(W)\cap f(Y)$ que es abierto o cerrado por ser un corte de un abierto o cerrado ambiente con el subespacio $f(Y)$.
     \end{demo}
 
-    \item $f: Y \rightarrow X$ inmersión: $\begin{cases}
-        \text{abierto } \Leftrightarrow f\left( Y \right) \text{abierto en } X\\
-        \text{cerrado } \Leftrightarrow f\left( Y \right) \text{cerrado en } X\\
-    \end{cases}$
+    \item Si $f: Y \rightarrow X$ es una inmersión, entonces:
+	\begin{itemize}
+		\item es una aplicación abierta si y sólo si 	$f(Y)$ es abierto en $X$.
+		\item es una aplicación cerrada si y sólo si $f(Y)$ es cerrado en $X$.
+	\end{itemize}	    
+    
     \begin{demo}
+    En ambos casos, la implicación de izquierda a derecha es trivial, luego sólo es necesaria la de derecha a izquierda:
     \begin{itemize}
         \item 
-        $f\left( Y \right) \stackrel{\text{ab.}}{\subset} X: V = f^{-1}U \in f^{-1}\mathcal{T} \Rightarrow fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
+        $\forall V = f^{-1}U \in f^{-1}\mathcal{T}, \ fV = \overbrace{U \cap f\left( Y \right)}^{\text{inter. abiertos}} \in \mathcal{T}$.
         \item 
-        $f\left( Y \right) \stackrel{\text{cerr.}}{\subset} X: C \stackrel{\text{cerr.}}{\subset}  f^{-1}\mathcal{T} \Rightarrow Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) = \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \stackrel{\text{cerr.}}{\subset} X$ 
+        $\forall C \cerr  f^{-1}\mathcal{T}, \ Y\setminus C = f^{-1} U \in f^{-1}\mathcal{T} \Rightarrow f\left( C \right) = \underbrace{\left( X\setminus U \right) \cap f\left( Y \right)}_{\text{inter. cerrados}}  \cerr X$ 
     \end{itemize} 
     \end{demo}
 
-    \item Tenemos como posibilidades: 
-    \begin{itemize}
-        \item Inmersión $ + \not$ ab. $+ \not$ cerr.
-        \item Inmersión $+$ ab. $+ \not $ cerr.
-        \item Inmersión $+ \not$ ab. $+$ cerr.
-    \end{itemize}
+    \item Las inmersiones y la apertura o cierre de la aplicación no están relacionadas. Esto quiere decir que existen inmersiones que no son abiertas ni cerradas, que sólo son abiertas, que sólo son cerradas y ambas cosas simultáneamente.
 \end{enumerate}
 \end{obs}
 
 \begin{obs}
-Las inmersiones permiten considerar unos espacios como subespacios de otros. Las frases ``el plano proyectivo real no es un subespacio de $\mathbb{R}^3$'', ``la esfera no es un subespacio de $\mathbb{R}^2$'', ``el plano proyectivo real es un subespacio de $\mathbb{R}^4$'' se refieren a esto: \underline{cuándo hay o no hay} una inmersión del primer espacio en el segundo, es decir, un subespacio del segundo homeomorfismo al primero. Es un problema fundamental de la topología
-y de la geometría.
+Las inmersiones son las que justifican la idea de considerar unos espacios como subespacios de otros. Las frases ``el plano proyectivo real no es un subespacio de $\mathbb{R}^3$'', ``la esfera no es un subespacio de $\mathbb{R}^2$'' o ``el plano proyectivo real es un subespacio de $\mathbb{R}^4$'' se refieren a esto mismo: cuándo hay o no hay una inmersión del primer espacio en el segundo, es decir, un subespacio del segundo homeomorfo al primero.
 \end{obs}
-
 
 \section{Imágenes directas}%
 \label{sec:imagenes_directas}
-Supongamos que tenemos $f: \left( X, \mathcal{T} \right) \rightarrow Y$ y buscamos hacerla continua. Trivialmente, podemos hacer que la topología en $X$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
+El objetivo de esta construcción es crear una topología que, al ser equipada en el conjunto de llegada, haga la aplicación $f: (X, \mathcal{T}) \rightarrow \left( Y, ? \right)$ continua. De nuevo, recordemos que, para poder cumplir con la definición de continuidad, las preimágenes de abiertos deben ser abiertos, luego cuantos menos abiertos ``metamos'' en dicha topología menos posibilidades habrá de que sus preimágenes no caigan en abiertos.
 
-\begin{defi}
-Llamamos \textbf{topología de la imagen directa} a: $f\mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}$.
+Con dicha observación, en este caso lo que se nos viene a la cabeza es tomar como topología la trivial, sin embargo, esto vuelve a carecer de interés: lo que realmente nos gustaría es la topología con más abiertos posibles que haga la función continua.
+
+\begin{defi}[Topología Imagen Directa]
+Sea $f: (X,\mathcal{T}) \rightarrow Y$ una aplicación, definimos la \textbf{topología de la imagen directa} como la topología más fina que podemos equipar a $Y$ para que la aplicación $f$ sea continua, que es la topología:
+$$
+f \mathcal{T} = \{V \subset Y: f^{-1}V \in \mathcal{T}\}
+$$
+donde los abiertos son exactamente aquellos cuyas preimágenes son abiertos de la topología de salida.
 \end{defi}
-\begin{prop}    
+
+\begin{obs}
+Tras la introducción de la sección, de nuevo, parece que la topología de la definición es la más razonable para ser candidata a más fina posible, puesto que de ser topología (hay que probarlo) hemos ``metido'' todo lo que podemos meter como abierto conservando el requisito de la continuidad.
+\end{obs}
+
+\begin{prop}
+Sea $f: (X,\mathcal{T}) \rightarrow (Y, f\mathcal{T})$ donde $f\mathcal{T}$ es la topología de la imagen directa, entonces:
 \begin{enumerate}
-    \item Es topología.
-    \item Máxima. 
+    \item $f\mathcal{T}$ es topología. 
+    \item $f\mathcal{T}$ es la más fina posible.
 \end{enumerate}
 \end{prop}
+
 \begin{demo}
 \begin{enumerate}
     \item Trivial.
-    \item Sea $\mathcal{T}'$ tal que haga $f$ continua. Veamos que $\mathcal{T}' \subset f\mathcal{T}$.
-
-    Tomamos $U \in \mathcal{T}' \Rightarrow \exists W \in \mathcal{T}': f^{-1} U = W$. Por definición de $f \mathcal{T}$, ya tenemos que $U \in f \mathcal{T}$ (porque $W \in Y$).
+    \item Consideremos cualquier otra topología $\mathcal{T}'$ en $Y$ tal que haga $f$ continua. Si tomamos un abierto $U \in \mathcal{T}'$, como conserva la continuidad , $f^{-1} U = W \in \mathcal{T}$. Sin embargo, tal y como hemos definido $f \mathcal{T}$, sabemos que $U \in f \mathcal{T}$ porque $W \ab X$, luego $\mathcal{T}'\subset f\mathcal{T}$.
 \end{enumerate}
 \end{demo}
-\begin{obs}
-Con esta definición, $f$ será continua.
-\end{obs}
 
 \subsection{Caracterización de la imagen directa}
 \label{sub:caracterizacion_de_la_imagen_directa}
-Veamos ahora una caracterización de la topología que acabamos de introducir.
-\begin{theo}[Propiedad universal de las identificaciones]
-Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
-    \[
-    \mathcal{T}' = f\mathcal{T} \Leftrightarrow  
-    \]
-    \begin{equation}\label{eq:prop_universal_directa}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow g \circ f \text{ cont.} \right]
-    \end{equation}
+De nuevo, en las situaciones en las que haya diagramas con varias aplicaciones entre varios espacios topológicos, es de utilidad tener algún teorema para poder identificar unas topologías con otras, ya que entender y manejar bien unas pueden tener buenas ``traslaciones'' en las otras. Por ello, tiene gran utilidad el teorema de caracterización de la topología directa en circunstancias como las descritas.
 
+\begin{theo}[Caracterización de imágenes directas]
+Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ dos funciones entre espacio topológicos
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -233,16 +239,25 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_directas}
     \end{figure}
+entonces $\mathcal{T}' = f\mathcal{T}$ si y sólo si:
+	\[
+        \forall g, \ g \text{ cont.} \Leftrightarrow g \circ f \text{ cont.}
+	\]
 \end{theo}
 \begin{demo}
-\begin{enumerate}
-    \item $\mathcal{T}' = f^{-1}\mathcal{T}: $ 
+\begin{itemize}
+    \item[$\Rightarrow)$] $\mathcal{T}' = f\mathcal{T}: $
     \begin{itemize}
-        \item $g$ cont. $\Rightarrow g \circ f$ cont. (Composición de continuas)
-        \item $g \circ f$ cont. $\Rightarrow g$ cont. ($W \in \mathcal{T}'' \Rightarrow f^{-1}\left( g^{-1} W \right) = \underbrace{\left( g \circ f \right)^{-1}}_{\text{cont.}} W \in \mathcal{T} \stackrel{\mathcal{T}' = f\mathcal{T}}{\Rightarrow} g^{-1}W \in \mathcal{T}'$)
+        \item $g$ cont. $\Rightarrow g \circ f$ cont. es trivial por composición de continuas.
+        \item $g \circ f$ cont. $\Rightarrow g$ cont.
+        
+        Si escogemos un $W \in \mathcal{T}''$ sabemos que $f^{-1}\left( g^{-1} W \right) = \left( g \circ f \right)^{-1} W \in \mathcal{T}$ porque la aplicación $g\circ f$ es continua. Sin embargo, que $f^{-1} V \in \mathcal{T}$ implica que $V\in \mathcal{T}'$ porque $\mathcal{T}' = f\mathcal{T}$, luego $g^{-1}W \in \mathcal{T}'$, es decir, es continua.
     \end{itemize}
 
-    \item Por otro lado, veamos la unicidad:
+    \item[$\Leftarrow)$]
+    Para demostrarla vamos a ver el doble contenido de $\mathcal{T}' = f^{-1}\mathcal{T}$.
+    
+    Como la caracterización se cumple para cualquier $g$, en particular podemos seleccionar como $g$ la identidad. Como la identidad es continua, por la caracterización, $id \circ f = f$ es continua y, como $f\mathcal{T}$ es la topología más fina que hace $f$ continua, entonces $\mathcal{T}'\subset f\mathcal{T}$.
 
     \begin{figure}[H]
         \centering    
@@ -255,8 +270,8 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
             \draw[->](Y) to node [right=0.2ex] {$id$}(Z);
             \end{tikzpicture}
     \end{figure}
-    Como $id$ será continua, aplicamos \ref{eq:prop_universal_directa} y tenemos que $g \circ f = f$es continua. Al ser $f \mathcal{T}$ la más fina $\Rightarrow \mathcal{T}' \subset f \mathcal{T}$.
-
+    
+    De la misma manera que antes, podemos seleccionar como $g$ la identidad meramente conjuntista (donde cada punto va a sí mismo, pero no se conserva la topología porque son distintas la de salida y la de llegada). 
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -268,13 +283,9 @@ Sean $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \rig
             \draw[->](Y) to node [right=0.2ex] {$id$}(Z);
             \end{tikzpicture}
     \end{figure}
-    Como $f$ es continua por definición de $f \mathcal{T}$, aplicamos \ref{eq:prop_universal_directa} y tenemos que esta $id$ es continua. Por esta razón, $f \mathcal{T} \subset \mathcal{T}'$.
-\end{enumerate}
+	En este caso, como $f$ va de $(X,\mathcal{T})$ a $(Y, f\mathcal{T})$ es continua por definición de $f\mathcal{T}$ y, por la caracterización, sabemos que la ``identidad'' que hemos seleccionado también lo es. Esto quiere decir que $\forall W \in f\mathcal{T},\ id^{-1} W = W \in \mathcal{T}'$, por tanto, $f\mathcal{T}\subset \mathcal{T}'$.
+\end{itemize}
 \end{demo}
-
-\begin{enun}    
-Demostrar (ii) sin usar que $f\mathcal{T}$ es la más fina (usar que cumple la caracterización)
-\end{enun}
 
 \begin{obs}
 $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
@@ -286,46 +297,99 @@ $f\left( X \right)$ es abierto y cerrado en $f\mathcal{T}: \begin{cases}
 %TODO: En sus apuntes el orden es distinto a como lo dio en clase. De momento, lo dejo como en los apuntes.
 \subsection{Identificaciones}
 \label{sub:identificaciones}
-Veamos ahora un caso de especial relevancia:
-\[
-\boxed{f: X \rightarrow Y \text{ sobreyectiva}.} 
-\]
-%TODO: No sé de donde viene esto. Explicar el interés de este caso. f(X) nos dirá todo lo necesario.
-Para entender los abiertos de una imagen directa es conveniente representarlos en el dominio. El concepto es conjuntista en realidad:
+La construcción anterior cobra especial relevancia cuando la aplicación $f: Y \rightarrow X$ que hemos hecho continua con la topología imagen directa es sobreyectiva porque de alguna forma permite ``identificar'' el espacio de llegada en el de salida.
 
-\subsubsection*{Conjuntos saturados}
-Conjuntos saturados\begin{defi}
-Un conjunto $A \subset X$ es \textbf{saturado} (respecto de $f$) si $f^{-1}f\left( A \right) = A$.
+\begin{defi}[Identificación]
+Sea $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ una aplicación sobreyectiva, decimos que es una \textbf{identificación} si y sólo si $\mathcal{T}' = f\mathcal{T}$.
 \end{defi}
-\begin{prop}
-Los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$:
+
+\begin{obs}
+\begin{enumerate}
+    \item Las identificaciones verifican $V \ab Y \Leftrightarrow f^{-1}V \ab X$ y la continuidad $V \ab Y \Rightarrow f^{-1}V \ab X$.
+
+	\item Si una función $f: X \rightarrow Y$ es sobreyectiva, continua y abierta o cerrada, entonces es identificación.
+	\begin{demo}
+	Las hipótesis ya nos otorgan la continuidad y la sobreyectividad, hay que demostrar pues que $\mathcal{T}' = f\mathcal{T}$ utilizando que es abierta o cerrada.
+	\begin{itemize}
+		\item \underline{Abierta}:
+	
+		Hay que ver que $\forall V \subset Y : f^{-1} V \ab X, \ V \ab Y$. Por ser $f$ sobreyectiva, $f^{-1}V$ está bien definido y, por tanto, podemos escribir $V=f(f^{-1}V)$. Como $f$ es abierta, $\forall W \ab X : f(W) \ab Y$ y como $f^{-1}V$ es abierto por la continuidad de $f$, entonces $V \ab Y$.
+		
+		\item \underline{Cerrada}:
+		
+		$f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \cerr Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$		
+	\end{itemize}
+	\end{demo}
+	
+	 \item Las identificaciones y la apertura o cierre de la aplicación no están relacionadas. Esto quiere decir que existen identificaciones que no son abiertas ni cerradas, que sólo son abiertas, que sólo son cerradas y ambas cosas simultáneamente.
+\end{enumerate}
+\end{obs}
+
+Tal y como hemos dicho, una identificación nos va a permitir, valga la redundancia, identificar los espacios que relaciona. En general, el espacio que conoceremos bien será el del dominio y, por ello, para entender y manejar los abiertos del espacio de llegada con la topología imagen directa es conveniente representarlos en el de partida.
+
+\begin{defi}[Conjunto Saturado]
+Sea $A \subset X$ un subconjunto de puntos, decimos que es \textbf{saturado respecto de $\boldsymbol{f}$} si y sólo si $f^{-1}f\left( A \right) = A$.
+\end{defi}
+
+Los conjuntos saturados nos van a permitir caracterizar los abiertos de la topología imagen directa. Sin embargo y de forma preeliminar, vamos a detenernos un instante a analizar qué significa que un conjunto sea saturado.
+
+Un conjunto no es saturado cuando existe otro conjunto que tenga la misma imagen que él, es decir, en cierta manera el concepto está relacionado con la inyectividad. Para justificar la afirmación previa veamos que si $f^{-1}f (A) \neq A$, entonces existen más pregimágenes de $f(A)$ a parte de $A$, es decir, existe otro conjunto $B$ tal que $f(B) = f(A)$.
+
+\begin{defi}[Relación de inyectividad]
+Sea $f$ una función, definimos la \textbf{relación de inyectividad} como la relación de equivalencia inducida por
 \[
-U \in f \mathcal{T} \Leftrightarrow \exists W \in \mathcal{T}\text{, saturado}: fW = U.
+x \sim_f y \Leftrightarrow f\left( x \right) = f\left( y \right)
+\]
+es decir, dos elementos están relacionados si comparten la misma imagen.
+\end{defi}
+
+De esta manera, un conjunto saturado es aquel que aglutina, a través de la relación de inyectividad previamente definida, a todos los conjuntos que comparten la misma imagen.
+
+\begin{defi}[Conjunto Saturado]
+Sea $A \subset X$ un subconjunto de puntos, decimos que es \textbf{saturado respecto de $\boldsymbol{f}$} si y sólo si:
+\[
+\forall x \in A, [x]\subset A \mbox{ donde } [x] := \{y \in A: y \sim_f x\}
+\]
+donde $\sim_f$ denota la relación inyectividad inducida por $f$.
+\end{defi}
+
+\begin{obs}
+Esto quiere decir que para saturar un conjunto $A$ no tengo más que añadir los puntos del espacio cuya imagen está contenida en $f(A)$. Es por esto que el nombre es ``saturado'', porque añadimos todos los puntos con la misma imagen hasta que ya no quedan más.
+\end{obs}
+
+Estudiado un poco más en profundidad el concepto, la proposición siguiente va a permitiri caracterizar los abiertos de $f\mathcal{T}$ a través de abiertos de $\mathcal{T}$, lo que es útil para poder estudiar abiertos del espacio de llegada conociendo abiertos (saturados) del espacio de salida.
+
+\begin{prop}[Caracterización de abiertos de \texorpdfstring{$\boldsymbol{f\mathcal{T}}$}{ft}]
+Sea $f : (X, \mathcal{T}) \rightarrow (Y, f\mathcal{T})$ donde $f\mathcal{T}$ es la topología imagen directa, los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$, es decir:
+\[
+f\mathcal{T} := \{fU \mbox{ donde } U \in \mathcal{T} \text{ y } f^{-1}fU = U\}
 \]
 \end{prop}
 \begin{demo}
+Hay que probar que $V\in f \mathcal{T}$ si y sólo si $\exists A \in \mathcal{T} : f^{-1}fA=A$ y $f(A) = V$.
 \begin{itemize}
-    %TODO: No sé si está del todo bien.
-    \item $\Rightarrow)\ V \in f\mathcal{T} \Rightarrow f^{-1}V \in \mathcal{T}$ y $V \stackrel{f \text{ sobre}}{=} f^{-1}fV$, es decir, que $f^{-1} V$ es saturado.
-    \item $\Leftarrow)$ Sea $V \in Y: \exists U \in \mathcal{T}$, saturado tal que: $fU = V$. Debemos ver que $f^{-1}V \in \mathcal{T}$.
-
-    Como $f^{-1}V = f^{-1}fU \stackrel{\text{sat.}}{=} U \in \mathcal{T}$ ya lo tenemos.
+   	\item[$\Rightarrow)$]
+   	
+   	Escogido un $V \in f\mathcal{T}$ cualquiera, entonces $f^{-1}V \in \mathcal{T}$ y precisamente conjunto es al que vamos a llamar $A$. En general, $f(A) = ff^{1}V \subset V$, pero como $f$ es sobreyectiva, entonces $f(A)=ff^{-1}V=V$. En consecuencia, $f^{-1}fA=f^{-1}V = A$, es decir, $A$ es abierto saturado.
+   	   	
+    \item[$\Leftarrow)$] 
+    
+	Escogido un conjunto $A$ cualquiera que sea abierto saturado de $\mathcal{T}$ hay que ver que su imagen $V := f(A)$ es abierto de $f\mathcal{T}$. Que $V$ sea abierto de $f\mathcal{T}$ quiere decir que $f^{-1}V$ es abierto de $\mathcal{T}$, pero como $f^{-1}V=f^{-1}f(A) = A$ por ser saturado, se tiene trivialmente que $f^{-1}V$ es abierto de $\mathcal{T}$.
 \end{itemize}
 \end{demo}
 
 \begin{obs}
-Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{no} abiertas de $Y$. 
+Sin embargo, no hemos afirmado nada acerca de los abiertos \textbf{no saturados} de $X$, que pueden tener imágenes no abiertas de $Y$ (y también abiertas sin ser saturados).
 \end{obs}
 
 \begin{ej}
 \begin{enumerate}
-    %TODO: Hacer la circunferencia con todo R
-    \item Sea:
+    \item Consideremos la aplicación que transforma el intervalo $[0,1]$ en la circunferencia unidad de $\mathbb{R}^2$ y que viene definida por la expresión:
     \begin{align*}
-        f: \left[ 0, 1 \right] &\rightarrow \mathbb{S}^1 = Y\\ 
-        t &\mapsto \underbrace{\left( \cos 2\pi t, \sin 2\pi t \right)}_{\exp\left( 2 \pi it \right)}
+        f: \left[ 0, 1 \right] &\longrightarrow \mathbb{S}^1 \\
+        t &\longmapsto \left( \cos 2\pi t, \sin 2\pi t \right)
     \end{align*}
-    que geométricamente es:
+    La transformación que realiza entre el intervalo y la circunferencia está representada en la figura \ref{fig:proyeccion_exponencial_img_directa}:
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -399,76 +463,41 @@ Los abiertos \underline{no} saturados de $X$ pueden tener imágenes \underline{n
         \caption{\textit{La topología imagen directa es la usual en $\mathbb{S}^1$}}
         \label{fig:proyeccion_exponencial_img_directa}
     \end{figure}
-
-    \item Tenemos:
+    donde podemos observar dos comportamientos distintos: cualquier punto del intervalo $(0,1)$ tiene asignado un único punto de la circunferencia $\mathcal{S}^1$ y los puntos $0$ y $1$ tienen asignado el mismo punto $f(0) = f(1) = (1,0)$.
+    
+    De esta manera, podemos ver que los entornos que no contienen a ninguno de estos dos puntos especiales son entornos abiertos en la circunferencia. Sin embargo, en cuanto tocamos el $0$ o el $1$, la imagen de ese entorno ya no es un abierto de la circunferencia: necesitamos incluir al $0$ o al $1$ (el que nos hayamos dejado sin coger) para que la imagen sí sea abierta. Esto es porque, de no coger ambos puntos, la preimagen de la imagen del entorno siempre contendría a uno de los dos puntos no escogidos, es decir, que tenemos que saturar el conjunto.
+    \item Consideremos la aplicación que transforma el cuadrado unidad en el cilindro de la figura \ref{fig:rect-a-cilindro-por-imagen-directa.}.
     \begin{align*}
         f: R = \left[ 0, 1 \right] \times \left[ 0, 1 \right] &\rightarrow C \subset \mathbb{R}^3: x^2 + y^2 = 1,\ 0 \le z \le 1\\
         \left( s, t \right) &\mapsto \left( \cos 2\pi s, \sin 2\pi s, t \right) 
     .\end{align*}
-    que geométricamente es:
+    De nuevo, vemos en este ejemplo que los puntos problemáticos son los que comparten la misma imagen por la aplicación mencionada. Los abiertos en el cilindro imagen que involucran a estos puntos son imagen de abiertos saturados del cuadrado, es decir, de conjuntos que aglutinan los lados izquierdo y derecho en sí mismos para cumplir la relación de inyectividad descrita en el apartado anterior.  
     \begin{figure}[H]
         \centering
         \incfig[0.9]{rectángulo-a-cilindro-por-imagen-directa.}
-        \caption{\textit{Analizando los abiertos saturados y no saturados se concluye que la topología imagen directa es la usual en el tronco del cilindro.}}
-        \label{fig:rectángulo-a-cilindro-por-imagen-directa.}
+        \caption{\textit{Representación visual de los abiertos saturados y usuales de la transformación.}}
+        \label{fig:rect-a-cilindro-por-imagen-directa.}
     \end{figure}
+    Analizando los abiertos saturados y no saturados podemos concluir que la topología imagen directa por la aplicación definida es la usual en el tronco del cilindro.
 \end{enumerate}
 \end{ej}
 
-\subsubsection*{Identificaciones}
-\begin{defi}
-Una aplicación continua sobre $f: \left( X, \mathcal{T} \right) \rightarrow \left( Y, \mathcal{T}' \right)$ tal que $\mathcal{T}' = f\mathcal{T}$ se llama \textbf{identificación} 
-\end{defi}
-
-\begin{obs}
-\begin{enumerate}
-    \item Identificación: $V \stackrel{\text{ab}}{\subset} Y \Leftrightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
-
-    Continua: $V \stackrel{\text{ab}}{\subset } Y \Rightarrow f^{-1}V \stackrel{\text{ab}}{\subset} X$
-
-    \item Sea $f: X \rightarrow Y$ sobreyectiva continua. Será identificación si además es:
-    \begin{itemize}
-        \item Abierta. 
-        \begin{demo}
-            Por (1).
-        \end{demo}
-        \item Cerrada.
-        \begin{demo}
-            $f^{-1}V \stackrel{\text{ab}}{\subset} X \stackrel{\text{cerr.}}{\Rightarrow} \underbrace{f \left( X \setminus f^{-1}\left( V \right) \right)}_{\stackrel{\text{sobr.}}{=} Y\setminus V}  \stackrel{\text{cerr.}}{\subset} Y \Rightarrow V \stackrel{\text{ab}}{\subset} Y$
-        \end{demo}
-    \end{itemize}
-
-    \item Tenemos como posibilidades:
-    \begin{itemize}
-        \item Identificación $+ \not$ ab. $+ \not$ cerr.
-        \item Identificación $+$ ab. $+ \not$ cerr.
-        \item Identificación $+ \not$ ab. $+$ cerr.
-    \end{itemize}
-\end{enumerate}
-\end{obs}
-
-\subsection{Cocientes}
+\subsection{Espacio Cociente}
 \label{sub:cocientes}
-\begin{defi}[Relación de inyectividad]
-Llamamos \textbf{relación de inyectividad} a aquella relación de equivalencia que viene dada por una función $f$ tal que dos elementos están relacionados si comparten imagen:
-\[
-x \sim y \Leftrightarrow f\left( x \right) = f\left( y \right)
-\]
-\end{defi}
+
+Habiendo hablado previamente sobre una relación de equivalencia, surge de forma natural la necesidad de estudiar la topología que induce generar un cociente en un espacio topológico. La topología del cociente va a ser la misma que la de imagen directa, pero esta vez la función $f$ de la definición sí es una función concreta y específica.
 
 \begin{defi}[Proyección canónica]
-Llamamos \textbf{proyección canónica} respecto de una relación de equivalencia a la aplicación:
+Sea $X$ un espacio topológico y $\sim$ una relación de equivalencia en dicho espacio, llamamos \textbf{proyección canónica} a la aplicación:
 \begin{align*}
     p: X &\rightarrow \faktor{X}{\sim}\\ 
     x &\mapsto \left[ x \right]
 \end{align*}
-donde $\left[ x \right]$ es la clase de equivalencia de $x$.
+que a cada elemento $x$ le asigna su clase de equivalencia $\left[ x \right]$.
 \end{defi}
-Con esto vemos que dentro de las identificaciones tenemos el caso particular del cociente:
-\[
-p: \left( X, \mathcal{T} \right) \rightarrow \faktor{X}{\sim}.
-\]
-Con esto definimos:
+
+Tal y como hemos dicho, la topología que va a tener el espacio cociente y que llamaremos topología cociente es la que induce la proyección canónica como imagen directa de la misma.
+
 \begin{defi}[Topología cociente]
 Llamamos \textbf{topología cociente} a: 
 \[
@@ -476,6 +505,8 @@ Llamamos \textbf{topología cociente} a:
 \]
 que viene a ser la topología imagen directa por $p$.
 \end{defi}
+
+Llegados a este punto y suponiendo que tenemos una identificación concreta de $X$ en otro espacio $Y$, tiene sentido preguntarnos qué ocurre si formamos un cociente con la relación de inyectividad asociada a la identificación $f$. ¿Existirá alguna relación entre la identificación correspondiente y el cociente del espacio? La respuesta es sí y dicha relación será de gran utilidad para tener un modelo algebraico (cociente) del modelo geométrico (identificación) del espacio $X$.
 
 \begin{figure}[H]
     \centering    
@@ -495,69 +526,85 @@ que viene a ser la topología imagen directa por $p$.
         \draw[|->](x) to (z);
         \draw[|->](z) to (y);
         \end{tikzpicture}
-        \caption{\textit{Representación de la composición del cociente}}
+        \caption{\textit{Construcción del homeomorfismo entre el cociente y la identificación.}}
+        \label{fig:coci}
 \end{figure}
 
-\begin{obs}
-La relación de equivalencia que vamos a usar es la que viene dada por la relación de \underline{inyectividad} respecto de $f$. Por esta razón, $\overline{f}$ será una biyección.
-\end{obs}
-\begin{demo}
-Sea $z \in Y$ como $f$ es suprayectiva $\exists x \in X: f\left( x \right) = z$. A su vez, $y \in \left[ x \right] \Leftrightarrow f\left( x \right) = f\left( y \right) \Rightarrow \overline{f}\left( \left[ x \right] \right) = z$. Con esto, $\overline{f}$ es sobreyectiva y bien definida.
+El resultado fundamental que vamos a ver es que si tenemos una construcción como la del triángulo de la figura \ref{fig:coci}, entonces podemos construir una aplicación entre el conjunto con la topología imagen y el cociente de manera que ésta sea homeomorfismo. Para ello, a continuación vamos a ver una serie de resultados que justifican las propiedades de la aplicación mencionada a través de las dos aplicaciones fundamentales de la construcción: la identificación $f$ y la proyección $p$.
 
-Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\overline{f}\left[ x \right] = \overline{f}\left[ y \right] \Rightarrow f\left( x \right) = f\left( y \right) \Rightarrow \left[ x \right] = \left[ y \right]$. Por tanto, también es inyectiva.
-\end{demo}
-
-%TODO: No estoy seguro de como es esta proposición
 \begin{prop}
-\begin{enumerate}
-    \item $\exists \overline{f} \Leftrightarrow x \sim y \Rightarrow f\left( x \right) \sim f\left( y \right)$
-    \item $\exists \overline{f} : \overline{f}$ continua $\Leftrightarrow f$ continua.
-    \item $\exists \overline{f}: \overline{f} \begin{cases}
-        \text{sobre. }\\ 
-        \text{iny. 1-1}\\ 
-    \end{cases} \Leftrightarrow f \begin{cases}
-        \text{sobre.}\\ 
-        x \sim y \Leftarrow f \left( x \right) \sim f \left( y \right)
-    \end{cases}$
-
-    \item $\overline{f}$ homeomorfa $\Leftrightarrow f$ identificación.
-    %TODO: Fix 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}[node distance=2cm, auto]
-        \node(X) {$\left( X, \mathcal{T} \right)$};
-        \node(Y) [right=2cm of X] {$\left( Y, \mathcal{T}' \right)$};
-        \node(Z) [below=1.5cm of X] {$\left( \faktor{X}{\sim}, \overline{\mathcal{T}} \right)$};
-        \draw[->](X) to node {$f$} node [below] {ident.}(Y);
-        \draw[->](X) to node [left] {$p$} (Z);
-        \draw[->](Z) to node [left=0.2] {$\overline{f}$} node [below=0.3] {homeo.} (Y);
-        \end{tikzpicture}  
-        \caption{\textit{Relación entre el cociente y una identificación.}}
-        \label{fig:relacion_cociente_identificacion}
-    \end{figure}
-\end{enumerate} 
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+existe y está bien definida si y sólo si la relación de equivalencia es $x\sim_f y$.
 \end{prop}
 \begin{demo}
-\begin{enumerate}
-    \item Por la definición de $\sim$ y de $\overline{f}$.
-    %TODO: Corregir. Creo que se puede usar la propiedad universal
-    \item Sea $\overline{f}$ continua. Tomemos $U \in \mathcal{T}' \Rightarrow \overline{f}^{-1}U \in \overline{\mathcal{T}}$. Como $p$ es continua por definición de $\overline{\mathcal{T}}$, $f^{-1} U = p^{-1} \overline{f}^{-1} U \in \mathcal{T}$. Por lo que $f$ es continua.
+La implicación de izquierda a derecha es natural porque, como la aplicación $\overline{f}$ asigna a cada elemento de la clase su imagen por $f$, para que una misma clase sea consistente y tenga una única imagen todos los elementos de dicha clase deben tener la misma, es decir, que si $x\sim y$ entonces $f(x) = f(y)$.
 
-    Sea ahora $f$ continua. Tomemos $U \in \mathcal{T}' \Rightarrow W = f^{-1}U \in \mathcal{T}$. Al ser $p$ sobreyectiva $W = p^{-1}pW$, es decir, que $pW \in \overline{\mathcal{T}}$ (ya que $p^{-1}\left( p W \right) \in \mathcal{T}$ y la definición de $\overline{\mathcal{T}}$).
-
-    \item (Anterior observación) Si $\overline{f}$ es inyectiva 1-1 $\Rightarrow \underbrace{\overline{f}\left[ x \right] = \overline{f}\left[ y \right]}_{\Leftrightarrow f\left( x \right) \sim f\left( y \right)} \Rightarrow \underbrace{\left[ x \right] = \left[ y \right]}_{\Leftrightarrow x \sim y}$
-\end{enumerate}
+Recíprocamente, si ocurre que $x\sim y$ implica que $f(x) = f(y)$ hemos conseguido que la imagen que asigna $\overline{f}$ a una clase de equivalencia concreta no dependa del representante escogido, pues todos tienen la misma imagen.
 \end{demo}
 
-\begin{pg}
-    Los cocientes son cómodos para definir espacios, las identificaciones son mejores para estudiar las propiedades que tenemos. Conviene pues tener triángulos como el anterior (\ref{fig:relacion_cociente_identificacion}). 
+\begin{prop}
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica del cociente inducido por $\sim_f$, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+es una biyección entre espacios topológicos.
+\end{prop}
+\begin{demo}
+La suprayectividad de $f$ nos asegura que para cualquier $y \in Y$ existe un $x\in X$ tal que $f(x) = y$ y, como $[x]$ viaja a $f(x)=y$ por la aplicación $\overline{f}$, ya tenemos un elemento en el cociente del que es imagen $y$.
 
-    Se puede contemplar $Y$ como un modelo del cociente. Es decir, utilizamos el cociente como ``modelo teórico'' y la identificación como ``modelo geométrico''. Esto no siempre será posible ya que dependerá de ciertas propiedades geométricas que veremos.
-\end{pg}
+Para probar la inyectividad basta con escoger dos clases $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ cuyas imágenes $\overline{f}\left[ x \right]$ y $\overline{f}\left[ y \right]$ coincidan y ver que deben ser la misma clase:
+\[
+\overline{f}\left[ x \right]=\overline{f}\left[ y \right] \Rightarrow f(x) = f(y) \Rightarrow x \sim_f y \Rightarrow [x] = [y]
+\]
+\end{demo}
 
-\begin{ej}[Anteriores]
+\begin{prop}
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica del cociente inducido por $\sim_f$, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+es continua si y sólo si $f$ es continua.
+\end{prop}
+\begin{demo}
+Supongamos que la función $\overline{f}$ es continua, entonces dado un abierto $U\in f\mathcal{T}$ el conjunto $\overline{f}^{-1} U$ es abierto en $\overline{\mathcal{T}}$. Como la proyección $p$ es una aplicación continua, entonces $p^{-1}\overline{f}^{-1} U$ es un abierto de $\mathcal{T}$, pero como $f^{-1} U = p^{-1}\overline{f}^{-1}$ hemos demostrado que la imagen inversa por $f$ de abiertos de $f\mathcal{T}$ es abierta en $\mathcal{T}$.
+
+Recíprocamente, supongamos que la función $f$ es continua y tengamos en cuenta que $\overline{f}^{-1} U = p \circ f^{-1} U$. Si tomamos un abierto $U$ de $f\mathcal{T}$, entonces $f^{-1}U$ es abierto de $\mathcal{T}$. Es más, $f^{-1} U$ es abierto saturado de $\mathcal{T}$, lo que quiere decir que $\forall y \in X : \exists x \in U \mbox{ tal que } f(y) = f(x) \Rightarrow y \in U$. Este último razonamiento hace evidente que también es un abierto saturado para la aplicación $p$ y, como los abiertos del cociente son las imágenes de los abiertos saturados del conjunto inicial (pues la topología del cociente es la topología imagen directa de la aplicación $p$), entonces $p f^{-1} U$ es abierto de $\overline{\mathcal{T}}$. Y se tiene el resultado de observar que $\overline{f}^{-1} U = p \circ f^{-1} U$.
+\end{demo}
+
+Los resultados anteriores prueban que si $f$ es identificación, entonces la aplicación $\overline{f}$ está bien definida, es biyectiva y es continua. Vamos a ver para terminar que también la inversa es continua, es decir, $\overline{f}$ es homeomorfismo. Pero además, se va a verificar que se obtiene el recíproco, esto es, que si $\overline{f}$ es homeomorfismo podemos afirmar que $f$ es una identificación.
+
+\begin{prop}
+Sea $f: X \rightarrow Y$ una aplicación sobreyectiva y $p: X \rightarrow \faktor{X}{\sim}$ la proyección canónica del cociente inducido por $\sim_f$, entonces la aplicación:
+\begin{align*}
+f\circ p^{-1} =: \overline{f} : \faktor{X}{\sim} & \longrightarrow Y \\
+ 			  [x] & \longmapsto f(x)
+\end{align*}
+es homeomorfismo si y sólo si $f$ es identificación.
+\end{prop}
+\begin{demo}
+Para probar la implicación de izquierda a derecha falta solo probar que la aplicación inversa de $\overline{f}$ es continua. Para ello, escojamos un abierto $U \in \overline{\mathcal{T}}$ y veamos que ocurre con $\overline{f}U$. Por la definición de $\overline{f}$, sabemos que $\overline{f}U = f \circ p^{-1} U$ y el conjunto $p^{-1} U$ es abierto saturado (por la continuidad y la relación de equivalencia) de $\mathcal{T}$. Por último, como sabemos que los abiertos de $f\mathcal{T}$ son las imágenes de los abiertos saturados de $\mathcal{T}$, entonces $f\circ p^{-1} U$ es abierto de la topología imagen directa.
+
+La implicación de izquierda a derecha cumple trivialmente la parte de la sobreyectividad para que sea identificación porque hemos visto que para que el cociente esté bien definido y sea una aplicación biyectiva es indispensable, luego sólo hay que probar que la topología tiene que ser la topología imagen directa. Sin embargo, este último punto es muy sencillo. Escogido un abierto cualquiera $V\in \mathcal{T}'$, vemos que $f^{-1}V = p^{-1}\overline{f}^{-1} V$. Como $\overline{f}$ es homeomorfismo, $ W := \overline{f}^{-1} V$ es abierto de $p\mathcal{T}$ y, como $p$ es continua, $p^{-1} W$ es abierto de $\mathcal{T}$. Por tanto, hemos demostrado que si eres abierto de la topología $\mathcal{T}'$, entonces tu preimagen es abierta en $\mathcal{T}$, es decir, que $\mathcal{T}' \subset f\mathcal{T}$. Como $f\mathcal{T}$ es la más fina que hace $f$ continua, tenemos que $\mathcal{T}' = f\mathcal{T}$.
+\end{demo}
+
+\begin{obs}
+Este último resultado acerca del homeomorfismo existente cuando $f$ es una identificación permite considerar, tal y como hemos comentado, el cociente $\faktor{X}{\sim}$ como la definición algebraica del modelo geométrico $Y$. En general, los cocientes son cómodos para definir los espacios algebraicamente y las identificaciones son mejores para estudiar las propiedades que tiene dicho espacio y es por ello por lo que es útil tener construcciones como la mencionada en la figura \ref{fig:coci}.
+\end{obs}
+
+\begin{ej}
+Podemos retomar los ejemplos que vimos para identificaciones y añadir el cociente del que son modelo las identificaciones.
+
 \begin{itemize}
-    \item Circunferencia y el cilindro como cocientes:
+    \item Circunferencia $\mathcal{S}^1$:
+    
+    Si recordamos habíamos definido la aplicación $f(t) = \left( \cos 2\pi t, \sin 2\pi t \right)$ que asigna a cada punto del intervalo $[0,1]$ su correspondiente punto de la circunferencia y seguimos los pasos descritos en este último apartado, tenemos que asociar en la misma clase de equivalencia los puntos con la misma imagen, es decir, todos los puntos forman una clase de equivalencia distinta excepto el $0$ y el $1$ que forman la misma.
+        
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[node distance=2cm, auto]
@@ -568,6 +615,16 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
             \draw[->](X) to node [left] {$p$} (Z);
             \draw[<->](Z) to node [right] {cont.}(Y);
         \end{tikzpicture}
+        \caption{\textit{Triángulo de relaciones entre el segmento $[0,1]$, el cociente que asocia el $0$ y el $1$ y la circunferencia unidad.}}
+	\end{figure}
+
+	De esta manera, el conjunto cociente que genera la relación de inyectividad de la aplicación $f$ es $\faktor{X}{\sim} = \left\{ \left\{ t \right\} : 0 < t < 1, \left\{ 0, 1 \right\} \right\}$ y, como habíamos visto que la aplicación $f$ era una identificación, la aplicación $\overline{f}$ del cociente al modelo es un homeomorfismo.
+
+	\item Cilindro:
+	
+	Recuperando la aplicación del ejemplo del cilindro, aplicamos el mismo razonamiento de agrupar en la misma clase de equivalencia a los puntos que tengan la misma imagen, es decir, que todos los puntos tendrán su propia clase individual salvo los puntos de los lados izquierdo y derecho que tendrán asociado su homólogo del lado contrario.
+	\begin{figure}[H]
+        \centering
         %TODO: arreglar distancia X a Y
         \begin{tikzpicture}[node distance=2cm, auto]
             \node(X) {$\left[ 0, 1 \right] \times \left[ 0, 1 \right]$};
@@ -577,17 +634,10 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
             \draw[->](X) to (Z);
             \draw[<->](Z) to (Y);
         \end{tikzpicture}
-        \caption{\textit{En el primero tomamos un segmento de longitud $1$ y ``pegamos'' los extremos, lo que nos da una figura equivalente a un circunferencia. En el segundo, tomamos un rectángulo de área $1$ y ``pegamos'' el lado izquierdo con el derecho directamente.}}
+        \caption{\textit{Triángulo de relaciones entre el cuadrado unidad, el cociente que asocia el lado izquierdo con el derecho y el cilindro del ejemplo.}}
     \end{figure}
-
-    Para la circunferencia tenemos:
-    \[
-        \faktor{X}{\sim} = \left\{ \left\{ t \right\} : 0 < t < 1, \left\{ 0, 1 \right\} \right\}
-    \]
-    %TODO: Posiblemente mal
-    la biyección entre el cociente y la esfera se da por el punto (3) de la anterior proposición y la continuidad por (2). Por último, la identificación se da por el anterior ejemplo.
-
-    \item Para representar cocientes se utilizan dibujos que indican las identificaciones en los espacios de partida:
+    De nuevo y para terminar, como la aplicación $f$ que habíamos definido era una identificación, la función que asocia el modelo con el cociente $\faktor{X}{\sim} := \{(x,y) \in (0,1) \times [0,1] \mbox{ y } (0,y) \sim (1,y)\}$ es un homeomorfismo.	
+	
     \begin{figure}[H]
         \centering
         \hspace{2cm}
@@ -617,35 +667,33 @@ Sean ahora $\left[ x \right], \left[ y \right] \in \faktor{X}{\sim}$ tal que $\o
             \draw[-, cyan, dashed] (izq) -- (der);
             \node[gray] at (2.1,1) [right] {$\left( 0, t \right) \equiv \left( 0, 1-t \right)$};
         \end{tikzpicture}
+        \caption{\textit{Ejemplos de identificaciones habituales.}}
     \end{figure}
 \end{itemize}
 \end{ej}
 
 
-\section{Productos (finitos)}%
+\section{Productos finitos}%
 \label{sec:productos_finitos_}
-Supongamos que tenemos $p_i: X_1 \times \ldots X_r = Y \rightarrow \left( X_i, \mathcal{T}_i \right), 1 \le i \le r$ y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $X_i$ sea la discreta, sin embargo, esto carece de interés. Por esta razón, buscamos las topologías \underline{menos finas} que hagan $p_i$ continuas. 
+El objetivo de esta construcción es, dado un producto cartesiano $Y := X_1 \times \cdots \times X_r$, generar una topología que garantice la continuidad de las aplicaciones $p_i: Y \rightarrow \left( X_i, \mathcal{T}_i \right)$ al ser equipada sobre el mismo, es decir, que haga continuas las proyecciones sobre cada factor. Inmediatamente uno repara en que la discreta sobre $Y$ cumple los requisitos. Sin embargo, el interés está en saber cuál es la topología menos fina que hace las $p_i$ continuas.
 
-Que $p_i$ sea continua quiere decir que $\forall U_i \in \mathcal{T}_i : p^{-1}U_i = X_1 \times \ldots U_i \times \ldots \times X_r$ debe ser abierto, es decir, que todos lo sean. Por tanto, $\bigcap_{i=1}^{r} p_i^{-1}U_i = U_1 \times \ldots \times U_r$ debe ser abierto, pero no es topología (la unión de productos no tiene porque ser producto). Por tanto, definimos:
-\begin{defi}
-Llamamos \textbf{topología producto}, $\mathcal{T}_1 \times \ldots \times \mathcal{T}_r$, a aquella que viene determinada por la siguiente base:
+Tal y como venimos haciendo en las construcciones anteriores, vamos a tratar de introducir lo mínimo indispensable para verificar la continuidad. En primer lugar, como las preimágenes de abiertos deben ser abiertos, entonces $\forall U_i \in \mathcal{T}_i : p_i^{-1}U_i = X_1 \times \ldots U_i \times \ldots \times X_r $ debe ser un abierto. Como para que pueda ser topología la intersección finita de abiertos tiene que ser abierto, sabemos que $\bigcap_{i=1}^{r} p_i^{-1}U_i = U_1 \times \ldots \times U_r$ debe ser abierto, pero a diferencia de como venía ocurriendo en las construcciones anteriores no podemos decir aún que sea topología porque las uniones arbitrarias no funcionan bien (las uniones de productos no tienen por qué ser producto). 
+
+Sin embargo, se puede demostrar sin demasiada dificultad que el conjunto  $\{U_1 \times \cdots \times U_r \mbox{ donde } U_i \in \mathcal{T}_i\}$ caracteriza una topología en $Y$ de la que es base de abiertos y, de esta manera, ahora sí tenemos determinada de modo único la topología buscada.
+
+\begin{defi}[Topología Producto]
+Sea $Y := X_1\times \cdots \times X_n$ un producto cartesiano de espacios topológicos y $p_i : Y \rightarrow (X_i, \mathcal{T}_i)$ las proyecciones sobre cada uno de sus factores, definimos la \textbf{topología producto} $\prod_{i=1}^n \mathcal{T}_i$ como aquella determinada por la base de abiertos:
 \[
 \mathcal{B} = \left\{ U_1 \times \ldots \times U_r: U_i \in \mathcal{T}_i \right\}
 \]
 \end{defi}
 
 \begin{ej}
-La $\mathcal{T}_u$ en $\mathbb{R}^n$ es el producto de la usual en cada factor $\mathbb{R}$ de $\mathbb{R}^n$. La base de la definición de topología producto está formada por las ``bolas cuadradas'', que son productos de intervalos.
+Si consideramos la topología usual $\mathcal{T}_u$ equipada en $\mathbb{R}^n$ estudiar el resultado anterior es inmediato, pero si consideramos como base de abiertos las bolas cuadradas en lugar de las bolas redondas que utilizamos habitualmente. Este último detalle s relevante para poder ver el producto pues las bolas cuadradas son productos cartesianos de intervalos de $\mathbb{R}$ con la topología usual $\mathcal{T}_u$, lo que nos proporciona un ejemplo real de la aplicación de la construcción anterior.
 \end{ej}
 
 \begin{theo}[Propiedad universal de la topología producto]
-Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $p_i: \left( Y, \mathcal{T}' \right) \rightarrow \left( X_i, \mathcal{T}_i \right)$. Entonces:
-    \[
-    \mathcal{T}' = \prod_{i} \mathcal{T} \Leftrightarrow  
-    \]
-    \begin{equation}\label{eq:prop_universal_prod}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
-    \end{equation}
+Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \right)$ y $p_i: \left( Y, \mathcal{T}' \right) \rightarrow \left( X_i, \mathcal{T}_i \right)$:
 
     \begin{figure}[H]
         \centering    
@@ -660,17 +708,23 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_prod_finitos}
     \end{figure}
+
+entonces $\mathcal{T}' = \prod_{i = 1}^{r} \mathcal{T}_i$ si y sólo si:
+$$
+g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.}
+$$
 \end{theo}
 \begin{demo}
 \begin{enumerate}
-    \item $\mathcal{T}' = \prod_{i} \mathcal{T}: $ 
+    \item[$\Rightarrow)$] $\mathcal{T}' = \prod_{i = 1}^{r} \mathcal{T}_i: $ 
     \begin{itemize}
-        \item $g$ cont. $\Rightarrow g_i$ cont. (Todas sus componentes son continuas o composición de continuas)
-        \item $g_i$ cont. $\Rightarrow g^{-1}\left( U_1 \times \ldots \times U_r \right) = \underbrace{g_1^{-1}\left( U_1 \right)}_{\mathcal{T}''} \cap \ldots \cap \underbrace{g_r^{-1}\left( U_i \right)}_{\mathcal{T}''} \in \mathcal{T}''$. (Intersección finita de abiertos) 
+        \item $g$ cont. implica que $g_i$ cont. porque $g_i = p_i \circ g$ y $p_i$ es continua si la topología es la producto.
+        \item $g_i$ cont. implica que $g^{-1}\left( U_1 \times \ldots \times U_r \right) = \overbrace{g_1^{-1}\left( U_1 \right)}^{\in \mathcal{T}''} \cap \ldots \cap \overbrace{g_r^{-1}\left( U_i \right)}^{\in \mathcal{T}''} \in \mathcal{T}''$ y como esto es una intersección finita de abiertos, es abierto.
     \end{itemize}
 
-    \item Por otro lado, veamos la unicidad:
-
+    \item[$\Leftarrow)$] Para demostrarlo, vamos a ver el doble contenido de $\mathcal{T}' = \prod_{i=1}^{r} \mathcal{T}$:
+    
+    Como la propiedad de caracterización se cumple para cualquier función $g$ que escojamos, podemos elegir la identidad de modo que:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
@@ -678,49 +732,141 @@ Sea $g: \left( Z, \mathcal{T}'' \right) \rightarrow \left( Y, \mathcal{T}' \righ
             \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
             \node(Z) [below of=Y] {$\left( Y, \mathcal{T}' \right)$};
             \draw[->](Y) to node {$p_i$}(X);
-            \draw[->](Z) to node [right=0.1cm] {$pr_i$}(X);
+            \draw[->](Z) to node [right=0.1cm] {$p_i \circ id = p_i$}(X);
             \draw[->](Z) to node [left] {$id$ cont.}(Y);
             \end{tikzpicture}
     \end{figure}
-    Como $id$ será continua, aplicamos \ref{eq:prop_universal_prod} y tenemos que $g \circ p_i = pr_i$ es continua. Al ser $\prod_{i} \mathcal{T}_i $ la menos fina $\Rightarrow \mathcal{T}' \supset \prod_{i} \mathcal{T}_i$.
-
+    La continuidad de $id$ nos asegura la continuidad de $g_i = p_i \circ id = p_i$. Como tenemos que $p_i$ es continua y $\prod \mathcal{T}_i$ es la topología menos fina que verifica esto, entonces $\prod \mathcal{T}_i \subset \mathcal{T}'$.
+    
+    Para ver el otro contenido, elegimos de nuevo la identidad, pero esta vez la identidad meramente conjuntista:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(Y) {$\left( Y, \mathcal{T}' \right)$};
             \node(X) [right of=Y] {$\left( X_i, \mathcal{T}_i \right)$};
-            \node(Z) [below of=Y] {$\left( Y, \prod_{i} \mathcal{T}_i \right)$};
+            \node(Z) [below of=Y] {$\left( Y, \prod \mathcal{T}_i \right)$};
             \draw[->](Y) to node {$p_i$}(X);
-            \draw[->](Z) to node [right=0.1cm] {$pr_i$ cont.}(X);
+            \draw[->](Z) to node [right=0.1cm] {$p_i \circ id = p_i$ cont.}(X);
             \draw[->](Z) to node [left] {$id$}(Y);
             \end{tikzpicture}
     \end{figure}
-    Como $pr_i$ es continua por definición de $\prod_{i} \mathcal{T}_i$, aplicamos \ref{eq:prop_universal_prod} y tenemos que esta $id$ es continua. Por esta razón, $\prod_{i=1} \mathcal{T}_i \supset \mathcal{T}'$.
+   En este caso, sabemos que $g_i = p_i \circ id = p_i$ es continua porque $p_i$ lo es por construcción. Esto quiere decir que la identidad conjuntista $id$ es continua, es decir, $\forall U \in \mathcal{T}' : id^{-1} U = U \in \prod \mathcal{T}_i$. Por tanto, tenemos que $\mathcal{T}' \subset \prod \mathcal{T}_i$.
 \end{enumerate}
 \end{demo}
 
-\begin{enun}
-Demostrar (ii) sin usar que $\prod_{i} \mathcal{T}_i$ es la menos fina (usar que cumple la caracterización)
-\end{enun}
-
-%TODO: Hacer bien
 \begin{ej}
-La $\mathcal{T}_{\text{rad}}$ no es producto.
-\begin{demo}
-    Tomamos un abierto y veamos que no es producto. 
-    %TODO: Dibujo
+Para ejemplificar que la topología producto no se da ``por defecto'', vamos a demostrar que la topología radial $\mathcal{T}_{\text{rad}}$ no es producto.
 
-    Supongamos que sí:
-    $U = \mathbb{R}^2 \setminus $ arco $\ni \left( 0, 0 \right) \Rightarrow U_1 \times U_2 \subset U$ y $\left( 0, 0 \right) \in U_1 \times U_2 \subset \mathcal{T}_{\text{rad}}$. Tomando $x_1 \in U_1$ y vemos $x = x_1 \cap r$ con $r$ línea vertical por $x_1$ con esto $y_1 = x \cap l$ con $l$ línea horizontal por $x$ no pertenece a $U$ (de lo contrario el producto $y_1$ con $x_1 = x$ pertenecería). Por tanto, $I_k = \left[ \left( 0, y_k \right), \left( x_k, y_k \right) \right]$ no tiene ningún punto en $U_1 \times U_2$. Haciendo converger $I_k$ hacía $0$ para cualquier recta por $0$ tendremos un $I_k$ que tenga intersección con la recta, es decir, la recta tendrá un punto que no pertenezca al abierto y $U$ no sería abierto ¡!
+Para verlo, vamos a tomar como abierto el conjunto $U := \mathbb{R}^2 \setminus \mbox{arco}$ que se ve en la figura. 
 
-    Con esto, $\nexists x_k \rightarrow 0 \Rightarrow$ habrá un intervalo $\left( 0, \varepsilon \right)$ en el eje $x$ que no pertenece a $U_1$ y tendremos un ``vacío'' que de nuevo incumple que $U$ es abierto.
-\end{demo}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = \(\mathcal{T}_1\),
+        ylabel = {\(\mathcal{T}_2\)},
+        xticklabels={,},
+        yticklabels={,},
+        xmin=-2,
+        xmax=2,
+        ymin=-2,
+        ymax=2,
+    ]
+    \draw[dashed, red] (0,0) arc (270:360:1);
+    
+    \draw[dashed] (0,0) circle (0.5);
+    \node(O) at (0,0) {\textbullet};
+    \node(U1) at (0,0.3) [left] {\tiny$U_2$};
+    \node(U2) at (0.3,0) [below] {\tiny$U_1$};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{\textit{La topología radial no es producto de topologías.}}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = \(\mathcal{T}_1\),
+        ylabel = {\(\mathcal{T}_2\)},
+        xticklabels={,},
+        yticklabels={,},
+        xmin=-1,
+        xmax=1.2,
+        ymin=-1,
+        ymax=1,
+    ]
+    \draw[dashed, red] (0,0) arc (270:360:1);
+
+    \draw[-, dashed] (0,0.4) -- (0.8, 0.4);
+    \draw[-, dashed] (0.8,0) -- (0.8, 0.4);
+    \node(O) at (0,0) {\textbullet};
+
+    \node at (0,0.4)  {\tiny \textbullet};
+    \node(U1) at (0,0.35) [left] {\tiny$y_1 \not\in U_1$};
+
+    \node at (0.8,0)  {\tiny \textbullet};
+    \node(U2) at (0.6,0) [below] {\tiny$U_1 \ni x_1$};
+    \node at (0.8,0.4)  {\tiny \textbullet};
+    \node(xy) at (0.8,0.4) [right] {\tiny$\left( x, y \right) \not\in U$};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{\textit{La topología radial no es producto de topologías.}}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis lines* = middle,
+        height=2cm,
+        width=5cm,
+        scale only axis=true,
+        ytick=\empty,
+        xtick=\empty,
+        xmin=-0.2,
+        xmax=1,
+        ymin=-0.3,
+        ymax=0.6,
+    ]
+    \node(O) at (0,0) {\textbullet};
+
+    \draw[<->] (0,0.3) -- (0.6,0.3);
+    \node at (0.3,0.3) [above] {$\varepsilon$};
+
+    \draw[<->] (0,-0.1) -- (0.6,-0.1);
+    \node at (0.3,-0.1) [below] {\tiny No hay};
+
+    \node at (0.6,0) {\tiny$\mid$};
+    \node at (0.8,0) {\tiny$\mid$};
+    \node at (0.8,0) [below] {\tiny$x_1$};
+    \node at (0.9,0) {\tiny$\mid$};
+    \node at (0.9,0) [below] {\tiny$x_2$};
+    \node at (1.0,0) {\tiny$\mid$};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{\textit{La topología radial no es producto de topologías.}}
+\end{figure}
+
+Si consideramos que la topología radial es producto, entonces existen $U_1 \times U_2 \subset U$ abiertos de alguna topología en las proyecciones y además tales que $U_1\times U_2 \ni (0,0)$. Escogemos un $x_1 \in U_1$ cualquiera y para cualquiera que escojamos podemos encontrar un $y_1$ tal que $(x_1,y_1)\in \mbox{arco}$, lo cual implica que $y_2 \not\in U_2$ (porque si estuviera no podría estar en el arco).
+
+Este último resultado indica que el segmento $[(0, y_1), (x_1, y_1)]$ no está en $U_1\times U_2$, así que si escogemos $x_1$ cada vez más cercanos al punto $(0,0)$ se nos va formando una sucesión de segmentos cada vez más pequeños y más cercanos al eje de abcisas tal y como se muestra en la figura. De esta manera, cualquier recta con pendiente $m\in (0,\pi/2)$ tiene infinitos puntos de corte con estas rectas cada vez más cercanas a $(0,0)$, es decir, infinitos puntos que no están en $U_1\times U_2$, así que llegamos a contradicción porque dicho producto debería ser abierto radial.
+
+La reducción al absurdo anterior demuestra que no puede haber ninguna sucesión de puntos $x_k$ que converja a $0$, pues de otro modo ocurriría lo mencionado anteriormente. Es decir, que hay un intervalo $(0,\varepsilon)$ donde no puede haber ningún $x_1\in U_1$, pero si esto fuese así toda la banda $(0,\varepsilon)\times \mathbb{R}$ no estaría en $U$, luego absurdo de nuevo.
 \end{ej}
 
 \begin{prop}
+Sea $X = X_1 \times \cdots \times X_n$ un espacio topológico producto, entonces: 
 \begin{enumerate}
-    \item $p_i: Y \rightarrow X_i$ es abierta. 
-    \item $X_j \xrightarrow{\alpha_j} Y: x_j \mapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)$ es inmersión ($a_i \in X_i$ fijados). La llamamos \textbf{aplicación parcial}.
+    \item Las proyecciones $p_i: Y \rightarrow X_i$ sobre los factores del producto son aplicaciones abiertas. 
+    \item La aplicación natural\footnote{Obviamente, con los $a_i$ fijados.} que sumerge un factor en el producto 
+	\begin{align*}
+	 \alpha_j : X_j &\longrightarrow Y \\
+	 x_j &\longmapsto \left( a_1, \ldots, x_j, \ldots, a_r \right)	
+	\end{align*}	    
+     es una inmersión que llamamos aplicación parcial.
 \end{enumerate}
 \end{prop}
 \begin{demo}
@@ -738,74 +884,71 @@ La $\mathcal{T}_{\text{rad}}$ no es producto.
 \end{demo}
 
 \begin{ej}
-El ejemplo ahora de $\mathcal{T}_{\text{rad}}$ simplemente es porque si fuese producto sus elementos deberían ser la usual y el producto de usuales es usual que es distinta de la radial.
+Podemos redemostrar el ejemplo anterior que prueba que la topología radial no es producto de forma más sencilla si utilizamos este resultado, pues en caso de serlo sus factores deberían ser la usual y el producto de usuales es usual, que es distinto de la radial.
 \end{ej}
 
-\begin{pg}
-En una topología producto todo ``se genera en productos''.
-\begin{ej}
+\begin{obs}
+En general, es una buena idea trabajar con productos en la topología producto. En cierta manera, en una topología producto todo ``se genera en productos'':
 \begin{itemize}
     \item Bases de entornos: $\mathcal{V}^a = \mathcal{V}^{a_1} \times \ldots \times \mathcal{V}^{a_r} \stackrel{mut??}{=} \{V_1 \times \ldots \times V_r: V_i \in \mathcal{V}^{a_i}\} \left( a \in Y \right)$.
     \item Base de abiertos: $\mathcal{B} = \mathcal{B}_1 \times \ldots \times \mathcal{B}_r = \{B_1 \times \ldots \times B_r: B_i \in \mathcal{B}_i\}$ (esto repite la construcción de $\prod_{i} \mathcal{T}_i$)
 \end{itemize}
-\end{ej}
-\end{pg}
-
+\end{obs}
 
 %TODO: Cambiar e_i por j_i?
-\section{Sumas (finitas)}%
+\section{Sumas finitas}%
 \label{sec:sumas_finitas}
-Supongamos que tenemos $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow Y = X_1 + \ldots + X_r = \left( X_1 \times \left\{ 1 \right\} \right) \cup \ldots \cup \left( X_r \times \left\{ r \right\} \right), 1 \le i \le r: x_i \mapsto \left( x_i, i \right)$ (ponemos los índices para hacerlos disjuntos) y buscamos hacerlas continuas. Trivialmente, podemos hacer que la topología en $Y$ sea la trivial, sin embargo, esto carece de interés. Por esta razón, buscamos la topología \underline{más fina} que haga $f$ continua.
+El objetivo de esta construcción es, dada una unión\footnote{Los índices $i$ de las expresiones $X_i\times\{i\}$ se utilizan para poder utilizar el mismo conjunto como dos sumandos distintos y diferenciarlos entre sí (pues de otra manera la unión de ambos sería solo uno de ellos).} $Y := X_1 + \cdots + X_r := X_1 \times \{1\} \cup \cdots \cup X_n\times\{n\}$, generar una topología que garantice la continuidad de las aplicaciones $j_i: \left( X_i, \mathcal{T}_i \right) \rightarrow Y$ al ser equipada sobre el mismo, es decir, que haga continua la suma desde cada sumando. Inmediatamente uno repara en que la trivial sobre $Y$ cumple los requisitos. Sin embargo, el interés está en saber cuál es la topología más fina que hace las $j_i$ continuas.
 
-Debido a que, $\forall U_i \in \mathcal{T}_i,\ e_i^{-1}\left( U_i \times \left\{ i \right\} \right)$ debe ser abierto, podemos definir lo siguiente:
-\begin{defi}
-Llamamos \textbf{topología suma}, $\sum_{i=1}^{k} \mathcal{T}_i$, a aquella que viene determinada por la siguiente base:
+De nuevo, vamos a tratar de introducir todo lo posible sin violar la condición de continuidad como abierto en la topología. En primer lugar, nos damos cuenta de que cualquier abierto $U_i \in \mathcal{T}_i$ de una de las topologías concretas es preimagen $j_i^{-1}\left( U_i \times \left\{ i \right\} \right)$, luego si estos son abiertos respetan la definición de continuidad. Como son los únicos sobre los manejamos algo que podamos utilizar, la idea es proponer como base de la topología suma $\mathcal{T}_1 + \cdots + \mathcal{T}_n$ el conjunto $B := \{U_1\times\{1\}, \cdots, U_n\times\{n\} : U_i \in \mathcal{T}_i\}$.
+
+\begin{defi}[Topología Suma]
+Sea $Y := X_1 + \cdots + X_r := X_1 \times \{1\} \cup \cdots \cup X_n\times\{n\}$ la unión de espacios topológicos $(X_i, \mathcal{T}_i)$, definimos la \textbf{topología suma} $\sum_{i=1}^{k} \mathcal{T}_i$ como aquella determinada por la base de abiertos:
 \[
-\mathcal{B} = \left\{ U_1 \times \left\{ 1 \right\}, \ldots, U_r \times \left\{ r \right\}: U_i \in \mathcal{T}_i, 1 \le i \le r \right\}
+\mathcal{B} = \left\{ U_1 \times \left\{ 1 \right\}, \ldots, U_r \times \left\{ r \right\}: U_i \in \mathcal{T}_i \right\}
 \]
 \end{defi}
 
 \begin{obs}
-Tenemos que los $\left\{ i \right\} \times X_i \in \sum_{i=1}^{r} \mathcal{T}_i$ son sumandos abiertos y cerrados (porque el complementario es la intersección del resto de sumandos que son abiertos?).
+Por como se ha definido la topología, es trivial ver que cada sumando $X_i \times \left\{ i \right\}$  es abierto en la topología suma $\sum_{i=1}^{r} \mathcal{T}_i$. Pero es que además también son cerrados, pues su complementario $Y \setminus (X_i \times \{i\}) = \bigcup_{j \neq i} (X_j \times\{j\})$ es unión de abiertos, es decir, abierto.
 \end{obs}
 
 \begin{prop}
-Con la anterior definición sabemos que 
+Sea $Y := X_1 + \cdots + X_n$ el espacio topológico suma, la aplicación inclusión de cada sumando
 \[
-e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right),\ \forall i \in \left\{ 1, \ldots, r \right\}
+j_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( X_i\times \{i\}, \mathcal{T}|_{X_i \times \{i\}} \right),\ \forall i \in \left\{ 1, \ldots, r \right\}
 \]
-es inmersión abierta y cerrada.
+es una inmersión abierta y cerrada.
 \end{prop}
 \begin{demo}
+Para probar que es inmersión hay que probar que la aplicación anterior es un homeomorfismo. Para empezar, por construcción, la aplicación es continua y además biyectiva, pues manda el conjunto a sí mismo conjuntistamente hablando. Ahora basta probar que es abierta y cerrada:
 \begin{itemize}
-    \item Inmersión abierta: $e_i\left( U_i \right) = U_i \times \{i\} \in \mathcal{T}$
-    \item Cerrada: $Y\setminus e_i\left( X_i \right) = Y \setminus X_i \times \{i\} = \bigcup_{j \neq i} X_j \times \{j\} \in \mathcal{T}$
+    \item Abierta: $j_i\left( U_i \right) = U_i \times \{i\} \in \mathcal{T}$
+    \item Cerrada: $Y\setminus j_i\left( U_i \right) = Y \setminus U_i$ que es cerrado en $\sum \mathcal{T}_i$.
 \end{itemize}
 \end{demo}
 
 %TODO: Fix teorema
 \begin{theo}[Caracterización topología suma]
-Sea $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $e_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( Y, \mathcal{T}' \right)$. Entonces:
-    \[
-    \mathcal{T}' = \mathcal{T}_1 + \ldots + \mathcal{T}_r \Leftrightarrow  
-    \]
-    \begin{equation}\label{eq:prop_universal_sum}
-        \forall g \left[ g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.} \right]
-    \end{equation}
-
+Sea $g: \left( Y, \mathcal{T}' \right) \rightarrow \left( Z, \mathcal{T}'' \right)$ y $j_i: \left( X_i, \mathcal{T}_i \right) \rightarrow \left( Y, \mathcal{T}' \right)$:
     \begin{figure}[H]
         \centering    
             \begin{tikzpicture}[node distance=2cm, auto]
             \node(X) {$\left( X_i, \mathcal{T}_i \right)$};
             \node(Y) [right of=X] {$\left( Y, \mathcal{T}' \right)$};
             \node(Z) [below of=Y] {$\left( Z, \mathcal{T}'' \right)$};
-            \draw[->](X) to node {$e_i$}(Y);
-            \draw[->](X) to node [left] {$g|_{X_i} = g \circ e_i$}(Z);
+            \draw[->](X) to node {$j_i$}(Y);
+            \draw[->](X) to node [left] {$g|_{X_i} = g \circ j_i$}(Z);
             \draw[->](Y) to node {$g$}(Z);
             \end{tikzpicture}
         \caption{\textit{Ilustración de la composición propuesta}}
         \label{prop_universal_sum_finitas}
     \end{figure}
+
+entonces $\mathcal{T}' = \mathcal{T}_1 + \ldots + \mathcal{T}_r$ si y sólo si:
+\[
+g \text{ cont.} \Leftrightarrow \forall g_i \text{ cont.}
+\]
 \end{theo}
 %TODO: Tal vez hacerlo bien?
 \begin{demo}
@@ -911,14 +1054,14 @@ Ya sabemos que es biyección por lo que queda ver que es continua y abierta/cerr
 %    \label{}
 %\end{figure}
 %Tomemos $W \subset U \begin{cases}
-%    \text{cociente: } \pi^{-1} \left( W \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}\\
-%    \text{homeo: } \pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\} \stackrel{\text{ab.}}{\subset} \left\{ h=1 \right\}
+%    \text{cociente: } \pi^{-1} \left( W \right) \ab \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}\\
+%    \text{homeo: } \pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\} \ab \left\{ h=1 \right\}
 %\end{cases}$.    
 %Cociente $\Rightarrow$ homeomorfismo es trivial y significa que $\pi|_{\left\{ h=1 \right\}}$ es continua. Homeomorfismo $\Rightarrow$ cociente porque:
 %\[
 %\pi^{-1}\left( W \right) = \text{cono de } \underbrace{\pi^{-1}\left( W \right) \cap \left\{ h = 1 \right\}}_{A}
 %\]
-%Como $\left\{ h=1 \right\} \supset A$ abierto $\Leftrightarrow \text{cono}\left( A \right) \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ donde cono$\left( A \right) = \left\{ \lambda a: a \in A, \lambda \in \mathbb{R} \setminus \left\{ 0 \right\} \right\}$
+%Como $\left\{ h=1 \right\} \supset A$ abierto $\Leftrightarrow \text{cono}\left( A \right) \ab \mathbb{R}^{n+1} \setminus \left\{ 0 \right\}$ donde cono$\left( A \right) = \left\{ \lambda a: a \in A, \lambda \in \mathbb{R} \setminus \left\{ 0 \right\} \right\}$
 %\end{demo}
 
 \begin{prop}
@@ -961,7 +1104,7 @@ Estas dos topologías coinciden.
 
             \draw[-{implies},double] (0,0) -- (0,-2);
 
-            \node(bottom) at (0.7,-2.2) {$\pi^{-1}W \stackrel{\text{ab.}}{\subset} \mathbb{R}^{n+1} \Leftrightarrow \left( \pi|_{\left\{ h=1 \right\}}^{-1} \right)W \stackrel{\text{ab.}}{\subset}\left\{ h=1 \right\}$};
+            \node(bottom) at (0.7,-2.2) {$\pi^{-1}W \ab \mathbb{R}^{n+1} \Leftrightarrow \left( \pi|_{\left\{ h=1 \right\}}^{-1} \right)W \ab\left\{ h=1 \right\}$};
 
             %Izquieda
             \draw[implies-implies,double] (-1.35,-2.4) -- (-1.35,-3);
@@ -980,7 +1123,7 @@ Estas dos topologías coinciden.
 
 %TODO: Fix orden
 \begin{prop}
-    En este caso, la $\mathcal{T}_{\text{cociente}}$ tendrá como base: $\left\{ \pi\left( B \right) \subset U : B \stackrel{\text{ab.}}{\subset} \left\{ h = 1 \right\},\ h \in \mathbb{P}\left[ x_0, \ldots, x_n \right] \right\}$ homogéneo de grado $1: G = \bigcup_{U} G \cap U$ abierto en $\mathbb{P}^n$ y abierto en $U$.
+    En este caso, la $\mathcal{T}_{\text{cociente}}$ tendrá como base: $\left\{ \pi\left( B \right) \subset U : B \ab \left\{ h = 1 \right\},\ h \in \mathbb{P}\left[ x_0, \ldots, x_n \right] \right\}$ homogéneo de grado $1: G = \bigcup_{U} G \cap U$ abierto en $\mathbb{P}^n$ y abierto en $U$.
 \end{prop}
 
 \begin{obs}
@@ -995,7 +1138,7 @@ De lo anterior deducimos:
     \[
         \text{Cartas afines: } U_i = \{h_1 \neq 0\} \begin{cases}
                 \pi|: \{h_1 = 1\} \rightarrow U_1 \text{homeo.}\\
-                \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \stackrel{\text{ab.}}{\subset} \{h_1 = 1\}  
+                \left( \pi_1 \right)^{-1}\left( U_1 \cap U_2 \right) = \{h_1 = 1, h_2 \neq 0\} \ab \{h_1 = 1\}  
         \end{cases}  
     \]
     \end{demo}
@@ -1063,10 +1206,13 @@ No se suelen utilizar todas las cartas afines: $n + 1$ distintas ya cubren $\mat
 \end{demo}
 \begin{obs}
     Las cartas afines tienen una representación muy conveniente:
-    %TODO: Fix imagen
-    \begin{center}
-        \includegraphics[scale=0.3]{images/repr_carta_afin} 
-    \end{center}
+    \begin{figure}[H]
+        \centering
+        \incfig{representacion-cartas-afines}
+        \incfig{diagrama-carta-afin-antipodal}
+        \caption{\textit{Representación cartas afines.}}
+        \label{fig:representacion-cartas-afines}
+    \end{figure}
 \end{obs}
 
 %TODO: Demostrar que un hemisferio tiene una identificación al proyectivo. 
@@ -1078,14 +1224,35 @@ Consideremos un disco:
         D^n = \{h = 0, x_0^2 + \cdots + x_n^2 \le 1\} \text{ disco.} 
     \end{cases} 
 \]
-%TODO: Fix imagen
-\begin{center}
-    \includegraphics[scale=0.3]{images/cociente_disco} 
-\end{center}
+\begin{figure}[H]
+    \centering
+        \begin{tikzpicture}[node distance=2cm, auto]
+        \node(X) {$\overline{S}_+$};
+        \node(Y) [right of=X] {$D^n$};
+        \node(Z) [below of=X] {$\mathbb{R}^n$};
+        \draw[->](X) to node {$\alpha$}(Y);
+        \draw[->](X) to node [left] {$\pi$}(Z);
+        \draw[->](Y) to node {$\pi \circ \alpha^{-1}$}(Z);
+        \node(E1) [above=0.4 of X] {E};
+        \node(S1) at (-0.15,0.5) [rotate=90] {$\stackrel{\partial}{\subset}$};
+        \node(E2) [above=0.4 of Y] {E};
+        \node(S2) at (2.15,0.5) [rotate=90] {$\stackrel[\partial]{}{\subset}$};
+        \draw[-, double] (0.5, 0.9) -- (1.5, 0.9);
+        \end{tikzpicture}
+    \incfig[0.4]{proyectivo_disco}
+    \caption{\textit{$\mathbb{R}^n$ se obtiene identificando puntos antipodales del borde de un disco.}} 
+    \label{fig:proyectivo_disco}
+\end{figure}
 \end{prop}
 
 \begin{ej}
 $\mathbb{P}^{2} \setminus D^2 = $ banda de Möbius.
+\begin{figure}[H]
+    \centering
+    \incfig[0.5]{proyectivo,-disco-y-moebius}
+    \caption{\textit{Relación entre el espacio proyectivo, el disco y la banda de Möbius.}}
+    \label{fig:proyectivo-disco-y-moebius}
+\end{figure}
 %TODO: Fix imagen
 \begin{center}
     \includegraphics[scale=0.3]{images/banda_moebius} 
