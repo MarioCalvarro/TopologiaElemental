@@ -33,7 +33,7 @@
 \graphicspath{{./fotos/}}
 
 %% Inclusion de referencias cruzadas por defecto y específicas
-\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
 
 %% Paquete para definir y utilizar colores por el documento
 \usepackage[dvipsnames,usenames]{xcolor} %activar e incluir colores
@@ -53,6 +53,7 @@
     \titleformat{\subsection}{\normalfont\large\bfseries\color{subsecciones}}{}{0pt}{\uline{#1}}
     \titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{subsubsecciones}}{}{0pt}{#1}
 
+\hypersetup{linkcolor = blue}
 
 %% Paquete para el formateo de entornos del proyecto
 \usepackage{ntheorem}[thmmarks]
